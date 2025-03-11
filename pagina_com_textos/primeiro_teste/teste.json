@@ -1,0 +1,17 @@
+
+{ "palavras":[
+    {
+"palavra": "canção",
+    "id": 4838,
+    "frequency": 80,
+    "texts": [1,3,4]
+},
+
+{
+"palavra": "de",
+    "id": 9973,
+    "frequency": 3958,
+    "texts": [1,2,3]
+}
+]
+}
