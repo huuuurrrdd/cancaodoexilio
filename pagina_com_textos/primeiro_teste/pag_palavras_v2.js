@@ -92,7 +92,7 @@ function displayData(wordData, textData){
         const queryWord = normalizarTexto(wordParam)
         
         if(dictWord === queryWord){ //palavras normalizadas
-            idpalavra = wordData.palavras[i].id
+            idpalavra = wordData.palavras[i-1].id
             break; // quebra o ciclo assim que encontra
         }
     }
@@ -159,7 +159,7 @@ function displayData(wordData, textData){
         document.querySelector(".list-container").appendChild(tentry_container)
         tentry_container.className += "tentry-container" + (i + 1)
         //id funciona!!
-        tentry_container.innerHTML = `<a href = "./index.html?id=${textData[wordData.palavras[id_word].texts[i]-1].id}">Título (${textData[wordData.palavras[id_word].texts[i]-1].id}): ${textData[wordData.palavras[id_word].texts[i]-1].title}</a>`
+        tentry_container.innerHTML = `<a class="titulo" href = "./index.html?id=${textData[wordData.palavras[id_word].texts[i]-1].id}">Título (${textData[wordData.palavras[id_word].texts[i]-1].id}): ${textData[wordData.palavras[id_word].texts[i]-1].title}</a>`
         //tentry_container.innerHTML = `Título (${textData[wordData.palavras[id_word].texts[i]-1].id}): ${textData[wordData.palavras[id_word].texts[i]-1].title}`
         
 

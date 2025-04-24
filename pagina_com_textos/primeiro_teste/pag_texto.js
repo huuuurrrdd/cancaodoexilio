@@ -70,7 +70,7 @@ function displayData(wordData, textData){ // parece funcionar
     let titulo_texto = document.createElement("h1")
     document.querySelector(".texto-container").appendChild(titulo_texto)
     titulo_texto.className += "titulo"
-    titulo_texto.innerText = `${textId}: ${textData[textId-1].title}`
+    titulo_texto.innerHTML = `${textId}: ${textData[textId-1].title} <br> <br>`
 
 
     let texto_completo = document.createElement("div")
@@ -108,7 +108,7 @@ function displayData(wordData, textData){ // parece funcionar
 
     texto_completo.innerHTML = t4Join
 
-    teste_com_lemas.innerHTML = `<br> <br> <br> Versão lematizada: <br><br> ${l5Join} ` // n esta a funcionar n sei pq
+    //teste_com_lemas.innerHTML = `<br> <br> <br> Versão lematizada: <br><br> ${l5Join} ` // n esta a funcionar n sei pq
 
     console.log(`Length t3: ${t3Html.length}`)
     console.log(`Length l3 ${l4.length}`) //funcionou
@@ -148,7 +148,7 @@ function stringHtml(converted) { // retorna a string em formato html, mantendo q
 
     let nstring = converted.map(item =>
         item != "<br>"
-        ? `<a href = "./lista_palavras.html?palavra=${item}">${item}</a>` // aqui queria definir 2 items de strings diferentes
+        ? `<a class="palavra" href = "./lista_palavras.html?palavra=${item}">${item}</a>` // aqui queria definir 2 items de strings diferentes
         : "<br>"
     )
 
