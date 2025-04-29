@@ -42,6 +42,7 @@ console.log(`Palavra é -${wordParam}-`)
 //decidir o parametro
 
 
+
 function fetchData(){
     let wordData, textData
 
@@ -162,8 +163,10 @@ function displayData(wordData, textData){
         tentry_container.innerHTML = `<a class="titulo" href = "./index.html?id=${textData[wordData.palavras[id_word].texts[i]-1].id}">Título (${textData[wordData.palavras[id_word].texts[i]-1].id}): ${textData[wordData.palavras[id_word].texts[i]-1].title}</a>`
         //tentry_container.innerHTML = `Título (${textData[wordData.palavras[id_word].texts[i]-1].id}): ${textData[wordData.palavras[id_word].texts[i]-1].title}`
         
-
     }
+
+//Teste de display de stopwords:
+
 
 }
 

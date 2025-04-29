@@ -53,6 +53,20 @@ function fetchData(){
         })
         .catch(error => console.error('Failed to fetch data', error))
 
+    //stopwords
+    // fetch("./stopwords/portuguese")
+    //     .then(response => response.text())
+    //     .then(stopdata => {
+    //         const pal = stopdata.split('\n')
+    //         pal.forEach(pal => {
+    //             const p = document.createElement('p')
+    //             p.textContent = pal
+    //             document.body.appendChild(p)
+    //         })
+    //     })
+    //     .catch(error => console.error('Erro ao carregar ficheiro das stopwords', error))
+
+
 }
 
 fetchData()
