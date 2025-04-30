@@ -27,7 +27,7 @@ console.log(textId) // funciona!!
 
 
 function fetchData(){
-    let wordData, textData
+    let wordData, textData, stoplist
 
     //dicionario json
     fetch("./dict3.json")
@@ -49,7 +49,22 @@ function fetchData(){
         })
         .then(data => {
             textData = data
-            displayData(wordData, textData) //funcao com os 2 jsons
+            return fetch("./stopwords/portuguese")
+        })
+        .then(response =>{
+            if(!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`)
+            }
+            return response.text()
+        })
+        .then(data => {
+            stoplist = data
+            .split('\n')
+            .map(s_word => s_word.trim())
+            .filter(s_word => s_word.length > 0)
+
+            //funcao com os 3 dados dos 3 ficheiros
+            displayData(wordData, textData, stoplist)
         })
         .catch(error => console.error('Failed to fetch data', error))
 
@@ -74,7 +89,10 @@ fetchData()
 //let id_word = 1120 -1 // possivel testar com outros ids
 let id_word = 1930 -1
 
-function displayData(wordData, textData){ // parece funcionar
+function displayData(wordData, textData, stoplist){ // parece funcionar
+
+
+    
 
     /********** Display texto ***********/
     let texto_conteiner = document.createElement("div")
@@ -130,6 +148,7 @@ function displayData(wordData, textData){ // parece funcionar
     console.log(l4)
 
 
+    console.log("Listaaa:::" + stoplist)
 
 
 
