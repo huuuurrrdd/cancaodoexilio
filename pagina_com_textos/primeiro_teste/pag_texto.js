@@ -68,18 +68,6 @@ function fetchData(){
         })
         .catch(error => console.error('Failed to fetch data', error))
 
-    //stopwords
-    // fetch("./stopwords/portuguese")
-    //     .then(response => response.text())
-    //     .then(stopdata => {
-    //         const pal = stopdata.split('\n')
-    //         pal.forEach(pal => {
-    //             const p = document.createElement('p')
-    //             p.textContent = pal
-    //             document.body.appendChild(p)
-    //         })
-    //     })
-    //     .catch(error => console.error('Erro ao carregar ficheiro das stopwords', error))
 
 
 }
@@ -91,8 +79,7 @@ let id_word = 1930 -1
 
 function displayData(wordData, textData, stoplist){ // parece funcionar
 
-
-    
+    //console.log(stoplist)
 
     /********** Display texto ***********/
     let texto_conteiner = document.createElement("div")
@@ -119,7 +106,7 @@ function displayData(wordData, textData, stoplist){ // parece funcionar
 
 
 
-    // //tentando fazer split das palavras
+    // //tentando fazer split das palavras (os numeros t2,t3... corresponde ao n do passo)
     let t = textData[textId-1].texto_completo // string para texto
     let l = textData[textId-1].lemmas // string para lemas (a colocar no link)
 
@@ -128,8 +115,8 @@ function displayData(wordData, textData, stoplist){ // parece funcionar
     let t2Br = nToBr(t)
     let l3Br = nToBr(l2) 
 
-    let t3Html = stringHtml(t2Br)
-    let l4Html = stringHtml(l3Br) 
+    let t3Html = stringHtml(t2Br, stoplist)
+    let l4Html = stringHtml(l3Br, stoplist) 
 
     let t4Join = joinString(t3Html)
     let l5Join = joinString(l4Html)
@@ -142,10 +129,11 @@ function displayData(wordData, textData, stoplist){ // parece funcionar
 
     //teste_com_lemas.innerHTML = `<br> <br> <br> Versão lematizada: <br><br> ${l5Join} ` // n esta a funcionar n sei pq
 
+
     console.log(`Length t3: ${t3Html.length}`)
     console.log(`Length l3 ${l4.length}`) //funcionou
     
-    console.log(l4)
+    //console.log(l4)
 
 
     console.log("Listaaa:::" + stoplist)
@@ -177,14 +165,17 @@ return convertedn
 }
 
 
-function stringHtml(converted) { // retorna a string em formato html, mantendo quebras e links
+function stringHtml(converted, stoplist) { // retorna a string em formato html, mantendo quebras e links
 
     let nstring = converted.map(item =>
-        item != "<br>"
-        ? `<a class="palavra" href = "./lista_palavras.html?palavra=${item}">${item}</a>` // aqui queria definir 2 items de strings diferentes
-        : "<br>"
-    )
+        item === "<br>"
+            ? "<br>"
+            : stoplist.includes(item.toLowerCase())
+                ? item
+                : `<a class="palavra" href = "./lista_palavras.html?palavra=${item}">${item}</a>` // aqui queria definir 2 items de strings diferentes
 
+    )
+    
     for(let i = 0; i< nstring.length; i++){
         console.log(nstring[i])
     }
@@ -211,6 +202,7 @@ function joinString(string){
         novoTexto[i] = string[i].replace(punct, "")
     }
 
+    
     let final = novoTexto.join('')
     console.log(`Sem pobntuacao: ${final}`)
     
