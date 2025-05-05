@@ -160,7 +160,7 @@ function displayData(wordData, textData){
         document.querySelector(".list-container").appendChild(tentry_container)
         tentry_container.className += "tentry-container" + (i + 1)
         //id funciona!!
-        tentry_container.innerHTML = `<a class="titulo" href = "./index.html?id=${textData[wordData.palavras[id_word].texts[i]-1].id}">Título (${textData[wordData.palavras[id_word].texts[i]-1].id}): ${textData[wordData.palavras[id_word].texts[i]-1].title}</a>`
+        tentry_container.innerHTML = `<a class="titulo" href = "./index.html?id=${textData[wordData.palavras[id_word].texts[i]-1].id}">${textData[wordData.palavras[id_word].texts[i]-1].title} (${textData[wordData.palavras[id_word].texts[i]-1].date_of_publication})</a>`
         //tentry_container.innerHTML = `Título (${textData[wordData.palavras[id_word].texts[i]-1].id}): ${textData[wordData.palavras[id_word].texts[i]-1].title}`
         
     }

@@ -89,7 +89,7 @@ function displayData(wordData, textData, stoplist){ // parece funcionar
     let titulo_texto = document.createElement("h1")
     document.querySelector(".texto-container").appendChild(titulo_texto)
     titulo_texto.className += "titulo"
-    titulo_texto.innerHTML = `${textId}: ${textData[textId-1].title} <br> <br>`
+    titulo_texto.innerHTML = `${textData[textId-1].title} <br> <br>`
 
 
     let texto_completo = document.createElement("div")
@@ -97,6 +97,11 @@ function displayData(wordData, textData, stoplist){ // parece funcionar
     texto_completo.className += "texto-completo"
     //texto_completo.innerText = textData[textId-1].texto_completo //funcionaa!!
     //texto_completo.innerText = textData[textId-1].lemmas
+
+    let autor_data = document.createElement("div")
+    document.querySelector(".texto-container").appendChild(autor_data)
+    autor_data.className += "autor-data"
+    autor_data.innerHTML = `${textData[textId-1].author}, ${textData[textId-1].date_of_publication}<br>`
 
     let teste_com_lemas = document.createElement("div")
     document.querySelector("body").appendChild(teste_com_lemas)
