@@ -4,14 +4,13 @@
 /*___________________PAG_palavra______________________*/
 
 /*Coisas que faz (até agora):
-    -> Display da palavra (escolhendo um id aleatório)
-    -> Display dos textos que contêm essa palavra (e id do texto)
+    -> Possibilidade de clicar no texto e ir para a página de texto
+    -> Enviar informacao sobre id do texto para fazer display desse texto
 
 */
 
 /* Que preciso fazer:
-    -> Possibilidade de clicar no texto e ir para a página de texto
-    -> Enviar informacao sobre id do texto para fazer display desse texto
+    -> retirar a pontuacao da informacao que é enviada para a query
 
 */
 
@@ -173,9 +172,19 @@ function displayData(wordData, textData){
 
 //função para normalizar o texto
 function normalizarTexto(string){
+    const punct = /[\.,?!"]/g
+    let novoTexto = []
+
     string.normalize("NFD") // forma canónica, não percebo
     string.replace(/[\u0300-\u036f]/g, "") //remove acentos
     string.toLowerCase()
-    return string
+
+    for(let i = 0; i < string.length; i++){
+        novoTexto[i] = string[i].replace(punct, "")
+    }
+
+    let final = novoTexto.join('')
+    
+    return final
 }
 

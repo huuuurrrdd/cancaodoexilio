@@ -3,10 +3,13 @@
 
 /*coisas a fazer:
 -> Display de título e textp (1º) - feitooo!!!
--> Cada palavra deve ter um link para a página das palavras
+-> Cada palavra deve ter um link para a página das palavras - feito
     - COMOOO???
-    - tentar primeiro com os lemas! Guardar cada palavra como id
--> Guardar versao lematizada da palavra como id
+    - tentar primeiro com os lemas! Guardar cada palavra como id (nao esta a alterar para token!!)
+-> Guardar versao lematizada da palavra como id (ainda n esta a acontecer)
+
+A fazer:
+-> Remocao de pontuacao na query
 
 */
 
