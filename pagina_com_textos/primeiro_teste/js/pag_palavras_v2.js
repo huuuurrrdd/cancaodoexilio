@@ -41,6 +41,13 @@ console.log(`Palavra é -${wordParam}-`)
 //decidir o parametro
 
 
+/*
+    json e ficheiros que está a utilizar:
+    -> "./dict3.json": um dicionário de palavras (info: palavra, id, frequência, textos onde está presente)
+    -> "./textos_todos_v2.json": lista de todos os textos (info: titulo, id, data, autor, texto completo, lemas) - podiam tbm ter os tokens??
+
+*/
+
 
 function fetchData(){
     let wordData, textData
