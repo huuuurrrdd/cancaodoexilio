@@ -1,3 +1,5 @@
+
+
 const map = L.map('map', {
     center: [-29.50, 145],
     zoom: 3.5
@@ -5,14 +7,55 @@ const map = L.map('map', {
   
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }).addTo(map);
   
-  
+  // pequeno teste com dados do ficheiro
   const marker1 = L.marker([-37.699450, 176.279420]).addTo(map);
-  const marker2 = L.marker([-27.643310, 153.305140]).addTo(map);
-  const marker3 = L.marker([-33.956330, 122.150270]).addTo(map);
-  const marker4 = L.marker([-34.962390, 117.391220]).addTo(map);
-  const marker5 = L.marker([-17.961210, 122.214820]).addTo(map);
-  const marker6 = L.marker([-16.505960, 151.751520]).addTo(map);
-  const marker7 = L.marker([-22.594400, 167.484440]).addTo(map);
-  const marker8 = L.marker([-37.977000, 177.057000]).addTo(map);
-  const marker9 = L.marker([-41.037600, 173.017000]).addTo(map);
-  const marker10 = L.marker([-37.670300, 176.212000]).addTo(map);
+
+
+
+
+function fetchData(){
+
+  let textData
+
+  fetch("./json/pagina_com_textos/primeiro_teste/textos_coordenadas_geograficas.json")
+    .then(response => {
+      if(!response.ok){ // mensagem de erro
+        throw new Error(`HTTP error! Status ${response.status}`)
+      }
+      return response.json()
+    })
+    .then(data => {
+      textData = data
+
+      //funcao para aceder aos dados:
+      displayData(textData)
+    })
+    .catch(error => console.error("Falha em fetch data", error))
+
+}
+
+fetchData()
+
+function displayData(textData){
+
+
+
+const map = L.map('map', {
+    center: [-29.50, 145],
+    zoom: 3.5
+  });
+  
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }).addTo(map);
+  
+  // pequeno teste com dados do ficheiro
+  const marker1 = L.marker([-37.699450, 176.279420]).addTo(map);
+
+    //   // /*********** Display coordenada **************/
+    // let cord_container = document.createElement("div")
+    // document.querySelector("body").appendChild(cord_container)
+    // cord_container.className += "cord-container"
+    // cord_container.innerHTML = `<p>${textData[20].id}</p> <p></p>`
+    console.log( `O id: ${textData[20].id}, coordenadas:  ${textData[20].coordenadas_geograficas}`)
+
+}
+

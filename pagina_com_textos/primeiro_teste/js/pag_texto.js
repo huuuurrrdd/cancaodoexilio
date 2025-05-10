@@ -30,7 +30,7 @@ console.log(textId) // funciona!!
 /*
     json e ficheiros que está a utilizar:
     -> "./dict3.json": um dicionário de palavras (info: palavra, id, frequência, textos onde está presente)
-    -> "./textos_todos_v2.json": lista de todos os textos (info: titulo, id, data, autor, texto completo, lemas) - podiam tbm ter os tokens??
+    -> "./textos_coordenadas_geograficas.json": lista de todos os textos (info: titulo, id, data, autor, texto completo, lemas) - podiam tbm ter os tokens??
     -> "./stopwords/portuguese": lista de stopwords (para não incluir o seu link nos textos!!)
 */
 
@@ -47,7 +47,7 @@ function fetchData(){
         })
         .then(data => {
             wordData = data;
-            return fetch("./textos_todos_v2.json") // fetch json dos textos
+            return fetch("./textos_coordenadas_geograficas.json") // fetch json dos textos
         })
         .then(response => { // mwensagem de erro
             if(!response.ok){
