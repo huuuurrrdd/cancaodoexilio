@@ -28,12 +28,13 @@ let id_word = 1930 -1
 
 //funcao para obter palavra do url
 function getQueryParam(param){
+    //procura o nome selecionado na barra de pesquisa
     let urlParams = new URLSearchParams (window.location.search)
     return urlParams.get(param)
 }
 
-//testando sem nada
-let wordParam = getQueryParam("palavra")
+// define o parametro a pesquisar (neste caso = ?palavra=)
+let wordParam = getQueryParam("palavra") 
 
 console.log(`Palavra é -${wordParam}-`)
 

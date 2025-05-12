@@ -7,6 +7,15 @@
 
 */
 
+
+function getQueryParam(param){
+    let urlParams = new URLSearchParams (window.location.search)
+    return urlParams.get(param) // devolve a palavra? 
+}
+
+
+
+
 function fetchData(){
     let wordData, textData
 
@@ -71,12 +80,22 @@ function displayData(wordData, textData){
     input_pal.name = "q"
     input_pal.placeholder = "Palavras"
 
-    let bt_pesquisa_pal = document.createElement("button")
+    let bt_pesquisa_pal = document.createElement("button") //bt para pesquisa
     document.querySelector(".input-container").appendChild(bt_pesquisa_pal)
     bt_pesquisa_pal.innerText = "Search"
 
+    let feedback = document.createElement("div")
+    document.querySelector("body").appendChild(feedback)
+    feedback.className += "respostas"
 
 
+    
+    addEventListener(".input-container", (event) => {
+        
+
+    })
+
+    oninput = (event) => {feedback.innerHTML += "la "}
 
 
 }
