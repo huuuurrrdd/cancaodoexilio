@@ -9,7 +9,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":2,
@@ -21,7 +23,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":3,
@@ -33,7 +37,9 @@
     "locais_limpos":[
       "portugal"
     ],
-    "coordenadas_geograficas":"[(39.6621648, -8.1353519)]"
+    "coordenadas_geograficas":[
+      "(39.6621648, -8.1353519)"
+    ]
   },
   {
     "id":4,
@@ -46,7 +52,10 @@
       "portugal",
       "douro"
     ],
-    "coordenadas_geograficas":"[(39.6621648, -8.1353519), (41.453397, -5.1252011)]"
+    "coordenadas_geograficas":[
+      "(39.6621648, -8.1353519)",
+      "(41.453397, -5.1252011)"
+    ]
   },
   {
     "id":5,
@@ -58,7 +67,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":6,
@@ -71,7 +82,10 @@
       "bahia",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-12.285251, -41.9294776), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-12.285251, -41.9294776)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":7,
@@ -83,7 +97,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":8,
@@ -100,7 +116,14 @@
       "santa cruz",
       "bahia"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2), (-22.888889, -47.065556), (42.6384261, 12.674297), (-29.8425284, -53.7680577), (28.467178, -16.2507843), (-12.285251, -41.9294776)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)",
+      "(-22.888889, -47.065556)",
+      "(42.6384261, 12.674297)",
+      "(-29.8425284, -53.7680577)",
+      "(28.467178, -16.2507843)",
+      "(-12.285251, -41.9294776)"
+    ]
   },
   {
     "id":9,
@@ -116,7 +139,13 @@
       "rio grande do sul",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2), (42.6384261, 12.674297), (28.467178, -16.2507843), (-29.8425284, -53.7680577), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)",
+      "(42.6384261, 12.674297)",
+      "(28.467178, -16.2507843)",
+      "(-29.8425284, -53.7680577)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":10,
@@ -128,7 +157,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":11,
@@ -140,7 +171,9 @@
     "locais_limpos":[
       "portugal"
     ],
-    "coordenadas_geograficas":"[(39.6621648, -8.1353519)]"
+    "coordenadas_geograficas":[
+      "(39.6621648, -8.1353519)"
+    ]
   },
   {
     "id":12,
@@ -155,7 +188,12 @@
       "paris",
       "frança"
     ],
-    "coordenadas_geograficas":"[(-12.285251, -41.9294776), (-10.3333333, -53.2), (48.8588897, 2.320041), (46.603354, 1.8883335)]"
+    "coordenadas_geograficas":[
+      "(-12.285251, -41.9294776)",
+      "(-10.3333333, -53.2)",
+      "(48.8588897, 2.320041)",
+      "(46.603354, 1.8883335)"
+    ]
   },
   {
     "id":13,
@@ -167,7 +205,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":14,
@@ -179,7 +219,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":15,
@@ -192,7 +234,10 @@
       "brasil",
       "itália"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2), (42.6384261, 12.674297)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)",
+      "(42.6384261, 12.674297)"
+    ]
   },
   {
     "id":16,
@@ -204,7 +249,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":17,
@@ -217,7 +264,10 @@
       "pernambuco",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-8.4116316, -37.5919699), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-8.4116316, -37.5919699)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":18,
@@ -229,7 +279,9 @@
     "locais_limpos":[
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":19,
@@ -246,7 +298,14 @@
       "baía",
       "itália"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2), (28.467178, -16.2507843), (-29.8425284, -53.7680577), (-25.0239759, -50.5854615), (-12.285251, -41.9294776), (42.6384261, 12.674297)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)",
+      "(28.467178, -16.2507843)",
+      "(-29.8425284, -53.7680577)",
+      "(-25.0239759, -50.5854615)",
+      "(-12.285251, -41.9294776)",
+      "(42.6384261, 12.674297)"
+    ]
   },
   {
     "id":20,
@@ -258,7 +317,9 @@
     "locais_limpos":[
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":21,
@@ -271,7 +332,10 @@
       "alemanha",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(51.1638175, 10.4478313), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(51.1638175, 10.4478313)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":22,
@@ -284,7 +348,10 @@
       "europa",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(51.0, 10.0), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(51.0, 10.0)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":23,
@@ -296,7 +363,9 @@
     "locais_limpos":[
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":24,
@@ -308,7 +377,9 @@
     "locais_limpos":[
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":25,
@@ -320,7 +391,9 @@
     "locais_limpos":[
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":26,
@@ -332,7 +405,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":27,
@@ -346,7 +421,11 @@
       "sergipe",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(52.1732842, 5.0044091), (-10.6743911, -37.3773519), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(52.1732842, 5.0044091)",
+      "(-10.6743911, -37.3773519)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":28,
@@ -360,7 +439,11 @@
       "brasil",
       "itália"
     ],
-    "coordenadas_geograficas":"[(-12.285251, -41.9294776), (-10.3333333, -53.2), (42.6384261, 12.674297)]"
+    "coordenadas_geograficas":[
+      "(-12.285251, -41.9294776)",
+      "(-10.3333333, -53.2)",
+      "(42.6384261, 12.674297)"
+    ]
   },
   {
     "id":29,
@@ -372,7 +455,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":30,
@@ -387,7 +472,12 @@
       "europa",
       "ásia"
     ],
-    "coordenadas_geograficas":"[(-12.285251, -41.9294776), (-10.3333333, -53.2), (51.0, 10.0), (51.2086975, 89.2343748)]"
+    "coordenadas_geograficas":[
+      "(-12.285251, -41.9294776)",
+      "(-10.3333333, -53.2)",
+      "(51.0, 10.0)",
+      "(51.2086975, 89.2343748)"
+    ]
   },
   {
     "id":31,
@@ -399,7 +489,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":32,
@@ -411,7 +503,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":33,
@@ -425,7 +519,11 @@
       "nosso país",
       "itália"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2), (52.3479735, 4.904282), (42.6384261, 12.674297)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)",
+      "(52.3479735, 4.904282)",
+      "(42.6384261, 12.674297)"
+    ]
   },
   {
     "id":34,
@@ -437,7 +535,9 @@
     "locais_limpos":[
       "guaratiba"
     ],
-    "coordenadas_geograficas":"[(-22.9905839, -43.584923)]"
+    "coordenadas_geograficas":[
+      "(-22.9905839, -43.584923)"
+    ]
   },
   {
     "id":35,
@@ -450,7 +550,10 @@
       "brasil",
       "itália"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2), (42.6384261, 12.674297)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)",
+      "(42.6384261, 12.674297)"
+    ]
   },
   {
     "id":36,
@@ -462,7 +565,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":37,
@@ -475,7 +580,10 @@
       "pernambuco",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-8.4116316, -37.5919699), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-8.4116316, -37.5919699)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":38,
@@ -487,7 +595,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":39,
@@ -500,7 +610,10 @@
       "brasil",
       "maranhão"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2), (-5.2085503, -45.3930262)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)",
+      "(-5.2085503, -45.3930262)"
+    ]
   },
   {
     "id":40,
@@ -512,7 +625,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":41,
@@ -528,7 +643,13 @@
       "rio grande do sul",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-28.9956512, -57.812458), (-10.3333333, -53.2), (-24.4842187, -51.8148872), (-29.8425284, -53.7680577), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-28.9956512, -57.812458)",
+      "(-10.3333333, -53.2)",
+      "(-24.4842187, -51.8148872)",
+      "(-29.8425284, -53.7680577)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":42,
@@ -543,7 +664,12 @@
       "cá",
       "laranjais"
     ],
-    "coordenadas_geograficas":"[(-28.9956512, -57.812458), (-10.3333333, -53.2), (61.0666922, -107.991707), (-21.7592, -42.1703)]"
+    "coordenadas_geograficas":[
+      "(-28.9956512, -57.812458)",
+      "(-10.3333333, -53.2)",
+      "(61.0666922, -107.991707)",
+      "(-21.7592, -42.1703)"
+    ]
   },
   {
     "id":43,
@@ -555,7 +681,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":44,
@@ -568,7 +696,10 @@
       "goias",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-15.9323662, -50.1392928), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-15.9323662, -50.1392928)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":45,
@@ -580,7 +711,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":46,
@@ -592,7 +725,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":47,
@@ -605,7 +740,10 @@
       "brasil",
       "itália"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2), (42.6384261, 12.674297)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)",
+      "(42.6384261, 12.674297)"
+    ]
   },
   {
     "id":48,
@@ -617,7 +755,9 @@
     "locais_limpos":[
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":49,
@@ -629,7 +769,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":50,
@@ -641,7 +783,9 @@
     "locais_limpos":[
       "maranhão"
     ],
-    "coordenadas_geograficas":"[(-5.2085503, -45.3930262)]"
+    "coordenadas_geograficas":[
+      "(-5.2085503, -45.3930262)"
+    ]
   },
   {
     "id":51,
@@ -653,7 +797,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":52,
@@ -671,7 +817,15 @@
       "rio grande do sul",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-29.8425284, -53.7680577), (-10.3333333, -53.2), (-12.285251, -41.9294776), (42.6384261, 12.674297), (28.467178, -16.2507843), (-29.8425284, -53.7680577), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-29.8425284, -53.7680577)",
+      "(-10.3333333, -53.2)",
+      "(-12.285251, -41.9294776)",
+      "(42.6384261, 12.674297)",
+      "(28.467178, -16.2507843)",
+      "(-29.8425284, -53.7680577)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":53,
@@ -683,7 +837,9 @@
     "locais_limpos":[
       "maranhão"
     ],
-    "coordenadas_geograficas":"[(-5.2085503, -45.3930262)]"
+    "coordenadas_geograficas":[
+      "(-5.2085503, -45.3930262)"
+    ]
   },
   {
     "id":54,
@@ -695,7 +851,9 @@
     "locais_limpos":[
       "portugal"
     ],
-    "coordenadas_geograficas":"[(39.6621648, -8.1353519)]"
+    "coordenadas_geograficas":[
+      "(39.6621648, -8.1353519)"
+    ]
   },
   {
     "id":55,
@@ -715,7 +873,17 @@
       "rio grande do sul",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2), (-2.5392872, -43.0169994), (-4.2551056, -43.9386212), (-22.4238234, -45.4524156), (-22.8471123, -43.3428737), (-25.4177952, -48.9312493), (-12.285251, -41.9294776), (-29.8425284, -53.7680577), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)",
+      "(-2.5392872, -43.0169994)",
+      "(-4.2551056, -43.9386212)",
+      "(-22.4238234, -45.4524156)",
+      "(-22.8471123, -43.3428737)",
+      "(-25.4177952, -48.9312493)",
+      "(-12.285251, -41.9294776)",
+      "(-29.8425284, -53.7680577)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":56,
@@ -731,7 +899,13 @@
       "rio grande do sul",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2), (42.6384261, 12.674297), (28.467178, -16.2507843), (-29.8425284, -53.7680577), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)",
+      "(42.6384261, 12.674297)",
+      "(28.467178, -16.2507843)",
+      "(-29.8425284, -53.7680577)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":57,
@@ -746,7 +920,12 @@
       "bahia",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-5.2085503, -45.3930262), (-10.3333333, -53.2), (-12.285251, -41.9294776), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-5.2085503, -45.3930262)",
+      "(-10.3333333, -53.2)",
+      "(-12.285251, -41.9294776)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":58,
@@ -759,7 +938,10 @@
       "brasil",
       "maranhenses"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2), (-2.5392872, -43.0169994)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)",
+      "(-2.5392872, -43.0169994)"
+    ]
   },
   {
     "id":59,
@@ -772,7 +954,10 @@
       "brasil",
       "maranhão"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2), (-5.2085503, -45.3930262)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)",
+      "(-5.2085503, -45.3930262)"
+    ]
   },
   {
     "id":60,
@@ -790,7 +975,15 @@
       "roma",
       "itália"
     ],
-    "coordenadas_geograficas":"[(-5.2085503, -45.3930262), (-10.3333333, -53.2), (42.6384261, 12.674297), (37.9755648, 23.7348324), (38.9953683, 21.9877132), (41.8933203, 12.4829321), (42.6384261, 12.674297)]"
+    "coordenadas_geograficas":[
+      "(-5.2085503, -45.3930262)",
+      "(-10.3333333, -53.2)",
+      "(42.6384261, 12.674297)",
+      "(37.9755648, 23.7348324)",
+      "(38.9953683, 21.9877132)",
+      "(41.8933203, 12.4829321)",
+      "(42.6384261, 12.674297)"
+    ]
   },
   {
     "id":61,
@@ -806,7 +999,13 @@
       "ipú",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-4.3239824, -40.7097463), (48.8475232, 2.3029457), (-4.558259, -37.767894), (-3.4926679, -40.4913264), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-4.3239824, -40.7097463)",
+      "(48.8475232, 2.3029457)",
+      "(-4.558259, -37.767894)",
+      "(-3.4926679, -40.4913264)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":62,
@@ -819,7 +1018,10 @@
       "maranhão",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-5.2085503, -45.3930262), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-5.2085503, -45.3930262)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":63,
@@ -831,7 +1033,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":64,
@@ -845,7 +1049,11 @@
       "araripe",
       "sergipe"
     ],
-    "coordenadas_geograficas":"[(-10.6970135, -37.4450803), (-7.212861, -40.1359222), (-10.6743911, -37.3773519)]"
+    "coordenadas_geograficas":[
+      "(-10.6970135, -37.4450803)",
+      "(-7.212861, -40.1359222)",
+      "(-10.6743911, -37.3773519)"
+    ]
   },
   {
     "id":65,
@@ -858,7 +1066,10 @@
       "bahia",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-12.285251, -41.9294776), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-12.285251, -41.9294776)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":66,
@@ -870,7 +1081,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":67,
@@ -887,7 +1100,14 @@
       "rio grande do sul",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-12.285251, -41.9294776), (-10.3333333, -53.2), (42.6384261, 12.674297), (28.467178, -16.2507843), (-29.8425284, -53.7680577), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-12.285251, -41.9294776)",
+      "(-10.3333333, -53.2)",
+      "(42.6384261, 12.674297)",
+      "(28.467178, -16.2507843)",
+      "(-29.8425284, -53.7680577)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":68,
@@ -906,7 +1126,16 @@
       "bahia",
       "italia"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2), (-24.4842187, -51.8148872), (-28.1856937, -49.2163956), (41.453397, -5.1252011), (-8.9445483, -72.5889568), (37.7792588, -122.4193286), (-12.285251, -41.9294776), (42.6384261, 12.674297)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)",
+      "(-24.4842187, -51.8148872)",
+      "(-28.1856937, -49.2163956)",
+      "(41.453397, -5.1252011)",
+      "(-8.9445483, -72.5889568)",
+      "(37.7792588, -122.4193286)",
+      "(-12.285251, -41.9294776)",
+      "(42.6384261, 12.674297)"
+    ]
   },
   {
     "id":69,
@@ -918,7 +1147,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":70,
@@ -930,7 +1161,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":71,
@@ -948,7 +1181,15 @@
       "santa cruz",
       "guiné"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2), (40.7127281, -74.0060152), (41.5528387, -8.7777759), (-29.8425284, -53.7680577), (42.6384261, 12.674297), (28.467178, -16.2507843), (10.7226226, -10.7083587)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)",
+      "(40.7127281, -74.0060152)",
+      "(41.5528387, -8.7777759)",
+      "(-29.8425284, -53.7680577)",
+      "(42.6384261, 12.674297)",
+      "(28.467178, -16.2507843)",
+      "(10.7226226, -10.7083587)"
+    ]
   },
   {
     "id":72,
@@ -960,7 +1201,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":73,
@@ -972,7 +1215,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":74,
@@ -984,7 +1229,9 @@
     "locais_limpos":[
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":75,
@@ -996,7 +1243,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":76,
@@ -1012,7 +1261,9 @@
       "e não contém nomes claros de lugares reais que possam ser encontrados em um mapa. portanto",
       "a resposta é:"
     ],
-    "coordenadas_geograficas":"[(-22.4796455, -44.5020301)]"
+    "coordenadas_geograficas":[
+      "(-22.4796455, -44.5020301)"
+    ]
   },
   {
     "id":77,
@@ -1024,7 +1275,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":78,
@@ -1036,7 +1289,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":79,
@@ -1048,7 +1303,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":80,
@@ -1060,7 +1317,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":81,
@@ -1072,7 +1331,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":82,
@@ -1085,7 +1346,10 @@
       "ceará",
       "sobral"
     ],
-    "coordenadas_geograficas":"[(-5.3264703, -39.7156073), (-3.6879135, -40.3456372)]"
+    "coordenadas_geograficas":[
+      "(-5.3264703, -39.7156073)",
+      "(-3.6879135, -40.3456372)"
+    ]
   },
   {
     "id":83,
@@ -1097,7 +1361,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":84,
@@ -1109,7 +1375,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":85,
@@ -1121,7 +1389,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":86,
@@ -1136,7 +1406,12 @@
       "floriano",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-7.6992782, -42.5043787), (-9.6611661, -36.6502426), (-6.7675739, -43.022261), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-7.6992782, -42.5043787)",
+      "(-9.6611661, -36.6502426)",
+      "(-6.7675739, -43.022261)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":87,
@@ -1148,7 +1423,9 @@
     "locais_limpos":[
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":88,
@@ -1161,7 +1438,10 @@
       "bahia",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-12.285251, -41.9294776), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-12.285251, -41.9294776)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":89,
@@ -1174,7 +1454,10 @@
       "bahia",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-12.285251, -41.9294776), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-12.285251, -41.9294776)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":90,
@@ -1186,7 +1469,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":91,
@@ -1198,7 +1483,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":92,
@@ -1210,7 +1497,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":93,
@@ -1222,7 +1511,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":94,
@@ -1234,7 +1525,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":95,
@@ -1246,7 +1539,9 @@
     "locais_limpos":[
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":96,
@@ -1258,7 +1553,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":97,
@@ -1270,7 +1567,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":98,
@@ -1283,7 +1582,10 @@
       "brasil",
       "nordeste brasileiro"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2), (-12.9730018, -38.5044063)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)",
+      "(-12.9730018, -38.5044063)"
+    ]
   },
   {
     "id":99,
@@ -1295,7 +1597,9 @@
     "locais_limpos":[
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":100,
@@ -1307,7 +1611,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":101,
@@ -1319,7 +1625,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":102,
@@ -1331,7 +1639,9 @@
     "locais_limpos":[
       "mooca"
     ],
-    "coordenadas_geograficas":"[(-23.5606808, -46.5971924)]"
+    "coordenadas_geograficas":[
+      "(-23.5606808, -46.5971924)"
+    ]
   },
   {
     "id":103,
@@ -1343,7 +1653,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":104,
@@ -1355,7 +1667,9 @@
     "locais_limpos":[
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":105,
@@ -1369,7 +1683,11 @@
       "brasil",
       "mangue"
     ],
-    "coordenadas_geograficas":"[(-12.285251, -41.9294776), (-10.3333333, -53.2), (-19.7187384, 63.3968406)]"
+    "coordenadas_geograficas":[
+      "(-12.285251, -41.9294776)",
+      "(-10.3333333, -53.2)",
+      "(-19.7187384, 63.3968406)"
+    ]
   },
   {
     "id":106,
@@ -1381,7 +1699,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":107,
@@ -1393,7 +1713,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":108,
@@ -1405,7 +1727,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":109,
@@ -1417,7 +1741,9 @@
     "locais_limpos":[
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":110,
@@ -1431,7 +1757,11 @@
       "senegal",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(48.1089076, 18.8914594), (14.4750607, -14.4529612), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(48.1089076, 18.8914594)",
+      "(14.4750607, -14.4529612)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":111,
@@ -1443,7 +1773,9 @@
     "locais_limpos":[
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":112,
@@ -1457,7 +1789,11 @@
       "brasil",
       "casa muniz"
     ],
-    "coordenadas_geograficas":"[(-12.285251, -41.9294776), (-10.3333333, -53.2), (-22.4173127, -43.67207)]"
+    "coordenadas_geograficas":[
+      "(-12.285251, -41.9294776)",
+      "(-10.3333333, -53.2)",
+      "(-22.4173127, -43.67207)"
+    ]
   },
   {
     "id":113,
@@ -1471,7 +1807,11 @@
       "santa cruz",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-21.1853, -48.90861), (28.467178, -16.2507843), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-21.1853, -48.90861)",
+      "(28.467178, -16.2507843)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":114,
@@ -1483,7 +1823,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":115,
@@ -1496,7 +1838,10 @@
       "brasil",
       "itália"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2), (42.6384261, 12.674297)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)",
+      "(42.6384261, 12.674297)"
+    ]
   },
   {
     "id":116,
@@ -1508,7 +1853,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":117,
@@ -1520,7 +1867,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":118,
@@ -1533,7 +1882,10 @@
       "são paulo",
       "rua 15"
     ],
-    "coordenadas_geograficas":"[(-23.5506507, -46.6333824), (-22.9528339, -43.6809092)]"
+    "coordenadas_geograficas":[
+      "(-23.5506507, -46.6333824)",
+      "(-22.9528339, -43.6809092)"
+    ]
   },
   {
     "id":119,
@@ -1546,7 +1898,10 @@
       "brasil",
       "rio de janeiro"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2), (-22.9110137, -43.2093727)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)",
+      "(-22.9110137, -43.2093727)"
+    ]
   },
   {
     "id":120,
@@ -1559,7 +1914,10 @@
       "joazeiro",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-11.6977678, -39.2761631), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-11.6977678, -39.2761631)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":121,
@@ -1571,7 +1929,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":122,
@@ -1583,7 +1943,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":123,
@@ -1595,7 +1957,9 @@
     "locais_limpos":[
       "buretama"
     ],
-    "coordenadas_geograficas":"[(-6.8262083, -69.902805)]"
+    "coordenadas_geograficas":[
+      "(-6.8262083, -69.902805)"
+    ]
   },
   {
     "id":124,
@@ -1607,7 +1971,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":125,
@@ -1634,7 +2000,23 @@
       "moscou",
       "turquia"
     ],
-    "coordenadas_geograficas":"[(46.603354, 1.8883335), (-12.285251, -41.9294776), (48.8588897, 2.320041), (48.8582599, 2.2945006), (48.7340697, 2.4448155), (51.4893335, -0.1440551), (36.8563309, -3.1915835), (-5.8919755, -44.5869739), (-21.1239111, -44.2503926), (49.5590694, -1.5720818), (53.550341, 10.000654), (42.6384261, 12.674297), (64.6863136, 97.7453061), (55.7505412, 37.6174782), (39.294076, 35.2316631)]"
+    "coordenadas_geograficas":[
+      "(46.603354, 1.8883335)",
+      "(-12.285251, -41.9294776)",
+      "(48.8588897, 2.320041)",
+      "(48.8582599, 2.2945006)",
+      "(48.7340697, 2.4448155)",
+      "(51.4893335, -0.1440551)",
+      "(36.8563309, -3.1915835)",
+      "(-5.8919755, -44.5869739)",
+      "(-21.1239111, -44.2503926)",
+      "(49.5590694, -1.5720818)",
+      "(53.550341, 10.000654)",
+      "(42.6384261, 12.674297)",
+      "(64.6863136, 97.7453061)",
+      "(55.7505412, 37.6174782)",
+      "(39.294076, 35.2316631)"
+    ]
   },
   {
     "id":126,
@@ -1652,7 +2034,15 @@
       "ásia",
       "alemanha"
     ],
-    "coordenadas_geograficas":"[(-23.5506507, -46.6333824), (-10.3333333, -53.2), (61.0666922, -107.991707), (39.7837304, -100.445882), (46.603354, 1.8883335), (51.2086975, 89.2343748), (51.1638175, 10.4478313)]"
+    "coordenadas_geograficas":[
+      "(-23.5506507, -46.6333824)",
+      "(-10.3333333, -53.2)",
+      "(61.0666922, -107.991707)",
+      "(39.7837304, -100.445882)",
+      "(46.603354, 1.8883335)",
+      "(51.2086975, 89.2343748)",
+      "(51.1638175, 10.4478313)"
+    ]
   },
   {
     "id":127,
@@ -1666,7 +2056,11 @@
       "veneza",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(36.7014631, -118.755997), (45.4371908, 12.3345898), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(36.7014631, -118.755997)",
+      "(45.4371908, 12.3345898)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":128,
@@ -1680,7 +2074,11 @@
       "brasil",
       "moka"
     ],
-    "coordenadas_geograficas":"[(-12.285251, -41.9294776), (-10.3333333, -53.2), (-20.2521392, 57.5872245)]"
+    "coordenadas_geograficas":[
+      "(-12.285251, -41.9294776)",
+      "(-10.3333333, -53.2)",
+      "(-20.2521392, 57.5872245)"
+    ]
   },
   {
     "id":129,
@@ -1692,7 +2090,9 @@
     "locais_limpos":[
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":130,
@@ -1705,7 +2105,10 @@
       "herval",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-32.0260806, -53.3951333), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-32.0260806, -53.3951333)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":131,
@@ -1719,7 +2122,11 @@
       "brasil",
       "frança"
     ],
-    "coordenadas_geograficas":"[(-12.285251, -41.9294776), (-10.3333333, -53.2), (46.603354, 1.8883335)]"
+    "coordenadas_geograficas":[
+      "(-12.285251, -41.9294776)",
+      "(-10.3333333, -53.2)",
+      "(46.603354, 1.8883335)"
+    ]
   },
   {
     "id":132,
@@ -1731,7 +2138,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":133,
@@ -1745,7 +2154,11 @@
       "paraíba",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-21.63439, -41.0499142), (-7.1219366, -36.7246845), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-21.63439, -41.0499142)",
+      "(-7.1219366, -36.7246845)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":134,
@@ -1757,7 +2170,9 @@
     "locais_limpos":[
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":135,
@@ -1769,7 +2184,9 @@
     "locais_limpos":[
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":136,
@@ -1781,7 +2198,9 @@
     "locais_limpos":[
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":137,
@@ -1806,7 +2225,22 @@
       "rio grande do sul",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(40.18318, -8.5323021), (39.6621648, -8.1353519), (40.7560205, -8.5738299), (39.6621648, -8.1353519), (40.6162375, -8.5194434), (39.6621648, -8.1353519), (33.8967552, 48.71002), (39.6621648, -8.1353519), (41.0714486, -7.8998059), (39.6621648, -8.1353519), (42.6384261, 12.674297), (28.467178, -16.2507843), (-29.8425284, -53.7680577), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(40.18318, -8.5323021)",
+      "(39.6621648, -8.1353519)",
+      "(40.7560205, -8.5738299)",
+      "(39.6621648, -8.1353519)",
+      "(40.6162375, -8.5194434)",
+      "(39.6621648, -8.1353519)",
+      "(33.8967552, 48.71002)",
+      "(39.6621648, -8.1353519)",
+      "(41.0714486, -7.8998059)",
+      "(39.6621648, -8.1353519)",
+      "(42.6384261, 12.674297)",
+      "(28.467178, -16.2507843)",
+      "(-29.8425284, -53.7680577)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":138,
@@ -1819,7 +2253,10 @@
       "palmeira",
       "palmeirim"
     ],
-    "coordenadas_geograficas":"[(-27.9010519, -53.3135927), (38.6226598, -9.1952834)]"
+    "coordenadas_geograficas":[
+      "(-27.9010519, -53.3135927)",
+      "(38.6226598, -9.1952834)"
+    ]
   },
   {
     "id":139,
@@ -1834,7 +2271,12 @@
       "rio grande do sul",
       "itália"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2), (28.467178, -16.2507843), (-29.8425284, -53.7680577), (42.6384261, 12.674297)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)",
+      "(28.467178, -16.2507843)",
+      "(-29.8425284, -53.7680577)",
+      "(42.6384261, 12.674297)"
+    ]
   },
   {
     "id":140,
@@ -1846,7 +2288,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":141,
@@ -1860,7 +2304,11 @@
       "ioiô",
       "iaiá"
     ],
-    "coordenadas_geograficas":"[(44.3053476, 17.5961467), (25.0351805, 121.5661171), (-21.2118173, -47.8154771)]"
+    "coordenadas_geograficas":[
+      "(44.3053476, 17.5961467)",
+      "(25.0351805, 121.5661171)",
+      "(-21.2118173, -47.8154771)"
+    ]
   },
   {
     "id":142,
@@ -1872,7 +2320,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":143,
@@ -1891,7 +2341,16 @@
       "rio grande do sul",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-12.285251, -41.9294776), (-10.3333333, -53.2), (-22.971974, -43.1842997), (-10.3333333, -53.2), (42.6384261, 12.674297), (28.467178, -16.2507843), (-29.8425284, -53.7680577), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-12.285251, -41.9294776)",
+      "(-10.3333333, -53.2)",
+      "(-22.971974, -43.1842997)",
+      "(-10.3333333, -53.2)",
+      "(42.6384261, 12.674297)",
+      "(28.467178, -16.2507843)",
+      "(-29.8425284, -53.7680577)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":144,
@@ -1903,7 +2362,9 @@
     "locais_limpos":[
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":145,
@@ -1917,7 +2378,11 @@
       "itália",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-23.5506507, -46.6333824), (42.6384261, 12.674297), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-23.5506507, -46.6333824)",
+      "(42.6384261, 12.674297)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":146,
@@ -1929,7 +2394,9 @@
     "locais_limpos":[
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":147,
@@ -1941,7 +2408,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":148,
@@ -1953,7 +2422,9 @@
     "locais_limpos":[
       "mar e terras estrangeiras"
     ],
-    "coordenadas_geograficas":"[]"
+    "coordenadas_geograficas":[
+      "()"
+    ]
   },
   {
     "id":149,
@@ -1966,7 +2437,10 @@
       "palmeira",
       "palastra"
     ],
-    "coordenadas_geograficas":"[(-27.9010519, -53.3135927), (44.4865671, 10.8371946)]"
+    "coordenadas_geograficas":[
+      "(-27.9010519, -53.3135927)",
+      "(44.4865671, 10.8371946)"
+    ]
   },
   {
     "id":150,
@@ -1978,7 +2452,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":151,
@@ -1990,7 +2466,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":152,
@@ -2002,7 +2480,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":153,
@@ -2014,7 +2494,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":154,
@@ -2027,7 +2509,10 @@
       "paulista",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-7.9340069, -34.868407), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-7.9340069, -34.868407)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":155,
@@ -2046,7 +2531,16 @@
       "senhora aparecida",
       "senhor do bonfim"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2), (39.6851966, -0.4281287), (-29.8425284, -53.7680577), (42.6384261, 12.674297), (-12.285251, -41.9294776), (-22.0042944, -136.1973497), (-15.7983445, -47.8755465), (-10.4602509, -40.189151)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)",
+      "(39.6851966, -0.4281287)",
+      "(-29.8425284, -53.7680577)",
+      "(42.6384261, 12.674297)",
+      "(-12.285251, -41.9294776)",
+      "(-22.0042944, -136.1973497)",
+      "(-15.7983445, -47.8755465)",
+      "(-10.4602509, -40.189151)"
+    ]
   },
   {
     "id":156,
@@ -2059,7 +2553,10 @@
       "alagoas",
       "norte"
     ],
-    "coordenadas_geograficas":"[(-9.6611661, -36.6502426), (50.5289615, 3.0883508)]"
+    "coordenadas_geograficas":[
+      "(-9.6611661, -36.6502426)",
+      "(50.5289615, 3.0883508)"
+    ]
   },
   {
     "id":157,
@@ -2073,7 +2570,11 @@
       "alagoas",
       "minas gerais"
     ],
-    "coordenadas_geograficas":"[(-8.4116316, -37.5919699), (-9.6611661, -36.6502426), (-18.5264844, -44.1588654)]"
+    "coordenadas_geograficas":[
+      "(-8.4116316, -37.5919699)",
+      "(-9.6611661, -36.6502426)",
+      "(-18.5264844, -44.1588654)"
+    ]
   },
   {
     "id":158,
@@ -2086,7 +2587,10 @@
       "brasil",
       "itália"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2), (42.6384261, 12.674297)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)",
+      "(42.6384261, 12.674297)"
+    ]
   },
   {
     "id":159,
@@ -2100,7 +2604,11 @@
       "brasil",
       "são pedro"
     ],
-    "coordenadas_geograficas":"[(-7.9986401, -34.8459552), (-10.3333333, -53.2), (-22.5512765, -47.9072359)]"
+    "coordenadas_geograficas":[
+      "(-7.9986401, -34.8459552)",
+      "(-10.3333333, -53.2)",
+      "(-22.5512765, -47.9072359)"
+    ]
   },
   {
     "id":160,
@@ -2113,7 +2621,10 @@
       "alagoas",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-9.6611661, -36.6502426), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-9.6611661, -36.6502426)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":161,
@@ -2127,7 +2638,11 @@
       "brasil",
       "atlântico"
     ],
-    "coordenadas_geograficas":"[(39.6621648, -8.1353519), (-10.3333333, -53.2), (6.540829, 2.223095)]"
+    "coordenadas_geograficas":[
+      "(39.6621648, -8.1353519)",
+      "(-10.3333333, -53.2)",
+      "(6.540829, 2.223095)"
+    ]
   },
   {
     "id":162,
@@ -2142,7 +2657,12 @@
       "cruzeiro do sul",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-12.285251, -41.9294776), (-10.3333333, -53.2), (-29.5139742, -51.9917068), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-12.285251, -41.9294776)",
+      "(-10.3333333, -53.2)",
+      "(-29.5139742, -51.9917068)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":163,
@@ -2154,7 +2674,9 @@
     "locais_limpos":[
       "alagoas"
     ],
-    "coordenadas_geograficas":"[(-9.6611661, -36.6502426)]"
+    "coordenadas_geograficas":[
+      "(-9.6611661, -36.6502426)"
+    ]
   },
   {
     "id":164,
@@ -2166,7 +2688,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":165,
@@ -2178,7 +2702,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":166,
@@ -2190,7 +2716,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":167,
@@ -2202,7 +2730,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":168,
@@ -2215,7 +2745,10 @@
       "brasil",
       "n\/a"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2), (51.566874, 4.9284972)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)",
+      "(51.566874, 4.9284972)"
+    ]
   },
   {
     "id":169,
@@ -2230,7 +2763,12 @@
       "maine",
       "itália"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2), (44.2057083, -70.7537839), (45.709097, -68.8590201), (42.6384261, 12.674297)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)",
+      "(44.2057083, -70.7537839)",
+      "(45.709097, -68.8590201)",
+      "(42.6384261, 12.674297)"
+    ]
   },
   {
     "id":170,
@@ -2242,7 +2780,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":171,
@@ -2254,7 +2794,9 @@
     "locais_limpos":[
       "ceará"
     ],
-    "coordenadas_geograficas":"[(-5.3264703, -39.7156073)]"
+    "coordenadas_geograficas":[
+      "(-5.3264703, -39.7156073)"
+    ]
   },
   {
     "id":172,
@@ -2266,7 +2808,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":173,
@@ -2319,7 +2863,50 @@
       "rio de janeiro",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-7.1041208, -41.7030366), (-22.9110137, -43.2093727), (-10.3333333, -53.2), (41.1480885, -8.6655083), (-22.9110137, -43.2093727), (-10.3333333, -53.2), (-22.9834608, -43.2249656), (-22.9110137, -43.2093727), (-10.3333333, -53.2), (-22.9531726, -43.3715825), (-22.9110137, -43.2093727), (-10.3333333, -53.2), (-22.9339841, -43.1745744), (-22.9110137, -43.2093727), (-10.3333333, -53.2), (-29.2392716, -51.8744817), (-22.9110137, -43.2093727), (-10.3333333, -53.2), (-22.9090942, -43.2678381), (-22.9110137, -43.2093727), (-10.3333333, -53.2), (-21.0982794, -44.148586), (-22.9110137, -43.2093727), (-10.3333333, -53.2), (-23.7074096, -47.4252319), (-22.9110137, -43.2093727), (-10.3333333, -53.2), (-22.8351129, -43.3233619), (-22.9110137, -43.2093727), (-10.3333333, -53.2), (-22.9032751, -43.1915103), (-22.9110137, -43.2093727), (-10.3333333, -53.2), (-13.2498754, -43.4101019), (-22.9110137, -43.2093727), (-10.3333333, -53.2), (-22.8915219, -43.2267195), (-22.9110137, -43.2093727), (-10.3333333, -53.2), (32.6464766, -16.9102683), (-22.9110137, -43.2093727), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-7.1041208, -41.7030366)",
+      "(-22.9110137, -43.2093727)",
+      "(-10.3333333, -53.2)",
+      "(41.1480885, -8.6655083)",
+      "(-22.9110137, -43.2093727)",
+      "(-10.3333333, -53.2)",
+      "(-22.9834608, -43.2249656)",
+      "(-22.9110137, -43.2093727)",
+      "(-10.3333333, -53.2)",
+      "(-22.9531726, -43.3715825)",
+      "(-22.9110137, -43.2093727)",
+      "(-10.3333333, -53.2)",
+      "(-22.9339841, -43.1745744)",
+      "(-22.9110137, -43.2093727)",
+      "(-10.3333333, -53.2)",
+      "(-29.2392716, -51.8744817)",
+      "(-22.9110137, -43.2093727)",
+      "(-10.3333333, -53.2)",
+      "(-22.9090942, -43.2678381)",
+      "(-22.9110137, -43.2093727)",
+      "(-10.3333333, -53.2)",
+      "(-21.0982794, -44.148586)",
+      "(-22.9110137, -43.2093727)",
+      "(-10.3333333, -53.2)",
+      "(-23.7074096, -47.4252319)",
+      "(-22.9110137, -43.2093727)",
+      "(-10.3333333, -53.2)",
+      "(-22.8351129, -43.3233619)",
+      "(-22.9110137, -43.2093727)",
+      "(-10.3333333, -53.2)",
+      "(-22.9032751, -43.1915103)",
+      "(-22.9110137, -43.2093727)",
+      "(-10.3333333, -53.2)",
+      "(-13.2498754, -43.4101019)",
+      "(-22.9110137, -43.2093727)",
+      "(-10.3333333, -53.2)",
+      "(-22.8915219, -43.2267195)",
+      "(-22.9110137, -43.2093727)",
+      "(-10.3333333, -53.2)",
+      "(32.6464766, -16.9102683)",
+      "(-22.9110137, -43.2093727)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":174,
@@ -2333,7 +2920,11 @@
       "olegário mariano",
       "itália"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2), (-22.7746842, -43.2887492), (42.6384261, 12.674297)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)",
+      "(-22.7746842, -43.2887492)",
+      "(42.6384261, 12.674297)"
+    ]
   },
   {
     "id":175,
@@ -2346,7 +2937,10 @@
       "brasil",
       "palmeiras"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2), (-12.5151234, -41.5746054)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)",
+      "(-12.5151234, -41.5746054)"
+    ]
   },
   {
     "id":176,
@@ -2365,7 +2959,16 @@
       "fla-flu",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-23.5506507, -46.6333824), (-12.5151234, -41.5746054), (-22.8753053, -43.4648805), (8.9674808, -69.3915205), (44.3506606, 7.8271156), (-6.4596153, -37.1048989), (-22.9169643, -43.0490532), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-23.5506507, -46.6333824)",
+      "(-12.5151234, -41.5746054)",
+      "(-22.8753053, -43.4648805)",
+      "(8.9674808, -69.3915205)",
+      "(44.3506606, 7.8271156)",
+      "(-6.4596153, -37.1048989)",
+      "(-22.9169643, -43.0490532)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":177,
@@ -2382,7 +2985,14 @@
       "tubarão",
       "batatinha ."
     ],
-    "coordenadas_geograficas":"[(52.5404031, 12.9805423), (-10.3333333, -53.2), (-27.5619405, 153.0059826), (12.6560724, -87.1683383), (-28.471488, -49.014132), (-22.8476243, -46.13863)]"
+    "coordenadas_geograficas":[
+      "(52.5404031, 12.9805423)",
+      "(-10.3333333, -53.2)",
+      "(-27.5619405, 153.0059826)",
+      "(12.6560724, -87.1683383)",
+      "(-28.471488, -49.014132)",
+      "(-22.8476243, -46.13863)"
+    ]
   },
   {
     "id":178,
@@ -2397,7 +3007,12 @@
       "bahia",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-5.2085503, -45.3930262), (-10.3333333, -53.2), (-12.285251, -41.9294776), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-5.2085503, -45.3930262)",
+      "(-10.3333333, -53.2)",
+      "(-12.285251, -41.9294776)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":179,
@@ -2411,7 +3026,11 @@
       "sabiá",
       "bananas"
     ],
-    "coordenadas_geograficas":"[(-12.5151234, -41.5746054), (-22.926479, -42.2150834), (-25.133318, -52.602464)]"
+    "coordenadas_geograficas":[
+      "(-12.5151234, -41.5746054)",
+      "(-22.926479, -42.2150834)",
+      "(-25.133318, -52.602464)"
+    ]
   },
   {
     "id":180,
@@ -2425,7 +3044,11 @@
       "brasil",
       "paraopeba"
     ],
-    "coordenadas_geograficas":"[(-19.9227318, -43.9450948), (-10.3333333, -53.2), (-19.2756823, -44.4034123)]"
+    "coordenadas_geograficas":[
+      "(-19.9227318, -43.9450948)",
+      "(-10.3333333, -53.2)",
+      "(-19.2756823, -44.4034123)"
+    ]
   },
   {
     "id":181,
@@ -2438,7 +3061,10 @@
       "palmeira",
       "sabiá"
     ],
-    "coordenadas_geograficas":"[(-27.9010519, -53.3135927), (-22.926479, -42.2150834)]"
+    "coordenadas_geograficas":[
+      "(-27.9010519, -53.3135927)",
+      "(-22.926479, -42.2150834)"
+    ]
   },
   {
     "id":182,
@@ -2452,7 +3078,11 @@
       "brasil",
       "palmeira"
     ],
-    "coordenadas_geograficas":"[(-23.5506507, -46.6333824), (-10.3333333, -53.2), (-27.9010519, -53.3135927)]"
+    "coordenadas_geograficas":[
+      "(-23.5506507, -46.6333824)",
+      "(-10.3333333, -53.2)",
+      "(-27.9010519, -53.3135927)"
+    ]
   },
   {
     "id":183,
@@ -2464,7 +3094,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":184,
@@ -2476,7 +3108,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":185,
@@ -2488,7 +3122,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":186,
@@ -2500,7 +3136,9 @@
     "locais_limpos":[
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":187,
@@ -2512,7 +3150,9 @@
     "locais_limpos":[
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":188,
@@ -2529,7 +3169,14 @@
       "rio grande do sul",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-12.285251, -41.9294776), (-10.3333333, -53.2), (42.6384261, 12.674297), (28.467178, -16.2507843), (-29.8425284, -53.7680577), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-12.285251, -41.9294776)",
+      "(-10.3333333, -53.2)",
+      "(42.6384261, 12.674297)",
+      "(28.467178, -16.2507843)",
+      "(-29.8425284, -53.7680577)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":189,
@@ -2541,7 +3188,9 @@
     "locais_limpos":[
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":190,
@@ -2555,7 +3204,11 @@
       "brasil",
       "pinheiros do paraná"
     ],
-    "coordenadas_geograficas":"[(-24.4842187, -51.8148872), (-10.3333333, -53.2), (-25.3639682, -49.0632328)]"
+    "coordenadas_geograficas":[
+      "(-24.4842187, -51.8148872)",
+      "(-10.3333333, -53.2)",
+      "(-25.3639682, -49.0632328)"
+    ]
   },
   {
     "id":191,
@@ -2567,7 +3220,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":192,
@@ -2588,7 +3243,18 @@
       "santa cruz",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-22.9110137, -43.2093727), (-22.971974, -43.1842997), (-10.3333333, -53.2), (-10.8741698, -39.1761297), (-3.2001766, -59.4989288), (-22.888889, -47.065556), (-12.285251, -41.9294776), (42.6384261, 12.674297), (28.467178, -16.2507843), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-22.9110137, -43.2093727)",
+      "(-22.971974, -43.1842997)",
+      "(-10.3333333, -53.2)",
+      "(-10.8741698, -39.1761297)",
+      "(-3.2001766, -59.4989288)",
+      "(-22.888889, -47.065556)",
+      "(-12.285251, -41.9294776)",
+      "(42.6384261, 12.674297)",
+      "(28.467178, -16.2507843)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":193,
@@ -2609,7 +3275,18 @@
       "rio grande do sul",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2), (-15.77544, -47.7797631), (-22.9110137, -43.2093727), (-29.1372469, -50.7921124), (-12.285251, -41.9294776), (-10.3333333, -53.2), (42.6384261, 12.674297), (28.467178, -16.2507843), (-29.8425284, -53.7680577), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)",
+      "(-15.77544, -47.7797631)",
+      "(-22.9110137, -43.2093727)",
+      "(-29.1372469, -50.7921124)",
+      "(-12.285251, -41.9294776)",
+      "(-10.3333333, -53.2)",
+      "(42.6384261, 12.674297)",
+      "(28.467178, -16.2507843)",
+      "(-29.8425284, -53.7680577)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":194,
@@ -2621,7 +3298,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":195,
@@ -2633,7 +3312,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":196,
@@ -2645,7 +3326,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":197,
@@ -2657,7 +3340,9 @@
     "locais_limpos":[
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":198,
@@ -2672,7 +3357,12 @@
       "ajuricaba",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-3.2001766, -59.4989288), (-23.0101686, -43.3594244), (-28.239654, -53.7693013), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-3.2001766, -59.4989288)",
+      "(-23.0101686, -43.3594244)",
+      "(-28.239654, -53.7693013)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":199,
@@ -2689,7 +3379,13 @@
       "brasil",
       "sertão profundo"
     ],
-    "coordenadas_geograficas":"[(-22.9110137, -43.2093727), (-28.8166236, 24.991639), (28.467178, -16.2507843), (-29.8425284, -53.7680577), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-22.9110137, -43.2093727)",
+      "(-28.8166236, 24.991639)",
+      "(28.467178, -16.2507843)",
+      "(-29.8425284, -53.7680577)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":200,
@@ -2702,7 +3398,10 @@
       "portugal",
       "douro"
     ],
-    "coordenadas_geograficas":"[(39.6621648, -8.1353519), (41.453397, -5.1252011)]"
+    "coordenadas_geograficas":[
+      "(39.6621648, -8.1353519)",
+      "(41.453397, -5.1252011)"
+    ]
   },
   {
     "id":201,
@@ -2714,7 +3413,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":202,
@@ -2726,7 +3427,9 @@
     "locais_limpos":[
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":203,
@@ -2738,7 +3441,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":204,
@@ -2750,7 +3455,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":205,
@@ -2765,7 +3472,11 @@
       "brigite bardot",
       "br-3"
     ],
-    "coordenadas_geograficas":"[(-7.6992782, -42.5043787), (48.8588897, 2.320041), (45.255003, -0.6929448)]"
+    "coordenadas_geograficas":[
+      "(-7.6992782, -42.5043787)",
+      "(48.8588897, 2.320041)",
+      "(45.255003, -0.6929448)"
+    ]
   },
   {
     "id":206,
@@ -2783,7 +3494,15 @@
       "rio grande do sul",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-1.79633, -46.19922), (-12.285251, -41.9294776), (-10.3333333, -53.2), (42.6384261, 12.674297), (28.467178, -16.2507843), (-29.8425284, -53.7680577), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-1.79633, -46.19922)",
+      "(-12.285251, -41.9294776)",
+      "(-10.3333333, -53.2)",
+      "(42.6384261, 12.674297)",
+      "(28.467178, -16.2507843)",
+      "(-29.8425284, -53.7680577)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":207,
@@ -2797,7 +3516,11 @@
       "são paulo",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-20.5225065, -46.3945732), (-23.5506507, -46.6333824), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-20.5225065, -46.3945732)",
+      "(-23.5506507, -46.6333824)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":208,
@@ -2812,7 +3535,12 @@
       "amazônas",
       "itália"
     ],
-    "coordenadas_geograficas":"[(-0.2931886, -65.5059548), (-10.3333333, -53.2), (0.1865944, -50.7348369), (42.6384261, 12.674297)]"
+    "coordenadas_geograficas":[
+      "(-0.2931886, -65.5059548)",
+      "(-10.3333333, -53.2)",
+      "(0.1865944, -50.7348369)",
+      "(42.6384261, 12.674297)"
+    ]
   },
   {
     "id":209,
@@ -2824,7 +3552,9 @@
     "locais_limpos":[
       "n\/a"
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":210,
@@ -2836,7 +3566,9 @@
     "locais_limpos":[
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":211,
@@ -2850,7 +3582,11 @@
       "pará",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(31.7043556, 35.2061876), (-4.7493933, -52.8973006), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(31.7043556, 35.2061876)",
+      "(-4.7493933, -52.8973006)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":212,
@@ -2862,7 +3598,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":213,
@@ -2874,7 +3612,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":214,
@@ -2891,7 +3631,14 @@
       "mãezinha",
       "n\/a"
     ],
-    "coordenadas_geograficas":"[(-23.6501069, -50.2705797), (-27.9853815, -52.257587), (-19.2361583, -44.03063), (26.3849794, 77.8612721), (-7.9459707, -36.1996508), (51.566874, 4.9284972)]"
+    "coordenadas_geograficas":[
+      "(-23.6501069, -50.2705797)",
+      "(-27.9853815, -52.257587)",
+      "(-19.2361583, -44.03063)",
+      "(26.3849794, 77.8612721)",
+      "(-7.9459707, -36.1996508)",
+      "(51.566874, 4.9284972)"
+    ]
   },
   {
     "id":215,
@@ -2903,7 +3650,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":216,
@@ -2931,7 +3680,24 @@
       "quenta-sol",
       "botas"
     ],
-    "coordenadas_geograficas":"[(-11.6327028, -39.2757059), (-19.817223, -41.438333), (-19.4516825, -42.61884), (-23.5001984, -46.3870709), (-19.2218995, -42.8791455), (-20.1301977, -43.925902), (-22.6820178, -44.3221805), (27.0859992, 88.6604941), (-23.5855171, -48.083166), (-27.1365917, -49.6214495), (-17.6269059, -65.9269707), (-20.7625787, -41.5318886), (-9.225308, -35.4205416), (-20.9762768, -43.6658991), (-20.1130292, -47.164159), (40.3984881, -3.7735805)]"
+    "coordenadas_geograficas":[
+      "(-11.6327028, -39.2757059)",
+      "(-19.817223, -41.438333)",
+      "(-19.4516825, -42.61884)",
+      "(-23.5001984, -46.3870709)",
+      "(-19.2218995, -42.8791455)",
+      "(-20.1301977, -43.925902)",
+      "(-22.6820178, -44.3221805)",
+      "(27.0859992, 88.6604941)",
+      "(-23.5855171, -48.083166)",
+      "(-27.1365917, -49.6214495)",
+      "(-17.6269059, -65.9269707)",
+      "(-20.7625787, -41.5318886)",
+      "(-9.225308, -35.4205416)",
+      "(-20.9762768, -43.6658991)",
+      "(-20.1130292, -47.164159)",
+      "(40.3984881, -3.7735805)"
+    ]
   },
   {
     "id":217,
@@ -2943,7 +3709,9 @@
     "locais_limpos":[
       "maranhão"
     ],
-    "coordenadas_geograficas":"[(-5.2085503, -45.3930262)]"
+    "coordenadas_geograficas":[
+      "(-5.2085503, -45.3930262)"
+    ]
   },
   {
     "id":218,
@@ -2955,7 +3723,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":219,
@@ -2971,7 +3741,13 @@
       "rio grande do sul",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2), (-34.9964963, -64.9672817), (28.467178, -16.2507843), (-29.8425284, -53.7680577), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)",
+      "(-34.9964963, -64.9672817)",
+      "(28.467178, -16.2507843)",
+      "(-29.8425284, -53.7680577)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":220,
@@ -2983,7 +3759,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":221,
@@ -2996,7 +3774,10 @@
       "pernambuco",
       "beberibe"
     ],
-    "coordenadas_geograficas":"[(-8.4116316, -37.5919699), (-4.1810469, -38.1298101)]"
+    "coordenadas_geograficas":[
+      "(-8.4116316, -37.5919699)",
+      "(-4.1810469, -38.1298101)"
+    ]
   },
   {
     "id":222,
@@ -3012,7 +3793,13 @@
       "rio grande do sul",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2), (42.6384261, 12.674297), (28.467178, -16.2507843), (-29.8425284, -53.7680577), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)",
+      "(42.6384261, 12.674297)",
+      "(28.467178, -16.2507843)",
+      "(-29.8425284, -53.7680577)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":223,
@@ -3024,7 +3811,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":224,
@@ -3036,7 +3825,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":225,
@@ -3048,7 +3839,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":226,
@@ -3060,7 +3853,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":227,
@@ -3076,7 +3871,13 @@
       "rio grande do sul",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2), (40.6004589, -6.8857902), (28.467178, -16.2507843), (-29.8425284, -53.7680577), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)",
+      "(40.6004589, -6.8857902)",
+      "(28.467178, -16.2507843)",
+      "(-29.8425284, -53.7680577)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":228,
@@ -3088,7 +3889,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":229,
@@ -3101,7 +3904,10 @@
       "curitiba",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-25.4295963, -49.2712724), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-25.4295963, -49.2712724)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":230,
@@ -3113,7 +3919,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":231,
@@ -3125,7 +3933,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":232,
@@ -3137,7 +3947,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":233,
@@ -3149,7 +3961,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":234,
@@ -3161,7 +3975,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":235,
@@ -3176,7 +3992,12 @@
       "europa",
       "nordeste do brasil"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2), (40.4167047, -3.7035825), (51.0, 10.0), (-7.2231838, -38.290701)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)",
+      "(40.4167047, -3.7035825)",
+      "(51.0, 10.0)",
+      "(-7.2231838, -38.290701)"
+    ]
   },
   {
     "id":236,
@@ -3189,7 +4010,10 @@
       "lisboa",
       "portugal"
     ],
-    "coordenadas_geograficas":"[(38.7077507, -9.1365919), (39.6621648, -8.1353519)]"
+    "coordenadas_geograficas":[
+      "(38.7077507, -9.1365919)",
+      "(39.6621648, -8.1353519)"
+    ]
   },
   {
     "id":237,
@@ -3201,7 +4025,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":238,
@@ -3213,7 +4039,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":239,
@@ -3242,7 +4070,26 @@
       "bahia",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(39.294076, 35.2316631), (48.8588897, 2.320041), (48.8582599, 2.2945006), (-34.8373887, 138.480218), (46.603354, 1.8883335), (40.7127281, -74.0060152), (40.7827725, -73.9653627), (34.0218454, -6.8408929), (51.1638175, 10.4478313), (41.5084468, -6.7733024), (61.0666922, -107.991707), (22.5726459, 88.3638953), (34.0218454, -6.8408929), (38.0551003, -7.8605799), (39.6621648, -8.1353519), (40.1798391, -8.1881632), (-12.285251, -41.9294776), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(39.294076, 35.2316631)",
+      "(48.8588897, 2.320041)",
+      "(48.8582599, 2.2945006)",
+      "(-34.8373887, 138.480218)",
+      "(46.603354, 1.8883335)",
+      "(40.7127281, -74.0060152)",
+      "(40.7827725, -73.9653627)",
+      "(34.0218454, -6.8408929)",
+      "(51.1638175, 10.4478313)",
+      "(41.5084468, -6.7733024)",
+      "(61.0666922, -107.991707)",
+      "(22.5726459, 88.3638953)",
+      "(34.0218454, -6.8408929)",
+      "(38.0551003, -7.8605799)",
+      "(39.6621648, -8.1353519)",
+      "(40.1798391, -8.1881632)",
+      "(-12.285251, -41.9294776)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":240,
@@ -3254,7 +4101,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":241,
@@ -3271,7 +4120,14 @@
       "rio grande do sul",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-12.285251, -41.9294776), (-10.3333333, -53.2), (42.6384261, 12.674297), (28.467178, -16.2507843), (-29.8425284, -53.7680577), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-12.285251, -41.9294776)",
+      "(-10.3333333, -53.2)",
+      "(42.6384261, 12.674297)",
+      "(28.467178, -16.2507843)",
+      "(-29.8425284, -53.7680577)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":242,
@@ -3283,7 +4139,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":243,
@@ -3295,7 +4153,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":244,
@@ -3315,7 +4175,17 @@
       "angra",
       "parati"
     ],
-    "coordenadas_geograficas":"[(-12.285251, -41.9294776), (-10.3333333, -53.2), (-20.385527, -43.5035214), (-29.8425284, -53.7680577), (-10.3333333, -53.2), (-23.9335988, -46.3286399), (-22.738299, -45.5903769), (38.6593167, -27.2195578), (-23.2196461, -44.7154196)]"
+    "coordenadas_geograficas":[
+      "(-12.285251, -41.9294776)",
+      "(-10.3333333, -53.2)",
+      "(-20.385527, -43.5035214)",
+      "(-29.8425284, -53.7680577)",
+      "(-10.3333333, -53.2)",
+      "(-23.9335988, -46.3286399)",
+      "(-22.738299, -45.5903769)",
+      "(38.6593167, -27.2195578)",
+      "(-23.2196461, -44.7154196)"
+    ]
   },
   {
     "id":245,
@@ -3327,7 +4197,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":246,
@@ -3352,7 +4224,22 @@
       "rio grande do sul",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-14.8428108, -40.8546285), (-7.9340069, -34.868407), (-34.60757, -58.3742905), (-23.5503953, -46.6339471), (43.7613327, 18.8489561), (-23.5410441, -46.6453733), (11.7074696, -0.3478971), (-23.1030302, -47.7147937), (47.4183168, 26.2190039), (-25.2504123, -48.8093331), (-19.6190169, -43.226248), (28.467178, -16.2507843), (-29.8425284, -53.7680577), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-14.8428108, -40.8546285)",
+      "(-7.9340069, -34.868407)",
+      "(-34.60757, -58.3742905)",
+      "(-23.5503953, -46.6339471)",
+      "(43.7613327, 18.8489561)",
+      "(-23.5410441, -46.6453733)",
+      "(11.7074696, -0.3478971)",
+      "(-23.1030302, -47.7147937)",
+      "(47.4183168, 26.2190039)",
+      "(-25.2504123, -48.8093331)",
+      "(-19.6190169, -43.226248)",
+      "(28.467178, -16.2507843)",
+      "(-29.8425284, -53.7680577)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":247,
@@ -3365,7 +4252,10 @@
       "maceió",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-9.6476843, -35.7339264), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-9.6476843, -35.7339264)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":248,
@@ -3377,7 +4267,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":249,
@@ -3397,7 +4289,17 @@
       "canha",
       "rio uruguai"
     ],
-    "coordenadas_geograficas":"[(-29.8425284, -53.7680577), (39.6851966, -0.4281287), (4.203033, 10.0563057), (-30.1130731, -51.329442), (48.455818, -123.4733796), (-20.286111, -49.202778), (40.390908, -4.8388076), (38.7675202, -8.6257283), (-29.0789669, -56.4194797)]"
+    "coordenadas_geograficas":[
+      "(-29.8425284, -53.7680577)",
+      "(39.6851966, -0.4281287)",
+      "(4.203033, 10.0563057)",
+      "(-30.1130731, -51.329442)",
+      "(48.455818, -123.4733796)",
+      "(-20.286111, -49.202778)",
+      "(40.390908, -4.8388076)",
+      "(38.7675202, -8.6257283)",
+      "(-29.0789669, -56.4194797)"
+    ]
   },
   {
     "id":250,
@@ -3409,7 +4311,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":251,
@@ -3422,7 +4326,10 @@
       "sp",
       "nordeste"
     ],
-    "coordenadas_geograficas":"[(44.238366, 9.6912326), (22.1571174, 58.5183349)]"
+    "coordenadas_geograficas":[
+      "(44.238366, 9.6912326)",
+      "(22.1571174, 58.5183349)"
+    ]
   },
   {
     "id":252,
@@ -3435,7 +4342,10 @@
       "maranhão",
       "boa vista"
     ],
-    "coordenadas_geograficas":"[(-5.2085503, -45.3930262), (2.8208478, -60.6719582)]"
+    "coordenadas_geograficas":[
+      "(-5.2085503, -45.3930262)",
+      "(2.8208478, -60.6719582)"
+    ]
   },
   {
     "id":253,
@@ -3454,7 +4364,16 @@
       "rio grande do sul",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-23.5506507, -46.6333824), (-10.3333333, -53.2), (42.6384261, 12.674297), (-12.285251, -41.9294776), (-10.3333333, -53.2), (28.467178, -16.2507843), (-29.8425284, -53.7680577), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-23.5506507, -46.6333824)",
+      "(-10.3333333, -53.2)",
+      "(42.6384261, 12.674297)",
+      "(-12.285251, -41.9294776)",
+      "(-10.3333333, -53.2)",
+      "(28.467178, -16.2507843)",
+      "(-29.8425284, -53.7680577)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":254,
@@ -3472,7 +4391,15 @@
       "baixa",
       "bahia"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2), (-23.5506507, -46.6333824), (42.6384261, 12.674297), (28.467178, -16.2507843), (-29.8425284, -53.7680577), (38.7101237, -9.1370237), (-12.285251, -41.9294776)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)",
+      "(-23.5506507, -46.6333824)",
+      "(42.6384261, 12.674297)",
+      "(28.467178, -16.2507843)",
+      "(-29.8425284, -53.7680577)",
+      "(38.7101237, -9.1370237)",
+      "(-12.285251, -41.9294776)"
+    ]
   },
   {
     "id":255,
@@ -3484,7 +4411,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":256,
@@ -3496,7 +4425,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":257,
@@ -3508,7 +4439,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":258,
@@ -3520,7 +4453,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":259,
@@ -3535,7 +4470,12 @@
       "rio grande do sul",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-22.9056391, -47.059564), (-10.3333333, -53.2), (-29.8425284, -53.7680577), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-22.9056391, -47.059564)",
+      "(-10.3333333, -53.2)",
+      "(-29.8425284, -53.7680577)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":260,
@@ -3547,7 +4487,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":261,
@@ -3560,7 +4502,10 @@
       "são luís",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-2.5295265, -44.2963942), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-2.5295265, -44.2963942)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":262,
@@ -3572,7 +4517,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":263,
@@ -3584,7 +4531,9 @@
     "locais_limpos":[
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":264,
@@ -3596,7 +4545,9 @@
     "locais_limpos":[
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":265,
@@ -3608,7 +4559,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":266,
@@ -3620,7 +4573,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":267,
@@ -3632,7 +4587,9 @@
     "locais_limpos":[
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":268,
@@ -3644,7 +4601,9 @@
     "locais_limpos":[
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":269,
@@ -3657,7 +4616,9 @@
       "brasil",
       "paramound universal"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":270,
@@ -3669,7 +4630,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":271,
@@ -3681,7 +4644,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":272,
@@ -3693,7 +4658,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":273,
@@ -3705,7 +4672,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":274,
@@ -3723,7 +4692,14 @@
       "saigon",
       "delta do mecong"
     ],
-    "coordenadas_geograficas":"[(15.9266657, 107.9650855), (16.0699873, 108.2245499), (-22.9573942, -43.1698023), (33.7680065, 66.2385139), (-28.1775297, -52.0360304), (10.7763897, 106.7011391)]"
+    "coordenadas_geograficas":[
+      "(15.9266657, 107.9650855)",
+      "(16.0699873, 108.2245499)",
+      "(-22.9573942, -43.1698023)",
+      "(33.7680065, 66.2385139)",
+      "(-28.1775297, -52.0360304)",
+      "(10.7763897, 106.7011391)"
+    ]
   },
   {
     "id":275,
@@ -3735,7 +4711,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":276,
@@ -3759,7 +4737,21 @@
       "rio grande do sul",
       "brasil."
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2), (-15.7183687, -47.9950273), (-20.4290496, -47.8250067), (-12.402404, -46.4365769), (-22.5783685, -44.9642044), (-15.77544, -47.7797631), (-7.6992782, -42.5043787), (-12.285251, -41.9294776), (-10.3333333, -53.2), (42.6384261, 12.674297), (28.467178, -16.2507843), (-29.8425284, -53.7680577), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)",
+      "(-15.7183687, -47.9950273)",
+      "(-20.4290496, -47.8250067)",
+      "(-12.402404, -46.4365769)",
+      "(-22.5783685, -44.9642044)",
+      "(-15.77544, -47.7797631)",
+      "(-7.6992782, -42.5043787)",
+      "(-12.285251, -41.9294776)",
+      "(-10.3333333, -53.2)",
+      "(42.6384261, 12.674297)",
+      "(28.467178, -16.2507843)",
+      "(-29.8425284, -53.7680577)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":277,
@@ -3789,7 +4781,26 @@
       "mangueiras",
       "jabuticabeiras."
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2), (-29.8425284, -53.7680577), (-23.5506507, -46.6333824), (-12.285251, -41.9294776), (42.6384261, 12.674297), (1.6341848, -74.5618357), (-22.9110137, -43.2093727), (-23.4578227, -46.4696396), (-23.6928669, -48.2258292), (-4.0453849, -40.7527195), (33.98599, -86.5057381), (-21.6762861, -45.9211696), (59.9238206, 30.3427883), (33.8458479, -117.9992457), (51.4686797, -0.1271558), (40.9334852, -7.0163823), (-30.15604, -54.7819519), (-23.1886936, -46.8732412)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)",
+      "(-29.8425284, -53.7680577)",
+      "(-23.5506507, -46.6333824)",
+      "(-12.285251, -41.9294776)",
+      "(42.6384261, 12.674297)",
+      "(1.6341848, -74.5618357)",
+      "(-22.9110137, -43.2093727)",
+      "(-23.4578227, -46.4696396)",
+      "(-23.6928669, -48.2258292)",
+      "(-4.0453849, -40.7527195)",
+      "(33.98599, -86.5057381)",
+      "(-21.6762861, -45.9211696)",
+      "(59.9238206, 30.3427883)",
+      "(33.8458479, -117.9992457)",
+      "(51.4686797, -0.1271558)",
+      "(40.9334852, -7.0163823)",
+      "(-30.15604, -54.7819519)",
+      "(-23.1886936, -46.8732412)"
+    ]
   },
   {
     "id":278,
@@ -3803,7 +4814,11 @@
       "brasil",
       "n\/a"
     ],
-    "coordenadas_geograficas":"[(-23.5506507, -46.6333824), (-10.3333333, -53.2), (51.566874, 4.9284972)]"
+    "coordenadas_geograficas":[
+      "(-23.5506507, -46.6333824)",
+      "(-10.3333333, -53.2)",
+      "(51.566874, 4.9284972)"
+    ]
   },
   {
     "id":279,
@@ -3815,7 +4830,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":280,
@@ -3830,7 +4847,12 @@
       "rio grande do sul",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2), (28.467178, -16.2507843), (-29.8425284, -53.7680577), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)",
+      "(28.467178, -16.2507843)",
+      "(-29.8425284, -53.7680577)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":281,
@@ -3842,7 +4864,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":282,
@@ -3854,7 +4878,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":283,
@@ -3866,7 +4892,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":284,
@@ -3878,7 +4906,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":285,
@@ -3890,7 +4920,9 @@
     "locais_limpos":[
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":286,
@@ -3904,7 +4936,11 @@
       "rio grande do sul",
       "itália"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2), (-29.8425284, -53.7680577), (42.6384261, 12.674297)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)",
+      "(-29.8425284, -53.7680577)",
+      "(42.6384261, 12.674297)"
+    ]
   },
   {
     "id":287,
@@ -3916,7 +4952,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":288,
@@ -3928,7 +4966,9 @@
     "locais_limpos":[
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":289,
@@ -3942,7 +4982,11 @@
       "brasil",
       "sul"
     ],
-    "coordenadas_geograficas":"[(-12.285251, -41.9294776), (-10.3333333, -53.2), (37.5666791, 126.9782914)]"
+    "coordenadas_geograficas":[
+      "(-12.285251, -41.9294776)",
+      "(-10.3333333, -53.2)",
+      "(37.5666791, 126.9782914)"
+    ]
   },
   {
     "id":290,
@@ -3954,7 +4998,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":291,
@@ -3966,7 +5012,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":292,
@@ -3978,7 +5026,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":293,
@@ -3990,7 +5040,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":294,
@@ -4003,7 +5055,10 @@
       "floripa",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-27.5973002, -48.5496098), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-27.5973002, -48.5496098)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":295,
@@ -4015,7 +5070,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":296,
@@ -4027,7 +5084,9 @@
     "locais_limpos":[
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":297,
@@ -4039,7 +5098,9 @@
     "locais_limpos":[
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":298,
@@ -4051,7 +5112,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":299,
@@ -4063,7 +5126,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":300,
@@ -4075,7 +5140,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":301,
@@ -4087,7 +5154,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":302,
@@ -4099,7 +5168,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":303,
@@ -4112,7 +5183,10 @@
       "são fernão",
       "moscou"
     ],
-    "coordenadas_geograficas":"[(-22.3595388, -49.5209504), (55.7505412, 37.6174782)]"
+    "coordenadas_geograficas":[
+      "(-22.3595388, -49.5209504)",
+      "(55.7505412, 37.6174782)"
+    ]
   },
   {
     "id":304,
@@ -4125,7 +5199,10 @@
       "brasil",
       "esso"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2), (48.3972669, 9.9764431)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)",
+      "(48.3972669, 9.9764431)"
+    ]
   },
   {
     "id":305,
@@ -4138,7 +5215,10 @@
       "são paulo",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-23.5506507, -46.6333824), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-23.5506507, -46.6333824)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":306,
@@ -4150,7 +5230,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":307,
@@ -4162,7 +5244,9 @@
     "locais_limpos":[
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":308,
@@ -4174,7 +5258,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":309,
@@ -4186,7 +5272,9 @@
     "locais_limpos":[
       "manari"
     ],
-    "coordenadas_geograficas":"[(-8.9616166, -37.624648)]"
+    "coordenadas_geograficas":[
+      "(-8.9616166, -37.624648)"
+    ]
   },
   {
     "id":310,
@@ -4201,7 +5289,12 @@
       "bahia",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(38.6951083, -9.2146356), (-10.3333333, -53.2), (-12.285251, -41.9294776), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(38.6951083, -9.2146356)",
+      "(-10.3333333, -53.2)",
+      "(-12.285251, -41.9294776)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":311,
@@ -4213,7 +5306,9 @@
     "locais_limpos":[
       "maranhão"
     ],
-    "coordenadas_geograficas":"[(-5.2085503, -45.3930262)]"
+    "coordenadas_geograficas":[
+      "(-5.2085503, -45.3930262)"
+    ]
   },
   {
     "id":312,
@@ -4227,7 +5322,11 @@
       "rio grande do sul",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-29.1685045, -51.1796385), (-29.8425284, -53.7680577), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-29.1685045, -51.1796385)",
+      "(-29.8425284, -53.7680577)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":313,
@@ -4240,7 +5339,10 @@
       "pasárgada",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-20.0687815, -43.9405029), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-20.0687815, -43.9405029)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":314,
@@ -4252,7 +5354,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":315,
@@ -4264,7 +5368,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":316,
@@ -4280,7 +5386,13 @@
       "rio grande do sul",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2), (42.6384261, 12.674297), (28.467178, -16.2507843), (-29.8425284, -53.7680577), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)",
+      "(42.6384261, 12.674297)",
+      "(28.467178, -16.2507843)",
+      "(-29.8425284, -53.7680577)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":317,
@@ -4295,7 +5407,12 @@
       "bahia",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-10.9738236, -41.4943315), (-10.3333333, -53.2), (-12.285251, -41.9294776), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.9738236, -41.4943315)",
+      "(-10.3333333, -53.2)",
+      "(-12.285251, -41.9294776)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":318,
@@ -4315,7 +5432,17 @@
       "rio grande do sul",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-23.5506507, -46.6333824), (42.6384261, 12.674297), (36.5748441, 139.2394179), (-23.5577085, -46.6468132), (21.882746, -78.7625527), (-22.0263303, -44.3197395), (-12.285251, -41.9294776), (-29.8425284, -53.7680577), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-23.5506507, -46.6333824)",
+      "(42.6384261, 12.674297)",
+      "(36.5748441, 139.2394179)",
+      "(-23.5577085, -46.6468132)",
+      "(21.882746, -78.7625527)",
+      "(-22.0263303, -44.3197395)",
+      "(-12.285251, -41.9294776)",
+      "(-29.8425284, -53.7680577)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":319,
@@ -4328,7 +5455,10 @@
       "bahia",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-12.285251, -41.9294776), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-12.285251, -41.9294776)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":320,
@@ -4340,7 +5470,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":321,
@@ -4352,7 +5484,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":322,
@@ -4364,7 +5498,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":323,
@@ -4376,7 +5512,9 @@
     "locais_limpos":[
       "n\/a"
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":324,
@@ -4388,7 +5526,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":325,
@@ -4401,7 +5541,10 @@
       "brasil",
       "n\/a"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2), (51.566874, 4.9284972)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)",
+      "(51.566874, 4.9284972)"
+    ]
   },
   {
     "id":326,
@@ -4418,7 +5561,14 @@
       "lagoa",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-22.9110137, -43.2093727), (-10.3333333, -53.2), (-23.6001573, -46.6666413), (-22.971974, -43.1842997), (37.1325813, -8.4550509), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-22.9110137, -43.2093727)",
+      "(-10.3333333, -53.2)",
+      "(-23.6001573, -46.6666413)",
+      "(-22.971974, -43.1842997)",
+      "(37.1325813, -8.4550509)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":327,
@@ -4437,7 +5587,16 @@
       "rio grande do sul",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-23.4796813, -46.6029076), (-10.3333333, -53.2), (-12.285251, -41.9294776), (-10.3333333, -53.2), (42.6384261, 12.674297), (28.467178, -16.2507843), (-29.8425284, -53.7680577), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-23.4796813, -46.6029076)",
+      "(-10.3333333, -53.2)",
+      "(-12.285251, -41.9294776)",
+      "(-10.3333333, -53.2)",
+      "(42.6384261, 12.674297)",
+      "(28.467178, -16.2507843)",
+      "(-29.8425284, -53.7680577)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":328,
@@ -4449,7 +5608,9 @@
     "locais_limpos":[
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":329,
@@ -4461,7 +5622,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":330,
@@ -4473,7 +5636,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":331,
@@ -4485,7 +5650,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":332,
@@ -4497,7 +5664,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":333,
@@ -4509,7 +5678,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":334,
@@ -4522,7 +5693,10 @@
       "são sabiá",
       "sabará"
     ],
-    "coordenadas_geograficas":"[(-3.876586, -40.9222699), (-19.8900372, -43.8107916)]"
+    "coordenadas_geograficas":[
+      "(-3.876586, -40.9222699)",
+      "(-19.8900372, -43.8107916)"
+    ]
   },
   {
     "id":335,
@@ -4534,7 +5708,9 @@
     "locais_limpos":[
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":336,
@@ -4546,7 +5722,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":337,
@@ -4558,7 +5736,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":338,
@@ -4570,7 +5750,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":339,
@@ -4587,7 +5769,14 @@
       "rio grande do sul",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-12.285251, -41.9294776), (-10.3333333, -53.2), (42.6384261, 12.674297), (28.467178, -16.2507843), (-29.8425284, -53.7680577), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-12.285251, -41.9294776)",
+      "(-10.3333333, -53.2)",
+      "(42.6384261, 12.674297)",
+      "(28.467178, -16.2507843)",
+      "(-29.8425284, -53.7680577)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":340,
@@ -4599,7 +5788,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":341,
@@ -4611,7 +5802,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":342,
@@ -4624,7 +5817,10 @@
       "brasil",
       "nova guiné"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2), (-5.5226203, 142.0871194)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)",
+      "(-5.5226203, 142.0871194)"
+    ]
   },
   {
     "id":343,
@@ -4636,7 +5832,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":344,
@@ -4648,7 +5846,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":345,
@@ -4667,7 +5867,16 @@
       "santa cruz",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2), (-2.4817378, -44.2407897), (23.6585116, -102.0077097), (42.6384261, 12.674297), (-12.285251, -41.9294776), (-29.8425284, -53.7680577), (28.467178, -16.2507843), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)",
+      "(-2.4817378, -44.2407897)",
+      "(23.6585116, -102.0077097)",
+      "(42.6384261, 12.674297)",
+      "(-12.285251, -41.9294776)",
+      "(-29.8425284, -53.7680577)",
+      "(28.467178, -16.2507843)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":346,
@@ -4680,7 +5889,10 @@
       "brasil",
       "além-mar"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2), (41.1521258, -8.6073585)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)",
+      "(41.1521258, -8.6073585)"
+    ]
   },
   {
     "id":347,
@@ -4692,7 +5904,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":348,
@@ -4704,7 +5918,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":349,
@@ -4719,7 +5935,12 @@
       "caxias",
       "bahia"
     ],
-    "coordenadas_geograficas":"[(-20.0131996, -45.9777034), (-21.7609533, -43.3501129), (-29.1685045, -51.1796385), (-12.285251, -41.9294776)]"
+    "coordenadas_geograficas":[
+      "(-20.0131996, -45.9777034)",
+      "(-21.7609533, -43.3501129)",
+      "(-29.1685045, -51.1796385)",
+      "(-12.285251, -41.9294776)"
+    ]
   },
   {
     "id":350,
@@ -4731,7 +5952,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":351,
@@ -4743,7 +5966,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":352,
@@ -4755,7 +5980,9 @@
     "locais_limpos":[
       "maranhão"
     ],
-    "coordenadas_geograficas":"[(-5.2085503, -45.3930262)]"
+    "coordenadas_geograficas":[
+      "(-5.2085503, -45.3930262)"
+    ]
   },
   {
     "id":353,
@@ -4767,7 +5994,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":354,
@@ -4779,7 +6008,9 @@
     "locais_limpos":[
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":355,
@@ -4791,7 +6022,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":356,
@@ -4803,7 +6036,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":357,
@@ -4823,7 +6058,17 @@
       "bahia",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(38.5810606, -121.493895), (-22.2703347, -50.5442675), (-12.1091936, -39.1213627), (-8.0872065, -34.9454154), (44.5076065, 11.3572382), (-1.17278, -48.2804117), (42.6384261, 12.674297), (-12.285251, -41.9294776), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(38.5810606, -121.493895)",
+      "(-22.2703347, -50.5442675)",
+      "(-12.1091936, -39.1213627)",
+      "(-8.0872065, -34.9454154)",
+      "(44.5076065, 11.3572382)",
+      "(-1.17278, -48.2804117)",
+      "(42.6384261, 12.674297)",
+      "(-12.285251, -41.9294776)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":358,
@@ -4844,7 +6089,17 @@
       "fonte nova",
       "bahia ."
     ],
-    "coordenadas_geograficas":"[(-4.0055869, -79.2238579), (-14.030171, -52.010972), (-14.6853414, -75.1126642), (32.5759118, 75.1203446), (-22.9339841, -43.1745744), (-22.9121619, -43.2311861), (14.6492096, 121.147545), (-12.9787926, -38.5035601), (-12.285251, -41.9294776)]"
+    "coordenadas_geograficas":[
+      "(-4.0055869, -79.2238579)",
+      "(-14.030171, -52.010972)",
+      "(-14.6853414, -75.1126642)",
+      "(32.5759118, 75.1203446)",
+      "(-22.9339841, -43.1745744)",
+      "(-22.9121619, -43.2311861)",
+      "(14.6492096, 121.147545)",
+      "(-12.9787926, -38.5035601)",
+      "(-12.285251, -41.9294776)"
+    ]
   },
   {
     "id":359,
@@ -4856,7 +6111,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":360,
@@ -4868,7 +6125,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":361,
@@ -4880,7 +6139,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":362,
@@ -4892,7 +6153,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":363,
@@ -4904,7 +6167,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":364,
@@ -4916,7 +6181,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":365,
@@ -4928,7 +6195,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":366,
@@ -4940,7 +6209,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":367,
@@ -4952,7 +6223,9 @@
     "locais_limpos":[
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":368,
@@ -4972,7 +6245,17 @@
       "palmeiras",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-23.4575884, -52.048988), (-22.9110137, -43.2093727), (-10.3333333, -53.2), (-21.5233726, -43.0082364), (-22.9531726, -43.3715825), (-22.9110137, -43.2093727), (-10.3333333, -53.2), (-12.5151234, -41.5746054), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-23.4575884, -52.048988)",
+      "(-22.9110137, -43.2093727)",
+      "(-10.3333333, -53.2)",
+      "(-21.5233726, -43.0082364)",
+      "(-22.9531726, -43.3715825)",
+      "(-22.9110137, -43.2093727)",
+      "(-10.3333333, -53.2)",
+      "(-12.5151234, -41.5746054)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":369,
@@ -4984,7 +6267,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":370,
@@ -4998,7 +6283,11 @@
       "bairro de infância",
       "itália"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2), (39.5732791, -8.5918255), (42.6384261, 12.674297)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)",
+      "(39.5732791, -8.5918255)",
+      "(42.6384261, 12.674297)"
+    ]
   },
   {
     "id":371,
@@ -5010,7 +6299,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":372,
@@ -5025,7 +6316,12 @@
       "várzea das flores",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(39.1507263, -8.3727804), (39.5680963, 28.3708548), (-19.9181775, -44.1812515), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(39.1507263, -8.3727804)",
+      "(39.5680963, 28.3708548)",
+      "(-19.9181775, -44.1812515)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":373,
@@ -5037,7 +6333,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":374,
@@ -5049,7 +6347,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":375,
@@ -5061,7 +6361,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":376,
@@ -5073,7 +6375,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":377,
@@ -5085,7 +6389,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":378,
@@ -5106,7 +6412,16 @@
       "capadócia",
       "turquia."
     ],
-    "coordenadas_geograficas":"[(-12.285251, -41.9294776), (-10.3333333, -53.2), (42.6384261, 12.674297), (28.467178, -16.2507843), (-29.8425284, -53.7680577), (-10.3333333, -53.2), (38.6386753, 34.8457712), (39.294076, 35.2316631)]"
+    "coordenadas_geograficas":[
+      "(-12.285251, -41.9294776)",
+      "(-10.3333333, -53.2)",
+      "(42.6384261, 12.674297)",
+      "(28.467178, -16.2507843)",
+      "(-29.8425284, -53.7680577)",
+      "(-10.3333333, -53.2)",
+      "(38.6386753, 34.8457712)",
+      "(39.294076, 35.2316631)"
+    ]
   },
   {
     "id":379,
@@ -5118,7 +6433,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":380,
@@ -5131,7 +6448,10 @@
       "brasil",
       "n\/a"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2), (51.566874, 4.9284972)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)",
+      "(51.566874, 4.9284972)"
+    ]
   },
   {
     "id":381,
@@ -5143,7 +6463,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":382,
@@ -5155,7 +6477,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":383,
@@ -5167,7 +6491,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":384,
@@ -5179,7 +6505,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":385,
@@ -5194,7 +6522,12 @@
       "brasil",
       "lá"
     ],
-    "coordenadas_geograficas":"[(-5.3264703, -39.7156073), (37.9539582, -8.8721562), (-10.3333333, -53.2), (20.0171109, 103.378253)]"
+    "coordenadas_geograficas":[
+      "(-5.3264703, -39.7156073)",
+      "(37.9539582, -8.8721562)",
+      "(-10.3333333, -53.2)",
+      "(20.0171109, 103.378253)"
+    ]
   },
   {
     "id":386,
@@ -5206,7 +6539,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":387,
@@ -5218,7 +6553,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":388,
@@ -5230,7 +6567,9 @@
     "locais_limpos":[
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":389,
@@ -5242,7 +6581,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":390,
@@ -5254,7 +6595,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":391,
@@ -5266,7 +6609,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":392,
@@ -5278,7 +6623,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":393,
@@ -5290,7 +6637,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":394,
@@ -5302,7 +6651,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":395,
@@ -5314,7 +6665,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":396,
@@ -5326,7 +6679,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":397,
@@ -5338,7 +6693,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":398,
@@ -5350,7 +6707,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":399,
@@ -5362,7 +6721,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":400,
@@ -5374,7 +6735,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":401,
@@ -5386,7 +6749,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":402,
@@ -5398,7 +6763,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":403,
@@ -5410,7 +6777,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":404,
@@ -5422,7 +6791,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":405,
@@ -5434,7 +6805,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":406,
@@ -5446,7 +6819,9 @@
     "locais_limpos":[
       "jaboatao"
     ],
-    "coordenadas_geograficas":"[(-8.1752476, -34.9468716)]"
+    "coordenadas_geograficas":[
+      "(-8.1752476, -34.9468716)"
+    ]
   },
   {
     "id":407,
@@ -5458,7 +6833,9 @@
     "locais_limpos":[
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":408,
@@ -5470,7 +6847,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":409,
@@ -5482,7 +6861,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":410,
@@ -5494,7 +6875,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":411,
@@ -5506,7 +6889,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":412,
@@ -5518,7 +6903,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":413,
@@ -5530,7 +6917,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":414,
@@ -5542,7 +6931,9 @@
     "locais_limpos":[
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":415,
@@ -5554,7 +6945,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":416,
@@ -5566,7 +6959,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":417,
@@ -5578,7 +6973,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":418,
@@ -5590,7 +6987,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":419,
@@ -5602,7 +7001,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":420,
@@ -5614,7 +7015,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":421,
@@ -5626,7 +7029,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":422,
@@ -5638,7 +7043,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":423,
@@ -5650,7 +7057,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":424,
@@ -5662,7 +7071,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":425,
@@ -5674,7 +7085,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":426,
@@ -5686,7 +7099,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":427,
@@ -5698,7 +7113,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":428,
@@ -5710,7 +7127,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":429,
@@ -5722,7 +7141,9 @@
     "locais_limpos":[
       "ssa"
     ],
-    "coordenadas_geograficas":"[(39.7837304, -100.445882)]"
+    "coordenadas_geograficas":[
+      "(39.7837304, -100.445882)"
+    ]
   },
   {
     "id":430,
@@ -5734,7 +7155,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":431,
@@ -5746,7 +7169,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":432,
@@ -5758,7 +7183,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":433,
@@ -5770,7 +7197,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":434,
@@ -5782,7 +7211,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":435,
@@ -5794,7 +7225,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":436,
@@ -5806,7 +7239,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":437,
@@ -5819,7 +7254,10 @@
       "tocantins",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-10.8855129, -48.3716912), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.8855129, -48.3716912)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":438,
@@ -5831,7 +7269,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":439,
@@ -5843,7 +7283,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":440,
@@ -5855,7 +7297,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":441,
@@ -5867,7 +7311,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":442,
@@ -5879,7 +7325,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":443,
@@ -5891,7 +7339,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":444,
@@ -5903,7 +7353,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":445,
@@ -5915,7 +7367,9 @@
     "locais_limpos":[
       "jaboatao"
     ],
-    "coordenadas_geograficas":"[(-8.1752476, -34.9468716)]"
+    "coordenadas_geograficas":[
+      "(-8.1752476, -34.9468716)"
+    ]
   },
   {
     "id":446,
@@ -5933,7 +7387,15 @@
       "rio grande do sul",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-8.9565931, -78.2678528), (-5.3264703, -39.7156073), (-12.285251, -41.9294776), (42.6384261, 12.674297), (28.467178, -16.2507843), (-29.8425284, -53.7680577), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-8.9565931, -78.2678528)",
+      "(-5.3264703, -39.7156073)",
+      "(-12.285251, -41.9294776)",
+      "(42.6384261, 12.674297)",
+      "(28.467178, -16.2507843)",
+      "(-29.8425284, -53.7680577)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":447,
@@ -5945,7 +7407,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":448,
@@ -5957,7 +7421,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":449,
@@ -5969,7 +7435,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":450,
@@ -5981,7 +7449,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":451,
@@ -5993,7 +7463,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":452,
@@ -6005,7 +7477,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":453,
@@ -6018,7 +7492,10 @@
       "brasil",
       "bahia"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2), (-12.285251, -41.9294776)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)",
+      "(-12.285251, -41.9294776)"
+    ]
   },
   {
     "id":454,
@@ -6030,7 +7507,9 @@
     "locais_limpos":[
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":455,
@@ -6042,7 +7521,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":456,
@@ -6054,7 +7535,9 @@
     "locais_limpos":[
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":457,
@@ -6066,7 +7549,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":458,
@@ -6078,7 +7563,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":459,
@@ -6090,7 +7577,9 @@
     "locais_limpos":[
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":460,
@@ -6105,7 +7594,12 @@
       "série \"a\"",
       "libertadores ."
     ],
-    "coordenadas_geograficas":"[(-4.7493933, -52.8973006), (-10.3333333, -53.2), (5.829119, -55.0831622), (4.5467096, -75.6811427)]"
+    "coordenadas_geograficas":[
+      "(-4.7493933, -52.8973006)",
+      "(-10.3333333, -53.2)",
+      "(5.829119, -55.0831622)",
+      "(4.5467096, -75.6811427)"
+    ]
   },
   {
     "id":461,
@@ -6117,7 +7611,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":462,
@@ -6129,7 +7625,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":463,
@@ -6141,7 +7639,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":464,
@@ -6153,7 +7653,9 @@
     "locais_limpos":[
       "pará"
     ],
-    "coordenadas_geograficas":"[(-4.7493933, -52.8973006)]"
+    "coordenadas_geograficas":[
+      "(-4.7493933, -52.8973006)"
+    ]
   },
   {
     "id":465,
@@ -6165,7 +7667,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":466,
@@ -6181,7 +7685,13 @@
       "rio grande do sul",
       "santa cruz"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2), (-12.285251, -41.9294776), (42.6384261, 12.674297), (-29.8425284, -53.7680577), (28.467178, -16.2507843)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)",
+      "(-12.285251, -41.9294776)",
+      "(42.6384261, 12.674297)",
+      "(-29.8425284, -53.7680577)",
+      "(28.467178, -16.2507843)"
+    ]
   },
   {
     "id":467,
@@ -6193,7 +7703,9 @@
     "locais_limpos":[
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":468,
@@ -6210,7 +7722,14 @@
       "rio grande do sul",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2), (-12.285251, -41.9294776), (42.6384261, 12.674297), (28.467178, -16.2507843), (-29.8425284, -53.7680577), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)",
+      "(-12.285251, -41.9294776)",
+      "(42.6384261, 12.674297)",
+      "(28.467178, -16.2507843)",
+      "(-29.8425284, -53.7680577)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":469,
@@ -6222,7 +7741,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":470,
@@ -6234,7 +7755,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":471,
@@ -6249,7 +7772,12 @@
       "canadá",
       "itália"
     ],
-    "coordenadas_geograficas":"[(-12.285251, -41.9294776), (-10.3333333, -53.2), (61.0666922, -107.991707), (42.6384261, 12.674297)]"
+    "coordenadas_geograficas":[
+      "(-12.285251, -41.9294776)",
+      "(-10.3333333, -53.2)",
+      "(61.0666922, -107.991707)",
+      "(42.6384261, 12.674297)"
+    ]
   },
   {
     "id":472,
@@ -6261,7 +7789,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":473,
@@ -6273,7 +7803,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":474,
@@ -6285,7 +7817,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":475,
@@ -6297,7 +7831,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":476,
@@ -6309,7 +7845,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":477,
@@ -6321,7 +7859,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":478,
@@ -6333,7 +7873,9 @@
     "locais_limpos":[
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":479,
@@ -6345,7 +7887,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":480,
@@ -6357,7 +7901,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":481,
@@ -6369,7 +7915,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":482,
@@ -6381,7 +7929,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":483,
@@ -6393,7 +7943,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":484,
@@ -6405,7 +7957,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":485,
@@ -6418,7 +7972,9 @@
       "síria",
       ""
     ],
-    "coordenadas_geograficas":"[(34.6401861, 39.0494106)]"
+    "coordenadas_geograficas":[
+      "(34.6401861, 39.0494106)"
+    ]
   },
   {
     "id":486,
@@ -6434,7 +7990,13 @@
       "alagoas",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-23.1030302, -47.7147937), (-2.9147515, -41.7661953), (-7.212861, -40.1359222), (-9.6611661, -36.6502426), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-23.1030302, -47.7147937)",
+      "(-2.9147515, -41.7661953)",
+      "(-7.212861, -40.1359222)",
+      "(-9.6611661, -36.6502426)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":487,
@@ -6446,7 +8008,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":488,
@@ -6458,7 +8022,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":489,
@@ -6470,7 +8036,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":490,
@@ -6486,7 +8054,13 @@
       "rio grande do sul",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2), (42.6384261, 12.674297), (28.467178, -16.2507843), (-29.8425284, -53.7680577), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)",
+      "(42.6384261, 12.674297)",
+      "(28.467178, -16.2507843)",
+      "(-29.8425284, -53.7680577)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":491,
@@ -6498,7 +8072,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":492,
@@ -6510,7 +8086,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":493,
@@ -6525,7 +8103,12 @@
       "rio grande do sul",
       "itália"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2), (-18.5264844, -44.1588654), (-29.8425284, -53.7680577), (42.6384261, 12.674297)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)",
+      "(-18.5264844, -44.1588654)",
+      "(-29.8425284, -53.7680577)",
+      "(42.6384261, 12.674297)"
+    ]
   },
   {
     "id":494,
@@ -6537,7 +8120,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":495,
@@ -6549,7 +8134,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":496,
@@ -6561,7 +8148,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":497,
@@ -6573,7 +8162,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":498,
@@ -6589,7 +8180,13 @@
       "rio grande do sul",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-21.0002179, -61.0006565), (-23.5503564, -46.7118047), (28.467178, -16.2507843), (-29.8425284, -53.7680577), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-21.0002179, -61.0006565)",
+      "(-23.5503564, -46.7118047)",
+      "(28.467178, -16.2507843)",
+      "(-29.8425284, -53.7680577)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":499,
@@ -6603,7 +8200,11 @@
       "brasil",
       "ponta da areia"
     ],
-    "coordenadas_geograficas":"[(-5.2085503, -45.3930262), (-10.3333333, -53.2), (-17.7492604, -39.2597975)]"
+    "coordenadas_geograficas":[
+      "(-5.2085503, -45.3930262)",
+      "(-10.3333333, -53.2)",
+      "(-17.7492604, -39.2597975)"
+    ]
   },
   {
     "id":500,
@@ -6615,7 +8216,9 @@
     "locais_limpos":[
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":501,
@@ -6627,7 +8230,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":502,
@@ -6639,7 +8244,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":503,
@@ -6651,7 +8258,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":504,
@@ -6663,7 +8272,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":505,
@@ -6675,7 +8286,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":506,
@@ -6687,7 +8300,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":507,
@@ -6699,7 +8314,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":508,
@@ -6711,7 +8328,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":509,
@@ -6723,7 +8342,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":510,
@@ -6735,7 +8356,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":511,
@@ -6747,7 +8370,9 @@
     "locais_limpos":[
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":512,
@@ -6761,7 +8386,11 @@
       "brasil",
       "canadá"
     ],
-    "coordenadas_geograficas":"[(-28.241827, -48.6643444), (-10.3333333, -53.2), (61.0666922, -107.991707)]"
+    "coordenadas_geograficas":[
+      "(-28.241827, -48.6643444)",
+      "(-10.3333333, -53.2)",
+      "(61.0666922, -107.991707)"
+    ]
   },
   {
     "id":513,
@@ -6773,7 +8402,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":514,
@@ -6785,7 +8416,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":515,
@@ -6797,7 +8430,9 @@
     "locais_limpos":[
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":516,
@@ -6809,7 +8444,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":517,
@@ -6821,7 +8458,9 @@
     "locais_limpos":[
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":518,
@@ -6833,7 +8472,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":519,
@@ -6846,7 +8487,10 @@
       "brasil",
       "n\/a"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2), (51.566874, 4.9284972)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)",
+      "(51.566874, 4.9284972)"
+    ]
   },
   {
     "id":520,
@@ -6858,7 +8502,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":521,
@@ -6870,7 +8516,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":522,
@@ -6882,7 +8530,9 @@
     "locais_limpos":[
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":523,
@@ -6894,7 +8544,9 @@
     "locais_limpos":[
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":524,
@@ -6906,7 +8558,9 @@
     "locais_limpos":[
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":525,
@@ -6919,7 +8573,10 @@
       "brasil",
       "amazônia"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2), (39.8870003, -94.892021)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)",
+      "(39.8870003, -94.892021)"
+    ]
   },
   {
     "id":526,
@@ -6931,7 +8588,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":527,
@@ -6943,7 +8602,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":528,
@@ -6955,7 +8616,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":529,
@@ -6967,7 +8630,9 @@
     "locais_limpos":[
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":530,
@@ -6981,7 +8646,11 @@
       "lá",
       "ouvidor"
     ],
-    "coordenadas_geograficas":"[(-28.1287706, -48.645562), (20.0171109, 103.378253), (-18.2296167, -47.8351544)]"
+    "coordenadas_geograficas":[
+      "(-28.1287706, -48.645562)",
+      "(20.0171109, 103.378253)",
+      "(-18.2296167, -47.8351544)"
+    ]
   },
   {
     "id":531,
@@ -6993,7 +8662,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":532,
@@ -7005,7 +8676,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":533,
@@ -7017,7 +8690,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":534,
@@ -7029,7 +8704,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":535,
@@ -7041,7 +8718,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":536,
@@ -7053,7 +8732,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":537,
@@ -7065,7 +8746,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":538,
@@ -7077,7 +8760,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":539,
@@ -7089,7 +8774,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":540,
@@ -7102,7 +8789,10 @@
       "portugal",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(39.6621648, -8.1353519), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(39.6621648, -8.1353519)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":541,
@@ -7114,7 +8804,9 @@
     "locais_limpos":[
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":542,
@@ -7126,7 +8818,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":543,
@@ -7138,7 +8832,9 @@
     "locais_limpos":[
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":544,
@@ -7150,7 +8846,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":545,
@@ -7162,7 +8860,9 @@
     "locais_limpos":[
       "país aonde tem muitos pobres"
     ],
-    "coordenadas_geograficas":"[]"
+    "coordenadas_geograficas":[
+      "()"
+    ]
   },
   {
     "id":546,
@@ -7174,7 +8874,9 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   },
   {
     "id":547,
@@ -7187,7 +8889,10 @@
       "minas",
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-34.3773987, -55.2382144), (-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-34.3773987, -55.2382144)",
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":548,
@@ -7199,7 +8904,9 @@
     "locais_limpos":[
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":549,
@@ -7211,7 +8918,9 @@
     "locais_limpos":[
       "brasil"
     ],
-    "coordenadas_geograficas":"[(-10.3333333, -53.2)]"
+    "coordenadas_geograficas":[
+      "(-10.3333333, -53.2)"
+    ]
   },
   {
     "id":550,
@@ -7223,6 +8932,8 @@
     "locais_limpos":[
 
     ],
-    "coordenadas_geograficas":null
+    "coordenadas_geograficas":[
+
+    ]
   }
 ]
