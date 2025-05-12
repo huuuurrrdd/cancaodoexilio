@@ -64,9 +64,10 @@ function displayData(wordData, textData){
     titulo.innerHTML = "Canção do Exílio"
 
     // /*********** Display inputbox **************/
-    let input_container = document.createElement("div") // div para caixa input
-    document.querySelector("body").appendChild(input_container)
-    input_container.className += "input-container"
+    let word_input_form = document.createElement("form") // div para caixa input
+    document.querySelector("body").appendChild(word_input_form)
+    //word_input_form.action = 'lista_palavras.html' //colocar url
+    word_input_form.className += "input-container"
 
     let label_pesquisa_pal = document.createElement("label") // label para inut box
     document.querySelector(".input-container").appendChild(label_pesquisa_pal)
@@ -82,20 +83,21 @@ function displayData(wordData, textData){
 
     let bt_pesquisa_pal = document.createElement("button") //bt para pesquisa
     document.querySelector(".input-container").appendChild(bt_pesquisa_pal)
+    bt_pesquisa_pal.type = "submit"
     bt_pesquisa_pal.innerText = "Search"
 
     let feedback = document.createElement("div")
     document.querySelector("body").appendChild(feedback)
     feedback.className += "respostas"
 
-
+    let val
     
-    addEventListener(".input-container", (event) => {
-        
+    bt_pesquisa_pal.addEventListener(".input-container", (event) => {
+        val = input_pal.value
 
     })
 
     oninput = (event) => {feedback.innerHTML += "la "}
-
+        word_input_form.action = `lista_palavras.html?palavras=${val}`
 
 }
