@@ -45,21 +45,35 @@ function displayData(wordData, textData){
 /***************** Display dos elementos *******************/
 
     // /*********** Display titulo **************/
-    let titulo_container = document.createElement("div")
+    let titulo_container = document.createElement("div") // div para titulo
     document.querySelector("body").appendChild(titulo_container)
     titulo_container.className += "titulo-container"
 
-    let titulo = document.createElement("h1")
+    let titulo = document.createElement("h1") //titulo
     document.querySelector(".titulo-container").appendChild(titulo)
     titulo.className += "titulo"
     titulo.innerHTML = "Canção do Exílio"
 
     // /*********** Display inputbox **************/
-    let input_container = document.createElement("div")
+    let input_container = document.createElement("div") // div para caixa input
     document.querySelector("body").appendChild(input_container)
     input_container.className += "input-container"
 
-    let
+    let label_pesquisa_pal = document.createElement("label") // label para inut box
+    document.querySelector(".input-container").appendChild(label_pesquisa_pal)
+    label_pesquisa_pal.for = "word-search"
+    label_pesquisa_pal.innerHTML= "Pesquisa por palavras:<br><br>"
+
+    let input_pal = document.createElement("input") // input box
+    document.querySelector(".input-container").appendChild(input_pal)
+    input_pal.type = "search"
+    input_pal.id = "word-search"
+    input_pal.name = "q"
+    input_pal.placeholder = "Palavras"
+
+    let bt_pesquisa_pal = document.createElement("button")
+    document.querySelector(".input-container").appendChild(bt_pesquisa_pal)
+    bt_pesquisa_pal.innerText = "Search"
 
 
 
