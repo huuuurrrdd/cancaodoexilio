@@ -48,6 +48,10 @@ function fetchData(){
 fetchData()
 
 
+//Não sei o que estou a fazer...
+//https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/value (este n ajuda!!)
+// Este pode ajudar: https://www.w3schools.com/tags/tryit.asp?filename=tryhtml5_input_type_search (mais ou menos!!)
+// o melhor é ir ver ao site das galinhas
 
 function displayData(wordData, textData){
 
@@ -81,6 +85,10 @@ function displayData(wordData, textData){
     input_pal.name = "q"
     input_pal.placeholder = "Palavras"
 
+    let pre_pal = document.createElement("pre")
+    document.querySelector(".input-container").appendChild(pre_pal)
+    pre_pal.id = "log"
+
     let bt_pesquisa_pal = document.createElement("button") //bt para pesquisa
     document.querySelector(".input-container").appendChild(bt_pesquisa_pal)
     bt_pesquisa_pal.type = "submit"
@@ -90,14 +98,20 @@ function displayData(wordData, textData){
     document.querySelector("body").appendChild(feedback)
     feedback.className += "respostas"
 
-    let val
+    // let val
     
-    bt_pesquisa_pal.addEventListener(".input-container", (event) => {
-        val = input_pal.value
+    // bt_pesquisa_pal.addEventListener(".input-container", (event) => {
+    //     val = input_pal.value
 
+    // })
+
+    // oninput = (event) => {feedback.innerHTML += "la "}
+    //     word_input_form.action = `lista_palavras.html?palavras=${val}`
+
+    input_pal.addEventListener("keyup", () => {
+        pre_pal.innerText = `Palavra: ${pre_pal.value}`
     })
 
-    oninput = (event) => {feedback.innerHTML += "la "}
-        word_input_form.action = `lista_palavras.html?palavras=${val}`
+
 
 }
