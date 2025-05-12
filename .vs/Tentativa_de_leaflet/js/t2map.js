@@ -66,12 +66,20 @@ const map = L.map('map', {
   console.log(textData[19-1].coordenadas_geograficas[0]) // funcionaa!!
   console.log(textData[19-1].coordenadas_geograficas[0].replace("(", "[").replace(")","]")) // funcionaaa!!!
 
-  for (i=0; i< textData[19-1].coordenadas_geograficas.length; i++){
+  for(t=0; t<textData.length; t++){
 
-    marker[i] = L.marker([get_latitude(textData[19-1].coordenadas_geograficas[i]), get_longitude(textData[19-1].coordenadas_geograficas[i])]).addTo(map);
+    for (i=0; i< textData[t].coordenadas_geograficas.length; i++){
+      //nota: pode ser necessário verificar se os textos apresentam ou nao coordenada!!
+      marker[i] = L.marker([get_latitude(textData[t].coordenadas_geograficas[i]), get_longitude(textData[t].coordenadas_geograficas[i])]).addTo(map);
 
 
   }
+
+  }
+
+
+
+
 
 
     function get_latitude(element){
