@@ -49,17 +49,24 @@ const map = L.map('map', {
   
   // pequeno teste com dados do ficheiro
   const marker1 = L.marker([-37.699450, 176.279420]).addTo(map);
+  const marker2 = L.marker([39.6621648, -8.1353519]).addTo(map); // com coordenada "normal" funciona!!
+  const marker3 = L.marker(textData[4-1].coordenadas_geograficas[1].replace("(", "[").replace(")","]")).addTo(map); //n funciona!!
 
   //teste para id = 19-1
 
   const marker = []
+  const marca = []
 
-  
+  console.log(textData[19-1].coordenadas_geograficas[0]) // funcionaa!!
+  console.log(textData[19-1].coordenadas_geograficas[0].replace("(", "[").replace(")","]")) // funcionaaa!!!
 
   // for (i=0; i< textData[19-1].coordenadas_geograficas.length; i++){
-  //   //marker[i] = L.marker(str(textData[19-1].coordenadas_geograficas[i]).replace).addTo(map);
+  //   //n funcional:
+  //   //marca[i] = textData[19-1].coordenadas_geograficas[i].replace("(", "[").replace(")","]")
+  //   //marker[i] = L.marker(marca[i]).addTo(map);
+
   //   //console.log(textData[21-1].coordenadas_geograficas)
-  //   console.log(str(textData[19-1].coordenadas_geograficas[i]).replace("(", "["))
+  //   //console.log(textData[19-1].coordenadas_geograficas[i].replace("(", "[").replace(")","]"))// funcionall
 
   // }
 
