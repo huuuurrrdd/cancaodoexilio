@@ -38,4 +38,13 @@ function fetchData(){
 fetchData()
 
 
+function displayData(wordData, textData){
 
+    // for(let i=0; i<textData.length; i++){
+    //     if(textData[i].date_of_publication <= )
+    // }
+
+    sort_text = textData.date_of_publication.sort((a, b) => a - b)
+
+
+}
