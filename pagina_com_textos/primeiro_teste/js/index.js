@@ -8,11 +8,48 @@
 */
 
 
+/*
+    Coisas a resolver (que sem testar sei que está mal):
+    -> Aceder à palavra a partir das suas letras!! (porque a palavra no geral é acedida pelo id!!)
+        - Talvez uma função que converta o id para as palavras??(ver como fiz isso!!)
+    -> Posso testar primeiro com o nome dos textooosss!!
+    -> Falta funcao showResults()!!!
+
+*/
+
+
 function getQueryParam(param){
     let urlParams = new URLSearchParams (window.location.search)
     return urlParams.get(param) // devolve a palavra? 
 }
 
+/***************** Contentores gerais *******************/
+console.clear()
+
+//div para título
+    let titulo_container = document.createElement("div") // div para titulo
+    document.querySelector("body").appendChild(titulo_container)
+    titulo_container.className += "titulo-container"
+
+//div para formulário e botões
+    let btform_ct = document.createElement("div")
+    document.querySelector("body").appendChild(btform_ct)
+    btform_ct.className += "btform-ct"
+
+//div para palavra pesquisada (n sei se fica antes do form do input)
+    let results_pal = document.createElement("div")
+    document.querySelector("body").appendChild(results_pal)
+    results_pal.className += "results-pal"
+
+//div para conteúdo (apenas em forma de teste)
+    let filtro_pal_ct = document.createElement("div")
+    document.querySelector("body").appendChild(filtro_pal_ct)
+    filtro_pal_ct.className += "filtro-pal-ct"
+
+//div para texto explicativo
+    let explic_ct = document.createElement("div")
+    document.querySelector("body").appendChild(explic_ct)
+    explic_ct.className += "explic-ct"
 
 
 
@@ -55,48 +92,141 @@ fetchData()
 
 function displayData(wordData, textData){
 
-/***************** Display dos elementos *******************/
+/***************** Display dos elementos ***************************************/
 
     // /*********** Display titulo **************/
-    let titulo_container = document.createElement("div") // div para titulo
-    document.querySelector("body").appendChild(titulo_container)
-    titulo_container.className += "titulo-container"
-
     let titulo = document.createElement("h1") //titulo
     document.querySelector(".titulo-container").appendChild(titulo)
     titulo.className += "titulo"
     titulo.innerHTML = "Canção do Exílio"
 
-    // /*********** Display inputbox **************/
-    let word_input_form = document.createElement("form") // div para caixa input
-    document.querySelector("body").appendChild(word_input_form)
-    //word_input_form.action = 'lista_palavras.html' //colocar url
-    word_input_form.className += "input-container"
+    // /*********** Formulario de pesquisa **************/
 
-    let label_pesquisa_pal = document.createElement("label") // label para inut box
-    document.querySelector(".input-container").appendChild(label_pesquisa_pal)
+    //form container
+    let form_ct = document.createElement("div")
+    document.querySelector(".btform-ct").appendChild(form_ct)
+    form_ct.className += "form-ct"
+
+    //form
+    let form = document.createElement("form")
+    document.querySelector(".form-ct").appendChild(form)
+    form.className += "form"
+
+    //label para inut box (pesquisa)
+    let label_pesquisa_pal = document.createElement("label")
+    document.querySelector(".form-ct").appendChild(label_pesquisa_pal)
     label_pesquisa_pal.for = "word-search"
     label_pesquisa_pal.innerHTML= "Pesquisa por palavras:<br><br>"
+    label_pesquisa_pal.className += "label-pesquisa-pal s-item"
 
-    let input_pal = document.createElement("input") // input box
-    document.querySelector(".input-container").appendChild(input_pal)
+    //input para pal
+    let input_pal = document.createElement("input")
+    document.querySelector(".form-ct").appendChild(input_pal)
     input_pal.type = "search"
     input_pal.id = "word-search"
     input_pal.name = "q"
     input_pal.placeholder = "Palavras"
 
-    let pre_pal = document.createElement("pre")
-    document.querySelector(".input-container").appendChild(pre_pal)
-    pre_pal.id = "log"
-
-    let bt_pesquisa_pal = document.createElement("button") //bt para pesquisa
-    document.querySelector(".input-container").appendChild(bt_pesquisa_pal)
+    //bt-pesquisa
+    let bt_pesquisa_pal = document.createElement("button")
+    document.querySelector(".form-ct").appendChild(bt_pesquisa_pal)
+    bt_pesquisa_pal.className += "bt-pesquisa-pal s-item"
     bt_pesquisa_pal.type = "submit"
     bt_pesquisa_pal.innerText = "Search"
+    
+    //bt-clear
+    let bt_clear = document.createElement("button")
+    document.querySelector(".form-ct").appendChild(bt_clear)
+    bt_clear.innerText = "Clear"
 
-    let feedback = document.createElement("div")
-    document.querySelector("body").appendChild(feedback)
-    feedback.className += "respostas"
+
+    //filtros e apresentar dados
+    input_pal.addEventListener("input", (e) => {
+
+        let value  = e.target.value
+
+        if(value && value.trim().length > 0){
+
+            value = value.trim().toLowerCase()
+            
+            const filteredData = data.filter(wordData => wordData.palavra.toLowerCase().includes(value))
+            StyleSheetList(filteredData)
+            
+        }else{
+            clearList(results_pal)
+            clearList(filtro_pal_ct)
+        }
+
+    })
+
+
+    //funcao para limpar a lista
+    function clearList(item){
+        while(item.firstChild){
+            item.removeChild(item.firstChild)
+        }
+    }
+
+    //limpa resultados??
+    bt_pesquisa_pal.addEventListener("click", () => {
+        clearList(results_pal)
+        input_pal.value = ""
+    })
+
+
+    //regressa ao estado inicial
+    bt_clear.addEventListener("click", () =>{
+        clearList(results_pal)
+        clearList(filtro_pal_ct)
+    })
+
+
+
+
+    function setList(results){
+        clearList(results_pal)
+        clearList(filtro_pal_ct)
+
+        if(results.length === 0){
+            noResults()
+        } else{
+            for(const palavra of results) {
+                const resultItem = document.createElement("li")
+                //ver como está organizado o json dos gatos!!!
+                resultItem.className += "result-item" + palavra.palavra // certamente que esta mal!! eu preciso associar palavra a id!!
+
+                const text = document.createElement(palavra.palavra)
+                resultItem.appendChild(text);
+                results_pal.appendChild(resultItem)
+            }
+            showResults(results) // falta a funcaooo
+
+        }
+
+    }
+
+
+
+    function noResults(){
+        filtro_pal_ct.innerHTML = "<h1> No results!<h1>"
+    }
+
+
+    showResults(data)
+
+
+    /***************** Ordenação dos dados ***************************************/
+
+    //let filter_ct = document.createElement("div")
+
+
+
+
+
+
+
+
+
 
     // let val
     
@@ -108,9 +238,9 @@ function displayData(wordData, textData){
     // oninput = (event) => {feedback.innerHTML += "la "}
     //     word_input_form.action = `lista_palavras.html?palavras=${val}`
 
-    input_pal.addEventListener("keyup", () => {
-        pre_pal.innerText = `Palavra: ${pre_pal.value}`
-    })
+    // input_pal.addEventListener("keyup", () => {
+    //     pre_pal.innerText = `Palavra: ${pre_pal.value}`
+    // })
 
 
 
