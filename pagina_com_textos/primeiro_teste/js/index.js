@@ -1,7 +1,3 @@
-//preciso de fazer uma nova versao desta pagina de pesquisa!!!
-//testando passo a passo...
-
-
 
 /*
     Esta página deve incluir:
@@ -208,15 +204,12 @@ function displayData(wordData, textData){
             for(const palavra of results) {
                 const resultItem = document.createElement("li")
                 resultItem.className += "result-item" + palavra.palavra.replace(/\s+/g, "-").toLowerCase()
+                const text = document.createElement("p")
+                text.innerText = palavra.palavra
                 
-   // Quando o utilizador clica numa sugestão
-            resultItem.addEventListener("click", () => {
-                input_pal.value = palavra.palavra;
-                clearList(results_pal);
-                showResults([palavra]);
-            });
-
-            results_pal.appendChild(resultItem);
+                resultItem.appendChild(text);
+                results_pal.appendChild(resultItem)
+            }
             showResults(results) // falta a funcaooo
 
         }
