@@ -42,8 +42,9 @@ function displayData(textData) {
     )}`
   );
 
+  //define a posição no mapa e o seu zoom
   const map = L.map("map", {
-    center: [-29.5, 145],
+    center: [0, -30],
     zoom: 3.5,
   });
 
