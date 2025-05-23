@@ -125,15 +125,15 @@ function displayData(wordData, textData, stoplist){ // parece funcionar
     let t = textData[textId-1].texto_completo // string para texto
     let l = textData[textId-1].lemmas // string para lemas (a colocar no link)
 
-    l2 = removePont(l) // é um array tem de ser um a um
+    l2 = removePont(l) // (remove pontuacao) é um array tem de ser um a um
 
-    let t2Br = nToBr(t)
+    let t2Br = nToBr(t) // tansforma \n em <br>
     let l3Br = nToBr(l2) 
 
-    let t3Html = stringHtml(t2Br, stoplist)
+    let t3Html = stringHtml(t2Br, stoplist) // cria a sting de html (com os links das palavas e removendo as stopwords)
     let l4Html = stringHtml(l3Br, stoplist) 
 
-    let t4Join = joinString(t3Html)
+    let t4Join = joinString(t3Html) // junta todas as stings (o array passa a 1 string)
     let l5Join = joinString(l4Html)
 
     
@@ -143,7 +143,7 @@ function displayData(wordData, textData, stoplist){ // parece funcionar
 
 
 
-    texto_completo.innerHTML = t4Join
+    texto_completo.innerHTML = t4Join // acrescenta ao html o resultado final
 
     //Display de input pesquisa:
     pesquisa_livre()
@@ -233,6 +233,21 @@ function joinString(string){
 
 
 //para a ferramenta de pesquisa (uma função separada)
+/*
+    Para hoje:
+    1º - Atualizar o calendário
+    2º - Fazer o input de pesquisa funcional com o minimo possível     
+
+
+    Coisas necessáias:
+    1º- obter valor do input
+    2º- simplificar o valor (lematizar e colocar em letras minusculas)
+
+
+
+*/
+
+
 function pesquisa_livre(){
 
     //desenhar o html
@@ -241,19 +256,41 @@ function pesquisa_livre(){
     document.querySelector("body").appendChild(pl_ct)
     pl_ct.className += "pl-ct"
     
-
+    /******** Form para pesquisa ********/
+    
 
     /********** Input search ***********/
     let input_search = document.createElement("input")
     pl_ct.appendChild(input_search)
     input_search.type = "text"
-    input_search.placeholder = "search"
+    input_search.placeholder = "pesquisa por palavra"
 
+    /************** Button **************/
+    let bt_search = document.createElement("button")
+    pl_ct.appendChild(bt_search)
+    bt_search.innerHTML = "bt"
+
+    bt_search.onClick = abrePagPalava()
+    {
+        window.location.href = `./lista_palavras.html?palavra=${"batata"}`
+    }
     
 }
 
 
     
+
+
+
+
+
+
+
+
+
+
+
+/*********** Rascunhos *************/
     
 
     // //t.replaceAll("\n", "ai")
