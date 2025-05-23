@@ -1,4 +1,5 @@
 
+
 // leitura de ficheiros json: https://www.geeksforgeeks.org/read-json-file-using-javascript/
 
 /*___________________PAG_palavra______________________*/
@@ -172,7 +173,6 @@ function displayData(wordData, textData){
         
     }
 
-//Teste de display de stopwords:
 
 
 }

@@ -87,6 +87,8 @@ let id_word = 1930 -1
 
 function displayData(wordData, textData, stoplist){ // parece funcionar
 
+
+
     //console.log(stoplist)
 
     /********** Display texto ***********/
@@ -138,7 +140,13 @@ function displayData(wordData, textData, stoplist){ // parece funcionar
     //let l5 = removePont(l4Join)
 
 
+
+
+
     texto_completo.innerHTML = t4Join
+
+    //Display de input pesquisa:
+    pesquisa_livre()
 
     //teste_com_lemas.innerHTML = `<br> <br> <br> Versão lematizada: <br><br> ${l5Join} ` // n esta a funcionar n sei pq
 
@@ -150,7 +158,6 @@ function displayData(wordData, textData, stoplist){ // parece funcionar
 
 
     console.log("Listaaa:::" + stoplist)
-
 
 
 }
@@ -225,7 +232,25 @@ function joinString(string){
  }
 
 
+//para a ferramenta de pesquisa (uma função separada)
+function pesquisa_livre(){
 
+    //desenhar o html
+    /******** Caixa para o texto ********/
+    let pl_ct = document.createElement("div")
+    document.querySelector("body").appendChild(pl_ct)
+    pl_ct.className += "pl-ct"
+    
+
+
+    /********** Input search ***********/
+    let input_search = document.createElement("input")
+    pl_ct.appendChild(input_search)
+    input_search.type = "text"
+    input_search.placeholder = "search"
+
+    
+}
 
 
     
