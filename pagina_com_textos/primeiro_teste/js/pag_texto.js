@@ -256,7 +256,7 @@ function pesquisa_livre(){
     document.querySelector("body").appendChild(pl_ct)
     pl_ct.className += "pl-ct"
     
-    /******** Form para pesquisa ********/ //n funcional
+    /******** Form para pesquisa ********/ 
     let form = document.createElement("form")
     pl_ct.appendChild(form)
    
@@ -266,91 +266,28 @@ function pesquisa_livre(){
     form.appendChild(input_search)
     input_search.type = "text"
     input_search.placeholder = "pesquisa por palavra"
+    input_search.name = "palavra" //importante!!
 
-    /************** Button **************/ //n funcional
+    /********* Button submit **************/ 
     let bt_search = document.createElement("input")
     form.appendChild(bt_search)
     bt_search.type = "submit"
-    bt_search.innerHTML = "bt"
+    //bt_search.innerHTML = "🔎"
+    bt_search.value = "🔎"
 
+    form.addEventListener("submit", (e) => {
+        e.preventDefault() // impde envio do formulario e controla o redirecionamento
 
-     //pagina que fom encaminha
-    form.action = `./lista_palavras.html?palavra=${input_search.value}`
+        const palavra = input_search.value.trim() //remove espaços desnecessários ou outros
+        
 
+        if(palavra.length > 0) {
+            //redirecionando url
+            window.location.href = `./lista_palavras.html?palavra=${encodeURIComponent(palavra)}`// Encodes characters such as ?,=,/,&,:
+        }
+    })
 
-    //n resultou :(
-    // bt_search.onClick = abrePagPalava()
-    // {
-    //     window.location.href = `./lista_palavras.html?palavra=${"batata"}`
-    // }
     
 }
 
-
-    
-
-
-
-
-
-
-
-
-
-
-
-/*********** Rascunhos *************/
-    
-
-    // //t.replaceAll("\n", "ai")
-    // let a = t.match(/\S+|\r?\n/g)
-    // console.log("teste: " + a)
-    // let string_html
-
-    // let convertedT = a.map(item => 
-    //     item === "\n" 
-    //     ? "<br>" 
-    //     : item
-    // )
-
-    // console.log("Teste 2: " + convertedT)
-
-
-    //     //string_html.push(`<a href = "./lista_palavras.html?palavra=${a[i]}"> ${a[i]}</a>`) // id = palavra??
-    //     //string_html.push(a[i])
-    //     string_html = convertedT.map(item => 
-    //         item != "<br>" 
-    //         ? `<a href = "./lista_palavras.html?palavra=${item}">${item}</a>` 
-    //         : "<br>"
-    //     )
-
-    //     let final_html = string_html.join(' ');
-    
-
-    // //texto_completo.innerHTML = string_html
-    // //texto_completo.innerText = textData[textId-1].lemmas
-
-    //   console.log(final_html)
-
-    //   teste_com_lemas.innerHTML = final_html
-
-
-        //     //string_html.push(`<a href = "./lista_palavras.html?palavra=${a[i]}"> ${a[i]}</a>`) // id = palavra??
-    //     //string_html.push(a[i])
-    //     string_html = convertedT.map(item => 
-    //         item != "<br>" 
-    //         ? `<a href = "./lista_palavras.html?palavra=${item}">${item}</a>` 
-    //         : "<br>"
-    //     )
-
-    //     let final_html = string_html.join(' ');
-
-
-        // //pequeno teste:
-    // let b = "Hello\n\nworld\n123"
-    // let c = b.match(/\S+|\r?\n/g);
-    // console.log("O c:" + c)
-
-
-    // let converted = c.map(item => item === "\n" ? "<br>" : item);
-    // console.log(converted); // ["Hello", "<br>", "<br>", "World", "<br>", "123"] // funciona
+   
