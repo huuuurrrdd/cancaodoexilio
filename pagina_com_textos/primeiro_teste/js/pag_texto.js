@@ -256,24 +256,33 @@ function pesquisa_livre(){
     document.querySelector("body").appendChild(pl_ct)
     pl_ct.className += "pl-ct"
     
-    /******** Form para pesquisa ********/
-    
+    /******** Form para pesquisa ********/ //n funcional
+    let form = document.createElement("form")
+    pl_ct.appendChild(form)
+   
 
-    /********** Input search ***********/
+    /********** Input search ***********///está funcionall
     let input_search = document.createElement("input")
-    pl_ct.appendChild(input_search)
+    form.appendChild(input_search)
     input_search.type = "text"
     input_search.placeholder = "pesquisa por palavra"
 
-    /************** Button **************/
-    let bt_search = document.createElement("button")
-    pl_ct.appendChild(bt_search)
+    /************** Button **************/ //n funcional
+    let bt_search = document.createElement("input")
+    form.appendChild(bt_search)
+    bt_search.type = "submit"
     bt_search.innerHTML = "bt"
 
-    bt_search.onClick = abrePagPalava()
-    {
-        window.location.href = `./lista_palavras.html?palavra=${"batata"}`
-    }
+
+     //pagina que fom encaminha
+    form.action = `./lista_palavras.html?palavra=${input_search.value}`
+
+
+    //n resultou :(
+    // bt_search.onClick = abrePagPalava()
+    // {
+    //     window.location.href = `./lista_palavras.html?palavra=${"batata"}`
+    // }
     
 }
 
