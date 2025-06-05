@@ -57,7 +57,7 @@ word_container.className += "word-container"
 let word_h = document.createElement("h1")
 document.querySelector(".word-container").appendChild(word_h)
 word_h.className += "word-h"
-word_h.innerText = palavra.palavras[id].palavra // conteúdo do json
+word_h.innerText = palavra.palavras[id].palavra // conteúdo do json (seleciona a palavra a partir do id)
 
 
 //ul para lista de poemas (pode ser necessario colocar em tabela)
