@@ -11,6 +11,9 @@
 A fazer:
 -> Remocao de pontuacao na query
 
+COISAS INTERESSANTES A ACRESCENTAR:
+- Destaque na palavra que foi pesquisada nos próprios textos!!
+
 */
 
 console.clear;
