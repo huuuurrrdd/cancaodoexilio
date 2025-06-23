@@ -32,41 +32,52 @@ console.log(textId) // funciona!!
 
 /*
     json e ficheiros que está a utilizar:
-    -> "./dict3.json": um dicionário de palavras (info: palavra, id, frequência, textos onde está presente)
+    -> "./Dict_palavras_lemas_v0003.json": um dicionário de palavras (info: palavra, id, frequência, id_textos + frequência por cada texto)
+    -> "./Dict_lemas_palavras_v0001.json": um dicionário de lemas (info: lema, palavra)
     -> "./textos_coordenadas_geograficas.json": lista de todos os textos (info: titulo, id, data, autor, texto completo, lemas) - podiam tbm ter os tokens??
     -> "./stopwords/portuguese": lista de stopwords (para não incluir o seu link nos textos!!)
 */
 
 function fetchData(){
-    let wordData, textData, stoplist
+    let wordData, textData, stoplist, lemmasData
 
     //dicionario json
-    fetch("./dict3.json")
+    fetch("./Dict_palavras_lemas_v0003.json")
         .then(response => {
             if(!response.ok){ // menssagem de erro
                 throw new Error(`HTTP error! Status: ${response.status}`)
             }
-            return response.json()
+            return response.json() // return data
         })
         .then(data => {
-            wordData = data;
+            wordData = data; //Guarda dict_pal em wordData
             return fetch("./textos_coordenadas_geograficas.json") // fetch json dos textos
         })
-        .then(response => { // mwensagem de erro
+        .then(response => { // mensagem de erro
             if(!response.ok){
                 throw new Error(`HTTP error! Status: ${response.status}`)
             }
-            return response.json()
+            return response.json() // return data
         })
         .then(data => {
-            textData = data
+            textData = data // info dos textos a conter as coordenadas geográficas
+            return fetch("./Dict_lemas_palavras_v0001.json")
+        })
+        .then(response => {
+                if(!response.ok){
+                throw new Error(`HTTP error! Status: ${response.status}`)
+            }
+            return response.json() // return data
+        })
+        .then(data => {
+            lemmasData = data; // guarda json dos lemas
             return fetch("./stopwords/portuguese")
         })
         .then(response =>{
             if(!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`)
             }
-            return response.text()
+            return response.text() // return stopwords text
         })
         .then(data => {
             stoplist = data
@@ -75,7 +86,7 @@ function fetchData(){
             .filter(s_word => s_word.length > 0)
 
             //funcao com os 3 dados dos 3 ficheiros
-            displayData(wordData, textData, stoplist)
+            displayData(wordData, textData, stoplist, lemmasData)
         })
         .catch(error => console.error('Failed to fetch data', error))
 
@@ -88,14 +99,14 @@ fetchData()
 //let id_word = 1120 -1 // possivel testar com outros ids
 let id_word = 1930 -1
 
-function displayData(wordData, textData, stoplist){ // parece funcionar
+function displayData(wordData, textData, stoplist, lemmasData){ // parece funcionar
 
 
 
     //console.log(stoplist)
 
     /********** Display texto ***********/
-    let texto_conteiner = document.createElement("div")
+    let texto_conteiner = document.createElement("div") //------- Contentor de texto geral
     document.querySelector("body").appendChild(texto_conteiner)
     texto_conteiner.className += "texto-container"
 
