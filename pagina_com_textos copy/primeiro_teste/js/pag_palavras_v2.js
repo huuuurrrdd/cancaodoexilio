@@ -45,17 +45,28 @@ console.log(`Palavra é -${wordParam}-`)
 
 /*
     json e ficheiros que está a utilizar:
-    -> "./dict3.json": um dicionário de palavras (info: palavra, id, frequência, textos onde está presente)
+    -> "./Dict_palavras_lemas_v0004.json": um dicionário de palavras (info: palavra, lema, frequência, id texto e respetiva frequencia)
+    -> "./Dict_lemas_palavras_v0001.json": dicionáro de lemas (info: lema, palavras)
     -> "./textos_coordenadas_geograficas.json": lista de todos os textos (info: titulo, id, data, autor, texto completo, lemas) - podiam tbm ter os tokens??
 
 */
 
 
 function fetchData(){
-    let wordData, textData
+    let wordData, textData, lemmasData
 
     //dicionario json
-    fetch("./dict3.json")
+    fetch("./Dict_palavras_lemas_v0004.json")
+        .then(response => {
+            if(!response.ok){ // menssagem de erro
+                throw new Error(`HTTP error! Status: ${response.status}`)
+            }
+            return response.json()
+        })
+        .then(data =>{
+            wordData = data;
+            return fetch("./Dict_lemas_palavras_v0001.json")
+        })
         .then(response => {
             if(!response.ok){ // menssagem de erro
                 throw new Error(`HTTP error! Status: ${response.status}`)
@@ -63,7 +74,7 @@ function fetchData(){
             return response.json()
         })
         .then(data => {
-            wordData = data;
+            lemmasData = data;
             return fetch("./textos_coordenadas_geograficas.json") // fetch json dos textos
         })
         .then(response => { // mwensagem de erro
@@ -74,7 +85,7 @@ function fetchData(){
         })
         .then(data => {
             textData = data
-            displayData(wordData, textData) //funcao com os 2 jsons
+            displayData(wordData, textData, lemmasData) //funcao com os 2 jsons
         })
         .catch(error => console.error('Failed to fetch data', error))
 
@@ -88,7 +99,7 @@ fetchData()
 
 
 
-function displayData(wordData, textData){
+function displayData(wordData, textData, lemmasData){
 
     
     //com a palavra selecionada, descobrir o id
@@ -122,10 +133,10 @@ function displayData(wordData, textData){
     console.log("O objeto: " + wordData.palavras[id_word]) // funciona
     console.log("O ID palavra: " + wordData.palavras[id_word].id) //id palavra
     console.log("A palavra: " + wordData.palavras[id_word].palavra) //palavra
-    console.log("Frequencia: " + wordData.palavras[id_word].frequency) //frequência
+    console.log("Frequencia: " + wordData.palavras[id_word].frequencia) //frequência
     //sobre textos
     console.log("Array de textos: " + wordData.palavras[id_word].texts) //array de textos
-    console.log("Aceder primeiro texto: " + wordData.palavras[id_word].texts[0])// primeioro texto
+    console.log("Aceder primeiro texto: " + wordData.palavras[id_word].textos[0].id_text)// primeioro texto
     console.log("Quantidade de textos: " + wordData.palavras[id_word].texts.length) // quantidade de textos
 
 
