@@ -46,7 +46,7 @@ console.log(`Palavra é -${wordParam}-`)
 /*
     json e ficheiros que está a utilizar:
     -> "./Dict_palavras_lemas_v0004.json": um dicionário de palavras (info: palavra, lema, frequência, id texto e respetiva frequencia)
-    -> "./Dict_lemas_palavras_v0001.json": dicionáro de lemas (info: lema, palavras)
+    -> "./Dict_lemas_palavras_v0002.json": dicionáro de lemas (info: lema, palavras)
     -> "./textos_coordenadas_geograficas.json": lista de todos os textos (info: titulo, id, data, autor, texto completo, lemas) - podiam tbm ter os tokens??
 
 */
@@ -65,7 +65,7 @@ function fetchData(){
         })
         .then(data =>{
             wordData = data;
-            return fetch("./Dict_lemas_palavras_v0001.json")
+            return fetch("./Dict_lemas_palavras_v0002.json")
         })
         .then(response => {
             if(!response.ok){ // menssagem de erro
@@ -101,21 +101,23 @@ fetchData()
 
 function displayData(wordData, textData, lemmasData){
 
-    
+    //___PERCORRE O DICT PALAVRAS PARA ENCONTRAR PALAVRA__//
+
     //com a palavra selecionada, descobrir o id
     let idpalavra = null
     //wordParam = "Pinheiro"
     console.log(`Palavra: ${wordParam}`)
 
+
     for (let i = 0; i < wordData.palavras.length; i++){
-        const dictWord = normalizarTexto(wordData.palavras[i].palavra)
-        const queryWord = normalizarTexto(wordParam)
+        const dictWord = wordData.palavras[i].palavra
+        const queryWord = wordParam.toLowerCase()
         
-        if(dictWord === queryWord){ //palavras normalizadas
-            idpalavra = wordData.palavras[i-1].id
+        if(dictWord === queryWord){ 
+            idpalavra = wordData.palavras[i-1].id //n percebo o i-1
             break; // quebra o ciclo assim que encontra
         }
-    }
+    } // isto deve funcionar... o problema deve ser a ler os textos
 
    if(idpalavra != null){
     console.log("id = " + idpalavra)
@@ -127,7 +129,7 @@ function displayData(wordData, textData, lemmasData){
 
     id_word = idpalavra
 
-
+/* Testes de funcionamento palavras_lemas e textos
     // testando acesso a dados (console.log)
     // palavra com id= 500; dispor: palavra,frequência e array de textos
     console.log("O objeto: " + wordData.palavras[id_word]) // funciona
@@ -135,24 +137,75 @@ function displayData(wordData, textData, lemmasData){
     console.log("A palavra: " + wordData.palavras[id_word].palavra) //palavra
     console.log("Frequencia: " + wordData.palavras[id_word].frequencia) //frequência
     //sobre textos
-    console.log("Array de textos: " + wordData.palavras[id_word].texts) //array de textos
+    console.log("Array de textos: " + wordData.palavras[id_word].textos[1].id_text) //array de textos (posso ter de ver quantos objetos tem antes)
     console.log("Aceder primeiro texto: " + wordData.palavras[id_word].textos[0].id_text)// primeioro texto
-    console.log("Quantidade de textos: " + wordData.palavras[id_word].texts.length) // quantidade de textos
+    console.log("Quantidade de textos: " + wordData.palavras[id_word].textos.length) // quantidade de textos
 
 
     //1º: poema com id = 500, titulo, data de publicacao e autor
     console.log("")
     console.log("Acedendo a json dos textos:")
-    console.log("Id do texto: " + wordData.palavras[id_word].texts[0]) //título do primeiro texto com a palavra
+    console.log("Id do texto: " + wordData.palavras[id_word].textos[1].id_text + " Freq: " + wordData.palavras[id_word].textos[0].frequencia) //título do primeiro texto com a palavra
     // id de texto + título
-    console.log(`Título de texto ${textData[wordData.palavras[id_word].texts[0]-1].id} : ` + textData[wordData.palavras[id_word].texts[0]-1].title)
+    console.log(`Título de texto ${textData[(wordData.palavras[id_word].textos[0].id_text)-1].id} : ` + textData[wordData.palavras[id_word].textos[0].id_text-1].title + " Freq:" + wordData.palavras[id_word].textos[0].frequencia) // funciona!!
 
     //display de todos os textos que contêm a palavra
-    for(let i = 0; i < wordData.palavras[id_word].texts.length; i++){
-        console.log(`Título (${textData[wordData.palavras[id_word].texts[i]-1].id}): ${textData[wordData.palavras[id_word].texts[i]-1].title}`)
+    for(let i = 0; i < wordData.palavras[id_word].textos.length; i++){
+        console.log(`Título (${textData[wordData.palavras[id_word].textos[i].id_text-1].id}): ${textData[wordData.palavras[id_word].textos[i].id_text-1].title} Freq: ${wordData.palavras[id_word].textos[i].frequencia}`)
     }
-
+*/
     //tudo funciona!!
+
+// Testes de funcionamento lemas_palavras
+   console.log(`Lema: ${lemmasData.lemas[10].lema}`) // acesso ao lema
+   console.log(`Palavras: ${lemmasData.lemas[10].palavras}`) // acesso as palavras
+
+
+   // em vez de ser a id word é wordParam
+//acesso ao lema através de uma palavra
+ //lema = "sem lema"
+
+// console.log(`Lema = ${lema}`)
+// console.log(`palavra = ${wordParam}`) //isto está correto
+// console.log(`Exemplo de palavra: ${lemmasData.lemas[400].palavras[0]}`)
+// console.log(`Testando: ${lemmasData.lemas.length}`)
+// console.log(`Testando: ${lemmasData.lemas[1].palavras.length}`)
+
+// console.log(`Testando: ${lemmasData.lemas[1].palavras[20]}`)
+//console.log(`Testando: ${lemmasData.lemas[1].palavras.length}`)
+
+
+//____________________________________________________________________//
+/////////////  Testando a extrair mais do que um lema  /////////////////
+
+let lemmas = [] // podia tbm guardar o número do i
+let indice_lemas = []
+//wordParam = "tributo"
+
+   for (let i = 0; i < lemmasData.lemas.length; i++){
+        for(let j = 0; j < lemmasData.lemas[i].palavras.length; j++){ // percorre todas as palavras em cada objeto
+            if(lemmasData.lemas[i].palavras[j] === wordParam.toLowerCase()){ 
+                lemmas.push(lemmasData.lemas[i].lema)
+                indice_lemas.push(i)
+                break
+            }
+        }
+        if(lemmas > 0) break
+   }
+
+   if(lemmas.length == 0){
+    lemmas[0] = "sem lemas"
+   }
+console.log(`Lema = ${lemmas}`) // funcionaa!!
+console.log(`Indices = ${indice_lemas}`) // funciona!!
+//console.log(`WordParam: ${wordParam}`) // por alguma razão n funciona em cima
+
+/* Alguns problemas que podem estar a acontecer aqui:
+   -> várias palavras iguais estão associadas a lemas diferentes
+   -> Nota: vou ter de criar nova versão para incluir palavras com acentuação!!!
+
+
+*/
 
 
 /***************** Display dos elementos *******************/
@@ -165,31 +218,152 @@ function displayData(wordData, textData, lemmasData){
     let word_h = document.createElement("h1")
     document.querySelector(".word-container").appendChild(word_h)
     word_h.className += "word-h"
-    word_h.innerText = wordData.palavras[id_word].palavra
+    word_h.innerText = `${wordData.palavras[id_word].palavra}` // funciona!!
+
+   // /*********** Display gráfico de frequencias **************/----------- FALTA!!
+   // (ver qual a melhor biblioteca para isso!!) 
+
+
 
     // /************** Display textos *************/
-    let list_container = document.createElement("ul")
+    let list_container = document.createElement("ol")
     document.querySelector(".word-container").appendChild(list_container)
     list_container.className += "list-container"
 
 // Teste de redirecionar info com apenas javaScript
-    for(let i = 0; i < wordData.palavras[id_word].texts.length; i++) {
+    for(let i = 0; i < wordData.palavras[id_word].textos.length; i++) {
        
         let tentry_container = document.createElement("li")
         document.querySelector(".list-container").appendChild(tentry_container)
         tentry_container.className += "tentry-container" + (i + 1)
         //id funciona!!
-        tentry_container.innerHTML = `<a class="titulo" href = "./index.html?id=${textData[wordData.palavras[id_word].texts[i]-1].id}">${textData[wordData.palavras[id_word].texts[i]-1].title} (${textData[wordData.palavras[id_word].texts[i]-1].date_of_publication})</a>`
+        tentry_container.innerHTML = `<a class="titulo" href = "./index.html?id=${textData[wordData.palavras[id_word].textos[i].id_text-1].id}">${textData[wordData.palavras[id_word].textos[i].id_text-1].title} (${textData[wordData.palavras[id_word].textos[i].id_text-1].date_of_publication}) — ${textData[wordData.palavras[id_word].textos[i].id_text-1].author} (${wordData.palavras[id_word].textos[i].frequencia}x)</a>`
         //tentry_container.innerHTML = `Título (${textData[wordData.palavras[id_word].texts[i]-1].id}): ${textData[wordData.palavras[id_word].texts[i]-1].title}`
         
     }
+
+    // display de lemas
+    let lemmas_container = document.createElement("div")
+    document.querySelector("body").appendChild(lemmas_container)
+    lemmas_container.className += "lemmas-container"
+
+    let lemmas_h = document.createElement("h2")
+    lemmas_container.appendChild(lemmas_h)
+    lemmas_h.className += "lemmas-h"
+    lemmas_h.innerText = `Lema(s)`
+
+
+    for(let i = 0; i < lemmas.length; i++){ // acesso a cada um dos lemas no array
+        
+        // let lem_ct = document.createElement("div") // contentor de cada lema
+        // lemmas_container.appendChild(lem_ct)
+        // lem_ct.className += "lem-ct" + (i + 1)
+
+        // let lem_h = document.createElement("h3")
+        // document.querySelector(`.lem-ct${i+1}`).appendChild(lem_h)
+        // lem_h.className += `lem-h${i+1}`
+        // //lem_h.innerHTML = `${lemmas[i]}`
+
+        //indice_lemas- índice de cada lemai
+
+        console.log(lemmasData.lemas[indice_lemas[i]].palavras.length)
+        //resultados para encontro: 12 (encntrar) e 1 (encontro)
+
+
+
+        // contentor para cada lema:
+        let lem_ct = document.createElement("div")
+        document.querySelector(".lemmas-container").appendChild(lem_ct)
+        lem_ct.className += `lem-ct`
+
+        // guarda h3 no seu contentor:
+        let lem_h = document.createElement("h3")
+        lem_ct.appendChild(lem_h)
+        lem_h.innerText = `${lemmas[i]}`
+
+        
+        for(let j = 0; j < lemmasData.lemas[indice_lemas[i]].palavras.length; j++){
+
+            let p_palavras = document.createElement("li")
+            lem_ct.appendChild(p_palavras)
+            p_palavras.innerText = `${lemmasData.lemas[indice_lemas[i]].palavras[j]}`
+
+            // cria contentor (ordenado para colocar lista de poemas)
+            let txt_ct_li = document.createElement("ol")
+            lem_ct.appendChild(txt_ct_li)
+
+            let id_palavra_de_lema = null
+
+            for(let k = 0; k < wordData.palavras.length; k++){
+                const dictWord = wordData.palavras[k].palavra
+                const original_word = lemmasData.lemas[indice_lemas[i]].palavras[j]
+
+                if(dictWord === original_word){
+                    id_palavra_de_lema = wordData.palavras[k-1].id
+                    break
+                }
+
+            }
+
+            if(id_palavra_de_lema != null){
+                console.log(`id = ${id_palavra_de_lema}`)
+                //escreve a paravra no contentor, mas a do dicionário
+                 //tá ok
+
+                //escrever nº dos textos
+                for(l = 0; l < wordData.palavras[id_palavra_de_lema].textos.length; l++){
+                    let p_palavras_poemas = document.createElement("li")
+                    txt_ct_li.appendChild(p_palavras_poemas)
+                    //p_palavras_poemas.innerText = `${wordData.palavras[id_palavra_de_lema].textos[l].id_text}`
+                    text_id_value = wordData.palavras[id_palavra_de_lema].textos[l].id_text
+                    p_palavras_poemas.innerText = `${textData[text_id_value-1].title}` //falta a frequência e o ano + colocar numa tabela
+                }
+
+                /* Falta acrescentar:
+                    -> Links para página das palavras
+                    -> Links para os poemas associados
+                    -> Tabela css (fazer wireframes em figma - ter tbm o design !!)
+                
+                
+                
+                */
+
+
+
+            } else{
+                console.log("Palavra não encontrada")
+                
+
+            }
+
+            //ver palavra no dicionário (preciso de percorrer no dicionário!!)
+            //if(lemmasData.lemas[indice_lemas[i]].palavras[j] === )
+
+
+        }
+
+        /*
+        - Buscar as palavras associadas aos lemas - (lema, índice,-- falta as palavras-- saber quantas são!!)
+            - Tem o índice dos lemas, para cada índice (nº de indices = nº de lemas)
+        
+        */
+
+        //for(j = 0; j < lemmas[i])
+
+        //lem_h.innerHTML
+
+        //for(let j = 0; j < ) // acesso a cada uma das palavras de cada lema
+
+    }
+
 
 
 
 }
 
 
-//função para normalizar o texto
+//função para normalizar o texto (n sei se é mesmo necessário!!!)
+// talvez apenas remover a pontuação...
 function normalizarTexto(string){
     const punct = /[\.,?!"]/g
     let novoTexto = []

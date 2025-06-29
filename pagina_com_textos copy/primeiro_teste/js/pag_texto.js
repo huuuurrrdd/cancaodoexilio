@@ -61,7 +61,7 @@ function fetchData(){
         })
         .then(data => {
             textData = data // info dos textos a conter as coordenadas geográficas
-            return fetch("./Dict_lemas_palavras_v0001.json")
+            return fetch("./Dict_lemas_palavras_v0002.json")
         })
         .then(response => {
                 if(!response.ok){
@@ -167,7 +167,7 @@ function displayData(wordData, textData, stoplist, lemmasData){ // parece funcio
 
 
     console.log(`Length t3: ${t3Html.length}`)
-    console.log(`Length l3 ${l4.length}`) //funcionou
+    //console.log(`Length l3 ${l4.length}`) //funcionou
     
     //console.log(l4)
 
