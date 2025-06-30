@@ -10,17 +10,6 @@
 
 */
 
-/* Que preciso fazer:
-    -> retirar a pontuacao da informacao que é enviada para a query
-
-*/
-
-/* à parte:
-    -> Associar as palavras dos lemas ao id correspondente no dicionário? (pode não ser necessário criar novo json para isso)
-        - (percorrer cada palavra dos lemas e procurar no dicionário uma palavra igual)
-
-
-*/
 
 console.clear()
 
@@ -202,7 +191,7 @@ console.log(`Indices = ${indice_lemas}`) // funciona!!
 
 /* Alguns problemas que podem estar a acontecer aqui:
    -> várias palavras iguais estão associadas a lemas diferentes
-   -> Nota: vou ter de criar nova versão para incluir palavras com acentuação!!!
+   -> Nota: foi criada uma nova versão para incluir palavras com acentuação!!!
 
 
 */
@@ -253,6 +242,7 @@ console.log(`Indices = ${indice_lemas}`) // funciona!!
     lemmas_h.innerText = `Lema(s)`
 
 
+    /************** Para os lemas: *************************/ 
     for(let i = 0; i < lemmas.length; i++){ // acesso a cada um dos lemas no array
         
         // let lem_ct = document.createElement("div") // contentor de cada lema
@@ -322,7 +312,12 @@ console.log(`Indices = ${indice_lemas}`) // funciona!!
                 /* Falta acrescentar:
                     -> Links para página das palavras
                     -> Links para os poemas associados
+                    -> Possibilidade de esconder os poemas associados
                     -> Tabela css (fazer wireframes em figma - ter tbm o design !!)
+
+                    NOTA: Se a palavra do lema for a representada, não precisa eibir os textos ou
+                        - Escrever: outras palavras com o mesmo lema??
+                        - Não incluir a palavra se for igual à inicialmente representada
                 
                 
                 
@@ -336,23 +331,9 @@ console.log(`Indices = ${indice_lemas}`) // funciona!!
 
             }
 
-            //ver palavra no dicionário (preciso de percorrer no dicionário!!)
-            //if(lemmasData.lemas[indice_lemas[i]].palavras[j] === )
-
 
         }
 
-        /*
-        - Buscar as palavras associadas aos lemas - (lema, índice,-- falta as palavras-- saber quantas são!!)
-            - Tem o índice dos lemas, para cada índice (nº de indices = nº de lemas)
-        
-        */
-
-        //for(j = 0; j < lemmas[i])
-
-        //lem_h.innerHTML
-
-        //for(let j = 0; j < ) // acesso a cada uma das palavras de cada lema
 
     }
 
