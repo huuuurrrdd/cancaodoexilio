@@ -207,7 +207,7 @@ console.log(`Indices = ${indice_lemas}`) // funciona!!
     let word_h = document.createElement("h1")
     document.querySelector(".word-container").appendChild(word_h)
     word_h.className += "word-h"
-    word_h.innerText = `${wordData.palavras[id_word].palavra}` // funciona!!
+    word_h.innerText = `Palavra: ${wordData.palavras[id_word].palavra}` // funciona!!
 
    // /*********** Display gráfico de frequencias **************/----------- FALTA!!
    // (ver qual a melhor biblioteca para isso!!) 
@@ -215,21 +215,67 @@ console.log(`Indices = ${indice_lemas}`) // funciona!!
 
 
     // /************** Display textos *************/
-    let list_container = document.createElement("ol")
+    let list_container = document.createElement("div")
     document.querySelector(".word-container").appendChild(list_container)
     list_container.className += "list-container"
 
+    item_ordenar = []
+    ordem_frequência = []
+
+        /* Criando uma header (em nova div no topo!!)*/
+        
+            let tentry_header = document.createElement("div")
+            document.querySelector(".list-container").appendChild(tentry_header)
+            tentry_header.className += "tentry-header"
+
+            tentry_header.innerHTML = `<div class = "iteracao header">ord</div>
+                                       <div class = "titul header">Título</div>
+                                       <div class = "ano header">Data publicação</div>
+                                       <div class = "author header">Autor</div>
+                                       <div class = "freq header">frequência</div>`
+        
+        
+        
+        
+
 // Teste de redirecionar info com apenas javaScript
+/////////////////////////////////// Vai ser necessário reordenar os items!! ///////////////////////////
     for(let i = 0; i < wordData.palavras[id_word].textos.length; i++) {
        
-        let tentry_container = document.createElement("li")
+        let tentry_container = document.createElement("div")
         document.querySelector(".list-container").appendChild(tentry_container)
-        tentry_container.className += "tentry-container" + (i + 1)
+        tentry_container.className += "tentry-container tentry-container" + (i + 1)
         //id funciona!!
-        tentry_container.innerHTML = `<a class="titulo" href = "./index.html?id=${textData[wordData.palavras[id_word].textos[i].id_text-1].id}">${textData[wordData.palavras[id_word].textos[i].id_text-1].title} (${textData[wordData.palavras[id_word].textos[i].id_text-1].date_of_publication}) — ${textData[wordData.palavras[id_word].textos[i].id_text-1].author} (${wordData.palavras[id_word].textos[i].frequencia}x)</a>`
+        id_do_texto = textData[wordData.palavras[id_word].textos[i].id_text-1].id //id do texto
+        titul = textData[wordData.palavras[id_word].textos[i].id_text-1].title
+        data_pub = textData[wordData.palavras[id_word].textos[i].id_text-1].date_of_publication
+        autor = textData[wordData.palavras[id_word].textos[i].id_text-1].author
+        freq1 = wordData.palavras[id_word].textos[i].frequencia
+
+        
+        //guardar array de strings (organizar as frequencias - dicionário-> freq com string)
+        //tentry_container.innerHTML = `<a class="titulo" href = "./index.html?id=${id_do_texto}">${titul} (${data_pub}) — ${autor} (${freq1}x)</a>`
         //tentry_container.innerHTML = `Título (${textData[wordData.palavras[id_word].texts[i]-1].id}): ${textData[wordData.palavras[id_word].texts[i]-1].title}`
         
+
+        /************* Colocando o conteúdo em divs ***************/
+        
+            tentry_container.innerHTML = `<div class = "iteracao">${i+1}</div>
+                                          <div class = "titul" <a class="titulo" href = "./index.html?id=${id_do_texto}">${titul} </a></div>
+                                          <div class = "ano">${data_pub}</div>
+                                          <div class = "author">${autor}</div>
+                                          <div class = "freq">${freq1}x</div>`
+        
+        
+        
+        
+        
+        
     }
+
+
+
+
 
     // display de lemas
     let lemmas_container = document.createElement("div")
@@ -239,7 +285,7 @@ console.log(`Indices = ${indice_lemas}`) // funciona!!
     let lemmas_h = document.createElement("h2")
     lemmas_container.appendChild(lemmas_h)
     lemmas_h.className += "lemmas-h"
-    lemmas_h.innerText = `Lema(s)`
+    lemmas_h.innerText = `Lemas de ${wordData.palavras[id_word].palavra}`
 
 
     /************** Para os lemas: *************************/ 
@@ -276,7 +322,7 @@ console.log(`Indices = ${indice_lemas}`) // funciona!!
 
             let p_palavras = document.createElement("li")
             lem_ct.appendChild(p_palavras)
-            p_palavras.innerText = `${lemmasData.lemas[indice_lemas[i]].palavras[j]}`
+            
 
             // cria contentor (ordenado para colocar lista de poemas)
             let txt_ct_li = document.createElement("ol")
@@ -295,6 +341,10 @@ console.log(`Indices = ${indice_lemas}`) // funciona!!
 
             }
 
+            n_results = wordData.palavras[id_palavra_de_lema].textos.length
+
+            p_palavras.innerHTML = `<b>${lemmasData.lemas[indice_lemas[i]].palavras[j]} (${n_results})</b>`
+
             if(id_palavra_de_lema != null){
                 console.log(`id = ${id_palavra_de_lema}`)
                 //escreve a paravra no contentor, mas a do dicionário
@@ -304,13 +354,23 @@ console.log(`Indices = ${indice_lemas}`) // funciona!!
                 for(l = 0; l < wordData.palavras[id_palavra_de_lema].textos.length; l++){
                     let p_palavras_poemas = document.createElement("li")
                     txt_ct_li.appendChild(p_palavras_poemas)
+
+                    
                     //p_palavras_poemas.innerText = `${wordData.palavras[id_palavra_de_lema].textos[l].id_text}`
+
+                    
+
                     text_id_value = wordData.palavras[id_palavra_de_lema].textos[l].id_text
-                    p_palavras_poemas.innerText = `${textData[text_id_value-1].title}` //falta a frequência e o ano + colocar numa tabela
+                    titl = textData[text_id_value-1].title //id-1, uma vez que a iteração começa em 0 e id começa em 1
+                    data_publ = textData[text_id_value-1].date_of_publication
+                    autoor = textData[text_id_value-1].author
+                    frequencia = wordData.palavras[id_palavra_de_lema].textos[l].frequencia
+                    
+                    p_palavras_poemas.innerHTML = `<a class="titulo" href = "./index.html?id=${text_id_value}">${titl} (${data_publ}) — ${autoor} (${frequencia}x)</a>` //falta a frequência e o ano + colocar numa tabela
                 }
 
                 /* Falta acrescentar:
-                    -> Links para página das palavras
+                    -> Links para página dos textos
                     -> Links para os poemas associados
                     -> Possibilidade de esconder os poemas associados
                     -> Tabela css (fazer wireframes em figma - ter tbm o design !!)
