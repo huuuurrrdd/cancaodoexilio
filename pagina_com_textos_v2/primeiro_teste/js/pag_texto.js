@@ -227,6 +227,8 @@ function stringHtml(converted, stoplist, wordData) { // retorna a string em form
                 -> Sem pontuação:
                     - [^\p{L}\p{N}] → Negated class: remove everything that is not a Letter or Number
 
+                ---> Falta definir uma string para pontuação antes do texto e pontuação depois do textoo!! <---
+
         */
 
     )

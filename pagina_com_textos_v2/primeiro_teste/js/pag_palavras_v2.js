@@ -90,6 +90,13 @@ fetchData()
 
 function displayData(wordData, textData, lemmasData){
 
+    
+
+
+
+
+
+
     //___PERCORRE O DICT PALAVRAS PARA ENCONTRAR PALAVRA__//
 
     //com a palavra selecionada, descobrir o id
@@ -226,7 +233,7 @@ console.log(`Indices = ${indice_lemas}`) // funciona!!
         
             let tentry_header = document.createElement("div")
             document.querySelector(".list-container").appendChild(tentry_header)
-            tentry_header.className += "tentry-header"
+            tentry_header.className += "tentry tentry-header"
 
             tentry_header.innerHTML = `<div class = "iteracao header">ord</div>
                                        <div class = "titul header">Título</div>
@@ -242,9 +249,19 @@ console.log(`Indices = ${indice_lemas}`) // funciona!!
 /////////////////////////////////// Vai ser necessário reordenar os items!! ///////////////////////////
     for(let i = 0; i < wordData.palavras[id_word].textos.length; i++) {
        
+        /* Para link em cada caixa aaaa
+            let a_tentry_container = document.createElement("a")
+            document.querySelector(".list-container").appendChild(a_tentry_container)
+            a_tentry_container.className += "titulo "
+        
+        */
+
         let tentry_container = document.createElement("div")
         document.querySelector(".list-container").appendChild(tentry_container)
-        tentry_container.className += "tentry-container tentry-container" + (i + 1)
+        tentry_container.className += "tentry tentry-container tentry-container" + (i + 1)
+
+        //criando elemento a para link
+
         //id funciona!!
         id_do_texto = textData[wordData.palavras[id_word].textos[i].id_text-1].id //id do texto
         titul = textData[wordData.palavras[id_word].textos[i].id_text-1].title
@@ -260,11 +277,13 @@ console.log(`Indices = ${indice_lemas}`) // funciona!!
 
         /************* Colocando o conteúdo em divs ***************/
         
-            tentry_container.innerHTML = `<div class = "iteracao">${i+1}</div>
-                                          <div class = "titul" <a class="titulo" href = "./index.html?id=${id_do_texto}">${titul} </a></div>
+            tentry_container.innerHTML = `
+                                          <div class = "iteracao">${i+1}</div>
+                                          <div class = "titul"><a class = "titulo" href = "./index.html?id=${id_do_texto}"> ${titul}</a></div>
                                           <div class = "ano">${data_pub}</div>
                                           <div class = "author">${autor}</div>
-                                          <div class = "freq">${freq1}x</div>`
+                                          <div class = "freq">${freq1}x</div> 
+                                          `
         
         
         

@@ -1,6 +1,7 @@
+
 .word-container{
     margin:auto;
-    width: 50%;
+    width: 70%;
 }
 
 .word-h{
@@ -45,7 +46,7 @@
 }
 
 /******** entradas *********/
-.tentry-container{
+.tentry{
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     grid-template-rows: repeat(1, 1fr);
