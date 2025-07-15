@@ -344,8 +344,11 @@ console.log(`Indices = ${indice_lemas}`) // funciona!!
             
 
             // cria contentor (ordenado para colocar lista de poemas)
-            let txt_ct_li = document.createElement("ol")
-            lem_ct.appendChild(txt_ct_li)
+            let txt_pal_textos = document.createElement("div")
+            lem_ct.appendChild(txt_pal_textos)
+            txt_pal_textos.className += "s-list-container"
+
+            //criar aqui header se necessário!
 
             let id_palavra_de_lema = null
 
@@ -371,8 +374,10 @@ console.log(`Indices = ${indice_lemas}`) // funciona!!
 
                 //escrever nº dos textos
                 for(l = 0; l < wordData.palavras[id_palavra_de_lema].textos.length; l++){
-                    let p_palavras_poemas = document.createElement("li")
-                    txt_ct_li.appendChild(p_palavras_poemas)
+
+                    let p_palavras_poemas = document.createElement("div")
+                    txt_pal_textos.appendChild(p_palavras_poemas)
+                    p_palavras_poemas.className += "s-list-container"
 
                     
                     //p_palavras_poemas.innerText = `${wordData.palavras[id_palavra_de_lema].textos[l].id_text}`
@@ -385,7 +390,23 @@ console.log(`Indices = ${indice_lemas}`) // funciona!!
                     autoor = textData[text_id_value-1].author
                     frequencia = wordData.palavras[id_palavra_de_lema].textos[l].frequencia
                     
-                    p_palavras_poemas.innerHTML = `<a class="titulo" href = "./index.html?id=${text_id_value}">${titl} (${data_publ}) — ${autoor} (${frequencia}x)</a>` //falta a frequência e o ano + colocar numa tabela
+                    //p_palavras_poemas.innerHTML = `<a class="titulo" href = "./index.html?id=${text_id_value}">${titl} (${data_publ}) — ${autoor} (${frequencia}x)</a>` //falta a frequência e o ano + colocar numa tabela
+
+                    
+                    
+                    p_palavras_poemas.innerHTML = `
+                                                    <div class = "s-iteracao">${l+1}</div>
+                                                    <div class = "s-titul">${titl}</div>
+                                                    <div class = "s-ano">${data_publ}</div>
+                                                    <div class = "s-author">${autoor}</div>
+                                                    <div class = "s-freq">${frequencia}</div>
+                                                `
+                    
+                    
+                    
+
+
+
                 }
 
                 /* Falta acrescentar:
@@ -399,7 +420,7 @@ console.log(`Indices = ${indice_lemas}`) // funciona!!
                         - Não incluir a palavra se for igual à inicialmente representada
                 
                 
-                
+                    - Vou ter de compreender bem o que ando a fazer!! (a parte de baixo não está bem!!)
                 */
 
 

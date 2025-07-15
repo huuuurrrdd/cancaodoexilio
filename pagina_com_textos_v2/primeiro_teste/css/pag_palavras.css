@@ -46,7 +46,7 @@
 }
 
 /******** entradas *********/
-.tentry{
+.tentry {
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     grid-template-rows: repeat(1, 1fr);
@@ -59,3 +59,12 @@
 .ano     { grid-area: 1/5/2/6; } /*div 3*/
 .author  { grid-area: 1/6/2/8; } /*div 4*/
 .freq    { grid-area: 1/8/2/9; } /*div 5*/
+
+
+/********* Tabela abaixo **************/
+/* .list-container{
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+    padding: 10px 20px 10px 20px
+} */
