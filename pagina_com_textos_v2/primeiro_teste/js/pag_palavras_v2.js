@@ -241,13 +241,23 @@ console.log(`Indices = ${indice_lemas}`) // funciona!!
                                        <div class = "author header">Autor</div>
                                        <div class = "freq header">frequência</div>`
         
-        
+     
         
         
 
 // Teste de redirecionar info com apenas javaScript
 /////////////////////////////////// Vai ser necessário reordenar os items!! ///////////////////////////
-    for(let i = 0; i < wordData.palavras[id_word].textos.length; i++) {
+    
+function ordenarTextos(id_word, wordData, textData, sortBy = "frequência", dir = "desc"){
+
+
+for(let i = 0; i < wordData.palavras[id_word].textos.length; i++) {
+
+        let container = document.querySelector(".list-container")
+        container.innerHTML = "" // limpa conteúdo anterior
+
+        
+
        
         /* Para link em cada caixa aaaa
             let a_tentry_container = document.createElement("a")
@@ -285,12 +295,15 @@ console.log(`Indices = ${indice_lemas}`) // funciona!!
                                           <div class = "freq">${freq1}x</div> 
                                           `
         
-        
-        
-        
-        
-        
+            
     }
+
+}
+
+
+
+
+
 
 
 
