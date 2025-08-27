@@ -160,8 +160,8 @@ function displayData(wordData, textData, stoplist, lemmasData){ // parece funcio
 
     texto_completo.innerHTML = t4Join // acrescenta ao html o resultado final
 
-    //Display de input pesquisa:
-    pesquisa_livre()
+    // //Display de input pesquisa:
+    // pesquisa_livre()
 
     //teste_com_lemas.innerHTML = `<br> <br> <br> Versão lematizada: <br><br> ${l5Join} ` // n esta a funcionar n sei pq
 
@@ -272,62 +272,7 @@ function joinString(string){
  }
 
 
-//para a ferramenta de pesquisa (uma função separada)
-/*
-    Para hoje:
-    1º - Atualizar o calendário
-    2º - Fazer o input de pesquisa funcional com o minimo possível     
 
 
-    Coisas necessáias:
-    1º- obter valor do input
-    2º- simplificar o valor (lematizar e colocar em letras minusculas)
-
-
-
-*/
-
-
-function pesquisa_livre(){
-
-    //desenhar o html
-    /******** Caixa para o texto ********/
-    let pl_ct = document.createElement("div")
-    document.querySelector("body").appendChild(pl_ct)
-    pl_ct.className += "pl-ct"
-    
-    /******** Form para pesquisa ********/ 
-    let form = document.createElement("form")
-    pl_ct.appendChild(form)
-   
-
-    /********** Input search ***********///está funcionall
-    let input_search = document.createElement("input")
-    form.appendChild(input_search)
-    input_search.type = "text"
-    input_search.placeholder = "pesquisa por palavra"
-    input_search.name = "palavra" //importante!!
-
-    /********* Button submit **************/ 
-    let bt_search = document.createElement("input")
-    form.appendChild(bt_search)
-    bt_search.type = "submit"
-    //bt_search.innerHTML = "🔎"
-    bt_search.value = "🔎"
-
-    form.addEventListener("submit", (e) => {
-        e.preventDefault() // impde envio do formulario e controla o redirecionamento
-
-        const palavra = input_search.value.trim() //remove espaços desnecessários ou outros
-        
-
-        if(palavra.length > 0) {
-            //redirecionando url
-            window.location.href = `./lista_palavras.html?palavra=${encodeURIComponent(palavra)}`// Encodes characters such as ?,=,/,&,:
-        }
-    })
-
-    
-}
 
    
