@@ -235,6 +235,14 @@ console.log(`Indices = ${indice_lemas}`) // funciona!!
             document.querySelector(".list-container").appendChild(tentry_header)
             tentry_header.className += "tentry tentry-header"
 
+            // criar um elemento string para cada div
+            iteracao_header = `<div class = "iteracao header">ord</div>`
+            titul_header = `<div class = "titul header">Título</div>`
+            ano_header = `<div class = "ano header">Data publicação</div>`
+            author_header = `<div class = "author header">Autor</div>`
+            freq_header = `<div class = "freq header">frequência</div>`
+
+
             tentry_header.innerHTML = `<div class = "iteracao header">ord</div>
                                        <div class = "titul header">Título</div>
                                        <div class = "ano header">Data publicação</div>
@@ -248,51 +256,130 @@ console.log(`Indices = ${indice_lemas}`) // funciona!!
 // Teste de redirecionar info com apenas javaScript
 /////////////////////////////////// Vai ser necessário reordenar os items!! ///////////////////////////
     
-//function ordenarTextos(id_word, wordData, textData, sortBy = "frequência", dir = "desc"){}
+function ordenarTextos(id_word, wordData, textData, sortBy = "frequência", dir = "desc"){
 
-
-
-for(let i = 0; i < wordData.palavras[id_word].textos.length; i++) {
-       
-        /* Para link em cada caixa aaaa
-            let a_tentry_container = document.createElement("a")
-            document.querySelector(".list-container").appendChild(a_tentry_container)
-            a_tentry_container.className += "titulo "
+        const container = document.createElement("div")
+        document.querySelector(".list-container").appendChild(container)
         
-        */
+        container.innerHTML = "" // garantir que contentor está limpo antes de atualizar os dados!!
+
+        let textos = wordData.palavras[id_word].textos.slice();
+
+        //sort ased on criteria
+        textos.sort((a, b) => {
+            let valA, valB
+
+            if (sortBy === "frequência") { // pega nos valores de frequência dos textos
+                valA = a.frequencia
+                valB = b.frequencia
+
+            } else if (sortBy === "titulo") { // esta parte não percebo muito
+                valA = textData[a.id_text - 1].title.toLowerCase()
+                valB = textData[a.id_text - 1].title.toLowerCase()
+            }
+
+
+            // esta parte parece estar escrita de uma forma muito avançada (talvez colocar em termos mais simples!!)
+            if (valA < valB) return dir === "asc" ? -1 : 1
+            if (valA > valB) return dir === "asc" ? 1: -1
+            return 0
+        })
+
+
+    // render sorted list:
+    for(let i = 0; i < textos.length; i++) {
+       
+        const texto = textos[i]
 
         let tentry_container = document.createElement("div")
-        document.querySelector(".list-container").appendChild(tentry_container)
+        //document.querySelector(".list-container").appendChild(tentry_container)
         tentry_container.className += "tentry tentry-container tentry-container" + (i + 1)
 
         //criando elemento a para link
 
         //id funciona!!
-        id_do_texto = textData[wordData.palavras[id_word].textos[i].id_text-1].id //id do texto
-        titul = textData[wordData.palavras[id_word].textos[i].id_text-1].title
-        data_pub = textData[wordData.palavras[id_word].textos[i].id_text-1].date_of_publication
-        autor = textData[wordData.palavras[id_word].textos[i].id_text-1].author
-        freq1 = wordData.palavras[id_word].textos[i].frequencia
+        // testando a parte do matadata
+        const metadata = textData[texto.id_text - 1]
+        const id_do_texto = metadata.id //id do texto
+        const titul = metadata.title
+        const data_pub = metadata.date_of_publication
+        const autor = metadata.author
+        const freq1 = texto.frequencia
 
-        
-        //guardar array de strings (organizar as frequencias - dicionário-> freq com string)
-        //tentry_container.innerHTML = `<a class="titulo" href = "./index.html?id=${id_do_texto}">${titul} (${data_pub}) — ${autor} (${freq1}x)</a>`
-        //tentry_container.innerHTML = `Título (${textData[wordData.palavras[id_word].texts[i]-1].id}): ${textData[wordData.palavras[id_word].texts[i]-1].title}`
         
 
         /************* Colocando o conteúdo em divs ***************/
         
             tentry_container.innerHTML = `
                                           <div class = "iteracao">${i+1}</div>
-                                          <div class = "titul"><a class = "titulo" href = "./index.html?id=${id_do_texto}"> ${titul}</a></div>
+                                          <div class = "titul"><a class = "titulo" href = "./pag_de_texto.html?id=${id_do_texto}"> ${titul}</a></div>
                                           <div class = "ano">${data_pub}</div>
                                           <div class = "author">${autor}</div>
                                           <div class = "freq">${freq1}x</div> 
                                           `
         
+
+        container.appendChild(tentry_container)
             
     }
+}
 
+//**** teste: chamar função: ****//
+
+//nota: tem muitos erros!! é melhor ver ao detalhe o que diferencia!!
+ordenarTextos(id_word, wordData, textData, "frequência", "desc")
+
+/*
+    NOTA: FUNCIONOU, mas retirou o header como já estava à esperaaa!!!
+
+
+*/
+
+
+
+
+
+//********  CASO O DE CIMA NÃO FUNCIONE  *********/
+    // for(let i = 0; i < wordData.palavras[id_word].textos.length; i++) {
+       
+    //     /* Para link em cada caixa aaaa
+    //         let a_tentry_container = document.createElement("a")
+    //         document.querySelector(".list-container").appendChild(a_tentry_container)
+    //         a_tentry_container.className += "titulo "
+        
+    //     */
+
+    //     let tentry_container = document.createElement("div")
+    //     document.querySelector(".list-container").appendChild(tentry_container)
+    //     tentry_container.className += "tentry tentry-container tentry-container" + (i + 1)
+
+    //     //criando elemento a para link
+
+    //     //id funciona!!
+    //     id_do_texto = textData[wordData.palavras[id_word].textos[i].id_text-1].id //id do texto
+    //     titul = textData[wordData.palavras[id_word].textos[i].id_text-1].title
+    //     data_pub = textData[wordData.palavras[id_word].textos[i].id_text-1].date_of_publication
+    //     autor = textData[wordData.palavras[id_word].textos[i].id_text-1].author
+    //     freq1 = wordData.palavras[id_word].textos[i].frequencia
+
+        
+    //     //guardar array de strings (organizar as frequencias - dicionário-> freq com string)
+    //     //tentry_container.innerHTML = `<a class="titulo" href = "./pag_de_texto.html?id=${id_do_texto}">${titul} (${data_pub}) — ${autor} (${freq1}x)</a>`
+    //     //tentry_container.innerHTML = `Título (${textData[wordData.palavras[id_word].texts[i]-1].id}): ${textData[wordData.palavras[id_word].texts[i]-1].title}`
+        
+
+    //     /************* Colocando o conteúdo em divs ***************/
+        
+    //         tentry_container.innerHTML = `
+    //                                       <div class = "iteracao">${i+1}</div>
+    //                                       <div class = "titul"><a class = "titulo" href = "./pag_de_texto.html?id=${id_do_texto}"> ${titul}</a></div>
+    //                                       <div class = "ano">${data_pub}</div>
+    //                                       <div class = "author">${autor}</div>
+    //                                       <div class = "freq">${freq1}x</div> 
+    //                                       `
+        
+            
+    // }
 
 
 
@@ -392,7 +479,7 @@ for(let i = 0; i < wordData.palavras[id_word].textos.length; i++) {
                     autoor = textData[text_id_value-1].author
                     frequencia = wordData.palavras[id_palavra_de_lema].textos[l].frequencia
                     
-                    //p_palavras_poemas.innerHTML = `<a class="titulo" href = "./index.html?id=${text_id_value}">${titl} (${data_publ}) — ${autoor} (${frequencia}x)</a>` //falta a frequência e o ano + colocar numa tabela
+                    //p_palavras_poemas.innerHTML = `<a class="titulo" href = "./pag_de_texto.html?id=${text_id_value}">${titl} (${data_publ}) — ${autoor} (${frequencia}x)</a>` //falta a frequência e o ano + colocar numa tabela
 
                     
                     
