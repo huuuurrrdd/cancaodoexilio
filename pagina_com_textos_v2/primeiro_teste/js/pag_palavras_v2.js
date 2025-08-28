@@ -235,7 +235,7 @@ console.log(`Indices = ${indice_lemas}`) // funciona!!
             document.querySelector(".list-container").appendChild(tentry_header)
             tentry_header.className += "tentry tentry-header"
 
-            // criar um elemento string para cada div
+            // criar um elemento string para cada div ---> isto está a funcionar??
             iteracao_header = `<div class = "iteracao header">ord</div>`
             titul_header = `<div class = "titul header">Título</div>`
             ano_header = `<div class = "ano header">Data publicação</div>`
@@ -260,6 +260,7 @@ function ordenarTextos(id_word, wordData, textData, sortBy = "frequência", dir 
 
         const container = document.createElement("div")
         document.querySelector(".list-container").appendChild(container)
+        container.className += "container"
         
         container.innerHTML = "" // garantir que contentor está limpo antes de atualizar os dados!!
 
