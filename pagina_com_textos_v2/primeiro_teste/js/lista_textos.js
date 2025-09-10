@@ -26,7 +26,7 @@ function fetchData(){
         })
         .then(data => {
             wordData = data;
-            return fetch("./textos_todos_v2.json") // fetch json dos textos
+            return fetch("./t2_textos_loc_fauna_flora.json") // fetch json dos textos
         })
         .then(response => { // mwensagem de erro
             if(!response.ok){
@@ -48,8 +48,17 @@ fetchData()
 
 function displayData(wordData, textData){
 
+
+
+    /******************  Contentor geral  *******************/
+    let textos_container = document.createElement("div")
+    document.querySelector("body").appendChild(textos_container)
+    textos_container.className = "textos-container"
+
+    //**  Título de página  ******************/
     page_title = document.createElement("h1")
-    document.querySelector("body").appendChild(page_title)
+    document.querySelector(".textos-container").appendChild(page_title)
+    page_title.className += "page-title pesquisa-textos-h"
     page_title.innerHTML = "Pesquisa de textos"
 
     //**********  Pequeno teste  *************/
@@ -62,13 +71,18 @@ function displayData(wordData, textData){
 
 
     //**********  Botões para formas de display  *************/
+    //container
+    bts_visualização = document.createElement("div")
+    document.querySelector(".textos-container").appendChild(bts_visualização)
+    bts_visualização.className += "bts-visualização"
+
     bt_amostra = document.createElement("div")
     bt_tabela = document.createElement("div")
     bt_mapa = document.createElement("div")
 
-    document.querySelector("body").appendChild(bt_amostra)
-    document.querySelector("body").appendChild(bt_tabela)
-    document.querySelector("body").appendChild(bt_mapa)
+    document.querySelector(".bts-visualização").appendChild(bt_amostra)
+    document.querySelector(".bts-visualização").appendChild(bt_tabela)
+    document.querySelector(".bts-visualização").appendChild(bt_mapa)
 
     bt_amostra.classname = "bt-amostra"
     bt_tabela.classname = "bt-tabela"
@@ -83,7 +97,7 @@ function displayData(wordData, textData){
     //div para display
     div_textos = document.createElement("div")
     document.querySelector("body").appendChild(div_textos)
-    div_textos.className = "div-textos"
+    div_textos.className += "div-textos div-textos-display"
     //div_textos.innerHTML = "lala"
 
     //**********  Display amostra  ***********/
@@ -138,29 +152,24 @@ function displayData(wordData, textData){
             let nstring = texto.match(/\S+|\r?\n/g)
             //console.log (`teste 1: ${nstring}`) //funciona!!
 
-            // // limitar... ao fim de 8 n/ não devolve
-            // let nNs = 0
+            // limitar... ao fim de 8 n/ não devolve
+            let nNs = 0
 
-            // let convertedn = stringHtml.map(item => {
-            //     if(nNs >= 8){
-            //         return null; //para de produzir output ao 8º "n"
-            //     }
-            //     if(item === "\n"){
-            //         nNs++
-            //         if(nNs > 8){
-            //             return null
-            //         }else{
-            //             return "<br>"
-            //         }
-            //         return item
-            //     }
-            // })
+            let convertedn = nstring.map(item => {
+                if(nNs >= 8){
+                    return null; //para de produzir output ao 8º "n"
+                }
+                if(item === "\n"){
+                    nNs++
+                    if(nNs > 5){
+                        return null
+                    }else{
+                        return "<br>"
+                    }
+                    
+                }return item
+            }).filter(x => x !== null)
 
-            // let convertedn = nstring.map(item =>
-            //     item === "\n"
-            //     ? "<br>"
-            //     : item 
-            // )
             return convertedn
 
         }

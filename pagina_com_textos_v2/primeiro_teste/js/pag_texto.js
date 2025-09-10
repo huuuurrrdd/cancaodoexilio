@@ -51,7 +51,7 @@ function fetchData(){
         })
         .then(data => {
             wordData = data; //Guarda dict_pal em wordData
-            return fetch("./textos_coordenadas_geograficas.json") // fetch json dos textos
+            return fetch("./t2_textos_loc_fauna_flora.json") // fetch json dos textos
         })
         .then(response => { // mensagem de erro
             if(!response.ok){
@@ -104,8 +104,8 @@ function displayData(wordData, textData, stoplist, lemmasData){ // parece funcio
 
     //console.log(stoplist)
 
-    /********** Display texto ***********/
-    let texto_conteiner = document.createElement("div") //------- Contentor de texto geral
+    /********** DISPLAY TEXTO ***********/
+    let texto_conteiner = document.createElement("div") //------- Contentor de texto geral (inclui categorias)
     document.querySelector("body").appendChild(texto_conteiner)
     texto_conteiner.className += "texto-container"
 
@@ -114,24 +114,67 @@ function displayData(wordData, textData, stoplist, lemmasData){ // parece funcio
     titulo_texto.className += "titulo"
     titulo_texto.innerHTML = `${textData[textId-1].title} <br> <br>`
 
+    let texto_conteudo = document.createElement("div")  //------- Contentor de texto + autor e data
+    document.querySelector(".texto-container").appendChild(texto_conteudo)
+    texto_conteudo.className += "texto-conteudo"
 
     let texto_completo = document.createElement("div")  //------- Texto completo!!
-    document.querySelector(".texto-container").appendChild(texto_completo)
+    document.querySelector(".texto-conteudo").appendChild(texto_completo)
     texto_completo.className += "texto-completo"
     //texto_completo.innerText = textData[textId-1].texto_completo //funcionaa!!
     //texto_completo.innerText = textData[textId-1].lemmas
 
     let autor_data = document.createElement("div")    //-------- Nome de autor e data
-    document.querySelector(".texto-container").appendChild(autor_data)
+    document.querySelector(".texto-conteudo").appendChild(autor_data)
     autor_data.className += "autor-data"
     autor_data.innerHTML = `${textData[textId-1].author}, ${textData[textId-1].date_of_publication}<br>`
 
-    let teste_com_lemas = document.createElement("div")//------ Teste com lemas (conteúdo não exibido)
-    document.querySelector("body").appendChild(teste_com_lemas)
-    teste_com_lemas.className += "teste-com-lemas"
+    // let teste_com_lemas = document.createElement("div")//------ Teste com lemas (conteúdo não exibido)
+    // document.querySelector("body").appendChild(teste_com_lemas)
+    // teste_com_lemas.className += "teste-com-lemas"
 
 
+    /********** Display CATEGORIAS PALAVARS ***********/
 
+    let categorias_container = document.createElement("div") //-------- Contantor categorias
+    document.querySelector(".texto-container").appendChild(categorias_container)
+    categorias_container.className += "categorias-palavras categorias-palavras-ct"
+
+    let locais_ct = document.createElement("div") //-------- Contantores categoria (locais, fauna e flora)
+    document.querySelector(".categorias-palavras-ct").appendChild(locais_ct)
+    locais_ct.className += "categoria-palavra locais-ct"
+
+    let fauna_ct = document.createElement("div")
+    document.querySelector(".categorias-palavras-ct").appendChild(fauna_ct)
+    fauna_ct.className += "categoria-palavra fauna-ct"
+
+    let flora_ct = document.createElement("div")
+    document.querySelector(".categorias-palavras-ct").appendChild(flora_ct)
+    flora_ct.className += "categoria-palavra flora-ct"
+
+    let locais_h = document.createElement("h2") //-------- Título categoria
+    document.querySelector(".locais-ct").appendChild(locais_h)
+    locais_h.className += "locais-h categoria-h"
+
+    let fauna_h = document.createElement("h2") 
+    document.querySelector(".fauna-ct").appendChild(fauna_h)
+    fauna_h.className += "fauna-h categoria-h"
+
+    let flora_h = document.createElement("h2") 
+    document.querySelector(".flora-ct").appendChild(flora_h)
+    flora_h.className += "flora-h categoria-h"
+
+    let locais_conteudo = document.createElement("div") //-------- conteúdo categoria
+    document.querySelector(".locais-ct").appendChild(locais_conteudo)
+    locais_conteudo.className += "locais-conteudo categoria-conteudo"
+
+    let fauna_conteudo = document.createElement("div") 
+    document.querySelector(".fauna-ct").appendChild(fauna_conteudo)
+    fauna_conteudo.className += "fauna-conteudo categoria-conteudo"
+
+    let flora_conteudo = document.createElement("div") 
+    document.querySelector(".flora-ct").appendChild(flora_conteudo)
+    flora_conteudo.className += "flora-conteudo categoria-conteudo"
 
 
     // //tentando fazer split das palavras (os numeros t2,t3... corresponde ao n do passo)

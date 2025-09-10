@@ -10,7 +10,7 @@
 
 */
 
-
+/************  Obtém o parametro no URL  ***********/
 console.clear()
 
 //let id_word = 1120 -1 // possivel testar com outros ids
@@ -28,8 +28,9 @@ let wordParam = getQueryParam("palavra")
 
 console.log(`Palavra é -${wordParam}-`)
 
+/****************************************************/
 
-//decidir o parametro
+
 
 
 /*
@@ -40,7 +41,7 @@ console.log(`Palavra é -${wordParam}-`)
 
 */
 
-
+//*************  Acesso a dados  ****************/
 function fetchData(){
     let wordData, textData, lemmasData
 
@@ -64,7 +65,7 @@ function fetchData(){
         })
         .then(data => {
             lemmasData = data;
-            return fetch("./textos_coordenadas_geograficas.json") // fetch json dos textos
+            return fetch("./t2_textos_loc_fauna_flora.json") // fetch json dos textos
         })
         .then(response => { // mwensagem de erro
             if(!response.ok){
@@ -89,43 +90,33 @@ fetchData()
 
 
 function displayData(wordData, textData, lemmasData){
+  //___PERCORRE O DICT PALAVRAS PARA ENCONTRAR PALAVRA__//
 
-    
+  //com a palavra selecionada, descobrir o id
+  let idpalavra = null;
+  //wordParam = "Pinheiro"
+  console.log(`Palavra: ${wordParam}`);
 
+  for (let i = 0; i < wordData.palavras.length; i++) {
+    const dictWord = wordData.palavras[i].palavra;
+    const queryWord = wordParam.toLowerCase();
 
+    if (dictWord === queryWord) {
+      idpalavra = wordData.palavras[i - 1].id; //n percebo o i-1
+      break; // quebra o ciclo assim que encontra
+    }
+  } // isto deve funcionar... o problema deve ser a ler os textos
 
+  if (idpalavra != null) {
+    console.log("id = " + idpalavra);
+  } else {
+    console.log("Palavra não encontrada");
+    document.querySelector("body").innerHTML = "Palavra Nula";
+  }
 
+  id_word = idpalavra;
 
-
-    //___PERCORRE O DICT PALAVRAS PARA ENCONTRAR PALAVRA__//
-
-    //com a palavra selecionada, descobrir o id
-    let idpalavra = null
-    //wordParam = "Pinheiro"
-    console.log(`Palavra: ${wordParam}`)
-
-
-    for (let i = 0; i < wordData.palavras.length; i++){
-        const dictWord = wordData.palavras[i].palavra
-        const queryWord = wordParam.toLowerCase()
-        
-        if(dictWord === queryWord){ 
-            idpalavra = wordData.palavras[i-1].id //n percebo o i-1
-            break; // quebra o ciclo assim que encontra
-        }
-    } // isto deve funcionar... o problema deve ser a ler os textos
-
-   if(idpalavra != null){
-    console.log("id = " + idpalavra)
-   } else {
-    console.log("Palavra não encontrada")
-    document.querySelector("body").innerHTML = "Palavra Nula"
-   }
-    
-
-    id_word = idpalavra
-
-/* Testes de funcionamento palavras_lemas e textos
+  /* Testes de funcionamento palavras_lemas e textos
     // testando acesso a dados (console.log)
     // palavra com id= 500; dispor: palavra,frequência e array de textos
     console.log("O objeto: " + wordData.palavras[id_word]) // funciona
@@ -150,387 +141,533 @@ function displayData(wordData, textData, lemmasData){
         console.log(`Título (${textData[wordData.palavras[id_word].textos[i].id_text-1].id}): ${textData[wordData.palavras[id_word].textos[i].id_text-1].title} Freq: ${wordData.palavras[id_word].textos[i].frequencia}`)
     }
 */
-    //tudo funciona!!
+  //tudo funciona!!
 
-// Testes de funcionamento lemas_palavras
-   console.log(`Lema: ${lemmasData.lemas[10].lema}`) // acesso ao lema
-   console.log(`Palavras: ${lemmasData.lemas[10].palavras}`) // acesso as palavras
+  // Testes de funcionamento lemas_palavras
+  console.log(`Lema: ${lemmasData.lemas[10].lema}`); // acesso ao lema
+  console.log(`Palavras: ${lemmasData.lemas[10].palavras}`); // acesso as palavras
 
+  // em vez de ser a id word é wordParam
+  //acesso ao lema através de uma palavra
+  //lema = "sem lema"
 
-   // em vez de ser a id word é wordParam
-//acesso ao lema através de uma palavra
- //lema = "sem lema"
+  // console.log(`Lema = ${lema}`)
+  // console.log(`palavra = ${wordParam}`) //isto está correto
+  // console.log(`Exemplo de palavra: ${lemmasData.lemas[400].palavras[0]}`)
+  // console.log(`Testando: ${lemmasData.lemas.length}`)
+  // console.log(`Testando: ${lemmasData.lemas[1].palavras.length}`)
 
-// console.log(`Lema = ${lema}`)
-// console.log(`palavra = ${wordParam}`) //isto está correto
-// console.log(`Exemplo de palavra: ${lemmasData.lemas[400].palavras[0]}`)
-// console.log(`Testando: ${lemmasData.lemas.length}`)
-// console.log(`Testando: ${lemmasData.lemas[1].palavras.length}`)
+  // console.log(`Testando: ${lemmasData.lemas[1].palavras[20]}`)
+  //console.log(`Testando: ${lemmasData.lemas[1].palavras.length}`)
 
-// console.log(`Testando: ${lemmasData.lemas[1].palavras[20]}`)
-//console.log(`Testando: ${lemmasData.lemas[1].palavras.length}`)
+  //____________________________________________________________________//
+  /////////////  Testando a extrair mais do que um lema  /////////////////
 
+  let lemmas = []; // podia tbm guardar o número do i
+  let indice_lemas = [];
+  //wordParam = "tributo"
 
-//____________________________________________________________________//
-/////////////  Testando a extrair mais do que um lema  /////////////////
+  for (let i = 0; i < lemmasData.lemas.length; i++) {
+    for (let j = 0; j < lemmasData.lemas[i].palavras.length; j++) {
+      // percorre todas as palavras em cada objeto
+      if (lemmasData.lemas[i].palavras[j] === wordParam.toLowerCase()) {
+        lemmas.push(lemmasData.lemas[i].lema);
+        indice_lemas.push(i);
+        break;
+      }
+    }
+    if (lemmas > 0) break;
+  }
 
-let lemmas = [] // podia tbm guardar o número do i
-let indice_lemas = []
-//wordParam = "tributo"
+  if (lemmas.length == 0) {
+    lemmas[0] = "sem lemas";
+  }
+  console.log(`Lema = ${lemmas}`); // funcionaa!!
+  console.log(`Indices = ${indice_lemas}`); // funciona!!
+  //console.log(`WordParam: ${wordParam}`) // por alguma razão n funciona em cima
 
-   for (let i = 0; i < lemmasData.lemas.length; i++){
-        for(let j = 0; j < lemmasData.lemas[i].palavras.length; j++){ // percorre todas as palavras em cada objeto
-            if(lemmasData.lemas[i].palavras[j] === wordParam.toLowerCase()){ 
-                lemmas.push(lemmasData.lemas[i].lema)
-                indice_lemas.push(i)
-                break
-            }
-        }
-        if(lemmas > 0) break
-   }
-
-   if(lemmas.length == 0){
-    lemmas[0] = "sem lemas"
-   }
-console.log(`Lema = ${lemmas}`) // funcionaa!!
-console.log(`Indices = ${indice_lemas}`) // funciona!!
-//console.log(`WordParam: ${wordParam}`) // por alguma razão n funciona em cima
-
-/* Alguns problemas que podem estar a acontecer aqui:
+  /* Alguns problemas que podem estar a acontecer aqui:
    -> várias palavras iguais estão associadas a lemas diferentes
    -> Nota: foi criada uma nova versão para incluir palavras com acentuação!!!
 
 
 */
 
+  /***************** Display dos elementos *******************/
+  // antes de fazer o gráfico... obter os valores
 
-/***************** Display dos elementos *******************/
+  // Criar array com id dos textos de cada ano (179 entradas)
+  //    let id_textos_p_ano = []
 
-    // /*********** Display palavra **************/
-    let word_container = document.createElement("div")
-    document.querySelector("body").appendChild(word_container)
-    word_container.className += "word-container"
+  //    for(let i = 0; i<textData.length; i++){
+  //         //j = n de anos
+  //         for(let j = 1846; j < 2025; j++){
+  //             let ano = []
+  //             if(textData[i].date_of_publication == j){
+  //                 ano.push(textData[i].date_of_publication)
+  //             }
 
-    let word_h = document.createElement("h1")
-    document.querySelector(".word-container").appendChild(word_h)
-    word_h.className += "word-h"
-    word_h.innerText = `Palavra: ${wordData.palavras[id_word].palavra}` // funciona!!
+  //         }
 
-   // /*********** Display gráfico de frequencias **************/----------- FALTA!!
-   // (ver qual a melhor biblioteca para isso!!) 
+  //    } // só tenho de colocar a frequência da palavra ao longo dos anos!!!
 
+  //ACEDENDO DADOS DE NUMERO DE PALAVRAS POR ANO
+  //para a palavra: array para: idTexto, freq, ano
+  id_textos = [];
+  frequencia = [];
+  anos_pal = [];
 
+  for (let i = 0; i < wordData.palavras[id_word].textos.length; i++) {
+    id_textos.push(wordData.palavras[id_word].textos[i].id_text);
+    frequencia.push(wordData.palavras[id_word].textos[i].frequencia);
+  }
 
-    // /************** Display textos *************/
-    let list_container = document.createElement("div")
-    document.querySelector(".word-container").appendChild(list_container)
-    list_container.className += "list-container"
-
-    item_ordenar = []
-    ordem_frequência = []
-
-        /* Criando uma header (em nova div no topo!!)*/
-        
-            let tentry_header = document.createElement("div")
-            document.querySelector(".list-container").appendChild(tentry_header)
-            tentry_header.className += "tentry tentry-header"
-
-            // criar um elemento string para cada div ---> isto está a funcionar??
-            iteracao_header = `<div class = "iteracao header">ord</div>`
-            titul_header = `<div class = "titul header">Título</div>`
-            ano_header = `<div class = "ano header">Data publicação</div>`
-            author_header = `<div class = "author header">Autor</div>`
-            freq_header = `<div class = "freq header">frequência</div>`
+  for (let i = 0; i < id_textos.length; i++) {
+    //array de anos
+    anos_pal.push(textData[id_textos[i] - 1].date_of_publication); //acedendo ao ano pelo id
+  }
 
 
-            tentry_header.innerHTML = `<div class = "iteracao header">ord</div>
+  // CRIAÇÃO DE ARRAY MULTIDIMENCIONAL COM OS ANOS, IDs E FREQUENCIAS
+  const ag_anos = [];
+  let gAtual_anos = [];
+
+  const ag_freq = [];
+  let gAtual_freq = [];
+
+  const ag_id = [];
+  let gAtual_id = [];
+
+  //ver este detalhe
+  for (let i = 0; i < anos_pal.length; i++) {
+    if (i === 0 || anos_pal[i] == anos_pal[i - 1]) {
+      gAtual_anos.push(anos_pal[i]); //igual ao anterior, adiciona
+
+      gAtual_freq.push(frequencia[i]); // adiciona para ids e frequencias
+      gAtual_id.push(id_textos[i]);
+
+    } else {
+      ag_anos.push(gAtual_anos); // push grupo finalizado
+      gAtual_anos = [anos_pal[i]]; // começa novo grupo
+
+      //o mesmo para ids e frequencias
+      ag_freq.push(gAtual_freq);
+      gAtual_freq = [frequencia[i]];
+
+      ag_id.push(gAtual_id);
+      gAtual_id = [id_textos[i]];
+    }
+  }
+
+  //push ultimo grupo (n percebo a parte do grupoatual.length)
+  if (gAtual_anos.length) ag_anos.push(gAtual_anos);
+  //console.log(`Anos: ${agrupado_anos}`);
+  console.log(ag_anos);
+
+  if (gAtual_freq.length) ag_freq.push(gAtual_freq);
+  //console.log(`Frequencias: ${ag_freq}`);
+  console.log(ag_freq);
+
+  if (gAtual_id.length) ag_id.push(gAtual_id);
+  //console.log(`IDs: ${ag_id}`);
+  console.log(ag_id);
+
+  //Testes de funcionamento de variáveis
+  //console.log(`Variável ag_freq[10][2]: ${ag_freq[10][1]}`) // funciona!!
+
+
+  //TRANSFORMAR ARRAYS MULTIDIMENSIONAIS DOS ANOS E FREQ EM ARRAYS UNIDIMENSIONAIS
+  const ag_anos_unidimensional = []
+  const ag_freq_p_ano = []
+
+  for(let i = 0; i < ag_anos.length; i++){
+    let soma_freq = 0
+    for(let j = 0; j < ag_anos[i].length; j++){
+        soma_freq += ag_freq[i][j]
+    }
+    ag_freq_p_ano.push(soma_freq)
+    ag_anos_unidimensional.push(ag_anos[i][0]) // escolhe o primeiro, pq são todos iguais
+  }
+//   console.log("Freq e anos respetivamente:")
+//   console.log(ag_freq_p_ano)
+//   console.log(ag_anos_unidimensional) //sem valores repetidos
+
+  //TENTATIVA DE CONTAR TODOS OS ANOS E IGUALAR A 0 OS ANOS SEM REPRESENTAÇÃO
+  const val_anos = ag_anos_unidimensional
+  const val_freq = ag_freq_p_ano
+
+  const start = 1846
+  const end = 2025
+
+  let anos_grafico = []
+  let freq_grafico = []
+
+  for(let y = start; y <= end; y++){
+    anos_grafico.push(y) // adiciona os anos normalmente
+
+    const idx = val_anos.indexOf(y) //tenta saber o indice do valor y (o ano atualmente selecionado)
+    if(idx !== -1){ //-1 deve ser o valor de quando n encontra índice
+        freq_grafico.push(val_freq[idx]) // se tiver o valor adiciona
+    }else{
+        freq_grafico.push(0) // se n tiver, adiciona 0
+    }
+  }
+
+
+  console.log("Valores para anos e frq no gráfico:")
+  console.log(anos_grafico)
+  console.log(freq_grafico)
+//   console.log(val_anos)
+//   console.log(val_freq)
+
+
+
+
+
+  // /*********** Display palavra **************/
+  let word_container = document.createElement("div");
+  document.querySelector("body").appendChild(word_container);
+  word_container.className += "word-container";
+
+  let word_h = document.createElement("h1");
+  document.querySelector(".word-container").appendChild(word_h);
+  word_h.className += "word-h";
+  word_h.innerText = `Palavra: ${wordData.palavras[id_word].palavra}`; // funciona!!
+
+  // /*********** Display gráfico de frequencias **************/----------- FALTA!!
+  // (ver qual a melhor biblioteca para isso!!)
+  let grafico_ct = document.createElement("div");
+  document.querySelector(".word-container").appendChild(grafico_ct);
+  grafico_ct.className = "grafico-ct";
+
+  let grafico_palavras = document.createElement("canvas");
+  document.querySelector(".grafico-ct").appendChild(grafico_palavras);
+  grafico_palavras.className = "grafico-palavras";
+
+  const ctx = document.querySelector(".grafico-palavras");
+
+  //*************** FUNCIONA!! ******************/
+  // new Chart(ctx, {
+  //     type: 'bar',
+  //     data: {
+  //     labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+  //     datasets: [{
+  //         label: '# of Votes',
+  //         data: [12, 19, 3, 5, 2, 3],
+  //         borderWidth: 1
+  //     }]
+  //     },
+  //     options: {
+  //     scales: {
+  //         y: {
+  //         beginAtZero: true
+  //         }
+  //     }
+  //     }
+  // })
+
+  //*********** Teste com gráfico de linha **********/
+  new Chart(ctx, {
+    type: "line",
+    data: {
+      labels: anos_grafico,
+      datasets: [
+        {
+          label: "frequencia de uso",
+          data: freq_grafico,
+          borderWidth: 1,
+        },
+      ],
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+        },
+      },
+    },
+  });
+
+  // /************** Display textos *************/
+  let list_container = document.createElement("div");
+  document.querySelector(".word-container").appendChild(list_container);
+  list_container.className += "list-container";
+
+  item_ordenar = [];
+  ordem_frequência = [];
+
+  /* Criando uma header (em nova div no topo!!)*/
+
+  let tentry_header = document.createElement("div");
+  document.querySelector(".list-container").appendChild(tentry_header);
+  tentry_header.className += "tentry tentry-header";
+
+  // criar um elemento string para cada div ---> isto está a funcionar??
+  iteracao_header = `<div class = "iteracao header">ord</div>`;
+  titul_header = `<div class = "titul header">Título</div>`;
+  ano_header = `<div class = "ano header">Data publicação</div>`;
+  author_header = `<div class = "author header">Autor</div>`;
+  freq_header = `<div class = "freq header">frequência</div>`;
+
+  tentry_header.innerHTML = `<div class = "iteracao header">ord</div>
                                        <div class = "titul header">Título</div>
                                        <div class = "ano header">Data publicação</div>
                                        <div class = "author header">Autor</div>
-                                       <div class = "freq header">frequência</div>`
-        
-     
-        
-        
+                                       <div class = "freq header">frequência</div>`;
 
-// Teste de redirecionar info com apenas javaScript
-/////////////////////////////////// Vai ser necessário reordenar os items!! ///////////////////////////
-    
-function ordenarTextos(id_word, wordData, textData, sortBy = "frequência", dir = "desc"){
+  // Teste de redirecionar info com apenas javaScript
+  /////////////////////////////////// Vai ser necessário reordenar os items!! ///////////////////////////
 
-        const container = document.createElement("div")
-        document.querySelector(".list-container").appendChild(container)
-        container.className += "container"
-        
-        container.innerHTML = "" // garantir que contentor está limpo antes de atualizar os dados!!
+  function ordenarTextos(
+    id_word,
+    wordData,
+    textData,
+    sortBy = "frequência",
+    dir = "desc"
+  ) {
+    const container = document.createElement("div");
+    document.querySelector(".list-container").appendChild(container);
+    container.className += "container";
 
-        let textos = wordData.palavras[id_word].textos.slice();
+    container.innerHTML = ""; // garantir que contentor está limpo antes de atualizar os dados!!
 
-        //sort ased on criteria
-        textos.sort((a, b) => {
-            let valA, valB
+    let textos = wordData.palavras[id_word].textos.slice();
 
-            if (sortBy === "frequência") { // pega nos valores de frequência dos textos
-                valA = a.frequencia
-                valB = b.frequencia
+    //sort ased on criteria
+    textos.sort((a, b) => {
+      let valA, valB;
 
-            } else if (sortBy === "titulo") { // esta parte não percebo muito
-                valA = textData[a.id_text - 1].title.toLowerCase()
-                valB = textData[a.id_text - 1].title.toLowerCase()
-            }
+      if (sortBy === "frequência") {
+        // pega nos valores de frequência dos textos
+        valA = a.frequencia;
+        valB = b.frequencia;
+      } else if (sortBy === "titulo") {
+        // esta parte não percebo muito
+        valA = textData[a.id_text - 1].title.toLowerCase();
+        valB = textData[a.id_text - 1].title.toLowerCase();
+      }
 
-
-            // esta parte parece estar escrita de uma forma muito avançada (talvez colocar em termos mais simples!!)
-            if (valA < valB) return dir === "asc" ? -1 : 1
-            if (valA > valB) return dir === "asc" ? 1: -1
-            return 0
-        })
-
+      // esta parte parece estar escrita de uma forma muito avançada (talvez colocar em termos mais simples!!)
+      if (valA < valB) return dir === "asc" ? -1 : 1;
+      if (valA > valB) return dir === "asc" ? 1 : -1;
+      return 0;
+    });
 
     // render sorted list:
-    for(let i = 0; i < textos.length; i++) {
-       
-        const texto = textos[i]
+    for (let i = 0; i < textos.length; i++) {
+      const texto = textos[i];
 
-        let tentry_container = document.createElement("div")
-        //document.querySelector(".list-container").appendChild(tentry_container)
-        tentry_container.className += "tentry tentry-container tentry-container" + (i + 1)
+      let tentry_container = document.createElement("div");
+      //document.querySelector(".list-container").appendChild(tentry_container)
+      tentry_container.className +=
+        "tentry tentry-container tentry-container" + (i + 1);
 
-        //criando elemento a para link
+      //criando elemento a para link
 
-        //id funciona!!
-        // testando a parte do matadata
-        const metadata = textData[texto.id_text - 1]
-        const id_do_texto = metadata.id //id do texto
-        const titul = metadata.title
-        const data_pub = metadata.date_of_publication
-        const autor = metadata.author
-        const freq1 = texto.frequencia
+      //id funciona!!
+      // testando a parte do matadata
+      const metadata = textData[texto.id_text - 1];
+      const id_do_texto = metadata.id; //id do texto
+      const titul = metadata.title;
+      const data_pub = metadata.date_of_publication;
+      const autor = metadata.author;
+      const freq1 = texto.frequencia;
 
-        
+      /************* Colocando o conteúdo em divs ***************/
 
-        /************* Colocando o conteúdo em divs ***************/
-        
-            tentry_container.innerHTML = `
-                                          <div class = "iteracao">${i+1}</div>
+      tentry_container.innerHTML = `
+                                          <div class = "iteracao">${i + 1}</div>
                                           <div class = "titul"><a class = "titulo" href = "./pag_de_texto.html?id=${id_do_texto}"> ${titul}</a></div>
                                           <div class = "ano">${data_pub}</div>
                                           <div class = "author">${autor}</div>
                                           <div class = "freq">${freq1}x</div> 
-                                          `
-        
+                                          `;
 
-        container.appendChild(tentry_container)
-            
+      container.appendChild(tentry_container);
     }
-}
+  }
 
-//**** teste: chamar função: ****//
+  //**** teste: chamar função: ****//
 
-//nota: tem muitos erros!! é melhor ver ao detalhe o que diferencia!!
-ordenarTextos(id_word, wordData, textData, "frequência", "desc")
+  //nota: tem muitos erros!! é melhor ver ao detalhe o que diferencia!!
+  ordenarTextos(id_word, wordData, textData, "frequência", "desc");
 
-/*
+  /*
     NOTA: FUNCIONOU, mas retirou o header como já estava à esperaaa!!!
 
 
 */
 
+  //********  CASO O DE CIMA NÃO FUNCIONE  *********/
+  // for(let i = 0; i < wordData.palavras[id_word].textos.length; i++) {
 
+  //     /* Para link em cada caixa aaaa
+  //         let a_tentry_container = document.createElement("a")
+  //         document.querySelector(".list-container").appendChild(a_tentry_container)
+  //         a_tentry_container.className += "titulo "
 
+  //     */
 
+  //     let tentry_container = document.createElement("div")
+  //     document.querySelector(".list-container").appendChild(tentry_container)
+  //     tentry_container.className += "tentry tentry-container tentry-container" + (i + 1)
 
-//********  CASO O DE CIMA NÃO FUNCIONE  *********/
-    // for(let i = 0; i < wordData.palavras[id_word].textos.length; i++) {
-       
-    //     /* Para link em cada caixa aaaa
-    //         let a_tentry_container = document.createElement("a")
-    //         document.querySelector(".list-container").appendChild(a_tentry_container)
-    //         a_tentry_container.className += "titulo "
-        
-    //     */
+  //     //criando elemento a para link
 
-    //     let tentry_container = document.createElement("div")
-    //     document.querySelector(".list-container").appendChild(tentry_container)
-    //     tentry_container.className += "tentry tentry-container tentry-container" + (i + 1)
+  //     //id funciona!!
+  //     id_do_texto = textData[wordData.palavras[id_word].textos[i].id_text-1].id //id do texto
+  //     titul = textData[wordData.palavras[id_word].textos[i].id_text-1].title
+  //     data_pub = textData[wordData.palavras[id_word].textos[i].id_text-1].date_of_publication
+  //     autor = textData[wordData.palavras[id_word].textos[i].id_text-1].author
+  //     freq1 = wordData.palavras[id_word].textos[i].frequencia
 
-    //     //criando elemento a para link
+  //     //guardar array de strings (organizar as frequencias - dicionário-> freq com string)
+  //     //tentry_container.innerHTML = `<a class="titulo" href = "./pag_de_texto.html?id=${id_do_texto}">${titul} (${data_pub}) — ${autor} (${freq1}x)</a>`
+  //     //tentry_container.innerHTML = `Título (${textData[wordData.palavras[id_word].texts[i]-1].id}): ${textData[wordData.palavras[id_word].texts[i]-1].title}`
 
-    //     //id funciona!!
-    //     id_do_texto = textData[wordData.palavras[id_word].textos[i].id_text-1].id //id do texto
-    //     titul = textData[wordData.palavras[id_word].textos[i].id_text-1].title
-    //     data_pub = textData[wordData.palavras[id_word].textos[i].id_text-1].date_of_publication
-    //     autor = textData[wordData.palavras[id_word].textos[i].id_text-1].author
-    //     freq1 = wordData.palavras[id_word].textos[i].frequencia
+  //     /************* Colocando o conteúdo em divs ***************/
 
-        
-    //     //guardar array de strings (organizar as frequencias - dicionário-> freq com string)
-    //     //tentry_container.innerHTML = `<a class="titulo" href = "./pag_de_texto.html?id=${id_do_texto}">${titul} (${data_pub}) — ${autor} (${freq1}x)</a>`
-    //     //tentry_container.innerHTML = `Título (${textData[wordData.palavras[id_word].texts[i]-1].id}): ${textData[wordData.palavras[id_word].texts[i]-1].title}`
-        
+  //         tentry_container.innerHTML = `
+  //                                       <div class = "iteracao">${i+1}</div>
+  //                                       <div class = "titul"><a class = "titulo" href = "./pag_de_texto.html?id=${id_do_texto}"> ${titul}</a></div>
+  //                                       <div class = "ano">${data_pub}</div>
+  //                                       <div class = "author">${autor}</div>
+  //                                       <div class = "freq">${freq1}x</div>
+  //                                       `
 
-    //     /************* Colocando o conteúdo em divs ***************/
-        
-    //         tentry_container.innerHTML = `
-    //                                       <div class = "iteracao">${i+1}</div>
-    //                                       <div class = "titul"><a class = "titulo" href = "./pag_de_texto.html?id=${id_do_texto}"> ${titul}</a></div>
-    //                                       <div class = "ano">${data_pub}</div>
-    //                                       <div class = "author">${autor}</div>
-    //                                       <div class = "freq">${freq1}x</div> 
-    //                                       `
-        
-            
-    // }
+  // }
 
+///////////////////////// DISPLAY DE LEMAS (A ELIMINAR) ///////////////////////////
+  // // display de lemas
+  // let lemmas_container = document.createElement("div");
+  // document.querySelector("body").appendChild(lemmas_container);
+  // lemmas_container.className += "lemmas-container";
 
+  // let lemmas_h = document.createElement("h2");
+  // lemmas_container.appendChild(lemmas_h);
+  // lemmas_h.className += "lemmas-h";
+  // lemmas_h.innerText = `Lemas de ${wordData.palavras[id_word].palavra}`;
 
+ /************** Para os lemas: *************************/
+//   for (let i = 0; i < lemmas.length; i++) {
+//     // acesso a cada um dos lemas no array
 
+//     // let lem_ct = document.createElement("div") // contentor de cada lema
+//     // lemmas_container.appendChild(lem_ct)
+//     // lem_ct.className += "lem-ct" + (i + 1)
 
-    // display de lemas
-    let lemmas_container = document.createElement("div")
-    document.querySelector("body").appendChild(lemmas_container)
-    lemmas_container.className += "lemmas-container"
+//     // let lem_h = document.createElement("h3")
+//     // document.querySelector(`.lem-ct${i+1}`).appendChild(lem_h)
+//     // lem_h.className += `lem-h${i+1}`
+//     // //lem_h.innerHTML = `${lemmas[i]}`
 
-    let lemmas_h = document.createElement("h2")
-    lemmas_container.appendChild(lemmas_h)
-    lemmas_h.className += "lemmas-h"
-    lemmas_h.innerText = `Lemas de ${wordData.palavras[id_word].palavra}`
+//     //indice_lemas- índice de cada lemai
 
+//     console.log(lemmasData.lemas[indice_lemas[i]].palavras.length);
+//     //resultados para encontro: 12 (encntrar) e 1 (encontro)
 
-    /************** Para os lemas: *************************/ 
-    for(let i = 0; i < lemmas.length; i++){ // acesso a cada um dos lemas no array
-        
-        // let lem_ct = document.createElement("div") // contentor de cada lema
-        // lemmas_container.appendChild(lem_ct)
-        // lem_ct.className += "lem-ct" + (i + 1)
+//     // contentor para cada lema:
+//     let lem_ct = document.createElement("div");
+//     document.querySelector(".lemmas-container").appendChild(lem_ct);
+//     lem_ct.className += `lem-ct`;
 
-        // let lem_h = document.createElement("h3")
-        // document.querySelector(`.lem-ct${i+1}`).appendChild(lem_h)
-        // lem_h.className += `lem-h${i+1}`
-        // //lem_h.innerHTML = `${lemmas[i]}`
+//     // guarda h3 no seu contentor:
+//     let lem_h = document.createElement("h3");
+//     lem_ct.appendChild(lem_h);
+//     lem_h.innerText = `${lemmas[i]}`;
 
-        //indice_lemas- índice de cada lemai
+//     for (
+//       let j = 0;
+//       j < lemmasData.lemas[indice_lemas[i]].palavras.length;
+//       j++
+//     ) {
+//       let p_palavras = document.createElement("li");
+//       lem_ct.appendChild(p_palavras);
 
-        console.log(lemmasData.lemas[indice_lemas[i]].palavras.length)
-        //resultados para encontro: 12 (encntrar) e 1 (encontro)
+//       // cria contentor (ordenado para colocar lista de poemas)
+//       let txt_pal_textos = document.createElement("div");
+//       lem_ct.appendChild(txt_pal_textos);
+//       txt_pal_textos.className += "s-list-container";
 
+//       //criar aqui header se necessário!
 
+//       let id_palavra_de_lema = null;
 
-        // contentor para cada lema:
-        let lem_ct = document.createElement("div")
-        document.querySelector(".lemmas-container").appendChild(lem_ct)
-        lem_ct.className += `lem-ct`
+//       for (let k = 0; k < wordData.palavras.length; k++) {
+//         const dictWord = wordData.palavras[k].palavra;
+//         const original_word = lemmasData.lemas[indice_lemas[i]].palavras[j];
 
-        // guarda h3 no seu contentor:
-        let lem_h = document.createElement("h3")
-        lem_ct.appendChild(lem_h)
-        lem_h.innerText = `${lemmas[i]}`
+//         if (dictWord === original_word) {
+//           id_palavra_de_lema = wordData.palavras[k - 1].id;
+//           break;
+//         }
+//       }
 
-        
-        for(let j = 0; j < lemmasData.lemas[indice_lemas[i]].palavras.length; j++){
+//       n_results = wordData.palavras[id_palavra_de_lema].textos.length;
 
-            let p_palavras = document.createElement("li")
-            lem_ct.appendChild(p_palavras)
-            
+//       p_palavras.innerHTML = `<b>${
+//         lemmasData.lemas[indice_lemas[i]].palavras[j]
+//       } (${n_results})</b>`;
 
-            // cria contentor (ordenado para colocar lista de poemas)
-            let txt_pal_textos = document.createElement("div")
-            lem_ct.appendChild(txt_pal_textos)
-            txt_pal_textos.className += "s-list-container"
+//       if (id_palavra_de_lema != null) {
+//         console.log(`id = ${id_palavra_de_lema}`);
+//         //escreve a paravra no contentor, mas a do dicionário
+//         //tá ok
 
-            //criar aqui header se necessário!
+//         //escrever nº dos textos
+//         for (
+//           l = 0;
+//           l < wordData.palavras[id_palavra_de_lema].textos.length;
+//           l++
+//         ) {
+//           let p_palavras_poemas = document.createElement("div");
+//           txt_pal_textos.appendChild(p_palavras_poemas);
+//           p_palavras_poemas.className += "s-list-container";
 
-            let id_palavra_de_lema = null
+//           //p_palavras_poemas.innerText = `${wordData.palavras[id_palavra_de_lema].textos[l].id_text}`
 
-            for(let k = 0; k < wordData.palavras.length; k++){
-                const dictWord = wordData.palavras[k].palavra
-                const original_word = lemmasData.lemas[indice_lemas[i]].palavras[j]
+//           text_id_value =
+//             wordData.palavras[id_palavra_de_lema].textos[l].id_text;
+//           titl = textData[text_id_value - 1].title; //id-1, uma vez que a iteração começa em 0 e id começa em 1
+//           data_publ = textData[text_id_value - 1].date_of_publication;
+//           autoor = textData[text_id_value - 1].author;
+//           frequencia =
+//             wordData.palavras[id_palavra_de_lema].textos[l].frequencia;
 
-                if(dictWord === original_word){
-                    id_palavra_de_lema = wordData.palavras[k-1].id
-                    break
-                }
+//           //p_palavras_poemas.innerHTML = `<a class="titulo" href = "./pag_de_texto.html?id=${text_id_value}">${titl} (${data_publ}) — ${autoor} (${frequencia}x)</a>` //falta a frequência e o ano + colocar numa tabela
 
-            }
+//           p_palavras_poemas.innerHTML = `
+//                                                     <div class = "s-iteracao">${
+//                                                       l + 1
+//                                                     }</div>
+//                                                     <div class = "s-titul">${titl}</div>
+//                                                     <div class = "s-ano">${data_publ}</div>
+//                                                     <div class = "s-author">${autoor}</div>
+//                                                     <div class = "s-freq">${frequencia}</div>
+//                                                 `;
+//         }
 
-            n_results = wordData.palavras[id_palavra_de_lema].textos.length
+//         /* Falta acrescentar:
+//                     -> Links para página dos textos
+//                     -> Links para os poemas associados
+//                     -> Possibilidade de esconder os poemas associados
+//                     -> Tabela css (fazer wireframes em figma - ter tbm o design !!)
 
-            p_palavras.innerHTML = `<b>${lemmasData.lemas[indice_lemas[i]].palavras[j]} (${n_results})</b>`
-
-            if(id_palavra_de_lema != null){
-                console.log(`id = ${id_palavra_de_lema}`)
-                //escreve a paravra no contentor, mas a do dicionário
-                 //tá ok
-
-                //escrever nº dos textos
-                for(l = 0; l < wordData.palavras[id_palavra_de_lema].textos.length; l++){
-
-                    let p_palavras_poemas = document.createElement("div")
-                    txt_pal_textos.appendChild(p_palavras_poemas)
-                    p_palavras_poemas.className += "s-list-container"
-
-                    
-                    //p_palavras_poemas.innerText = `${wordData.palavras[id_palavra_de_lema].textos[l].id_text}`
-
-                    
-
-                    text_id_value = wordData.palavras[id_palavra_de_lema].textos[l].id_text
-                    titl = textData[text_id_value-1].title //id-1, uma vez que a iteração começa em 0 e id começa em 1
-                    data_publ = textData[text_id_value-1].date_of_publication
-                    autoor = textData[text_id_value-1].author
-                    frequencia = wordData.palavras[id_palavra_de_lema].textos[l].frequencia
-                    
-                    //p_palavras_poemas.innerHTML = `<a class="titulo" href = "./pag_de_texto.html?id=${text_id_value}">${titl} (${data_publ}) — ${autoor} (${frequencia}x)</a>` //falta a frequência e o ano + colocar numa tabela
-
-                    
-                    
-                    p_palavras_poemas.innerHTML = `
-                                                    <div class = "s-iteracao">${l+1}</div>
-                                                    <div class = "s-titul">${titl}</div>
-                                                    <div class = "s-ano">${data_publ}</div>
-                                                    <div class = "s-author">${autoor}</div>
-                                                    <div class = "s-freq">${frequencia}</div>
-                                                `
-                    
-                    
-                    
-
-
-
-                }
-
-                /* Falta acrescentar:
-                    -> Links para página dos textos
-                    -> Links para os poemas associados
-                    -> Possibilidade de esconder os poemas associados
-                    -> Tabela css (fazer wireframes em figma - ter tbm o design !!)
-
-                    NOTA: Se a palavra do lema for a representada, não precisa eibir os textos ou
-                        - Escrever: outras palavras com o mesmo lema??
-                        - Não incluir a palavra se for igual à inicialmente representada
+//                     NOTA: Se a palavra do lema for a representada, não precisa eibir os textos ou
+//                         - Escrever: outras palavras com o mesmo lema??
+//                         - Não incluir a palavra se for igual à inicialmente representada
                 
                 
-                    - Vou ter de compreender bem o que ando a fazer!! (a parte de baixo não está bem!!)
-                */
+//                     - Vou ter de compreender bem o que ando a fazer!! (a parte de baixo não está bem!!)
+//                 */
+//       } else {
+//         console.log("Palavra não encontrada");
+//       }
+//     }
+//   }
+///////////////////////// LEMAS ELIMINADOS ATÉ AQUI ///////////////////////////
+ }
 
-
-
-            } else{
-                console.log("Palavra não encontrada")
-                
-
-            }
-
-
-        }
-
-
-    }
-
-
-
-
-}
 
 
 //função para normalizar o texto (n sei se é mesmo necessário!!!)
