@@ -216,6 +216,7 @@ function displayData(wordData, textData, lemmasData){
   id_textos = [];
   frequencia = [];
   anos_pal = [];
+  
 
   for (let i = 0; i < wordData.palavras[id_word].textos.length; i++) {
     id_textos.push(wordData.palavras[id_word].textos[i].id_text);
@@ -325,26 +326,26 @@ function displayData(wordData, textData, lemmasData){
 
 
   // /*********** Display palavra **************/
-  let word_container = document.createElement("div");
-  document.querySelector("body").appendChild(word_container);
-  word_container.className += "word-container";
+  let word_container = document.createElement("div")
+  document.querySelector("body").appendChild(word_container)
+  word_container.className += "word-container"
 
-  let word_h = document.createElement("h1");
-  document.querySelector(".word-container").appendChild(word_h);
-  word_h.className += "word-h";
-  word_h.innerText = `Palavra: ${wordData.palavras[id_word].palavra}`; // funciona!!
+  let word_h = document.createElement("h1")
+  document.querySelector(".word-container").appendChild(word_h)
+  word_h.className += "word-h"
+  word_h.innerText = `Palavra: ${wordData.palavras[id_word].palavra}` // funciona!!
 
   // /*********** Display gráfico de frequencias **************/----------- FALTA!!
   // (ver qual a melhor biblioteca para isso!!)
-  let grafico_ct = document.createElement("div");
-  document.querySelector(".word-container").appendChild(grafico_ct);
-  grafico_ct.className = "grafico-ct";
+  let grafico_ct = document.createElement("div")
+  document.querySelector(".word-container").appendChild(grafico_ct)
+  grafico_ct.className = "grafico-ct"
 
-  let grafico_palavras = document.createElement("canvas");
-  document.querySelector(".grafico-ct").appendChild(grafico_palavras);
-  grafico_palavras.className = "grafico-palavras";
+  let grafico_palavras = document.createElement("canvas")
+  document.querySelector(".grafico-ct").appendChild(grafico_palavras)
+  grafico_palavras.className = "grafico-palavras"
 
-  const ctx = document.querySelector(".grafico-palavras");
+  const ctx = document.querySelector(".grafico-palavras")
 
   //*************** FUNCIONA!! ******************/
   // new Chart(ctx, {

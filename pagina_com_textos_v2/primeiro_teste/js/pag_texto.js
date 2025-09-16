@@ -137,7 +137,7 @@ function displayData(wordData, textData, stoplist, lemmasData){ // parece funcio
     /********** Display CATEGORIAS PALAVARS ***********/
 
     let categorias_container = document.createElement("div") //-------- Contantor categorias
-    document.querySelector(".texto-container").appendChild(categorias_container)
+    document.querySelector("body").appendChild(categorias_container)
     categorias_container.className += "categorias-palavras categorias-palavras-ct"
 
     let locais_ct = document.createElement("div") //-------- Contantores categoria (locais, fauna e flora)
@@ -155,26 +155,75 @@ function displayData(wordData, textData, stoplist, lemmasData){ // parece funcio
     let locais_h = document.createElement("h2") //-------- Título categoria
     document.querySelector(".locais-ct").appendChild(locais_h)
     locais_h.className += "locais-h categoria-h"
+    locais_h.innerHTML = "Locais"
 
     let fauna_h = document.createElement("h2") 
     document.querySelector(".fauna-ct").appendChild(fauna_h)
     fauna_h.className += "fauna-h categoria-h"
+    fauna_h.innerHTML = "Fauna"
 
     let flora_h = document.createElement("h2") 
     document.querySelector(".flora-ct").appendChild(flora_h)
     flora_h.className += "flora-h categoria-h"
+    flora_h.innerHTML = "Flora"
 
     let locais_conteudo = document.createElement("div") //-------- conteúdo categoria
     document.querySelector(".locais-ct").appendChild(locais_conteudo)
     locais_conteudo.className += "locais-conteudo categoria-conteudo"
 
+    //locais_conteudo.innerHTML = `${textData[textId-1].locais_limpos}`// display locais
+    // Confirmar se tem, se n tiver (sem locais mencionados); 
+    // Colocar os locais em loop
+    if(textData[textId-1].locais_limpos.length <= 0){
+        locais_conteudo.innerHTML = ""
+        let p_locais = document.createElement("p")
+        document.querySelector(".locais-conteudo").appendChild(p_locais)
+        p_locais.innerHTML = "Sem locais geográficos mencionados no texto"
+    }else{
+        for(let i = 0; i < textData[textId-1].locais_limpos.length; i++){
+            let p_locais = document.createElement("p")
+            document.querySelector(".locais-conteudo").appendChild(p_locais)
+            p_locais.innerHTML = `${textData[textId-1].locais_limpos[i]}`
+        }
+    }
+
+
+
     let fauna_conteudo = document.createElement("div") 
     document.querySelector(".fauna-ct").appendChild(fauna_conteudo)
     fauna_conteudo.className += "fauna-conteudo categoria-conteudo"
 
+    if(textData[textId-1].fauna.length <= 0){
+        fauna_conteudo.innerHTML = ""
+        let p_fauna = document.createElement("p")
+        document.querySelector(".fauna-conteudo").appendChild(p_fauna)
+        p_fauna.innerHTML = "Sem fauna geográficos mencionados no texto"
+    }else{
+        for(let i = 0; i < textData[textId-1].fauna.length; i++){
+            let p_fauna = document.createElement("p")
+            document.querySelector(".fauna-conteudo").appendChild(p_fauna)
+            p_fauna.innerHTML = `${textData[textId-1].fauna[i]}`
+        }
+    }    
+
+
     let flora_conteudo = document.createElement("div") 
     document.querySelector(".flora-ct").appendChild(flora_conteudo)
     flora_conteudo.className += "flora-conteudo categoria-conteudo"
+
+    if(textData[textId-1].flora.length <= 0){
+        flora_conteudo.innerHTML = ""
+        let p_flora = document.createElement("p")
+        document.querySelector(".flora-conteudo").appendChild(p_flora)
+        p_flora.innerHTML = "Sem flora geográficos mencionados no texto"
+    }else{
+        for(let i = 0; i < textData[textId-1].flora.length; i++){
+            let p_flora = document.createElement("p")
+            document.querySelector(".flora-conteudo").appendChild(p_flora)
+            p_flora.innerHTML = `${textData[textId-1].flora[i]}`
+        }
+    }  
+    
 
 
     // //tentando fazer split das palavras (os numeros t2,t3... corresponde ao n do passo)
