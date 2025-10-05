@@ -147,7 +147,7 @@ function displayData(wordData, textData){
         }
 
 
-        function tratamento_texto(texto){
+        function tratamento_texto(texto){ // falta refinar
             //n/n/ to <br>
             let nstring = texto.match(/\S+|\r?\n/g)
             //console.log (`teste 1: ${nstring}`) //funciona!!
@@ -235,6 +235,9 @@ function displayData(wordData, textData){
     // }
 
     //sort_text = textData.date_of_publication.sort((a, b) => a - b)
+
+
+    /***********  Display das funções  ***********/
 
 
 }
