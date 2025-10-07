@@ -75,6 +75,7 @@ function displayData(wordData, textData){
     let locais_h = document.createElement("h2")
     document.querySelector(".locais-section").appendChild(locais_h)
     locais_h.className += "locais-header"
+    locais_h.innerHTML = "Locais"
 
     //div grafico
     let grafico_locais_ct = document.createElement("div")
@@ -84,6 +85,27 @@ function displayData(wordData, textData){
     let canvas_locais = document.createElement("canvas") //---- canvas
     document.querySelector(".grafico-locais-ct").appendChild(canvas_locais)
     canvas_locais.className += "grafico-locais-populares grafico-categorias"
+
+    const ct_l = canvas_locais
+
+    new Chart(ct_l, {
+        type: 'bar',
+        data: {
+        labels: ['santa cruz', 'amazônia', 'rio grande do sul', 'brasil', 'curitiba', 'europa'],
+        datasets: [{
+            label: 'frequencia',
+            data: [12, 19, 3, 5, 2, 3],
+            borderWidth: 1
+        }]
+        },
+        options: {
+        scales: {
+            y: {
+            beginAtZero: true
+            }
+        }
+        }
+    });
 
     let legenda_locais = document.createElement("p") //---- legenda
     document.querySelector(".grafico-locais-ct").appendChild(legenda_locais)
@@ -126,6 +148,7 @@ function displayData(wordData, textData){
     let fauna_h = document.createElement("h2")
     document.querySelector(".fauna-section").appendChild(fauna_h)
     fauna_h.className += "fauna-header"
+    fauna_h.innerHTML = "Fauna"
 
     //div grafico
     let grafico_fauna_ct = document.createElement("div")
@@ -135,6 +158,27 @@ function displayData(wordData, textData){
     let canvas_fauna = document.createElement("canvas") //---- canvas
     document.querySelector(".grafico-fauna-ct").appendChild(canvas_fauna)
     canvas_fauna.className += "grafico-fauna-populares grafico-categorias"
+
+    const ct_fa = canvas_fauna
+
+    new Chart(ct_fa, {
+        type: 'bar',
+        data: {
+        labels: ['santa cruz', 'amazônia', 'rio grande do sul', 'brasil', 'curitiba', 'europa'],
+        datasets: [{
+            label: 'frequencia',
+            data: [12, 19, 3, 5, 2, 3],
+            borderWidth: 1
+        }]
+        },
+        options: {
+        scales: {
+            y: {
+            beginAtZero: true
+            }
+        }
+        }
+    });
 
     let legenda_fauna = document.createElement("p") //---- legenda
     document.querySelector(".grafico-fauna-ct").appendChild(legenda_fauna)
@@ -173,6 +217,7 @@ function displayData(wordData, textData){
     let flora_h = document.createElement("h2")
     document.querySelector(".flora-section").appendChild(flora_h)
     flora_h.className += "flora-header"
+    flora_h.innerHTML = "Flora"
 
     //div grafico
     let grafico_flora_ct = document.createElement("div")
@@ -182,6 +227,27 @@ function displayData(wordData, textData){
     let canvas_flora = document.createElement("canvas") //---- canvas
     document.querySelector(".grafico-flora-ct").appendChild(canvas_flora)
     canvas_flora.className += "grafico-flora-populares grafico-categorias"
+
+    const ct_fl = canvas_flora
+
+    new Chart(ct_fl, {
+        type: 'bar',
+        data: {
+        labels: ['santa cruz', 'amazônia', 'rio grande do sul', 'brasil', 'curitiba', 'europa'],
+        datasets: [{
+            label: 'frequencia',
+            data: [12, 19, 3, 5, 2, 3],
+            borderWidth: 1
+        }]
+        },
+        options: {
+        scales: {
+            y: {
+            beginAtZero: true
+            }
+        }
+        }
+    });
 
     let legenda_flora = document.createElement("p") //---- legenda
     document.querySelector(".grafico-flora-ct").appendChild(legenda_flora)
