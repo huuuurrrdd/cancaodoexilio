@@ -264,6 +264,7 @@ function displayData(wordData, textData, stoplist, lemmasData){ // parece funcio
     //console.log(l4)
 
 
+    
     console.log("Listaaa:::" + stoplist)
 
 

@@ -129,24 +129,37 @@ function displayData(wordData, textData){
     function displaySections(cat, labels, values, i, mais_frequente, info_mais_frequente){
 
 
+        
         let cat_section = document.createElement("div")
         document.querySelector(".categorias-sections").appendChild(cat_section)
-        cat_section.className += "cat-section" + cat
+        cat_section.className += "cat-section-" + cat
 
         //******  dentro de cat-section  ******/
+        //link para categoria:
+        let link_categoria = document.createElement("a")
+        document.querySelector(".cat-section-" + cat).appendChild(link_categoria)
+        link_categoria.className += "cat-link-" + cat
+        link_categoria.href = "./p_categoria.html?categoria=" + cat
+
+
+        //caixa para h2 e grafico (dentro do link)
+        let cat_section_ct = document.createElement("div")
+        document.querySelector(".cat-link-" + cat).appendChild(cat_section_ct)
+        cat_section_ct.className += "cat-section-ct-" + cat
+
         //titulo
         let cat_header = document.createElement("h2")
-        document.querySelector(`.cat-section` + cat).appendChild(cat_header)
+        document.querySelector(".cat-section-ct-" + cat).appendChild(cat_header)
         cat_header.className += "cat-header"
         cat_header.innerHTML = `${cat}`
 
         //grafico-mais-frequentes
         let grafico_cat_ct = document.createElement("div")
-        document.querySelector(`.cat-section` + cat).appendChild(grafico_cat_ct)
-        grafico_cat_ct.className += "grafico-cat-ct" + cat
+        document.querySelector(".cat-section-ct-" + cat).appendChild(grafico_cat_ct)
+        grafico_cat_ct.className += "grafico-cat-ct-" + cat
 
         let canvas_cat = document.createElement("canvas")
-        document.querySelector(".grafico-cat-ct"+ cat).appendChild(canvas_cat)
+        document.querySelector(".grafico-cat-ct-"+ cat).appendChild(canvas_cat)
         canvas_cat.className += "canvas-cat"
 
        new Chart(canvas_cat, {
@@ -169,8 +182,15 @@ function displayData(wordData, textData){
     });
 
 
+        //link para a caixa
+        let link_c_mais_frequente = document.createElement("a")
+        document.querySelector(`.cat-section-` + cat).appendChild(link_c_mais_frequente)
+        link_c_mais_frequente.className += "link-cat-freq-" + cat
+        link_c_mais_frequente.href = "./p_categoria_especifica.html?especifica=" + cat
+
+        //outra caixa
         let cat_mais_frequente = document.createElement("div")
-        document.querySelector(`.cat-section` + cat).appendChild(cat_mais_frequente)
+        document.querySelector(".link-cat-freq-" + cat).appendChild(cat_mais_frequente)
         cat_mais_frequente.className += "cat-mais-frequente-ct" + cat
 
         let cat_mais_frequente_header = document.createElement("h3")
@@ -206,9 +226,11 @@ function displayData(wordData, textData){
 }
 
 
+//***********************************************/
 
+//        PARA NOVA PÁGINA!!
 
-
+//***********************************************/
 //Para uma outra página - usar parametros do url
 function displayLocais(){
     body = document.querySelector("body")
