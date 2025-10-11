@@ -66,223 +66,150 @@ function displayData(wordData, textData){
     title_h.className += "categoria-palavras-h page-title"
     title_h.innerText = `Categorias de palavras`
 
-    //****************  Seccao locais  ******************/
-    let locais_section = document.createElement("div")
-    document.querySelector(".categorias-container").appendChild(locais_section)
-    locais_section.className += "locais-section"
+    //****************  Categorias-sections  ******************/
+    let categorias_sections = document.createElement("div")
+    document.querySelector(".categorias-container").appendChild(categorias_sections)
+    categorias_sections.className += "categorias-sections"
 
-    //titulo
-    let locais_h = document.createElement("h2")
-    document.querySelector(".locais-section").appendChild(locais_h)
-    locais_h.className += "locais-header"
-    locais_h.innerHTML = "Locais"
+    //Objeto com informações das categorias (para que este objeto seja editável)
+    let categoria = [
+        {
+            categoria: "Locais",
+            labels_cat: ["Pernambuco", "Baía", "Maranhão", "Sertão", "Minas Gerais", "Corrientes"],
+            labels_cat_value: [12, 19, 3, 5, 2, 3],
+            mais_frequente: "Baía",
+            info_mais_frequente: "Baía é Baía"
+        },
 
-    //div grafico
-    let grafico_locais_ct = document.createElement("div")
-    document.querySelector(".locais-section").appendChild(grafico_locais_ct)
-    grafico_locais_ct.className += "grafico-locais-ct"
+        {
+            categoria: "Fauna",
+            labels_cat: ["Sabiá", "Roxinol", "Bem-te-vi", "Pomba", "Andorinha", "Canário"],
+            labels_cat_value: [20, 19, 3, 5, 2, 3],
+            mais_frequente: "Sabiá",
+            info_mais_frequente: "Sabiá é Sabiá"
+        },
 
-    let canvas_locais = document.createElement("canvas") //---- canvas
-    document.querySelector(".grafico-locais-ct").appendChild(canvas_locais)
-    canvas_locais.className += "grafico-locais-populares grafico-categorias"
+        {
+            categoria: "Flora",
+            labels_cat: ["Palmeira", "Loureiros", "Mangabeiras", "Coco", "Bananeira", "Violeta"],
+            labels_cat_value: [21, 19, 3, 5, 2, 3],
+            mais_frequente: "Palmeira",
+            info_mais_frequente: "Palmeira é Palmeira"
+        },
 
-    const ct_l = canvas_locais
+        {
+            categoria: "Autores",
+            labels_cat: ["Jose Maia Ferreira", "Leandro de Castilho", "Casimiro de Abreu", "M A Pinto de Sampaio", "Pedro José Teixeira", "Miguel Marques"],
+            labels_cat_value: [12, 19, 3, 5, 2, 3],
+            mais_frequente: "Jose Maia Ferreira",
+            info_mais_frequente: "Jose Maia Ferreira é Jose Maia Ferreira"
+        },
 
-    new Chart(ct_l, {
-        type: 'bar',
+        {
+            categoria: "Anos",
+            labels_cat: ["2009", "2012", "2020", "2015", "2008", "2006"],
+            labels_cat_value: [20, 19, 3, 5, 2, 3],
+            mais_frequente: "2009",
+            info_mais_frequente: "2009 é 2009"
+        },
+
+    ]
+
+
+/*     //Pode fazer sentido criar um objeto
+    let cate = ["Locais", "Fauna", "Flora", "Autores", "Anos"]
+    let graf = []
+    let labels_cat = ["Pernambuco", "Baía", "Maranhão", "Sertão", "Minas Gerais", "Corrientes"]
+    let labels_cat_value = [12, 19, 3, 5, 2, 3]
+    //calcular elementos mais frequentes das categorias
+
+    //console.log(categoria[0].categoria.toLowerCase()) */
+
+
+    function displaySections(cat, labels, values, i, mais_frequente, info_mais_frequente){
+
+
+        let cat_section = document.createElement("div")
+        document.querySelector(".categorias-sections").appendChild(cat_section)
+        cat_section.className += "cat-section" + cat
+
+        //******  dentro de cat-section  ******/
+        //titulo
+        let cat_header = document.createElement("h2")
+        document.querySelector(`.cat-section` + cat).appendChild(cat_header)
+        cat_header.className += "cat-header"
+        cat_header.innerHTML = `${cat}`
+
+        //grafico-mais-frequentes
+        let grafico_cat_ct = document.createElement("div")
+        document.querySelector(`.cat-section` + cat).appendChild(grafico_cat_ct)
+        grafico_cat_ct.className += "grafico-cat-ct" + cat
+
+        let canvas_cat = document.createElement("canvas")
+        document.querySelector(".grafico-cat-ct"+ cat).appendChild(canvas_cat)
+        canvas_cat.className += "canvas-cat"
+
+       new Chart(canvas_cat, {
+        type: "bar",
         data: {
-        labels: ['santa cruz', 'amazônia', 'rio grande do sul', 'brasil', 'curitiba', 'europa'],
-        datasets: [{
-            label: 'frequencia',
-            data: [12, 19, 3, 5, 2, 3],
-            borderWidth: 1
-        }]
+            labels: labels,
+            datasets: [{
+                label: `${cat} mais frequentes`,
+                data: values,
+                borderWidth: 1
+            }]
         },
         options: {
-        scales: {
-            y: {
-            beginAtZero: true
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
             }
-        }
         }
     });
 
-    let legenda_locais = document.createElement("p") //---- legenda
-    document.querySelector(".grafico-locais-ct").appendChild(legenda_locais)
-    legenda_locais.className += "legenda-locais legenda-categorias"
 
-    //div imagem ligação locais (ter uma funcao aqui)
-    let bt_locais = document.createElement("div")
-    document.querySelector(".locais-section").appendChild(bt_locais)
-    bt_locais.className += "bt-locais"
+        let cat_mais_frequente = document.createElement("div")
+        document.querySelector(`.cat-section` + cat).appendChild(cat_mais_frequente)
+        cat_mais_frequente.className += "cat-mais-frequente-ct" + cat
 
+        let cat_mais_frequente_header = document.createElement("h3")
+        document.querySelector(".cat-mais-frequente-ct" + cat).appendChild(cat_mais_frequente_header)
+        cat_mais_frequente_header.className += "cat-mais-frequente-header" + cat
+        cat_mais_frequente_header.innerHTML = mais_frequente
 
-    //div local mais frequente
-    let local_mais_frequente_ct = document.createElement("div")//---- seria uma imagem
-    document.querySelector(".locais-section").appendChild(local_mais_frequente_ct)
-    local_mais_frequente_ct.className += "local-mais-frequente-ct"
+        let cat_info_mais_frequente = document.createElement("div")
+        document.querySelector(".cat-mais-frequente-ct" + cat).appendChild(cat_info_mais_frequente)
+        cat_info_mais_frequente.className += "cat-info-mais-frequente" + cat
+        cat_info_mais_frequente.innerHTML = info_mais_frequente
 
-    let img_o_local = document.createElement("div")
-    document.querySelector(".local-mais-frequente-ct").appendChild(img_o_local)
-    img_o_local.className += "img-o-local"
-
-    let legenda_o_local = document.createElement("p")
-    document.querySelector(".img-o-local").appendChild(legenda_o_local)
-    legenda_o_local.className += "legenda-o-local"
-
-    let info_o_local = document.createElement("div")
-    document.querySelector(".local-mais-frequente-ct").appendChild(info_o_local)
-    info_o_local.className += "info-o-local"
+    }
 
 
+    for(let i = 0; i < categoria.length; i++){
+        let categ = categoria[i].categoria
+        let labell = categoria[i].labels_cat
+        let labell_value = categoria[i].labels_cat_value
+
+        let mais_frequente = categoria[i].mais_frequente
+        let info_mais_frequente = categoria[i].info_mais_frequente
+
+
+        displaySections(categ, labell, labell_value, i, mais_frequente, info_mais_frequente)
+    }
 
 
 
 
-//****************  Seccao fauna  ******************/
-    let fauna_section = document.createElement("div")
-    document.querySelector(".categorias-container").appendChild(fauna_section)
-    fauna_section.className += "fauna-section"
-
-    //titulo
-    let fauna_h = document.createElement("h2")
-    document.querySelector(".fauna-section").appendChild(fauna_h)
-    fauna_h.className += "fauna-header"
-    fauna_h.innerHTML = "Fauna"
-
-    //div grafico
-    let grafico_fauna_ct = document.createElement("div")
-    document.querySelector(".fauna-section").appendChild(grafico_fauna_ct)
-    grafico_fauna_ct.className += "grafico-fauna-ct"
-
-    let canvas_fauna = document.createElement("canvas") //---- canvas
-    document.querySelector(".grafico-fauna-ct").appendChild(canvas_fauna)
-    canvas_fauna.className += "grafico-fauna-populares grafico-categorias"
-
-    const ct_fa = canvas_fauna
-
-    new Chart(ct_fa, {
-        type: 'bar',
-        data: {
-        labels: ['santa cruz', 'amazônia', 'rio grande do sul', 'brasil', 'curitiba', 'europa'],
-        datasets: [{
-            label: 'frequencia',
-            data: [12, 19, 3, 5, 2, 3],
-            borderWidth: 1
-        }]
-        },
-        options: {
-        scales: {
-            y: {
-            beginAtZero: true
-            }
-        }
-        }
-    });
-
-    let legenda_fauna = document.createElement("p") //---- legenda
-    document.querySelector(".grafico-fauna-ct").appendChild(legenda_fauna)
-    legenda_fauna.className += "legenda-fauna legenda-categorias"
-
-    //div imagem ligação fauna
-    let bt_fauna = document.createElement("div")
-    document.querySelector(".fauna-section").appendChild(bt_fauna)
-    bt_fauna.className += "bt-fauna"
-
-
-    //div fauna mais frequente
-    let fauna_mais_frequente_ct = document.createElement("div")//---- seria uma imagem
-    document.querySelector(".fauna-section").appendChild(fauna_mais_frequente_ct)
-    fauna_mais_frequente_ct.className += "fauna-mais-frequente-ct"
-
-    let img_a_fauna = document.createElement("div")
-    document.querySelector(".fauna-mais-frequente-ct").appendChild(img_a_fauna)
-    img_a_fauna.className += "img-a-fauna"
-
-    let legenda_a_fauna = document.createElement("p")
-    document.querySelector(".img-a-fauna").appendChild(legenda_a_fauna)
-    legenda_a_fauna.className += "legenda-a-fauna"
-
-    let info_a_fauna = document.createElement("div")
-    document.querySelector(".fauna-mais-frequente-ct").appendChild(info_a_fauna)
-    info_a_fauna.className += "info-a-fauna"
-
-
-    //****************  Seccao flora  ******************/
-    let flora_section = document.createElement("div")
-    document.querySelector(".categorias-container").appendChild(flora_section)
-    flora_section.className += "flora-section"
-
-    //titulo
-    let flora_h = document.createElement("h2")
-    document.querySelector(".flora-section").appendChild(flora_h)
-    flora_h.className += "flora-header"
-    flora_h.innerHTML = "Flora"
-
-    //div grafico
-    let grafico_flora_ct = document.createElement("div")
-    document.querySelector(".flora-section").appendChild(grafico_flora_ct)
-    grafico_flora_ct.className += "grafico-flora-ct"
-
-    let canvas_flora = document.createElement("canvas") //---- canvas
-    document.querySelector(".grafico-flora-ct").appendChild(canvas_flora)
-    canvas_flora.className += "grafico-flora-populares grafico-categorias"
-
-    const ct_fl = canvas_flora
-
-    new Chart(ct_fl, {
-        type: 'bar',
-        data: {
-        labels: ['santa cruz', 'amazônia', 'rio grande do sul', 'brasil', 'curitiba', 'europa'],
-        datasets: [{
-            label: 'frequencia',
-            data: [12, 19, 3, 5, 2, 3],
-            borderWidth: 1
-        }]
-        },
-        options: {
-        scales: {
-            y: {
-            beginAtZero: true
-            }
-        }
-        }
-    });
-
-    let legenda_flora = document.createElement("p") //---- legenda
-    document.querySelector(".grafico-flora-ct").appendChild(legenda_flora)
-    legenda_flora.className += "legenda-flora legenda-categorias"
-
-    //div imagem ligação flora
-    let bt_flora = document.createElement("div")
-    document.querySelector(".flora-section").appendChild(bt_flora)
-    bt_flora.className += "bt-flora"
-
-
-    //div flora mais frequente
-    let flora_mais_frequente_ct = document.createElement("div")//---- seria uma imagem
-    document.querySelector(".flora-section").appendChild(flora_mais_frequente_ct)
-    flora_mais_frequente_ct.className += "flora-mais-frequente-ct"
-
-    let img_a_flora = document.createElement("div")
-    document.querySelector(".flora-mais-frequente-ct").appendChild(img_a_flora)
-    img_a_flora.className += "img-a-flora"
-
-    let legenda_a_flora = document.createElement("p")
-    document.querySelector(".img-a-flora").appendChild(legenda_a_flora)
-    legenda_a_flora.className += "legenda-a-flora"
-
-    let info_a_flora = document.createElement("div")
-    document.querySelector(".flora-mais-frequente-ct").appendChild(info_a_flora)
-    info_a_flora.className += "info-a-flora"
-
-    //displayLocais()
 
 
 }
 
 
 
+
+
+//Para uma outra página - usar parametros do url
 function displayLocais(){
     body = document.querySelector("body")
     body.innerHTML = ""
