@@ -186,7 +186,7 @@ function displayData(wordData, textData){
         let link_c_mais_frequente = document.createElement("a")
         document.querySelector(`.cat-section-` + cat).appendChild(link_c_mais_frequente)
         link_c_mais_frequente.className += "link-cat-freq-" + cat
-        link_c_mais_frequente.href = "./p_categoria_especifica.html?especifica=" + cat
+        link_c_mais_frequente.href = "./p_categoria_especifica.html?categoria=" + cat + "&especifica=" + mais_frequente
 
         //outra caixa
         let cat_mais_frequente = document.createElement("div")

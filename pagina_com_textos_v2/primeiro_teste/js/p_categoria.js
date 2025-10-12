@@ -62,6 +62,49 @@ fetchData()
 
 function displayData(wordData, textData){
 
+        let cate = [
+        {
+            categoria: "Locais",
+            labels_cat: ["Pernambuco", "Baía", "Maranhão", "Sertão", "Minas Gerais", "Corrientes"],
+            labels_cat_value: [12, 19, 3, 5, 2, 3],
+            mais_frequente: "Baía",
+            info_mais_frequente: "Baía é Baía"
+        },
+
+        {
+            categoria: "Fauna",
+            labels_cat: ["Sabiá", "Roxinol", "Bem-te-vi", "Pomba", "Andorinha", "Canário"],
+            labels_cat_value: [20, 19, 3, 5, 2, 3],
+            mais_frequente: "Sabiá",
+            info_mais_frequente: "Sabiá é Sabiá"
+        },
+
+        {
+            categoria: "Flora",
+            labels_cat: ["Palmeira", "Loureiros", "Mangabeiras", "Coco", "Bananeira", "Violeta"],
+            labels_cat_value: [21, 19, 3, 5, 2, 3],
+            mais_frequente: "Palmeira",
+            info_mais_frequente: "Palmeira é Palmeira"
+        },
+
+        {
+            categoria: "Autores",
+            labels_cat: ["Jose Maia Ferreira", "Leandro de Castilho", "Casimiro de Abreu", "M A Pinto de Sampaio", "Pedro José Teixeira", "Miguel Marques"],
+            labels_cat_value: [12, 19, 3, 5, 2, 3],
+            mais_frequente: "Jose Maia Ferreira",
+            info_mais_frequente: "Jose Maia Ferreira é Jose Maia Ferreira"
+        },
+
+        {
+            categoria: "Anos",
+            labels_cat: ["2009", "2012", "2020", "2015", "2008", "2006"],
+            labels_cat_value: [20, 19, 3, 5, 2, 3],
+            mais_frequente: "2009",
+            info_mais_frequente: "2009 é 2009"
+        },
+
+    ]
+
     let categoria_container = document.createElement("div")
     document.querySelector("body").appendChild(categoria_container)
     categoria_container.className += "categoria-container"
@@ -131,8 +174,43 @@ function displayData(wordData, textData){
     container.className += "container"
 
 
-    //iteracao para display
+    // descobrir index categoria
+    let index_cate 
 
+    for(let j = 0; j < cate.length; j++){
+        if(cate[j].categoria == categoria){
+            index_cate = j
+        }
+    }
+
+    console.log("Index categoria =" + index_cate) //funciona!!
+
+    //iteracao para display
+    for(let i = 0; i < cate[index_cate].labels_cat.length; i++){
+        
+        let ct_item = document.createElement("div")
+        document.querySelector(".container").appendChild(ct_item)
+        ct_item.className += "ct-item ct-item" + i
+
+        // colocar o link para a proxima página na palavra
+        // funcionaaa!!!!
+        let link_palavra_cat = document.createElement("a")
+        document.querySelector(".ct-item" + i).appendChild(link_palavra_cat)
+        link_palavra_cat.className += "link-palavra-cat link-palavra-cat" + i
+        link_palavra_cat.href = "./p_categoria_especifica.html?categoria=" + categoria + "&especifica=" + cate[index_cate].labels_cat[i]
+
+        let palavra = document.createElement("div")
+        document.querySelector(".link-palavra-cat" + i).appendChild(palavra)
+        palavra.className += "palavra"
+        palavra.innerHTML = cate[index_cate].labels_cat[i]
+
+
+        let barra_frequencia = document.createElement("div")
+        document.querySelector(".ct-item" + i).appendChild(barra_frequencia)
+        barra_frequencia.className += "barra-frequencia"
+        barra_frequencia.innerHTML = cate[index_cate].labels_cat_value[i]
+
+    }
 
 
 }
