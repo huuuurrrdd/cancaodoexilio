@@ -65,10 +65,10 @@ function displayData(wordData, textData){
         let cate = [
         {
             categoria: "Locais",
-            labels_cat: ["Pernambuco", "Baía", "Maranhão", "Sertão", "Minas Gerais", "Corrientes"],
+            labels_cat: ["Pernambuco", "Bahia", "Maranhão", "Sertão", "Minas Gerais", "Corrientes"],
             labels_cat_value: [12, 19, 3, 5, 2, 3],
-            mais_frequente: "Baía",
-            info_mais_frequente: "Baía é Baía"
+            mais_frequente: "Bahia",
+            info_mais_frequente: "Bahia é Bahia"
         },
 
         {
