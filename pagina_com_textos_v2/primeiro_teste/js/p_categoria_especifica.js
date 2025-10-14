@@ -147,6 +147,8 @@ function displayData(wordData, textData, lemmasData, wikiData){
     
     */
 
+
+
     //*************  Textos que mencionam  ****************/
     let textos_mencionam = document.createElement("div")
     document.querySelector(".elemento-container-" + especifica).appendChild(textos_mencionam)
