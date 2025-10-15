@@ -1,7 +1,8 @@
 /*
     NOTA: Isto pode ser util para a parte da pesquisa de palavras do website
 
-    Video de onde estou a copiar: https://www.youtube.com/watch?v=yqwHxAH1xrw
+    Video de onde estou a copiar: https://www.youtube.com/watch?v=yqwHxAH1xrw; 
+                        ORIGINAL: https://github.com/danascript/the-ultimate-api-challenge-wikipedia/tree/master/finished-result
 
     Outros vídeos que eventualmente podem ajudar:
     - https://www.youtube.com/watch?v=yhbHM0Fzo-U (How to Use Wikipedia API for NLP Projects)

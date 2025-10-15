@@ -13,8 +13,8 @@
             <h1 class="header_title">WIKIPEDIA API</h1>
 
             <div class="header_search-bar">
-                <input id="input" aria-label="search?" placeholder="search?">
-                <button id="submit" type="button" class="search-bar_button">Go</button>
+                <input id="input" aria-label="search?" type="text"  class="search-bar__input" placeholder="search?" autofocus required>
+                <button id="submit" type="button" class="search-bar_button" aria-label="search">Go</button>
             </div>
 
         </header>
@@ -23,11 +23,10 @@
     <div class="results">
         <p id="error" class="results__error"></p>
         <div id="results" class="results__items"></div>
-    </div>
-
-
-    
+    </div> 
 </body>
+
+
 <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
 <script src = "js/wiki.js"></script>
 </html>
