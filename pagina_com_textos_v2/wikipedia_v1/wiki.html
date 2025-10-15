@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wikipedia API</title>
+    <link rel="stylesheet" href="css/wiki.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Wikipedia-logo-v2.svg/1200px-Wikipedia-logo-v2.svg.png" alt="wikiPedia-logo" width="300" class="header">
+            <h1 class="header_title">WIKIPEDIA API</h1>
+
+            <div class="header_search-bar">
+                <input id="input" aria-label="search?" placeholder="search?">
+                <button id="submit" type="button" class="search-bar_button">Go</button>
+            </div>
+
+        </header>
+    </div>
+    
+    <div class="results">
+        <p id="error" class="results__error"></p>
+        <div id="results" class="results__items"></div>
+    </div>
+
+
+    
+</body>
+<script src = "js/wiki.js"></script>
+</html>
