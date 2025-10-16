@@ -133,9 +133,9 @@ function displayData(wordData, textData, lemmasData, wikiData){
     elemento_info_h.innerHTML = "Sobre"
 
     let elemento_info_conteudo = document.createElement("div")
-    document.querySelector(".info-h-" + especifica).appendChild(elemento_info_conteudo)
+    document.querySelector(".ct-info-" + especifica).appendChild(elemento_info_conteudo)
     elemento_info_conteudo.className += "elemento-info-conteudo info-conteudo-" + especifica
-    elemento_info.innerHTML = wikiData[3][0] // acesso a página de desambiguacao
+    //elemento_info_conteudo.innerHTML = wikiData[3][0] // acesso a página de desambiguacao
 
     /*
         Numa primeira tentativa, 
@@ -146,6 +146,83 @@ function displayData(wordData, textData, lemmasData, wikiData){
         - Array of links to results
     
     */
+
+    // objeto com os parametros para criar o url
+    const endpoint = 'https://en.wikipedia.org/w/api.php?'
+    const params = {
+        origin: '*', // non auhteticated requests
+        format: 'json',
+        action: 'query',
+        prop: 'extracts',
+        exchars: 250,
+        exintro: true,
+        explaintext: true,
+        generator: 'search',
+        gsrlimit: 1
+
+    }
+
+    const clearPreviousResults = () => {
+        elemento_info_conteudo.innerHTML = ""
+    }
+
+    const isEspecificaEmpty = especifica => {
+        if(!especifica || especifica === '') return true
+        return false
+    }
+
+    const showError = error => {
+        elemento_info_conteudo.innerHTML += `🚨 ${error} 🚨`
+    }
+
+    // dispoe os resultados no UI
+    const showResults = results => {
+    results.forEach(result => {
+        elemento_info_conteudo.innerHTML += `
+        <div class = "results__item"> 
+            <a href = "https://en.wikipedia.org/?curid=${result.pageId}" target="_blank" class= "card animated bounceInUp">
+                <h2 class = "results__item__title">${result.title}</h2>
+                <p class = "results__item__intro">${result.intro}</p>
+            </a>
+        </div>
+        `
+    })}
+
+    const gatherData = pages => {
+        const results = Object.values(pages).map(page =>({
+            pageId: page.pageid,
+            title: page.title,
+            intro: page.extract
+        }))
+
+        showResults(results)
+    }
+
+    const getData = async() => {
+        const palavra = especifica
+        if(isEspecificaEmpty(palavra)) return
+
+        params.gsrsearch = palavra
+        clearPreviousResults()
+
+        try {
+            const {data} = await axios.get(endpoint, {params}) // data é o objeto gerado pela wikipedia API
+
+            if(data.error) throw new Error(data.error.info)
+            gatherData(data.query.pages)
+
+        } catch (error) {
+            showError(error)
+        }
+
+    }
+
+    getData()
+
+
+
+
+
 
 
 
