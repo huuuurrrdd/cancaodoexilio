@@ -51,7 +51,7 @@ function fetchData(){
         })
         .then(data => {
             wordData = data; //Guarda dict_pal em wordData
-            return fetch("./t2_textos_loc_fauna_flora.json") // fetch json dos textos
+            return fetch("./t3_textos_loc_fauna_flora.json") // fetch json dos textos
         })
         .then(response => { // mensagem de erro
             if(!response.ok){
@@ -174,16 +174,16 @@ function displayData(wordData, textData, stoplist, lemmasData){ // parece funcio
     //locais_conteudo.innerHTML = `${textData[textId-1].locais_limpos}`// display locais
     // Confirmar se tem, se n tiver (sem locais mencionados); 
     // Colocar os locais em loop
-    if(textData[textId-1].locais_limpos.length <= 0){
+    if(textData[textId-1].categorias.locais.locais_limpos.length <= 0){
         locais_conteudo.innerHTML = ""
         let p_locais = document.createElement("p")
         document.querySelector(".locais-conteudo").appendChild(p_locais)
         p_locais.innerHTML = "Sem locais geográficos mencionados no texto"
     }else{
-        for(let i = 0; i < textData[textId-1].locais_limpos.length; i++){
+        for(let i = 0; i < textData[textId-1].categorias.locais.locais_limpos.length; i++){
             let p_locais = document.createElement("p")
             document.querySelector(".locais-conteudo").appendChild(p_locais)
-            p_locais.innerHTML = `${textData[textId-1].locais_limpos[i]}`
+            p_locais.innerHTML = `${textData[textId-1].categorias.locais.locais_limpos[i]}`
         }
     }
 
@@ -193,16 +193,16 @@ function displayData(wordData, textData, stoplist, lemmasData){ // parece funcio
     document.querySelector(".fauna-ct").appendChild(fauna_conteudo)
     fauna_conteudo.className += "fauna-conteudo categoria-conteudo"
 
-    if(textData[textId-1].fauna.length <= 0){
+    if(textData[textId-1].categorias.fauna.length <= 0){
         fauna_conteudo.innerHTML = ""
         let p_fauna = document.createElement("p")
         document.querySelector(".fauna-conteudo").appendChild(p_fauna)
         p_fauna.innerHTML = "Sem fauna geográficos mencionados no texto"
     }else{
-        for(let i = 0; i < textData[textId-1].fauna.length; i++){
+        for(let i = 0; i < textData[textId-1].categorias.fauna.length; i++){
             let p_fauna = document.createElement("p")
             document.querySelector(".fauna-conteudo").appendChild(p_fauna)
-            p_fauna.innerHTML = `${textData[textId-1].fauna[i]}`
+            p_fauna.innerHTML = `${textData[textId-1].categorias.fauna[i]}`
         }
     }    
 
@@ -211,16 +211,16 @@ function displayData(wordData, textData, stoplist, lemmasData){ // parece funcio
     document.querySelector(".flora-ct").appendChild(flora_conteudo)
     flora_conteudo.className += "flora-conteudo categoria-conteudo"
 
-    if(textData[textId-1].flora.length <= 0){
+    if(textData[textId-1].categorias.flora.length <= 0){
         flora_conteudo.innerHTML = ""
         let p_flora = document.createElement("p")
         document.querySelector(".flora-conteudo").appendChild(p_flora)
         p_flora.innerHTML = "Sem flora geográficos mencionados no texto"
     }else{
-        for(let i = 0; i < textData[textId-1].flora.length; i++){
+        for(let i = 0; i < textData[textId-1].categorias.flora.length; i++){
             let p_flora = document.createElement("p")
             document.querySelector(".flora-conteudo").appendChild(p_flora)
-            p_flora.innerHTML = `${textData[textId-1].flora[i]}`
+            p_flora.innerHTML = `${textData[textId-1].categorias.flora[i]}`
         }
     }  
     

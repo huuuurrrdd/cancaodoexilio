@@ -31,7 +31,7 @@ function fetchData(){
         })
         .then(data => {
             lemmasData = data;
-            return fetch("./t2_textos_loc_fauna_flora.json") // fetch json dos textos
+            return fetch("./t3_textos_loc_fauna_flora.json") // fetch json dos textos
         })
         .then(response => { // mwensagem de erro
             if(!response.ok){
@@ -72,6 +72,8 @@ function displayData(wordData, textData){
     let categorias_sections = document.createElement("div")
     document.querySelector(".categorias-container").appendChild(categorias_sections)
     categorias_sections.className += "categorias-sections"
+
+    //
 
     //Objeto com informações das categorias (para que este objeto seja editável)
     let categoria = [

@@ -46,7 +46,7 @@ function fetchData(){
         })
         .then(data => {
             lemmasData = data;
-            return fetch("./t2_textos_loc_fauna_flora.json") // fetch json dos textos
+            return fetch("./t3_textos_loc_fauna_flora.json") // fetch json dos textos
         })
         .then(response => { // mwensagem de erro
             if(!response.ok){
@@ -124,16 +124,16 @@ function displayData(wordData, textData, lemmasData, wikiData){
 
     //*************  Info elemento(wikipedia)  ****************/
     let elemento_info = document.createElement("div")
-    document.querySelector(".elemento-container-" + especifica).appendChild(elemento_info)
+    elemento_container.appendChild(elemento_info)
     elemento_info.className += "elemento-info ct-info-" + especifica
 
     let elemento_info_h = document.createElement("h2")
-    document.querySelector(".ct-info-" + especifica).appendChild(elemento_info_h)
+    elemento_info.appendChild(elemento_info_h)
     elemento_info_h.className += "elemento-info-h info-h-" + especifica
     elemento_info_h.innerHTML = "Sobre"
 
     let elemento_info_conteudo = document.createElement("div")
-    document.querySelector(".ct-info-" + especifica).appendChild(elemento_info_conteudo)
+    elemento_info.appendChild(elemento_info_conteudo)
     elemento_info_conteudo.className += "elemento-info-conteudo info-conteudo-" + especifica
     //elemento_info_conteudo.innerHTML = wikiData[3][0] // acesso a página de desambiguacao
 
@@ -148,15 +148,16 @@ function displayData(wordData, textData, lemmasData, wikiData){
     */
 
     // objeto com os parametros para criar o url
-    const endpoint = 'https://en.wikipedia.org/w/api.php?'
+    const endpoint = 'https://pt.wikipedia.org/w/api.php?'
     const params = {
         origin: '*', // non auhteticated requests
         format: 'json',
         action: 'query',
         prop: 'extracts',
-        exchars: 250,
+        //exchars: 1200,
         exintro: true,
         explaintext: true,
+        exsentences: 10,
         generator: 'search',
         gsrlimit: 1
 
@@ -206,9 +207,11 @@ function displayData(wordData, textData, lemmasData, wikiData){
         clearPreviousResults()
 
         try {
-            const {data} = await axios.get(endpoint, {params}) // data é o objeto gerado pela wikipedia API
+            const { data } = await axios.get(endpoint, { params }) // data é o objeto gerado pela wikipedia API
 
             if(data.error) throw new Error(data.error.info)
+            if (!data.query) throw new Error("Nenhum resultado encontrado.");
+
             gatherData(data.query.pages)
 
         } catch (error) {

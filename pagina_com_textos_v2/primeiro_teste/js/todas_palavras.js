@@ -21,7 +21,7 @@ function fetchData() {
     })
     .then((data) => {
       wordData = data; //Guarda dict_pal em wordData
-      return fetch("./t2_textos_loc_fauna_flora.json"); // fetch json dos textos
+      return fetch("./t3_textos_loc_fauna_flora.json"); // fetch json dos textos
     })
     .then((response) => {
       // mensagem de erro
