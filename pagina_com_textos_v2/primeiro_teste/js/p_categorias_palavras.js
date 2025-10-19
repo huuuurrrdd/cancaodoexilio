@@ -122,13 +122,13 @@ function displayData(wordData, textData){
         }else if(categoria === "date_of_publication" || categoria === "author"){
 
             for(let i = 0; i < textData.length; i++){
-                if(textData[i][categoria].length > 0){
-                    for(let j = 0; j < textData[i][categoria].length; j++){
+                const valor = textData[i]?.[categoria]
+                if(valor !== undefined && valor !== null && valor !== ""){
                         all_entries.push({
-                            nome: textData[i][categoria][j], 
+                            nome: textData[i]?.[categoria], 
                             textId: textData[i].id 
                         })
-                    }
+                    
                 }
             }
 
@@ -138,10 +138,12 @@ function displayData(wordData, textData){
             for(let i = 0; i < textData.length; i++){
                 if(textData[i].categorias[categoria].length > 0){
                     for(let j = 0; j < textData[i].categorias[categoria].length; j++){
-                        all_entries.push({
-                            nome: textData[i].categorias[categoria][j], 
-                            textId: textData[i].id 
-                        })
+                        if(textData[i].categorias[categoria][j] != ""){
+                                all_entries.push({
+                                nome: textData[i].categorias[categoria][j], 
+                                textId: textData[i].id 
+                            })
+                        }
                     }
                 }
             }
@@ -176,41 +178,56 @@ function displayData(wordData, textData){
     let arrayFauna = arrayPalavrasCat (textData, "fauna")
     let arrayFlora = arrayPalavrasCat (textData, "flora")
     let arrayLocal = arrayPalavrasCat (textData, "locais")
-    let arrayLocal = arrayPalavrasCat (textData, "locais")
+    let array__Ano = arrayPalavrasCat (textData, "date_of_publication")
+    let arrayAutor = arrayPalavrasCat (textData, "author")
 
-    //console.log(arrayLocal[1]) // funcionouu!!!
+    //console.log(arrayAutor[0]) //funcioona
+    //console.log(array__Ano[4].nome) //n funciona (provavelmente por ser um nº)
 
     // obter lista ordenada por frequencia, em cada categoria (falta ano e autores)
     let faunaOrd = arrayFauna.sort((a, b) => b.textos_menc.length - a.textos_menc.length)
     let floraOrd = arrayFlora.sort((a, b) => b.textos_menc.length - a.textos_menc.length)
     let localOrd = arrayLocal.sort((a, b) => b.textos_menc.length - a.textos_menc.length)
-    //let ano__Ord = array__Ano.sort((a, b))
+    let ano__Ord = array__Ano.sort((a, b) => b.textos_menc.length - a.textos_menc.length)
+    let autorOrd = arrayAutor.sort((a, b) => b.textos_menc.length - a.textos_menc.length)
+    //console.log(ano__Ord[0]) //funciona
 
     // obter 6 palavras mais frequentes de cada categoria
     let l = 6
-    let faunaSeis = arrayFauna.slice(0, l)
-    let floraSeis = arrayFlora.slice(0, l)
-    let localSeis = arrayLocal.slice(0, l)
+    let faunaSeis = faunaOrd.slice(0, l)
+    let floraSeis = floraOrd.slice(0, l)
+    let localSeis = localOrd.slice(0, l)
+    let ano__Seis = ano__Ord.slice(0, l)
+    let autorSeis = autorOrd.slice(0, l)
 
     //array de nomes e array de alores
     let faunaSNome = []
     let floraSNome = []
     let localSNome = []
+    let ano__SNome = []
+    let autorSNome = []
     
     let faunaSVal = []
     let floraSVal = []
     let localSVal = []
+    let ano__SVal = []
+    let autorSVal = []
 
     for(let i = 0; i < 6; i++){
         faunaSNome.push(faunaSeis[i].nome)
         floraSNome.push(floraSeis[i].nome)
         localSNome.push(localSeis[i].nome)
+        ano__SNome.push(ano__Seis[i].nome)
+        autorSNome.push(autorSeis[i].nome)
 
         faunaSVal.push(faunaSeis[i].textos_menc.length)
         floraSVal.push(floraSeis[i].textos_menc.length)
         localSVal.push(localSeis[i].textos_menc.length)
+        ano__SVal.push(ano__Seis[i].textos_menc.length)
+        autorSVal.push(autorSeis[i].textos_menc.length)
     }
     
+    //console.log(`n${faunaSNome[3]}n`)
 
     // testando o slice- funciona!!
     //console.log(`Fauna : ${faunaSeis.length}, Flora: ${floraSeis.length}, Locais: ${localSeis.length}`)
@@ -233,11 +250,18 @@ function displayData(wordData, textData){
 
     /* PASSOS:
         -> (feito!) Retirar as 6 palavras mais frequentes de cada categoria
-        -> Adicionar isso a cada gráfico
-        -> Retirar a mais frequente e colocar em baixo na div de informação
-        -> Fazer o mesmo para ano e autor
-        -> Rever os resultados de itália
-    
+        -> (feito!) Adicionar isso a cada gráfico
+        -> (feito!) Fazer o mesmo para ano e autor
+        -> Refinamentos para o json:
+            -> Rever os resultados de itália
+            -> juntar os anonimos em "autor"
+            -> Remover resultados que correspondam a " "
+            -> Remover resultados que contenham frases da prompt
+
+        -> !!Colocar info de wikipédia de local mais frequente
+        -> !!que seja possível aceder à página de um nome do gráfico
+        -> Fazer css da página (talvez mais cedo que o restoo)
+        
     
     
     */
@@ -250,7 +274,7 @@ function displayData(wordData, textData){
             categoria: "Locais",
             labels_cat: localSNome,
             labels_cat_value: localSVal,
-            mais_frequente: `Mais frequente: ${localSNome[0]}`,
+            mais_frequente: localSNome[0],
             info_mais_frequente: "Bahia é Bahia"
         },
 
@@ -258,7 +282,7 @@ function displayData(wordData, textData){
             categoria: "Fauna",
             labels_cat: faunaSNome,
             labels_cat_value: faunaSVal,
-            mais_frequente: `Mais frequente: ${faunaSNome[0]}`,
+            mais_frequente: faunaSNome[0],
             info_mais_frequente: "Sabiá é Sabiá"
         },
 
@@ -266,23 +290,23 @@ function displayData(wordData, textData){
             categoria: "Flora",
             labels_cat: floraSNome,
             labels_cat_value: floraSVal,
-            mais_frequente:  `Mais frequente: ${floraSNome[0]}`,
+            mais_frequente:  floraSNome[0],
             info_mais_frequente: "Palmeira é Palmeira"
         },
 
         {
             categoria: "Autores",
-            labels_cat: ["Jose Maia Ferreira", "Leandro de Castilho", "Casimiro de Abreu", "M A Pinto de Sampaio", "Pedro José Teixeira", "Miguel Marques"],
-            labels_cat_value: [12, 19, 3, 5, 2, 3],
-            mais_frequente: "Jose Maia Ferreira",
+            labels_cat: autorSNome,
+            labels_cat_value: autorSVal,
+            mais_frequente: autorSNome[0],
             info_mais_frequente: "Jose Maia Ferreira é Jose Maia Ferreira"
         },
 
         {
             categoria: "Anos",
-            labels_cat: ["2009", "2012", "2020", "2015", "2008", "2006"],
-            labels_cat_value: [20, 19, 3, 5, 2, 3],
-            mais_frequente: "2009",
+            labels_cat: ano__SNome,
+            labels_cat_value: ano__SVal,
+            mais_frequente: ano__SNome[0],
             info_mais_frequente: "2009 é 2009"
         },
 
