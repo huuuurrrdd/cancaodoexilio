@@ -73,31 +73,200 @@ function displayData(wordData, textData){
     document.querySelector(".categorias-container").appendChild(categorias_sections)
     categorias_sections.className += "categorias-sections"
 
-    //
+    // Criar objeto de categorias (com)
+    /*  Criar objeto de categorias, para cada categoria:
+        categoria{
+            locais{
+                { "local": nome1,
+                 "textos_mencionam": id1, id2, id3
+            }
+            }
+        }
+    
+    
+    */
+    // let total_categorias = []
+
+    // for(let i = 0; i < textData.length; i++){
+    //     const categorias  = textData[i].categorias
+
+    //     //percorre as chaves de categorias (locais, fauna, flora)
+    //     for(let cat in categorias){
+    //         total_categorias.push({
+    //             categorias: cat,
+    //             dados: categorias[cat]
+    //         })
+    //     }
+    // }
+
+    // console.log("cat" + total_categorias)
+
+    // funcao para array de objetos de palavras para uma categoria (sem contar com excecao)
+    function arrayPalavrasCat (textData, categoria){
+
+        let all_entries = [] // array of objects { nome, textId }
+
+        if(categoria === "locais"){
+
+            for(let i = 0; i < textData.length; i++){
+                if(textData[i].categorias.locais.locais_limpos.length > 0){
+                    for(let j = 0; j < textData[i].categorias.locais.locais_limpos.length; j++){
+                        all_entries.push({
+                            nome: textData[i].categorias.locais.locais_limpos[j], 
+                            textId: textData[i].id
+                        })
+                    }
+                }
+            }
+
+        }else if(categoria === "date_of_publication" || categoria === "author"){
+
+            for(let i = 0; i < textData.length; i++){
+                if(textData[i][categoria].length > 0){
+                    for(let j = 0; j < textData[i][categoria].length; j++){
+                        all_entries.push({
+                            nome: textData[i][categoria][j], 
+                            textId: textData[i].id 
+                        })
+                    }
+                }
+            }
+
+
+        }else{ // antes disto, colocar uma versão para data e author
+
+            for(let i = 0; i < textData.length; i++){
+                if(textData[i].categorias[categoria].length > 0){
+                    for(let j = 0; j < textData[i].categorias[categoria].length; j++){
+                        all_entries.push({
+                            nome: textData[i].categorias[categoria][j], 
+                            textId: textData[i].id 
+                        })
+                    }
+                }
+            }
+        }
+
+
+
+        //Now group by nome
+        let categoryMap = new Map()
+
+        for(let item of all_entries){
+            if(
+                !categoryMap.has(item.nome)) {
+                categoryMap.set(item.nome, [])
+            }
+            categoryMap.get(item.nome).push(item.textId)
+        }
+
+        // convert to array of objects
+        let result = Array.from(categoryMap, ([nome, ids]) => ({
+            nome,
+            textos_menc: ids
+        }))
+
+        return result
+
+        //console.log(categoryArray.length)//.textos_menc.length) (532 entradas)
+        
+    }
+
+    // obter array de objetos para cada uma das categorias
+    let arrayFauna = arrayPalavrasCat (textData, "fauna")
+    let arrayFlora = arrayPalavrasCat (textData, "flora")
+    let arrayLocal = arrayPalavrasCat (textData, "locais")
+    let arrayLocal = arrayPalavrasCat (textData, "locais")
+
+    //console.log(arrayLocal[1]) // funcionouu!!!
+
+    // obter lista ordenada por frequencia, em cada categoria (falta ano e autores)
+    let faunaOrd = arrayFauna.sort((a, b) => b.textos_menc.length - a.textos_menc.length)
+    let floraOrd = arrayFlora.sort((a, b) => b.textos_menc.length - a.textos_menc.length)
+    let localOrd = arrayLocal.sort((a, b) => b.textos_menc.length - a.textos_menc.length)
+    //let ano__Ord = array__Ano.sort((a, b))
+
+    // obter 6 palavras mais frequentes de cada categoria
+    let l = 6
+    let faunaSeis = arrayFauna.slice(0, l)
+    let floraSeis = arrayFlora.slice(0, l)
+    let localSeis = arrayLocal.slice(0, l)
+
+    //array de nomes e array de alores
+    let faunaSNome = []
+    let floraSNome = []
+    let localSNome = []
+    
+    let faunaSVal = []
+    let floraSVal = []
+    let localSVal = []
+
+    for(let i = 0; i < 6; i++){
+        faunaSNome.push(faunaSeis[i].nome)
+        floraSNome.push(floraSeis[i].nome)
+        localSNome.push(localSeis[i].nome)
+
+        faunaSVal.push(faunaSeis[i].textos_menc.length)
+        floraSVal.push(floraSeis[i].textos_menc.length)
+        localSVal.push(localSeis[i].textos_menc.length)
+    }
+    
+
+    // testando o slice- funciona!!
+    //console.log(`Fauna : ${faunaSeis.length}, Flora: ${floraSeis.length}, Locais: ${localSeis.length}`)
+
+
+    // //testando a ordenação
+    // for(let i = 0; i < 60; i++){
+    //     console.log(`Nome: ${faunaOrd[i].nome}, ${faunaOrd[i].textos_menc.length}`)
+    // } 
+    //remover palavas gigantes que contenham a própia pergunta 
+    //e nomes que sejam espaços
+    
+    // for(let i = 0; i < 60; i++){
+    //     console.log(`Nome: ${floraOrd[i].nome}, ${floraOrd[i].textos_menc.length}`)
+    // }
+ 
+    // for(let i = 0; i < 60; i++){
+    //     console.log(`Nome: ${localOrd[i].nome}, ${localOrd[i].textos_menc.length}`)
+    // }
+
+    /* PASSOS:
+        -> (feito!) Retirar as 6 palavras mais frequentes de cada categoria
+        -> Adicionar isso a cada gráfico
+        -> Retirar a mais frequente e colocar em baixo na div de informação
+        -> Fazer o mesmo para ano e autor
+        -> Rever os resultados de itália
+    
+    
+    
+    */
+
+
 
     //Objeto com informações das categorias (para que este objeto seja editável)
     let categoria = [
         {
             categoria: "Locais",
-            labels_cat: ["Pernambuco", "Bahia", "Maranhão", "Sertão", "Minas Gerais", "Corrientes"],
-            labels_cat_value: [12, 19, 3, 5, 2, 3],
-            mais_frequente: "Bahia",
+            labels_cat: localSNome,
+            labels_cat_value: localSVal,
+            mais_frequente: `Mais frequente: ${localSNome[0]}`,
             info_mais_frequente: "Bahia é Bahia"
         },
 
         {
             categoria: "Fauna",
-            labels_cat: ["Sabiá", "Roxinol", "Bem-te-vi", "Pomba", "Andorinha", "Canário"],
-            labels_cat_value: [20, 19, 3, 5, 2, 3],
-            mais_frequente: "Sabiá",
+            labels_cat: faunaSNome,
+            labels_cat_value: faunaSVal,
+            mais_frequente: `Mais frequente: ${faunaSNome[0]}`,
             info_mais_frequente: "Sabiá é Sabiá"
         },
 
         {
             categoria: "Flora",
-            labels_cat: ["Palmeira", "Loureiros", "Mangabeiras", "Coco", "Bananeira", "Violeta"],
-            labels_cat_value: [21, 19, 3, 5, 2, 3],
-            mais_frequente: "Palmeira",
+            labels_cat: floraSNome,
+            labels_cat_value: floraSVal,
+            mais_frequente:  `Mais frequente: ${floraSNome[0]}`,
             info_mais_frequente: "Palmeira é Palmeira"
         },
 
