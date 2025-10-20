@@ -338,24 +338,26 @@ function displayData(wordData, textData){
     // quantidade de nomes no geral:
     //console.log("Total de nomes = " + nomeCatOrd.length) // 531 no caso de fauna
    
- 
-
+    /////////////////////////////////////////////////////////////////
+    /***************** Display de elementos HTML *******************/
+    /////////////////////////////////////////////////////////////////
     let categoria_container = document.createElement("div")
     document.querySelector("body").appendChild(categoria_container)
     categoria_container.className += "categoria-container"
 
+    //subtitulo
     let subtitulo = document.createElement("p")
     document.querySelector(".categoria-container").appendChild(subtitulo)
     subtitulo.className += "subtitulo"
     subtitulo.innerText = "Categoria de palavras:"
 
-    //titulo (Nome de categoria)
+    //*************  Titulo de página (Nome de categoria) ****************/
     let categoria_palavras_h = document.createElement("h1")
     document.querySelector(".categoria-container").appendChild(categoria_palavras_h)
     categoria_palavras_h.className += "categoria-palavras-h page-title"
     categoria_palavras_h.innerText = categoria
 
-    //grafico 
+    //*************  Gráfico geral  ****************/
     let grafico_ct = document.createElement("div")
     document.querySelector(".categoria-container").appendChild(grafico_ct)
     grafico_ct.className += "grafico-ct"
