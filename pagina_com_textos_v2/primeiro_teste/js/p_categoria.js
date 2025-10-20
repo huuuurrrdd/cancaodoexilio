@@ -64,17 +64,66 @@ function displayData(wordData, textData){
 
     /* Passos para o gráfico:
         -> Informações a obter: 
-            - array com anos (já tenho)
-            - array com frequencia em cada ano
-        
-    
-    
-    
-    
-    
+            Gráfico:
+            - array com anos (já tenho pág palavras??)
+            - array com frequencia em cada ano (da categoria no geral)
+            - Se tiver tempo, colocar em dácadas
+
+            Palavras:
+            - Colocar lista de palavras pertencentes à categoria (já feito na página anterior)
+            - Colocar a frequencia na div de barra de frequencia (primeiro em número, depois descobro como colocar a barra)
+            - Link de acesso à página da palavra (já feito anteriormente)
+
+            (Depois avançar para a página específica e fazer o mesmo para a palavra específica selecionada)
     
     */
 
+    //Acedendo a dados de número de "categoria" por ano
+    // para a categoria: array para idTexto, freq, ano
+    id_textos = [] // para cada texto, o n de vezes
+    freqPerIdTexto = []
+    frequencia = []
+    anos_cat = []
+
+    let nomeCategoria = categoria.toLowerCase()
+
+    //Preciso de obter a lista de textos que mencionam a categoria + a frequencia com que mencionam
+    // teste com as categorias: fauna e flora
+    for(let i = 0; i < textData.length; i++){
+       
+    }
+
+    
+
+    // 1º Percorrer os anos
+    const start = 1846
+    const end = 2025
+
+    let anos_grafico = []
+    let freq_grafico = [] // perceber como faço este (posso querer associar aos nomes)
+
+    //definicao de nome de categoria (o nome associado é diferente do da base de dados)~
+    let nomeCategoria = categoria.toLowerCase
+    
+
+    /** Nao está a funcionar...**/
+    // for(let y = start; y <= end; y++){
+    //     anos_grafico.push(y)
+    //     //percorrer todos os textos daquele ano
+    //     //n sei se isto resulta:
+    //     for(let k = 0; k < textData.length; k++){
+    //         if(textData[k].date_of_publication === y){
+    //             if(categoria == "fauna" || categoria == "flora"){
+    //                 freq_grafico[y-start] += textData[k].categorias[nomeCategoria].length
+    //             }
+                
+    //         }
+    //     }
+
+    // }
+
+    //console.log(`Anos: ${anos_grafico}`) // funciona
+    console.log(`Freq: ${freq_grafico[0]}`)
 
         let cate = [
         {

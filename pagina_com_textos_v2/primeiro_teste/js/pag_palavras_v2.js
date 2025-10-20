@@ -217,7 +217,7 @@ function displayData(wordData, textData, lemmasData){
   frequencia = [];
   anos_pal = [];
   
-
+  // na palavra selecionada, retira os textos que mencionam e a frequencia destes
   for (let i = 0; i < wordData.palavras[id_word].textos.length; i++) {
     id_textos.push(wordData.palavras[id_word].textos[i].id_text);
     frequencia.push(wordData.palavras[id_word].textos[i].frequencia);
