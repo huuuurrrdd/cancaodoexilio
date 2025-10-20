@@ -65,9 +65,11 @@ function displayData(wordData, textData){
     /* Passos para o gráfico:
         -> Informações a obter: 
             Gráfico:
-            - array com anos (já tenho pág palavras??)
-            - array com frequencia em cada ano (da categoria no geral)
-            - Se tiver tempo, colocar em dácadas
+            - (feito!) array com anos (já tenho pág palavras??)
+            - (feito!) array com frequencia em cada ano (da categoria no geral)
+
+            - Falta outras categorias: locais, anos e autores!!
+            - Se tiver tempo, colocar em dácadas (fazer um pequeno teste)
 
             Palavras:
             - Colocar lista de palavras pertencentes à categoria (já feito na página anterior)
@@ -75,56 +77,149 @@ function displayData(wordData, textData){
             - Link de acesso à página da palavra (já feito anteriormente)
 
             (Depois avançar para a página específica e fazer o mesmo para a palavra específica selecionada)
+            (-> No fim, ver como posso, nas palavras populares, colocar os resultados em logaritmo 
+                - (pesquisar isso!!)
+                - Fazer!! e ver se resultou bem!)
+
+            - Depois!! Fazer CSS de algumas páginas (para ficar mais arrumadinho)
     
     */
 
     //Acedendo a dados de número de "categoria" por ano
     // para a categoria: array para idTexto, freq, ano
     id_textos = [] // para cada texto, o n de vezes
-    freqPerIdTexto = []
     frequencia = []
     anos_cat = []
+        
 
-    let nomeCategoria = categoria.toLowerCase()
-
-    //Preciso de obter a lista de textos que mencionam a categoria + a frequencia com que mencionam
-    // teste com as categorias: fauna e flora
-    for(let i = 0; i < textData.length; i++){
-       
-    }
-
-    
-
-    // 1º Percorrer os anos
-    const start = 1846
-    const end = 2025
+    let nomeCat = categoria.toLowerCase()
 
     let anos_grafico = []
-    let freq_grafico = [] // perceber como faço este (posso querer associar aos nomes)
+    let freq_grafico = []
+    // podia criar um array multidimencional para os ids!!
+    let ids_final = []
 
-    //definicao de nome de categoria (o nome associado é diferente do da base de dados)~
-    let nomeCategoria = categoria.toLowerCase
+
+
+    if(nomeCat == "fauna" || nomeCat == "flora"){ // funcionaa!!
+        //console.log("é categoria") funciona!!
+
+        // Tentando fazer de outra forma: (para cada texto, associa uma frequencia)
+        for(let i = 0; i < textData.length; i++){
+            if(textData[i].categorias[nomeCat].length > 0){
+                id_textos.push(textData[i].id)
+                frequencia.push(textData[i].categorias[nomeCat].length)
+                anos_cat.push(textData[i].date_of_publication)
+            }
+            
+        }
+
+
+        // CRIAÇÃO DE ARRAY MULTIDIMENCIONAL COM OS ANOS, IDs E FREQUENCIAS
+        const ag_anos = []; // array de (array de anos)
+        let gAtual_anos = []; // array atual de anos
+
+        const ag_freq = [];
+        let gAtual_freq = [];
+
+        const ag_id = [];
+        let gAtual_id = [];
+
+        //junta os anos iguais (ao mesmo tempo que junta a frequencia e os ids)
+        for(let i = 0; i < anos_cat.length; i++){
+            if(i === 0 || anos_cat[i] == anos_cat[i-1]){
+                gAtual_anos.push(anos_cat[i]) //igual ao anterior, adiciona
+
+                gAtual_freq.push(frequencia[i])
+                gAtual_id.push(id_textos[i])
+
+            } else {
+
+                    ag_anos.push(gAtual_anos) // push grupo finalizado
+                    gAtual_anos = [anos_cat[i]] // começa novo grupo
+
+                        //o mesmo para ids e frequencias
+                    ag_freq.push(gAtual_freq);
+                    gAtual_freq = [frequencia[i]];
+
+                    ag_id.push(gAtual_id);
+                    gAtual_id = [id_textos[i]];
+                }
+        }
+        
+
+        // push ultimo grupo
+        // array de anos que n contém os anos sem elementos na categoria
+        if (gAtual_anos.length) ag_anos.push(gAtual_anos); 
+        //console.log(ag_anos); 
+
+        if (gAtual_freq.length) ag_freq.push(gAtual_freq); // frequencia por cada texto
+        //console.log(ag_freq);
+
+        if (gAtual_id.length) ag_id.push(gAtual_id); // id de cada texto
+        //console.log(ag_id);
+
+        //Testes de funcionamento de variáveis
+        console.log(`Variável ag_freq[30][2]: ${ag_freq[30][0]}`) // funciona!!
+
+
+        //TRANSFORMAR ARRAYS MULTIDIMENSIONAIS DOS ANOS E FREQ EM ARRAYS UNIDIMENSIONAIS
+        const ag_anos_unidimensional = [] // transformar cada conjunto de anos ex(1847, 1847) em 1847
+        const ag_freq_p_ano = [] // juntar todas as frequencias em uma só ex(2, 1) em 3
+        // falta o id dos textos (acrescentar algo vazio quando n há)
+
+        for(let i = 0; i < ag_anos.length; i++){
+            let soma_freq = 0
+            for(let j = 0; j < ag_anos[i].length; j++){
+                soma_freq += ag_freq[i][j] // percorre em cada ano cada frequencia de cada texto e soma
+            }
+            ag_freq_p_ano.push(soma_freq)
+            ag_anos_unidimensional.push(ag_anos[i][0]) // escolhe o primeiro, pq são todos iguais
+
+        }
+
+        //   console.log("Freq e anos respetivamente:")
+        //   console.log(ag_anos_unidimensional) //sem valores repetidos
+        //   console.log(ag_freq_p_ano) // funcionou!!
+
+
+
+        //TENTATIVA DE CONTAR TODOS OS ANOS E IGUALAR A 0 OS ANOS SEM REPRESENTAÇÃO
+        const val_anos = ag_anos_unidimensional
+        const val_freq = ag_freq_p_ano // apenas os anos em que freq > 0
+        // ainda multidimensional
+        const val_id = ag_id
+
+        const start = 1846
+        const end = 2025 // podia colocar o ano atual
+
+
+
+        for(let y = start; y <= end; y++){
+            anos_grafico.push(y) // adiciona anos normalmente
+
+            const idx = val_anos.indexOf(y) // obtém o indice do valor y (o ano selecionado) -> se n existir indice para esse valor, idx = -1
+            if(idx !== -1){ // caso exista um índice com esse valor
+                freq_grafico.push(val_freq[idx]) // adiciona o valor
+                ids_final.push(val_id[idx]) // espero que adicione todos os valores
+            } else {
+                freq_grafico.push(0) // se n tiver, adiciona 0
+                ids_final.push(0)
+            }
+        }
+
+        console.log("Valores para anos e frq no gráfico:")
+        // console.log(anos_grafico)
+        // console.log(freq_grafico)
+        // console.log(ids_final)
+        //console.log(`anos ${anos_grafico.length}, freq: ${freq_grafico.length}, ids ${ids_final.length}`) // tudo 180, tudo funciona!!!
+
+    }
+    
     
 
-    /** Nao está a funcionar...**/
-    // for(let y = start; y <= end; y++){
-    //     anos_grafico.push(y)
-    //     //percorrer todos os textos daquele ano
-    //     //n sei se isto resulta:
-    //     for(let k = 0; k < textData.length; k++){
-    //         if(textData[k].date_of_publication === y){
-    //             if(categoria == "fauna" || categoria == "flora"){
-    //                 freq_grafico[y-start] += textData[k].categorias[nomeCategoria].length
-    //             }
-                
-    //         }
-    //     }
-
-    // }
-
-    //console.log(`Anos: ${anos_grafico}`) // funciona
-    console.log(`Freq: ${freq_grafico[0]}`)
-
+    
+        // Ainda n criei objeto que contenha todas as palavras e valores de frequencias
         let cate = [
         {
             categoria: "Locais",
@@ -199,10 +294,10 @@ function displayData(wordData, textData){
     new Chart(GP, {
         type: "bar",
         data: {
-            labels: ["A", "B", "C", "D"],
+            labels: anos_grafico,
             datasets:[{
                 label: `${categoria} ao longo do tempo`,
-                data: [10, 20, 40, 10],
+                data: freq_grafico,
                 borderWidth: 1
             }]
         },
