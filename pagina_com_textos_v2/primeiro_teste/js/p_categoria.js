@@ -68,13 +68,14 @@ function displayData(wordData, textData){
             - (feito!) array com anos (já tenho pág palavras??)
             - (feito!) array com frequencia em cada ano (da categoria no geral)
 
-            - Falta outras categorias: locais, anos e autores!!
+            - (feito!) Falta outras categorias: locais, anos e autores!!
             - Se tiver tempo, colocar em dácadas (fazer um pequeno teste)
 
             Palavras:
-            - Colocar lista de palavras pertencentes à categoria (já feito na página anterior)
-            - Colocar a frequencia na div de barra de frequencia (primeiro em número, depois descobro como colocar a barra)
-            - Link de acesso à página da palavra (já feito anteriormente)
+            - (feito!) Colocar lista de palavras pertencentes à categoria (já feito na página anterior)
+            - (feito! em numero)Colocar a frequencia na div de barra de frequencia (primeiro em número, depois descobro como colocar a barra)
+            - (feito, mas problema com autores com espaço) Link de acesso à página da palavra (já feito anteriormente)
+            - Verificar o problema do espaço nos autores na página especifica 
 
             (Depois avançar para a página específica e fazer o mesmo para a palavra específica selecionada)
             (-> No fim, ver como posso, nas palavras populares, colocar os resultados em logaritmo 
@@ -82,6 +83,7 @@ function displayData(wordData, textData){
                 - Fazer!! e ver se resultou bem!)
 
             - Depois!! Fazer CSS de algumas páginas (para ficar mais arrumadinho)
+                -> A barra na parte das palavras faz parte disso!!
     
     */
 
@@ -91,8 +93,18 @@ function displayData(wordData, textData){
     frequencia = []
     anos_cat = []
         
+    let nomeCat
 
-    let nomeCat = categoria.toLowerCase()
+    if(categoria.toLowerCase() =="anos"){
+        nomeCat = "date_of_publication"
+
+    } else if(categoria.toLowerCase() =="autores"){
+        nomeCat = "author"
+
+    } else {
+        nomeCat = categoria.toLowerCase()
+    }
+    
 
     let anos_grafico = []
     let freq_grafico = []
@@ -100,19 +112,46 @@ function displayData(wordData, textData){
     let ids_final = []
 
 
-
-    if(nomeCat == "fauna" || nomeCat == "flora"){ // funcionaa!!
+    if(nomeCat === "fauna" || nomeCat === "flora"){ // funcionaa!!
         //console.log("é categoria") funciona!!
 
         // Tentando fazer de outra forma: (para cada texto, associa uma frequencia)
-        for(let i = 0; i < textData.length; i++){
-            if(textData[i].categorias[nomeCat].length > 0){
+        for(let i = 0; i < textData.length; i++){ // isto é igual
+            if(textData[i].categorias[nomeCat].length > 0){ // muda isto
                 id_textos.push(textData[i].id)
-                frequencia.push(textData[i].categorias[nomeCat].length)
+                frequencia.push(textData[i].categorias[nomeCat].length) // muda isto
                 anos_cat.push(textData[i].date_of_publication)
             }
             
         }
+    } else if (nomeCat === "locais"){
+
+        for(let i = 0; i < textData.length; i++){
+            if(textData[i].categorias[nomeCat].locais_limpos.length > 0){
+                id_textos.push(textData[i].id)
+                frequencia.push(textData[i].categorias[nomeCat].locais_limpos.length)
+                anos_cat.push(textData[i].date_of_publication)
+            }
+        }
+
+    } else { // author e date_of_publication (são iguais pq todos os textos têm um autor e uma data de publicao)
+
+        for(let i = 0; i < textData.length; i++){
+            const valor = textData[i]?.[nomeCat]
+            if(valor !== undefined && valor !== null && valor !== ""){
+                id_textos.push(textData[i].id)
+                frequencia.push(1)
+                anos_cat.push(textData[i].date_of_publication)
+            }
+        }
+
+    }
+
+
+    //console.log(`Lugares ${textData[20].categorias.locais.locais_limpos[2]}`)
+    //console.log(`Nome cat: ${nomeCat}`)
+    //console.log(`id_textos: ${id_textos}, frequencia: ${frequencia}, anos_cat: ${anos_cat}`)
+
 
 
         // CRIAÇÃO DE ARRAY MULTIDIMENCIONAL COM OS ANOS, IDs E FREQUENCIAS
@@ -160,7 +199,7 @@ function displayData(wordData, textData){
         //console.log(ag_id);
 
         //Testes de funcionamento de variáveis
-        console.log(`Variável ag_freq[30][2]: ${ag_freq[30][0]}`) // funciona!!
+        //console.log(`Variável ag_freq[30][2]: ${ag_freq[30][0]}`) // funciona!!
 
 
         //TRANSFORMAR ARRAYS MULTIDIMENSIONAIS DOS ANOS E FREQ EM ARRAYS UNIDIMENSIONAIS
@@ -214,54 +253,92 @@ function displayData(wordData, textData){
         // console.log(ids_final)
         //console.log(`anos ${anos_grafico.length}, freq: ${freq_grafico.length}, ids ${ids_final.length}`) // tudo 180, tudo funciona!!!
 
+
+
+        // funcao para obter aray de palavras
+    function arrayPalavrasCat (textData, categoria){
+
+        let all_entries = [] // array of objects { nome, textId }
+
+        if(categoria === "locais"){
+
+            for(let i = 0; i < textData.length; i++){
+                if(textData[i].categorias.locais.locais_limpos.length > 0){
+                    for(let j = 0; j < textData[i].categorias.locais.locais_limpos.length; j++){
+                        all_entries.push({
+                            nome: textData[i].categorias.locais.locais_limpos[j], 
+                            textId: textData[i].id
+                        })
+                    }
+                }
+            }
+
+        }else if(categoria === "date_of_publication" || categoria === "author"){
+
+            for(let i = 0; i < textData.length; i++){
+                const valor = textData[i]?.[categoria]
+                if(valor !== undefined && valor !== null && valor !== ""){
+                        all_entries.push({
+                            nome: textData[i]?.[categoria], 
+                            textId: textData[i].id 
+                        })
+                    
+                }
+            }
+
+        }else{
+            for(let i = 0; i < textData.length; i++){
+                if(textData[i].categorias[categoria].length > 0){
+                    for(let j = 0; j < textData[i].categorias[categoria].length; j++){
+                        if(textData[i].categorias[categoria][j] != ""){
+                                all_entries.push({
+                                nome: textData[i].categorias[categoria][j], 
+                                textId: textData[i].id 
+                            })
+                        }
+                    }
+                }
+            }
+        }
+
+
+        //Now group by nome
+        let categoryMap = new Map()
+
+        for(let item of all_entries){
+            if(
+                !categoryMap.has(item.nome)) {
+                categoryMap.set(item.nome, [])
+            }
+            categoryMap.get(item.nome).push(item.textId)
+        }
+
+        // convert to array of objects
+        let result = Array.from(categoryMap, ([nome, ids]) => ({
+            nome,
+            textos_menc: ids
+        }))
+
+        return result
     }
     
+    // objeto de nome específico + frequencia (pode ser necessário acrescentar ano na pxox pagina)
+    let arraynomeCat = arrayPalavrasCat (textData, nomeCat) // funciona (para fauna!!)
+
+
+    //lista ordenada por frequencia
+    let nomeCatOrd = arraynomeCat.sort((a, b) => b.textos_menc.length - a.textos_menc.length)
     
+    //console.log(nomeCatOrd[0]) //funciona
 
-    
-        // Ainda n criei objeto que contenha todas as palavras e valores de frequencias
-        let cate = [
-        {
-            categoria: "Locais",
-            labels_cat: ["Pernambuco", "Bahia", "Maranhão", "Sertão", "Minas Gerais", "Corrientes"],
-            labels_cat_value: [12, 19, 3, 5, 2, 3],
-            mais_frequente: "Bahia",
-            info_mais_frequente: "Bahia é Bahia"
-        },
+    for (let i = 0; i < 10; i++){
+        console.log(`${nomeCatOrd[i].nome}, ${nomeCatOrd[i].textos_menc.length}`)
+    }
 
-        {
-            categoria: "Fauna",
-            labels_cat: ["Sabiá", "Roxinol", "Bem-te-vi", "Pomba", "Andorinha", "Canário"],
-            labels_cat_value: [20, 19, 3, 5, 2, 3],
-            mais_frequente: "Sabiá",
-            info_mais_frequente: "Sabiá é Sabiá"
-        },
-
-        {
-            categoria: "Flora",
-            labels_cat: ["Palmeira", "Loureiros", "Mangabeiras", "Coco", "Bananeira", "Violeta"],
-            labels_cat_value: [21, 19, 3, 5, 2, 3],
-            mais_frequente: "Palmeira",
-            info_mais_frequente: "Palmeira é Palmeira"
-        },
-
-        {
-            categoria: "Autores",
-            labels_cat: ["Jose Maia Ferreira", "Leandro de Castilho", "Casimiro de Abreu", "M A Pinto de Sampaio", "Pedro José Teixeira", "Miguel Marques"],
-            labels_cat_value: [12, 19, 3, 5, 2, 3],
-            mais_frequente: "Jose Maia Ferreira",
-            info_mais_frequente: "Jose Maia Ferreira é Jose Maia Ferreira"
-        },
-
-        {
-            categoria: "Anos",
-            labels_cat: ["2009", "2012", "2020", "2015", "2008", "2006"],
-            labels_cat_value: [20, 19, 3, 5, 2, 3],
-            mais_frequente: "2009",
-            info_mais_frequente: "2009 é 2009"
-        },
-
-    ]
+    // quantidade de nomes no geral:
+    //console.log("Total de nomes = " + nomeCatOrd.length) // 531 no caso de fauna
+   
+ 
 
     let categoria_container = document.createElement("div")
     document.querySelector("body").appendChild(categoria_container)
@@ -310,8 +387,7 @@ function displayData(wordData, textData){
         }
     })
 
-    // Lista de todos os nomes de categorias existentes 
-    // (vai ser necessário colocá-los por ordem de frequencia)
+    // Lista de todos os nomes de categorias existentes (por ordem de frequencia)
     let list_all_container = document.createElement("div")
     document.querySelector(".categoria-container").appendChild(list_all_container)
     list_all_container.className += "list-all-container"
@@ -332,19 +408,9 @@ function displayData(wordData, textData){
     container.className += "container"
 
 
-    // descobrir index categoria
-    let index_cate 
 
-    for(let j = 0; j < cate.length; j++){
-        if(cate[j].categoria == categoria){
-            index_cate = j
-        }
-    }
-
-    console.log("Index categoria =" + index_cate) //funciona!!
-
-    //iteracao para display
-    for(let i = 0; i < cate[index_cate].labels_cat.length; i++){
+    //iteracao para display (testando com outros valores)
+    for(let i = 0; i < nomeCatOrd.length; i++){
         
         let ct_item = document.createElement("div")
         document.querySelector(".container").appendChild(ct_item)
@@ -355,18 +421,18 @@ function displayData(wordData, textData){
         let link_palavra_cat = document.createElement("a")
         document.querySelector(".ct-item" + i).appendChild(link_palavra_cat)
         link_palavra_cat.className += "link-palavra-cat link-palavra-cat" + i
-        link_palavra_cat.href = "./p_categoria_especifica.html?categoria=" + categoria + "&especifica=" + cate[index_cate].labels_cat[i]
+        link_palavra_cat.href = "./p_categoria_especifica.html?categoria=" + categoria + "&especifica=" + nomeCatOrd[i].nome
 
         let palavra = document.createElement("div")
         document.querySelector(".link-palavra-cat" + i).appendChild(palavra)
         palavra.className += "palavra"
-        palavra.innerHTML = cate[index_cate].labels_cat[i]
+        palavra.innerHTML = nomeCatOrd[i].nome
 
 
         let barra_frequencia = document.createElement("div")
         document.querySelector(".ct-item" + i).appendChild(barra_frequencia)
         barra_frequencia.className += "barra-frequencia"
-        barra_frequencia.innerHTML = cate[index_cate].labels_cat_value[i]
+        barra_frequencia.innerHTML = nomeCatOrd[i].textos_menc.length
 
     }
 

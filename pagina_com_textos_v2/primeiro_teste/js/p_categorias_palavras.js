@@ -133,7 +133,7 @@ function displayData(wordData, textData){
             }
 
 
-        }else{ // antes disto, colocar uma versão para data e author
+        }else{
 
             for(let i = 0; i < textData.length; i++){
                 if(textData[i].categorias[categoria].length > 0){
@@ -200,7 +200,7 @@ function displayData(wordData, textData){
     let ano__Seis = ano__Ord.slice(0, l)
     let autorSeis = autorOrd.slice(0, l)
 
-    //array de nomes e array de alores
+    //array de nomes e array de valores
     let faunaSNome = []
     let floraSNome = []
     let localSNome = []
