@@ -62,6 +62,20 @@ fetchData()
 
 function displayData(wordData, textData){
 
+    /* Passos para o gráfico:
+        -> Informações a obter: 
+            - array com anos (já tenho)
+            - array com frequencia em cada ano
+        
+    
+    
+    
+    
+    
+    
+    */
+
+
         let cate = [
         {
             categoria: "Locais",
