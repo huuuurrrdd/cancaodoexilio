@@ -91,7 +91,7 @@ function displayData(wordData, textData, lemmasData, wikiData){
             - (feito!) Array com frequencia em cada ano (da palavra) - apenas existe uma por texto em que ocorre
             - (feito!!)Colocar funcional para locais, anos e autores -> neste momento n está funcional!!!
             - Pode ser necessário colocar em opacidade baixa, as ocorrencias totais da categoria (para comparação)
-            - Possibilidade de selecionar um elemento do gráfico e aceder a ele
+            - (ESTE!!)Possibilidade de selecionar um elemento do gráfico e aceder a ele
 
         Textos que mencionam (manter a lista dos ids dos textos)
             - (Feito!!) Manter a lista dos ids dos textos que mencionam para colocar na tabela

@@ -265,7 +265,7 @@ function displayData(wordData, textData, stoplist) {
           indice: i,
           freq: arrayTodosOBJpalavras[i][y].freq || 0,
           nTextos: arrayTodosOBJpalavras[i][y].nTextos || 0,
-          logFreqPTexto: Math.log((arrayTodosOBJpalavras[i][y].freq)/(arrayTodosOBJpalavras[i][y].nTextos) || 0)
+          logFreqPTexto: ((arrayTodosOBJpalavras[i][y].freq)/(arrayTodosOBJpalavras[i][y].nTextos)||0)//Math.log((arrayTodosOBJpalavras[i][y].freq)/(arrayTodosOBJpalavras[i][y].nTextos) || 0)
           //valor do logaritmo da divisao
         });
       }
