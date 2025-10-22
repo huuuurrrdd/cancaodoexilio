@@ -82,13 +82,13 @@ function displayData(wordData, textData, lemmasData, wikiData){
 
     /*  Coisas a avançar nesta página:
         Palavra:
-            - Verificar o problema do espaço nos autores na página especifica 
-            - Verificar se existem eventualemte outros problemas com palavras
-            - Ajustar a info da wikipédia para não ficar tão extensa
+            - (feito!!) Verificar o problema do espaço nos autores na página especifica 
+            - (feito!) Verificar se existem eventualemte outros problemas com palavras
+            - (feito!) Ajustar a info da wikipédia para não ficar tão extensa
 
         Gráfico:
-            - (feito!)Array com anos (exemplo de pág palavras e pág categorias)
-            - (feito!)Array com frequencia em cada ano (da palavra) - apenas existe uma por texto em que ocorre
+            - (feito!) Array com anos (exemplo de pág palavras e pág categorias)
+            - (feito!) Array com frequencia em cada ano (da palavra) - apenas existe uma por texto em que ocorre
             - (feito!!)Colocar funcional para locais, anos e autores -> neste momento n está funcional!!!
             - Pode ser necessário colocar em opacidade baixa, as ocorrencias totais da categoria (para comparação)
             - Possibilidade de selecionar um elemento do gráfico e aceder a ele
@@ -96,15 +96,14 @@ function displayData(wordData, textData, lemmasData, wikiData){
         Textos que mencionam (manter a lista dos ids dos textos)
             - (Feito!!) Manter a lista dos ids dos textos que mencionam para colocar na tabela
             - (Feito!!) Alterar o título da tabela conforme o nome da categoria (se autor, escrito por, se ano...)
-            - Perceber pq brasil tem freq de 249 numa página e aqui tem 200
-            - Colocar links para os textos na lista de textos (o msmo na pág das palavras)
+            - (ESTE!) Perceber pq brasil tem freq de 249 numa página e aqui tem 200
+            - (ESTE!) Colocar links para os textos na lista de textos (o msmo na pág das palavras)
 
         Depois:
-            - (este!!) Página das palavras: colocar os resultados das palavras populares em logaritmos
-                -> Como n percebo de logaritmos, apenas divido a frq pelo n de documentos
-            - Colocar links nas páginas de texto para as categorias e palavras específicas
+            - (feito!!) Página das palavras: colocar os resultados das palavras populares em logaritmos
+            - (ESTE!!) Colocar links nas páginas de texto para as categorias e palavras específicas
     
-        CSS:
+        CSS:(vou avançar aqui!!)
             - Assim que tiver avançado, posso colocar css em todas as páginas das categorias [indica que estão mais prontas]
                 -> Inspirar nas páginas de palavras (colocar margens, definir tabelas e colocar graficos a preto)
 
@@ -326,7 +325,7 @@ function displayData(wordData, textData, lemmasData, wikiData){
     /////////////////////////////////////////////////////////////////
     let elemento_container = document.createElement("div")
     document.querySelector("body").appendChild(elemento_container)
-    elemento_container.className += "elemento-container page-title elemento-container-" + classEsp
+    elemento_container.className += "elemento-container elemento-container-" + classEsp
 
     //subtitulo
     let subtitulo = document.createElement('p')

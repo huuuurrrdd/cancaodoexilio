@@ -1,0 +1,19 @@
+.categorias-container{
+    margin:auto;
+    width: 70%;
+}
+
+/* .categorias-sections{
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: repeat(13, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+} */
+
+/* .cat-section-Locais { grid-area: 1 / 1 / 7 / 4; }
+.cat-section-Fauna { grid-area: 1 / 4 / 7 / 7; }
+.cat-section-Flora { grid-area: 1 / 7 / 7 / 10; }
+.cat-section-Autores { grid-area: 8 / 1 / 14 / 4; }
+.cat-section-Anos { grid-area: 8 / 4 / 14 / 7; } */
+/*.cat-section- { grid-area: 8 / 7 / 14 / 10; }*/
