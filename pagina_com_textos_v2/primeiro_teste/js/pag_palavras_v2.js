@@ -1,6 +1,10 @@
 
+/* RECURSOS:
+  - leitura de ficheiros json: https://www.geeksforgeeks.org/read-json-file-using-javascript/
+  - Pode ajudar com os logaritmos: https://www.to.infn.it/~magnea/Edinburgh16.pdf
 
-// leitura de ficheiros json: https://www.geeksforgeeks.org/read-json-file-using-javascript/
+
+*/
 
 /*___________________PAG_palavra______________________*/
 
@@ -236,7 +240,7 @@ function displayData(wordData, textData, lemmasData){
   const ag_freq = [];
   let gAtual_freq = [];
 
-  const ag_id = [];
+  const ag_id = []; // os textos
   let gAtual_id = [];
 
   //ver este detalhe

@@ -5,6 +5,7 @@
 
 */
 
+
 //*************  Acesso a dados  ****************/
 function fetchData() {
   //stopList para poder não incluir stopwords nas palavras mais populares
@@ -65,17 +66,21 @@ function fetchData() {
 fetchData();
 
 function displayData(wordData, textData, stoplist) {
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   /****************************  FUNÇÃO QUE DEVOLVE UM "OBJ PALAVRA (ano(key): freq(value))"  *******************************/
-  function frequencia_por_anos(IdPalavra) {
+  //         - Esta função tbm pode devolver:
+  //            -> ano(key): freq(value) //+ nºTextosPano + freq/nºTextosPano
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  function frequencia_por_anos(Idx_Palavra) { // este IdPalavra deve ser um indice
     //ACEDENDO DADOS DE NUMERO DE PALAVRAS POR ANO
     //para a palavra: array para: idTexto, freq, ano
     id_textos = [];
     frequencia = [];
     anos_pal = [];
 
-    for (let i = 0; i < wordData.palavras[IdPalavra].textos.length; i++) {
-      id_textos.push(wordData.palavras[IdPalavra].textos[i].id_text);
-      frequencia.push(wordData.palavras[IdPalavra].textos[i].frequencia);
+    for (let i = 0; i < wordData.palavras[Idx_Palavra].textos.length; i++) {
+      id_textos.push(wordData.palavras[Idx_Palavra].textos[i].id_text);
+      frequencia.push(wordData.palavras[Idx_Palavra].textos[i].frequencia);
     }
 
     for (let i = 0; i < id_textos.length; i++) {
@@ -148,12 +153,16 @@ function displayData(wordData, textData, stoplist) {
     //TENTATIVA DE CONTAR TODOS OS ANOS E IGUALAR A 0 OS ANOS SEM REPRESENTAÇÃO
     const val_anos = ag_anos_unidimensional;
     const val_freq = ag_freq_p_ano;
+    // ainda multidimensional
+    const val_id = ag_id // para unidimensional, descobre n de textos p ano
 
     const start = 1846;
     const end = 2025;
 
     let anos_grafico = [];
     let freq_grafico = [];
+    let ids_final = []
+    let textosPAno = []
 
     for (let y = start; y <= end; y++) {
       anos_grafico.push(y); // adiciona os anos normalmente
@@ -162,10 +171,16 @@ function displayData(wordData, textData, stoplist) {
       if (idx !== -1) {
         //-1 deve ser o valor de quando n encontra índice
         freq_grafico.push(val_freq[idx]); // se tiver o valor adiciona
+        ids_final.push(val_id[idx])
+        textosPAno.push(val_id[idx].length)
       } else {
         freq_grafico.push(0); // se n tiver, adiciona 0
+        ids_final.push(0)
+        textosPAno.push(0)
       }
     }
+
+    //console.log(`Textos p ano ${textosPAno}`)// algo eu n percebo ou esta errado
 
     //TENTATIVA DE CRIAR UM OBJETO (ano(key): freq(value))
     const itemPalavra = {};
@@ -173,7 +188,18 @@ function displayData(wordData, textData, stoplist) {
       itemPalavra[key] = freq_grafico[index];
     });
 
+    const itemPalavra_ = {};
+    anos_grafico.forEach((key, index) => { // key = ano; index = array
+      itemPalavra[key] = {
+        nome: wordData.palavras[Idx_Palavra].palavra,
+        freq: freq_grafico[index],
+        nTextos: textosPAno [index]
+        // posso colocar aqui a lista de ids se necessário
+      }
+    });
+
     return itemPalavra;
+
 
     // console.log("Valores para anos e frq no gráfico:")
     // console.log(anos_grafico)
@@ -182,6 +208,13 @@ function displayData(wordData, textData, stoplist) {
   /*----------------  ACABA FUNÇÃO QUE DEVOLVE UM "OBJ PALAVRA (ano(key): freq(value))"  ----------------*/
 
   //**************** acesso a objeto de palavra ****************//
+
+  // FAZER AQUI TESTES DE ACESSO (PELO ID)
+  let motivo = frequencia_por_anos(5762) // palavra motivo
+  // console.log(`motivo ${motivo[5762].nome}`) // n funciona!!
+  console.log(`motivo ${motivo[1846].nome}`) // funciona
+  console.log(`motivo ${motivo[2015].freq}`) // funciona
+  console.log(`motivo ${motivo[2015].nTextos}`) // funciona
 
   // array com ARRAY COM TODOS OS OBJETOS DE PALAVRAS (com todos os anos associados à respetiva frequência)
   let arrayTodosOBJpalavras = [];
@@ -230,21 +263,53 @@ function displayData(wordData, textData, stoplist) {
         // se não tem indice i
         lista_combinada_s_stopwords.push({
           indice: i,
-          freq: arrayTodosOBJpalavras[i][y] || 0,
+          freq: arrayTodosOBJpalavras[i][y].freq || 0,
+          nTextos: arrayTodosOBJpalavras[i][y].nTextos || 0,
+          logFreqPTexto: Math.log((arrayTodosOBJpalavras[i][y].freq)/(arrayTodosOBJpalavras[i][y].nTextos) || 0)
+          //valor do logaritmo da divisao
         });
       }
     }
 
+    console.log( Math.log(2)) // parece correto
+
     todosOBJpalavrasSStopwords = lista_combinada_s_stopwords;
     n_palavras = lista_combinada_s_stopwords.length;
 
-    // 2º ordena (n percebo a logica desta ordenacao...)
-    lista_combinada_s_stopwords.sort((a, b) => b.freq - a.freq);
-    let maior_frequencia_do_ano = lista_combinada_s_stopwords[0]?.freq || 0;
+    // // 2º ordena (n percebo a logica desta ordenacao...)
+    // lista_combinada_s_stopwords.sort((a, b) => b.freq - a.freq);
+    // let maior_frequencia_do_ano = lista_combinada_s_stopwords[0]?.freq || 0;
 
+    // versao nova (pode estar mal)
+    lista_combinada_s_stopwords.sort((a, b) => b.logFreqPTexto - a.logFreqPTexto);
+    let maior_frequencia_do_ano = lista_combinada_s_stopwords[0]?.logFreqPTexto || 0;
+
+  //   let lista_indices_com_maior_frequencia = lista_combinada_s_stopwords
+  //     // itera sobre todos os elementos do array, mantendo apenas os objetos em que a condição é verdadeira
+  //     .filter((obj) => obj.freq === maior_frequencia_do_ano)
+  //     .map((obj) => obj.indice); // percorre cada elemento do array e transforma em algo diferente, devolvendo um array
+
+  //   if (lista_indices_com_maior_frequencia.length != n_palavras) {
+  //     todas_as_palavrasFreq_p_ano.push({
+  //       ano: y,
+  //       lista: lista_combinada_s_stopwords,
+  //       maior_freq: maior_frequencia_do_ano,
+  //       indices_palavras_maior_freq: lista_indices_com_maior_frequencia,
+  //     });
+  //   } else {
+  //     todas_as_palavrasFreq_p_ano.push({
+  //       ano: y,
+  //       lista: lista_combinada_s_stopwords,
+  //       maior_freq: "",
+  //       indices_palavras_maior_freq: "",
+  //     });
+  //   }
+  // }
+
+  // versao nova (pode estar mal)
     let lista_indices_com_maior_frequencia = lista_combinada_s_stopwords
       // itera sobre todos os elementos do array, mantendo apenas os objetos em que a condição é verdadeira
-      .filter((obj) => obj.freq === maior_frequencia_do_ano)
+      .filter((obj) => obj.logFreqPTexto === maior_frequencia_do_ano)
       .map((obj) => obj.indice); // percorre cada elemento do array e transforma em algo diferente, devolvendo um array
 
     if (lista_indices_com_maior_frequencia.length != n_palavras) {
@@ -263,6 +328,7 @@ function displayData(wordData, textData, stoplist) {
       });
     }
   }
+
 
   let freq_grafico = [];
   let palavras_grafico = [];

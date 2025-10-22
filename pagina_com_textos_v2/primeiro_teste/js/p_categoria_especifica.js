@@ -89,19 +89,25 @@ function displayData(wordData, textData, lemmasData, wikiData){
         Gráfico:
             - (feito!)Array com anos (exemplo de pág palavras e pág categorias)
             - (feito!)Array com frequencia em cada ano (da palavra) - apenas existe uma por texto em que ocorre
-            - Colocar funcional para locais, anos e autores -> neste momento n está funcional!!!
+            - (feito!!)Colocar funcional para locais, anos e autores -> neste momento n está funcional!!!
             - Pode ser necessário colocar em opacidade baixa, as ocorrencias totais da categoria (para comparação)
+            - Possibilidade de selecionar um elemento do gráfico e aceder a ele
 
         Textos que mencionam (manter a lista dos ids dos textos)
-            - Manter a lista dos ids dos textos que mencionam para colocar na tabela
-            - Alterar o título da tabela conforme o nome da categoria (se autor, escrito por, se ano...)
+            - (Feito!!) Manter a lista dos ids dos textos que mencionam para colocar na tabela
+            - (Feito!!) Alterar o título da tabela conforme o nome da categoria (se autor, escrito por, se ano...)
+            - Perceber pq brasil tem freq de 249 numa página e aqui tem 200
+            - Colocar links para os textos na lista de textos (o msmo na pág das palavras)
 
         Depois:
-            - Página das palavras: colocar os resultados das palavras populares em logaritmos
+            - (este!!) Página das palavras: colocar os resultados das palavras populares em logaritmos
+                -> Como n percebo de logaritmos, apenas divido a frq pelo n de documentos
+            - Colocar links nas páginas de texto para as categorias e palavras específicas
     
         CSS:
             - Assim que tiver avançado, posso colocar css em todas as páginas das categorias [indica que estão mais prontas]
-        
+                -> Inspirar nas páginas de palavras (colocar margens, definir tabelas e colocar graficos a preto)
+
         Ainda na página das palavras:
             - Colocar todos os resultados (limitando o nº de resultados que aparecem por página (umas 30 por página))
             - Colocar links nas palavras pala poder aceder à sua página
@@ -124,10 +130,12 @@ function displayData(wordData, textData, lemmasData, wikiData){
         nomeCat = "author"
 
     } else {
-        nomeCat = categoria.toLowerCase()
+        nomeCat = categoria.toLowerCase() // caso de fauna e flora
     }
 
+    console.log(`Nome categoria = ${nomeCat}`) // funciona (caso locais)
     // manter o nome original, pq é o da base de dados
+    console.log(`Esp: ${especifica}`)
 
     let anos_grafico = []
     let freq_grafico = []
@@ -136,7 +144,7 @@ function displayData(wordData, textData, lemmasData, wikiData){
 
     // antes de aceder à especifica, preciso da categoria
 
-    if(nomeCat === "fauna" || nomeCat === "flora"){
+    if(nomeCat === "fauna" || nomeCat === "flora"){ // isto funciona!!
             // indexof() -> no caso de encontrar o resultado que procuro
         //The find() method returns the value of the first element that passes a test
         // ser ainda mais concreta de onde vou buscar
@@ -152,8 +160,8 @@ function displayData(wordData, textData, lemmasData, wikiData){
     } else if (nomeCat === "locais"){
 
         for(let i = 0; i < textData.length; i++){
-            if(textData[i].categorias[nomeCat].length > 0){
-                if(textData[i].categorias[nomeCat].includes(especifica) == true){
+            if(textData[i].categorias[nomeCat].locais_limpos.length > 0){
+                if(textData[i].categorias[nomeCat].locais_limpos.includes(especifica) == true){
                     id_textos.push(textData[i].id)
                     frequencia.push(1)
                     anos_esp.push(textData[i].date_of_publication)
@@ -162,21 +170,38 @@ function displayData(wordData, textData, lemmasData, wikiData){
         }
     } else { // author e date_of_publication
 
-        for(let i = 0; i < textData.length; i++){
-            const valor = textData[i]?.[nomeCat]
-            if(valor !== undefined && valor!== null && valor !== ""){
-                id_textos.push(textData[i].id)
-                frequencia.push(1)
-                anos_cat.push(textData[i].date_of_publication)
+        if(nomeCat === "author"){
+            for(let i = 0; i < textData.length; i++){
+                const valor = textData[i]?.[nomeCat]
+                if(valor !== undefined && valor!== null && valor !== ""){
+                    if(textData[i]?.[nomeCat].includes(especifica)){
+                        id_textos.push(textData[i].id)
+                        frequencia.push(1)
+                        anos_esp.push(textData[i].date_of_publication)
+                    }
+                }
+            }
+
+        } else if (nomeCat === "date_of_publication") {
+            for(let i = 0; i < textData.length; i++){
+                const valor = textData[i]?.[nomeCat]
+                if(valor !== undefined && valor!== null && valor !== ""){
+                    if(textData[i]?.[nomeCat] == especifica){
+                        id_textos.push(textData[i].id)
+                        frequencia.push(1)
+                        anos_esp.push(textData[i].date_of_publication)
+                    }
+                }
             }
         }
-
     }
 
-    // //Todas 192 - parece correto!!
-    // console.log(id_textos.length)
-    // console.log(frequencia.length)
-    // console.log(anos_esp.length)
+    
+
+    // //Todas 192 - parece correto!! (em fauna e flora), locais = 200, autores = 3
+    console.log(id_textos.length)
+    console.log(frequencia.length)
+    console.log(anos_esp.length)
 
     // CRIAÇÃO DE ARRAY MULTIDIMENCIONAL COM OS ANOS, IDs E FREQUENCIAS
     const ag_anos = []; // array de (array de anos)
@@ -278,6 +303,20 @@ function displayData(wordData, textData, lemmasData, wikiData){
         // console.log(freq_grafico)
         // console.log(ids_final) // todos os ids por ano (pode n ser necessário estar associado ao ano)
         //console.log(`anos ${anos_grafico.length}, freq: ${freq_grafico.length}, ids ${ids_final.length}`) // tudo 180, tudo funciona!!!
+
+
+        // Obter lista de ids que mencionam a palavra (com o id, obtém-se as outras informacoes)
+        //console.log(ids_final)
+        //console.log(val_id) // este é mais direto!! - depois confirmar!!
+        let idLista = []
+
+        for(let i = 0; i < val_id.length; i++) {
+            for(let j = 0; j < val_id[i].length; j++){
+                idLista.push(val_id[i][j])
+            }
+        }
+
+        //console.log(idLista) // length = 200, porque da diferente na pag de inicio
     
     
     
@@ -371,7 +410,7 @@ function displayData(wordData, textData, lemmasData, wikiData){
         //exchars: 1200,
         exintro: true,
         explaintext: true,
-        exsentences: 10,
+        exsentences: 7,
         generator: 'search',
         gsrlimit: 1
 
@@ -452,7 +491,12 @@ function displayData(wordData, textData, lemmasData, wikiData){
     let textos_mencionam_h = document.createElement("h2")
     document.querySelector(".textos-mencionam-" + classEsp).appendChild(textos_mencionam_h)
     textos_mencionam_h.className += "textos-mencionam-h textos-mencionam-h-" + classEsp
-    textos_mencionam_h.innerHTML = "Textos que mencionam " + especifica
+    if(nomeCat === "author" || nomeCat === "date_of_publication"){
+        textos_mencionam_h.innerHTML = "Textos de " + especifica
+    } else {
+        textos_mencionam_h.innerHTML = "Textos que mencionam " + especifica
+    }
+    
     
     //--tabela--
     let list_container = document.createElement("div")
@@ -476,16 +520,16 @@ function displayData(wordData, textData, lemmasData, wikiData){
     container.className += "container"
 
     //iteracao para display (embora até já possa ser possivel obter os valores reais!!)
-    for(let i = 0; i < 3; i++){ //3 = n_pal_cat.length
+    for(let i = 0; i < idLista.length; i++){ //n sei se aguenta com 200
 
         //cria a div principal
         let tentry = document.createElement("div")
         tentry.className += "tentry tentry-container tentry-container" + (i+1)
 
         //elementos do item
-        tentry.innerHTML = `<div class = "ano">Ano - ${i}</div>
-                             <div class = "titulo">Titulo - ${i}</div>
-                             <div class = "autor">Autor - ${i}</div>`
+        tentry.innerHTML = `<div class = "ano">Ano - ${textData[idLista[i]-1].date_of_publication}</div>
+                             <div class = "titulo">Titulo - ${textData[idLista[i]-1].title}</div>
+                             <div class = "autor">Autor - ${textData[idLista[i]-1].author}</div>`
 
 
         container.appendChild(tentry)
