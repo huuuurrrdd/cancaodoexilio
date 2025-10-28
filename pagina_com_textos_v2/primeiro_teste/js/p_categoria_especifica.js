@@ -113,7 +113,7 @@ function displayData(wordData, textData, lemmasData, wikiData){
             - (PROCESSO)Chamar eventlistner click para reordenar resultados (está a ser complicado!!)
                 -> (feito!)Eliminar as funções a mais e tornar mais eficientes as que estão
                 -> (feito!)Colocar o filtro da frequencia a funcionar
-                -> Colocar o filtro dos titulos alfabeticamente a funcionar vs cronologicamente
+                -> (feito!)Colocar o filtro dos titulos alfabeticamente a funcionar vs cronologicamente
             - Colocar todos os resultados (limitando o nº de resultados que aparecem por página (umas 20 por página))
             - Colocar links nas PALAVRAS para poder aceder à sua página e TEXTOS
             - Acrescentar possibilidade de ocultar/ mostrar os textos quando são muitos (ou) mostrar mais/menos (quando maior que 3)

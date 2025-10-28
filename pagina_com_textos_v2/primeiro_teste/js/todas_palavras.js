@@ -459,19 +459,45 @@ function displayData(wordData, textData, stoplist) {
     // let indexPal = todosOBJpalavrasSStopwords[i].indice; -> Determina os indices dos resultados
     // devia ser mais especifico para cada botao (total de resultados é o indexPal) 
     // Total seria: todosOBJpalavrasSStopwords.length
+    div_display.innerHTML = "";
 
     // valores default para ordenação de resultados
     let ordAlf = "AZ" // o atual
     let ordAlf_ = "ZA" // o q muda
     let ordFre = "asc" // o atual
     let ordFre_ = "des"// o que muda
+    let ordTit = "cro"
+    let ordTit_ = "alf"
     //console.log(todosOBJpalavrasSStopwords.length)
     //console.log(wordData.palavras.length) // tem mais palavras
 
+
     // obtendo a divisão por 20, descobrir o resto
-    let rPP = 50
-    console.log(todosOBJpalavrasSStopwords.length % rPP) // total é 9100%20 = 10 (se resto != 0, acrescenta 1 pagina)
-    console.log(Math.floor(todosOBJpalavrasSStopwords.length / rPP)) // resultou!! + 1
+    let rPP = 50 // resuktados por página
+    let arrayResultados = [] // com indice de inicio e de fim (com ele incluido)
+
+    const divInteira = Math.floor(todosOBJpalavrasSStopwords.length / rPP)
+    const resto = todosOBJpalavrasSStopwords.length % rPP
+
+    for(let i = 0; i < divInteira; i++){
+      const s = i > 0 ? i* rPP : 0
+      const e = s + rPP
+
+      arrayResultados.push({
+        st: s,
+        en: e
+      })
+    }
+
+    if(resto != 0) arrayResultados.push({
+      st : divInteira * rPP,
+      en: divInteira * rPP + resto
+    })
+
+    // valor de indice da página
+    let iP = 0 //funciona!!
+
+
 
     // Array de obj com RESULTADOS
       let resultado = []
@@ -532,51 +558,65 @@ function displayData(wordData, textData, stoplist) {
       // ordem alfabética do título dos textos (ou manter a ordem cronológica) - n é completamente necessário
       function ordTitle(ord){ // percorre cada palavra??
 
-        if(ord == "alf"){
+        if(ord === "alf"){
           // em cada palavra, ordenar o array de textos e de títulos
-          return resultado.map(item => {
-            if(Array.isArray(item.titulo && Array.isArray(item.textos))){ // verifica se .titulo é array
+          ordTit_ = "cro"
+          ordTit = "alf"
+
+          resultado = resultado.map(item => {
+            if(Array.isArray(item.textos)){ // verifica se .titulo é array
               //combina-os temporariamente
-              const combinados = item.titulo.map((t, i) => ({
-                titulo: t,
-                texto: item.textos[i]
-              }))
+              const combinados = item.textos.map((texto, i) => {
+                const titleFromData = (textData?.[texto.id_text - 1]?.title) ?? "" // vai buscar titulo ao original
+                const titleFromItem = (Array.isArray(item.titulo) ? item.titulo[i] : undefined)
+                const titulo = titleFromData || titleFromItem || ""
+                return { texto, titulo }              
+            })
 
               //sort by title
-              //item.titulo.sort((a,b) => a.localeCompare(b, 'pt', {sensitivity: 'base'}))
-              combinados-sort((a,b) => a.titulo.localeCompare(b.titulo, 'pt', {sensitive: 'base'}))  // case insensitive
+              combinados.sort((a,b) => 
+                (a.titulo ?? "").toString().localeCompare((b.titulo ?? "").toString(), 'pt', { sensitivity: 'base' })
+              )  // case insensitive
 
               //separa-os novamente
               item.titulo = combinados.map(el => el.titulo)
               item.textos = combinados.map(el => el.texto)
+            }
+            return item
+          })
+
+          return resultado
+          
+        } else if (ord === "cro") { // cronológica - ordem original de id
+          // em cada palavra, ordenar o array de textos e de títulos
+          ordTit_ = "alf"
+          ordTit = "cro"
+
+          resultado = resultado.map(item => {
+            if(Array.isArray(item.textos)){ // verifica se .titulo é array
+              //combina-os temporariamente
+              const combinados = item.textos.map((texto, i) => {
+                const titleFromData = (textData?.[texto.id_text - 1]?.title) ?? ""
+                const titleFromItem = (Array.isArray(item.titulo) ? item.titulo[i] : undefined)
+                const titulo = titleFromData || titleFromItem || ""
+                return { texto, titulo }
+              })
+
+              //sort by id_text
+              combinados.sort((a,b) => (a.texto?.id_text ?? 0) - (b.texto?.id_text ?? 0))
+
+              //separa-os novamente
+              item.textos = combinados.map(el => el.texto)
+              item.titulo = combinados.map(el => el.titulo)
             }
             return item
           })
           
-        } 
-        else if (ord == "cro") { // cronológica - ordem original de id
-          // em cada palavra, ordenar o array de textos e de títulos
-          return resultado.map(item => {
-            if(Array.isArray(item.titulo && Array.isArray(item.textos))){ // verifica se .titulo é array
-              //combina-os temporariamente
-              const combinados = item.textos.map((texto, i) => ({
-                texto,
-                texto: item.textos[i]
-              }))
-
-              //sort by id_text
-              combinados-sort((a,b) => a.texto.id_text - b.texto.id_text)
-
-              //separa-os novamente
-              item.textos = combinados.map(el => el.texto)
-              item.titulo = combinados.map(el => el.titulo)
-            }
-            return item
-          })
+          return resultado
         }
       }
       //console.log(ordTitle("alf")) // funciona!!
-      //console.log(ordTitle('cro')) // funciona!!
+      //console.log(ordTitle('cro')) // funciona!! 
 
     // pesquisa por palavra e pesquisa pelo título (pesquisa do objeto [resultado] pelo título)
     /*Precisaria de uma input box*/
@@ -599,7 +639,7 @@ function displayData(wordData, textData, stoplist) {
 
       // conteudo do header!! (adicionar funções para ordenação de elementos)
       ct_head_list.innerHTML = `  <div class = "palavras header"><h2>Palavra</h2><p id="Ord-Alfa">Ord: ${ordAlf}</p></div>
-                                      <div class = "texto header"><h2>Textos</h2><p>Textos que mencionam</p></div>
+                                      <div class = "texto header"><h2>Textos</h2><p id="Ord-Tit">Ord: ${ordTit}</p></div>
                                       <div class = "frequencia header"><h2>Freq</h2><p id="Ord-Freq">Ord: ${ordFre}</p></div>`;
 
       ct_head_list.style.backgroundColor = "yellow";
@@ -614,17 +654,22 @@ function displayData(wordData, textData, stoplist) {
 
 
     function displayResultado(){
-      //div_display.innerHTML = "";
+      
+
+
+    //console.log(arrayResultados) // funcionou
+
+    // console.log(todosOBJpalavrasSStopwords.length % rPP) // total é 9100%20 = 10 (se resto != 0, acrescenta 1 pagina)
+    // console.log(Math.floor(todosOBJpalavrasSStopwords.length / rPP)) // resultou!! + 1
 
       // atualiza os headers
       document.querySelector('#Ord-Alfa').textContent = `Ord: ${ordAlf}` // funciona!!
       document.querySelector('#Ord-Freq').textContent = `Ord: ${ordFre}`
+      document.querySelector('#Ord-Tit').textContent = `Ord: ${ordTit}`
 
       container.innerHTML = ""
       //iteração para display
-      for (let i = 0; i < 20; i++) { // fazer display de x resultados por pagina
-        // teste das primeiras 3 palavras
-
+      for (let i = arrayResultados[iP].st; i < arrayResultados[iP].en; i++) { // fazer display de x resultados por pagina
 
         //cria a div principal
         let ct_item = document.createElement("div");
@@ -650,7 +695,7 @@ function displayData(wordData, textData, stoplist) {
           let texto_de_palavra = document.createElement("div");
           //document.querySelector(".item-textos").appendChild(texto_de_palavra)
           texto_de_palavra.className = "item-texto";
-          texto_de_palavra.innerHTML = `${resultado[i].textos[j].id_text}`; // em vez do id, colocar o número
+          texto_de_palavra.innerHTML = `${resultado[i].textos[j].id_text}  ${resultado[i].titulo[j]} `; // em vez do id, colocar o número
           item_textos.appendChild(texto_de_palavra);
         }
 
@@ -660,11 +705,30 @@ function displayData(wordData, textData, stoplist) {
         item_frequencia.innerHTML = `${resultado[i].freq}x`; //`${wordData.palavras[indexPal].frequencia}x`;
       }
 
+      // div com bt de exibir pág de resuktados
+      let nPages = document.createElement("div")
+      list_all_container.appendChild(nPages)
+      nPages.className += "n-page n-page-ct"
+      //nPages.innerHTML = "ATCHUMMM"
+
+      for(let i = 0; i < arrayResultados.length; i++){
+        let nPage = document.createElement("div")
+        nPages.appendChild(nPage)
+        nPage.className += "n-page n-page" + i
+        nPage.id = `n-page${i}`
+        nPage.innerText = i
+
+      //   nPage.addEventListener('click', (e) =>{
+      //   console.log(`Click, page ${nPage.innerText}`)
+      //   iP = i // tem de ser chamado acima
+      // })
+      }
+
     }
 
     displayResultado()
 
-    // ESTA PARTE É IMPORTANTE!!!
+   //FILTROS______________________________________________________//
   
 
     /***************** Ordem Alfabetica ********************/
@@ -677,7 +741,6 @@ function displayData(wordData, textData, stoplist) {
      document.querySelector('#Ord-Alfa').style.backgroundColor = "blue"
 
 
-
     /***************** Ordem Freq ********************/
     document.querySelector('#Ord-Freq').addEventListener('click', (e) =>{
       ordFreq(ordFre_) // falta o valor
@@ -685,6 +748,27 @@ function displayData(wordData, textData, stoplist) {
       console.log("Click!!")
     })
     document.querySelector('#Ord-Freq').style.backgroundColor = "blue"
+
+    /***************** Ordem Tit ********************/
+    document.querySelector('#Ord-Tit').addEventListener('click', (e) =>{
+      ordTitle(ordTit_)
+      displayResultado() 
+      console.log("Click!!") // funciona
+      console.log(ordTit_) // está a alterar
+    })
+    document.querySelector('#Ord-Tit').style.backgroundColor = "blue"
+
+    /***************** Separadores page ********************/
+    for(let i = 0; i < arrayResultados.length; i++){ //funiona!!
+      document.querySelector('#n-page' + i).addEventListener('click', (e) => {
+        console.log(`Click, page ${document.querySelector('#n-page' + i).innerText}`)
+        iP = i
+        displayResultado()
+      })
+      //document.querySelector('#n-page' + i).style.backgroundColor = "yellow"
+    }
+
+
 
   }
 
