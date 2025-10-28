@@ -108,9 +108,19 @@ function displayData(wordData, textData, lemmasData, wikiData){
                 -> Inspirar nas páginas de palavras (colocar margens, definir tabelas e colocar graficos a preto)
 
         Ainda na página das palavras:
-            - Colocar todos os resultados (limitando o nº de resultados que aparecem por página (umas 30 por página))
-            - Colocar links nas palavras pala poder aceder à sua página
-            - Colocar filtros nas palavras (criar funções para ordem alfabética [título e autores], ordem por frequencia ou ordem por ano)
+            - (feito!!)Ordenar os resultados das palavras (ordem alfabética, frequencia, e titulo de textos) (https://www.youtube.com/watch?v=hkCOsr4xyIc)
+            - (feito!!)Apresentar resultados do array de resultados (tem lá todos os valores)
+            - (PROCESSO)Chamar eventlistner click para reordenar resultados (está a ser complicado!!)
+                -> (feito!)Eliminar as funções a mais e tornar mais eficientes as que estão
+                -> (feito!)Colocar o filtro da frequencia a funcionar
+                -> Colocar o filtro dos titulos alfabeticamente a funcionar vs cronologicamente
+            - Colocar todos os resultados (limitando o nº de resultados que aparecem por página (umas 20 por página))
+            - Colocar links nas PALAVRAS para poder aceder à sua página e TEXTOS
+            - Acrescentar possibilidade de ocultar/ mostrar os textos quando são muitos (ou) mostrar mais/menos (quando maior que 3)
+            - REPETIR OS FILTROS PARA AS OUTRAS PÁGINAS (depois da pesquisa livre!!)
+        
+            Gráfico:
+            - Criar versão de gráfico sem stopwords (testar com apenas frequencia, ou com TFIDF, ou com palavras/n de palavras total)
     
     */
 

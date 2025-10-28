@@ -451,73 +451,251 @@ function displayData(wordData, textData, stoplist) {
 
 
 
-  
-  //*********  Funções para display [palavras pop; todas palavras]  *******************/
-
+  // decidir o intervalo de resultados (neste caso, 20 p página)
   function displayTodasPalavras(){
-     div_display.innerHTML = "";
 
-    //** baseada na tabela de display em palavra selecionada **
-    let list_all_container = document.createElement("div");
-    document.querySelector(".div-display").appendChild(list_all_container);
-    list_all_container.className += "list-all-container";
+  //*********  Funções para display [ todas palavras]  *******************/
+    // Testar com os arrays de palavras
+    // let indexPal = todosOBJpalavrasSStopwords[i].indice; -> Determina os indices dos resultados
+    // devia ser mais especifico para cada botao (total de resultados é o indexPal) 
+    // Total seria: todosOBJpalavrasSStopwords.length
 
-    //Header!!
-    let ct_head_list = document.createElement("div");
-    document.querySelector(".list-all-container").appendChild(ct_head_list);
-    ct_head_list.className += "list ct-head-list";
+    // valores default para ordenação de resultados
+    let ordAlf = "AZ" // o atual
+    let ordAlf_ = "ZA" // o q muda
+    let ordFre = "asc" // o atual
+    let ordFre_ = "des"// o que muda
+    //console.log(todosOBJpalavrasSStopwords.length)
+    //console.log(wordData.palavras.length) // tem mais palavras
 
-    // conteudo do header!!
-    ct_head_list.innerHTML = `  <div class = "palavras header">Palavra</div>
-                                    <div class = "texto header">Textos</div>
-                                    <div class = "frequencia header">Freq</div>`;
+    // obtendo a divisão por 20, descobrir o resto
+    let rPP = 50
+    console.log(todosOBJpalavrasSStopwords.length % rPP) // total é 9100%20 = 10 (se resto != 0, acrescenta 1 pagina)
+    console.log(Math.floor(todosOBJpalavrasSStopwords.length / rPP)) // resultou!! + 1
 
-    ct_head_list.style.backgroundColor = "yellow";
+    // Array de obj com RESULTADOS
+      let resultado = []
 
-    // conteudo após header //////////////////////
-    let container = document.createElement("div");
-    document.querySelector(".list-all-container").appendChild(container);
-    container.className = "container";
+      for( let i = 0; i < todosOBJpalavrasSStopwords.length; i++){
+        let indexPal = todosOBJpalavrasSStopwords[i].indice
+        let palavraObj = wordData.palavras[indexPal] // busca todas as palavras
 
-
-    //iteração para display
-    for (let i = 0; i < 200; i++) { // fazer display de x resultados por pagina
-      // teste das primeiras 3 palavras
-
-      //cria a div principal
-      let ct_item = document.createElement("div");
-      ct_item.className += "ct-item ct-item" + (i + 1);
-      container.appendChild(ct_item);
-
-
-      let indexPal = todosOBJpalavrasSStopwords[i].indice;
-
-      //divs dentro da div principal
-      let item_palavra = document.createElement("div");
-      document.querySelector(`.ct-item${i + 1}`).appendChild(item_palavra);
-      item_palavra.className += "item-palavra palavras";
-      item_palavra.innerHTML = `${wordData.palavras[indexPal].palavra}`;
-
-      let item_textos = document.createElement("div");
-      document.querySelector(`.ct-item${i + 1}`).appendChild(item_textos);
-      item_textos.className += "item-textos texto";
-
-      for (let j = 0; j < wordData.palavras[indexPal].textos.length; j++) {
-        // item a colocar dentro de "item_textos"
-        let texto_de_palavra = document.createElement("div");
-        //document.querySelector(".item-textos").appendChild(texto_de_palavra)
-        texto_de_palavra.className = "item-texto";
-        texto_de_palavra.innerHTML = `${wordData.palavras[indexPal].textos[j].id_text}`; // em vez do id, colocar o número
-        item_textos.appendChild(texto_de_palavra);
+        // junta junta os textos associados
+        let titulos = palavraObj.textos.map(t =>
+          textData[t.id_text -1].title
+        )
+          resultado.push({
+            palavra: palavraObj.palavra,
+            indice: indexPal,
+            textos: palavraObj.textos, // id dos textos (pode dar para ordenar az nos titulos)
+            titulo: titulos, // está funcional
+            freq: palavraObj.frequencia // pode ser util ter um array com titulos dos textos
+          })
       }
 
-      let item_frequencia = document.createElement("div");
-      document.querySelector(`.ct-item${i + 1}`).appendChild(item_frequencia);
-      item_frequencia.className += "item-frequencia freq";
-      item_frequencia.innerHTML = `${wordData.palavras[indexPal].frequencia}x`;
+      //console.log(textData[12-1].title) // funciona
+
+
+      // ordem alfabética de PALAVRAS
+      function ordPal(ord) {
+        console.log("Ord Function")
+        if(ord == "AZ"){
+          resultado.sort((a,b) => a.palavra.localeCompare(b.palavra, 'pt')) // funciona!!
+          ordAlf_ = "ZA" // pronto para mudar
+          ordAlf = "AZ" // o atual
+        } else if(ord == "ZA"){
+          resultado.sort((a,b) => a.palavra.localeCompare(b.palavra, 'pt')).reverse()
+          ordAlf_ = "AZ" // pronto para mudar
+          ordAlf = "ZA" // o atual
+        }
+      }
+      //console.log(ordPal("ZA"))//funciona!!
+      //ordPal("ZA")
+
+      // ordenar PALAVRAS por frequencia
+      function ordFreq(ord){
+        if(ord == "des"){
+          resultado.sort((a,b) => a.freq < b.freq ? -1 : 1).reverse()
+          ordFre_= "asc" // pronto para mudar
+          ordFre = "des" // atual
+        } else if (ord == "asc") {
+          resultado.sort((a,b) => a.freq < b.freq ? -1 : 1)
+          ordFre_= "des"
+          ordFre = "asc"
+        }
+      }
+      //console.log(ordFreq("des")) //funciona!!
+      //ordFreq("asc")
+
+
+
+      // ordem alfabética do título dos textos (ou manter a ordem cronológica) - n é completamente necessário
+      function ordTitle(ord){ // percorre cada palavra??
+
+        if(ord == "alf"){
+          // em cada palavra, ordenar o array de textos e de títulos
+          return resultado.map(item => {
+            if(Array.isArray(item.titulo && Array.isArray(item.textos))){ // verifica se .titulo é array
+              //combina-os temporariamente
+              const combinados = item.titulo.map((t, i) => ({
+                titulo: t,
+                texto: item.textos[i]
+              }))
+
+              //sort by title
+              //item.titulo.sort((a,b) => a.localeCompare(b, 'pt', {sensitivity: 'base'}))
+              combinados-sort((a,b) => a.titulo.localeCompare(b.titulo, 'pt', {sensitive: 'base'}))  // case insensitive
+
+              //separa-os novamente
+              item.titulo = combinados.map(el => el.titulo)
+              item.textos = combinados.map(el => el.texto)
+            }
+            return item
+          })
+          
+        } 
+        else if (ord == "cro") { // cronológica - ordem original de id
+          // em cada palavra, ordenar o array de textos e de títulos
+          return resultado.map(item => {
+            if(Array.isArray(item.titulo && Array.isArray(item.textos))){ // verifica se .titulo é array
+              //combina-os temporariamente
+              const combinados = item.textos.map((texto, i) => ({
+                texto,
+                texto: item.textos[i]
+              }))
+
+              //sort by id_text
+              combinados-sort((a,b) => a.texto.id_text - b.texto.id_text)
+
+              //separa-os novamente
+              item.textos = combinados.map(el => el.texto)
+              item.titulo = combinados.map(el => el.titulo)
+            }
+            return item
+          })
+        }
+      }
+      //console.log(ordTitle("alf")) // funciona!!
+      //console.log(ordTitle('cro')) // funciona!!
+
+    // pesquisa por palavra e pesquisa pelo título (pesquisa do objeto [resultado] pelo título)
+    /*Precisaria de uma input box*/
+
+    //**************** [todas palavras]  *******************/
+
+
+
+
+
+      //** baseada na tabela de display em palavra selecionada **
+      let list_all_container = document.createElement("div");
+      document.querySelector(".div-display").appendChild(list_all_container);
+      list_all_container.className += "list-all-container";
+
+      //Header!!
+      let ct_head_list = document.createElement("div");
+      document.querySelector(".list-all-container").appendChild(ct_head_list);
+      ct_head_list.className += "list ct-head-list";
+
+      // conteudo do header!! (adicionar funções para ordenação de elementos)
+      ct_head_list.innerHTML = `  <div class = "palavras header"><h2>Palavra</h2><p id="Ord-Alfa">Ord: ${ordAlf}</p></div>
+                                      <div class = "texto header"><h2>Textos</h2><p>Textos que mencionam</p></div>
+                                      <div class = "frequencia header"><h2>Freq</h2><p id="Ord-Freq">Ord: ${ordFre}</p></div>`;
+
+      ct_head_list.style.backgroundColor = "yellow";
+
+
+
+      // conteudo após header //////////////////////
+      let container = document.createElement("div");
+      document.querySelector(".list-all-container").appendChild(container);
+      container.className = "container";
+
+
+
+    function displayResultado(){
+      //div_display.innerHTML = "";
+
+      // atualiza os headers
+      document.querySelector('#Ord-Alfa').textContent = `Ord: ${ordAlf}` // funciona!!
+      document.querySelector('#Ord-Freq').textContent = `Ord: ${ordFre}`
+
+      container.innerHTML = ""
+      //iteração para display
+      for (let i = 0; i < 20; i++) { // fazer display de x resultados por pagina
+        // teste das primeiras 3 palavras
+
+
+        //cria a div principal
+        let ct_item = document.createElement("div");
+        ct_item.className += "ct-item ct-item" + (i + 1);
+        container.appendChild(ct_item);
+
+
+        //let indexPal = todosOBJpalavrasSStopwords[i].indice; // busca apenas os indices das palavras sem stopwords
+
+
+        //divs dentro da div principal
+        let item_palavra = document.createElement("div");
+        document.querySelector(`.ct-item${i + 1}`).appendChild(item_palavra);
+        item_palavra.className += "item-palavra palavras";
+        item_palavra.innerHTML = `${resultado[i].palavra} `//${resultado[i].indice}`;//`${wordData.palavras[indexPal].palavra}`;
+
+        let item_textos = document.createElement("div");
+        document.querySelector(`.ct-item${i + 1}`).appendChild(item_textos);
+        item_textos.className += "item-textos texto";
+
+        for (let j = 0; j < resultado[i].textos.length; j++) {
+          // item a colocar dentro de "item_textos"
+          let texto_de_palavra = document.createElement("div");
+          //document.querySelector(".item-textos").appendChild(texto_de_palavra)
+          texto_de_palavra.className = "item-texto";
+          texto_de_palavra.innerHTML = `${resultado[i].textos[j].id_text}`; // em vez do id, colocar o número
+          item_textos.appendChild(texto_de_palavra);
+        }
+
+        let item_frequencia = document.createElement("div");
+        document.querySelector(`.ct-item${i + 1}`).appendChild(item_frequencia);
+        item_frequencia.className += "item-frequencia freq";
+        item_frequencia.innerHTML = `${resultado[i].freq}x`; //`${wordData.palavras[indexPal].frequencia}x`;
+      }
+
     }
 
+    displayResultado()
+
+    // ESTA PARTE É IMPORTANTE!!!
+  
+
+    /***************** Ordem Alfabetica ********************/
+    // Não chamar diretamente a função - usar arrow function ou função vazia!!
+     document.querySelector('#Ord-Alfa').addEventListener('click', (e) =>{
+      ordPal(ordAlf_)
+      displayResultado() // funcionouu!!!
+      console.log("Click!!") // funciona!!
+    }) // talvez n esteje destacado
+     document.querySelector('#Ord-Alfa').style.backgroundColor = "blue"
+
+
+
+    /***************** Ordem Freq ********************/
+    document.querySelector('#Ord-Freq').addEventListener('click', (e) =>{
+      ordFreq(ordFre_) // falta o valor
+      displayResultado() 
+      console.log("Click!!")
+    })
+    document.querySelector('#Ord-Freq').style.backgroundColor = "blue"
+
   }
+
+
+
+
+  // indexPal parece funcionar segundo estes parametros
+  // for(let i = 0; i < todosOBJpalavrasSStopwords.length; i++){
+  //   let indexPal = todosOBJpalavrasSStopwords[i].indice;
+  //   console.log(`${i-indexPal}`)
+  // }
 
 
 
