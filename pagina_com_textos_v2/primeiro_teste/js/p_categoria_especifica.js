@@ -80,49 +80,7 @@ fetchData()
 // testar ainda nesta pagina o funcionamento de wikipédia
 function displayData(wordData, textData, lemmasData, wikiData){
 
-    /*  Coisas a avançar nesta página:
-        Palavra:
-            - (feito!!) Verificar o problema do espaço nos autores na página especifica 
-            - (feito!) Verificar se existem eventualemte outros problemas com palavras
-            - (feito!) Ajustar a info da wikipédia para não ficar tão extensa
-
-        Gráfico:
-            - (feito!) Array com anos (exemplo de pág palavras e pág categorias)
-            - (feito!) Array com frequencia em cada ano (da palavra) - apenas existe uma por texto em que ocorre
-            - (feito!!)Colocar funcional para locais, anos e autores -> neste momento n está funcional!!!
-            - Pode ser necessário colocar em opacidade baixa, as ocorrencias totais da categoria (para comparação)
-            - (ESTE!!)Possibilidade de selecionar um elemento do gráfico e aceder a ele
-
-        Textos que mencionam (manter a lista dos ids dos textos)
-            - (Feito!!) Manter a lista dos ids dos textos que mencionam para colocar na tabela
-            - (Feito!!) Alterar o título da tabela conforme o nome da categoria (se autor, escrito por, se ano...)
-            - (ESTE!) Perceber pq brasil tem freq de 249 numa página e aqui tem 200
-            - (ESTE!) Colocar links para os textos na lista de textos (o msmo na pág das palavras)
-
-        Depois:
-            - (feito!!) Página das palavras: colocar os resultados das palavras populares em logaritmos
-            - (ESTE!!) Colocar links nas páginas de texto para as categorias e palavras específicas
     
-        CSS:(vou avançar aqui!!)
-            - Assim que tiver avançado, posso colocar css em todas as páginas das categorias [indica que estão mais prontas]
-                -> Inspirar nas páginas de palavras (colocar margens, definir tabelas e colocar graficos a preto)
-
-        Ainda na página das palavras:
-            - (feito!!)Ordenar os resultados das palavras (ordem alfabética, frequencia, e titulo de textos) (https://www.youtube.com/watch?v=hkCOsr4xyIc)
-            - (feito!!)Apresentar resultados do array de resultados (tem lá todos os valores)
-            - (PROCESSO)Chamar eventlistner click para reordenar resultados (está a ser complicado!!)
-                -> (feito!)Eliminar as funções a mais e tornar mais eficientes as que estão
-                -> (feito!)Colocar o filtro da frequencia a funcionar
-                -> (feito!)Colocar o filtro dos titulos alfabeticamente a funcionar vs cronologicamente
-            - Colocar todos os resultados (limitando o nº de resultados que aparecem por página (umas 20 por página))
-            - Colocar links nas PALAVRAS para poder aceder à sua página e TEXTOS
-            - Acrescentar possibilidade de ocultar/ mostrar os textos quando são muitos (ou) mostrar mais/menos (quando maior que 3)
-            - REPETIR OS FILTROS PARA AS OUTRAS PÁGINAS (depois da pesquisa livre!!)
-        
-            Gráfico:
-            - Criar versão de gráfico sem stopwords (testar com apenas frequencia, ou com TFIDF, ou com palavras/n de palavras total)
-    
-    */
 
     // Acedendo a dados de n de "especifica" por ano (igual a ano e autores em que conta 1 por texto se aparecer)
     // para específica: array para idTexto, freq, ano
