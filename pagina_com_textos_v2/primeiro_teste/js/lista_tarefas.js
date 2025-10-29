@@ -48,7 +48,7 @@
                 -> Testar como ordenar os resultados usando o filter()
                 -> Display dos resultados na tabela da plataforma
                     -> Todos os passos da tarefa anterior
-                    
+
             - Colocar links nas PALAVRAS para poder aceder à sua página e TEXTOS
             - Acrescentar possibilidade de ocultar/ mostrar os textos quando são muitos (ou) mostrar mais/menos (quando maior que 3)
             - REPETIR OS FILTROS PARA AS OUTRAS PÁGINAS (depois da pesquisa livre!!)
@@ -57,7 +57,8 @@
             - Criar versão de gráfico sem stopwords (testar com apenas frequencia, ou com TFIDF, ou com palavras/n de palavras total)
 
         Em PESQUISA DE TEXTOS:
-            - Colocar como default o modo amostra
+            - (feito!)Colocar como default o modo amostra
+            - (ESTE)Acrescentar mapa no modo mapa
             - Melhorar a parte da pontuação do modo amostra (verificar como foi feito na página inicial de textos)
             - Colocar os resultados todos em modo tabela (os da amostra e da tabela) - com CSS
             - Acrescentar o mapa com os locais e os textos (associá-los)

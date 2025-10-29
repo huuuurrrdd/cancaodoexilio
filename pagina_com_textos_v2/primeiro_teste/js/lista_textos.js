@@ -49,13 +49,12 @@ fetchData()
 function displayData(wordData, textData){
 
 
-
     /******************  Contentor geral  *******************/
     let textos_container = document.createElement("div")
     document.querySelector("body").appendChild(textos_container)
     textos_container.className = "textos-container"
 
-    //**  Título de página  ******************/
+    /****************  Título de página  ******************/
     page_title = document.createElement("h1")
     document.querySelector(".textos-container").appendChild(page_title)
     page_title.className += "page-title pesquisa-textos-h"
@@ -71,7 +70,7 @@ function displayData(wordData, textData){
 
 
     //**********  Botões para formas de display  *************/
-    //container
+    //contentor dos botoes (amostra, tabela, mapa)
     bts_visualização = document.createElement("div")
     document.querySelector(".textos-container").appendChild(bts_visualização)
     bts_visualização.className += "bts-visualização"
@@ -94,15 +93,15 @@ function displayData(wordData, textData){
 
     bt_tabela.style.backgroundColor = "red"
 
-    //div para display
+    //div para display dos resultados
     div_textos = document.createElement("div")
     document.querySelector("body").appendChild(div_textos)
     div_textos.className += "div-textos div-textos-display"
     //div_textos.innerHTML = "lala"
 
-    //**********  Display amostra  ***********/
-    bt_amostra.addEventListener("click", function (e){
-        div_textos.innerHTML = ""
+    // funcoes de display amostra, tabela e mapa
+    function displayAmostra(){
+                div_textos.innerHTML = ""
         //div_textos.innerText = "click!! Amostra"
 
         //** baseada na tabela de display em palavra selecionada **
@@ -173,11 +172,9 @@ function displayData(wordData, textData){
             return convertedn
 
         }
+    }
 
-    })
-
-    //**********  Display tabela  ***********/
-    bt_tabela.addEventListener("click", function (e){
+    function displayTabela(){
         div_textos.innerHTML = ""
 
         //** baseada na tabela de display em palavra selecionada **
@@ -217,17 +214,85 @@ function displayData(wordData, textData){
             container.appendChild(ct_item)
 
         }
+    }
+
+    function displayMapa(){
+        div_textos.innerHTML = ""
+        //div_textos.innerText = "click!! Mapa"
+
+        //div para mapa
+        let divMap = document.createElement("div")
+        div_textos.appendChild(divMap)
+        divMap.id = "map"
+
+        // //teste de coordenadas
+        // console.log(
+        //     `Teste latitude:${get_latitude(
+        //     textData[19 - 1].categorias.locais.coordenadas_geograficas[0]
+        //     )}`
+        // );
+        // console.log(
+        //     `Teste longitude:${get_longitude(
+        //     textData[19 - 1].categorias.locais.coordenadas_geograficas[0]
+        //     )}`
+        // );
+
+        const map = L.map("map", {
+            center: [33.5, -23,5],
+            zoom: 1.5,
+        });
+
+          L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            attribution:
+            '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        }).addTo(map);
 
         
+        const marker = [];
+        // funciona, mas tem alguns erros
+        for (t = 0; t < textData.length; t++) {
+            for (i = 0; i < textData[t].categorias.locais.coordenadas_geograficas.length; i++) {
+            //nota: pode ser necessário verificar se os textos apresentam ou nao coordenada!!
+            marker[i] = L.marker([
+                get_latitude(textData[t].categorias.locais.coordenadas_geograficas[i]),
+                get_longitude(textData[t].categorias.locais.coordenadas_geograficas[i]),
+            ])
+                .addTo(map)
+                .bindPopup(
+                `${textData[t].categorias.locais.locais_limpos[i]}, TEXTO: ${textData[t].title}`
+                );
+            }
+        }
 
+        function get_latitude(element) {
+            elemento_limpo = element.replace("(", "").replace(")", "");
+            latitude = elemento_limpo.split(", ")[0];
+            return latitude;
+        }
 
+        function get_longitude(element) {
+            elemento_limpo = element.replace("(", "").replace(")", "");
+            longitude = elemento_limpo.split(", ")[1];
+            return longitude;
+        }
+    }
+
+    displayMapa()
+    //displayAmostra() // display amostra como default (n tem problema com acumulação)
+
+    //**********  Display amostra  ***********/
+    bt_amostra.addEventListener("click", (e) =>{
+        displayAmostra()
+    })
+
+    //**********  Display tabela  ***********/
+    bt_tabela.addEventListener("click", (e) =>{
+        displayTabela()
     })
 
     //**********  Display mapa  ***********/
     bt_mapa.addEventListener("click", function (e){
-        div_textos.innerHTML = ""
-        div_textos.innerText = "click!! Mapa"
-
+        displayMapa()
     })
 
     // for(let i=0; i<textData.length; i++){

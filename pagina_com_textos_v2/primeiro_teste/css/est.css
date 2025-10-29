@@ -17,3 +17,8 @@ html, body{
     font-size: xxx-large;
 }
 
+  #map {
+    margin: auto;
+    width: 90%;
+    height: 50vh; 
+  }
