@@ -476,23 +476,41 @@ function displayData(wordData, textData, stoplist) {
     let rPP = 50 // resuktados por página
     let arrayResultados = [] // com indice de inicio e de fim (com ele incluido)
 
-    const divInteira = Math.floor(todosOBJpalavrasSStopwords.length / rPP)
-    const resto = todosOBJpalavrasSStopwords.length % rPP
+    const total = todosOBJpalavrasSStopwords.length // colocar isto dinamico!!
 
-    for(let i = 0; i < divInteira; i++){
-      const s = i > 0 ? i* rPP : 0
-      const e = s + rPP
 
-      arrayResultados.push({
-        st: s,
-        en: e
-      })
+    function resPPage(total, rPP){
+
+      const divInteira = Math.floor(total / rPP) // aqui deveria ser resultado.length
+      const resto = total % rPP
+
+      if(total <= rPP){ // se há menos de 50 resultados, só uma página
+        arrayResultados.push({ st:0, en: total})
+      } else {
+        // paginas completas
+        for(let i = 0; i < divInteira; i++){
+          const s = i > 0 ? i* rPP : 0
+          const e = s + rPP
+
+          arrayResultados.push({
+            st: s,
+            en: e
+          })
+        }
+        // ultima pagina incompleta
+        if(resto != 0) arrayResultados.push({
+          st : divInteira * rPP,
+          en: divInteira * rPP + resto
+        })
+      }
+
+      // resultado a devolver: arrayResultados
+
     }
 
-    if(resto != 0) arrayResultados.push({
-      st : divInteira * rPP,
-      en: divInteira * rPP + resto
-    })
+    resPPage(total, rPP)
+
+
 
     // valor de indice da página
     let iP = 0 //funciona!!
@@ -518,8 +536,14 @@ function displayData(wordData, textData, stoplist) {
             freq: palavraObj.frequencia // pode ser util ter um array com titulos dos textos
           })
       }
-
       //console.log(textData[12-1].title) // funciona
+
+      //Tentativa de search sem o input ///////////////// aaaaa funciona!!
+      const valPalavra = "lala"
+      const filteredResultado = resultado.filter(resultado => resultado.palavra.toLowerCase().includes(valPalavra))
+      console.log(filteredResultado) // resulta
+      //console.log(resultado) // funciona a mesma
+      //let initResultado = resultado // guarda o resultado inicial
 
 
       // ordem alfabética de PALAVRAS
@@ -638,12 +662,25 @@ function displayData(wordData, textData, stoplist) {
       ct_head_list.className += "list ct-head-list";
 
       // conteudo do header!! (adicionar funções para ordenação de elementos)
-      ct_head_list.innerHTML = `  <div class = "palavras header"><h2>Palavra</h2><p id="Ord-Alfa">Ord: ${ordAlf}</p></div>
-                                      <div class = "texto header"><h2>Textos</h2><p id="Ord-Tit">Ord: ${ordTit}</p></div>
+      ct_head_list.innerHTML = `  <div class = "palavras header"><h2>Palavra</h2><p id="Ord-Alfa">Ord: ${ordAlf}</p>
+                                              <div id="pal-search-bar">
+                                                <input id="pal-input" aria-label="palavra?" type="text" class="pal-search-bar__input" placehorder="Palavra?" autofocus required>
+                                                <button id="pal-submit" type="button" class="pal-search-bar_button" aria-label="search">Go</button>
+                                              </div>
+                                      </div>
+                                      <div class = "texto header"><h2>Textos</h2><p id="Ord-Tit">Ord: ${ordTit}</p>
+                                              <div id="pal-search-bar">
+                                                <input id="tit-input" aria-label="titulo?" type="text" class="tit-search-bar__input" placehorder="titulo?" autofocus required>
+                                                <button id="tit-submit" type="button" class="tit-search-bar_button" aria-label="search">Go</button>
+                                              </div>
+                                      </div>
                                       <div class = "frequencia header"><h2>Freq</h2><p id="Ord-Freq">Ord: ${ordFre}</p></div>`;
 
       ct_head_list.style.backgroundColor = "yellow";
 
+      //Botoes
+      const palSubmitButton = document.querySelector("#pal-submit")
+      const palInput = document.querySelector('#pal-input')
 
 
       // conteudo após header //////////////////////
@@ -653,7 +690,7 @@ function displayData(wordData, textData, stoplist) {
 
 
 
-    function displayResultado(){
+    function displayResultado(resultado, valor){
       
 
 
@@ -669,41 +706,49 @@ function displayData(wordData, textData, stoplist) {
 
       container.innerHTML = ""
       //iteração para display
-      for (let i = arrayResultados[iP].st; i < arrayResultados[iP].en; i++) { // fazer display de x resultados por pagina
 
-        //cria a div principal
-        let ct_item = document.createElement("div");
-        ct_item.className += "ct-item ct-item" + (i + 1);
-        container.appendChild(ct_item);
+      if(resultado == undefined || resultado == [] || resultado == ""){
+        container.innerHTML = `<p>Não foram encontrados resultados para: "${valor}" </p><br><br>`
+      } else {
+
+        for (let i = arrayResultados[iP].st; i < arrayResultados[iP].en; i++) { // fazer display de x resultados por pagina
+
+          //cria a div principal
+          let ct_item = document.createElement("div");
+          ct_item.className += "ct-item ct-item" + (i + 1);
+          container.appendChild(ct_item);
 
 
-        //let indexPal = todosOBJpalavrasSStopwords[i].indice; // busca apenas os indices das palavras sem stopwords
+          //let indexPal = todosOBJpalavrasSStopwords[i].indice; // busca apenas os indices das palavras sem stopwords
 
 
-        //divs dentro da div principal
-        let item_palavra = document.createElement("div");
-        document.querySelector(`.ct-item${i + 1}`).appendChild(item_palavra);
-        item_palavra.className += "item-palavra palavras";
-        item_palavra.innerHTML = `${resultado[i].palavra} `//${resultado[i].indice}`;//`${wordData.palavras[indexPal].palavra}`;
+          //divs dentro da div principal
+          let item_palavra = document.createElement("div");
+          document.querySelector(`.ct-item${i + 1}`).appendChild(item_palavra);
+          item_palavra.className += "item-palavra palavras";
+          item_palavra.innerHTML = `${resultado[i].palavra} `//${resultado[i].indice}`;//`${wordData.palavras[indexPal].palavra}`;
 
-        let item_textos = document.createElement("div");
-        document.querySelector(`.ct-item${i + 1}`).appendChild(item_textos);
-        item_textos.className += "item-textos texto";
+          let item_textos = document.createElement("div");
+          document.querySelector(`.ct-item${i + 1}`).appendChild(item_textos);
+          item_textos.className += "item-textos texto";
 
-        for (let j = 0; j < resultado[i].textos.length; j++) {
-          // item a colocar dentro de "item_textos"
-          let texto_de_palavra = document.createElement("div");
-          //document.querySelector(".item-textos").appendChild(texto_de_palavra)
-          texto_de_palavra.className = "item-texto";
-          texto_de_palavra.innerHTML = `${resultado[i].textos[j].id_text}  ${resultado[i].titulo[j]} `; // em vez do id, colocar o número
-          item_textos.appendChild(texto_de_palavra);
+          for (let j = 0; j < resultado[i].textos.length; j++) {
+            // item a colocar dentro de "item_textos"
+            let texto_de_palavra = document.createElement("div");
+            //document.querySelector(".item-textos").appendChild(texto_de_palavra)
+            texto_de_palavra.className = "item-texto";
+            texto_de_palavra.innerHTML = `${resultado[i].textos[j].id_text}  ${resultado[i].titulo[j]} `; // em vez do id, colocar o número
+            item_textos.appendChild(texto_de_palavra);
+          }
+
+          let item_frequencia = document.createElement("div");
+          document.querySelector(`.ct-item${i + 1}`).appendChild(item_frequencia);
+          item_frequencia.className += "item-frequencia freq";
+          item_frequencia.innerHTML = `${resultado[i].freq}x`; //`${wordData.palavras[indexPal].frequencia}x`;
         }
-
-        let item_frequencia = document.createElement("div");
-        document.querySelector(`.ct-item${i + 1}`).appendChild(item_frequencia);
-        item_frequencia.className += "item-frequencia freq";
-        item_frequencia.innerHTML = `${resultado[i].freq}x`; //`${wordData.palavras[indexPal].frequencia}x`;
       }
+
+      
 
       // div com bt de exibir pág de resuktados
       let nPages = document.createElement("div")
@@ -726,7 +771,7 @@ function displayData(wordData, textData, stoplist) {
 
     }
 
-    displayResultado()
+    displayResultado(resultado)
 
    //FILTROS______________________________________________________//
   
@@ -735,7 +780,7 @@ function displayData(wordData, textData, stoplist) {
     // Não chamar diretamente a função - usar arrow function ou função vazia!!
      document.querySelector('#Ord-Alfa').addEventListener('click', (e) =>{
       ordPal(ordAlf_)
-      displayResultado() // funcionouu!!!
+      displayResultado(resultado) // funcionouu!!!
       console.log("Click!!") // funciona!!
     }) // talvez n esteje destacado
      document.querySelector('#Ord-Alfa').style.backgroundColor = "blue"
@@ -744,7 +789,7 @@ function displayData(wordData, textData, stoplist) {
     /***************** Ordem Freq ********************/
     document.querySelector('#Ord-Freq').addEventListener('click', (e) =>{
       ordFreq(ordFre_) // falta o valor
-      displayResultado() 
+      displayResultado(resultado) 
       console.log("Click!!")
     })
     document.querySelector('#Ord-Freq').style.backgroundColor = "blue"
@@ -752,7 +797,7 @@ function displayData(wordData, textData, stoplist) {
     /***************** Ordem Tit ********************/
     document.querySelector('#Ord-Tit').addEventListener('click', (e) =>{
       ordTitle(ordTit_)
-      displayResultado() 
+      displayResultado(resultado) 
       console.log("Click!!") // funciona
       console.log(ordTit_) // está a alterar
     })
@@ -763,11 +808,25 @@ function displayData(wordData, textData, stoplist) {
       document.querySelector('#n-page' + i).addEventListener('click', (e) => {
         console.log(`Click, page ${document.querySelector('#n-page' + i).innerText}`)
         iP = i
-        displayResultado()
+        displayResultado(resultado)
       })
       //document.querySelector('#n-page' + i).style.backgroundColor = "yellow"
     }
+    palInput.addEventListener('input', (e) =>{
+      let value = e.target.value
 
+      if(value && value.trim().length > 0){
+        value = value.trim().toLowerCase()
+        
+        const filteredResultado = resultado.filter(resultado => resultado.palavra.toLowerCase().includes(value)) // opcao caso seja undefined
+        if(filteredResultado == undefined){
+          filteredResultado = ""
+        }
+
+        //console.log(filteredResultado)
+        displayResultado(filteredResultado, value) // tem erro no undefined (preciso de diplay quando n há resultados)
+      }
+    })
 
 
   }
