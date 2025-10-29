@@ -480,6 +480,7 @@ function displayData(wordData, textData, stoplist) {
 
 
     function resPPage(total, rPP){
+      arrayResultados = []
 
       const divInteira = Math.floor(total / rPP) // aqui deveria ser resultado.length
       const resto = total % rPP
@@ -710,8 +711,8 @@ function displayData(wordData, textData, stoplist) {
       if(resultado == undefined || resultado == [] || resultado == ""){
         container.innerHTML = `<p>Não foram encontrados resultados para: "${valor}" </p><br><br>`
       } else {
-
         for (let i = arrayResultados[iP].st; i < arrayResultados[iP].en; i++) { // fazer display de x resultados por pagina
+
 
           //cria a div principal
           let ct_item = document.createElement("div");
@@ -748,6 +749,9 @@ function displayData(wordData, textData, stoplist) {
         }
       }
 
+      // remove outro nPages que existam anteriormente em list_all_container
+      const oldPages = list_all_container.querySelector('.n-page-ct')
+      if(oldPages) oldPages.remove()
       
 
       // div com bt de exibir pág de resuktados
@@ -756,19 +760,23 @@ function displayData(wordData, textData, stoplist) {
       nPages.className += "n-page n-page-ct"
       //nPages.innerHTML = "ATCHUMMM"
 
-      for(let i = 0; i < arrayResultados.length; i++){
-        let nPage = document.createElement("div")
-        nPages.appendChild(nPage)
-        nPage.className += "n-page n-page" + i
-        nPage.id = `n-page${i}`
-        nPage.innerText = i
+      if(resultado == undefined || resultado == [] || resultado == ""){
+        nPages.innerHTML = ""
+      } else {
+         nPages.innerHTML = ""
+        for(let i = 0; i < arrayResultados.length; i++){ // isto atualiza-se, mas 
+          let nPage = document.createElement("div")
+          nPages.appendChild(nPage)
+          nPage.className += "n-page n-page" + i
+          nPage.id = `n-page${i}`
+          nPage.innerText = i+1
 
       //   nPage.addEventListener('click', (e) =>{
       //   console.log(`Click, page ${nPage.innerText}`)
       //   iP = i // tem de ser chamado acima
       // })
+        }
       }
-
     }
 
     displayResultado(resultado)
@@ -804,27 +812,57 @@ function displayData(wordData, textData, stoplist) {
     document.querySelector('#Ord-Tit').style.backgroundColor = "blue"
 
     /***************** Separadores page ********************/
-    for(let i = 0; i < arrayResultados.length; i++){ //funiona!!
-      document.querySelector('#n-page' + i).addEventListener('click', (e) => {
-        console.log(`Click, page ${document.querySelector('#n-page' + i).innerText}`)
-        iP = i
-        displayResultado(resultado)
-      })
-      //document.querySelector('#n-page' + i).style.backgroundColor = "yellow"
+    function sepPage(){
+        for(let i = 0; i < arrayResultados.length; i++){ //funiona!! // deve ser por arrayResultados ter de se atualizar!!
+        document.querySelector('#n-page' + i).addEventListener('click', (e) => {
+          console.log(`Click, page ${document.querySelector('#n-page' + i).innerText}`)
+          iP = i
+          displayResultado(resultado)
+        })
+        document.querySelector('#n-page' + i).style.backgroundColor = "yellow" // após atualização dos filtros isto deixa de funcionar
+      }
     }
+    sepPage() // ainda preciso de perceber!!
+
+     /***************** Pesquisa de palavras ********************/
     palInput.addEventListener('input', (e) =>{
       let value = e.target.value
 
       if(value && value.trim().length > 0){
         value = value.trim().toLowerCase()
         
-        const filteredResultado = resultado.filter(resultado => resultado.palavra.toLowerCase().includes(value)) // opcao caso seja undefined
-        if(filteredResultado == undefined){
-          filteredResultado = ""
-        }
+        const filteredResultado = resultado
+          .filter(item =>{ // que compara a palavra com o valor normalizado
+            const palavra = normalize(item?.palavra || "")
+            const val = normalize(value) // input-value normalizado
+            return palavra.includes(val)
+          })
+          .sort((a,b) => { // ordem alfabetica com os valores dos resultados normalizados
+              const aPal = normalize(a.palavra)
+              const bPal = normalize(b.palavra)
+              const val = normalize(value) // input-value normalizado
 
+              const aStarts = aPal.startsWith(val) // compara se começa com o valor versao normalizada
+              const bStarts = bPal.startsWith(val)
+
+              if(aStarts && !bStarts) return -1
+              if(!aStarts && bStarts) return 1
+
+              return aPal.localeCompare(bPal, 'pt', { sensitivity: 'base' })
+
+          })
+
+
+        // if(filteredResultado == undefined){
+        //   filteredResultado = ""
+        // }
+        resPPage(filteredResultado.length, rPP) // still error
+        //console.log(filteredResultado.length)
         //console.log(filteredResultado)
         displayResultado(filteredResultado, value) // tem erro no undefined (preciso de diplay quando n há resultados)
+      } else{
+        resPPage(resultado.length, rPP)
+        displayResultado(resultado, value)
       }
     })
 
@@ -919,4 +957,12 @@ function displayData(wordData, textData, stoplist) {
   //displayPalavrasPop()
   bt_palavras_pop.addEventListener("click", displayPalavrasPop)
 
+}
+
+
+function normalize(str){
+  return str
+    ?.toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
 }

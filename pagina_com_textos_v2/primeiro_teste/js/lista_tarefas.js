@@ -35,9 +35,20 @@
             - (feito!)Colocar todos os resultados (limitando o nº de resultados que aparecem por página (umas 50 por página))
                 -> Falta colocar indices em 'inline'
                 -> colocar '...' agrupando os que estão a ocupar muito espaço ->talvez um array de 3?  (n sei como se faz!!)
-            - (ESTE!!)Acrescentar pesquisa livre (em palavras e titulos):
-                -> Permitir pesquisar palavras por titulo
-                -> Criar input box + guardar o valor e comparar o resultado (ver tutoriais de como fazer!!)
+            - (EM PROCESSO...) Acrescentar pesquisa livre de PALAVRAS:
+                -> (feito!)Colocar input html
+                -> (feito!)Pesquisa pelo valor do input
+                -> (feito!)Aparecer os resultados na tabela da plataforma
+                    -> (feito!)Colocar resultados ordenados conforme as primeiras letras do input.value
+                    -> (feito!)Permitir pesquisa ignorando pontuação
+                    -> (feito!)Atualizar numero de páginas conforme a numeração dos resultados
+                    -> Atualizar eventListner dos indices das páginas (provavlmente n estão compatíveis, mas uma questão de analizar os arrays)
+            - Acrescentar pesquisar palavras por titulo
+                -> Criar uma inputbox em html
+                -> Testar como ordenar os resultados usando o filter()
+                -> Display dos resultados na tabela da plataforma
+                    -> Todos os passos da tarefa anterior
+                    
             - Colocar links nas PALAVRAS para poder aceder à sua página e TEXTOS
             - Acrescentar possibilidade de ocultar/ mostrar os textos quando são muitos (ou) mostrar mais/menos (quando maior que 3)
             - REPETIR OS FILTROS PARA AS OUTRAS PÁGINAS (depois da pesquisa livre!!)
