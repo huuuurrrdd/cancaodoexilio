@@ -71,17 +71,17 @@ function displayData(wordData, textData){
 
     //**********  Botões para formas de display  *************/
     //contentor dos botoes (amostra, tabela, mapa)
-    bts_visualização = document.createElement("div")
-    document.querySelector(".textos-container").appendChild(bts_visualização)
-    bts_visualização.className += "bts-visualização"
+    bts_visualizacao = document.createElement("div")
+    textos_container.appendChild(bts_visualizacao)
+    bts_visualizacao.className += "bts-visualizacao"
 
     bt_amostra = document.createElement("div")
     bt_tabela = document.createElement("div")
     bt_mapa = document.createElement("div")
 
-    document.querySelector(".bts-visualização").appendChild(bt_amostra)
-    document.querySelector(".bts-visualização").appendChild(bt_tabela)
-    document.querySelector(".bts-visualização").appendChild(bt_mapa)
+    document.querySelector(".bts-visualizacao").appendChild(bt_amostra)
+    document.querySelector(".bts-visualizacao").appendChild(bt_tabela)
+    document.querySelector(".bts-visualizacao").appendChild(bt_mapa)
 
     bt_amostra.classname = "bt-amostra"
     bt_tabela.classname = "bt-tabela"
@@ -95,23 +95,23 @@ function displayData(wordData, textData){
 
     //div para display dos resultados
     div_textos = document.createElement("div")
-    document.querySelector("body").appendChild(div_textos)
+    textos_container.appendChild(div_textos)
     div_textos.className += "div-textos div-textos-display"
     //div_textos.innerHTML = "lala"
 
     // funcoes de display amostra, tabela e mapa
     function displayAmostra(){
-                div_textos.innerHTML = ""
+        div_textos.innerHTML = ""
         //div_textos.innerText = "click!! Amostra"
 
         //** baseada na tabela de display em palavra selecionada **
         let list_all_container = document.createElement("div")
         document.querySelector(".div-textos").appendChild(list_all_container)
-        list_all_container.className += "list-all-container"
+        list_all_container.className += "list-all-container lista-amostra"
 
         //Header!!
         let ct_head_list = document.createElement("div")
-        document.querySelector(".list-all-container").appendChild(ct_head_list)
+        document.querySelector(".lista-amostra").appendChild(ct_head_list)
         ct_head_list.className += "list ct-head-list"
 
         // conteudo do header!!
@@ -122,8 +122,8 @@ function displayData(wordData, textData){
         ct_head_list.style.backgroundColor = "yellow"
 
         let container = document.createElement("div")
-        document.querySelector(".list-all-container").appendChild(container)
-        container.className = "container"
+        document.querySelector(".lista-amostra").appendChild(container)
+        container.className = "container container-a"
 
 
         //iteração para display
@@ -131,15 +131,15 @@ function displayData(wordData, textData){
             
             //cria a div principal
             let ct_item = document.createElement("div")
-            ct_item.className += "ct-item ct-item" + (i+1)
+            ct_item.className += "ct-item-amostra ct-item" + (i+1)
 
             texto_tratado = tratamento_texto(textData[i].texto_completo)
 
             //elementos do item (Transformar n/n/ em parágrafo + reduzir a quantidade de texto!!)
-            ct_item.innerHTML = `<div class = "titul">${textData[i].title}</div>
-                                 <div class = "texto"><p>${texto_tratado}</p></div>
-                                 <div class = "author">${textData[i].author}</div>
-                                 <div class = "ano">${textData[i].date_of_publication}</div> </br> </br>`
+            ct_item.innerHTML = `<div class = "titul-a">${textData[i].title}</div>
+                                 <div class = "texto-a"><p>${texto_tratado}</p></div>
+                                 <div class = "author-a">${textData[i].author}</div>
+                                 <div class = "ano-a">${textData[i].date_of_publication}</div> </br> </br>`
             
             container.appendChild(ct_item)
 
@@ -277,8 +277,7 @@ function displayData(wordData, textData){
         }
     }
 
-    displayMapa()
-    //displayAmostra() // display amostra como default (n tem problema com acumulação)
+    
 
     //**********  Display amostra  ***********/
     bt_amostra.addEventListener("click", (e) =>{
@@ -300,6 +299,9 @@ function displayData(wordData, textData){
     // }
 
     //sort_text = textData.date_of_publication.sort((a, b) => a - b)
+
+    //displayMapa()
+    displayAmostra() // display amostra como default (n tem problema com acumulação)
 
 
     /***********  Display das funções  ***********/

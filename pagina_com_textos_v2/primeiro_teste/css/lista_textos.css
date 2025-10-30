@@ -1,0 +1,57 @@
+.textos-container{
+    margin:auto;
+    width: 70%;
+}
+
+.page-title{
+    font-family:"Oswald";
+    font-size: xxx-large;
+}
+
+
+/******** bts *********/
+.bts-visualizacao{
+    display: flex; /*Falta dar um espacinho*/
+    
+}
+
+/******** header *********/
+.ct-head-list{
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+/******** entradas (distinguir entre amostra e tabela) *********/
+
+.ct-item{ /*item tabela*/
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+.container-a{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+ .ct-item-amostra{
+    height: 275px;
+    background: #cacaca;
+    display: inline-block;
+    margin: 1rem; /*Tentar que fique junto as extremidades*/
+    cursor: pointer;
+    width: 300px;
+    overflow: hidden;
+} 
+
+
+
+/******** items-header e tabela *********/
+.ano { grid-area: 1 / 1 / 2 / 3; }
+.titul { grid-area: 1 / 3 / 2 / 7; }
+.author { grid-area: 1 / 7 / 2 / 10; }

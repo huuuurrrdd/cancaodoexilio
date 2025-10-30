@@ -58,7 +58,8 @@
 
         Em PESQUISA DE TEXTOS:
             - (feito!)Colocar como default o modo amostra
-            - (ESTE)Acrescentar mapa no modo mapa
+            - (feito!)Acrescentar mapa no modo mapa
+            - (feito!)Colocar resultados em forma de grid (está em forma de flex)
             - Melhorar a parte da pontuação do modo amostra (verificar como foi feito na página inicial de textos)
             - Colocar os resultados todos em modo tabela (os da amostra e da tabela) - com CSS
             - Acrescentar o mapa com os locais e os textos (associá-los)
