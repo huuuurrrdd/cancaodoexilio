@@ -710,7 +710,6 @@ function displayData(wordData, textData, stoplist) {
       } else {
         for (let i = arrayResultados[iP].st; i < arrayResultados[iP].en; i++) { // fazer display de x resultados por pagina
 
-
           //cria a div principal
           let ct_item = document.createElement("div");
           ct_item.className += "ct-item ct-item" + (i + 1);
@@ -746,12 +745,13 @@ function displayData(wordData, textData, stoplist) {
         }
       }
 
+      /*:::::  Display de páginas de resultados  :::::*/
       // remove outro nPages que existam anteriormente em list_all_container
       const oldPages = list_all_container.querySelector('.n-page-ct')
       if(oldPages) oldPages.remove()
       
 
-      // div com bt de exibir pág de resuktados
+      // div com bts de exibir pág de resultados
       let nPages = document.createElement("div")
       list_all_container.appendChild(nPages)
       nPages.className += "n-page n-page-ct"
@@ -778,8 +778,7 @@ function displayData(wordData, textData, stoplist) {
 
     displayResultado(resultado)
 
-   //FILTROS______________________________________________________//
-  
+   /*:::::::::::  ____________FILTROS____________  :::::::::::*/
 
     /***************** Ordem Alfabetica ********************/
     // Não chamar diretamente a função - usar arrow function ou função vazia!!

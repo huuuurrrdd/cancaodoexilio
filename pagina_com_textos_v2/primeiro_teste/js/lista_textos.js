@@ -163,6 +163,40 @@ function displayData(wordData, textData){
     // console.log(textData)
 
 
+    /*:::::::::::  Tratamento de texto  :::::::::::*/
+    function tratamento_texto(texto){
+        let nNs = 0
+
+        let res = ''
+
+        for(let i = 0; i < texto.length; i++){
+            const char = texto[i] // char é array de todos os caracteres
+
+            if(char ==='\n'){ // se caracter for nova linha, soma
+                nNs++
+                if(nNs > 6){ // se linha > 6 quebra
+                    break
+                }
+                res += '<br>'
+            } else if(char !== '\r'){ //n percebo esta parte
+                res += char
+            }
+        }
+
+        return res
+    }
+    //testando a funcao:
+    //console.log(tratamento_texto(textData[1].texto_completo)) //funciona!!
+
+    // //:::::: Teste para tratamento de texto :::::://
+    // let texto_inicial = document.querySelector("div")
+    // document.querySelector("body").appendChild(texto_inicial)
+    // texto_inicial.innerHTML = textData[1].texto_completo + "<br> <br>"
+
+    // let teste_texto = document.createElement("div")
+    // document.querySelector("body").appendChild(teste_texto)
+    // teste_texto.innerHTML = tratamento_texto(textData[1].texto_completo)
+
     /******************  Contentor geral  *******************/
     let textos_container = document.createElement("div")
     document.querySelector("body").appendChild(textos_container)
@@ -229,19 +263,19 @@ function displayData(wordData, textData){
         ct_head_list.className += "list ct-head-list"
 
         // conteudo do header!!
-        ct_head_list.innerHTML = `  <div class = "ano header"><h2>Data publicação</h2><p>Ord: ${ordDat}</p>
+        ct_head_list.innerHTML = `  <div class = "ano header"><h2>Data publicação</h2><p id = "Ord-Dat">Ord: ${ordDat}</p>
                                         <div id = "year-search-bar">
                                             <input id="yeartxt-input" aria-label="ano?" type="text" class="year-search-bar__input" placeholder="ano?" autofocus required>
                                             <button id="yeartxt-submit" type="button" class="year-search-bar__button" aria-label=""search>GO</button>
                                         </div>
                                     </div>
-                                    <div class = "titul header"><h2>Título</h2><p>Ord: ${ordTit}</p>
+                                    <div class = "titul header"><h2>Título</h2><p id = "Ord-Tit">Ord: ${ordTit}</p>
                                         <div id = "titultxt-search-bar">
                                             <input id="titultxt-input" aria-label="ano?" type="text" class="titultxt-search-bar__input" placeholder="ano?" autofocus required>
                                             <button id="titultxt-submit" type="button" class="titultxt-search-bar__button" aria-label=""search>GO</button>
                                         </div>
                                     </div>
-                                    <div class = "author header"><h2>Autor</h2><p>Ord: ${ordAut}</p>
+                                    <div class = "author header"><h2>Autor</h2><p id = "Ord-Aut">Ord: ${ordAut}</p>
                                         <div id = "autortxt-search-bar">
                                             <input id="autortxt-input" aria-label="ano?" type="text" class="autortxt-search-bar__input" placeholder="ano?" autofocus required>
                                             <button id="autortxt-submit" type="button" class="autortxt-search-bar__button" aria-label=""search>GO</button>
@@ -266,7 +300,7 @@ function displayData(wordData, textData){
         document.querySelector(".lista-amostra").appendChild(container)
         container.className = "container container-a"
 
-        //n funcional, pq n foi chamada!!!
+        //n funcional, pq n foi chamada!!! (resultado = textData)
         function displayResultadotxt(resultado, valor){ // n sei se isto funciona por ser o original!!
             //console.log(arrayResultados)
 
@@ -282,10 +316,12 @@ function displayData(wordData, textData){
             if(resultado == undefined || resultado == [] || resultado == ""){
                 container.innerHTML = `<p>Não foram encontrados resultados para: "${valor}" </p><br><br>`
             } else {
-                for(let i = 0; i < resultado.length; i++){
+                for(let i = arrayResultados[iP].st; i < arrayResultados[iP].en; i++){
+
                     //cria a div principal
                     let ct_item = document.createElement("div")
                     ct_item.className += "ct-item-amostra ct-item" + (i+1)
+                    container.appendChild(ct_item)
 
                     texto_tratado = tratamento_texto(resultado[i].texto_completo)
 
@@ -295,45 +331,85 @@ function displayData(wordData, textData){
                                         <div class = "author-a">${resultado[i].author}</div>
                                         <div class = "ano-a">${resultado[i].date_of_publication}</div> </br> </br>`
                     
-                    container.appendChild(ct_item)
+                    
                 }
             }
 
+            /*:::::  Display de páginas de resultados  :::::*/
             // remove outro nPages que existam anteriormente em list_all_container
             const oldPages = list_all_container.querySelector('.n-page-ct')
             if(oldPages) oldPages.remove()
-            
-        }
 
-        
+            // div com bts de exibir pag de resultados
+            let nPages = document.createElement("div")
+            list_all_container.appendChild(nPages)
+            nPages.className += "n-page n-page-ct"
+            //nPages.innerHTML = "ATCHUMMM"
 
 
-        function tratamento_texto(texto){ // falta refinar
-            //n/n/ to <br>
-            let nstring = texto.match(/\S+|\r?\n/g)
-            //console.log (`teste 1: ${nstring}`) //funciona!!
+            if(resultado == undefined || resultado == [] || resultado == ""){
+                nPages.innerHTML = ""
+            } else {
+                nPages.innerHTML = ""
+                for(let i = 0; i < arrayResultados.length; i++){ // isto atualiza-se, mas 
+                    let nPage = document.createElement("div")
+                    nPages.appendChild(nPage)
+                    nPage.className += "n-page n-page" + i
+                    nPage.id = `n-page${i}`
+                    nPage.innerText = i+1
 
-            // limitar... ao fim de 8 n/ não devolve
-            let nNs = 0
-
-            let convertedn = nstring.map(item => {
-                if(nNs >= 8){
-                    return null; //para de produzir output ao 8º "n"
+                    //   nPage.addEventListener('click', (e) =>{
+                    //   console.log(`Click, page ${nPage.innerText}`)
+                    //   iP = i // tem de ser chamado acima
+                    // })
                 }
-                if(item === "\n"){
-                    nNs++
-                    if(nNs > 5){
-                        return null
-                    }else{
-                        return "<br>"
-                    }
-                    
-                }return item
-            }).filter(x => x !== null)
-
-            return convertedn
-
+            }
         }
+
+        displayResultadotxt(textData)
+
+        /*:::::::::::  ____________FILTROS____________  :::::::::::*/
+
+        /***************** Ordem Alfabetica [titulo] ********************/
+        document.querySelector('#Ord-Tit').addEventListener('click', (e) => { // a ter dificuldade a ler sort por causa de "<anonimus>"
+            //console.log("click!!") // funciona!!
+            console.log(textData)
+            ordTitleTxt(ordTit_) // dá erro aqui
+            //console.log(textData)
+            //displayResultadotxt(textData)
+            console.log("click!!")
+        })
+        document.querySelector('#Ord-Tit').style.backgroundColor = "blue"
+
+        // /***************** Ordem Alfabetica [autor] ********************/
+        // document.querySelector('#Ord-Aut').addEventListener('click', (e) => {
+        //     ordTitleTxt(ordAut_)
+        //     displayResultadotxt(textData)
+        //     console.log("click!!")
+        // })
+        // document.querySelector('#Ord-Aut').style.backgroundColor = "blue"
+
+        // /***************** Ordem cronologica ********************/
+        // document.querySelector('#Ord-Dat').addEventListener('click', (e) => {
+        //     ordTitleTxt(ordDat_)
+        //     displayResultadotxt(textData)
+        //     console.log("click!!")
+        // })
+        // document.querySelector('#Ord-Dat').style.backgroundColor = "blue"
+
+        /***************** Separadores page ********************/
+        function sepPage(){
+            for(let i = 0; i < arrayResultados.length; i++){ //funiona!! // deve ser por arrayResultados ter de se atualizar!!
+                    document.querySelector('#n-page' + i).addEventListener('click', (e) => {
+                    console.log(`Click, page ${document.querySelector('#n-page' + i).innerText}`)
+                    iP = i
+                    displayResultado(resultado)
+                })
+                document.querySelector('#n-page' + i).style.backgroundColor = "yellow" // após atualização dos filtros isto deixa de funcionar
+            }
+        }
+        sepPage() // ainda preciso de perceber!!
+        
     }
 
     function displayTabela(){
