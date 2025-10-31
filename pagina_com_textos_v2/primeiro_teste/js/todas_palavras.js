@@ -472,7 +472,8 @@ function displayData(wordData, textData, stoplist) {
     //console.log(wordData.palavras.length) // tem mais palavras
 
 
-    // obtendo a divisão por 20, descobrir o resto
+    /*:::::::::::  Resultados p/pagina  :::::::::::*/
+    // obtendo a divisão por 50, descobrir o resto
     let rPP = 50 // resuktados por página
     let arrayResultados = [] // com indice de inicio e de fim (com ele incluido)
 
@@ -518,7 +519,7 @@ function displayData(wordData, textData, stoplist) {
 
 
 
-    // Array de obj com RESULTADOS
+    /*:::::::::::  Array de obj com RESULTADOS  :::::::::::*/
       let resultado = []
 
       for( let i = 0; i < todosOBJpalavrasSStopwords.length; i++){
@@ -547,7 +548,7 @@ function displayData(wordData, textData, stoplist) {
       //let initResultado = resultado // guarda o resultado inicial
 
 
-      // ordem alfabética de PALAVRAS
+      /*:::::::::::  Ordem alfabética de PALAVRAS  :::::::::::*/
       function ordPal(ord) {
         console.log("Ord Function")
         if(ord == "AZ"){
@@ -563,7 +564,7 @@ function displayData(wordData, textData, stoplist) {
       //console.log(ordPal("ZA"))//funciona!!
       //ordPal("ZA")
 
-      // ordenar PALAVRAS por frequencia
+      /*::::::::::: Ordem PALAVRAS por frequencia :::::::::::*/
       function ordFreq(ord){
         if(ord == "des"){
           resultado.sort((a,b) => a.freq < b.freq ? -1 : 1).reverse()
@@ -579,8 +580,7 @@ function displayData(wordData, textData, stoplist) {
       //ordFreq("asc")
 
 
-
-      // ordem alfabética do título dos textos (ou manter a ordem cronológica) - n é completamente necessário
+      /*::::::::::: Ordem alfabética ou cronologica do título de textos :::::::::::*/
       function ordTitle(ord){ // percorre cada palavra??
 
         if(ord === "alf"){
@@ -665,13 +665,13 @@ function displayData(wordData, textData, stoplist) {
       // conteudo do header!! (adicionar funções para ordenação de elementos)
       ct_head_list.innerHTML = `  <div class = "palavras header"><h2>Palavra</h2><p id="Ord-Alfa">Ord: ${ordAlf}</p>
                                               <div id="pal-search-bar">
-                                                <input id="pal-input" aria-label="palavra?" type="text" class="pal-search-bar__input" placehorder="Palavra?" autofocus required>
+                                                <input id="pal-input" aria-label="palavra?" type="text" class="pal-search-bar__input" placeholder="Palavra?" autofocus required>
                                                 <button id="pal-submit" type="button" class="pal-search-bar_button" aria-label="search">Go</button>
                                               </div>
                                       </div>
                                       <div class = "texto header"><h2>Textos</h2><p id="Ord-Tit">Ord: ${ordTit}</p>
                                               <div id="pal-search-bar">
-                                                <input id="tit-input" aria-label="titulo?" type="text" class="tit-search-bar__input" placehorder="titulo?" autofocus required>
+                                                <input id="tit-input" aria-label="titulo?" type="text" class="tit-search-bar__input" placeholder="titulo?" autofocus required>
                                                 <button id="tit-submit" type="button" class="tit-search-bar_button" aria-label="search">Go</button>
                                               </div>
                                       </div>
@@ -679,7 +679,7 @@ function displayData(wordData, textData, stoplist) {
 
       ct_head_list.style.backgroundColor = "yellow";
 
-      //Botoes
+      /*:::::  Botoes  :::::*/
       const palSubmitButton = document.querySelector("#pal-submit")
       const palInput = document.querySelector('#pal-input')
 
@@ -692,15 +692,12 @@ function displayData(wordData, textData, stoplist) {
 
 
     function displayResultado(resultado, valor){
-      
-
-
     //console.log(arrayResultados) // funcionou
 
     // console.log(todosOBJpalavrasSStopwords.length % rPP) // total é 9100%20 = 10 (se resto != 0, acrescenta 1 pagina)
     // console.log(Math.floor(todosOBJpalavrasSStopwords.length / rPP)) // resultou!! + 1
 
-      // atualiza os headers
+      /*:::::  Atualiza os headers  :::::*/
       document.querySelector('#Ord-Alfa').textContent = `Ord: ${ordAlf}` // funciona!!
       document.querySelector('#Ord-Freq').textContent = `Ord: ${ordFre}`
       document.querySelector('#Ord-Tit').textContent = `Ord: ${ordTit}`
