@@ -371,31 +371,28 @@ function displayData(wordData, textData){
         /*:::::::::::  ____________FILTROS____________  :::::::::::*/
 
         /***************** Ordem Alfabetica [titulo] ********************/
-        document.querySelector('#Ord-Tit').addEventListener('click', (e) => { // a ter dificuldade a ler sort por causa de "<anonimus>"
-            //console.log("click!!") // funciona!!
-            console.log(textData)
-            ordTitleTxt(ordTit_) // dá erro aqui
-            //console.log(textData)
-            //displayResultadotxt(textData)
-            console.log("click!!")
+        document.querySelector('#Ord-Tit').addEventListener('click', (e) => { // filtros funcionais
+            ordTitleTxt(ordTit_, textData) // dá erro aqui
+            displayResultadotxt(textData)
+            //console.log("click!!")
         })
         document.querySelector('#Ord-Tit').style.backgroundColor = "blue"
 
-        // /***************** Ordem Alfabetica [autor] ********************/
-        // document.querySelector('#Ord-Aut').addEventListener('click', (e) => {
-        //     ordTitleTxt(ordAut_)
-        //     displayResultadotxt(textData)
-        //     console.log("click!!")
-        // })
-        // document.querySelector('#Ord-Aut').style.backgroundColor = "blue"
+        /***************** Ordem Alfabetica [autor] ********************/
+        document.querySelector('#Ord-Aut').addEventListener('click', (e) => {
+            ordAutores(ordAut_, textData)
+            displayResultadotxt(textData)
+            console.log("click!!")
+        })
+        document.querySelector('#Ord-Aut').style.backgroundColor = "blue"
 
-        // /***************** Ordem cronologica ********************/
-        // document.querySelector('#Ord-Dat').addEventListener('click', (e) => {
-        //     ordTitleTxt(ordDat_)
-        //     displayResultadotxt(textData)
-        //     console.log("click!!")
-        // })
-        // document.querySelector('#Ord-Dat').style.backgroundColor = "blue"
+        /***************** Ordem cronologica ********************/
+        document.querySelector('#Ord-Dat').addEventListener('click', (e) => {
+            ordData(ordDat_, textData)
+            displayResultadotxt(textData)
+            console.log("click!!")
+        })
+        document.querySelector('#Ord-Dat').style.backgroundColor = "blue"
 
         /***************** Separadores page ********************/
         function sepPage(){
