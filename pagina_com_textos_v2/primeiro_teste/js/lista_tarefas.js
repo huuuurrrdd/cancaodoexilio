@@ -62,7 +62,7 @@
             - (feito!)Colocar resultados em forma de grid (está em forma de flex)
             - Melhorar a parte da pontuação do modo amostra (verificar como foi feito na página inicial de textos)
             - Colocar os resultados todos em modo tabela (os da amostra e da tabela) - com CSS
-            - Acrescentar o mapa com os locais e os textos (associá-los)
+            - (feito!)Acrescentar o mapa com os locais e os textos (associá-los)
             - Colocar filtros de pesquisa em "amostra" e "tabela"
                 -> Ordenar por ano (crescente e decrescente) -> inspirar nas funções das palavras
                 -> Ordenar por título alfabeticamente (e reverse())

@@ -273,7 +273,7 @@ function displayData(wordData, textData){
         // conteudo do header!!
         ct_head_list.innerHTML = `  <div class = "ano header"><h2>Data publicação</h2><p id = "Ord-Dat">Ord: ${ordDat}</p>
                                         <div id = "year-search-bar">
-                                            <input id="yeartxt-input" aria-label="ano?" type="text" class="year-search-bar__input" placeholder="ano?" autofocus required>
+                                            <input id="yeartxt-input" aria-label="ano?" type="number" class="year-search-bar__input" placeholder="ano?" autofocus required>
                                             <button id="yeartxt-submit" type="button" class="year-search-bar__button" aria-label=""search>GO</button>
                                         </div>
                                     </div>
@@ -415,8 +415,40 @@ function displayData(wordData, textData){
         }
         sepPage() // ainda preciso de perceber!!
 
+
+
         /*:::::::::::  __Pesquisa livre__  :::::::::::*/
-        //n está funcional!!
+        // pode ser criada uma funcao a parte adaptada para os valores e nomes de variaveis!!
+        /***************** Year pesquisa ********************/
+        //este está complicado!!
+        yearInput.addEventListener('input', (e) =>{ // n pode ser com local compare
+            let value = e.target.value
+
+            if(value && value.trim().length > 0){
+                value = value.trim().toLowerCase()
+
+                const filteredResultado = textData // ver como se faz para numeros
+                    .filter(item => {
+                        const year = item?.date_of_publication || "" // n sei se o titulo foi bem recolhido
+                        const val = value
+                        return year.includes(val)
+                    })
+                    .sort((a,b) => { // ordem numerica dos valores
+
+                        a.date_of_publication < b.date_of_publication ? -1 : 1
+                    })
+
+                resPPage(filteredResultado.length, rPP)
+
+                displayResultadotxt(filteredResultado, value)
+
+            } else {
+                resPPage(textData.length, rPP)
+                displayResultadotxt(textData, value)
+            }
+        })
+
+        /***************** Title pesquisa ********************/
         titulInput.addEventListener('input', (e) =>{ // n sei se normalize está
             let value = e.target.value
 
@@ -452,6 +484,45 @@ function displayData(wordData, textData){
                 displayResultadotxt(textData, value)
             }
         })
+
+        /***************** autor pesquisa ********************/
+        //funcionaaaa
+        autorInput.addEventListener('input', (e) =>{ // n sei se normalize está
+            let value = e.target.value
+
+            if(value && value.trim().length > 0){
+                value = value.trim().toLowerCase()
+
+                const filteredResultado = textData
+                    .filter(item => {
+                        const author = normalize(item?.author || "") // n sei se o titulo foi bem recolhido
+                        const val = normalize(value)
+                        return author.includes(val)
+                    })
+                    .sort((a,b) => { // ordem alfabetica com os valores dos resultados normalizados
+                        const aAut = normalize(a.author)
+                        const bAut = normalize(b.author)
+                        const val = normalize(value) // input-value normalizado
+
+                        const aStarts = aAut.startsWith(val) // compara se começa com o valor versao normalizada
+                        const bStarts = bAut.startsWith(val)
+
+                        if(aStarts && !bStarts) return -1
+                        if(!aStarts && bStarts) return 1
+
+                        return aAut.localeCompare(bAut, 'pt', { sensitivity: 'base' })
+                    })
+
+                resPPage(filteredResultado.length, rPP)
+
+                displayResultadotxt(filteredResultado, value)
+
+            } else {
+                resPPage(textData.length, rPP)
+                displayResultadotxt(textData, value)
+            }
+        })
+
         
     }
 
