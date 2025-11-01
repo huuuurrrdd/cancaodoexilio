@@ -540,32 +540,249 @@ function displayData(wordData, textData){
         ct_head_list.className += "list ct-head-list"
 
         // conteudo do header!!
-        ct_head_list.innerHTML = `  <div class = "ano header">Data publicação</div>
-                                    <div class = "titul header">Título</div>
-                                    <div class = "author header">Autor</div>`
+        ct_head_list.innerHTML = `  <div class = "ano header"><h2>Data publicação</h2><p id = "Ord-Dat">Ord: ${ordDat}</p>
+                                        <div id = "year-search-bar">
+                                            <input id="yeartxt-input" aria-label="ano?" type="number" class="year-search-bar__input" placeholder="ano?" autofocus required>
+                                            <button id="yeartxt-submit" type="button" class="year-search-bar__button" aria-label=""search>GO</button>
+                                        </div>
+                                    </div>
+                                    <div class = "titul header"><h2>Título</h2><p id = "Ord-Tit">Ord: ${ordTit}</p>
+                                        <div id = "titultxt-search-bar">
+                                            <input id="titultxt-input" aria-label="titulo?" type="text" class="titultxt-search-bar__input" placeholder="titulo?" autofocus required>
+                                            <button id="titultxt-submit" type="button" class="titultxt-search-bar__button" aria-label=""search>GO</button>
+                                        </div>
+                                    </div>
+                                    <div class = "author header"><h2>Autor</h2><p id = "Ord-Aut">Ord: ${ordAut}</p>
+                                        <div id = "autortxt-search-bar">
+                                            <input id="autortxt-input" aria-label="autor?" type="text" class="autortxt-search-bar__input" placeholder="autor?" autofocus required>
+                                            <button id="autortxt-submit" type="button" class="autortxt-search-bar__button" aria-label=""search>GO</button>
+                                        </div>
+                                    </div>`
         
         ct_head_list.style.backgroundColor = "yellow"
 
+        /*:::::  Botoes  :::::*/
+        const yearSubmitButton = document.querySelector('#yeartxt-submit')
+        const yearInput = document.querySelector('#yeartxt-input')
+
+        const titulSubmitButton = document.querySelector('#titultxt-submit')
+        const titulInput = document.querySelector('#titultxt-input')
+
+        const autorSubmitButton = document.querySelector('#autortxt-submit')
+        const autorInput = document.querySelector('#autortxt-input')
+
+
+        // conteudo após header //////////////////////
         let container = document.createElement("div")
         document.querySelector(".list-all-container").appendChild(container)
         container.className = "container"
 
+        function displayResultadotxt(resultado, valor){
+            //console.log(arrayResultados)
 
-        //iteração para display
-        for(let i = 0; i < textData.length; i++){
-            
-            //cria a div principal
-            let ct_item = document.createElement("div")
-            ct_item.className += "ct-item ct-item" + (i+1)
+            /*:::::  Atualiza os headers  :::::*/
+            document.querySelector('#Ord-Tit').textContent = `Ord: ${ordTit}`
+            document.querySelector('#Ord-Aut').textContent = `Ord: ${ordAut}`
+            document.querySelector('#Ord-Dat').textContent = `Ord: ${ordDat}`
 
-            //elementos do item
-            ct_item.innerHTML = `<div class = "ano">${textData[i].date_of_publication}</div>
-                                 <div class = "titul">${textData[i].title}</div>
-                                 <div class = "author">${textData[i].author}</div>`
-            
-            container.appendChild(ct_item)
+            container.innerHTML = ""
 
+            //let total = textData.length
+            //iteração para display
+            if(resultado == undefined || resultado == [] || resultado == ""){
+                container.innerHTML = `<p>Não foram encontrados resultados para: "${valor}" </p><br><br>`
+            } else{
+                for(let i = arrayResultados[iP].st; i < arrayResultados[iP].en; i++){
+                    //cria a div principal
+                    let ct_item = document.createElement("div")
+                    ct_item.className += "ct-item ct-item" + (i+1)
+                    container.appendChild(ct_item)
+
+                    //elementos do item
+                    ct_item.innerHTML = `<div class = "ano">${textData[i].date_of_publication}</div>
+                                        <div class = "titul">${textData[i].title}</div>
+                                        <div class = "author">${textData[i].author}</div>`
+                }
+            }
+
+            /*:::::  Display de páginas de resultados  :::::*/
+            // remove outro nPages que existam anteriormente em list_all_container
+            const oldPages = list_all_container.querySelector('.n-page-ct')
+            if(oldPages) oldPages.remove()
+
+            // div com bts de exibir pag de resultados
+            let nPages = document.createElement("div")
+            list_all_container.appendChild(nPages)
+            nPages.className += "n-page n-page-ct"
+            //nPages.innerHTML = "ATCHUMMM"
+
+            if(resultado == undefined || resultado == [] || resultado == ""){
+                nPages.innerHTML = ""
+            } else {
+                nPages.innerHTML = ""
+                for(let i = 0; i < arrayResultados.length; i++){ // isto atualiza-se, mas 
+                    let nPage = document.createElement("div")
+                    nPages.appendChild(nPage)
+                    nPage.className += "n-page n-page" + i
+                    nPage.id = `n-page${i}`
+                    nPage.innerText = i+1
+
+                    //   nPage.addEventListener('click', (e) =>{
+                    //   console.log(`Click, page ${nPage.innerText}`)
+                    //   iP = i // tem de ser chamado acima
+                    // })
+                }
+            }
         }
+
+        displayResultadotxt(textData)
+
+        /*:::::::::::  ____________FILTROS____________  :::::::::::*/
+
+        /***************** Ordem Alfabetica [titulo] ********************/
+        document.querySelector('#Ord-Tit').addEventListener('click', (e) => { // filtros funcionais
+            ordTitleTxt(ordTit_, textData) // dá erro aqui
+            displayResultadotxt(textData)
+            //console.log("click!!")
+        })
+        document.querySelector('#Ord-Tit').style.backgroundColor = "blue"
+
+        /***************** Ordem Alfabetica [autor] ********************/
+        document.querySelector('#Ord-Aut').addEventListener('click', (e) => {
+            ordAutores(ordAut_, textData)
+            displayResultadotxt(textData)
+            console.log("click!!")
+        })
+        document.querySelector('#Ord-Aut').style.backgroundColor = "blue"
+
+        /***************** Ordem cronologica ********************/
+        document.querySelector('#Ord-Dat').addEventListener('click', (e) => {
+            ordData(ordDat_, textData)
+            displayResultadotxt(textData)
+            console.log("click!!")
+        })
+        document.querySelector('#Ord-Dat').style.backgroundColor = "blue"
+
+        /***************** Separadores page ********************/
+        function sepPage(){
+            for(let i = 0; i < arrayResultados.length; i++){ //funiona!! // deve ser por arrayResultados ter de se atualizar!!
+                    document.querySelector('#n-page' + i).addEventListener('click', (e) => {
+                    console.log(`Click, page ${document.querySelector('#n-page' + i).innerText}`)
+                    iP = i
+                    displayResultado(resultado)
+                })
+                document.querySelector('#n-page' + i).style.backgroundColor = "yellow" // após atualização dos filtros isto deixa de funcionar
+            }
+        }
+        sepPage() // ainda preciso de perceber!!
+
+
+
+        /*:::::::::::  __Pesquisa livre__  :::::::::::*/
+        // pode ser criada uma funcao a parte adaptada para os valores e nomes de variaveis!!
+        /***************** Year pesquisa ********************/
+        //este está complicado!!
+        yearInput.addEventListener('input', (e) =>{ // n pode ser com local compare
+            let value = e.target.value
+
+            if(value && value.trim().length > 0){
+                value = value.trim().toLowerCase()
+
+                const filteredResultado = textData // ver como se faz para numeros
+                    .filter(item => {
+                        const year = item?.date_of_publication || "" // n sei se o titulo foi bem recolhido
+                        const val = value
+                        return year.includes(val)
+                    })
+                    .sort((a,b) => { // ordem numerica dos valores
+
+                        a.date_of_publication < b.date_of_publication ? -1 : 1
+                    })
+
+                resPPage(filteredResultado.length, rPP)
+
+                displayResultadotxt(filteredResultado, value)
+
+            } else {
+                resPPage(textData.length, rPP)
+                displayResultadotxt(textData, value)
+            }
+        })
+
+        /***************** Title pesquisa ********************/
+        titulInput.addEventListener('input', (e) =>{ // n sei se normalize está
+            let value = e.target.value
+
+            if(value && value.trim().length > 0){
+                value = value.trim().toLowerCase()
+
+                const filteredResultado = textData
+                    .filter(item => {
+                        const title = normalize(item?.title || "") // n sei se o titulo foi bem recolhido
+                        const val = normalize(value)
+                        return title.includes(val)
+                    })
+                    .sort((a,b) => { // ordem alfabetica com os valores dos resultados normalizados
+                        const aTit = normalize(a.title)
+                        const bTit = normalize(b.title)
+                        const val = normalize(value) // input-value normalizado
+
+                        const aStarts = aTit.startsWith(val) // compara se começa com o valor versao normalizada
+                        const bStarts = bTit.startsWith(val)
+
+                        if(aStarts && !bStarts) return -1
+                        if(!aStarts && bStarts) return 1
+
+                        return aTit.localeCompare(bTit, 'pt', { sensitivity: 'base' })
+                    })
+
+                resPPage(filteredResultado.length, rPP)
+
+                displayResultadotxt(filteredResultado, value)
+
+            } else {
+                resPPage(textData.length, rPP)
+                displayResultadotxt(textData, value)
+            }
+        })
+
+        /***************** autor pesquisa ********************/
+        autorInput.addEventListener('input', (e) =>{ // n está confiavel!!
+            let value = e.target.value
+
+            if(value && value.trim().length > 0){
+                value = value.trim().toLowerCase()
+
+                const filteredResultado = textData
+                    .filter(item => {
+                        const author = normalize(item?.author || "") // n sei se o titulo foi bem recolhido
+                        const val = normalize(value)
+                        return author.includes(val)
+                    })
+                    .sort((a,b) => { // ordem alfabetica com os valores dos resultados normalizados
+                        const aAut = normalize(a.author)
+                        const bAut = normalize(b.author)
+                        const val = normalize(value) // input-value normalizado
+
+                        const aStarts = aAut.startsWith(val) // compara se começa com o valor versao normalizada
+                        const bStarts = bAut.startsWith(val)
+
+                        if(aStarts && !bStarts) return -1
+                        if(!aStarts && bStarts) return 1
+
+                        return aAut.localeCompare(bAut, 'pt', { sensitivity: 'base' })
+                    })
+
+                resPPage(filteredResultado.length, rPP)
+
+                displayResultadotxt(filteredResultado, value)
+
+            } else {
+                resPPage(textData.length, rPP)
+                displayResultadotxt(textData, value)
+            }
+        })
+
     }
 
     function displayMapa(){

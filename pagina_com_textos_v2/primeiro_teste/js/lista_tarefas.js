@@ -64,9 +64,19 @@
             - Colocar os resultados todos em modo tabela (os da amostra e da tabela) - com CSS
             - (feito!)Acrescentar o mapa com os locais e os textos (associá-los)
             - Colocar filtros de pesquisa em "amostra" e "tabela"
-                -> Ordenar por ano (crescente e decrescente) -> inspirar nas funções das palavras
-                -> Ordenar por título alfabeticamente (e reverse())
-                -> Ordenar por autor alfabeticamente (e reverse())
+                -> (feito!)Ordenar por ano (crescente e decrescente) -> inspirar nas funções das palavras
+                -> (feito!)Ordenar por título alfabeticamente (e reverse())
+                -> (feito!) Ordenar por autor alfabeticamente (e reverse())
+                -> Verificar erros e apontar para futura melhoria!!
+
+
+        Ainda:
+        - Ver discussões e apontamentos da reunião e formular tarefas de correção e outras baseado na reunião
+            -> Criar página sobre (mesmo que mal)
+            -> Variedade de gráficos: 3 gráficos diferentes lado a lado, o que representam e significado do que representam
+            -> Avançar a estética do website o mais rápido possível!! (especialmente a página de textos e de palavras)
+            -> Corrigir as categorias de palavras (ver como isso será integrado no código e na base de dados)
+                -> Criar um script em que se remova tudo o que não é aqueles nomes que de facto representam aquelas categorias
 
     
     */
