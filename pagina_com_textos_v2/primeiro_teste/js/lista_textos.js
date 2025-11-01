@@ -197,6 +197,14 @@ function displayData(wordData, textData){
     // document.querySelector("body").appendChild(teste_texto)
     // teste_texto.innerHTML = tratamento_texto(textData[1].texto_completo)
 
+    /*:::::::::::  Normalizar string  :::::::::::*/
+    function normalize(str){
+        return str
+            ?.toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+    }
+
     /******************  Contentor geral  *******************/
     let textos_container = document.createElement("div")
     document.querySelector("body").appendChild(textos_container)
@@ -271,13 +279,13 @@ function displayData(wordData, textData){
                                     </div>
                                     <div class = "titul header"><h2>Título</h2><p id = "Ord-Tit">Ord: ${ordTit}</p>
                                         <div id = "titultxt-search-bar">
-                                            <input id="titultxt-input" aria-label="ano?" type="text" class="titultxt-search-bar__input" placeholder="ano?" autofocus required>
+                                            <input id="titultxt-input" aria-label="titulo?" type="text" class="titultxt-search-bar__input" placeholder="titulo?" autofocus required>
                                             <button id="titultxt-submit" type="button" class="titultxt-search-bar__button" aria-label=""search>GO</button>
                                         </div>
                                     </div>
                                     <div class = "author header"><h2>Autor</h2><p id = "Ord-Aut">Ord: ${ordAut}</p>
                                         <div id = "autortxt-search-bar">
-                                            <input id="autortxt-input" aria-label="ano?" type="text" class="autortxt-search-bar__input" placeholder="ano?" autofocus required>
+                                            <input id="autortxt-input" aria-label="autor?" type="text" class="autortxt-search-bar__input" placeholder="autor?" autofocus required>
                                             <button id="autortxt-submit" type="button" class="autortxt-search-bar__button" aria-label=""search>GO</button>
                                         </div>
                                     </div>`
@@ -406,6 +414,44 @@ function displayData(wordData, textData){
             }
         }
         sepPage() // ainda preciso de perceber!!
+
+        /*:::::::::::  __Pesquisa livre__  :::::::::::*/
+        //n está funcional!!
+        titulInput.addEventListener('input', (e) =>{ // n sei se normalize está
+            let value = e.target.value
+
+            if(value && value.trim().length > 0){
+                value = value.trim().toLowerCase()
+
+                const filteredResultado = textData
+                    .filter(item => {
+                        const title = normalize(item?.title || "") // n sei se o titulo foi bem recolhido
+                        const val = normalize(value)
+                        return title.includes(val)
+                    })
+                    .sort((a,b) => { // ordem alfabetica com os valores dos resultados normalizados
+                        const aTit = normalize(a.title)
+                        const bTit = normalize(b.title)
+                        const val = normalize(value) // input-value normalizado
+
+                        const aStarts = aTit.startsWith(val) // compara se começa com o valor versao normalizada
+                        const bStarts = bTit.startsWith(val)
+
+                        if(aStarts && !bStarts) return -1
+                        if(!aStarts && bStarts) return 1
+
+                        return aTit.localeCompare(bTit, 'pt', { sensitivity: 'base' })
+                    })
+
+                resPPage(filteredResultado.length, rPP)
+
+                displayResultadotxt(filteredResultado, value)
+
+            } else {
+                resPPage(textData.length, rPP)
+                displayResultadotxt(textData, value)
+            }
+        })
         
     }
 
