@@ -421,32 +421,32 @@ function displayData(wordData, textData){
         // pode ser criada uma funcao a parte adaptada para os valores e nomes de variaveis!!
         /***************** Year pesquisa ********************/
         //este está complicado!!
-        yearInput.addEventListener('input', (e) =>{ // n pode ser com local compare
-            let value = e.target.value
+        // yearInput.addEventListener('input', (e) =>{ // n pode ser com local compare
+        //     let value = e.target.value
 
-            if(value && value.trim().length > 0){
-                value = value.trim().toLowerCase()
+        //     if(value && value.trim().length > 0){
+        //         value = value.trim().toLowerCase()
 
-                const filteredResultado = textData // ver como se faz para numeros
-                    .filter(item => {
-                        const year = item?.date_of_publication || "" // n sei se o titulo foi bem recolhido
-                        const val = value
-                        return year.includes(val)
-                    })
-                    .sort((a,b) => { // ordem numerica dos valores
+        //         const filteredResultado = textData // ver como se faz para numeros
+        //             .filter(item => {
+        //                 const year = item?.date_of_publication || "" // n sei se o titulo foi bem recolhido
+        //                 const val = value
+        //                 return year.includes(val)
+        //             })
+        //             .sort((a,b) => { // ordem numerica dos valores
 
-                        a.date_of_publication < b.date_of_publication ? -1 : 1
-                    })
+        //                 a.date_of_publication < b.date_of_publication ? -1 : 1
+        //             })
 
-                resPPage(filteredResultado.length, rPP)
+        //         resPPage(filteredResultado.length, rPP)
 
-                displayResultadotxt(filteredResultado, value)
+        //         displayResultadotxt(filteredResultado, value)
 
-            } else {
-                resPPage(textData.length, rPP)
-                displayResultadotxt(textData, value)
-            }
-        })
+        //     } else {
+        //         resPPage(textData.length, rPP)
+        //         displayResultadotxt(textData, value)
+        //     }
+        // })
 
         /***************** Title pesquisa ********************/
         titulInput.addEventListener('input', (e) =>{ // n sei se normalize está
@@ -679,28 +679,29 @@ function displayData(wordData, textData){
 
 
         /*:::::::::::  __Pesquisa livre__  :::::::::::*/
-        // pode ser criada uma funcao a parte adaptada para os valores e nomes de variaveis!!
+        // Todos eles estão mal !!
         /***************** Year pesquisa ********************/
         //este está complicado!!
         yearInput.addEventListener('input', (e) =>{ // n pode ser com local compare
-            let value = e.target.value
+            let value = String(e.target.value).trim()
 
-            if(value && value.trim().length > 0){
-                value = value.trim().toLowerCase()
+            // //reset pages every filter
+            // arrayResultados = []
 
+            if(value.length > 0){
+     
                 const filteredResultado = textData // ver como se faz para numeros
                     .filter(item => {
-                        const year = item?.date_of_publication || "" // n sei se o titulo foi bem recolhido
-                        const val = value
-                        return year.includes(val)
+                        const year = String(item?.date_of_publication ?? "")
+                        return year.startsWith(value)
                     })
-                    .sort((a,b) => { // ordem numerica dos valores
-
-                        a.date_of_publication < b.date_of_publication ? -1 : 1
+                    .sort((a,b) => {
+                        const na = Number(a.date_of_publication)
+                        const nb = Number(b.date_of_publication)
+                        return (Number.isNaN(na) ? Infinity : na) - (Number.isNaN(nb) ? Infinity : nb)
                     })
 
                 resPPage(filteredResultado.length, rPP)
-
                 displayResultadotxt(filteredResultado, value)
 
             } else {
