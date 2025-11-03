@@ -17,8 +17,133 @@ html, body{
     font-size: xxx-large;
 }
 
-  #map {
-    margin: auto;
-    width: 100%;
-    height: 50vh; 
-  }
+#map {
+  margin: auto;
+  width: 100%;
+  height: 50vh; 
+}
+
+/***** Nav *****/
+
+.ul-nav{
+  padding: 0;
+  margin: 0;
+  margin-bottom: 20px;
+  display: grid;
+  grid-template-columns: repeat(13, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 2px;
+  grid-row-gap: 0px;
+  /* border-bottom: solid black; */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+
+.li-nav, .pl-ct{
+  list-style-type: none;
+  /* background-color: antiquewhite; */
+  /* border: 1px solid black; */
+  text-align: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  /* box-shadow: 2px 2px 2px 0.5px rgb(0 0 0 / 0.2); */
+  border: solid black;
+  /* border-radius: 10px; */
+  
+}
+
+.li-nav:hover{
+  /* box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); */
+  font-weight: bolder;
+  background-color: black;
+  
+}
+
+.pl-ct{
+  background-color: white;
+  
+}
+
+
+
+.li-nav a{
+  display: block;
+  width: auto;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.li-nav a:link{
+  text-decoration: none;
+  color: black;
+}
+
+.li-nav a:visited {
+  text-decoration: none;
+  color: black;
+}
+
+.li-nav a:hover {
+  text-decoration: none;
+  color: white;
+  /* color: rgb(73, 73, 73); */
+}
+
+.li-nav a:active {
+  text-decoration: none;
+}
+
+.pl-ct { grid-area: 1 / 1 / 2 / 4; }
+.nav-home { grid-area: 1 / 4 / 2 / 6; }
+.nav-sobre { grid-area: 1 / 6 / 2 / 8; }
+.nav-todos-textos { grid-area: 1 / 8 / 2 / 10; }
+.nav-todas-palavras { grid-area: 1 / 10 / 2 / 12; }
+.nav-categorias { grid-area: 1 / 12 / 2 / 14; }
+
+
+/****** form de pesquisa *******/
+.form-nav{ /*caixa grande*/
+  float: left;
+}
+
+.input-nav[type=text]{
+  padding: 6px;
+  margin-top: 8px;
+  font-size: 17px;
+  border: none;
+}
+
+.submit-nav{ /*button*/
+  width: 20px;
+  background-color: white;
+  /* padding-top: 10px; */
+}
+
+/*
+  LISTA TAREFAS:
+  - (feito) Remover parte de link
+  - (feito) Remover bullet points
+  - (feito) Colocar caixa grande à volta de cada item
+  - (feito) Efeito para hover em cada caixa
+  - Experimentar fazer toda uma nova navegação inspirada em https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_searchbar2
+
+  - Pesquisa de palavras:
+    - Ajeitar caixa de pesquisa
+    - Ajeitar input
+    - (feito) Colocar imagem de lupa na pesquisa
+    - Caixa para apresentar resultados
+    - Fazer o mesmo que na página todas palavras
+    - links em cada palavra para acesso a pág da palavra
+
+  - Colocar versão mobile (hamburguer)
+
+  (depois para págna de textos:
+    - Destacar menos as palavras clicáveis
+    - Retirar contorno à caixa do texto
+    
+  )
+
+
+
+
+
+*/
