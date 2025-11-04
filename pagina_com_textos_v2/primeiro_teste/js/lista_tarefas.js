@@ -69,6 +69,14 @@
                 -> (feito!) Ordenar por autor alfabeticamente (e reverse())
                 -> Verificar erros e apontar para futura melhoria!!
 
+        Em PÁGINA DE TEXTO:
+            - (feito) Colocar link de palavra nas categorias e ainda link de categorias nos nomes (n importa o estilo)
+
+        Em MENU DE NAVEGAÇÃO:
+            - Refazer menu com base em algum template
+            - Enquadrar a ferramenta de pesquisa
+            - Caixa de opções à medida que vai escrevendo (ou não...)
+            - Perceber qual o problema de acesso ao link
 
         Ainda:
         - Ver discussões e apontamentos da reunião e formular tarefas de correção e outras baseado na reunião
