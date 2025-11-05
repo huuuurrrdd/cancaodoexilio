@@ -130,24 +130,20 @@ nav{
     align-items: center;
   }
 
-.ham-box{
+/* .ham-box{
   position: absolute;
   right: 20px;
   display: block;
   background-color: black;
   width: 20px;
   height: 20px;
-  /* align-self: flex-end; */
   cursor: pointer;
-}
+} */
 
 
   .a-nav, .form-nav{
     padding: 10px 0;
   }
-
-
-
 
 }
 
@@ -172,7 +168,6 @@ nav{
   (depois para págna de textos:
     - Destacar menos as palavras clicáveis
     - Retirar contorno à caixa do texto
-    
   )
 
 

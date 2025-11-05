@@ -4,7 +4,6 @@
 
 
 */
-
 nav = document.createElement("nav")
 nav.className = "navegacao nav-mobile"
 
@@ -88,42 +87,40 @@ function pesquisa_livre(){
         }
     })
 
-    /********* Caixa de hamburguer **************/ 
-    let ham_box = document.createElement("div")
-    form.appendChild(ham_box)
-    ham_box.className = "ham-box"
+    // /********* Caixa de hamburguer **************/ 
+    // let ham_box = document.createElement("div")
+    // form.appendChild(ham_box)
+    // ham_box.className = "ham-box"
 
-    let up_box = document.createElement("div")
-    let in_box = document.createElement("div")
-    let do_box = document.createElement("div")
+    // let up_box = document.createElement("div")
+    // let in_box = document.createElement("div")
+    // let do_box = document.createElement("div")
 
-    ham_box.appendChild(up_box)
-    ham_box.appendChild(in_box)
-    ham_box.appendChild(do_box)
+    // ham_box.appendChild(up_box)
+    // ham_box.appendChild(in_box)
+    // ham_box.appendChild(do_box)
 
-    ham_box.addEventListener("click", () =>{
-        const currentM = getComputedStyle(a_home).display
-        const currentH = getComputedStyle(ham_box).display
+    // ham_box.addEventListener("click", () =>{
+    //     const currentM = getComputedStyle(a_home).display
+    //     const currentH = getComputedStyle(ham_box).display
 
-        if(currentM === "block" && currentH!== "none"){
-            a_home.style.display = "none"
-            a_sobre.style.display = "none"
-            a_todas_palavras.style.display = "none"
-            a_todos_textos.style.display = "none"
-            a_categorias.style.display = "none"
-        } else if (currentH!== "none") {
-            a_home.style.display = "block"
-            a_sobre.style.display = "block"
-            a_todas_palavras.style.display = "block"
-            a_todos_textos.style.display = "block"
-            a_categorias.style.display = "block"
-        }
+    //     if(currentM === "block" && currentH!== "none"){
+    //         a_home.style.display = "none"
+    //         a_sobre.style.display = "none"
+    //         a_todas_palavras.style.display = "none"
+    //         a_todos_textos.style.display = "none"
+    //         a_categorias.style.display = "none"
+    //     } else if (currentH!== "none") {
+    //         a_home.style.display = "block"
+    //         a_sobre.style.display = "block"
+    //         a_todas_palavras.style.display = "block"
+    //         a_todos_textos.style.display = "block"
+    //         a_categorias.style.display = "block"
+    //     }
 
 
-    })
+    // })
 
-    /*Criar todo um novo html para mobile -> pode ser mais fácil!!
-    */
     
 }
 
