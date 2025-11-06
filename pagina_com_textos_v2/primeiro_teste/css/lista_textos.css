@@ -12,8 +12,15 @@
 /******** bts *********/
 .bts-visualizacao{
     display: flex; /*Falta dar um espacinho*/
-    
+    column-gap: 20px;
+    /* cursor: pointer; */
 }
+
+/* .bt-amostra{
+    cursor: pointer;
+    color:aqua;
+    background-color: aquamarine;
+} */
 
 /******** header *********/
 .ct-head-list{

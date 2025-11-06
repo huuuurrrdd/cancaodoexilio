@@ -247,7 +247,7 @@ function displayData(wordData, textData){
     bt_tabela.innerHTML = "Tabela"
     bt_mapa.innerHTML = "Mapa"
 
-    bt_tabela.style.backgroundColor = "red"
+    //bt_tabela.style.backgroundColor = "red"
 
     //div para display dos resultados
     div_textos = document.createElement("div")

@@ -202,9 +202,9 @@ function displayData(wordData, textData, stoplist) {
   // FAZER AQUI TESTES DE ACESSO (PELO ID)
   let motivo = frequencia_por_anos(5762) // palavra motivo
   // console.log(`motivo ${motivo[5762].nome}`) // n funciona!!
-  console.log(`motivo ${motivo[1846].nome}`) // funciona?
-  console.log(`motivo ${motivo[2015].freq}`) // funciona?
-  console.log(`motivo ${motivo[2015].nTextos}`) // funciona?
+  console.log(`motivo ${motivo[1846].nome}`) // funciona
+  console.log(`motivo ${motivo[2015].freq}`) // funciona
+  console.log(`motivo ${motivo[2015].nTextos}`) // funciona
 
    // array com ARRAY COM TODOS OS OBJETOS DE PALAVRAS (com todos os anos associados à respetiva frequência)
   let arrayTodosOBJpalavras = [];
@@ -489,5 +489,124 @@ function displayData(wordData, textData, stoplist) {
   });
 
 
+   //*******  Versão 3  *********/
+    let ct_popV3 = document.createElement("div")
+    ct_PalPopulares.appendChild(ct_popV3)
+    ct_popV3.className = "ct-palpop"
+
+    //titulo
+    let h3_popV3 = document.createElement("h3")
+    ct_popV3.appendChild(h3_popV3)
+    h3_popV3.className = "h3-palpop"
+    h3_popV3.innerHTML = "Versão 3: frequencia de palavras/ nº de palavras"
+
+
+  //*********  Display gráfico de frequencias  ***********/
+  let graV3_ct = document.createElement("div");
+  ct_popV3.appendChild(graV3_ct);
+  graV3_ct.className = "gra-v3-ct";
+
+  let canv_popV3 = document.createElement("canvas");
+  graV3_ct.appendChild(canv_popV3);
+  canv_popV3.className = "grafico-palavras-populares-v3";
+
+  const ctx_popV3 = document.querySelector(".grafico-palavras-populares-v3");
+
+  //*********** Teste com gráfico de barra **********/
+
+  //Poderia colocar o plugin, mas saber como colocar o texto alinhado com o gráfico??
+  new Chart(ctx_popV3, {
+    type: "bar",
+    data: {
+      labels: anos_grafico,
+      datasets: [
+        {
+          label: "Palavras com maior frequencia em cada ano",
+          data: freq_grafico,
+          borderWidth: 1,
+        },
+      ],
+    },
+    options: {
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: function (context) {
+              const i = context.dataIndex;
+              const palavra = palavras_grafico[i];
+              const freq = freq_grafico[i];
+              return `${palavra}: ${freq}`;
+            },
+          },
+        },
+      },
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true,
+        },
+      },
+    },
+  });
+
+ //*******  Versão 4  *********/
+    let ct_popV4 = document.createElement("div")
+    ct_PalPopulares.appendChild(ct_popV4)
+    ct_popV4.className = "ct-palpop"
+
+    //titulo
+    let h3_popV4 = document.createElement("h3")
+    ct_popV4.appendChild(h3_popV4)
+    h3_popV4.className = "h3-palpop"
+    h3_popV4.innerHTML = "Versão 4: (sem palavras do texto original) frequencia de palavras/ nº de palavras"
+
+
+  //*********  Display gráfico de frequencias  ***********/
+  let graV4_ct = document.createElement("div");
+  ct_popV4.appendChild(graV4_ct);
+  graV4_ct.className = "gra-v4-ct";
+
+  let canv_popV4 = document.createElement("canvas");
+  graV4_ct.appendChild(canv_popV4);
+  canv_popV4.className = "grafico-palavras-populares-v4";
+
+  const ctx_popV4 = document.querySelector(".grafico-palavras-populares-v4");
+
+  //*********** Teste com gráfico de barra **********/
+
+  //Poderia colocar o plugin, mas saber como colocar o texto alinhado com o gráfico??
+  new Chart(ctx_popV4, {
+    type: "bar",
+    data: {
+      labels: anos_grafico,
+      datasets: [
+        {
+          label: "Palavras com maior frequencia em cada ano",
+          data: freq_grafico,
+          borderWidth: 1,
+        },
+      ],
+    },
+    options: {
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: function (context) {
+              const i = context.dataIndex;
+              const palavra = palavras_grafico[i];
+              const freq = freq_grafico[i];
+              return `${palavra}: ${freq}`;
+            },
+          },
+        },
+      },
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true,
+        },
+      },
+    },
+  });
 
 }
