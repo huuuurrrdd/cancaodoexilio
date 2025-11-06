@@ -25,6 +25,11 @@ html, body{
     font-size: xxx-large;
 }
 
+.texto-container{
+    margin:auto;
+    width: 70%;
+}
+
 #map {
   margin: auto;
   width: 100%;
