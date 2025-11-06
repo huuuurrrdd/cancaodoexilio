@@ -375,57 +375,118 @@ function displayData(wordData, textData, stoplist) {
     let h3_popV1 = document.createElement("h3")
     ct_popV1.appendChild(h3_popV1)
     h3_popV1.className = "h3-palpop"
-    h3_popV1.innerHTML = "Versão 1: (o que está a acontecer)"
+    h3_popV1.innerHTML = "Versão 1: frequencia de palavras/ nº de textos"
 
 
   //*********  Display gráfico de frequencias  ***********/
-  grafico_ct = document.createElement("div");
-  ct_PalPopulares.appendChild(grafico_ct);
-  grafico_ct.className = "grafico-ct";
+  let graV1_ct = document.createElement("div");
+  ct_popV1.appendChild(graV1_ct);
+  graV1_ct.className = "gra-v1-ct";
 
-  canvas = document.createElement("canvas");
-  document.querySelector(".grafico-ct").appendChild(canvas);
-  canvas.className = "grafico-palavras-populares";
+  let canv_popV1 = document.createElement("canvas");
+  graV1_ct.appendChild(canv_popV1);
+  canv_popV1.className = "grafico-palavras-populares-v1";
 
-  const ctx = document.querySelector(".grafico-palavras-populares");
+  const ctx_popV1 = document.querySelector(".grafico-palavras-populares-v1");
 
   //*********** Teste com gráfico de barra **********/
 
-//   //Poderia colocar o plugin, mas saber como colocar o texto alinhado com o gráfico??
-//   new Chart(ctx, {
-//     type: "bar",
-//     data: {
-//       labels: anos_grafico,
-//       datasets: [
-//         {
-//           label: "Palavras com maior frequencia em cada ano",
-//           data: freq_grafico,
-//           borderWidth: 1,
-//         },
-//       ],
-//     },
-//     options: {
-//       plugins: {
-//         tooltip: {
-//           callbacks: {
-//             label: function (context) {
-//               const i = context.dataIndex;
-//               const palavra = palavras_grafico[i];
-//               const freq = freq_grafico[i];
-//               return `${palavra}: ${freq}`;
-//             },
-//           },
-//         },
-//       },
-//       responsive: true,
-//       scales: {
-//         y: {
-//           beginAtZero: true,
-//         },
-//       },
-//     },
-//   });
+  //Poderia colocar o plugin, mas saber como colocar o texto alinhado com o gráfico??
+  new Chart(ctx_popV1, {
+    type: "bar",
+    data: {
+      labels: anos_grafico,
+      datasets: [
+        {
+          label: "Palavras com maior frequencia em cada ano",
+          data: freq_grafico,
+          borderWidth: 1,
+        },
+      ],
+    },
+    options: {
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: function (context) {
+              const i = context.dataIndex;
+              const palavra = palavras_grafico[i];
+              const freq = freq_grafico[i];
+              return `${palavra}: ${freq}`;
+            },
+          },
+        },
+      },
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true,
+        },
+      },
+    },
+  });
 
+
+
+  //*******  Versão 2  *********/
+    let ct_popV2 = document.createElement("div")
+    ct_PalPopulares.appendChild(ct_popV2)
+    ct_popV2.className = "ct-palpop"
+
+    //titulo
+    let h3_popV2 = document.createElement("h3")
+    ct_popV2.appendChild(h3_popV2)
+    h3_popV2.className = "h3-palpop"
+    h3_popV2.innerHTML = "Versão 2: (sem palavras do texto original) frequencia de palavras/ nº de textos"
+
+
+  //*********  Display gráfico de frequencias  ***********/
+  let graV2_ct = document.createElement("div");
+  ct_popV2.appendChild(graV2_ct);
+  graV2_ct.className = "gra-v2-ct";
+
+  let canv_popV2 = document.createElement("canvas");
+  graV2_ct.appendChild(canv_popV2);
+  canv_popV2.className = "grafico-palavras-populares-v2";
+
+  const ctx_popV2 = document.querySelector(".grafico-palavras-populares-v2");
+
+  //*********** Teste com gráfico de barra **********/
+
+  //Poderia colocar o plugin, mas saber como colocar o texto alinhado com o gráfico??
+  new Chart(ctx_popV2, {
+    type: "bar",
+    data: {
+      labels: anos_grafico,
+      datasets: [
+        {
+          label: "Palavras com maior frequencia em cada ano",
+          data: freq_grafico,
+          borderWidth: 1,
+        },
+      ],
+    },
+    options: {
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: function (context) {
+              const i = context.dataIndex;
+              const palavra = palavras_grafico[i];
+              const freq = freq_grafico[i];
+              return `${palavra}: ${freq}`;
+            },
+          },
+        },
+      },
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true,
+        },
+      },
+    },
+  });
 
 
 
