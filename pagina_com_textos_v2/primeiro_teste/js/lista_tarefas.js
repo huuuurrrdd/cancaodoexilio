@@ -99,6 +99,8 @@
             -> Acrescentar algum contexto ao lado do poema (o da página sobre)
             -> Um resumo de como interagir (um parágrafo pequeno + instruções básicas)
             -> Links do autor ou do poema (ex: wikipedia)
+        Mais para página de texto:
+        -> Colocar os quadrados como texto corretamente + colocarpontuaçao correta quando se trata de parenteses
 
 
 

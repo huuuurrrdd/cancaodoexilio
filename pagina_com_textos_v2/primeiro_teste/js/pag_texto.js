@@ -140,6 +140,11 @@ function displayData(wordData, textData, stoplist, lemmasData){ // parece funcio
     document.querySelector("body").appendChild(categorias_container)
     categorias_container.className += "categorias-palavras categorias-palavras-ct"
 
+    let temas_h = document.createElement("h2")
+    categorias_container.appendChild(temas_h)
+    temas_h.className += "temas-h"
+    temas_h.innerHTML = "Temas"
+
     let locais_ct = document.createElement("div") //-------- Contentores categoria (locais, fauna e flora)
     document.querySelector(".categorias-palavras-ct").appendChild(locais_ct)
     locais_ct.className += "categoria-palavra locais-ct"
@@ -154,30 +159,30 @@ function displayData(wordData, textData, stoplist, lemmasData){ // parece funcio
 
     let locais_a = document.createElement("a")//-------- Links categorias
     locais_ct.appendChild(locais_a)
-    locais_a.className = "locais-a"
+    locais_a.className = "locais-a categoria-a"
     locais_a.href = "./p_categoria.html?categoria=Locais"
 
     let fauna_a = document.createElement("a")
     fauna_ct.appendChild(fauna_a)
-    fauna_a.className = "fauna-a"
+    fauna_a.className = "fauna-a categoria-a"
     fauna_a.href = "./p_categoria.html?categoria=Fauna"
 
     let flora_a = document.createElement("a")
     flora_ct.appendChild(flora_a)
-    flora_a.className = "flora-a"
+    flora_a.className = "flora-a categoria-a"
     flora_a.href = "./p_categoria.html?categoria=Flora"
 
-    let locais_h = document.createElement("h2") //-------- Título categoria
+    let locais_h = document.createElement("h3") //-------- Título categoria
     locais_a.appendChild(locais_h)
     locais_h.className += "locais-h categoria-h"
     locais_h.innerHTML = "Locais"
 
-    let fauna_h = document.createElement("h2") 
+    let fauna_h = document.createElement("h3") 
     fauna_a.appendChild(fauna_h)
     fauna_h.className += "fauna-h categoria-h"
     fauna_h.innerHTML = "Fauna"
 
-    let flora_h = document.createElement("h2") 
+    let flora_h = document.createElement("h3") 
     flora_a.appendChild(flora_h)
     flora_h.className += "flora-h categoria-h"
     flora_h.innerHTML = "Flora"
