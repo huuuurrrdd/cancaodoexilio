@@ -86,5 +86,52 @@
             -> Corrigir as categorias de palavras (ver como isso será integrado no código e na base de dados)
                 -> Criar um script em que se remova tudo o que não é aqueles nomes que de facto representam aquelas categorias
 
-    
+
+******************************************************************
+    Coisas a fazer para ter o site funcional
+        Geral:
+        - Substituir "Categorias de palavras" por pesquisa de textos por temas
+        
+        Home:
+        - Colocar corretamente a formatação de CSS
+        - Adicionar links para autor e ano [na página de ano e autor]
+        - Texto de contextualização:
+            -> Acrescentar algum contexto ao lado do poema (o da página sobre)
+            -> Um resumo de como interagir (um parágrafo pequeno + instruções básicas)
+            -> Links do autor ou do poema (ex: wikipedia)
+
+
+
+        Página de palavra:
+        - Em cada palavra, colocar um texto descritivo sobre a palavra.
+            -> Ex(Palavra "canção" aparece em x textos de x autores diferentes. 
+            O texto/ ano que aparece mais vezes...)
+        -> Colocar filtros de ordenação
+        -> Colocar filtros de pesquisa 
+        -> Colocar link em anos e autores
+        -> Refazer a tabela
+
+        (Extra: Possibilidade de adicionar uma palavra ou um tema de categoria para filtrar os dois em conjunto)
+            - Para isso era preciso ver quais as palavras que tbm contêm canção 
+                -> comparando os textos que contêm canção e os textos que contêm palavra x, os que forem em comum, apresentar!
+                -> Poderia ser a quantidade de textos
+                    -> Quanto a frequencia, teria de colocar um e outro em simultêneo [podia ser uma dropbox com as possibilidades]
+
+
+        Sobre:
+        - seria uma descrição mais detalhada
+        - Acesso a link do livro
+        - O sobre atual, estaria na página "home"
+        - As "categorias" seriam o conceito mais importante do site [subcategorias dos textos]
+
+        Textos:
+        - Ter filtros funcionais;
+        - Filtros de pesquisa [input] funcional
+        - Os botões de amostra e tabela estarem ao nivel do cabeçalho da tabela
+        - Mapa:
+            - Ser possível expandir; 
+            - Ser possível clicar para aceder aos textos
+            - Ser possível filtrar por fauna e flora e outros temas (pode ficar na página dos temas)
+            - Uma descrição de para que serve a página (talvez num I ou ?)
+
     */
