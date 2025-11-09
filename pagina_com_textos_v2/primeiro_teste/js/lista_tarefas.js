@@ -93,8 +93,8 @@
         - Substituir "Categorias de palavras" por pesquisa de textos por temas
         
         Home:
-        - Colocar corretamente a formatação de CSS
-        - Adicionar links para autor e ano [na página de ano e autor]
+        - (feito [+/-]) Colocar corretamente a formatação de CSS
+        - (feito!!) Adicionar links para autor e ano [na página de ano e autor]
         - Texto de contextualização:
             -> Acrescentar algum contexto ao lado do poema (o da página sobre)
             -> Um resumo de como interagir (um parágrafo pequeno + instruções básicas)
@@ -130,10 +130,23 @@
         - Ter filtros funcionais;
         - Filtros de pesquisa [input] funcional
         - Os botões de amostra e tabela estarem ao nivel do cabeçalho da tabela
+        - Os números em baixo funcionais (usar inline block ou flex como em cima!!)
         - Mapa:
             - Ser possível expandir; 
             - Ser possível clicar para aceder aos textos
             - Ser possível filtrar por fauna e flora e outros temas (pode ficar na página dos temas)
             - Uma descrição de para que serve a página (talvez num I ou ?)
+        - Links:
+            - Em amostra 
+                -> div do conteúdo: texto
+                -> Autor e ano para as respetivas páginas
+            - Tabela
+                -> Links para texto, ano e autor
+
+        Lista de palavras:
+        - Colocar ordem default (de maior frequencia para menor)
+        - Links
+            - Colocar link para palavra
+            - Links para textos
 
     */

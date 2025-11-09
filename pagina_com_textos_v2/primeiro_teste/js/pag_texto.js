@@ -98,9 +98,7 @@ fetchData()
 //let id_word = 1120 -1 // possivel testar com outros ids
 let id_word = 1930 -1
 
-function displayData(wordData, textData, stoplist, lemmasData){ // parece funcionar
-
-
+function displayData(wordData, textData, stoplist, lemmasData){
 
     //console.log(stoplist)
 
@@ -127,7 +125,7 @@ function displayData(wordData, textData, stoplist, lemmasData){ // parece funcio
     let autor_data = document.createElement("div")    //-------- Nome de autor e data
     document.querySelector(".texto-conteudo").appendChild(autor_data)
     autor_data.className += "autor-data"
-    autor_data.innerHTML = `${textData[textId-1].author}, ${textData[textId-1].date_of_publication}<br>`
+    autor_data.innerHTML = `<a href="p_categoria_especifica.html?categoria=Autores&especifica=${textData[textId-1].author}">${textData[textId-1].author}</a>, <a href="p_categoria_especifica.html?categoria=Anos&especifica=${textData[textId-1].date_of_publication}">${textData[textId-1].date_of_publication}</a><br>`
 
     // let teste_com_lemas = document.createElement("div")//------ Teste com lemas (conteúdo não exibido)
     // document.querySelector("body").appendChild(teste_com_lemas)
