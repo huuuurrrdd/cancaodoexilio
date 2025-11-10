@@ -40,8 +40,8 @@
 
 .tentry-header{
     display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    grid-template-rows: repeat(1, 1fr);
+    grid-template-columns: repeat(13, 1fr);
+    grid-template-rows: 1fr;
     padding: 40px 20px 40px 20px;
     grid-column-gap: 10px;
     grid-row-gap: 0px;
@@ -50,19 +50,17 @@
 /******** entradas *********/
 .tentry {
     display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    grid-template-rows: repeat(1, 1fr);
+    grid-template-columns: repeat(13, 1fr);
+    grid-template-rows: 1fr;
     padding: 15px 0px 15px 0px;
     grid-column-gap: 10px;
     grid-row-gap: 0px;
 }
 
-
-.iteracao{ grid-area: 1/1/2/2; } /*div 1*/
-.titul   { grid-area: 1/2/2/5; } /*div 2*/
-.ano     { grid-area: 1/5/2/6; } /*div 3*/
-.author  { grid-area: 1/6/2/8; } /*div 4*/
-.freq    { grid-area: 1/8/2/9; } /*div 5*/
+.ano     { grid-area: 1 / 3 / 2 / 4; } 
+.titul   { grid-area: 1 / 4 / 2 / 8; } 
+.author  { grid-area: 1 / 8 / 2 / 11; } 
+.freq    { grid-area: 1 / 11 / 2 / 12; } 
 
 
 /********* Tabela abaixo **************/

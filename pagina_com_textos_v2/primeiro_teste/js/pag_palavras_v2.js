@@ -407,18 +407,12 @@ function displayData(wordData, textData, lemmasData){
   document.querySelector(".list-container").appendChild(tentry_header);
   tentry_header.className += "tentry tentry-header";
 
-  // criar um elemento string para cada div ---> isto está a funcionar??
-  iteracao_header = `<div class = "iteracao header">ord</div>`;
-  titul_header = `<div class = "titul header">Título</div>`;
-  ano_header = `<div class = "ano header">Data publicação</div>`;
-  author_header = `<div class = "author header">Autor</div>`;
-  freq_header = `<div class = "freq header">frequência</div>`;
 
-  tentry_header.innerHTML = `<div class = "iteracao header">ord</div>
-                                       <div class = "titul header">Título</div>
-                                       <div class = "ano header">Data publicação</div>
-                                       <div class = "author header">Autor</div>
-                                       <div class = "freq header">frequência</div>`;
+
+  tentry_header.innerHTML = ` <div class = "ano header">Ano</div>
+                              <div class = "titul header">Título</div>
+                              <div class = "author header">Autor</div>
+                              <div class = "freq header">frequência</div>`;
 
   // Teste de redirecionar info com apenas javaScript
   /////////////////////////////////// Vai ser necessário reordenar os items!! ///////////////////////////
@@ -481,7 +475,6 @@ function displayData(wordData, textData, lemmasData){
       /************* Colocando o conteúdo em divs ***************/
 
       tentry_container.innerHTML = `
-                                          <div class = "iteracao">${i + 1}</div>
                                           <div class = "titul"><a class = "titulo" href = "./pag_de_texto.html?id=${id_do_texto}"> ${titul}</a></div>
                                           <div class = "ano"><a class = "ano-a" href ="p_categoria_especifica.html?categoria=Anos&especifica=${data_pub}">${data_pub}</a></div>
                                           <div class = "author"><a class = "author-a" href="p_categoria_especifica.html?categoria=Autores&especifica=${autor}">${autor}</a></div>
