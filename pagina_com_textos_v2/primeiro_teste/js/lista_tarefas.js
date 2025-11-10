@@ -91,6 +91,7 @@
     Coisas a fazer para ter o site funcional
         Geral:
         - Substituir "Categorias de palavras" por pesquisa de textos por temas
+        - Ver se é possível colocar o gráfico a adaptar-se ao tamanho da pág
         
         HOME:
         - (feito [+/-]) Colocar corretamente a formatação de CSS

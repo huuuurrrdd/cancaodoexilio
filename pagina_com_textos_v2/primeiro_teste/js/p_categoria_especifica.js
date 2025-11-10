@@ -380,7 +380,7 @@ function displayData(wordData, textData, lemmasData, wikiData){
         //exchars: 1200,
         exintro: true,
         explaintext: true,
-        exsentences: 7,
+        exsentences: 3,
         generator: 'search',
         gsrlimit: 1
 

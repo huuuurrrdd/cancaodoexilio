@@ -372,15 +372,19 @@ function displayData(wordData, textData, stoplist) {
   document.querySelector("body").appendChild(words_container);
   words_container.className += "words-container";
 
+  let margem_ct = document.createElement("div");
+  words_container.appendChild(margem_ct);
+  margem_ct.className = "margem-ct"
+
   //****************  Título de página  ******************/
   let title_h = document.createElement("h1");
-  document.querySelector(".words-container").appendChild(title_h);
+  margem_ct.appendChild(title_h);
   title_h.className += "pesquisa-palavras-h page-title";
   title_h.innerText = `Pesquisa de palavras`;
 
   //*********  Display gráfico de frequencias  ***********/
   grafico_ct = document.createElement("div");
-  document.querySelector(".words-container").appendChild(grafico_ct);
+  margem_ct.appendChild(grafico_ct);
   grafico_ct.className = "grafico-ct";
 
   canvas = document.createElement("canvas");
@@ -675,7 +679,7 @@ function displayData(wordData, textData, stoplist) {
                                                 <button id="tit-submit" type="button" class="tit-search-bar_button" aria-label="search">Go</button>
                                               </div>
                                       </div>
-                                      <div class = "frequencia header"><h2>Freq</h2><p id="Ord-Freq">Ord: ${ordFre}</p></div>`;
+                                      <div class = "freq header"><h2>Freq</h2><p id="Ord-Freq">Ord: ${ordFre}</p></div>`;
 
       ct_head_list.style.backgroundColor = "yellow";
 
