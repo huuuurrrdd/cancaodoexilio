@@ -334,15 +334,19 @@ function displayData(wordData, textData, lemmasData){
   document.querySelector("body").appendChild(word_container)
   word_container.className += "word-container"
 
+  let margem_ct = document.createElement("div")
+  word_container.appendChild(margem_ct)
+  margem_ct.className = "margem-ct"
+
   let word_h = document.createElement("h1")
-  document.querySelector(".word-container").appendChild(word_h)
+  margem_ct.appendChild(word_h)
   word_h.className += "word-h"
   word_h.innerText = `Palavra: ${wordData.palavras[id_word].palavra}` // funciona!!
 
   // /*********** Display gráfico de frequencias **************/----------- FALTA!!
   // (ver qual a melhor biblioteca para isso!!)
   let grafico_ct = document.createElement("div")
-  document.querySelector(".word-container").appendChild(grafico_ct)
+  margem_ct.appendChild(grafico_ct)
   grafico_ct.className = "grafico-ct"
 
   let grafico_palavras = document.createElement("canvas")

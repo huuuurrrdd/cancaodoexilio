@@ -1,7 +1,12 @@
-
+/* 
 .word-container{
     margin:auto;
     width: 70%;
+} */
+
+.margem-ct{ /*Poderia se adaptar a larguras diferentes*/
+    margin:auto;
+    width: calc(7/13*100%);
 }
 
 .word-h{

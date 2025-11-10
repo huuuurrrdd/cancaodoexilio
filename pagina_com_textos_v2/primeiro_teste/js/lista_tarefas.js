@@ -105,7 +105,7 @@
 
 
         PÁGINA DE PALAVRA:
-        - Criar um container para a parte de cima e diminuir a margem do contentor geral (o mesmo para todas as páginas)
+        - (feito - primeira página!) Criar um container para a parte de cima e diminuir a margem do contentor geral (o mesmo para todas as páginas)
         - Em cada palavra, colocar um texto descritivo sobre a palavra.
             -> Ex(Palavra "canção" aparece em x textos de x autores diferentes. 
             O texto/ ano que aparece mais vezes...)

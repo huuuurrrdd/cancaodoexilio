@@ -81,7 +81,6 @@ fetchData()
 function displayData(wordData, textData, lemmasData, wikiData){
 
     
-
     // Acedendo a dados de n de "especifica" por ano (igual a ano e autores em que conta 1 por texto se aparecer)
     // para específica: array para idTexto, freq, ano
     id_textos = []
@@ -295,21 +294,25 @@ function displayData(wordData, textData, lemmasData, wikiData){
     document.querySelector("body").appendChild(elemento_container)
     elemento_container.className += "elemento-container elemento-container-" + classEsp
 
+    let margem_ct = document.createElement("div")
+    elemento_container.appendChild(margem_ct)
+    margem_ct.className = "margem-ct margem-ct-" + classEsp
+
     //subtitulo
     let subtitulo = document.createElement('p')
-    elemento_container.appendChild(subtitulo)
+    margem_ct.appendChild(subtitulo)
     subtitulo.className += "subtitulo"
     subtitulo.innerText = `Categoria: ${categoria.toLowerCase()}`
 
     //*************  Titulo de página  ****************/
     let elemento_h = document.createElement("h1")
-    document.querySelector(".elemento-container-" + classEsp).appendChild(elemento_h)
+    margem_ct.appendChild(elemento_h)
     elemento_h.className += "page-title elemento-h elemento-h-" + classEsp
     elemento_h.innerHTML = especifica
 
     //*************  Gráfico geral  ****************/
     let elemento_grafico = document.createElement("div")
-    document.querySelector(".elemento-container-" + classEsp).appendChild(elemento_grafico)
+    margem_ct.appendChild(elemento_grafico)
     elemento_grafico.className += "elemento-grafico grafico-" + classEsp
 
     let canvas = document.createElement("canvas")
@@ -344,7 +347,7 @@ function displayData(wordData, textData, lemmasData, wikiData){
 
     //*************  Info elemento(wikipedia)  ****************/
     let elemento_info = document.createElement("div")
-    elemento_container.appendChild(elemento_info)
+    margem_ct.appendChild(elemento_info)
     elemento_info.className += "elemento-info ct-info-" + classEsp
 
     let elemento_info_h = document.createElement("h2")
