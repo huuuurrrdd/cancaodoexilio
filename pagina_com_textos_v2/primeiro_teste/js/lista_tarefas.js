@@ -112,6 +112,7 @@
         -> Colocar filtros de pesquisa 
         -> Colocar link em anos e autores
         -> Refazer a tabela
+        -> Pensar num mecanismo para reduzir a carga(colocar os números por baixo)
 
         (Extra: Possibilidade de adicionar uma palavra ou um tema de categoria para filtrar os dois em conjunto)
             - Para isso era preciso ver quais as palavras que tbm contêm canção 

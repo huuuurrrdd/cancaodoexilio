@@ -483,8 +483,8 @@ function displayData(wordData, textData, lemmasData){
       tentry_container.innerHTML = `
                                           <div class = "iteracao">${i + 1}</div>
                                           <div class = "titul"><a class = "titulo" href = "./pag_de_texto.html?id=${id_do_texto}"> ${titul}</a></div>
-                                          <div class = "ano">${data_pub}</div>
-                                          <div class = "author">${autor}</div>
+                                          <div class = "ano"><a class = "ano-a" href ="p_categoria_especifica.html?categoria=Anos&especifica=${data_pub}">${data_pub}</a></div>
+                                          <div class = "author"><a class = "author-a" href="p_categoria_especifica.html?categoria=Autores&especifica=${autor}">${autor}</a></div>
                                           <div class = "freq">${freq1}x</div> 
                                           `;
 

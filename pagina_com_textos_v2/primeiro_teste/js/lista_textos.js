@@ -327,17 +327,21 @@ function displayData(wordData, textData){
                 for(let i = arrayResultados[iP].st; i < arrayResultados[iP].en; i++){
 
                     //cria a div principal
-                    let ct_item = document.createElement("div")
+                    let ct_item = document.createElement("a")
                     ct_item.className += "ct-item-amostra ct-item" + (i+1)
                     container.appendChild(ct_item)
+                    // ct_item.href = `index.html?id=${resultado[i].id}`
+                    ct_item.addEventListener('click', (e) => {
+                        window.location.href =`index.html?id=${resultado[i].id}`
+                    })
 
                     texto_tratado = tratamento_texto(resultado[i].texto_completo)
 
                     //elementos do item (Transformar n/n/ em parágrafo + reduzir a quantidade de texto!!)
                     ct_item.innerHTML = `<div class = "titul-a">${resultado[i].title}</div>
                                         <div class = "texto-a"><p>${texto_tratado}</p></div>
-                                        <div class = "author-a">${resultado[i].author}</div>
-                                        <div class = "ano-a">${resultado[i].date_of_publication}</div> </br> </br>`
+                                        <a href = "p_categoria_especifica.html?categoria=Autores&especifica=${resultado[i].author}" class = "author-a">${resultado[i].author}</a>
+                                        <a href = "p_categoria_especifica.html?categoria=Anos&especifica=${resultado[i].date_of_publication}" class = "ano-a">${resultado[i].date_of_publication}</a> </br> </br>`
                     
                     
                 }
