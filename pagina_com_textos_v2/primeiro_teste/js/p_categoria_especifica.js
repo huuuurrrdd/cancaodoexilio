@@ -494,9 +494,9 @@ function displayData(wordData, textData, lemmasData, wikiData){
         tentry.className += "tentry tentry-container tentry-container" + (i+1)
 
         //elementos do item
-        tentry.innerHTML = `<div class = "ano">Ano - ${textData[idLista[i]-1].date_of_publication}</div>
-                             <div class = "titulo">Titulo - ${textData[idLista[i]-1].title}</div>
-                             <div class = "autor">Autor - ${textData[idLista[i]-1].author}</div>`
+        tentry.innerHTML = `<a class = "ano" href = "p_categoria_especifica.html?categoria=Anos&especifica=${textData[idLista[i]-1].date_of_publication}"> ${textData[idLista[i]-1].date_of_publication}</a>
+                            <a class = "titulo" href = "index.html?id=${textData[idLista[i]-1].id}">${textData[idLista[i]-1].title}</a>
+                            <a class = "autor" href = "p_categoria_especifica.html?categoria=Autores&especifica=${textData[idLista[i]-1].author}">${textData[idLista[i]-1].author}</a>`
 
 
         container.appendChild(tentry)

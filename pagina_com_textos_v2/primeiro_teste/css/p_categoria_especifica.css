@@ -8,3 +8,27 @@
     font-size:large;
 }
 
+/******** header *********/
+
+.tentry-header{
+    display:grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: 1fr;
+    padding: 20px 0px 20px 0px;
+    grid-column-gap: 10px;
+    grid-row-gap: 0px
+}
+
+/******** entradas *********/
+.tentry{
+   display:grid;
+   grid-template-columns: repeat(7, 1fr);
+   grid-template-rows: 1fr;
+   padding: 15px 0px 15px 0px;
+   grid-column-gap: 0px;
+   grid-row-gap: 0px; 
+}
+
+.ano { grid-area: 1 / 1 / 2 / 2; }
+.titulo { grid-area: 1 / 2 / 2 / 5; }
+.autor { grid-area: 1 / 5 / 2 / 8; }

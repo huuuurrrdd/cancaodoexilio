@@ -603,9 +603,9 @@ function displayData(wordData, textData){
                     container.appendChild(ct_item)
 
                     //elementos do item
-                    ct_item.innerHTML = `<div class = "ano">${textData[i].date_of_publication}</div>
-                                        <div class = "titul">${textData[i].title}</div>
-                                        <div class = "author">${textData[i].author}</div>`
+                    ct_item.innerHTML = `<a class = "ano" href="p_categoria_especifica.html?categoria=Anos&especifica=${textData[i].date_of_publication}">${textData[i].date_of_publication}</a>
+                                        <a class = "titul" href="index.html?id=${textData[i].id}">${textData[i].title}</a>
+                                        <a class = "author" href="p_categoria_especifica.html?categoria=Autores&especifica=${textData[i].author}">${textData[i].author}</a>`
                 }
             }
 

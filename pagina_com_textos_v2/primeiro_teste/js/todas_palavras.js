@@ -720,10 +720,11 @@ function displayData(wordData, textData, stoplist) {
 
 
           //divs dentro da div principal
-          let item_palavra = document.createElement("div");
+          let item_palavra = document.createElement("a");
           document.querySelector(`.ct-item${i + 1}`).appendChild(item_palavra);
           item_palavra.className += "item-palavra palavras";
           item_palavra.innerHTML = `${resultado[i].palavra} `//${resultado[i].indice}`;//`${wordData.palavras[indexPal].palavra}`;
+          item_palavra.href = `lista_palavras.html?palavra=${resultado[i].palavra}`
 
           let item_textos = document.createElement("div");
           document.querySelector(`.ct-item${i + 1}`).appendChild(item_textos);
@@ -731,11 +732,12 @@ function displayData(wordData, textData, stoplist) {
 
           for (let j = 0; j < resultado[i].textos.length; j++) {
             // item a colocar dentro de "item_textos"
-            let texto_de_palavra = document.createElement("div");
+            let texto_de_palavra = document.createElement("a");
             //document.querySelector(".item-textos").appendChild(texto_de_palavra)
             texto_de_palavra.className = "item-texto";
-            texto_de_palavra.innerHTML = `${resultado[i].textos[j].id_text}  ${resultado[i].titulo[j]} `; // em vez do id, colocar o número
+            texto_de_palavra.innerHTML = `${resultado[i].textos[j].id_text}  ${resultado[i].titulo[j]} <br><br>`; // em vez do id, colocar o número
             item_textos.appendChild(texto_de_palavra);
+            texto_de_palavra.href = `index.html?id=${resultado[i].textos[j].id_text}`
           }
 
           let item_frequencia = document.createElement("div");

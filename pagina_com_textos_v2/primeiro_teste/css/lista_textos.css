@@ -25,9 +25,10 @@
 /******** header *********/
 .ct-head-list{
     display: grid;
-    grid-template-columns: repeat(9, 1fr);
+    grid-template-columns: repeat(9, 1fr); /*Aqui a grid devia ser igual para todos*/
     grid-template-rows: 1fr;
-    grid-column-gap: 0px;
+    padding: 20px 0px 20px 0px;
+    grid-column-gap: 10px;
     grid-row-gap: 0px;
 }
 
@@ -37,7 +38,8 @@
     display: grid;
     grid-template-columns: repeat(9, 1fr);
     grid-template-rows: 1fr;
-    grid-column-gap: 0px;
+    padding: 15px 0px 15px 0px;
+    grid-column-gap: 10px;
     grid-row-gap: 0px;
 }
 

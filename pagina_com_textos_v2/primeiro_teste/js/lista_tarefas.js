@@ -92,7 +92,7 @@
         Geral:
         - Substituir "Categorias de palavras" por pesquisa de textos por temas
         
-        Home:
+        HOME:
         - (feito [+/-]) Colocar corretamente a formatação de CSS
         - (feito!!) Adicionar links para autor e ano [na página de ano e autor]
         - Texto de contextualização:
@@ -104,10 +104,11 @@
 
 
 
-        Página de palavra:
+        PÁGINA DE PALAVRA:
         - Em cada palavra, colocar um texto descritivo sobre a palavra.
             -> Ex(Palavra "canção" aparece em x textos de x autores diferentes. 
             O texto/ ano que aparece mais vezes...)
+        - Colocar a formatação em cima igual ao das categorias: "Palavra:"
         -> Colocar filtros de ordenação
         -> Colocar filtros de pesquisa 
         -> Colocar link em anos e autores
@@ -121,13 +122,13 @@
                     -> Quanto a frequencia, teria de colocar um e outro em simultêneo [podia ser uma dropbox com as possibilidades]
 
 
-        Sobre:
+        SOBRE:
         - seria uma descrição mais detalhada
         - Acesso a link do livro
         - O sobre atual, estaria na página "home"
         - As "categorias" seriam o conceito mais importante do site [subcategorias dos textos]
 
-        Textos:
+        PÁGINA LISTA DE TEXTOS:
         - Ter filtros funcionais;
         - Filtros de pesquisa [input] funcional
         - Os botões de amostra e tabela estarem ao nivel do cabeçalho da tabela
@@ -144,10 +145,26 @@
             - Tabela
                 -> Links para texto, ano e autor
 
-        Lista de palavras:
+
+
+        PÁGINA LISTA DE PALAVRAS:
         - Colocar ordem default (de maior frequencia para menor)
         - Links
             - Colocar link para palavra
             - Links para textos
+
+        PÁGINA DE CATEGORIAS:
+        - Colocar gráficos com flex ou numa grelha!! (devo optar pelo flex)
+        - Colocar todos os gráficos com cor preta (ou verde, ver e decidir as cores principais e tipografia)
+
+        PÁGINA DE CATEGORIA ESPECÍFICA:
+        - Colocar as barras em representação da frequencia
+
+        PÁGINA DE ELEMENTO DE CATEGORIA:
+        - Colocar o resumo da wikipédia menor
+        - Garantir que ao clicar, consigo aceder à wikipédia
+        - (se necessário) colocar filtro de pesquisa [consoante a quantidade de resultados]- ex: em sabiá é necessário
+        - Colocar botão "voltar"
+
 
     */
