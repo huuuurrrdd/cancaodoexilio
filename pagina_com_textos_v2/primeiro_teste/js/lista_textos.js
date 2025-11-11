@@ -241,9 +241,9 @@ function displayData(wordData, textData){
     document.querySelector(".bts-visualizacao").appendChild(bt_tabela)
     document.querySelector(".bts-visualizacao").appendChild(bt_mapa)
 
-    bt_amostra.classname = "bt-amostra"
-    bt_tabela.classname = "bt-tabela"
-    bt_mapa.classname = "bt-mapa"
+    bt_amostra.className = "bt-amostra bt-a"
+    bt_tabela.className = "bt-tabela bt-a"
+    bt_mapa.className = "bt-mapa bt-a"
 
     bt_amostra.innerHTML = "Amostra"
     bt_tabela.innerHTML = "Tabela"
@@ -273,7 +273,7 @@ function displayData(wordData, textData){
         ct_head_list.className += "list ct-head-list"
 
         // conteudo do header!!
-        ct_head_list.innerHTML = `  <div class = "ano header"><h2>Data publicação</h2><p id = "Ord-Dat">Ord: ${ordDat}</p>
+        ct_head_list.innerHTML = `  <div class = "ano header"><h2>Ano</h2><p id = "Ord-Dat">Ord: ${ordDat}</p>
                                         <div id = "year-search-bar">
                                             <input id="yeartxt-input" aria-label="ano?" type="number" class="year-search-bar__input" placeholder="ano?" autofocus required>
                                             <button id="yeartxt-submit" type="button" class="year-search-bar__button" aria-label=""search>GO</button>
@@ -390,7 +390,7 @@ function displayData(wordData, textData){
             displayResultadotxt(textData)
             //console.log("click!!")
         })
-        document.querySelector('#Ord-Tit').style.backgroundColor = "blue"
+        // document.querySelector('#Ord-Tit').style.backgroundColor = "white"
 
         /***************** Ordem Alfabetica [autor] ********************/
         document.querySelector('#Ord-Aut').addEventListener('click', (e) => {
@@ -398,7 +398,7 @@ function displayData(wordData, textData){
             displayResultadotxt(textData)
             console.log("click!!")
         })
-        document.querySelector('#Ord-Aut').style.backgroundColor = "blue"
+        // document.querySelector('#Ord-Aut').style.backgroundColor = "white"
 
         /***************** Ordem cronologica ********************/
         document.querySelector('#Ord-Dat').addEventListener('click', (e) => {
@@ -406,7 +406,7 @@ function displayData(wordData, textData){
             displayResultadotxt(textData)
             console.log("click!!")
         })
-        document.querySelector('#Ord-Dat').style.backgroundColor = "blue"
+        // document.querySelector('#Ord-Dat').style.backgroundColor = "white"
 
         /***************** Separadores page ********************/
         function sepPage(){
@@ -546,7 +546,7 @@ function displayData(wordData, textData){
         ct_head_list.className += "list ct-head-list"
 
         // conteudo do header!!
-        ct_head_list.innerHTML = `  <div class = "ano header"><h2>Data publicação</h2><p id = "Ord-Dat">Ord: ${ordDat}</p>
+        ct_head_list.innerHTML = `  <div class = "ano header"><h2>Ano</h2><p id = "Ord-Dat">Ord: ${ordDat}</p>
                                         <div id = "year-search-bar">
                                             <input id="yeartxt-input" aria-label="ano?" type="number" class="year-search-bar__input" placeholder="ano?" autofocus required>
                                             <button id="yeartxt-submit" type="button" class="year-search-bar__button" aria-label=""search>GO</button>
@@ -651,7 +651,7 @@ function displayData(wordData, textData){
             displayResultadotxt(textData)
             //console.log("click!!")
         })
-        document.querySelector('#Ord-Tit').style.backgroundColor = "blue"
+        // document.querySelector('#Ord-Tit').style.backgroundColor = "white"
 
         /***************** Ordem Alfabetica [autor] ********************/
         document.querySelector('#Ord-Aut').addEventListener('click', (e) => {
@@ -659,7 +659,7 @@ function displayData(wordData, textData){
             displayResultadotxt(textData)
             console.log("click!!")
         })
-        document.querySelector('#Ord-Aut').style.backgroundColor = "blue"
+        // document.querySelector('#Ord-Aut').style.backgroundColor = "white"
 
         /***************** Ordem cronologica ********************/
         document.querySelector('#Ord-Dat').addEventListener('click', (e) => {
@@ -667,7 +667,7 @@ function displayData(wordData, textData){
             displayResultadotxt(textData)
             console.log("click!!")
         })
-        document.querySelector('#Ord-Dat').style.backgroundColor = "blue"
+        // document.querySelector('#Ord-Dat').style.backgroundColor = "white"
 
         /***************** Separadores page ********************/
         function sepPage(){
@@ -877,7 +877,8 @@ function displayData(wordData, textData){
     //sort_text = textData.date_of_publication.sort((a, b) => a - b)
 
     //displayMapa()
-    displayAmostra() // display amostra como default (n tem problema com acumulação)
+    //displayAmostra() // display amostra como default (n tem problema com acumulação)
+    displayTabela()
 
 
     /***********  Display das funções  ***********/

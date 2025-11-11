@@ -20,11 +20,16 @@
     /* cursor: pointer; */
 }
 
-/* .bt-amostra{
+.bt-a{
     cursor: pointer;
-    color:aqua;
-    background-color: aquamarine;
-} */
+    padding: 20px 10px 20px 10px;
+}
+
+.bt-a:hover{
+    background-color: black;
+    color: white;
+}
+
 
 /******** header *********/
 .ct-head-list{
@@ -88,3 +93,13 @@
 .ano { grid-area: 1 / 3 / 2 / 5; }
 .titul { grid-area: 1 / 5 / 2 / 9; }
 .author { grid-area: 1 / 9 / 2 / 12; }
+
+/******** filtros *********/
+#Ord-Tit, #Ord-Aut, #Ord-Dat{
+    cursor: pointer;
+}
+
+#Ord-Tit:hover, #Ord-Aut:hover, #Ord-Dat:hover{
+    background-color: black;
+    color: white;
+}
