@@ -140,12 +140,13 @@
             - Ser possível clicar para aceder aos textos
             - Ser possível filtrar por fauna e flora e outros temas (pode ficar na página dos temas)
             - Uma descrição de para que serve a página (talvez num I ou ?)
-        - Links:
+        - (feito!)Links:
             - Em amostra 
                 -> div do conteúdo: texto
                 -> Autor e ano para as respetivas páginas
             - Tabela
                 -> Links para texto, ano e autor
+        - Pensar em fazer apenas a versão tabela (a acrescentar/ocultar o texto)
 
 
 

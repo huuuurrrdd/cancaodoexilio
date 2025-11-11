@@ -210,6 +210,8 @@ function displayData(wordData, textData){
     document.querySelector("body").appendChild(textos_container)
     textos_container.className = "textos-container"
 
+    
+
     /****************  Título de página  ******************/
     page_title = document.createElement("h1")
     document.querySelector(".textos-container").appendChild(page_title)
