@@ -181,6 +181,7 @@
             -> Ver como acrescentar (...)
         - Nas palavras, ordenar por ordem de frequencia
         - Ocultar textos até certo número
+        - Na pág de palavra e página de palavras falta colocar como default a frequencia maior primeiro
 
 
 

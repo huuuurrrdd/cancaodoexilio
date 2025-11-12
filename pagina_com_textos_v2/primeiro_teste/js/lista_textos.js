@@ -60,7 +60,7 @@ function displayData(wordData, textData){
 
     /*:::::::::::  Resultados p/pagina  :::::::::::*/
     //obtendo divisão por 50, descobrir o resto
-    let rPP = 50 // resuktados por página
+    let rPP = 50 // resultados por página
     let arrayResultados = [] // com indice de inicio e de fim (com ele incluido)
 
     const txtTotal = textData.length
@@ -166,7 +166,6 @@ function displayData(wordData, textData){
     /*:::::::::::  Tratamento de texto  :::::::::::*/
     function tratamento_texto(texto){
         let nNs = 0
-
         let res = ''
 
         for(let i = 0; i < texto.length; i++){
@@ -552,12 +551,14 @@ function displayData(wordData, textData){
                                             <button id="yeartxt-submit" type="button" class="year-search-bar__button" aria-label=""search>GO</button>
                                         </div>
                                     </div>
+
                                     <div class = "titul header"><h2>Título</h2><p id = "Ord-Tit">Ord: ${ordTit}</p>
                                         <div id = "titultxt-search-bar">
                                             <input id="titultxt-input" aria-label="titulo?" type="text" class="titultxt-search-bar__input" placeholder="titulo?" autofocus required>
                                             <button id="titultxt-submit" type="button" class="titultxt-search-bar__button" aria-label=""search>GO</button>
                                         </div>
                                     </div>
+
                                     <div class = "author header"><h2>Autor</h2><p id = "Ord-Aut">Ord: ${ordAut}</p>
                                         <div id = "autortxt-search-bar">
                                             <input id="autortxt-input" aria-label="autor?" type="text" class="autortxt-search-bar__input" placeholder="autor?" autofocus required>
@@ -603,12 +604,6 @@ function displayData(wordData, textData){
                     let ct_item = document.createElement("div")
                     ct_item.className += "ct-item ct-item" + (i+1)
                     container.appendChild(ct_item)
-
-                    //fazendo outra versao...
-                    //elementos do item
-                    // ct_item.innerHTML = `<a class = "ano" href="p_categoria_especifica.html?categoria=Anos&especifica=${textData[i].date_of_publication}">${textData[i].date_of_publication}</a>
-                    //                     <a class = "titul" href="index.html?id=${textData[i].id}">${textData[i].title}</a>
-                    //                     <a class = "author" href="p_categoria_especifica.html?categoria=Autores&especifica=${textData[i].author}">${textData[i].author}</a>`
 
                     ct_item.innerHTML = `<a class = "ano" href="p_categoria_especifica.html?categoria=Anos&especifica=${resultado[i].date_of_publication}">${resultado[i].date_of_publication}</a>
                                         <a class = "titul" href="index.html?id=${resultado[i].id}">${resultado[i].title}</a>

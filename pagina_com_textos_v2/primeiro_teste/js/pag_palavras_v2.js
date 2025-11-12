@@ -99,7 +99,7 @@ function displayData(wordData, textData, lemmasData){
   //com a palavra selecionada, descobrir o id
   let idpalavra = null;
   //wordParam = "Pinheiro"
-  console.log(`Palavra: ${wordParam}`);
+  //console.log(`Palavra: ${wordParam}`);
 
   for (let i = 0; i < wordData.palavras.length; i++) {
     const dictWord = wordData.palavras[i].palavra;
@@ -148,8 +148,8 @@ function displayData(wordData, textData, lemmasData){
   //tudo funciona!!
 
   // Testes de funcionamento lemas_palavras
-  console.log(`Lema: ${lemmasData.lemas[10].lema}`); // acesso ao lema
-  console.log(`Palavras: ${lemmasData.lemas[10].palavras}`); // acesso as palavras
+  // console.log(`Lema: ${lemmasData.lemas[10].lema}`); // acesso ao lema
+  // console.log(`Palavras: ${lemmasData.lemas[10].palavras}`); // acesso as palavras
 
   // em vez de ser a id word é wordParam
   //acesso ao lema através de uma palavra
@@ -217,9 +217,9 @@ function displayData(wordData, textData, lemmasData){
 
   //ACEDENDO DADOS DE NUMERO DE PALAVRAS POR ANO
   //para a palavra: array para: idTexto, freq, ano
-  id_textos = [];
-  frequencia = [];
-  anos_pal = [];
+  let id_textos = [];
+  let frequencia = [];
+  let anos_pal = [];
   
   // na palavra selecionada, retira os textos que mencionam e a frequencia destes
   for (let i = 0; i < wordData.palavras[id_word].textos.length; i++) {
@@ -267,15 +267,15 @@ function displayData(wordData, textData, lemmasData){
   //push ultimo grupo (n percebo a parte do grupoatual.length)
   if (gAtual_anos.length) ag_anos.push(gAtual_anos);
   //console.log(`Anos: ${agrupado_anos}`);
-  console.log(ag_anos);
+  //console.log(ag_anos);
 
   if (gAtual_freq.length) ag_freq.push(gAtual_freq);
   //console.log(`Frequencias: ${ag_freq}`);
-  console.log(ag_freq);
+  //console.log(ag_freq);
 
   if (gAtual_id.length) ag_id.push(gAtual_id);
   //console.log(`IDs: ${ag_id}`);
-  console.log(ag_id);
+  //console.log(ag_id);
 
   //Testes de funcionamento de variáveis
   //console.log(`Variável ag_freq[10][2]: ${ag_freq[10][1]}`) // funciona!!
@@ -319,9 +319,11 @@ function displayData(wordData, textData, lemmasData){
   }
 
 
-  console.log("Valores para anos e frq no gráfico:")
-  console.log(anos_grafico)
-  console.log(freq_grafico)
+  // console.log("Valores para anos e frq no gráfico:")
+  // console.log(anos_grafico)
+  // console.log(freq_grafico)
+
+  
 //   console.log(val_anos)
 //   console.log(val_freq)
 
@@ -397,102 +399,435 @@ function displayData(wordData, textData, lemmasData){
     },
   });
 
+  
+  ///////////////////////////////////////////////////////////////////////////
+
   // /************** Display textos *************/
-  let list_container = document.createElement("div");
-  document.querySelector(".word-container").appendChild(list_container);
-  list_container.className += "list-container";
+  let div_textos = document.createElement("div")
+  word_container.appendChild(div_textos)
+  div_textos.className += "div-textos div-textos-display"
+  
+  /******************  Funções para display  *******************/
+  // valores default para ordenação de resultados
+    let ordTit = "AZ" // o atual ---- titulo
+    let ordTit_ = "ZA" // o q muda
+    let ordAut = "AZ" // o atual ---- autor
+    let ordAut_ = "ZA" // o q muda
+    let ordDat = "asc" // o atual ---- ano
+    let ordDat_ = "des"// o que muda
+    let ordFre = "asc" // o atual ---- fre
+    let ordFre_ = "des"// o que muda
 
-  item_ordenar = [];
-  ordem_frequência = [];
 
-  /* Criando uma header (em nova div no topo!!)*/
+    /*:::::::::::  Resultados p/pagina  :::::::::::*/
+    //obtendo divisão por 50, descobrir o resto
+    let rPP = 50 // resultados por página
+    let arrayResultados = [] // com indice de inicio e de fim (com ele incluido)
 
-  let tentry_header = document.createElement("div");
-  document.querySelector(".list-container").appendChild(tentry_header);
-  tentry_header.className += "tentry tentry-header";
+    const txtTotal = wordData.palavras[id_word].textos.length
 
+    function resPPage(total, rPP){
+      arrayResultados = []
 
+      const divInteira = Math.floor(total / rPP) // aqui deveria ser resultado.length
+      const resto = total % rPP
 
-  tentry_header.innerHTML = ` <div class = "ano header">Ano</div>
-                              <div class = "titul header">Título</div>
-                              <div class = "author header">Autor</div>
-                              <div class = "freq header">frequência</div>`;
+      if(total <= rPP){ // se há menos de 50 resultados, só uma página
+        arrayResultados.push({ st:0, en: total})
+      } else {
+        // paginas completas
+        for(let i = 0; i < divInteira; i++){
+          const s = i > 0 ? i* rPP : 0
+          const e = s + rPP
 
-  // Teste de redirecionar info com apenas javaScript
-  /////////////////////////////////// Vai ser necessário reordenar os items!! ///////////////////////////
-
-  function ordenarTextos(
-    id_word,
-    wordData,
-    textData,
-    sortBy = "frequência",
-    dir = "desc"
-  ) {
-    const container = document.createElement("div");
-    document.querySelector(".list-container").appendChild(container);
-    container.className += "container";
-
-    container.innerHTML = ""; // garantir que contentor está limpo antes de atualizar os dados!!
-
-    let textos = wordData.palavras[id_word].textos.slice();
-
-    //sort ased on criteria
-    textos.sort((a, b) => {
-      let valA, valB;
-
-      if (sortBy === "frequência") {
-        // pega nos valores de frequência dos textos
-        valA = a.frequencia;
-        valB = b.frequencia;
-      } else if (sortBy === "titulo") {
-        // esta parte não percebo muito
-        valA = textData[a.id_text - 1].title.toLowerCase();
-        valB = textData[a.id_text - 1].title.toLowerCase();
+          arrayResultados.push({
+            st: s,
+            en: e
+          })
+        }
+        // ultima pagina incompleta
+        if(resto != 0) arrayResultados.push({
+          st : divInteira * rPP,
+          en: divInteira * rPP + resto
+        })
       }
+      // resultado a devolver: arrayResultados
+    }
 
-      // esta parte parece estar escrita de uma forma muito avançada (talvez colocar em termos mais simples!!)
-      if (valA < valB) return dir === "asc" ? -1 : 1;
-      if (valA > valB) return dir === "asc" ? 1 : -1;
-      return 0;
-    });
+    resPPage(txtTotal, rPP)
+    //console.log(arrayResultados)
 
-    // render sorted list:
-    for (let i = 0; i < textos.length; i++) {
-      const texto = textos[i];
+    // valor de indice da página
+    let iP = 0
 
-      let tentry_container = document.createElement("div");
-      //document.querySelector(".list-container").appendChild(tentry_container)
-      tentry_container.className +=
-        "tentry tentry-container tentry-container" + (i + 1);
+    /*:::::::::::  Array de obj com RESULTADOS  :::::::::::*/
+    let resultado = [] 
+    let textosResultado = wordData.palavras[id_word].textos.slice();
 
-      //criando elemento a para link
-
-      //id funciona!!
-      // testando a parte do matadata
-      const metadata = textData[texto.id_text - 1];
+    for(let i = 0; i < textosResultado.length; i++){
+      const texto = textosResultado[i] // percorre cada texto que contem a palavra (wordData)
+      // testando a parte do metadata
+      const metadata = textData[texto.id_text - 1]; // objeto com todas as infos do texto selecionado
       const id_do_texto = metadata.id; //id do texto
       const titul = metadata.title;
       const data_pub = metadata.date_of_publication;
       const autor = metadata.author;
-      const freq1 = texto.frequencia;
+      const freq1 = texto.frequencia; // busca em wordData
 
-      /************* Colocando o conteúdo em divs ***************/
-
-      tentry_container.innerHTML = `
-                                          <div class = "titul"><a class = "titulo" href = "./pag_de_texto.html?id=${id_do_texto}"> ${titul}</a></div>
-                                          <div class = "ano"><a class = "ano-a" href ="p_categoria_especifica.html?categoria=Anos&especifica=${data_pub}">${data_pub}</a></div>
-                                          <div class = "author"><a class = "author-a" href="p_categoria_especifica.html?categoria=Autores&especifica=${autor}">${autor}</a></div>
-                                          <div class = "freq">${freq1}x</div> 
-                                          `;
-
-      container.appendChild(tentry_container);
+      resultado.push({
+        id: id_do_texto,
+        titulo: titul,
+        ano: data_pub,
+        autor: autor,
+        freq: freq1
+      })
     }
+    //console.log(resultado[20].id, resultado[20].titulo, resultado[20].freq, resultado[20].ano)
+    
+    
+    
+
+
+    /*:::::::::::  Ordem alfabética de titulos  :::::::::::*/
+    function ordTitleTxt(ord, data){
+        //console.log("ord Function")
+        if(ord=="AZ"){
+            data.sort((a,b) => a.titulo.localeCompare(b.titulo, 'pt'))
+            ordTit_ = "ZA" // pronto para mudar
+            ordTit = "AZ" // o atual
+        } else if (ord=="ZA"){
+            data.sort((a,b) => a.titulo.localeCompare(b.titulo, 'pt')).reverse()
+            ordTit_ = "AZ" // pronto para mudar
+            ordTit = "ZA" // o atual
+        }
+    }
+    // ordTitleTxt("ZA", textData) // ordena tudo!!
+    // console.log(textData)
+    // console.log(resultado) // funciona com os 2 independentemente de ser textData ou resultado
+
+
+    /*:::::::::::  Ordem alfabética de autores  :::::::::::*/
+    function ordAutores(ord, data){
+        //console.log("ord Function")
+        if(ord=="AZ"){
+            data.sort((a,b) => a.autor.localeCompare(b.autor, 'pt'))
+            ordAut_ = "ZA" // pronto para mudar
+            ordAut = "AZ" // o atual
+        } else if (ord=="ZA"){
+            data.sort((a,b) => a.autor.localeCompare(b.autor, 'pt')).reverse()
+            ordAut_ = "AZ" // pronto para mudar
+            ordAut = "ZA" // o atual
+        }
+    }
+    // ordAutores("ZA", textData)
+    // console.log(textData)
+
+    /*:::::::::::  Ordem cronologica de textos  :::::::::::*/
+    function ordData(ord, data){
+        if(ord == "des"){
+          data.sort((a,b) => a.ano < b.ano ? -1 : 1).reverse()
+          ordDat_= "asc" // pronto para mudar
+          ordDat = "des" // atual
+        } else if (ord == "asc") {
+          data.sort((a,b) => a.ano < b.ano ? -1 : 1)
+          ordDat_= "des"
+          ordDat = "asc"
+        }
+    }
+    // ordData("des", textData)
+    // console.log(textData)
+
+    /*:::::::::::  Ordem freq da id_word nos textos  :::::::::::*/
+    function ordFreq(ord, data){
+        if(ord == "des"){
+          data.sort((a,b) => a.freq < b.freq ? -1 : 1).reverse()
+          ordFre_= "asc" // pronto para mudar
+          ordFre = "des" // atual
+        } else if (ord == "asc") {
+          data.sort((a,b) => a.freq < b.freq ? -1 : 1)
+          ordFre_= "des"
+          ordFre = "asc"
+        }
+    }
+    // ordData("des", textData)
+    // console.log(textData)
+
+
+    /*:::::::::::  Excertos onde a palavra esta presente  :::::::::::*/
+    function excertos(){
+    }
+    /*:::::::::::  Normalizar string  :::::::::::*/
+    function normalize(str){
+        return str
+            ?.toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+    }
+
+
+
+
+  function displayTabela(){
+    div_textos.innerHTML = ""
+
+    let list_all_container = document.createElement("div")
+    document.querySelector(".div-textos").appendChild(list_all_container)
+    list_all_container.className += "list-all-container"
+
+    // item_ordenar = [];
+    // ordem_frequência = [];
+
+    /* Criando uma header (em nova div no topo!!)*/
+
+    //Header!!
+    let tentry_header = document.createElement("div");
+    list_all_container.appendChild(tentry_header);
+    tentry_header.className += "tentry tentry-header";
+
+    // conteudo do header!!
+    tentry_header.innerHTML = ` <div class = "ano header"> <h2>Ano</h2> <p id="Ord-Dat">Ord:</p>
+                                  <div id = "year-search-bar">
+                                    <input id="yeartxt-input" aria-label="ano?" type="number" class="year-search-bar__input" placeholder="ano?" min="1846" autofocus required>
+                                    <button id="yeartxt-submit" type="button" class="year-search-bar__button" aria-label=""search>GO</button>
+                                  </div>
+                                </div>
+
+                                <div class = "titul header"><h2>Título</h2> <p id = "Ord-Tit">Ord: </p>
+                                  <div id = "titultxt-search-bar">
+                                    <input id="titultxt-input" aria-label="titulo?" type="text" class="titultxt-search-bar__input" placeholder="titulo?" autofocus required>
+                                    <button id="titultxt-submit" type="button" class="titultxt-search-bar__button" aria-label=""search>GO</button>
+                                  </div>
+                                </div>
+
+                                <div class = "author header"><h2>Autor</h2><p id = "Ord-Aut">Ord: </p>
+                                  <div id = "autortxt-search-bar">
+                                    <input id="autortxt-input" aria-label="autor?" type="text" class="autortxt-search-bar__input" placeholder="autor?" autofocus required>
+                                    <button id="autortxt-submit" type="button" class="autortxt-search-bar__button" aria-label=""search>GO</button>
+                                  </div>
+                                </div>
+
+                                <div class = "freq header"><h2>Freq</h2><p id = "Ord-Freq">Ord: </p>
+                                  <div id = "freqtxt-search-bar">
+                                    <input id="freqtxt-input" aria-label="freq?" type="text" class="freqtxt-search-bar__input" placeholder="freq?" autofocus required>
+                                    <button id="freqtxt-submit" type="button" class="freqtxt-search-bar__button" aria-label=""search>GO</button>
+                                  </div>
+                                </div>`;
+
+    tentry_header.style.backgroundColor = "yellow"
+    
+
+    /*:::::  Botoes  :::::*/
+    const yearSubmitButton = document.querySelector('#yeartxt-submit')
+    const yearInput = document.querySelector('#yeartxt-input')
+
+    const titulSubmitButton = document.querySelector('#titultxt-submit')
+    const titulInput = document.querySelector('#titultxt-input')
+
+    const autorSubmitButton = document.querySelector('#autortxt-submit')
+    const autorInput = document.querySelector('#autortxt-input')
+
+    const freqSubmitButton = document.querySelector('#freqtxt-submit')
+    const freqInput = document.querySelector('#freqtxt-input')
+
+      
+      // conteudo após header //////////////////////
+      let container = document.createElement("div")
+      list_all_container.appendChild(container)
+      container.className = "container conteiner-a"
+
+      function displayResultadotxt(resultado, valor){
+
+        /*:::::  Atualiza os headers  :::::*/
+        document.querySelector('#Ord-Tit').textContent = `Ord: ${ordTit}`
+        document.querySelector('#Ord-Aut').textContent = `Ord: ${ordAut}`
+        document.querySelector('#Ord-Dat').textContent = `Ord: ${ordDat}`
+        document.querySelector('#Ord-Freq').textContent = `Ord: ${ordFre}`
+
+        container.innerHTML = ""
+
+
+        //let total = textData.length
+        //iteração para display
+        if(resultado == undefined || resultado == [] || resultado == ""){
+            container.innerHTML = `<p>Não foram encontrados resultados para: "${valor}" </p><br><br>`
+        } else {
+            for(let i = arrayResultados[iP].st; i < arrayResultados[iP].en; i++){
+                //cria a div principal
+                let ct_item = document.createElement("div")
+                ct_item.className += "ct-item ct-item" + (i+1)
+                container.appendChild(ct_item)
+
+                ct_item.innerHTML = `<a class = "ano" href="p_categoria_especifica.html?categoria=Anos&especifica=${resultado[i].ano}">${resultado[i].ano}</a>
+                                    <a class = "titul" href="index.html?id=${resultado[i].id}">${resultado[i].titulo}</a>
+                                    <a class = "author" href="p_categoria_especifica.html?categoria=Autores&especifica=${resultado[i].autor}">${resultado[i].autor}</a>
+                                    <a class = "freq">${resultado[i].freq}</a>`
+            }
+        }
+
+        /*:::::  Display de páginas de resultados  :::::*/
+        // remove outro nPages que existam anteriormente em list_container
+        const oldPages = list_all_container.querySelector('.n-page-ct')
+        if(oldPages) oldPages.remove()
+
+        // div com bts de exibir pag de resultados
+        let nPages = document.createElement("div")
+        list_all_container.appendChild(nPages)
+        nPages.className += "n-page n-page-ct"
+
+        if(resultado == undefined || resultado == [] || resultado == ""){
+                nPages.innerHTML = ""
+        } else {
+            nPages.innerHTML = ""
+            for(let i = 0; i < arrayResultados.length; i++){ // isto atualiza-se, mas 
+                let nPage = document.createElement("div")
+                nPages.appendChild(nPage)
+                nPage.className += "n-page-i n-page" + i
+                nPage.id = `n-page${i}`
+                nPage.innerText = i+1
+
+                //   nPage.addEventListener('click', (e) =>{
+                //   console.log(`Click, page ${nPage.innerText}`)
+                //   iP = i // tem de ser chamado acima
+                // })
+            }
+        }
+
+        //console.log(`Resultado atualizado: ${arrayResultados.length}`)
+
+      }
+      displayResultadotxt(resultado)
+
+      
+  /*:::::::::::  ____________FILTROS____________  :::::::::::*/
+
+        /***************** Ordem Alfabetica [titulo] ********************/
+        document.querySelector('#Ord-Tit').addEventListener('click', (e) => { // filtros funcionais
+            ordTitleTxt(ordTit_, resultado) // dá erro aqui
+            displayResultadotxt(resultado)
+            //console.log("click!!")
+        })
+        // document.querySelector('#Ord-Tit').style.backgroundColor = "white"
+
+        /***************** Ordem Alfabetica [autor] ********************/
+        document.querySelector('#Ord-Aut').addEventListener('click', (e) => {
+            ordAutores(ordAut_, resultado)
+            displayResultadotxt(resultado)
+            console.log("click!!")
+        })
+        // document.querySelector('#Ord-Aut').style.backgroundColor = "white"
+
+        /***************** Ordem cronologica ********************/
+        document.querySelector('#Ord-Dat').addEventListener('click', (e) => {
+            ordData(ordDat_, resultado)
+            displayResultadotxt(resultado)
+            console.log("click!!")
+        })
+        // document.querySelector('#Ord-Dat').style.backgroundColor = "white"
+
+        /***************** Ordem frequencia ********************/
+        document.querySelector('#Ord-Freq').addEventListener('click', (e) => {
+            ordData(ordFre_, resultado)
+            displayResultadotxt(resultado)
+            console.log("click!!")
+        })
+        // document.querySelector('#Ord-Dat').style.backgroundColor = "white"
+
+        /***************** Separadores page ********************/
+        function sepPage(){
+            for(let i = 0; i < arrayResultados.length; i++){ //funiona!! // deve ser por arrayResultados ter de se atualizar!!
+                    document.querySelector('#n-page' + i).addEventListener('click', (e) => {
+                    console.log(`Click, page ${document.querySelector('#n-page' + i).innerText}`)
+                    iP = i
+                    displayResultadotxt(resultado)
+                })
+                document.querySelector('#n-page' + i).style.backgroundColor = "yellow" // após atualização dos filtros isto deixa de funcionar
+            }
+        }
+        sepPage() // ainda preciso de perceber!!
   }
 
-  //**** teste: chamar função: ****//
+  displayTabela()
+  
+  
 
-  //nota: tem muitos erros!! é melhor ver ao detalhe o que diferencia!!
-  ordenarTextos(id_word, wordData, textData, "frequência", "desc");
+
+
+        
+    
+   // Teste de redirecionar info com apenas javaScript
+  /////////////////////////////////// Vai ser necessário reordenar os items!! ///////////////////////////
+
+    // function ordenarTextos(id_word, wordData, textData, sortBy = "frequência", dir = "desc") {
+    //   const container = document.createElement("div");
+    //   document.querySelector(".list-container").appendChild(container);
+    //   container.className += "container";
+
+    //   container.innerHTML = ""; // garantir que contentor está limpo antes de atualizar os dados!!
+
+  
+    //   let textos = wordData.palavras[id_word].textos.slice(); //BUSCA CONJUNTO DE TEXTOS QUE CONTEM A PALAVRA
+
+    //   //sort ased on criteria
+    //   textos.sort((a, b) => { //SORT POR FREQUENCIA OU POR TITULO (N DINAMICO)
+    //     let valA, valB;
+
+    //     if (sortBy === "frequência") {
+    //       // pega nos valores de frequência dos textos
+    //       valA = a.frequencia;
+    //       valB = b.frequencia;
+    //     } else if (sortBy === "titulo") {
+    //       valA = textData[a.id_text - 1].title.toLowerCase();
+    //       valB = textData[a.id_text - 1].title.toLowerCase();
+    //     }
+
+    //     if (valA < valB) return dir === "asc" ? -1 : 1;
+    //     if (valA > valB) return dir === "asc" ? 1 : -1;
+    //     return 0;
+    //   });
+
+    //   // render sorted list:
+    //   for (let i = 0; i < textos.length; i++) {
+    //     const texto = textos[i];
+
+    //     let tentry_container = document.createElement("div");
+    //     //document.querySelector(".list-container").appendChild(tentry_container)
+    //     tentry_container.className +=
+    //       "tentry tentry-container tentry-container" + (i + 1);
+
+    //     //criando elemento a para link
+
+    //     //id funciona!!
+    //     // testando a parte do matadata
+    //     const metadata = textData[texto.id_text - 1];
+    //     const id_do_texto = metadata.id; //id do texto
+    //     const titul = metadata.title;
+    //     const data_pub = metadata.date_of_publication;
+    //     const autor = metadata.author;
+    //     const freq1 = texto.frequencia;
+
+    //     /************* Colocando o conteúdo em divs ***************/
+
+    //     tentry_container.innerHTML = `
+    //                                         <div class = "titul"><a class = "titulo" href = "./pag_de_texto.html?id=${id_do_texto}"> ${titul}</a></div>
+    //                                         <div class = "ano"><a class = "ano-a" href ="p_categoria_especifica.html?categoria=Anos&especifica=${data_pub}">${data_pub}</a></div>
+    //                                         <div class = "author"><a class = "author-a" href="p_categoria_especifica.html?categoria=Autores&especifica=${autor}">${autor}</a></div>
+    //                                         <div class = "freq">${freq1}x</div> 
+    //                                         `;
+
+    //     container.appendChild(tentry_container);
+    //   }
+    // }
+
+      //**** teste: chamar função: ****//
+
+    //nota: tem muitos erros!! é melhor ver ao detalhe o que diferencia!!
+    //ordenarTextos(id_word, wordData, textData, "frequência", "desc");
+
+  
+
+
+
+
 
   /*
     NOTA: FUNCIONOU, mas retirou o header como já estava à esperaaa!!!
@@ -668,7 +1003,8 @@ function displayData(wordData, textData, lemmasData){
 //     }
 //   }
 ///////////////////////// LEMAS ELIMINADOS ATÉ AQUI ///////////////////////////
- }
+}
+
 
 
 
