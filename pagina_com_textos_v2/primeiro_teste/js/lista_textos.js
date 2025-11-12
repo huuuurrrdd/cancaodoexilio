@@ -548,7 +548,7 @@ function displayData(wordData, textData){
         // conteudo do header!!
         ct_head_list.innerHTML = `  <div class = "ano header"><h2>Ano</h2><p id = "Ord-Dat">Ord: ${ordDat}</p>
                                         <div id = "year-search-bar">
-                                            <input id="yeartxt-input" aria-label="ano?" type="number" class="year-search-bar__input" placeholder="ano?" autofocus required>
+                                            <input id="yeartxt-input" aria-label="ano?" type="number" class="year-search-bar__input" placeholder="ano?" min="1846" autofocus required>
                                             <button id="yeartxt-submit" type="button" class="year-search-bar__button" aria-label=""search>GO</button>
                                         </div>
                                     </div>
@@ -583,8 +583,8 @@ function displayData(wordData, textData){
         document.querySelector(".list-all-container").appendChild(container)
         container.className = "container"
 
-        function displayResultadotxt(resultado, valor){
-            //console.log(arrayResultados)
+        function displayResultadotab(resultado, valor){
+            // console.log(arrayResultados)
 
             /*:::::  Atualiza os headers  :::::*/
             document.querySelector('#Ord-Tit').textContent = `Ord: ${ordTit}`
@@ -604,10 +604,15 @@ function displayData(wordData, textData){
                     ct_item.className += "ct-item ct-item" + (i+1)
                     container.appendChild(ct_item)
 
+                    //fazendo outra versao...
                     //elementos do item
-                    ct_item.innerHTML = `<a class = "ano" href="p_categoria_especifica.html?categoria=Anos&especifica=${textData[i].date_of_publication}">${textData[i].date_of_publication}</a>
-                                        <a class = "titul" href="index.html?id=${textData[i].id}">${textData[i].title}</a>
-                                        <a class = "author" href="p_categoria_especifica.html?categoria=Autores&especifica=${textData[i].author}">${textData[i].author}</a>`
+                    // ct_item.innerHTML = `<a class = "ano" href="p_categoria_especifica.html?categoria=Anos&especifica=${textData[i].date_of_publication}">${textData[i].date_of_publication}</a>
+                    //                     <a class = "titul" href="index.html?id=${textData[i].id}">${textData[i].title}</a>
+                    //                     <a class = "author" href="p_categoria_especifica.html?categoria=Autores&especifica=${textData[i].author}">${textData[i].author}</a>`
+
+                    ct_item.innerHTML = `<a class = "ano" href="p_categoria_especifica.html?categoria=Anos&especifica=${resultado[i].date_of_publication}">${resultado[i].date_of_publication}</a>
+                                        <a class = "titul" href="index.html?id=${resultado[i].id}">${resultado[i].title}</a>
+                                        <a class = "author" href="p_categoria_especifica.html?categoria=Autores&especifica=${resultado[i].author}">${resultado[i].author}</a>`
                 }
             }
 
@@ -639,16 +644,18 @@ function displayData(wordData, textData){
                     // })
                 }
             }
+
+            //console.log(`Resultado atualizado: ${arrayResultados.length}`)
         }
 
-        displayResultadotxt(textData)
+        displayResultadotab(textData)
 
         /*:::::::::::  ____________FILTROS____________  :::::::::::*/
 
         /***************** Ordem Alfabetica [titulo] ********************/
         document.querySelector('#Ord-Tit').addEventListener('click', (e) => { // filtros funcionais
             ordTitleTxt(ordTit_, textData) // dá erro aqui
-            displayResultadotxt(textData)
+            displayResultadotab(textData)
             //console.log("click!!")
         })
         // document.querySelector('#Ord-Tit').style.backgroundColor = "white"
@@ -656,7 +663,7 @@ function displayData(wordData, textData){
         /***************** Ordem Alfabetica [autor] ********************/
         document.querySelector('#Ord-Aut').addEventListener('click', (e) => {
             ordAutores(ordAut_, textData)
-            displayResultadotxt(textData)
+            displayResultadotab(textData)
             console.log("click!!")
         })
         // document.querySelector('#Ord-Aut').style.backgroundColor = "white"
@@ -664,7 +671,7 @@ function displayData(wordData, textData){
         /***************** Ordem cronologica ********************/
         document.querySelector('#Ord-Dat').addEventListener('click', (e) => {
             ordData(ordDat_, textData)
-            displayResultadotxt(textData)
+            displayResultadotab(textData)
             console.log("click!!")
         })
         // document.querySelector('#Ord-Dat').style.backgroundColor = "white"
@@ -708,11 +715,11 @@ function displayData(wordData, textData){
                     })
 
                 resPPage(filteredResultado.length, rPP)
-                displayResultadotxt(filteredResultado, value)
+                displayResultadotab(filteredResultado, value)
 
             } else {
                 resPPage(textData.length, rPP)
-                displayResultadotxt(textData, value)
+                displayResultadotab(textData, value)
             }
         })
 
@@ -734,8 +741,26 @@ function displayData(wordData, textData){
                         const bTit = normalize(b.title)
                         const val = normalize(value) // input-value normalizado
 
-                        const aStarts = aTit.startsWith(val) // compara se começa com o valor versao normalizada
-                        const bStarts = bTit.startsWith(val)
+                        // const aStarts = aTit.startsWith(val) // compara se começa com o valor versao normalizada
+                        // const bStarts = bTit.startsWith(val)
+
+                        
+                        let aStarts, bStarts
+
+                        if(aTit.startsWith("[")){
+                            aStarts = aTit.startsWith(val,1)
+                        } else{
+                            aStarts = aTit.startsWith(val) // compara se começa com o valor versao normalizada
+                        }
+
+                        if(bTit.startsWith("[")){
+                            bStarts = bTit.startsWith(val,1)
+                        } else{
+                            bStarts = bTit.startsWith(val)
+                        }
+
+                        
+                        
 
                         if(aStarts && !bStarts) return -1
                         if(!aStarts && bStarts) return 1
@@ -745,11 +770,11 @@ function displayData(wordData, textData){
 
                 resPPage(filteredResultado.length, rPP)
 
-                displayResultadotxt(filteredResultado, value)
+                displayResultadotab(filteredResultado, value)
 
             } else {
                 resPPage(textData.length, rPP)
-                displayResultadotxt(textData, value)
+                displayResultadotab(textData, value)
             }
         })
 
@@ -762,7 +787,7 @@ function displayData(wordData, textData){
 
                 const filteredResultado = textData
                     .filter(item => {
-                        const author = normalize(item?.author || "") // n sei se o titulo foi bem recolhido
+                        const author = normalize(item?.author || "") // n sei se o autor foi bem recolhido
                         const val = normalize(value)
                         return author.includes(val)
                     })
@@ -782,11 +807,11 @@ function displayData(wordData, textData){
 
                 resPPage(filteredResultado.length, rPP)
 
-                displayResultadotxt(filteredResultado, value)
+                displayResultadotab(filteredResultado, value)
 
             } else {
                 resPPage(textData.length, rPP)
-                displayResultadotxt(textData, value)
+                displayResultadotab(textData, value)
             }
         })
 

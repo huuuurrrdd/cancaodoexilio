@@ -170,4 +170,9 @@
         - Colocar botão "voltar"
 
 
+        Para os filtros no geral:
+        - Ignorar [] e passar à proxima letra
+        - Anos funcionammm!!!!
+
+
     */
