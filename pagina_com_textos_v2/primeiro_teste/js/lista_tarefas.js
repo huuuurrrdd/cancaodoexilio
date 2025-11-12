@@ -171,8 +171,17 @@
 
 
         Para os filtros no geral:
-        - Ignorar [] e passar à proxima letra
-        - Anos funcionammm!!!!
+        - (feito!!)Ignorar [] e passar à proxima letra
+        - (feito!!)Anos funcionammm!!!!
+        - Colocar filtros na páginas em falta!
+        - Números em baixo:
+            -> (feito!) Alinhados
+            -> Funcionais
+            -> Com destaque no número atualmente selecionado
+            -> Ver como acrescentar (...)
+        - Nas palavras, ordenar por ordem de frequencia
+        - Ocultar textos até certo número
+
 
 
     */

@@ -104,3 +104,20 @@
     background-color: black;
     color: white;
 }
+
+/******** Lista de numeros de páginas *********/
+.n-page-ct{
+    display: flex;
+    flex-wrap: nowrap;
+    column-gap: 20px;
+    justify-content: center;
+    align-items: center;
+    margin:auto;
+    /* width: calc(9/13*100%); */
+}
+
+.n-page-i{
+    width: 20px;
+    cursor: pointer;
+    color: red;
+}

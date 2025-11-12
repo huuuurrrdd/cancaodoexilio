@@ -368,7 +368,7 @@ function displayData(wordData, textData){
                 for(let i = 0; i < arrayResultados.length; i++){ // isto atualiza-se, mas 
                     let nPage = document.createElement("div")
                     nPages.appendChild(nPage)
-                    nPage.className += "n-page n-page" + i
+                    nPage.className += "n-page-i n-page" + i
                     nPage.id = `n-page${i}`
                     nPage.innerText = i+1
 
@@ -634,7 +634,7 @@ function displayData(wordData, textData){
                 for(let i = 0; i < arrayResultados.length; i++){ // isto atualiza-se, mas 
                     let nPage = document.createElement("div")
                     nPages.appendChild(nPage)
-                    nPage.className += "n-page n-page" + i
+                    nPage.className += "n-page-i n-page" + i
                     nPage.id = `n-page${i}`
                     nPage.innerText = i+1
 
