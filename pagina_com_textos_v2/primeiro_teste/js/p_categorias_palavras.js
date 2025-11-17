@@ -325,24 +325,22 @@ function displayData(wordData, textData){
 
     function displaySections(cat, labels, values, i, mais_frequente, info_mais_frequente){
 
-
-        
         let cat_section = document.createElement("div")
         document.querySelector(".categorias-sections").appendChild(cat_section)
-        cat_section.className += "cat-section-" + cat
+        cat_section.className += "cat-section cat-section-" + cat
 
         //******  dentro de cat-section  ******/
         //link para categoria:
         let link_categoria = document.createElement("a")
         document.querySelector(".cat-section-" + cat).appendChild(link_categoria)
-        link_categoria.className += "cat-link-" + cat
+        link_categoria.className += "cat-link cat-link-" + cat
         link_categoria.href = "./p_categoria.html?categoria=" + cat
 
 
         //caixa para h2 e grafico (dentro do link)
         let cat_section_ct = document.createElement("div")
         document.querySelector(".cat-link-" + cat).appendChild(cat_section_ct)
-        cat_section_ct.className += "cat-section-ct-" + cat
+        cat_section_ct.className += "cat-section-ct cat-section-ct-" + cat
 
         //titulo
         let cat_header = document.createElement("h2")
@@ -353,7 +351,7 @@ function displayData(wordData, textData){
         //grafico-mais-frequentes
         let grafico_cat_ct = document.createElement("div")
         document.querySelector(".cat-section-ct-" + cat).appendChild(grafico_cat_ct)
-        grafico_cat_ct.className += "grafico-cat-ct-" + cat
+        grafico_cat_ct.className += "grafico-cat-ct grafico-cat-ct-" + cat
 
         let canvas_cat = document.createElement("canvas")
         document.querySelector(".grafico-cat-ct-"+ cat).appendChild(canvas_cat)
@@ -366,7 +364,7 @@ function displayData(wordData, textData){
             datasets: [{
                 label: `${cat} mais frequentes`,
                 data: values,
-                borderWidth: 1
+                backgroundColor: '#000000ff'
             }]
         },
         options: {
@@ -425,7 +423,7 @@ function displayData(wordData, textData){
 
 //***********************************************/
 
-//        PARA NOVA PÁGINA!!
+//        PARA NOVA PÁGINA!! // n sei se já usei na outra página!!
 
 //***********************************************/
 //Para uma outra página - usar parametros do url

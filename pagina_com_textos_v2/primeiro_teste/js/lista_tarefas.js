@@ -19,7 +19,7 @@
 
         Depois:
             - (feito!!) Página das palavras: colocar os resultados das palavras populares em logaritmos
-            - (ESTE!!) Colocar links nas páginas de texto para as categorias e palavras específicas
+            - (feito!!) Colocar links nas páginas de texto para as categorias e palavras específicas
     
         CSS:(vou avançar aqui!!)
             - Assim que tiver avançado, posso colocar css em todas as páginas das categorias [indica que estão mais prontas]
@@ -49,7 +49,7 @@
                 -> Display dos resultados na tabela da plataforma
                     -> Todos os passos da tarefa anterior
 
-            - Colocar links nas PALAVRAS para poder aceder à sua página e TEXTOS
+            - (feito!) Colocar links nas PALAVRAS para poder aceder à sua página e TEXTOS
             - Acrescentar possibilidade de ocultar/ mostrar os textos quando são muitos (ou) mostrar mais/menos (quando maior que 3)
             - REPETIR OS FILTROS PARA AS OUTRAS PÁGINAS (depois da pesquisa livre!!)
         
@@ -157,8 +157,8 @@
             - Links para textos
 
         PÁGINA DE CATEGORIAS:
-        - Colocar gráficos com flex ou numa grelha!! (devo optar pelo flex)
-        - Colocar todos os gráficos com cor preta (ou verde, ver e decidir as cores principais e tipografia)
+        - (feito) Colocar gráficos com flex ou numa grelha!! (optei pela grelha - inspirado em cats)
+        - (feito) Colocar todos os gráficos com cor preta (ou verde, ver e decidir as cores principais e tipografia)
 
         PÁGINA DE CATEGORIA ESPECÍFICA:
         - Colocar as barras em representação da frequencia
@@ -182,6 +182,9 @@
         - Nas palavras, ordenar por ordem de frequencia
         - Ocultar textos até certo número
         - Na pág de palavra e página de palavras falta colocar como default a frequencia maior primeiro
+
+        Listagem de nomes de categorias: 
+            -> Criar nova versão (manualmente) para cada categoria -> colocar nomes iguais [podia colocar uma espécie de tradução geral ()]
 
 
 

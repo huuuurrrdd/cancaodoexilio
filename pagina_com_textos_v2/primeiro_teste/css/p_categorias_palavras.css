@@ -17,3 +17,27 @@
 .cat-section-Autores { grid-area: 8 / 1 / 14 / 4; }
 .cat-section-Anos { grid-area: 8 / 4 / 14 / 7; } */
 /*.cat-section- { grid-area: 8 / 7 / 14 / 10; }*/
+
+
+/*Geral*/
+.categorias-sections{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(22.25rem, 100%), 1fr));
+    grid-gap: 1rem;
+}
+
+/*Concreto*/
+.cat-section{
+    /* background-color: aqua; */
+    height: 400px;
+    width: 500px;
+    /* align-self: stretch; */
+}
+
+
+
+/*
+    - Esticar o gráfico verticalmente e horizontalmente (ver como funciona min-max)
+
+
+*/
