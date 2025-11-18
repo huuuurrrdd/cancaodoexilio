@@ -363,16 +363,25 @@ function stringHtml(converted, stoplist, wordData) { // retorna a string em form
     const palavrasLista = wordData.palavras.map(obj => obj.palavra.toLowerCase()) // pedir para explicar melhor este 
     
 
-    let nstring = converted.map(item =>
+    let nstring = converted.flatMap(item =>
         item === "<br>"
             ? "<br>"
             : stoplist.includes(item.toLowerCase())
                 ? item
                 : palavrasLista.includes(item.toLowerCase().replace(/[^\p{L}\p{N}]/gu, ""))
-                    ? `<a class="palavra" href = "./lista_palavras.html?palavra=${item.replace(/[^\p{L}\p{N}]/gu, "")}">${item.replace(/[^\p{L}\p{N}]/gu, "")}</a>${item.replace(/[\p{L}\p{N}_]/gu, "")}` // aqui queria definir 2 items de strings diferentes
+                    ? [
+                    `<a class="palavra" href="./lista_palavras.html?palavra=${item.replace(/[^\p{L}\p{N}]/gu, "")}">${item.replace(/[^\p{L}\p{N}]/gu, "")}</a>`,
+                    item.replace(/[\p{L}\p{N}_]/gu, "").trim()
+                  ]
                     : item
 
-        /* PROBLEMAS:
+    )
+    
+    return nstring
+}
+
+
+    /* PROBLEMAS:
             - Falta remover a pontuação (na verificação e link) e colocar como item no texto (FEITOO!!)
             - 2 versões do "item"
                 -> Com pontuação
@@ -388,22 +397,54 @@ function stringHtml(converted, stoplist, wordData) { // retorna a string em form
 
         */
 
-    )
-
     // console.log("palavrasLista:", palavrasLista.slice(0, 10)); // check the first 10
     // console.log("nstring:", nstring.slice(0, 10)); // check output
     
     // for(let i = 0; i< nstring.length; i++){
     //     console.log(nstring[i])
     // }
-    
-    return nstring
-}
+
 
 
 /********  HTMLSTRINGs para 1 string  ********/
 function joinString(string){
-    let final = string.join(' ')
+    //let final = string.join(' ')
+    let final = ''
+
+    // Punctuation that should have space AFTER (closing punctuation)
+    const closingPunctuation = /^[!.,;:?)}\]"»]+$/u
+
+    // Punctuation that should have space BEFORE (opening punctuation)
+    const openingPunctuation = /^[({\[«"]+$/u
+
+    for(let i = 0; i < string.length; i++){
+        const item = string[i]
+        const trimmedItem = item.trim()
+
+        // Skip empty items
+        if(!trimmedItem) continue
+
+        const isClosing = closingPunctuation.test(trimmedItem)
+        const isOpening = openingPunctuation.test(trimmedItem)
+        const isPonctuation = isClosing || isOpening
+
+        // Add space BEFORE if:
+        // - Not first item
+        // - Not closing punctuation (we don't want space before ! . , etc)
+        // - Previous item wasn't <br>
+        // - Previous item wasn't opening punctuation
+        if(i > 0 && !isClosing && string[i-1] !== '<br>' && !openingPunctuation.test(string[i-1]?.trim())){
+            final += ' '
+        }
+
+        final += trimmedItem
+
+        // Add space AFTER if it's closing punctuation and not the last item
+        if(isClosing && i < string.length - 1 && string[i+1] !== '<br>'){
+            final += ' '
+        }
+    }
+
     return final
 }
 
