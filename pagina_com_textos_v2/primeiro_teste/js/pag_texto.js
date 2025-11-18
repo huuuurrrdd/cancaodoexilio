@@ -4,9 +4,6 @@
 /*coisas a fazer:
 -> Display de título e textp (1º) - feitooo!!!
 -> Cada palavra deve ter um link para a página das palavras - feito
-    - COMOOO???
-    - tentar primeiro com os lemas! Guardar cada palavra como id (nao esta a alterar para token!!)
--> Guardar versao lematizada da palavra como id (ainda n esta a acontecer)
 
 A fazer:
 -> Remocao de pontuacao na query
@@ -96,11 +93,15 @@ function fetchData(){
 fetchData()
 
 //let id_word = 1120 -1 // possivel testar com outros ids
-let id_word = 1930 -1
+//let id_word = 1930 -1
+let titulo = false
 
 function displayData(wordData, textData, stoplist, lemmasData){
 
     //console.log(stoplist)
+    let t_ = textData[textId-1].texto_completo // string para texto
+    let titEtxt = defineTitle(t_)
+    //console.log('Resl'+ titEtxt.titulo)
 
     /********** DISPLAY TEXTO ***********/
     let texto_conteiner = document.createElement("div") //------- Contentor de texto geral (inclui categorias)
@@ -110,7 +111,7 @@ function displayData(wordData, textData, stoplist, lemmasData){
     let titulo_texto = document.createElement("h1")    //-------- Título do texto!!
     document.querySelector(".texto-container").appendChild(titulo_texto)
     titulo_texto.className += "titulo"
-    titulo_texto.innerHTML = `${textData[textId-1].title} <br> <br>`
+    titulo_texto.innerHTML = `${titEtxt.titulo}  <br>`
 
     let texto_conteudo = document.createElement("div")  //------- Contentor de texto + autor e data
     document.querySelector(".texto-container").appendChild(texto_conteudo)
@@ -254,7 +255,7 @@ function displayData(wordData, textData, stoplist, lemmasData){
 
 
     // //tentando fazer split das palavras (os numeros t2,t3... corresponde ao n do passo)
-    let t = textData[textId-1].texto_completo // string para texto
+     let t = titEtxt.texto // string para texto
     // LEMAS ANTIGOS
     let l = textData[textId-1].lemmas // string para lemas (a colocar no link)
 
@@ -277,7 +278,7 @@ function displayData(wordData, textData, stoplist, lemmasData){
 
 
 
-    texto_completo.innerHTML = t4Join // acrescenta ao html o resultado final
+    texto_completo.innerHTML = `<br> <br> ${t4Join}` // acrescenta ao html o resultado final
 
     // //Display de input pesquisa:
     // pesquisa_livre()
@@ -285,18 +286,54 @@ function displayData(wordData, textData, stoplist, lemmasData){
     //teste_com_lemas.innerHTML = `<br> <br> <br> Versão lematizada: <br><br> ${l5Join} ` // n esta a funcionar n sei pq
 
 
-    console.log(`Length t3: ${t3Html.length}`)
+    //console.log(`Length t3: ${t3Html.length}`)
     //console.log(`Length l3 ${l4.length}`) //funcionou
     
     //console.log(l4)
 
 
     
-    console.log("Listaaa:::" + stoplist)
+    //console.log("Listaaa:::" + stoplist)
+
+    // funcao para titulo:
+    function defineTitle(texto){
+        let title
+        let texto_final
+        let resultado
+
+        let indexNN = texto.indexOf("\n\n")
+        let indexN = texto.indexOf("\n") // se for igual, tem título, se não, não tem
+        //console.log(`Valor nn=${indexNN}; valor n = ${indexN}`)
+        // descobrir primeira posicao com \n\n
+
+        if(indexNN === indexN){
+            //console.log("Tem título")
+            title = texto.slice(0,indexN)
+            texto_final = texto.slice(indexN+2, texto.length)
+            //console.log(texto_final)
+
+        }else{
+            //console.log("Não tem título")
+            title = textData[textId-1].title
+            texto_final = texto
+            //console.log(texto_final)
+        }
+        console.log(title)
+
+        resultado = {
+            titulo: title,
+            texto: texto_final
+        }
+
+        return resultado
+    }
+
+    
+    //console.log(`t: ${t}`)
 
 
 }
-
+/*****************  /n to <br>  ******************/
 function nToBr(string){// converter n em br -------- Conversão de espaços
     let nstring = string.match(/\S+|\r?\n/g)
     //console.log (`teste 1: ${nstring}`) //funciona!!
@@ -319,7 +356,7 @@ return convertedn
 
 }
 
-
+/*****************  STRING para HTML(com links)  ******************/
 // Neste adiciona link a tudo o que não é stopword
 function stringHtml(converted, stoplist, wordData) { // retorna a string em formato html, mantendo quebras e links
 
@@ -353,43 +390,40 @@ function stringHtml(converted, stoplist, wordData) { // retorna a string em form
 
     )
 
-    console.log("palavrasLista:", palavrasLista.slice(0, 10)); // check the first 10
-    console.log("nstring:", nstring.slice(0, 10)); // check output
+    // console.log("palavrasLista:", palavrasLista.slice(0, 10)); // check the first 10
+    // console.log("nstring:", nstring.slice(0, 10)); // check output
     
-    for(let i = 0; i< nstring.length; i++){
-        console.log(nstring[i])
-    }
+    // for(let i = 0; i< nstring.length; i++){
+    //     console.log(nstring[i])
+    // }
     
     return nstring
 }
 
 
-//funcao para juntar tudo e fazer display
+/********  HTMLSTRINGs para 1 string  ********/
 function joinString(string){
     let final = string.join(' ')
     return final
 }
 
 
-
-
-//funcao para pontuacao
- function removePont(string){
+//funcao para pontuacao (lemas)
+function removePont(string){
     const punct = /[\.,?!"]/g
     let novoTexto = []
 
     for(let i = 0; i < string.length; i++){
         novoTexto[i] = string[i].replace(punct, "")
     }
-
     
     let final = novoTexto.join('')
-    console.log(`Sem pobntuacao: ${final}`)
+    //console.log(`Sem pobntuacao: ${final}`)
     
-
     return final
+}
 
- }
+
 
 
 

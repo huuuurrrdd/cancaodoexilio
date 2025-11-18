@@ -100,8 +100,15 @@
             -> Acrescentar algum contexto ao lado do poema (o da página sobre)
             -> Um resumo de como interagir (um parágrafo pequeno + instruções básicas)
             -> Links do autor ou do poema (ex: wikipedia)
-        Mais para página de texto:
-        -> Colocar os quadrados como texto corretamente + colocarpontuaçao correta quando se trata de parenteses
+
+        Correção de texto:
+        -> Colocar os quadrados como texto corretamente (verificar quais são os simbolos que estão em quadrados):
+            - travessões
+        -> Quando a pontuação se trata de parêntesis, colocar "(" antes e ")" depois da palavra(ver pq isso está mal)
+        -> remover espaço antes de ";"
+        ->Título:
+            - Criar função para criar o título: caso tenha a frase separada por 2* /n, considerar, caso contrário, ir buscar o título
+            - Caso tenha título, remover o título do texto (posso criar variável para isso)
 
 
 
