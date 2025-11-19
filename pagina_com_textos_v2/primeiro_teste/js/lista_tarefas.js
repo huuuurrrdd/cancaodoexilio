@@ -196,11 +196,16 @@
         No geral:
         - Colocar sticky na navegação e nos topos de tabela!!!
         - Pág palavras: 
-            -> só colocar alguns numeros a aparecerem! (de forma a só se ver uma linha)
+            -> só colocar alguns numeros a aparecerem! (de forma a só se ver uma linha) - ou colocar com barra de deslizar
+                - (até podia estar stiky)
             -> ocultar/mostrar poemas
             -> Falta o filtro input dos títulos + filtro de frequencias
         - Falta colocar a pesquisa geral de palavras funcional!!
             -> colocar algo por baixo do mapa
+        página de palavra:
+            - Falta os inputs de pesquisa funcionais;
+            - Colocar: palavra selecionada em cima (como nas categorias)
+        - Na ordenação de ano considerar os '?' como os mais recentes
 
 
 

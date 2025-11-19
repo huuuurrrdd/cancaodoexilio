@@ -39,6 +39,8 @@
     /* padding: 20px 0px 20px 0px; */
     grid-column-gap: 10px;
     grid-row-gap: 0px;
+    position: sticky;
+    top:51px
 }
 
 /******** entradas (distinguir entre amostra e tabela) *********/

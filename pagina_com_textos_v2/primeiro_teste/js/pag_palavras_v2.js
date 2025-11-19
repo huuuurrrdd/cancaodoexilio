@@ -585,31 +585,39 @@ function displayData(wordData, textData, lemmasData){
     tentry_header.className += "tentry tentry-header";
 
     // conteudo do header!!
-    tentry_header.innerHTML = ` <div class = "ano header"> <h2>Ano</h2> <p id="Ord-Dat">Ord:</p>
+    tentry_header.innerHTML = ` <div class = "ano header ano-header"> 
+                                  <h2 class = "ano-o-h">Ano</h2> 
+                                  <p id="Ord-Dat">Ord:</p>
                                   <div id = "year-search-bar">
-                                    <input id="yeartxt-input" aria-label="ano?" type="number" class="year-search-bar__input" placeholder="ano?" min="1846" autofocus required>
-                                    <button id="yeartxt-submit" type="button" class="year-search-bar__button" aria-label=""search>GO</button>
+                                    <input id="yeartxt-input" class="input-h" aria-label="ano?" type="number" class="year-search-bar__input" placeholder="ano?" min="1846" autofocus required>
+                                    <input id="yeartxt-submit" type="image" class="year-search-bar__button bt-h" src='./imagens/lupa.svg' aria-label=""search>
                                   </div>
                                 </div>
 
-                                <div class = "titul header"><h2>Título</h2> <p id = "Ord-Tit">Ord: </p>
-                                  <div id = "titultxt-search-bar">
-                                    <input id="titultxt-input" aria-label="titulo?" type="text" class="titultxt-search-bar__input" placeholder="titulo?" autofocus required>
-                                    <button id="titultxt-submit" type="button" class="titultxt-search-bar__button" aria-label=""search>GO</button>
+                                <div class = "titul header titul-header">
+                                  <h2 class = "titul-o-h">Título</h2> 
+                                  <p id = "Ord-Tit">Ord: </p>
+                                  <div id = "titul-search-bar">
+                                    <input id="titultxt-input" class="input-h" aria-label="titulo?" type="text" class="titultxt-search-bar__input" placeholder="titulo?" autofocus required>
+                                    <input id="titultxt-submit" type="image" class="titultxt-search-bar__button bt-h" src='./imagens/lupa.svg' aria-label=""search>
                                   </div>
                                 </div>
 
-                                <div class = "author header"><h2>Autor</h2><p id = "Ord-Aut">Ord: </p>
-                                  <div id = "autortxt-search-bar">
-                                    <input id="autortxt-input" aria-label="autor?" type="text" class="autortxt-search-bar__input" placeholder="autor?" autofocus required>
-                                    <button id="autortxt-submit" type="button" class="autortxt-search-bar__button" aria-label=""search>GO</button>
+                                <div class = "author header author-header">
+                                  <h2 class = "aut-o-h">Autor</h2>
+                                  <p id = "Ord-Aut">Ord: </p>
+                                  <div id = "autor-search-bar">
+                                    <input id="autortxt-input" class="input-h" aria-label="autor?" type="text" class="autortxt-search-bar__input" placeholder="autor?" autofocus required>
+                                    <input id="autortxt-submit" type="image" class="autortxt-search-bar__button bt-h" src='./imagens/lupa.svg' aria-label=""search>
                                   </div>
                                 </div>
 
-                                <div class = "freq header"><h2>Freq</h2><p id = "Ord-Freq">Ord: </p>
-                                  <div id = "freqtxt-search-bar">
-                                    <input id="freqtxt-input" aria-label="freq?" type="text" class="freqtxt-search-bar__input" placeholder="freq?" autofocus required>
-                                    <button id="freqtxt-submit" type="button" class="freqtxt-search-bar__button" aria-label=""search>GO</button>
+                                <div class = "freq header freq-header">
+                                  <h2 class = "freq-o-h">Freq</h2>
+                                  <p id = "Ord-Freq">Ord: </p>
+                                  <div id = "freq-search-bar">
+                                    <input id="freqtxt-input" class="input-h" aria-label="freq?" type="text" class="freqtxt-search-bar__input" placeholder="freq?" autofocus required>
+                                    <input id="freqtxt-submit" type="image" class="freqtxt-search-bar__button bt-h" src='./imagens/lupa.svg' aria-label=""search>
                                   </div>
                                 </div>`;
 
