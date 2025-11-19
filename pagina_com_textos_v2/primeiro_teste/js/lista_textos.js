@@ -272,25 +272,31 @@ function displayData(wordData, textData){
         ct_head_list.className += "list ct-head-list"
 
         // conteudo do header!!
-        ct_head_list.innerHTML = `  <div class = "ano header"><h2>Ano</h2><p id = "Ord-Dat">Ord: ${ordDat}</p>
+        ct_head_list.innerHTML = `  <div class = "ano header ano-o-head" id="ano-o-head">
+                                        <h2 class = "ano-o-h">Ano</h2>
+                                        <p id = "Ord-Dat">Ord: ${ordDat}</p>
+
                                         <div id = "year-search-bar">
                                             <input id="yeartxt-input" aria-label="ano?" type="number" class="year-search-bar__input" placeholder="ano?" autofocus required>
                                             <button id="yeartxt-submit" type="button" class="year-search-bar__button" aria-label=""search>GO</button>
                                         </div>
                                     </div>
-                                    <div class = "titul header"><h2>Título</h2><p id = "Ord-Tit">Ord: ${ordTit}</p>
+                                    <div class = "titul header titul-head"><h2>Título</h2><p id = "Ord-Tit">Ord: ${ordTit}</p>
                                         <div id = "titultxt-search-bar">
                                             <input id="titultxt-input" aria-label="titulo?" type="text" class="titultxt-search-bar__input" placeholder="titulo?" autofocus required>
                                             <button id="titultxt-submit" type="button" class="titultxt-search-bar__button" aria-label=""search>GO</button>
                                         </div>
                                     </div>
-                                    <div class = "author header"><h2>Autor</h2><p id = "Ord-Aut">Ord: ${ordAut}</p>
+                                    <div class = "author header autor-head"><h2>Autor</h2><p id = "Ord-Aut">Ord: ${ordAut}</p>
                                         <div id = "autortxt-search-bar">
                                             <input id="autortxt-input" aria-label="autor?" type="text" class="autortxt-search-bar__input" placeholder="autor?" autofocus required>
                                             <button id="autortxt-submit" type="button" class="autortxt-search-bar__button" aria-label=""search>GO</button>
                                         </div>
                                     </div>`
         
+                                    // Add this to debug:
+        console.log('Element exists:', document.getElementById('ano-o-head'));
+        console.log('Computed display:', window.getComputedStyle(document.getElementById('ano-o-head')).display);
         ct_head_list.style.backgroundColor = "yellow"
 
         /*:::::  Botoes  :::::*/
@@ -545,24 +551,30 @@ function displayData(wordData, textData){
         ct_head_list.className += "list ct-head-list"
 
         // conteudo do header!!
-        ct_head_list.innerHTML = `  <div class = "ano header"><h2>Ano</h2><p id = "Ord-Dat">Ord: ${ordDat}</p>
+        ct_head_list.innerHTML = `  <div class = "ano header ano-header">
+                                        <h2 class = "ano-o-h">Ano</h2>
+                                        <p id = "Ord-Dat">Ord: ${ordDat}</p>
                                         <div id = "year-search-bar">
-                                            <input id="yeartxt-input" aria-label="ano?" type="number" class="year-search-bar__input" placeholder="ano?" min="1846" autofocus required>
-                                            <button id="yeartxt-submit" type="button" class="year-search-bar__button" aria-label=""search>GO</button>
+                                            <input id="yeartxt-input" class="input-h" aria-label="ano?" type="number" class="year-search-bar__input" placeholder="ano?" min="1846" autofocus required>
+                                            <input id="yeartxt-submit" type="image" class="year-search-bar__button bt-h" src='./imagens/lupa.svg' aria-label=""search>
                                         </div>
                                     </div>
 
-                                    <div class = "titul header"><h2>Título</h2><p id = "Ord-Tit">Ord: ${ordTit}</p>
+                                    <div class = "titul header titul-header">
+                                        <h2 class = "titul-o-h">Título</h2>
+                                        <p id = "Ord-Tit">Ord: ${ordTit}</p>
                                         <div id = "titultxt-search-bar">
-                                            <input id="titultxt-input" aria-label="titulo?" type="text" class="titultxt-search-bar__input" placeholder="titulo?" autofocus required>
-                                            <button id="titultxt-submit" type="button" class="titultxt-search-bar__button" aria-label=""search>GO</button>
+                                            <input id="titultxt-input" class="input-h" aria-label="titulo?" type="text" class="titultxt-search-bar__input" placeholder="titulo?" autofocus required>
+                                            <input id="titultxt-submit" type="image" class="titultxt-search-bar__button bt-h" src='./imagens/lupa.svg' aria-label=""search>
                                         </div>
                                     </div>
 
-                                    <div class = "author header"><h2>Autor</h2><p id = "Ord-Aut">Ord: ${ordAut}</p>
+                                    <div class = "author header author-header">
+                                        <h2 class = "aut-o-h">Autor</h2>
+                                        <p id = "Ord-Aut">Ord: ${ordAut}</p>
                                         <div id = "autortxt-search-bar">
-                                            <input id="autortxt-input" aria-label="autor?" type="text" class="autortxt-search-bar__input" placeholder="autor?" autofocus required>
-                                            <button id="autortxt-submit" type="button" class="autortxt-search-bar__button" aria-label=""search>GO</button>
+                                            <input id="autortxt-input" class="input-h" aria-label="autor?" type="text" class="autortxt-search-bar__input" placeholder="autor?" autofocus required>
+                                            <input id="autortxt-submit" type="image" class="autortxt-search-bar__button bt-h" src='./imagens/lupa.svg' aria-label=""search>
                                         </div>
                                     </div>`
         

@@ -193,6 +193,15 @@
         Listagem de nomes de categorias: 
             -> Criar nova versão (manualmente) para cada categoria -> colocar nomes iguais [podia colocar uma espécie de tradução geral ()]
 
+        No geral:
+        - Colocar sticky na navegação e nos topos de tabela!!!
+        - Pág palavras: 
+            -> só colocar alguns numeros a aparecerem! (de forma a só se ver uma linha)
+            -> ocultar/mostrar poemas
+            -> Falta o filtro input dos títulos + filtro de frequencias
+        - Falta colocar a pesquisa geral de palavras funcional!!
+            -> colocar algo por baixo do mapa
+
 
 
     */

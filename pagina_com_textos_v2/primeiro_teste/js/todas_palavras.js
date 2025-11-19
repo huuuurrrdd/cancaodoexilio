@@ -667,25 +667,42 @@ function displayData(wordData, textData, stoplist) {
       ct_head_list.className += "list ct-head-list";
 
       // conteudo do header!! (adicionar funções para ordenação de elementos)
-      ct_head_list.innerHTML = `  <div class = "palavras header"><h2>Palavra</h2><p id="Ord-Alfa">Ord: ${ordAlf}</p>
+      ct_head_list.innerHTML = `  <div class = "palavras header palavras-header">
+                                              <h2 class = "pal-o-h">Palavra</h2>
+                                              <p id="Ord-Alfa">Ord: ${ordAlf}</p>
                                               <div id="pal-search-bar">
-                                                <input id="pal-input" aria-label="palavra?" type="text" class="pal-search-bar__input" placeholder="Palavra?" autofocus required>
-                                                <button id="pal-submit" type="button" class="pal-search-bar_button" aria-label="search">Go</button>
+                                                <input id="pal-input" class="input-h" aria-label="palavra?" type="text" class="pal-search-bar__input" placeholder="Palavra?" autofocus required>
+                                                <input id="pal-submit" type="image" class="pal-search-bar_button bt-h" src='./imagens/lupa.svg' aria-label="search">
                                               </div>
                                       </div>
-                                      <div class = "texto header"><h2>Textos</h2><p id="Ord-Tit">Ord: ${ordTit}</p>
-                                              <div id="pal-search-bar">
-                                                <input id="tit-input" aria-label="titulo?" type="text" class="tit-search-bar__input" placeholder="titulo?" autofocus required>
-                                                <button id="tit-submit" type="button" class="tit-search-bar_button" aria-label="search">Go</button>
+                                      <div class = "texto header texto-header">
+                                              <h2 class = "texto-o-h">Textos</h2>
+                                              <p id="Ord-Tit">Ord: ${ordTit}</p>
+                                              <div id="tit-search-bar">
+                                                <input id="tit-input" class="input-h" aria-label="titulo?" type="text" class="tit-search-bar__input" placeholder="titulo?" autofocus required>
+                                                <input id="tit-submit" type="image" class="tit-search-bar_button bt-h" src='./imagens/lupa.svg' aria-label="search">
                                               </div>
                                       </div>
-                                      <div class = "freq header"><h2>Freq</h2><p id="Ord-Freq">Ord: ${ordFre}</p></div>`;
+                                            <div class = "freq header freq-header">
+                                            <h2 class = "fre-o-h">Freq</h2>
+                                            <p id="Ord-Freq">Ord: ${ordFre}</p>
+                                            <div id = "freq-search-bar">
+                                              <input id="freq-input" class="input-h" aria-label="autor?" type="text" class="freq-search-bar__input" placeholder="frequencia?" autofocus required>
+                                              <input id="freq-submit" type="image" class="freq-search-bar__button bt-h" src='./imagens/lupa.svg' aria-label=""search>
+                                            </div>
+                                      </div>`;
 
       ct_head_list.style.backgroundColor = "yellow";
 
       /*:::::  Botoes  :::::*/
       const palSubmitButton = document.querySelector("#pal-submit")
       const palInput = document.querySelector('#pal-input')
+
+      const titSubmitButton = document.querySelector("#tit-submit") // falta colocar funcional
+      const titInput = document.querySelector("#tit-input")
+
+      const freqSubmitButton = document.querySelector("freq-submit") // falta colocar funcional
+      const freqInput = document.querySelector("#freq-input")
 
 
       // conteudo após header //////////////////////
@@ -793,7 +810,7 @@ function displayData(wordData, textData, stoplist) {
       displayResultado(resultado) // funcionouu!!!
       console.log("Click!!") // funciona!!
     }) // talvez n esteje destacado
-     document.querySelector('#Ord-Alfa').style.backgroundColor = "blue"
+     //document.querySelector('#Ord-Alfa').style.backgroundColor = "blue"
 
 
     /***************** Ordem Freq ********************/
@@ -802,7 +819,7 @@ function displayData(wordData, textData, stoplist) {
       displayResultado(resultado) 
       console.log("Click!!")
     })
-    document.querySelector('#Ord-Freq').style.backgroundColor = "blue"
+    //document.querySelector('#Ord-Freq').style.backgroundColor = "blue"
 
     /***************** Ordem Tit ********************/
     document.querySelector('#Ord-Tit').addEventListener('click', (e) =>{
@@ -811,7 +828,7 @@ function displayData(wordData, textData, stoplist) {
       console.log("Click!!") // funciona
       console.log(ordTit_) // está a alterar
     })
-    document.querySelector('#Ord-Tit').style.backgroundColor = "blue"
+    //document.querySelector('#Ord-Tit').style.backgroundColor = "blue"
 
     /***************** Separadores page ********************/
     function sepPage(){
