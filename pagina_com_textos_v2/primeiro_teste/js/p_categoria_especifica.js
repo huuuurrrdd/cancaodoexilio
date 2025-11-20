@@ -476,15 +476,49 @@ function displayData(wordData, textData, lemmasData, wikiData){
     //header
     let tentry_header = document.createElement("div")
     document.querySelector(".list-container").appendChild(tentry_header)
-    tentry_header.className += "tentry tentry-header"
+    tentry_header.className += "tentry-header"
 
-    tentry_header.innerHTML =  `  <div class = "ano header">Ano</div>
-                                  <div class = "titulo header">Titulo</div>
-                                  <div class = "autor header">Autor</div>`
+    tentry_header.innerHTML =  `  <div class = "ano header ano-header">
+                                    <h2 class = "ano-o-h">Ano</h2> 
+                                    <p id="Ord-Dat">Ord:</p>
+                                    <div id = "year-search-bar">
+                                        <input id="year-input" class="input-h" aria-label="ano?" type="number" class="year-search-bar__input" placeholder="ano?" min="1846" autofocus required>
+                                        <input id="year-submit" type="image" class="year-search-bar__button bt-h" src='./imagens/lupa.svg' aria-label=""search>
+                                    </div>
+                                  </div>
+
+                                  <div class = "titulo header titulo-header">
+                                    <h2 class = "titul-o-h">Título</h2>
+                                    <p id = "Ord-Tit">Ord: </p>
+                                    <div id = "titul-search-bar">
+                                        <input id="titul-input" class="input-h" aria-label="titulo?" type="text" class="titul-search-bar__input" placeholder="titulo?" autofocus required>
+                                        <input id="titul-submit" type="image" class="titul-search-bar__button bt-h" src='./imagens/lupa.svg' aria-label=""search>
+                                    </div>
+                                  </div>
+
+                                  <div class = "autor header autor-header">
+                                    <h2 class = "aut-o-h">Autor</h2>
+                                    <p id = "Ord-Aut">Ord: </p>
+                                    <div id = "autor-search-bar">
+                                        <input id="autor-input" class="input-h" aria-label="autor?" type="text" class="autor-search-bar__input" placeholder="autor?" autofocus required>
+                                        <input id="autor-submit" type="image" class="autor-search-bar__button bt-h" src='./imagens/lupa.svg' aria-label=""search>
+                                    </div>
+                                  </div>`
 
     tentry_header.style.backgroundColor = "yellow"
 
+    /*:::::  Botoes  :::::*/
+    const yearSubmitButton = document.querySelector('#year-submit')
+    const yearInput = document.querySelector('#year-input')
 
+    const titulSubmitButton = document.querySelector('#titul-submit')
+    const titulInput = document.querySelector('#titul-input')
+
+    const autorSubmitButton = document.querySelector('#autor-submit')
+    const autorInput = document.querySelector('#autor-input')
+
+
+    // conteudo após header //////////////////////
     let container = document.createElement("div")
     document.querySelector(".list-container").appendChild(container)
     container.className += "container"

@@ -71,7 +71,7 @@
 .freq    { grid-area: 1 / 11 / 2 / 12; } 
 
 /******** botoes header *********/
-.ano-header{
+.ano-header{ /*freq de 1 celula!!*/
     display: grid;
     grid-template-columns: auto;
     grid-template-rows: auto auto auto;
@@ -99,7 +99,7 @@
 }
 
 
-.freq-header{
+.freq-header{ /*freq de 1 celula!!*/
     display: grid;
     grid-template-columns: auto;
     grid-template-rows: auto auto auto;
