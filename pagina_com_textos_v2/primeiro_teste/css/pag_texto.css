@@ -26,20 +26,20 @@
 
 
 .palavra:link{
-    color:black;
+    color:var(--dark-green);
     /* background-color: rgba(0, 0, 0, 0.123); */
     text-decoration: none;
 }
 
 .palavra:visited{
-    color:black;
-    background-color: black;
+    color:var(--dark-green);
+    background-color: var(--dark-green);
     text-decoration: none;
 }
 
 .palavra:hover{
     color:white;
-    background-color: black;
+    background-color: var(--dark-green);
     text-decoration: none;
 }
 
@@ -50,29 +50,31 @@
     padding-bottom: 40px;
 }
 
+
 .categoria-a:link{
-    color: red;
+    color: var(--dark-green);
     text-decoration: none;
 }
 
 .categoria-a:visited{
-    color: red;
+    color: var(--dark-green);
     text-decoration: none;
 }
 
-.categoria-a:hover{
-    /* color:white; */
-    background-color: black;
+.categoria-a:hover .categoria-h{
+    color: var(--light-yellow);
+    background-color: var(--dark-green);
     text-decoration: none;
+    width: 70px;
 }
 
 .categoria-conteudo a:link{
-    color: red;
+    color: var(--dark-green);
     text-decoration: none;
 }
 
 .categoria-conteudo a:visited{
-    color: red;
+    color: var(--dark-green);
     text-decoration: none;
 }
 
