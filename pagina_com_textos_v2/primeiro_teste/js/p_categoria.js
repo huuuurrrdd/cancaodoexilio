@@ -60,7 +60,7 @@ fetchData()
 
 
 
-function displayData(wordData, textData){
+function displayData(wordData, textData){ //pode ser util ver as palavras associadas
 
     /* Passos para o gráfico:
         -> Informações a obter: 
@@ -345,21 +345,25 @@ function displayData(wordData, textData){
     document.querySelector("body").appendChild(categoria_container)
     categoria_container.className += "categoria-container"
 
+    let margem_ct = document.createElement("div")
+    categoria_container.appendChild(margem_ct)
+    margem_ct.className = "margem-ct"
+
     //subtitulo
     let subtitulo = document.createElement("p")
-    document.querySelector(".categoria-container").appendChild(subtitulo)
+    margem_ct.appendChild(subtitulo)
     subtitulo.className += "subtitulo"
     subtitulo.innerText = "Categoria de palavras:"
 
     //*************  Titulo de página (Nome de categoria) ****************/
     let categoria_palavras_h = document.createElement("h1")
-    document.querySelector(".categoria-container").appendChild(categoria_palavras_h)
+    margem_ct.appendChild(categoria_palavras_h)
     categoria_palavras_h.className += "categoria-palavras-h page-title"
     categoria_palavras_h.innerText = categoria
 
     //*************  Gráfico geral  ****************/
     let grafico_ct = document.createElement("div")
-    document.querySelector(".categoria-container").appendChild(grafico_ct)
+    margem_ct.appendChild(grafico_ct)
     grafico_ct.className += "grafico-ct"
     
     let canvas = document.createElement("canvas")
@@ -398,9 +402,32 @@ function displayData(wordData, textData){
     document.querySelector(".list-all-container").appendChild(ct_head_list)
     ct_head_list.className += "ct-head-list"
 
-    ct_head_list.innerHTML = `  <div class = "palavras header">Palavra</div>
-                                <div class = "texto header">Textos</div>
-                                <div class = "frequencia header">Freq</div>`
+    ct_head_list.innerHTML = `  <div class = "palavras header palavras-header">
+                                    <h2 class = "pal-o-h">Palavra</h2>
+                                    <p id="Ord-Alfa">Ord: </p>
+                                    <div id="pal-search-bar">
+                                        <input id="pal-input" class="input-h" aria-label="palavra?" type="text" class="pal-search-bar__input" placeholder="Palavra?" autofocus required>
+                                        <input id="pal-submit" type="image" class="pal-search-bar_button bt-h" src='./imagens/lupa.svg' aria-label="search">
+                                    </div>
+                                </div>
+
+                                <div class = "texto header texto-header">
+                                    <h2 class = "texto-o-h">Textos</h2>
+                                    <p id="Ord-Tit">Ord: </p>
+                                    <div id="tit-search-bar">
+                                        <input id="tit-input" class="input-h" aria-label="titulo?" type="text" class="tit-search-bar__input" placeholder="titulo?" autofocus required>
+                                        <input id="tit-submit" type="image" class="tit-search-bar_button bt-h" src='./imagens/lupa.svg' aria-label="search">
+                                    </div>
+                                </div>
+
+                                <div class = "frequencia header frequencia-header">
+                                    <h2 class = "fre-o-h">Freq</h2>
+                                    <p id="Ord-Freq">Ord: </p>
+                                    <div id = "freq-search-bar">
+                                        <input id="freq-input" class="input-h" aria-label="autor?" type="text" class="freq-search-bar__input" placeholder="frequencia?" autofocus required>
+                                        <input id="freq-submit" type="image" class="freq-search-bar__button bt-h" src='./imagens/lupa.svg' aria-label=""search>
+                                    </div>
+                                </div>`
     
     ct_head_list.style.backgroundColor = "yellow"
 
@@ -422,7 +449,7 @@ function displayData(wordData, textData){
         // funcionaaa!!!!
         let link_palavra_cat = document.createElement("a")
         document.querySelector(".ct-item" + i).appendChild(link_palavra_cat)
-        link_palavra_cat.className += "link-palavra-cat link-palavra-cat" + i
+        link_palavra_cat.className += "palavras link-palavra-cat link-palavra-cat" + i
         link_palavra_cat.href = "./p_categoria_especifica.html?categoria=" + categoria + "&especifica=" + nomeCatOrd[i].nome
 
         let palavra = document.createElement("div")
@@ -434,7 +461,28 @@ function displayData(wordData, textData){
         let barra_frequencia = document.createElement("div")
         document.querySelector(".ct-item" + i).appendChild(barra_frequencia)
         barra_frequencia.className += "barra-frequencia"
-        barra_frequencia.innerHTML = nomeCatOrd[i].textos_menc.length
+        //barra_frequencia.innerHTML = nomeCatOrd[i].textos_menc.length
+
+        let barra_interior = document.createElement("div")
+        barra_frequencia.appendChild(barra_interior)
+        barra_interior.className += "barra-interior"
+
+        let barra_valor = document.createElement("div")
+        barra_interior.appendChild(barra_valor)
+        barra_valor.className = "barra-valor"
+        barra_valor.innerHTML = nomeCatOrd[i].textos_menc.length
+        
+        // // adicionando tooltip:
+        // let tooltip_freq = document.createElement("div")
+        // barra_frequencia.appendChild(tooltip_freq)
+        // tooltip_freq.className += "tooltip-freq"
+        // tooltip_freq.innerHTML = `__<span class="tooltiptext"> ${nomeCatOrd[i].textos_menc.length} </span>`
+
+        barra_interior.style.backgroundColor = "black"
+
+        let f1 = nomeCatOrd[0].textos_menc.length
+        let f2 = nomeCatOrd[i].textos_menc.length
+        barra_interior.style.width = `calc(${f2/f1}*100%)`
 
     }
 

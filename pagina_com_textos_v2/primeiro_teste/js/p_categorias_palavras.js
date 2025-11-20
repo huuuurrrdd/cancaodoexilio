@@ -275,7 +275,7 @@ function displayData(wordData, textData){
             labels_cat: localSNome,
             labels_cat_value: localSVal,
             mais_frequente: localSNome[0],
-            info_mais_frequente: "Bahia é Bahia"
+            info_mais_frequente: ""
         },
 
         {
@@ -283,7 +283,7 @@ function displayData(wordData, textData){
             labels_cat: faunaSNome,
             labels_cat_value: faunaSVal,
             mais_frequente: faunaSNome[0],
-            info_mais_frequente: "Sabiá é Sabiá"
+            info_mais_frequente: ""
         },
 
         {
@@ -291,7 +291,7 @@ function displayData(wordData, textData){
             labels_cat: floraSNome,
             labels_cat_value: floraSVal,
             mais_frequente:  floraSNome[0],
-            info_mais_frequente: "Palmeira é Palmeira"
+            info_mais_frequente: ""
         },
 
         {
@@ -299,7 +299,7 @@ function displayData(wordData, textData){
             labels_cat: autorSNome,
             labels_cat_value: autorSVal,
             mais_frequente: autorSNome[0],
-            info_mais_frequente: "Jose Maia Ferreira é Jose Maia Ferreira"
+            info_mais_frequente: ""
         },
 
         {
@@ -307,7 +307,7 @@ function displayData(wordData, textData){
             labels_cat: ano__SNome,
             labels_cat_value: ano__SVal,
             mais_frequente: ano__SNome[0],
-            info_mais_frequente: "2009 é 2009"
+            info_mais_frequente: ""
         },
 
     ]
