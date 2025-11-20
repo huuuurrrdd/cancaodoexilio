@@ -212,3 +212,77 @@
 
 
     */
+
+
+// começar com 3, se houver mais, colocar ver mais
+if(resultado[i].textos.length <= 3){
+    for (let j = 0; j < resultado[i].textos.length; j++) {
+      let texto_de_palavra = document.createElement("a");
+      texto_de_palavra.className = "item-texto";
+      texto_de_palavra.innerHTML = `${resultado[i].textos[j].id_text}  ${resultado[i].titulo[j]} <br><br>`;
+      item_textos.appendChild(texto_de_palavra);
+      texto_de_palavra.href = `index.html?id=${resultado[i].textos[j].id_text}`
+    }
+} else {
+    // Create a function to render the initial state (first 3 + "Mais..." button)
+    const renderInitialState = () => {
+      item_textos.innerHTML = ''; // Clear everything
+      
+      // Show first 3 items
+      for (let j = 0; j < 3; j++) {
+        let texto_de_palavra = document.createElement("a");
+        texto_de_palavra.className = "item-texto";
+        texto_de_palavra.innerHTML = `${resultado[i].textos[j].id_text}  ${resultado[i].titulo[j]} <br><br>`;
+        item_textos.appendChild(texto_de_palavra);
+        texto_de_palavra.href = `index.html?id=${resultado[i].textos[j].id_text}`
+      }
+
+      // Only add "Mais..." button if there are more than 3 results
+      if(resultado[i].textos.length > 3){
+        let item_textosv1 = document.createElement("div")
+        item_textos.appendChild(item_textosv1)
+        item_textosv1.className += "item-texto mais"
+        item_textosv1.innerHTML = "Mais..."
+
+        item_textosv1.addEventListener("click", (e) => {
+          item_textos.innerHTML = ''
+          
+          // Determine how many to show (up to 8)
+          const itemsToShow = Math.min(resultado[i].textos.length, 8);
+          
+          for (let j = 0; j < itemsToShow; j++) {
+            let texto_de_palavra = document.createElement("a");
+            texto_de_palavra.className = "item-texto";
+            texto_de_palavra.innerHTML = `${resultado[i].textos[j].id_text}  ${resultado[i].titulo[j]} <br><br>`;
+            item_textos.appendChild(texto_de_palavra);
+            texto_de_palavra.href = `index.html?id=${resultado[i].textos[j].id_text}`
+          }
+
+          // Add "Ver todos" if there are more than 8
+          if(resultado[i].textos.length > 8){
+            let item_textosv2 = document.createElement("div")
+            item_textos.appendChild(item_textosv2)
+            item_textosv2.className += "item-texto ver-todos"
+            item_textosv2.innerHTML = "Ver todos"
+
+            item_textosv2.addEventListener("click", (e) => {
+              window.location.href=(`lista_palavras.html?palavra=${resultado[i].palavra}`);
+            })
+          }
+
+          // Add "menos" button to go back to initial state
+          let menos = document.createElement("div")
+          item_textos.appendChild(menos)
+          menos.className += "item-texto menos"
+          menos.innerHTML = "menos"
+
+          menos.addEventListener('click', (e) => {
+            renderInitialState(); // Go back to showing first 3 + "Mais..." button
+          })
+        })
+      }
+    }
+    
+    // Call it initially to set up the page
+    renderInitialState();
+}

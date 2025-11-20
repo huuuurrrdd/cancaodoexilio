@@ -751,14 +751,81 @@ function displayData(wordData, textData, stoplist) {
           document.querySelector(`.ct-item${i + 1}`).appendChild(item_textos);
           item_textos.className += "item-textos texto";
 
-          for (let j = 0; j < resultado[i].textos.length; j++) {
-            // item a colocar dentro de "item_textos"
-            let texto_de_palavra = document.createElement("a");
-            //document.querySelector(".item-textos").appendChild(texto_de_palavra)
-            texto_de_palavra.className = "item-texto";
-            texto_de_palavra.innerHTML = `${resultado[i].textos[j].id_text}  ${resultado[i].titulo[j]} <br><br>`; // em vez do id, colocar o número
-            item_textos.appendChild(texto_de_palavra);
-            texto_de_palavra.href = `index.html?id=${resultado[i].textos[j].id_text}`
+          // começar com 3, se houver mais, colocar ver mais
+          if(resultado[i].textos.length <= 3){
+              for (let j = 0; j < resultado[i].textos.length; j++) {
+              // item a colocar dentro de "item_textos"
+              let texto_de_palavra = document.createElement("a");
+              //document.querySelector(".item-textos").appendChild(texto_de_palavra)
+              texto_de_palavra.className = "item-texto";
+              texto_de_palavra.innerHTML = `${resultado[i].textos[j].id_text}  ${resultado[i].titulo[j]} <br><br>`; // em vez do id, colocar o número
+              item_textos.appendChild(texto_de_palavra);
+              texto_de_palavra.href = `index.html?id=${resultado[i].textos[j].id_text}`
+            }
+          } else {
+
+            const renderInitialState = () =>{
+              item_textos.innerHTML = ''
+            
+              // Show first 3 items
+              for (let j = 0; j < 3; j++) {
+                // item a colocar dentro de "item_textos"
+                let texto_de_palavra = document.createElement("a");
+                //document.querySelector(".item-textos").appendChild(texto_de_palavra)
+                texto_de_palavra.className = "item-texto";
+                texto_de_palavra.innerHTML = `${resultado[i].textos[j].id_text}  ${resultado[i].titulo[j]} <br><br>`; // em vez do id, colocar o número
+                item_textos.appendChild(texto_de_palavra);
+                texto_de_palavra.href = `index.html?id=${resultado[i].textos[j].id_text}`
+              }
+
+              if(resultado[i].textos.length > 3){
+                let item_textosv1 = document.createElement("div")
+                item_textos.appendChild(item_textosv1)
+                item_textosv1.className += "item-texto mais"
+                item_textosv1.innerHTML = "Mais..."
+
+                item_textosv1.addEventListener("click", (e) =>{
+                  item_textos.innerHTML = ''
+
+                  const itemsToShow = Math.min(resultado[i].textos.length, 8);
+                  
+                  
+                    for (let j = 0; j < itemsToShow; j++) {
+                      let texto_de_palavra = document.createElement("a");
+                      texto_de_palavra.className = "item-texto";
+                      texto_de_palavra.innerHTML = `${resultado[i].textos[j].id_text}  ${resultado[i].titulo[j]} <br><br>`; // em vez do id, colocar o número
+                      item_textos.appendChild(texto_de_palavra);
+                      texto_de_palavra.href = `index.html?id=${resultado[i].textos[j].id_text}`
+                    }
+
+
+                    let menos = document.createElement("div")
+                    item_textos.appendChild(menos)
+                    menos.className += "item-texto menos"
+                    menos.innerHTML = "menos"
+
+
+                    if(resultado[i].textos.length > 3 + 5){
+                      let item_textosv2 = document.createElement("div")
+                      item_textos.appendChild(item_textosv2)
+                      item_textosv2.className += "item-texto ver-todos"
+                      item_textosv2.innerHTML = "Ver todos"
+
+                      item_textosv2.addEventListener("click", (e) =>{
+                        window.location.href=(`lista_palavras.html?palavra=${resultado[i].palavra}`);
+                      })
+                    }
+                    
+                  
+                  menos.addEventListener('click', (e) =>{
+                    renderInitialState();
+                  })
+                })
+              } 
+            }
+
+            renderInitialState();
+
           }
 
           let item_frequencia = document.createElement("div");
@@ -799,6 +866,7 @@ function displayData(wordData, textData, stoplist) {
       }
     }
 
+    ordFreq(ordFre_) // dá erro, mas n sei se é pela quantidade de valores
     displayResultado(resultado)
 
    /*:::::::::::  ____________FILTROS____________  :::::::::::*/
