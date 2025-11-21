@@ -16,6 +16,8 @@
 :root{
   --dark-green: #223F29;
   --light-yellow: #FFFEF2;
+  --h1-texto: 4rem;
+  --h1-size: 3.5rem;
 }
 
 
@@ -26,17 +28,21 @@ html, body{
     color: var(--dark-green);
 }
 
-.page-title{
+.page-title, h1{
     font-family:"Oswald";
-    font-size: xxx-large;
+    /* font-size:xxx-large; */
+    font-size: var(--h1-size);;
 }
 
+h2{
+  font-family:"Oswald";
+}
 
-
-.texto-container{
+.margem-ct{
     margin:auto;
-    width: 70%;
+    width: calc(7/13*100%);
 }
+
 
 #map {
   margin: auto;

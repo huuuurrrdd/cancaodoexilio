@@ -1,17 +1,3 @@
-/* .words-container{
-    margin:auto;
-    width: 70%;
-} */
-
-.margem-ct{
-    margin:auto;
-    width: calc(7/13*100%);
-}
-
-.page-title{
-    font-family:"Oswald";
-    font-size: xxx-large;
-}
 
 /******** header *********/
 .ct-head-list{

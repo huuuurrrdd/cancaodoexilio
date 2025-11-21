@@ -357,25 +357,6 @@ function displayData(wordData, textData, lemmasData){
 
   const ctx = document.querySelector(".grafico-palavras")
 
-  //*************** FUNCIONA!! ******************/
-  // new Chart(ctx, {
-  //     type: 'bar',
-  //     data: {
-  //     labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-  //     datasets: [{
-  //         label: '# of Votes',
-  //         data: [12, 19, 3, 5, 2, 3],
-  //         borderWidth: 1
-  //     }]
-  //     },
-  //     options: {
-  //     scales: {
-  //         y: {
-  //         beginAtZero: true
-  //         }
-  //     }
-  //     }
-  // })
 
   //*********** Teste com gráfico de linha **********/
   new Chart(ctx, {
@@ -387,6 +368,10 @@ function displayData(wordData, textData, lemmasData){
           label: "frequencia de uso",
           data: freq_grafico,
           borderWidth: 1,
+          borderColor: '#223F29',
+          backgroundColor: '#223f29a4',
+          pointBorderWidth: 1,
+          pointRadius: 3
         },
       ],
     },

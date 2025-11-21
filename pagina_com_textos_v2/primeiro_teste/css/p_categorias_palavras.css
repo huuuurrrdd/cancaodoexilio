@@ -1,7 +1,7 @@
-.categorias-container{
+/* .categorias-container{
     margin:auto;
     width: 70%;
-}
+} */
 
 /* .categorias-sections{
     display: grid;
@@ -20,19 +20,17 @@
 
 
 /*Geral*/
-.categorias-sections{
+/* .categorias-sections{
     display:grid;
     grid-template-columns: repeat(auto-fit, minmax(min(22.25rem, 100%), 1fr));
     grid-gap: 1rem;
-}
+} */
 
 /*Concreto*/
-.cat-section{
-    /* background-color: aqua; */
+/* .cat-section{
     height: 400px;
     width: 500px;
-    /* align-self: stretch; */
-}
+} */
 
 
 

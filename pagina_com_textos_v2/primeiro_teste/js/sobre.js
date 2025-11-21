@@ -1,16 +1,18 @@
 
-
-
 let container = document.createElement("div")
 document.querySelector("body").appendChild(container)
 container.className = "texto-container"
 
+let margem_ct = document.createElement("div");
+container.appendChild(margem_ct);
+margem_ct.className = "margem-ct"
+
 let titulo = document.createElement("h1")
-container.appendChild(titulo)
+margem_ct.appendChild(titulo)
 titulo.className += "titulo page-title"
 
 let conteudo = document.createElement("div")
-container.appendChild(conteudo)
+margem_ct.appendChild(conteudo)
 conteudo.className = "texto-conteudo"
 
 titulo.innerHTML = "Sobre"

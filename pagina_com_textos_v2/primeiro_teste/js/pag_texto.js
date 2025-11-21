@@ -139,10 +139,10 @@ function displayData(wordData, textData, stoplist, lemmasData){
     document.querySelector("body").appendChild(categorias_container)
     categorias_container.className += "categorias-palavras categorias-palavras-ct"
 
-    let temas_h = document.createElement("h2")
-    categorias_container.appendChild(temas_h)
-    temas_h.className += "temas-h"
-    temas_h.innerHTML = "Temas"
+    let categorias_h = document.createElement("h2")
+    categorias_container.appendChild(categorias_h)
+    categorias_h.className += "categorias-h"
+    categorias_h.innerHTML = "Categorias"
 
     let locais_ct = document.createElement("div") //-------- Contentores categoria (locais, fauna e flora)
     document.querySelector(".categorias-palavras-ct").appendChild(locais_ct)
@@ -204,6 +204,8 @@ function displayData(wordData, textData, stoplist, lemmasData){
             let p_locais = document.createElement("p")
             document.querySelector(".locais-conteudo").appendChild(a_loc)
             a_loc.appendChild(p_locais)
+            p_locais.className = "p-elemento"
+            a_loc.className = "a-elemento"
             a_loc.href = `./p_categoria_especifica.html?categoria=Locais&especifica=${textData[textId-1].categorias.locais.locais_limpos[i]}`
             p_locais.innerHTML = `${textData[textId-1].categorias.locais.locais_limpos[i]}`
         }
@@ -226,6 +228,8 @@ function displayData(wordData, textData, stoplist, lemmasData){
             let p_fauna = document.createElement("p")
             document.querySelector(".fauna-conteudo").appendChild(a_fau)
             a_fau.appendChild(p_fauna)
+            p_fauna.className = "p-elemento"
+            a_fau.className = "a-elemento"
             a_fau.href = `./p_categoria_especifica.html?categoria=Fauna&especifica=${textData[textId-1].categorias.fauna[i]}`
             p_fauna.innerHTML = `${textData[textId-1].categorias.fauna[i]}`
         }
@@ -247,6 +251,9 @@ function displayData(wordData, textData, stoplist, lemmasData){
             let p_flora = document.createElement("p")
             document.querySelector(".flora-conteudo").appendChild(a_flo)
             a_flo.appendChild(p_flora)
+            p_flora.className = "p-elemento"
+            a_flo.className = "a-elemento"
+
             a_flo.href = `./p_categoria_especifica.html?categoria=Flora&especifica=${textData[textId-1].categorias.flora[i]}`
             p_flora.innerHTML = `${textData[textId-1].categorias.flora[i]}`
         }

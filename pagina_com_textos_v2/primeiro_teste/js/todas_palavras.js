@@ -404,7 +404,9 @@ function displayData(wordData, textData, stoplist) {
         {
           label: "Palavras com maior frequencia em cada ano",
           data: freq_grafico,
-          borderWidth: 1,
+          borderWidth: 0,
+          //borderColor: '#223F29',
+          backgroundColor: '#223F29'
         },
       ],
     },

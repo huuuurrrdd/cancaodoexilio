@@ -166,15 +166,17 @@
         PÁGINA DE CATEGORIAS:
         - (feito) Colocar gráficos com flex ou numa grelha!! (optei pela grelha - inspirado em cats)
         - (feito) Colocar todos os gráficos com cor preta (ou verde, ver e decidir as cores principais e tipografia)
+        - Colocar info da wikipédia (como na página específica)
 
         PÁGINA DE CATEGORIA ESPECÍFICA:
         - Colocar as barras em representação da frequencia
 
         PÁGINA DE ELEMENTO DE CATEGORIA:
-        - Colocar o resumo da wikipédia menor
-        - Garantir que ao clicar, consigo aceder à wikipédia
+        - (feito) Colocar o resumo da wikipédia menor
+        - (ESTE) Garantir que ao clicar, consigo aceder à wikipédia
         - (se necessário) colocar filtro de pesquisa [consoante a quantidade de resultados]- ex: em sabiá é necessário
         - Colocar botão "voltar"
+        - Colocar representação da evolução dos textos ao longo do tempo (para se poder comparar) -> pode ser necessário ver se há uma forma melhor
 
 
         Para os filtros no geral:
