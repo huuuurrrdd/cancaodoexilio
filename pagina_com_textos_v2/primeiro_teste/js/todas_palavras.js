@@ -941,7 +941,6 @@ function displayData(wordData, textData, stoplist) {
 
           })
 
-
         // if(filteredResultado == undefined){
         //   filteredResultado = ""
         // }
@@ -955,6 +954,38 @@ function displayData(wordData, textData, stoplist) {
       }
     })
 
+    /***************** Titulo pesquisa ********************/
+          // posso fazer um pequeno teste básico primeiro
+    titInput.addEventListener('input', (e) => {
+      
+    })
+    
+
+    /***************** freq pesquisa ********************/
+    freqInput.addEventListener('input', (e) => {
+      let value = String(e.target.value).trim()
+
+            if(value.length > 0){
+     
+                const filteredResultado = resultado
+                    .filter(item => {
+                        const f = String(item?.freq ?? "")
+                        return f.startsWith(value)
+                    })
+                    .sort((a,b) => {
+                        const na = Number(a.freq)
+                        const nb = Number(b.freq)
+                        return (Number.isNaN(na) ? Infinity : na) - (Number.isNaN(nb) ? Infinity : nb)
+                    })
+
+                resPPage(filteredResultado.length, rPP)
+                displayResultado(filteredResultado, value)
+
+            } else {
+                resPPage(resultado.length, rPP)
+                displayResultado(resultado, value)
+            }
+    })
 
   }
 
