@@ -331,7 +331,11 @@ function displayData(wordData, textData, lemmasData, wikiData){
             datasets:[{
                 label: `${categoria} ao longo do tempo`,
                 data: freq_grafico,
-                borderWidth: 1
+                borderWidth: 1,
+                borderColor: '#223F29',
+                backgroundColor: '#223f29a4',
+                pointBorderWidth: 1,
+                pointRadius: 3
             }]
         },
         options:{

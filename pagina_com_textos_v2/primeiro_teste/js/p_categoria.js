@@ -381,7 +381,8 @@ function displayData(wordData, textData){ //pode ser util ver as palavras associ
             datasets:[{
                 label: `${categoria} ao longo do tempo`,
                 data: freq_grafico,
-                borderWidth: 1
+                borderWidth: 0,
+                backgroundColor: '#223F29'
             }]
         },
         options:{
@@ -478,7 +479,7 @@ function displayData(wordData, textData){ //pode ser util ver as palavras associ
         // tooltip_freq.className += "tooltip-freq"
         // tooltip_freq.innerHTML = `__<span class="tooltiptext"> ${nomeCatOrd[i].textos_menc.length} </span>`
 
-        barra_interior.style.backgroundColor = "black"
+        barra_interior.style.backgroundColor = '#223F29'
 
         let f1 = nomeCatOrd[0].textos_menc.length
         let f2 = nomeCatOrd[i].textos_menc.length
