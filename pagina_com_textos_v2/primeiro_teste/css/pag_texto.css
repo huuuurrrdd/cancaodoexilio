@@ -39,10 +39,20 @@
 }
 
 .palavra:hover{
-    color:white;
+    color:var(--light-yellow);
     background-color: var(--dark-green);
     text-decoration: none;
 }
+
+/****** Autor data ******/
+.autor-data a:hover{
+    /* text-decoration:  underline overline;
+    text-underline-offset: 5px; */
+    color:var(--light-yellow);
+    background-color: var(--dark-green);
+}
+
+
 
 /****** Categorias ******/
 .categorias-h a:hover{

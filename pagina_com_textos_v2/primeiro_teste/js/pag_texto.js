@@ -126,7 +126,8 @@ function displayData(wordData, textData, stoplist, lemmasData){
     let autor_data = document.createElement("div")    //-------- Nome de autor e data
     document.querySelector(".texto-conteudo").appendChild(autor_data)
     autor_data.className += "autor-data"
-    autor_data.innerHTML = `<a href="p_categoria_especifica.html?categoria=Autores&especifica=${textData[textId-1].author}">${textData[textId-1].author}</a>, <a href="p_categoria_especifica.html?categoria=Anos&especifica=${textData[textId-1].date_of_publication}">${textData[textId-1].date_of_publication}</a><br>`
+    autor_data.innerHTML = `<a href="p_categoria_especifica.html?categoria=Autores&especifica=${textData[textId-1].author}">${textData[textId-1].author}</a>, 
+                            <a href="p_categoria_especifica.html?categoria=Anos&especifica=${textData[textId-1].date_of_publication}">${textData[textId-1].date_of_publication}</a><br>`
 
     // let teste_com_lemas = document.createElement("div")//------ Teste com lemas (conteúdo não exibido)
     // document.querySelector("body").appendChild(teste_com_lemas)

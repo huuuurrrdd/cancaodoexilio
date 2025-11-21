@@ -464,6 +464,10 @@ function displayData(wordData, textData){ //pode ser util ver as palavras associ
         barra_frequencia.className += "barra-frequencia"
         //barra_frequencia.innerHTML = nomeCatOrd[i].textos_menc.length
 
+        barra_frequencia.addEventListener('click', () =>{
+            window.location.href= "./p_categoria_especifica.html?categoria=" + categoria + "&especifica=" + nomeCatOrd[i].nome
+        })
+
         let barra_interior = document.createElement("div")
         barra_frequencia.appendChild(barra_interior)
         barra_interior.className += "barra-interior"
