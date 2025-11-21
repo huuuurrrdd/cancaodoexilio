@@ -209,11 +209,13 @@ function displayData(wordData, textData){
     document.querySelector("body").appendChild(textos_container)
     textos_container.className = "textos-container"
 
-    
+    let margem_ct = document.createElement("div");
+    textos_container.appendChild(margem_ct);
+    margem_ct.className = "margem-ct"
 
     /****************  Título de página  ******************/
     page_title = document.createElement("h1")
-    document.querySelector(".textos-container").appendChild(page_title)
+    margem_ct.appendChild(page_title)
     page_title.className += "page-title pesquisa-textos-h"
     page_title.innerHTML = "Pesquisa de textos"
 

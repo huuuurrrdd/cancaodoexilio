@@ -62,9 +62,13 @@ function displayData(wordData, textData){
     document.querySelector("body").appendChild(categorias_container)
     categorias_container.className += "categorias-container"
 
+    let margem_ct = document.createElement("div");
+    categorias_container.appendChild(margem_ct);
+    margem_ct.className = "margem-ct"
+
     //****************  Título de página  ******************/
     let title_h = document.createElement("h1")
-    document.querySelector(".categorias-container").appendChild(title_h)
+    margem_ct.appendChild(title_h)
     title_h.className += "categoria-palavras-h page-title"
     title_h.innerText = `Categorias de palavras`
 

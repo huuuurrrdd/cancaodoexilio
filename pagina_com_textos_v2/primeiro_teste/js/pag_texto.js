@@ -142,7 +142,7 @@ function displayData(wordData, textData, stoplist, lemmasData){
     let categorias_h = document.createElement("h2")
     categorias_container.appendChild(categorias_h)
     categorias_h.className += "categorias-h"
-    categorias_h.innerHTML = "Categorias"
+    categorias_h.innerHTML = `<a href = "p_categorias_palavras.html">Categorias</a>`
 
     let locais_ct = document.createElement("div") //-------- Contentores categoria (locais, fauna e flora)
     document.querySelector(".categorias-palavras-ct").appendChild(locais_ct)
