@@ -704,7 +704,7 @@ function displayData(wordData, textData){
         // Todos eles estão mal !!
         /***************** Year pesquisa ********************/
         //este está complicado!!
-        yearInput.addEventListener('input', (e) =>{ // n pode ser com local compare
+        yearInput.addEventListener('input', (e) => { // n pode ser com local compare
             let value = String(e.target.value).trim()
 
             // //reset pages every filter
@@ -778,7 +778,6 @@ function displayData(wordData, textData){
                     })
 
                 resPPage(filteredResultado.length, rPP)
-
                 displayResultadotab(filteredResultado, value)
 
             } else {

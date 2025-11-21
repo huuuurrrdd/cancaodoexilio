@@ -471,8 +471,6 @@ function displayData(wordData, textData, lemmasData){
     
     
     
-
-
     /*:::::::::::  Ordem alfabética de titulos  :::::::::::*/
     function ordTitleTxt(ord, data){
         //console.log("ord Function")
@@ -719,7 +717,7 @@ function displayData(wordData, textData, lemmasData){
 
         /***************** Ordem frequencia ********************/
         document.querySelector('#Ord-Freq').addEventListener('click', (e) => {
-            ordData(ordFre_, resultado)
+            ordFreq(ordFre_, resultado)
             displayResultadotxt(resultado)
             console.log("click!!")
         })
@@ -737,6 +735,145 @@ function displayData(wordData, textData, lemmasData){
             }
         }
         sepPage() // ainda preciso de perceber!!
+
+
+
+        /*:::::::::::  __Pesquisa livre__  :::::::::::*/
+
+        /***************** Year pesquisa ********************/
+        yearInput.addEventListener('input', (e) =>{
+          let value = String(e.target.value).trim()
+
+          if(value.length > 0){
+            
+            const filteredResultado = resultado
+              .filter(item =>{
+                  const year = String(item?.ano ?? "")
+                  return year.startsWith(value)
+              })
+              .sort((a,b) => {
+                const na = Number(a.ano)
+                const nb = Number(b.ano)
+                return(Number.isNaN(na) ? Infinity : na) - (Number.isNaN(nb) ? Infinity: nb)
+              })
+            resPPage(filteredResultado.length, rPP)
+            displayResultadotxt(filteredResultado, value)
+          } else {
+            resPPage(resultado.length, rPP)
+            displayResultadotxt(resultado, value)
+          }
+        })
+
+        /***************** Title pesquisa ********************/
+        titulInput.addEventListener('input', (e) =>{
+          let value = e.target.value
+
+          if(value && value.trim().length > 0){
+            value = value.trim().toLowerCase()
+
+            const filteredResultado = resultado
+              .filter(item => {
+                const title = normalize(item?.titulo || "")
+                const val = normalize(value)
+                return title.includes(val)
+              })
+              .sort((a,b) => {
+                const aTit = normalize(a.titulo)
+                const bTit = normalize(b.titulo)
+                const val = normalize(value)
+
+                let aStarts, bStarts
+
+                if(aTit.startsWith("[")){
+                    aStarts = aTit.startsWith(val,1)
+                } else{
+                    aStarts = aTit.startsWith(val) // compara se começa com o valor versao normalizada
+                }
+
+                if(bTit.startsWith("[")){
+                    bStarts = bTit.startsWith(val,1)
+                } else{
+                    bStarts = bTit.startsWith(val)
+                }
+
+                if(aStarts && !bStarts) return -1
+                if(!aStarts && bStarts) return 1
+
+                return aTit.localeCompare(bTit, 'pt', { sensitivity: 'base' })
+              })
+            
+            resPPage(filteredResultado.length, rPP)
+            displayResultadotxt(filteredResultado, value)
+
+          } else{
+            resPPage(resultado.length, rPP)
+            displayResultadotxt(resultado, value)
+          }
+        })
+
+        /***************** autor pesquisa ********************/
+        autorInput.addEventListener('input', (e) =>{ // n está confiavel!!
+            let value = e.target.value
+
+            if(value && value.trim().length > 0){
+                value = value.trim().toLowerCase()
+
+                const filteredResultado = resultado
+                    .filter(item => {
+                        const author = normalize(item?.autor || "") // n sei se o autor foi bem recolhido
+                        const val = normalize(value)
+                        return author.includes(val)
+                    })
+                    .sort((a,b) => { // ordem alfabetica com os valores dos resultados normalizados
+                        const aAut = normalize(a.autor)
+                        const bAut = normalize(b.autor)
+                        const val = normalize(value) // input-value normalizado
+
+                        const aStarts = aAut.startsWith(val) // compara se começa com o valor versao normalizada
+                        const bStarts = bAut.startsWith(val)
+
+                        if(aStarts && !bStarts) return -1
+                        if(!aStarts && bStarts) return 1
+
+                        return aAut.localeCompare(bAut, 'pt', { sensitivity: 'base' })
+                    })
+
+                resPPage(filteredResultado.length, rPP)
+
+                displayResultadotxt(filteredResultado, value)
+
+            } else {
+                resPPage(resultado.length, rPP)
+                displayResultadotxt(resultado, value)
+            }
+        })
+
+        /***************** freq pesquisa ********************/
+        freqInput.addEventListener('input', (e) => {
+          let value = String(e.target.value).trim()
+
+            if(value.length > 0){
+     
+                const filteredResultado = resultado
+                    .filter(item => {
+                        const f = String(item?.freq ?? "")
+                        return f.startsWith(value)
+                    })
+                    .sort((a,b) => {
+                        const na = Number(a.freq)
+                        const nb = Number(b.freq)
+                        return (Number.isNaN(na) ? Infinity : na) - (Number.isNaN(nb) ? Infinity : nb)
+                    })
+
+                resPPage(filteredResultado.length, rPP)
+                displayResultadotxt(filteredResultado, value)
+
+            } else {
+                resPPage(resultado.length, rPP)
+                displayResultadotxt(resultado, value)
+            }
+        })
+
   }
 
   displayTabela()

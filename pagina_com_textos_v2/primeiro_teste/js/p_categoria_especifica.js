@@ -461,7 +461,7 @@ function displayData(wordData, textData, lemmasData, wikiData){
     document.querySelector(".elemento-container-" + classEsp).appendChild(textos_mencionam)
     textos_mencionam.className += "textos-mencionam textos-mencionam-" + classEsp
     
-    //--titulo--
+    /************** titulo **************/
     let textos_mencionam_h = document.createElement("h2")
     document.querySelector(".textos-mencionam-" + classEsp).appendChild(textos_mencionam_h)
     textos_mencionam_h.className += "textos-mencionam-h textos-mencionam-h-" + classEsp
@@ -470,79 +470,412 @@ function displayData(wordData, textData, lemmasData, wikiData){
     } else {
         textos_mencionam_h.innerHTML = "Textos que mencionam " + especifica
     }
+
+    // /************** Display textos *************/
+    let div_textos = document.createElement("div")
+    textos_mencionam.appendChild(div_textos)
+    div_textos.className += "div-textos div-textos-display"
     
-    
-    //--tabela--
-    let list_container = document.createElement("div")
-    document.querySelector(".textos-mencionam-" + classEsp).appendChild(list_container)
-    list_container.className += "list-container"
 
-    //header
-    let tentry_header = document.createElement("div")
-    document.querySelector(".list-container").appendChild(tentry_header)
-    tentry_header.className += "tentry-header"
-
-    tentry_header.innerHTML =  `  <div class = "ano header ano-header">
-                                    <h2 class = "ano-o-h">Ano</h2> 
-                                    <p id="Ord-Dat">Ord:</p>
-                                    <div id = "year-search-bar">
-                                        <input id="year-input" class="input-h" aria-label="ano?" type="number" class="year-search-bar__input" placeholder="ano?" min="1846" autofocus required>
-                                        <input id="year-submit" type="image" class="year-search-bar__button bt-h" src='./imagens/lupa.svg' aria-label=""search>
-                                    </div>
-                                  </div>
-
-                                  <div class = "titulo header titulo-header">
-                                    <h2 class = "titul-o-h">Título</h2>
-                                    <p id = "Ord-Tit">Ord: </p>
-                                    <div id = "titul-search-bar">
-                                        <input id="titul-input" class="input-h" aria-label="titulo?" type="text" class="titul-search-bar__input" placeholder="titulo?" autofocus required>
-                                        <input id="titul-submit" type="image" class="titul-search-bar__button bt-h" src='./imagens/lupa.svg' aria-label=""search>
-                                    </div>
-                                  </div>
-
-                                  <div class = "autor header autor-header">
-                                    <h2 class = "aut-o-h">Autor</h2>
-                                    <p id = "Ord-Aut">Ord: </p>
-                                    <div id = "autor-search-bar">
-                                        <input id="autor-input" class="input-h" aria-label="autor?" type="text" class="autor-search-bar__input" placeholder="autor?" autofocus required>
-                                        <input id="autor-submit" type="image" class="autor-search-bar__button bt-h" src='./imagens/lupa.svg' aria-label=""search>
-                                    </div>
-                                  </div>`
-
-    tentry_header.style.backgroundColor = "yellow"
-
-    /*:::::  Botoes  :::::*/
-    const yearSubmitButton = document.querySelector('#year-submit')
-    const yearInput = document.querySelector('#year-input')
-
-    const titulSubmitButton = document.querySelector('#titul-submit')
-    const titulInput = document.querySelector('#titul-input')
-
-    const autorSubmitButton = document.querySelector('#autor-submit')
-    const autorInput = document.querySelector('#autor-input')
+    /******************  Funções para display  *******************/
+    // valores default para ordenação de resultados
+    let ordTit = "AZ" // o atual ---- titulo
+    let ordTit_ = "ZA" // o q muda
+    let ordAut = "AZ" // o atual ---- autor
+    let ordAut_ = "ZA" // o q muda
+    let ordDat = "asc" // o atual ---- ano
+    let ordDat_ = "des"// o que muda
 
 
-    // conteudo após header //////////////////////
-    let container = document.createElement("div")
-    document.querySelector(".list-container").appendChild(container)
-    container.className += "container"
+    /*:::::::::::  Resultados p/pagina  :::::::::::*/
+    let rPP = 50
+    let arrayResultados = []
 
-    //iteracao para display (embora até já possa ser possivel obter os valores reais!!)
-    for(let i = 0; i < idLista.length; i++){ //n sei se aguenta com 200
+    const txtTotal = idLista.length
 
-        //cria a div principal
-        let tentry = document.createElement("div")
-        tentry.className += "tentry tentry-container tentry-container" + (i+1)
+    function resPPage(total, rPP){
+      arrayResultados = []
 
-        //elementos do item
-        tentry.innerHTML = `<a class = "ano" href = "p_categoria_especifica.html?categoria=Anos&especifica=${textData[idLista[i]-1].date_of_publication}"> ${textData[idLista[i]-1].date_of_publication}</a>
-                            <a class = "titulo" href = "index.html?id=${textData[idLista[i]-1].id}">${textData[idLista[i]-1].title}</a>
-                            <a class = "autor" href = "p_categoria_especifica.html?categoria=Autores&especifica=${textData[idLista[i]-1].author}">${textData[idLista[i]-1].author}</a>`
+      const divInteira = Math.floor(total / rPP) // aqui deveria ser resultado.length
+      const resto = total % rPP
 
+      if(total <= rPP){ // se há menos de 50 resultados, só uma página
+        arrayResultados.push({ st:0, en: total})
+      } else {
+        // paginas completas
+        for(let i = 0; i < divInteira; i++){
+          const s = i > 0 ? i* rPP : 0
+          const e = s + rPP
 
-        container.appendChild(tentry)
+          arrayResultados.push({
+            st: s,
+            en: e
+          })
+        }
+        // ultima pagina incompleta
+        if(resto != 0) arrayResultados.push({
+          st : divInteira * rPP,
+          en: divInteira * rPP + resto
+        })
+      }
+      // resultado a devolver: arrayResultados
     }
 
+    resPPage(txtTotal, rPP)
+
+    // valor de indice da página
+    let iP = 0
+
+    /*:::::::::::  Array de obj com RESULTADOS  :::::::::::*/
+    let resultado = []
+    //let textosResultado =
+
+    for(let i = 0; i < idLista.length; i++){
+        const metadata = textData[idLista[i]-1]
+        const id = metadata.id
+        const ano = metadata.date_of_publication
+        const titulo = metadata.title
+        const autor = metadata.author
+
+        resultado.push({
+            id: id,
+            titulo: titulo,
+            ano: ano,
+            autor: autor
+        })
+    }
+
+    /*:::::::::::  Ordem alfabética de titulos  :::::::::::*/
+    function ordTitle(ord, data){
+        //console.log("ord Function")
+        if(ord=="AZ"){
+            data.sort((a,b) => a.titulo.localeCompare(b.titulo, 'pt'))
+            ordTit_ = "ZA" // pronto para mudar
+            ordTit = "AZ" // o atual
+        } else if (ord=="ZA"){
+            data.sort((a,b) => a.titulo.localeCompare(b.titulo, 'pt')).reverse()
+            ordTit_ = "AZ" // pronto para mudar
+            ordTit = "ZA" // o atual
+        }
+    }
+
+    /*:::::::::::  Ordem alfabética de autores  :::::::::::*/
+    function ordAutores(ord, data){
+        //console.log("ord Function")
+        if(ord=="AZ"){
+            data.sort((a,b) => a.autor.localeCompare(b.autor, 'pt'))
+            ordAut_ = "ZA" // pronto para mudar
+            ordAut = "AZ" // o atual
+        } else if (ord=="ZA"){
+            data.sort((a,b) => a.autor.localeCompare(b.autor, 'pt')).reverse()
+            ordAut_ = "AZ" // pronto para mudar
+            ordAut = "ZA" // o atual
+        }
+    }
+
+    /*:::::::::::  Ordem cronologica de textos  :::::::::::*/
+    function ordData(ord, data){
+        if(ord == "des"){
+          data.sort((a,b) => a.ano < b.ano ? -1 : 1).reverse()
+          ordDat_= "asc" // pronto para mudar
+          ordDat = "des" // atual
+        } else if (ord == "asc") {
+          data.sort((a,b) => a.ano < b.ano ? -1 : 1)
+          ordDat_= "des"
+          ordDat = "asc"
+        }
+    }
+
+    /*:::::::::::  Normalizar string  :::::::::::*/
+    function normalize(str){
+        return str
+            ?.toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+    }
+
+    function displayTabela(){
+        div_textos.innerHTML = ""
+    
+        //--tabela--
+        let list_container = document.createElement("div")
+        div_textos.appendChild(list_container)
+        list_container.className += "list-container"
+
+        //header
+        let tentry_header = document.createElement("div")
+        list_container.appendChild(tentry_header)
+        tentry_header.className += "tentry-header"
+
+        tentry_header.innerHTML =  `  <div class = "ano header ano-header">
+                                        <h2 class = "ano-o-h">Ano</h2> 
+                                        <p id="Ord-Dat">Ord:</p>
+                                        <div id = "year-search-bar">
+                                            <input id="year-input" class="input-h" aria-label="ano?" type="number" class="year-search-bar__input" placeholder="ano?" min="1846" autofocus required>
+                                            <input id="year-submit" type="image" class="year-search-bar__button bt-h" src='./imagens/lupa.svg' aria-label=""search>
+                                        </div>
+                                    </div>
+
+                                    <div class = "titulo header titulo-header">
+                                        <h2 class = "titul-o-h">Título</h2>
+                                        <p id = "Ord-Tit">Ord: </p>
+                                        <div id = "titul-search-bar">
+                                            <input id="titul-input" class="input-h" aria-label="titulo?" type="text" class="titul-search-bar__input" placeholder="titulo?" autofocus required>
+                                            <input id="titul-submit" type="image" class="titul-search-bar__button bt-h" src='./imagens/lupa.svg' aria-label=""search>
+                                        </div>
+                                    </div>
+
+                                    <div class = "autor header autor-header">
+                                        <h2 class = "aut-o-h">Autor</h2>
+                                        <p id = "Ord-Aut">Ord: </p>
+                                        <div id = "autor-search-bar">
+                                            <input id="autor-input" class="input-h" aria-label="autor?" type="text" class="autor-search-bar__input" placeholder="autor?" autofocus required>
+                                            <input id="autor-submit" type="image" class="autor-search-bar__button bt-h" src='./imagens/lupa.svg' aria-label=""search>
+                                        </div>
+                                    </div>`
+
+        tentry_header.style.backgroundColor = "yellow"
+
+        /*:::::  Botoes  :::::*/
+        const yearSubmitButton = document.querySelector('#year-submit')
+        const yearInput = document.querySelector('#year-input')
+
+        const titulSubmitButton = document.querySelector('#titul-submit')
+        const titulInput = document.querySelector('#titul-input')
+
+        const autorSubmitButton = document.querySelector('#autor-submit')
+        const autorInput = document.querySelector('#autor-input')
 
 
+        // conteudo após header //////////////////////
+        let container = document.createElement("div")
+        list_container.appendChild(container)
+        container.className += "container container-a"
+
+        function displayResultado(resultado, valor){
+
+            /*:::::  Atualiza os headers  :::::*/
+            document.querySelector('#Ord-Tit').textContent = `Ord: ${ordTit}`
+            document.querySelector('#Ord-Aut').textContent = `Ord: ${ordAut}`
+            document.querySelector('#Ord-Dat').textContent = `Ord: ${ordDat}`
+
+            container.innerHTML = ""
+
+            if(resultado == undefined || resultado == [] || resultado == ""){
+                container.innerHTML = `<p>Não foram encontrados resultados para: "${valor}" </p><br><br>`
+            } else {
+                for(let i = arrayResultados[iP].st; i < arrayResultados[iP].en; i++){
+                    // cria a div principal
+                    let tentry = document.createElement("div")
+                    tentry.className += "tentry tentry-container tentry-container" + (i+1)
+                    container.appendChild(tentry)
+
+                    tentry.innerHTML = `<a class = "ano" href="p_categoria_especifica.html?categoria=Anos&especifica=${resultado[i].ano}">${resultado[i].ano}</a>
+                                    <a class = "titulo" href="index.html?id=${resultado[i].id}">${resultado[i].titulo}</a>
+                                    <a class = "autor" href="p_categoria_especifica.html?categoria=Autores&especifica=${resultado[i].autor}">${resultado[i].autor}</a>`
+                }
+            }
+
+            /*:::::  Display de páginas de resultados  :::::*/
+            // remove outro nPages que existam anteriormente em list_container
+            const oldPages = list_container.querySelector('.n-page-ct')
+            if(oldPages) oldPages.remove()
+
+            // div com bts de exibir pag de resultados
+            let nPages = document.createElement("div")
+            list_container.appendChild(nPages)
+            nPages.className += "n-page n-page-ct"
+
+            if(resultado == undefined || resultado == [] || resultado == ""){
+                nPages.innerHTML = ""
+            } else {
+                nPages.innerHTML = ""
+                for(let i = 0; i < arrayResultados.length; i++){ // isto atualiza-se, mas 
+                    let nPage = document.createElement("div")
+                    nPages.appendChild(nPage)
+                    nPage.className += "n-page-i n-page" + i
+                    nPage.id = `n-page${i}`
+                    nPage.innerText = i+1
+
+                    //   nPage.addEventListener('click', (e) =>{
+                    //   console.log(`Click, page ${nPage.innerText}`)
+                    //   iP = i // tem de ser chamado acima
+                    // })
+                }
+            }
+            
+        }
+        displayResultado(resultado)
+
+        //ISTO FUNCIONAVA!!
+        // //iteracao para display (embora até já possa ser possivel obter os valores reais!!)
+        // for(let i = 0; i < idLista.length; i++){ //n sei se aguenta com 200
+
+        //     //cria a div principal
+        //     let tentry = document.createElement("div")
+        //     tentry.className += "tentry tentry-container tentry-container" + (i+1)
+
+        //     //elementos do item
+        //     tentry.innerHTML = `<a class = "ano" href = "p_categoria_especifica.html?categoria=Anos&especifica=${textData[idLista[i]-1].date_of_publication}"> ${textData[idLista[i]-1].date_of_publication}</a>
+        //                         <a class = "titulo" href = "index.html?id=${textData[idLista[i]-1].id}">${textData[idLista[i]-1].title}</a>
+        //                         <a class = "autor" href = "p_categoria_especifica.html?categoria=Autores&especifica=${textData[idLista[i]-1].author}">${textData[idLista[i]-1].author}</a>`
+
+
+        //     container.appendChild(tentry)
+        // }
+
+
+        /*:::::::::::  ____________FILTROS____________  :::::::::::*/
+
+        /***************** Ordem Alfabetica [titulo] ********************/
+        document.querySelector('#Ord-Tit').addEventListener('click', (e) => { // filtros funcionais
+            ordTitle(ordTit_, resultado) // dá erro aqui
+            displayResultado(resultado)
+            //console.log("click!!")
+        })
+        // document.querySelector('#Ord-Tit').style.backgroundColor = "white"
+
+        /***************** Ordem Alfabetica [autor] ********************/
+        document.querySelector('#Ord-Aut').addEventListener('click', (e) => {
+            ordAutores(ordAut_, resultado)
+            displayResultado(resultado)
+            console.log("click!!")
+        })
+        // document.querySelector('#Ord-Aut').style.backgroundColor = "white"
+
+        /***************** Ordem cronologica ********************/
+        document.querySelector('#Ord-Dat').addEventListener('click', (e) => {
+            ordData(ordDat_, resultado)
+            displayResultado(resultado)
+            console.log("click!!")
+        })
+        // document.querySelector('#Ord-Dat').style.backgroundColor = "white"
+
+        /***************** Separadores page ********************/
+        function sepPage(){
+            for(let i = 0; i < arrayResultados.length; i++){ //funiona!! // deve ser por arrayResultados ter de se atualizar!!
+                    document.querySelector('#n-page' + i).addEventListener('click', (e) => {
+                    console.log(`Click, page ${document.querySelector('#n-page' + i).innerText}`)
+                    iP = i
+                    displayResultado(resultado)
+                })
+                document.querySelector('#n-page' + i).style.backgroundColor = "yellow" // após atualização dos filtros isto deixa de funcionar
+            }
+        }
+        sepPage() // ainda preciso de perceber!!
+
+
+        /*:::::::::::  __Pesquisa livre__  :::::::::::*/
+
+        /***************** Year pesquisa ********************/
+        yearInput.addEventListener('input', (e) =>{
+          let value = String(e.target.value).trim()
+
+          if(value.length > 0){
+            
+            const filteredResultado = resultado
+              .filter(item =>{
+                  const year = String(item?.ano ?? "")
+                  return year.startsWith(value)
+              })
+              .sort((a,b) => {
+                const na = Number(a.ano)
+                const nb = Number(b.ano)
+                return(Number.isNaN(na) ? Infinity : na) - (Number.isNaN(nb) ? Infinity: nb)
+              })
+            resPPage(filteredResultado.length, rPP)
+            displayResultado(filteredResultado, value)
+          } else {
+            resPPage(resultado.length, rPP)
+            displayResultado(resultado, value)
+          }
+        })
+
+        /***************** Title pesquisa ********************/
+        titulInput.addEventListener('input', (e) =>{
+          let value = e.target.value
+
+          if(value && value.trim().length > 0){
+            value = value.trim().toLowerCase()
+
+            const filteredResultado = resultado
+              .filter(item => {
+                const title = normalize(item?.titulo || "")
+                const val = normalize(value)
+                return title.includes(val)
+              })
+              .sort((a,b) => {
+                const aTit = normalize(a.titulo)
+                const bTit = normalize(b.titulo)
+                const val = normalize(value)
+
+                let aStarts, bStarts
+
+                if(aTit.startsWith("[")){
+                    aStarts = aTit.startsWith(val,1)
+                } else{
+                    aStarts = aTit.startsWith(val) // compara se começa com o valor versao normalizada
+                }
+
+                if(bTit.startsWith("[")){
+                    bStarts = bTit.startsWith(val,1)
+                } else{
+                    bStarts = bTit.startsWith(val)
+                }
+
+                if(aStarts && !bStarts) return -1
+                if(!aStarts && bStarts) return 1
+
+                return aTit.localeCompare(bTit, 'pt', { sensitivity: 'base' })
+              })
+            
+            resPPage(filteredResultado.length, rPP)
+            displayResultado(filteredResultado, value)
+
+          } else{
+            resPPage(resultado.length, rPP)
+            displayResultado(resultado, value)
+          }
+        })
+
+        /***************** autor pesquisa ********************/
+        autorInput.addEventListener('input', (e) =>{ // n está confiavel!!
+            let value = e.target.value
+
+            if(value && value.trim().length > 0){
+                value = value.trim().toLowerCase()
+
+                const filteredResultado = resultado
+                    .filter(item => {
+                        const author = normalize(item?.autor || "") // n sei se o autor foi bem recolhido
+                        const val = normalize(value)
+                        return author.includes(val)
+                    })
+                    .sort((a,b) => { // ordem alfabetica com os valores dos resultados normalizados
+                        const aAut = normalize(a.autor)
+                        const bAut = normalize(b.autor)
+                        const val = normalize(value) // input-value normalizado
+
+                        const aStarts = aAut.startsWith(val) // compara se começa com o valor versao normalizada
+                        const bStarts = bAut.startsWith(val)
+
+                        if(aStarts && !bStarts) return -1
+                        if(!aStarts && bStarts) return 1
+
+                        return aAut.localeCompare(bAut, 'pt', { sensitivity: 'base' })
+                    })
+
+                resPPage(filteredResultado.length, rPP)
+
+                displayResultado(filteredResultado, value)
+
+            } else {
+                resPPage(resultado.length, rPP)
+                displayResultado(resultado, value)
+            }
+        })
+
+    }
+
+    displayTabela()
 }
