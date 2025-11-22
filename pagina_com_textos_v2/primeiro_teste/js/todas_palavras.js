@@ -480,7 +480,7 @@ function displayData(wordData, textData, stoplist) {
 
     /*:::::::::::  Resultados p/pagina  :::::::::::*/
     // obtendo a divisão por 50, descobrir o resto
-    let rPP = 50 // resuktados por página
+    let rPP = 50 // resultados por página
     let arrayResultados = [] // com indice de inicio e de fim (com ele incluido)
 
     const total = todosOBJpalavrasSStopwords.length // colocar isto dinamico!!
@@ -913,7 +913,12 @@ function displayData(wordData, textData, stoplist) {
     }
     sepPage() // ainda preciso de perceber!!
 
-     /***************** Pesquisa de palavras ********************/
+
+
+
+    /*:::::::::::  __Pesquisa livre__  :::::::::::*/
+
+    /***************** Pesquisa palavras ********************/
     palInput.addEventListener('input', (e) =>{
       let value = e.target.value
 
