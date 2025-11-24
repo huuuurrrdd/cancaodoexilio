@@ -83,7 +83,7 @@
 083_nan
 084_manassú(rio?)
 085_nan
-086_piaui,suzano(sp), traipu(alagoas), urupemba(st.catarina), alagoas, floriano(piauí)
+086_piaui, suzano(sp), traipu(alagoas), urupemba(st.catarina), alagoas, floriano(piauí)
 087_brasil
 088_nan
 089_nan
