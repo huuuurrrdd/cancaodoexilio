@@ -122,7 +122,7 @@
 122_nan
 123_serra da buretama(ceará), mundahú(praia, trairi, ceará)
 124_nan
-125_europa, frança, bahia, paris, torre eiffel, sena(rio, paris),mancha(canal da mancha) londres, hamburgo(alemanha), itália, suiça, turquia, rússia, moscou
+125_europa, frança, bahia, paris, torre eiffel, sena(rioparis), mancha(canaldamancha)londres, hamburgo(alemanha), itália, suiça, turquia, rússia, moscou
 126_são paulo
 127_califórnia, veneza, brasil 
 128_nan
