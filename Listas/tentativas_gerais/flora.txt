@@ -1,0 +1,102 @@
+manga: mangueira / manga rosa / manga espada
+banana: bananeira / bananas / bananêra
+abacate: abacateiro
+maçã: macieira
+laranja: laranjeira / laranjais
+limão: limoeiro / lima / limão galego
+uva: videira / uvas / douro (contexto vinho apenas planta — mas não é lugar)
+pera: pereira
+pêssego: pessegueiro
+nectarina: pessegueiro nectarina
+ameixa: ameixeira
+cereja: cerejeira
+morango: morangueiro
+framboesa: framboeseira
+amora: amoreira
+jabuticaba: jabuticabeira / jabuticabeiras
+caju: cajueiro
+castanha-do-pará: castanheira
+castanha de caju: cajueiro (mesma árvore já contabilizada)
+açaí: açaizeiro
+coco: coqueiro
+mamão: mamoeiro
+maracujá: maracujazeiro
+goiaba: goiabeira / goias (retido apenas variante sonora botânica pt antiga / não estado)
+pitanga: pitangueira
+graviola: gravioleira
+cupuaçu: cupuaçuzeiro
+cacau: cacaueiro
+café: cafeeiro / moka
+canela: caneleira
+noz: nogueira
+amêndoa: amendoeira
+pinhão: araucária
+milho: milharal
+trigo: trigal
+arroz: arrozal
+cana-de-açúcar: canavial
+girassol: girassol (planta e flor)
+roseira: rosa / rosas
+tulipa: tulipas
+violeta: violetas
+lírio: lírios
+orquídea: orquídeas
+jasmim: jasmins
+lavanda: alfazema
+alecrim: rosmarinho
+manjericão: basilico
+sálvia: salvias
+tomilho: thymus
+hortelã: mentha / menta
+boldo: boldo-do-chile / boldo-brasileiro
+erva-mate: mate
+erva-doce: anis
+anis-estrelado: badiana
+pimenta: pimenteira
+pimentão: capsicum
+tomate: tomateiro
+batata: batateira / batatinha
+cenoura: daucus
+beterraba: beterraba comum
+mandioca: aipim / macaxeira
+inhame: taro (variante mundial)
+cará: dioscorea sp
+alho: alho comum
+cebola: cebola comum
+espinafre: spinach
+couve: couve manteiga / couve portuguesa
+alface: lactuca sativa
+rúcula: rocket
+agrião: agrião d’água
+brócolis: brócolis comum
+couve-flor: couve flor
+repolho: repolho comum
+abóbora: abóboras / abóbora moranga
+pepino: pepineiro
+melancia: melancia comum
+melão: melão comum
+uva passa: derivado uva (não conta novo)
+oliveira: oliva / azeitona
+amendoim: amendoim comum
+gengibre: zingiber
+cúrcuma: açafrão-da-terra
+baunilha: vanilla
+cacau: cacaueiro (já contado)
+figo: figueira
+romã: romanzeira
+kiwi: actinidia
+lichia: litchi
+rambutan: nephelium
+durian: durio
+tâmaras: tamareira
+caju-do-cerrado: anacardium humile
+baru: dipteryx alata
+pequi: pequizeiro
+buriti: buritizeiro
+araticum: araticunzeiro
+umbu: umbuzeiro
+bacuri: bacurizeiro
+seringueira: hevea brasiliensis
+carvalho: quercus
+eucalipto: eucaliptos
+pinheiro: pinheiros do paraná (mantido botânico, não estado)

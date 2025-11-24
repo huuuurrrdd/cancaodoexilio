@@ -1,0 +1,550 @@
+001_palmeiras, flores, bosques
+002_loureiros, tulipas, gira-sol, flores
+003_roxas florinhas, violeta, amoras, salgueiral, formosos parreiras, alpestre, cipreste, arvoredo
+004_boninas
+005_silvados, flores, bosques, linho, loureiro
+006_palmeiras
+007_n/a
+008_ jasmim, salgueiraes, flores, rosas, palmeiras, arvoredos
+009_n/a
+010_arbol, bagas, ramos
+011_palmeiras, arvoredos, flores, frutas, arecal 
+012_árvores, bananas, cambucá
+013_frutos, coqueiro, indaiá, araçá, lírio, rosa, jasmin, cambucá, arrebol
+014_n/a (mt bom e n consegui captar a essencia)
+015_oliveiras, palmeiras
+016_arvoredo, peroba, flores, cipó
+017_n/a
+018_mangueiras, palmeiras
+019_flores, mangueira, bosques, açucenas, palmeira, goiabeira, laranjeira, sapucaia, cajazeiro
+020_palmeiras, flores
+021_n/a
+022_floresta, flor dos trópicos
+023_flor,laranjeira, coqueiros, mangueiras
+024_pomares, frutos, flor, lírios, cravos, boninas, rosas, árvores, palmeiras, roseiras, cocos
+025_flores, frutos, mangueiras
+026_plantas
+027_bosques
+028_flores, frutos
+029_flores, florestas, laranjal, mangueiras, palmeiras, frutas, saputis, cambucá, pitanga, araçá, manga, maracujá
+030_palmeiras
+031_flores, rosas, moitas
+032_n/a
+033_cajuais
+034_goiaba, pitanga, coco, gururi, batatas, melancia, jenipapo
+035_romã, ipê, pequiá, sahicê, jambo, pitanga, cajá, ananás, caju, manga, cambucás, palmeiras, açucenas.
+036_florestas, rosa
+037_n/a
+038_salgueiros, frutos, palmares, bosques, moitas
+039_palmeiras, palmar
+040_n/a
+041_frutas, limas
+042_laranjas, laranjal, arbustos
+043_ateiras, mangabeiras, flores, vergeis, palmares, bosque
+044_palmeiras, buriti, flores, florestas, muricy, frutas
+045_craveiros, flores
+046_bosques, flores, jataí, arvoredos, cumaté, seringueiras, baunilhas, ipé, mimosa, maracujá, fagueiras, rosas, bananeira, pitangeuria, parreira, bacuris, louro, pau-brasil, pequiá, jacarandá.
+047_coco
+048_palmeiras
+049_coqueiros, florestas, mangueiras, palmeiras
+050_palmeiras,flores, bosques
+051_flores
+052_flor, lírio, mangues, palmeiras, cajazeiro, cipós,  pau de arco (ipê), bananeiras, bosques
+053_palmares, rosas, açucena
+054_flores, frutos
+055_palmeiras, bosques, palmeira, flores
+056_louro, fagueiras, palmeiras
+057_palmeiras, fagueiras
+058_palmeiras, rosa, flores
+059_palmeira, palmeiras, rosas, nenufar, íris, palmares
+060_palmeirais
+0_61_nogueiras, carnauba, môcoróró
+062_florestas, bosque, palmares
+063_mangabas
+064_n/a
+065_flores
+066_loureiros, flores
+067_coqueiros, flores, floresta
+068_arvoredos, bosques, flores
+069_loureiros, flores
+070_capim
+071_n/a
+072_palmeira, flor, boninas
+073_coqueiros, rosa, palmeiras
+074_n/a
+075_palmeiras
+076_jatobá, palmeiras, floresta
+077_palmeira, árvores
+078_n/a
+079_jacarandá
+080_alfombra, oiticica
+081_palmeiras, bananas, café, plantas rasteiras, flor, guayumús.
+082_flores
+083_palmeiras
+084_palmeiras
+085_flores
+086_coqueiros, pindaíba
+087_mangueiras
+088_palmeiras
+089_palmeiras
+090_bosques, flores
+091_flores
+092_palmeira, planta, ossim
+093_palmeiras,flores, rosas, flor
+094_n/a
+095_palmeira
+096_palmas, palmeiras
+097_flores
+098_selva
+099_palmeira
+100_mata, feijão
+101_palmeiras, arroz
+102_palmeiras
+103_palmeiras
+104_flores, bosques
+105_palmeiras, mangue
+106_parmeras, abobora, matto
+107_palmeiras
+108_mata
+109_palmeira, cambucá, cajueiros, mangueiras, abacateiros, manacá, bosques, palmeiras
+110_palmeiras, cafezais, seringueiras
+111_bosque, flores
+112_mangueiras
+113_palmares, flor
+114_palmeiras
+115_palmeiras
+116_guaraná, palmeiras
+117_palmeiras
+118_palmares, rosas
+119_coqueiro, palmeiras
+120_caju, mandioca
+121_coqueiros
+122_n/a
+123_canavial, manga, laranja, mamão, bananeira, cajú, batatata, cará-inhame, cafezal, palmeiral
+124_mata, prado, flores
+125_palmeiras
+126_cedros, árvores
+127_macieiras, flores, carambola
+128_moka
+129_palmeiras, coco babassú, mangueiras, jaqueiras, cacau, seringueiras, café, cumarú, tabaco, taniça, cortiça, castanhas, caju, pantanais, matas, frutos
+130_n/a
+131_palmeiras, flores
+132_palmeira
+133_n/a
+134_matas
+135_palmeiras
+136_n/a
+137_n/a
+138_palmeira
+139_palmeiras
+140_mata, cedro, lírio, buritizais, vergeis, canaviais, caiana, carapa, gabiroba, araçá, bambuzais, cavalinas, cana, flores
+141_palmeiras, pitanga, cajá-manga, cambucá
+142_bananeiras, canaviais, abacaxi, sapoti, oiti
+143_palmeiras
+144_florestas
+145_n/a
+146_palmeira, carnaúba, carnaubeira, palmeiras
+147_palmeiras
+148_palmeiras
+149_palmeira
+150_n/a
+151_palmeira, árvore
+152_selvas, árvores, palmeiras, paus-de-arco, rosas, flores
+153_palmeira, flores, mata
+154_palmeiras
+155_selvas, coco, cafezais, choupana, pampas, seringal
+156_coco, cabocla, caatingas, flores
+157_pinhões
+158_n/a
+159_palmeira, ervas 
+160_palmeiras
+161_palmeira
+162_palmeiras
+163_palmeiras
+164_florestas, flores, lírios, noiva, frutas, cravos
+165_palmeira, mata
+166_palmeiras
+167_couve
+168_n/a
+169_flor
+170_n/a
+171_coco, coqueiros, carnaúbas, caruru, garapa
+172_palmeiras
+173_palmeiras, mangue, mangueira
+174_palmeiras
+175_palmeiras
+176_n/a
+177_bananêra
+178_palmeiras
+179_palmeiras
+180_n/a
+181_palmeira
+182_palmeira
+183_palmeira, palmeiras, mato
+184_pinheiros
+185_palmeiras
+186_palmeira, palmeiras, coquinhos, mulungu, mulungus, flor
+187_palmeiras
+188_palmeiras, árvores, laranjeira, flor, flores, frutos, erva
+189_n/a
+190_pinheiros, pinheiro
+191_palmeiras 
+192_palmeiras, pau, café, flores, flor
+193_palmeiras, flores, grama
+194_n/a
+195_palmeiras 
+196_palmeiras
+197_feijão, roseiras
+198_bacaba, árvores, palmeiras
+199_n/a
+200_giestas, pinhais, castanheiros, trigais, sobreiros, alecrim, margaridas, searas, amendoeiras, zimbros, carrascos, fragas
+201_palmeira, flor 
+202_palmeiras, araçás, bananeiras, banana
+203_n/a
+204_flores, amor-perfeito, sempre-viva, rosa
+205_maçã, laranja, figo, banana, manga, jaca
+206_palmeira, palmeiras, várzeas, flores, rosas-meninas, bosques, cajá, pequi, cupuaçu, bacuri, algodão
+207_palmeiras
+208_selva, piaçabais, castanhas, palmeiras
+209_n/a
+210_palmeiras 
+211_palmares
+212_bosques, florestas, matas, flores, palmeiras
+213_bananas, banana, castanhas, tâmaras, palmeiras
+214_jequitibá, campo, mato, relva
+215_palmeiras
+216_palmeiras, cana, parati, cana caiana, cana crioulada, cana-pitu, cana rajada
+217_fruta, juçara, abricó, buriti, tanja, mangaba, manga, sapoti, caboclo de maioba, bacuri
+218_n/a
+219_palmeiras, várzeas, flores, bosques, arvoredo, guaraná
+220_melão, banaeira, mata, canela
+221_mangaba
+222_mangues
+223_chorão
+224_n/a
+225_palmeiras 
+226_juazeiro, pereira
+227_mangeuira
+228_n/a
+229_pinheiro, pinheirito, raízes
+230_palmeiras
+231_floresta
+232_n/a
+233_palmeiras, matagais, flores
+234_palmeiras
+235_tabaco, guaraná guarani, palmeira, buriti, laranjeiras, bananeira
+236_n/a
+237_n/a
+238_palmeiras, flores, pétala, pomar, flor
+239_palmeiras, arroz, diamba, maconha, cará, cana, araticum, gabiroba, couve, banana, garapa, coqueiros
+240_n/a 
+241_rosa, bananeira
+242_palmeiras, jabuticá
+243_laranjeira, flor, rosas, alecrim, chara, oráquio
+244_palmeiras
+245_bosques, matas, plantão
+246_selva, café, rosas, roseira
+247_coqueiros, várzea, bosque, planta, orquídea, fruta, cipó, plantas, jardim, jabuticabeira, palmeiras
+248_mato, grama
+249_n/a
+250_n/a
+251_n/a
+252_castanheiras, floresta
+253_campos
+254_bosques, flores, alface, feijão, pinheiros, framboesas, florestas, araucárias, campos
+255_palmeira
+256_n/a
+257_n/a
+258_n/a
+259_palmeiras, jabuticaba, árvore, árvores, arbóreo
+260_palmeiras, jasmim
+261_n/a
+262_palmeiras, coco
+263_palmeiras
+264_n/a
+265_n/a
+266_pinheiro, palmeiras, flores, matas
+267_mangueiras
+268_palmeiras
+269_palmeira
+270_palmeira
+271_n/a
+272_bosques
+273_mangueira, bosque
+274_palmeiras
+275_n/a
+276_palmeiras, árvores, cerrado, gramados, buganvílias, campos
+277_palmeiras, coco, quiabos, laranja, bananas, mangueiras, jabuticabeiras, maconha
+278_n/a
+279_matas, flor, mangueiras, palmeiras, gameleiras, milho
+280_palmeiras, coqueiros 
+281_amendoeira, chuchu, fruto, palmeira, frutos
+282_palmeiras 
+283_n/a
+284_n/a
+285_palmeiras
+286_palmeiras, mata, mato, floresta, baobás
+287_n/a
+288_florestas
+289_n/a
+290_n/a
+291_n/a
+292_n/a
+293_n/a
+294_figueira
+295_árvores, flores, palmeiras
+296_n/a
+297_n/a
+298_palmeiras, figueiras, castanheiras-do-pará, abacaxis
+299_palmeiras, feijão
+300_palmeiras
+301_palmeiras, abacate, jiló
+302_palmeiras
+303_palmeiras
+304_palmeiras, bananeiras
+305_n/a
+306_palmeiras, várzeas, flores, bosques, palmeira
+307_n/a
+308_mata, flores
+309_n/a
+310_palmeiras
+311_palmeiras, babuçu, cocô, carnaúba
+312_uvas
+313_n/a
+314_palmeira
+315_n/a
+316_ laranjas, laranjeiras, laranjais, laranja, frutas
+317_palmeiras
+318_n/a
+319_palmeiras
+320_árvores
+321_palmeiras, soja
+322_mata, palmares
+323_oiticica, marizeira, plantas, frutas, mutamba, pau-do-rio, pitomba, goiti, gurgurí, gunbiraba, canapum, caju, croata, imbira, tucunzeiro, catole, bredo, intã, unha de gato, melosa, mata-parte, berduegua, carnaúba, mucurana, aroeira, grão de galo, carrapicho
+324_n/a
+325_palmeiras
+326_palmeiras
+327_palmeiras, flores, bosques, guaraná, laranja, banana, maracujá, cupuaçu, açaí
+328_palmeiras, várzeas, flores, bosques, matas 
+329_palmeiras
+330_palmeiras 
+331_palmeiras, mangueiras, frutos, laranjeiras, flor, flores
+332_n/a
+333_laranjeira, mata 
+334_selva, sâmaras, Salomé, sara
+335_n/a
+336_palmeiras, várzeas, flores
+337_coqueiro, coco
+338_n/a
+339_n/a
+340_guaraná
+341_várzea, flores, florestas, flora, frutos, floresta
+342_palmeiras, florestas, matas, flores, flora
+343_n/a
+344_palmeiras
+345_n/a
+346_palmeiras 
+347_flores, ipês
+348_n/a
+349_canelas, macieiras, palmeiras, várzeas, flores, bosques, carambolas
+350_n/a
+351_palmeira
+352_palmeiras, buriti, bananeira, abricó, cupuaçu, pitomba, manga, huçara, piqui, goiaba, murici
+353_coqueiros, cuscuz
+354_n/a
+355_n/a
+356_n/a
+357_pinheiros, matas
+358_palmeiras, várzeas, bosques 
+359_palmeiras
+360_flores, palmeiras
+361_flores, plantas, arvoredos, bosques
+362_palmeiras, várzeas, flores, bosques, erva daninha
+363_n/a
+364_ milho, caju, feijão, abóbora, mandioca, algodão, plantação, planta
+365_palmeira
+366_palmeiras, várzeas, bosques, palmeira
+367_palmeiras, laranjeira, selva
+368_palmeiras
+369_n/a
+370_palmeiras, várzeas, bosques
+371_palmeiras, várzea, flores, bosques
+372_n/a
+373_palmeiras
+374_n/a
+375_palmeira
+376_quiabo
+377_mata, pantanal, palmeiras
+378_bobá, chara
+379_n/a
+380_palmeiras, várzeas, flores, bosques
+381_palmeiras, flores, florestas
+382_mandacarú, gravatá
+383_palmeiras, bosques
+384_laranjeira, pomar
+385_n/a
+386_palmeiras
+387_n/a
+388_bananeiras
+389_n/a
+390_n/a
+391_cerejeiras, flores, árvores, bosques
+392_n/a
+393_palmeiras
+394_n/a
+395_n/a
+396_palmeiras, bosques, flores
+397_palmeiras, flores
+398_n/a
+399_coqueiro, cocos, bosques
+400_n/a
+401_n/a
+402_palmeiras, várzeas, flores, bosques
+403_n/a
+404_jaqueira, flores
+405_palmeiras, flores, várzeas
+406_n/a
+407_flores
+408_n/a
+409_florzinhas
+410_ervas
+411_árvores, várzeas, flores
+412_árvores
+413_n/a
+414_palmeiras
+415_mangueiras, árvores
+416_n/a
+417_bananeira
+418_n/a
+419_n/a
+420_palmeiras, bosques, flores
+421_palmeiras
+422_mato
+423_n/a
+424_palmeiras, bosques
+425_n/a
+426_n/a
+427_palmeiras
+428_plantas
+429_n/a
+430_n/a
+431_flores
+432_n/a
+433_n/a
+434_árvores, flores, campos
+435_bambu, florestas, árvores
+436_palmeiras
+437_palmeiras, bacuri, ingazeira, murici, puçá, sapucaia, mato, fruta do conde, macaúba, cajuí, olho de boi, tamboril, cajá, caju, umbuzeiro, cupu, jatobá, babaçu, araçá, manguba, ipê amarelo, tucum, pati, anajá, mutamba, angico, marmelo, oiti, pequi, axixá, taturubá, pitomba, cagaita, jambo, mangaba, buritizeiro, buritirana, bacaba, açoita-cavalo, mama-cachorra, aroeira, cega-machado, milho, mandioca, merendiba, manga
+438_n/a
+439_palmeiras, florestas
+440_n/a
+441_n/a
+442_roseiras, rosas 
+443_n/a
+444_n/a
+445_bananeiras
+446_n/a
+447_palmeiras
+448_n/a
+449_n/a
+450_n/a
+451_n/a
+452_n/a
+453_n/a
+454_arroz, feijão
+455_palmeiras
+456_n/a
+457_n/a
+458_açaí, flores, mangueira
+459_mangueiras 
+460_n/a
+461_pomar, palmeiras, flores
+462_n/a
+463_n/a
+464_palmeiras, flora, bosques
+465_n/a
+466_palmeira
+467_n/a
+468_roseira
+469_n/a
+470_açucunas, alecrins, azaleias
+471_palmeiras, bosques
+472_n/a
+473_matas, seringueiras
+474_matas, palmeiras, gonçalvinas
+475_palmeiras
+476_palmeiras
+477_palmeiras
+478_jabuticaba
+479_bosques, palmeiras
+480_rosas, floreiras, flores, jardim
+481_palmeiras
+482_palmeiras, bosques
+483_palmeiras, cárzeas, flores, árvores
+484_plantão
+485_n/a
+486_palmeira
+487_flores
+488_palmeira
+489_palmeiras
+490_n/a
+491_palmeiras, mata
+492_palmeiras, bosques
+493_n/a
+494_n/a
+495_bananas
+496_grama, mata, flores, palmeiras, cipó
+497_palmeiras
+498_palmeiras
+499_palmeiras
+500_n/a
+501_palmeiras
+502_n/a
+503_palmeiras, flores, bosques, matas
+504_n/a
+505_flores
+506_palmeiras, flores, bosques, várzeas
+507_palmeiras, árvores
+508_bosques
+509_n/a
+510_palmeiras, floresta, campos, flores, matas
+511_n/a
+512_n/a
+513_n/a
+514_n/a
+515_várzeas, flores
+516_várzeas, frutos, sementes
+517_palmeiras, floresta
+518_n/a
+519_n/a
+520_várzeas, florestas
+521_n/a
+522_n/a
+523_n/a
+524_plantação, palmeira
+525_palmeiras,florestas
+526_n/a
+527_goiaba, palmeiras
+528_matas
+529_n/a
+530_flores
+531_palmeiras, bosques
+532_n/a
+533_n/a
+534_palmeiras, várzeas, bosques
+535_n/a
+536_n/a
+537_bosques
+538_rosa, maça, bananas, macieiras
+539_n/a
+540_floresta
+541_n/a
+542_palmeiras, flor, semente
+543_palmeiras, mata
+544_n/a
+545_n/a
+546_n/a
+547_palmeiras
+548_n/a
+549_n/a
+550_mandacaru, umbu, flores, bosques, xiquexique, facheiro, umburana, umbuzeiro

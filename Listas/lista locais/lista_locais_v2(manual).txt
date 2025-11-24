@@ -1,0 +1,550 @@
+01_nan
+02_nan
+03_portugal, douro
+04_portugal, douro 
+05_nan
+06_nan
+07_áfrica
+08_portugal, europa, albarrota, barcelos, bragança, tunes(pt),granada(espanha), marrocos, fez(africa)  brasil, guanabara(rio br), ouangara(Uangara africa), palmela(pt?), sintra(pt), tijuca(bairro r.jan), brasil
+09_nan
+10_nan
+11_gôa(india), portugal
+12_paris
+13_argetina
+14_nan
+15_nan
+16_nan
+17_brasil, pernambuco
+18_brasil
+19_brasil, santa cruz, Amazonas(rio), Prata(estuário), portugal, ipiranga(rio em SP)
+20_brasil
+21_alemanha
+22_europa
+23_brasil
+24_brasil
+25_brasil
+26_nan
+27_villa-nova(aldeia st.ant. sergipe, neopolis), brasil
+28_bahia, itália
+29_brasil
+30_europa, ásia
+31_nan
+32_nan
+33_nan
+34_guaratiba (bairro,RJ)
+35_brasil, itália
+36_nan
+37_pernambuco
+38_nan
+39_atins(vila br), europa, brasil, maranhão
+40_nan
+41_corrientes(argentina), brasil, paraná(estado)l
+42_corrientes(argentina)
+43_nan
+44_nan
+45_alcantara(lisb)
+46_nan
+47_nan
+48_nan
+49_nan
+50_maranhão
+51_nan
+52_caxias(br?), guanabara(praias, rj), tejo(rio?), brasil
+53_maranhão
+54_portugal
+55_brasil, itajuba(br?)
+56_himalaia, europa, atenas
+57_maranhão, brasil
+58_brasil
+59_maranhão
+60_athenas, roma, maranhão
+61_cabrobó(br, pernambuco) ipú(nordeste, Ceará), aracati (Ceará), mecejana(bairro, boa vista, br), guagirú(trairi, Ceará), jericó(Cisjordânia)
+62_maranhão, europa
+63_nan
+64_novo exu (exu, pernambuco), são francisco(rio, bahia), curaçá(bahia), araripe(Ceará), sergipe(estado)
+65_nan
+66_nan
+67_ganges(rio india)
+68_brasil, paraná(rio), grão-pará(antiga, Amazonas, Pará, Roraima e Amapá), douro(pt), tejo(pt), amazonas(rio), são francisco(rio)
+69_nan
+70_nan
+71_guiné
+72_nan
+73_sertão(nordeste), ribeirão(SP), rio de contas(bahia)
+74_nan
+75_nan
+76_boa vista(Roraima)
+77_nan
+78_nan
+79_paranaguá(paraná)
+80_nan
+81_nan
+82_ceará, sobral(ceará)
+83_nan
+84_manassú(rio?)
+85_nan
+86_piaui,suzano(sp), traipu(alagoas), urupemba(st.catarina), alagoas, floriano(piauí)
+87_brasil
+88_nan
+89_nan
+90_nan
+91_nan
+92_nan
+93_nan
+94_nan
+95_nan
+96_nan
+97_nan
+98_nordeste brasileiro
+99_brasil
+100_nan
+101_nan
+102_mooca(bairro, SP)
+103_nan
+104_ipiranga(SP), brasil
+105_nan
+106_ingraterra
+107_rua halfeld(cidade juiz de fora, minas gerais)
+108_sertão(nordestino)
+109_alemanha
+110_senegal(pais), pampas do sul(Rio Grande do Sul (Brasil), no Uruguai), grã-pará(st catarina)
+111_brasil
+112_nan
+113_pindorama (brasil em tupi), santa cruz(rio grande do norte), brasil
+114_nan
+115_guanabara (baía), tejo(rio, pt), europa, américa do sul
+116_nan
+117_nan
+118_são paulo
+119_nan
+120_joazeiro(bahia)
+121_nan
+122_nan
+123_serra da buretama(ceará), mundahú(praia, trairi, ceará)
+124_nan
+125_europa, frança, bahia, paris, torre eiffel, sena(rio, paris),mancha(canal da mancha) londres, hamburgo(alemanha), itália, suiça, turquia, rússia, moscou
+126_são paulo
+127_califórnia, veneza, brasil 
+128_nan
+129_brasil
+130_nan
+131_frança, paraná(estado)
+132_nan
+133_são joão da barra(RJ), foz da paraíba
+134_brasil
+135_brasil
+136_nan
+137_portugal, ameal(coimbra), fial(tondela, pt), calvães(albergaria-a-velha), fontes(Freguesia de Fontes do Município de Santa Marta de Penaguião), beduído(estarreja), paus(albergaria-a-velha)
+138_nan
+139_nan
+140_nan
+141_bahia
+142_nan
+143_copacabana(bairro, RJ)
+144_brasil
+145_são paulo, anhangabaú(SP)
+146_brasil
+147_nan
+148_nan
+149_nan
+150_nan
+151_nan
+152_nan
+153_nan
+154_Palmeiras (sociedade esportiva palmeiras, SP)
+155_brasil, sertão(nordeste), moema(?MG), iracema(Ceará-praia ou municipio?)
+156_alagoas
+157_massangana de nabuco(Engenho Massangana, pernambuco), pernambuco, muribara(bairro, s. lourenço da mata), alagoas, minas gerais
+brasil, itália
+olinda, brasil, são pedro
+alagoas, brasil
+portugal, brasil, atlântico
+baía, brasil, cruzeiro do sul, brasil
+alagoas
+nan
+nan
+nan
+nan
+brasil, n/a 
+brasil, nova inglaterra, maine, itália
+nan
+ceará
+nan
+paquetá, rio de janeiro, brasil, cantareira, rio de janeiro, brasil, leblon, rio de janeiro, brasil, jacarepaguá, rio de janeiro, brasil, flamengo, rio de janeiro, brasil, encantado, rio de janeiro, brasil, engenho novo, rio de janeiro, brasil, maria angu, rio de janeiro, brasil, piedade, rio de janeiro, brasil, irajá, rio de janeiro, brasil, central do brasil, rio de janeiro, brasil, lapa, rio de janeiro, brasil, vasco da gama, rio de janeiro, brasil, vermelhinho, rio de janeiro, brasil
+brasil, olegário mariano, itália 
+brasil, palmeiras 
+são paulo, palmeiras, bangú, portuguesa, vasco, coríntians, fla-flu, brasil
+parmêra, brasil, orora, bananêra, tubarão, batatinha .
+maranhão, brasil, bahia, brasil
+palmeiras, sabiá, bananas 
+belo horizonte, brasil, paraopeba
+palmeira, sabiá 
+são paulo, brasil, palmeira 
+nan
+nan
+nan
+brasil
+brasil
+bahia, brasil, itália, santa cruz, rio grande do sul, brasil
+brasil
+paraná, brasil, pinheiros do paraná
+nan
+rio de janeiro, copacabana, brasília, sítio, amazonas, guanabara, bahia, itália, santa cruz, brasil
+brasília, paranoá, rio, juá, bahia, brasil, itália, santa cruz, rio grande do sul, brasil
+nan
+nan
+nan
+brasil
+amazonas, rio oceano, ajuricaba, brasil 
+rio, rua, santa cruz, rio grande do sul, brasil, sertão profundo
+portugal, douro 
+nan
+brasil
+nan
+nan
+piauí, paris, brigite bardot, br-3 
+são luís do maranhão, bahia, brasil, itália, santa cruz, rio grande do sul, brasil
+chapadão de glória, são paulo, brasil
+rio negro, brasil, amazônas, itália 
+n/a 
+brasil
+belém, pará, brasil
+nan
+nan
+paulistinha, sertão, jequitibá, morena, mãezinha, n/a
+nan
+onça, mutum, sarcundo, morro escuro, queixadas, sete cachoeiras, capitão do mato, bananal, lava, piçarão, cobras, toco, alegre, mumbaça, abóboras, quenta-sol, botas
+maranhão
+nan
+brasil, argentina, santa cruz, rio grande do sul, brasil
+nan
+pernambuco, beberibe
+brasil, itália, santa cruz, rio grande do sul, brasil
+nan
+nan
+nan
+nan
+brasil, aldeia, santa cruz, rio grande do sul, brasil 
+nan
+curitiba, brasil
+nan
+nan
+nan
+nan
+nan
+brasil, madrid, europa, nordeste do brasil
+lisboa, portugal
+nan
+nan
+turquia, paris, torre eiffel, carrosel, frança, nova iorque, central park, rabá, alemanha, bragança, canadá, calcutá, rabá, alentejo, portugal, breja, bahia, brasil
+nan
+bahia, brasil, itália, santa cruz, rio grande do sul, brasil
+nan
+nan
+bahia, brasil, ouro preto, rio grande do sul, brasil, santos, campos de jordão, angra, parati
+nan
+ibirapuera, paulista, catedral, marco zero, praça sé, largo do arouche, sampa, tietê, baia, serra do mar, itabira, santa cruz, rio grande do sul, brasil
+maceió, brasil
+nan
+rio grande do sul, serra, litoral, guaíba, capital, fronteira, los hermanos, canha, rio uruguai
+nan
+sp, nordeste
+maranhão, boa vista
+são paulo, brasil, itália, bahia, brasil, santa cruz, rio grande do sul, brasil
+brasil, são paulo, itália, santa cruz, rio grande do sul, baixa, bahia
+nan
+nan
+nan
+nan
+campinas, brasil, rio grande do sul, brasil
+nan
+são luís, brasil
+nan
+brasil
+brasil
+nan
+nan
+brasil
+brasil
+brasil, paramound universal 
+nan
+nan
+nan
+nan
+vietnã, indochina, morro da babilônia, afeganistão, água santa, saigon, delta do mecong
+nan
+brasília, plano piloto, guará, taguatinga, cruzeiro, paranoá, piauí, bahia, brasil, itália, santa cruz, rio grande do sul, brasil.
+brasília, rio grande do sul, são paulo, bahia, itália, villa-lobos, rio de janeiro, cumbica, vira-copos, graça, rosa, machado, foice e cutelo, millôr, jaguar, audi a3, portelas, mangueiras, jabuticabeiras.
+são paulo, brasil, n/a 
+nan
+brasil, santa cruz, rio grande do sul, brasil
+nan
+nan
+nan
+nan
+brasil
+brasil, rio grande do sul, itália
+nan
+brasil
+bahia, brasil, sul
+nan
+nan
+nan
+nan
+floripa, brasil
+nan
+brasil
+brasil
+nan
+nan
+nan
+nan
+nan
+são fernão, moscou
+brasil, esso 
+são paulo, brasil
+nan
+brasil
+nan
+manari
+minha terra, brasil, bahia, brasil
+maranhão
+caxias do sul, rio grande do sul, brasil
+pasárgada, brasil
+nan
+nan
+brasil, itália, santa cruz, rio grande do sul, brasil
+itapecuru, brasil, bahia, brasil 
+são paulo, itália, japão, bixiga, grego, liberdade, bahia, rio grande do sul, brasil
+bahia, brasil
+nan
+nan
+nan
+n/a 
+nan
+brasil, n/a 
+rio de janeiro, brasil, pão de açúcar, copacabana, lagoa, brasil
+tucuruvi, brasil, bahia, brasil, itália, santa cruz, rio grande do sul, brasil
+brasil
+nan
+nan
+nan
+nan
+nan
+são sabiá, sabará
+brasil
+nan
+nan
+nan
+bahia, brasil, itália, santa cruz, rio grande do sul, brasil
+nan
+nan
+brasil, nova guiné
+nan
+nan
+brasil, sao luiz do maranhão, mexico, italia, bahia, rio grande do sul, santa cruz, brasil
+brasil, além-mar 
+nan
+nan
+bambuí, juiz de fora, caxias, bahia
+nan
+nan
+maranhão
+nan
+brasil
+nan
+nan
+sacramento, borá, jaguara, carolina de jesus, corália, aracy, itália, bahia, brasil 
+minha terra tem palmeiras, o guarani, cruzeiros, flamingo, samba, flamengo, maracanã, corinthians, fonte nova, bahia .
+nan
+nan
+nan
+nan
+nan
+nan
+nan
+nan
+brasil
+paissandu, rio de janeiro, brasil, sítio do antonio, jacarepaguá, rio de janeiro, brasil, palmeiras, brasil
+nan
+brasil, bairro de infância, itália 
+nan
+parreira, dadá, várzea das flores, brasil
+nan
+nan
+nan
+nan
+nan
+bahia, brasil, itália, santa cruz, rio grande do sul, brasil, bloomsdays, exupérys, capadócia, turquia.
+nan
+brasil, n/a 
+nan
+nan
+nan
+nan
+ceará, praias, brasil, lá 
+nan
+nan
+brasil
+nan
+nan
+nan
+nan
+nan
+nan
+nan
+nan
+nan
+nan
+nan
+nan
+nan
+nan
+nan
+nan
+nan
+jaboatao
+brasil
+nan
+nan
+nan
+nan
+nan
+nan
+brasil
+nan
+nan
+nan
+nan
+nan
+nan
+nan
+nan
+nan
+nan
+nan
+nan
+nan
+nan
+ssa
+nan
+nan
+nan
+nan
+nan
+nan
+nan
+tocantins, brasil
+nan
+nan
+nan
+nan
+nan
+nan
+nan
+jaboatao
+santa, ceará, bahia, itália, santa cruz, rio grande do sul, brasil
+nan
+nan
+nan
+nan
+nan
+nan
+brasil, bahia
+brasil
+nan
+brasil
+nan
+nan
+brasil
+pará, brasil, série "a", libertadores .
+nan
+nan
+nan
+pará
+nan
+brasil, bahia, itália, rio grande do sul, santa cruz 
+brasil
+brasil, bahia, itália, santa cruz, rio grande do sul, brasil
+nan
+nan
+bahia, brasil, canadá, itália
+nan
+nan
+nan
+nan
+nan
+nan
+brasil
+nan
+nan
+nan
+nan
+nan
+nan
+síria, 
+tietê, parnaíba, araripe, alagoas, brasil
+nan
+nan
+nan
+brasil, itália, santa cruz, rio grande do sul, brasil
+nan
+nan
+brasil, minas gerais, rio grande do sul, itália
+nan
+nan
+nan
+nan
+américa do sul, pero vaz de caminha, santa cruz, rio grande do sul, brasil
+maranhão, brasil, ponta da areia 
+brasil
+nan
+nan
+nan
+nan
+nan
+nan
+nan
+nan
+nan
+nan
+brasil
+imbituba, brasil, canadá
+nan
+nan
+brasil
+nan
+brasil
+nan
+brasil, n/a 
+nan
+nan
+brasil
+brasil
+brasil
+brasil, amazônia
+nan
+nan
+nan
+brasil
+praia do rosa, lá, ouvidor 
+nan
+nan
+nan
+nan
+nan
+nan
+nan
+nan
+nan
+portugal, brasil
+brasil
+nan
+brasil
+nan
+país aonde tem muitos pobres
+nan
+minas, brasil
+brasil
+brasil
+nan

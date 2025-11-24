@@ -1,0 +1,383 @@
+Afeganistão|afeganistão
+África|áfrica
+Alagoas (Estado)|alagoas
+Alentejo (Portugal)|alentejo
+Alemanha|alemanha
+Alegre (ES)|alegre
+Amapá (Estado)|amapá
+América do Sul|américa do sul|america do sul
+Amazonas (Estado)|amazonas|amazônas
+Amazônia|amazônia|amazônia
+Ameal (Portugal)|ameal
+Angola|angola
+Antártida|antártica
+Antuérpia|antwerp? (não no original como variante) 
+Ásia|ásia
+Atlântico|atlântico
+Av. Paulista (São Paulo)|avenida paulista|paulista
+Avenida Paulista|avenida paulista|paulista
+Araxá (MG)|araxá
+Araripe|araripe
+Aracati (CE)|aracati
+Argentina|argentina
+Arraial (topónimo ambíguo)|arraial
+Atenas|atenas
+Avaré? (não no original) 
+Ba (abreviação de Bahia)|ba
+Baía|baía|baia
+Baía De Todos Os Santos|baía de todos os santos
+Bahia (Estado)|bahia
+Bambuí (MG)|bambuí
+Bananal|bananal
+Bananas (topónimo)|bananas
+Bangú|bangú|bangu
+Baterias? (não geográfico) 
+Bebedouro? (não no original) 
+Beberibe (CE)|beberibe
+Belém (PA)|belém|belém do pará
+Belém Do Pará|belém do pará
+Belize? (não no original) 
+Belo Horizonte (MG)|belo horizonte
+Benin? (não no original)
+Bertioga? (não no original)
+Betim? (não no original)
+Bixiga, São Paulo|bixiga|bixiga, são paulo
+Boa Vista (RR)|boa vista
+Boca do Rio? (não no original)
+Boca Raton? (não no original)
+Borá (SP)|borá
+Bragança (Portugal)|bragança|bragança (pt)
+Bragança Paulista|bragança paulista
+Brasil|brasil
+Brasília (DF)|brasília|brasilia
+BR-3 (Rodovia)|br-3
+Breja (Portugal)|breja
+Brésil? (francês) (não incluído)
+Bretanha? (não no original)
+Broadcast? (não geográfico) 
+Bruxelas? (não no original)
+Búzios? (não no original)
+Cabo Verde? (não no original)
+Cachoeira (topónimo)|cachoeira
+Calcutá|calcutá|calcutta
+Califórnia (EUA)|califórnia
+Calvães (Portugal)|calvães
+Campinas (SP)|campinas
+Cantareira (Serra)|cantareira|serra da cantareira
+Capanema? (não no original)
+Capadócia|capadócia
+Capitão Do Mato (local)|capitão do mato
+Capitólio? (não no original)
+Cascais|cascais
+Castelo? (genérico, excluído)
+Casa Muniz (Portugal)|casa muniz
+Catedral|catedral
+Ceará (Estado)|ceará
+Ceará (var)|ceara
+Ceará (região)|ceará (estado)|ceará
+Cepeda? (não no original)
+Chapadão De Glória|chapadão de glória
+Chapada Diamantina|chapada diamantina
+Chiapas? (não no original)
+China|china
+Cíncera? (não no original)
+Cidade Do México|méxico city|cidade do méxico (variante só se presente — não presente originalmente)
+Cidade (genérico)| (excluído) 
+Clarificação ambígua (removida)
+Coimbra? (não no original)
+Colonização? (excluído)
+Colorado? (não no original)
+Copacabana, Rio de Janeiro|copacabana|copacabana, rio de janeiro
+Corcovado / Cristo Redentor (RJ)|cristo redentor|cristo redentor, rio de janeiro
+Corrientes (Argentina)|corrientes
+Costa Verde|costa verde
+Coxim? (não no original)
+Cráter? (não geográfico)
+Criatividade (não geográfico)
+Cruzeiro Do Sul|cruzeiro do sul
+Cruzeiro (DF)|cruzeiro (df)
+Cumbuco? (não no original)
+Cumbica (Guarulhos)|cumbica|aeroporto de guarulhos
+Curitiba|curitiba
+Dakar? (não no original)
+Delta Do Mekong|delta do mekong|delta do mecong
+Douro|douro
+Espanha|espanha
+Estados Unidos|estados unidos|eua
+Exu (PE)|exu
+Fica? (excluído)
+Flamengo (bairro/RJ)|flamengo|flamengo, rio de janeiro
+Flamingo (topónimo)|flamingo
+Floripa (Florianópolis)|florianópolis|floripa
+Floriano|floriano
+Foice e Cutelo (excluído)
+Fortaleza (CE)|fortaleza
+França|frança
+Franca (município SP)|franca
+Foz Do Iguaçu? (não no original)
+Funchal? (não no original)
+Garanhuns|garanhuns
+Gibraltar? (não no original)
+Goiás? (não no original)
+Guaíba|guaíba|guaíba (rs)
+Guará (DF)|guará|guara
+Guarulhos|guarulhos
+Guiné|guiné
+Herval (topónimo)|herval
+Ho Chi Minh / Saigon|saigon|ho chi minh|saigon (cidade)
+Holanda / Países Baixos|países baixos|países baixos (var)
+Hong Kong? (não no original)
+Ibagué? (não no original)
+Ibiúna? (não no original)
+Ibirapuera (Parque, SP)|ibirapuera|parque ibirapuera
+Ipanema, Rio de Janeiro|ipanema|ipanema, rio de janeiro
+Ipiranga, São Paulo|ipiranga|ipiranga, são paulo
+Ipú (CE)|ipú|ipu
+Itabira|itabira
+Itamaracá|itamaracá
+Itapecuru|itapecuru
+Itapecuru Mirim|itapecuru mirim
+Itajaí (SC)|itajai|itajai (var)
+Itacaré (BA)|itacaré
+Itajuba (Itajubá?)|itajuba|itajubá (ambíguo)
+Itapecuru (repetido removido)
+Itapecuru (ja listado)
+Itamaracá (já listado)
+Itapecuru (já listado)
+Itaim Bibi (São Paulo)|itaim bibi|itaim bibi, são paulo
+Itapecuru (duplicado) 
+Jaboatão Dos Guararapes (PE)|jaboatão dos guararapes|jaboatao dos guararapes
+Jacarepaguá, Rio de Janeiro|jacarepaguá|jacarepaguá, rio de janeiro
+Jaguara (topónimo)|jaguara
+Jaguar? (topónimo)|jaguar
+Jaboatão (var)|jaboatao
+Jaguariúna? (não no original)
+Jaguari? (não no original)
+Jaboatão (já listado)
+Jaboatão Dos Guararapes (já listado)
+Jaboatão (já)
+Jaboatão (limpeza)
+Jaboatão Do Norte? (não)
+Jaboatão (final)
+Jamestown? (não no original)
+Jequitibá|jequitibá
+Jericoacoara? (não no original)
+João Pessoa (PB)|joão pessoa|joao pessoa
+Joazeiro|joazeiro
+Juazeiro (BA)|juazeiro|juazeiro (ba)
+Juazeiro Do Norte|juazeiro do norte
+Juiz De Fora (MG)|juiz de fora
+Jundiaí? (não no original)
+Lagoa|lagoa
+Lagoa Rodrigo De Freitas, Rio de Janeiro|lagoa rodrigo de freitas|lagoa rodrigo de freitas, rio de janeiro
+Lagoa (var)|lagoa
+Lagoa (já listado)
+La Coruña? (não no original)
+Lapa, Rio de Janeiro|lapa|lapa, rio de janeiro
+Larajais? (topónimo) |laranjais
+Leblon, Rio de Janeiro|leblon|leblon, rio de janeiro
+Leiria? (não no original)
+Lisboa|lisboa
+Lisboa (Cidade)|lisboa
+Localidades PT (geral) (já normalizadas)
+Londres|londres
+Los Hermanos (excluído, banda)
+Loures? (não no original)
+Maceió (AL)|maceió|maceio
+Macapá (AP)|macapá
+Madri|madri
+Maine|maine|nova inglaterra (var)
+Manaus|manaus
+Manari (PE)|manari
+Maracanã, Rio de Janeiro|maracanã|maracanã, rio de janeiro
+Maragogipe (BA)|maragogipe
+Mar e Terras Estrangeiras (excluído)
+Mar e Terras Estrangeiras (removido)
+Mar e Terras (excluído)
+Março? (não geográfico)
+Mar e Terras (limpeza)
+Mar e (removido)
+Margem (excluído)
+Maranhão (Estado)|maranhão|maranhao
+Maranhenses (gentílico/topónimo)|maranhenses
+Marília? (não no original)
+Marões? (não no original)
+Maré? (não no original)
+Maricá? (não no original)
+Marrakech? (não no original)
+Marte? (não geográfico)
+Maravilha? (não no original)
+Mascarilha? (não no original)
+Mediterrâneo (Mar)|mar mediterrâneo|mar mediterrâneo
+Mendoza|mendoza
+Minais? (erro ortográfico) 
+Mineiros? (gentílico — excluído)
+Minas Gerais (Estado)|minas gerais
+Mooca, São Paulo|mooca|mooca, são paulo
+Montevidéu? (não no original)
+Morro Da Babilônia, Rio de Janeiro|morro da babilônia|morro da babilônia, rio de janeiro
+Morro Do Chapéu|morro do chapéu
+Morro Escuro|morro escuro
+Moscow / Moscou|moscou|moscow
+Mundaú? (não no original)
+Mutum (topónimo)|mutum
+Náutico? (excluído)
+Natal (RN)|natal
+Naval? (excluído)
+Norte|norte
+Nova Guiné|nova guiné|nova guine
+Nova Iorque|nova iorque|nova york|new york (var)
+Nova Inglaterra|nova inglaterra
+Oceania|oceania
+Olinda (PE)|olinda
+Olhão (Portugal)|olhão
+Ouro Preto (MG)|ouro preto
+Países Baixos|países baixos
+Países (genérico) (excluído)
+Paim? (não no original)
+Pajeú? (não no original)
+Pampulha? (não no original)
+Panciar? (não no original)
+Pão De Açúcar (Montanha), Rio de Janeiro|pão de açúcar|pao de açucar|pão de açucar, rio de janeiro
+País Aonde Tem Muitos Pobres (excluído)
+Palmeira|palmeira
+Palmeiras (município)|palmeiras (município)|palmeiras
+Palmeirim|palmeirim
+Pará (Estado)|pará
+Paraná (Estado)|paraná
+Paraíba (Estado)|paraíba
+Paraíba (var)|paraiba
+Paranóá? (paranoá)|paranoá
+Paranaguá? (não no original)
+Parati / Paraty|parati|paraty
+Paraupebas? (não no original)
+Parnaíba (PI)|parnaíba|parnaiba
+Paraná (já listado)
+Paris|paris
+Pasárgada (topónimo)|pasárgada
+Paquetá, Rio de Janeiro|paquetá|paquetá, rio de janeiro
+Parque Ibirapuera, São Paulo|parque ibirapuera|ibirapuera|ibirapuera, são paulo
+Parque Da Luz (SP)|parque da luz
+Parque (genérico) (excluído)
+Pernambuco (Estado)|pernambuco
+Pernambuco / Recife|recife|pernambuco
+Peru? (não no original)
+Piauí (Estado)|piauí|piaui
+Pindorama|pindorama
+Pinheiros, São Paulo|pinheiros|pinheiros, são paulo
+Pinheiros Do Paraná (topónimo)|pinheiros do paraná
+Pindaré|pindaré
+Piranhas? (não no original)
+Pisa? (não no original)
+Ponta Da Areia|ponta da areia
+Ponta Da Areia (var)|ponta da areia
+Ponta Negra? (não no original)
+Ponta Porã? (não no original)
+Porto|porto
+Porto (Portugal)|porto|oporto
+Porto Alegre (RS)|porto alegre
+Portugal|portugal
+Praça Da Sé, São Paulo|praça da sé|praça sé|praça da sé, são paulo
+Praias|praias
+Praia Do Rosa|praia do rosa
+Praia De Copacabana|praia de copacabana|praia de copacabana, rio de janeiro
+Praia De Ipanema|praia de ipanema|praia de ipanema, rio de janeiro
+Praias Do Nordeste|praias do nordeste
+Pucará? (não no original)
+Queixadas|queixadas
+Quenta-Sol (topónimo)|quenta-sol
+Rabá (topónimo)|rabá
+Rabat? (não no original)
+Rádio? (excluído)
+Rampa? (excluído)
+Rancagua? (não no original)
+Raposa? (não no original)
+Recife (PE)|recife
+Região Norte|norte (região)
+Região Nordeste|nordeste|nordeste brasileiro|nordeste do brasil
+Região Sudeste|sudeste
+Região Sul|sul
+Ribeirão Preto|ribeirão preto
+Rio (genérico) (excluído)
+Rio De Janeiro (Estado)|rio de janeiro (estado)
+Rio De Janeiro (Cidade)|rio de janeiro (cidade)
+Rio Grande Do Sul (Estado)|rio grande do sul
+Rio Negro|rio negro
+Rio Parnaíba|rio parnaíba
+Rio São Francisco|rio são francisco
+Rio Tietê|rio tietê
+Rio Uruguai|rio uruguai
+Rio Oceano|rio oceano
+Roraima (Estado)|roraima
+Ross? (não no original)
+Sabadell? (não no original)
+Sabará (MG)|sabará
+Sampa (São Paulo, apelido)|sampa|são paulo (apelido)
+Saigon / Ho Chi Minh|saigon|ho chi minh|saigon delta
+Salvador (BA)|salvador
+Santa Catarina (Estado)|santa catarina
+Santa Cruz (topónimo)|santa cruz
+Santa (ambíguo — excluído)
+Santos (SP)|santos
+Santos Dumont (cidade)|santos dumont
+Santarém (PA)|santarém
+Santo André (SP)|santo andré
+São Bernardo Do Campo (SP)|são bernardo do campo
+São João Da Barra|são joão da barra
+São João (topónimo)|são joão
+São José Dos Campos|são josé dos campos
+São Luís (MA)|são luís|são luís do maranhão|sao luiz do maranhao
+São Luís Do Maranhão|são luís do maranhão
+São Paulo (Estado)|são paulo (estado)
+São Paulo (Cidade)|são paulo (cidade)
+São Paulo (Cidade) variantes|são paulo|sp
+Sé (São Paulo)|sé|sé, são paulo
+Serra Do Mar|serra do mar
+Serra Do Espinhaço|serra do espinhaço
+Sete Cachoeiras|sete cachoeiras
+Setúbal? (não no original)
+Sertão|sertão|sertão profundo (amb.)
+Sertão Profundo|sertão profundo
+Sergipe (Estado)|sergipe
+Sertões (var)|sertões
+Siena? (não no original)
+Sibéria? (não no original)
+Sobral|sobral
+Sol (genérico) (excluído)
+Somália? (não no original)
+Sorocaba? (não no original)
+Souto? (não no original)
+Spain variants? (já listados em Espanha/Madri)
+SP (abreviação)|sp
+Sudeste (região)|sudeste
+Sul (região)|sul
+Tajiquistão? (não no original)
+Taubaté? (não no original)
+Teresina (PI)|teresina
+Timbiras|timbiras
+Timbiras (var)|timbiras
+Tocantins (Estado)|tocantins
+Togo? (não no original)
+Tombos? (não no original)
+Torres Vedras? (não no original)
+Torres? (não no original)
+Torre Eiffel|torre eiffel
+Tubarão (SC)|tubarão
+Tucuruvi (SP)|tucuruvi|tucuruvi, são paulo
+Turquia|turquia
+Ubatuba? (não no original)
+Uruguai (País)|uruguai
+Uruguai (Rio)|rio uruguai (já listado)
+Vasco Da Gama (topónimo ambíguo)|vasco da gama (ambíguo)
+Vasco (ambíguo)|vasco
+Veneza|veneza
+Vera Cruz? (não no original)
+Vila Nova (ambíguo)|vila nova|villa-nova
+Villa-Lobos (Parque, SP)|villa-lobos|parque villa-lobos
+Vira-Copos (Aeroporto Campinas)|vira-copos
+Virgínia? (não no original)
+Vítor? (não no original)
+Vitorino? (não no original)
+Voz? (excluído)
+Vulcão? (não no original)
+Zimbábue? (não no original)

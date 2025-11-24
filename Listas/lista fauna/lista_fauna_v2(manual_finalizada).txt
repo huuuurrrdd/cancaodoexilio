@@ -1,0 +1,550 @@
+001_sabiá
+002_rouxinol
+003_rouxinol, ovelhinha, tutinegra, rola
+004_rola, rouxinol
+005_rouxinol, tuti-negra, cuco
+006_sabiá, guabirús
+007_n/a
+008_benguela, leão, pomba, pantera, cisne 
+009_n/a
+010_benguelinha, passarinho
+011_avesinhas canóras
+012_sabiá
+013_rolinhas, gaturamo, cisnes  
+014_formiga
+015_melro, sabiá, rouxinol
+016_jurity, colibris, canindé, águias,juó
+017_n/a
+018_sabiá
+019_borboleta, sabiá, gaturamo, tiê
+020_sabiá
+021_n/a
+022_pomba, juriti
+023_sabiá, borboleta
+024_sabiá, rolas, aves, águia
+025_aves
+026_roxinol, aves
+027_chechéo, pássaro
+028_sabiá
+029_sabiá, tiê, veado, bem-te-vi, rola, jacú, quati, tatu, gaturamo, canário
+030_sabiá
+031_n/a
+032_sabiá, aves
+033_animal
+034_peixinhos, pato, pinto, paca, franga, guaiamum, caixinguelê, perereca, rãs, sapo
+035_sabiá
+036_aves
+037_aves
+038_rouxinol, sabiá
+039_aves, cisne, jacamins, sabiá
+040_n/a
+041_n/a
+042_n/a
+043_sabiá, rola, jurity
+044_juriti, aves, sucuri
+045_pombinhas
+046_juriti, enxames, aves, sapos, sabiá, tico-tico, borboleta
+047_sabiá
+048_sabiá
+049_bem-te-vi, juriti, cordeirinho, passarinho, rouxinol
+050_sabiá
+051_aves
+052_sabiá, passarinhos, ave
+053_sabiá, juriti
+054_rouxinol
+055_animais
+056_sabiá
+057_aves
+058_sabiá
+059_sabiá, aves
+060_sabiá
+061_manquitó, caninanas, persevejos, perservejo, galo, andorinhas, porco espinho,  arminho
+062_gaturamos, boré(javali)
+063_n/a
+064_cururá, sapos, pulgas
+065_n/a
+066_rouxinol. aves
+067_ave, sabiá-da-praia
+068_ave, patativa(ave), garça
+069_rouxinol, aves 
+070_burro
+071_n/a
+072_canário, phalena
+073_sabiá, passarinhos
+074_n/a
+075_sabiá
+076_n/a
+077_sabiá, passarinho
+078_n/a
+079_tamanduá
+080_jandaia
+081_n/a
+082_n/a
+083_sabiá, aves
+084_canários, sanhassú, minhoca
+085_aves
+086_bezouro, bezourinho
+087_vem-vem
+088_bacuráu
+089_galo, sabiá
+090_aves
+091_n/a
+092_animal, ave
+093_n/a
+094_mocho, borboleta
+095_sabiá
+096_rolas, sabiá, gavião
+097_sabiá, gatos, cães
+098_sabiá
+099_n/a
+100_piriquito, pavão
+101_caranguejos, persevejos
+102_sabiá
+103_sabiá, mosquitos
+104_n/a(hino)
+105_sabiá
+106_sabiá, aveses, gallinha
+107_sabiá
+108_n/a
+109_sabiá, aves, cambaxirras
+110_sabiá
+111_n/a
+112_bem-te-vis
+113_n/a
+114_sabiá
+115_sabiá
+116_sabiá
+117_avestruz, coelho 
+118_passarinhos
+119_n/a
+120_peixe, paca, tatu-verdadeiro, jurupará
+121_bem-te-vi
+122_suinos, galinhas, cabritos
+123_n/a
+124_ave, sabiá, colibris 
+125_caranguejo, sabiá
+126_sabiá
+127_gaturamos, sururus, sabiá
+128_n/a
+129_sururú, pulga, cobra, percevejo
+130_n/a
+131_sabiá, aves 
+132_n/a
+133_n/a
+134_n/a
+135_pinguim, ursos
+136_n/a
+137_n/a
+138_n/a
+139_mosca
+140_onça, cobra, pássaro, abelha, ovelhas, codorninha branca, pássaros, zebu de orelhas grandes
+141_sabiá
+142_n/a
+143_sabiá, gato, búzio
+144_passarinhos, aves, animais, pássaros
+145_sabiás
+146_sabiá
+147_n/a
+148_sabiá
+149_sabiá, periquito
+150_n/a
+151_sabiá
+152_gaturamo, jandaia, jaó, rola, sabiá, colibri
+153_sabiá, aves
+154_peixe 
+155_n/a
+156_sururú
+157_rouxinol
+158_sabiá
+159_n/a
+160_sabiá, pau
+161_cotovia, papagaios, sabiá, aves 
+162_sabiá
+163_sabiá, pau 
+164_pombas, pássaros, tigres, rolas, colibris, araras, granadas, garças, cobras, antas, macacos
+165_minhoca, sabiá
+166_sabiá
+167_aves, sabiá, ave
+168_n/a
+169_cotovia, rouxinol, sabiá
+170_n/a
+171_sabiá
+172_sabiá
+173_sabiá
+174_sabiá, sabiás, cigarras
+175_periquitos 
+176_tubarões, pau
+177_piriquito, camarão, Tubarão
+178_n/a
+179_sabiá, bananeiras, bananas
+180_n/a
+181_sabiá
+182_sabiá
+183_sabiá, papagaio, periquito, aves, andorinha, gaivotas, patativa, beija-flor-colibri, bem-te-viram, passarinhos, canário, bem-te-vi, joão de barro, jandaia, xexeú, ireré, japu, araponga, jaçanã, cambaxirra, tico-tico, passarinho
+184_n/a
+185_sabiá
+186_sabiá, sabiá-laranjeira
+187_sabiá
+188_aves, passarinhos, sabiás, pássaros
+189_n/a
+190_n/a
+191_sabiá, tubarão
+192_sabiá, turdus leucomelas
+193_sabiá, aves
+194_pernas de pau, cupim
+195_sabiá, aves
+196_n/a
+197_cavalo
+198_japim, tucano, arara
+199_n/a
+200_vitelos
+201_sabiá
+202_juriti
+203_sabiá
+204_cachorro, sabiá 
+205_n/a
+206_sabiá 
+207_sabiá, aves
+208_rouxinóis
+209_sabiá 
+210_ticotico, sabiá
+211_paçarinho
+212_sabiá, aves, tatu, cotia, preá, gato, lebre, gambú, faisão
+213_perus, pássaros, loiseaux, sabiá
+214_passarada, burrão, gado, sabiá, galo, inhambu
+215_sabiá
+216_porcos, bois
+217_n/a 
+218_n/a
+219_sabiá, peste suína
+220_sabiá
+221_n/a
+222_ pássaro, galinhas, cão, berro-boi
+223_sabiá
+224_pirarucu, uirapuru, morcego, borboletas
+225_sabiá
+226_boiadeiro, vaca, sabiá
+227_bem-te-vi
+228_n/a
+229_sabiá, bem-te-vi
+230_sabiá
+231_ave, sabiá, aves
+232_n/a
+233_aves, corvos, sabiá
+234_n/a
+235_tupi, sabiá 
+236_aves
+237_n/a
+238_sabiá
+239_sabiá, galinha, leão, cobra, lacraia, canguru, traíra, caracará
+240_sabiás, bem-te-vis, garças 
+241_n/a
+242_sabiá, tatu, sagui
+243_sabiá 
+244_sabiá
+245_pássaros, gado
+246_galos, sabiá
+247_curió, aves, carpas
+248_sabiá, peixe, passarada
+249_gado, cavalo
+250_galo, sabiá
+251_sabiá, ticotico 
+252_bugio, curió
+253_sabiá, ave, saúvas, cobra, hienas, andorinha
+254_andorinha, fauna, passarinho, elefante, onça, dinossauros
+255_sabiá, coruja
+256_galo, ave, joio
+257_n/a
+258_bem-te-vi, sabiá-palmeira 
+259_sabiá, insetos, pássaros
+260_passarinhos, aves
+261_bem-te-vi, aves
+262_n/a
+263_sabiá, ave
+264_n/a
+265_sanguessugas
+266_bois, irapuãs, sabiá, aves
+267_pato, patos
+268_passarinho
+269_sabiá
+270_sabiá, andorinha, aves, coruja, galo
+271_n/a
+272_n/a
+273_curió
+274_cão
+275_aves
+276_cão
+277_araras, boi, galinhas, emas, lulas
+278_n/a
+279_sabiá, perdigueiro, alazão, periquitos, ticotico
+280_sabiá, tico-tico, sabichão, carcará
+281_rátátá, formigas
+282_sabiá
+283_n/a
+284_n/a
+285_pássaro
+286_corvos, gralha, sabiá 
+287_sabiá-laranjeira, potro
+288_n/a
+289_camarão
+290_n/a
+291_gavião 
+292_n/a
+293_pássaros, aves
+294_n/a
+295_sabiá, passarinhos, insetos, bem-te-vis, pardais, borboletas, pássaros, pardoca
+296_n/a
+297_n/a
+298_vaquinha, vacas-leiteiras, lambari, lambaris, peixes
+299_galinha
+300_n/a
+301_viado, cadela
+302_n/a
+303_tatus, cotias, pacas, pacos 
+304_n/a
+305_n/a
+306_sabiá, aves
+307_n/a
+308_sabiá
+309_n/a
+310_sabiás, passaradas
+311_sabiá, colibri
+312_n/a
+313_sabiá
+314_sabiá 
+315_n/a
+316_sabiás, pardais, sabiá
+317_sabiá, aves, passarinhos
+318_n/a
+319_sabiá
+320_sabiá, aves, sabiás
+321_sabiá
+322_n/a
+323_pirigá, ticotico-quem-quem, cabeça-de-fita, graúna do bico-rico, peixes, animais, passarinhos, gibão, tijubina, pilombeta, garajuba, cari bodó, aniquim, mane besta, cangatí, camurim, tama tarana, parum, biquara, camurupim, juriti, papa-lagarta, currupião, maçarico, cibite, canário sujo
+324_bem-te-vis
+325_sabiá
+326_sabiá
+327_sabiá, corvo, aves
+328_sabiá 
+329_sabiá, garça, pássaro
+330_sabiás 
+331_sabiá
+332_sabiá-laranjeira
+333_sabiá
+334_sabiá
+335_n/a
+336_sabiá
+337_ticotico, carcará, aves, sabiá, ave, zonotrichia capeasis, s.bouvreil pileata, pitangus sulphuratus, chilensis cayennensis
+338_n/a
+339_n/a
+340_n/a
+341_sabiá, aves, fauna
+342_fauna, macacos, beija-flores, micos-leões
+343_n/a
+344_sabiás, aves
+345_canários, canário, canary, maribundos 
+346_sabiá
+347_aves, borboletas, bem-te-vi, sabiá
+348_sabiá, xexeú, macuco, melro, pardal, sabiá-laranjeira
+349_sabiá, rouxinóis, gaturamo, aves, quelônios, pernilongos
+350_sabiá
+351_sabiás, juriti
+352_sabiá, aves
+353_aves, pássaros
+354_sabiá, canário
+355_gado
+356_passarinhos
+357_sabiá, pássaros
+358_aves 
+359_galo, passarinho
+360_passarinho
+361_aves, pombas, sábias
+362_sabiá, aves
+363_n/a
+364_gado, bem-te-vi- galo
+365_passarinho
+366_sabiá, aves
+367_sabiá
+368_n/a
+369_n/a
+370_sabiás
+371_sabiá, aves
+372_n/a
+373_sabiá,sabiás
+374_n/a
+375_aves
+376_n/a
+377_malária, dengue, mosquito, sabiá
+378_n/a
+379_piolho, varejeira, verme
+380_sabiá, aves
+381_sabiá
+382_sabiá
+383_animais, sabiá
+384_sabiá
+385_aves, pombos
+386_n/a
+387_n/a
+388_sabiá, pássaros
+389_n/a
+390_n/a
+391_lavadeira, aves, peixes
+392_n/a
+393_n/a
+394_n/a
+395_n/a
+396_pássaros
+397_pombos
+398_peixes, sabiá
+399_pardais, aves, pássaros
+400_n/a
+401_sabiás
+402_sabiá, aves
+403_ aves
+404_ pardal, pássaros
+405_n/a
+406_n/a
+407_n/a
+408_n/a
+409_cabra
+410_n/a
+411_passarinhos
+412_n/a
+413_n/a
+414_pardal, periquito
+415_bem-te-vi, aves
+416_pirulito
+417_joão de barro, pássaros
+418_n/a
+419_n/a
+420_pardais, aves
+421_n/a
+422_n/a
+423_n/a
+424_curió, aves
+425_sabiá
+426_n/a
+427_n/a
+428_n/a
+429_n/a
+430_n/a
+431_beija-flores
+432_sabiá
+433_n/a
+434_pássaros
+435_urubu, urubus
+436_sabiá
+437_sabiá, tatú, onça, veado, boto
+438_n/a
+439_sabiá
+440_n/a
+441_n/a
+442_beija-flor
+443_n/a
+444_pássaros
+445_curió
+446_n/a
+447_joão-de-barro
+448_n/a
+449_n/a
+450_n/a
+451_sabiá
+452_leões, timbu
+453_n/a
+454_n/a
+455_onça, mico-leão-dourado, sabiá
+456_n/a
+457_n/a
+458_aves
+459_n/a
+460_n/a
+461_sabiá
+462_n/a
+463_n/a
+464_pássaros, aves 
+465_n/a
+466_sabiá, pássaros
+467_n/a
+468_sabiá
+469_n/a
+470_sabiá, ave
+471_sabiá
+472_n/a
+473_aves
+474_pássaros, bem-te-vi, sábia
+475_sabiá, sabiás
+476_sabiá
+477_sabiá, chagas
+478_n/a
+479_sabiá
+480_n/a
+481_sabiá, aves 
+482_sabiá, pássaros
+483_sabiás, aves
+484_n/a
+485_n/a
+486_arara azul, tietê de coroa, pica pau do Parnaíba, soldadinho do araipe, gauião de pescoço branco, mutum de alagoas, aves, sabiá-peito-roxo, sabiá-de-barriga-vermelha, sabiá-laranjeira, sabiá-pardo, sabiá
+487_n/a
+488_sabiá
+489_pardais
+490_sabiás
+491_sabiá, sabiás
+492_sabiá
+493_sabiás
+494_n/a
+495_animais
+496_sabiás
+497_sabiás
+498_urubus, sabiá
+499_passarinhos, sabiá
+500_gato, rato, cão, sabiá
+501_sabiá
+502_aves,cavalo, pomba, pombas
+503_sabiás, pássaros
+504_n/a
+505_n/a
+506_sabiás, aves 
+507_sabiás
+508_n/a
+509_sabiá
+510_sabiá, animais
+511_sabiá
+512_n/a
+513_n/a
+514_sabiá
+515_n/a
+516_peixes, tainha
+517_sabiá
+518_n/a
+519_n/a
+520_n/a
+521_sabiá
+522_periquito, ave
+523_n/a
+524_sabiá
+525_sabiás
+526_n/a
+527_n/a
+528_n/a
+529_sabiá
+530_sabiá, sabiás
+531_aves, pássaros, sabiás
+532_n/a
+533_n/a
+534_sabiá, sabiás, ave, aves
+535_n/a
+536_n/a
+537_n/a
+538_gato, ratas, cachorro, jacarés, dinossauros, sapo, elefante
+539_n/a
+540_pássaros
+541_n/a
+542_sabiá, ave
+543_sabiá, sabiás
+544_sabiá
+545_n/a
+546_n/a
+547_galo
+548_n/a
+549_n/a
+550_carcará

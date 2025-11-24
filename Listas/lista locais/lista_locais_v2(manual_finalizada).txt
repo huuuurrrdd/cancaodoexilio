@@ -1,0 +1,550 @@
+001_nan
+002_nan
+003_portugal, douro
+004_portugal, douro 
+005_nan
+006_nan
+007_áfrica
+008_portugal, europa, albarrota, barcelos, bragança, tunes(tunisia),granada(espanha), marrocos, fez(marrocos), brasil, guiné, guanabara(rio br), ouangara(Uangara africa), palmela(pt?), sintra(pt), tijuca(bairro r.jan)
+009_nan
+010_nan
+011_gôa(india), portugal
+012_paris
+013_argetina
+014_nan
+015_nan
+016_nan
+017_brasil, pernambuco
+018_brasil
+019_brasil, santa cruz, Amazonas(rio), Prata(estuário), portugal, ipiranga(rio em SP)
+020_brasil
+021_alemanha
+022_europa
+023_brasil
+024_brasil
+025_brasil
+026_nan
+027_villa-nova(aldeia st.ant. sergipe, neopolis), brasil
+028_bahia, itália
+029_brasil
+030_europa, ásia
+031_nan
+032_nan
+033_nan
+034_guaratiba (bairro,RJ)
+035_brasil, itália
+036_nan
+037_pernambuco
+038_nan
+039_atins(vila br), europa, brasil, maranhão
+040_nan
+041_corrientes(argentina), brasil, paraná(estado)
+042_corrientes(argentina)
+043_nan
+044_nan
+045_alcantara(lisb)
+046_nan
+047_nan
+048_nan
+049_nan
+050_maranhão
+051_nan
+052_caxias(maranhão), guanabara(praias, rj), tejo(rio?), brasil
+053_maranhão
+054_portugal
+055_brasil, itajuba(MG)
+056_himalaia, europa, atenas
+057_maranhão, brasil
+058_brasil
+059_maranhão
+060_athenas, roma, maranhão
+061_cabrobó(br, pernambuco), ipú(nordeste, Ceará), aracati (Ceará), mecejana(bairro, boa vista, br), guagirú(trairi, Ceará), jericó(Cisjordânia)
+062_maranhão, europa
+063_nan
+064_novo exu (VILA NOVO EXU, Parambu, Ceará), são francisco(rio, bahia), curaçá(bahia), araripe(Ceará), sergipe(estado)
+065_nan
+066_nan
+067_ganges(rio india)
+068_brasil, paraná(rio), grão-pará(antiga, Amazonas, Pará, Roraima e Amapá), douro(pt), tejo(pt), amazonas(rio), são francisco(rio)
+069_nan
+070_nan
+071_guiné
+072_nan
+073_sertão(nordeste), ribeirão(SP), rio de contas(bahia)
+074_nan
+075_nan
+076_boa vista(Roraima)
+077_nan
+078_nan
+079_paranaguá(paraná)
+080_nan
+081_nan
+082_ceará, sobral(ceará)
+083_nan
+084_manassú(rio?)
+085_nan
+086_piaui,suzano(sp), traipu(alagoas), urupemba(st.catarina), alagoas, floriano(piauí)
+087_brasil
+088_nan
+089_nan
+090_nan
+091_nan
+092_nan
+093_nan
+094_nan
+095_nan
+096_nan
+097_nan
+098_nordeste brasileiro
+099_brasil
+100_nan
+101_nan
+102_mooca(bairro, SP)
+103_nan
+104_ipiranga(SP), brasil
+105_nan
+106_ingraterra
+107_rua halfeld(cidade juiz de fora, minas gerais)
+108_sertão(nordestino)
+109_alemanha
+110_senegal(pais), pampas do sul(Rio Grande do Sul (Brasil), no Uruguai), grã-pará(st catarina)
+111_brasil
+112_nan
+113_pindorama (brasil em tupi), santa cruz(rio grande do norte), brasil
+114_nan
+115_guanabara (baía), tejo(rio, pt), europa, américa do sul
+116_nan
+117_nan
+118_são paulo
+119_nan
+120_joazeiro(bahia)
+121_nan
+122_nan
+123_serra da buretama(ceará), mundahú(praia, trairi, ceará)
+124_nan
+125_europa, frança, bahia, paris, torre eiffel, sena(rio, paris),mancha(canal da mancha) londres, hamburgo(alemanha), itália, suiça, turquia, rússia, moscou
+126_são paulo
+127_califórnia, veneza, brasil 
+128_nan
+129_brasil
+130_nan
+131_frança, paraná(estado)
+132_nan
+133_são joão da barra(RJ), foz da paraíba
+134_brasil
+135_brasil
+136_nan
+137_portugal, ameal(coimbra), fial(tondela, pt), calvães(albergaria-a-velha), fontes(Freguesia de Fontes do Município de Santa Marta de Penaguião), beduído(estarreja), paus(albergaria-a-velha)
+138_nan
+139_nan
+140_nan
+141_bahia
+142_nan
+143_copacabana(bairro, RJ)
+144_brasil
+145_são paulo, anhangabaú(SP)
+146_brasil
+147_nan
+148_nan
+149_nan
+150_nan
+151_nan
+152_nan
+153_nan
+154_Palmeiras (sociedade esportiva palmeiras, SP)
+155_brasil, sertão(nordeste), moema(?MG), iracema(Ceará-praia ou municipio?)
+156_alagoas
+157_massangana de nabuco(Engenho Massangana, pernambuco), pernambuco, muribara(bairro, s. lourenço da mata), alagoas, minas gerais
+158_nan
+159_olinda(município), brasil, Ladeira de são pedro
+160_alagoas(estado), brasil
+161_portugal, brasil, atlântico
+162_bahia(estado), brasil, cruzeiro do sul(municipio), mantiqueria(serra)
+163_alagoas(estado)
+164_nan
+165_nan
+166_nan
+167_nan
+168_brasil 
+169_Maine(estado EUA), Nova Inglaterra(região eua), brasil
+170_nan
+171_ceará
+172_nan
+173_Leme(município), praia do flamengo(RJ), Leblon(Rj)n Jacarepaguá(rj), lapa(rj), piedade(rj), encantado(rj), engenho novo(rj), Maria angu(rj), Irajá(rj), ilha de paquetá(rj) 
+174_maringá(parana) 
+175_nan 
+176_juqueri(SP)
+177_nan
+178_maranhão
+179_nan
+180_belo horizonte(município), paraopeba(município)
+181_nan 
+182_são paulo 
+183_nan
+184_nan
+185_nan
+186_brasil
+187_nan
+188_rio, são Paulo, porto geral(corumbá)
+189_nan
+190_paraná
+191_nan
+192_Pau-Brasil, Brasil, Ilha, terra, da vera, da santa cruz, São sebastião do rio de janeiro, cidade do rio de janeiro, cidade do rio, rio, Copacabana(rj), arpoador(rj), Brasília, amazonas, Guanabara(estado)
+193_brasília, paranoá(região administrativa), rio, juá(ceará)
+194_nan
+195_nan
+196_nan
+197_campo de Santana(rj), brasil, laranjeiras(rj)
+198_amazonas, rio oceano, Ajuricaba(barcelos) 
+199_rio, sertão
+200_portugal, douro 
+201_nan
+202_nan
+203_nan
+204_nan
+205_piauí, paris 
+206_são luís do maranhão(município), São Marcos(município), sacavém, Ponta da areia, São Joao de Ribamar, Alcântara, anil, rua dos afogados(s luis), Angola, rua do alecrim, campos de ourique, praça gonçalves dias, atenas brasileira(s luis), praça joão Lisboa, praia grande, são benedito
+207_são Paulo, brasil
+208_rio negro, amazonas
+209_n/a 
+210_brasil
+211_belém, pará, brasil
+212_nan
+213_são tomé
+214_sertão
+215_nan
+216_serra do onça(mg), mutum(mg), sarcundo, clareia morro escuro, queixadas, sete cachoeiras, bananal, lava, piçarão, cobras, toco, alegre, mumbaça, abóboras, quenta-sol, botas
+217_lençois(paraiba), aracagi, maranhão
+218_nan
+219_argentina, brasil
+220_sertão
+221_pernambuco, Beberibe(ceará)
+222_amazônia, sertão, índias
+223_sertão
+224_nan
+225_nan
+226_nan
+227_rincão(sp) 
+228_nan
+229_curitiba, belém
+230_nan
+231_nan
+232_nan
+233_nan
+234_nan
+235_brasil, madrid, europa
+236_lisboa
+237_nan
+238_nan
+239_paris, Turquia, rio pó, nova Iorque, central parque, rabá, alemanhas, arábia, Canadá, Calcutá, roma, Inglaterra, maranhão, Alentejo, brasil, portugal
+240_nan
+241_curitiba
+242_nan
+243_nan
+244_nova York, países baixos, Austrália, brasil, ouro preto(mg), sul(mg), santos, são josé do ro preto, camps de jordão, angra, parati, bahia, baixa do sapateiro
+245_sodoma, gomorra
+246_ibirapuera(sp), catedral, marco zero, praça da sé, largo do Arouche, serra do mar
+247_maceió(alagoas), ilha de marajó, pantanal
+248_sertão
+249_guaíba
+250_nan
+251_nordeste, SP
+252_brasil, maranhão, boa vista, pintolândia, beiral, asa branca, cambará, anauá
+253_Sampa(sp), São Paulo, Ibirapuera, brasil, américa do sul, europa, américa, itararé, avenida águas espraiadas, haiti
+254_itararé, brasil, são Pedro de itararé, são Paulo, Itapeva, corisco, rio de janeiro
+255_nan
+256_nan
+257_nan
+258_nan
+259_campinas, cidade das andorinhas(campinas)
+260_nan
+261_são luís
+262_nan
+263_nan
+264_brasil
+265_nan
+266_nan
+267_nan
+268_nan
+269_nan
+270_nan
+271_nan
+272_nan
+273_nan
+274_indochina, Vietnã, morro da babilônia, Afeganistão, água santa, Saigon
+275_nan
+276_plano piloto(brasilia), guará(sp), Taguatinga, cruzeiro, paranoá, brasília
+277_brasílias
+278_são paulo
+279_sertão
+280_nan
+281_nan
+282_nan
+283_nan
+284_nan
+285_nan
+286_nan
+287_nan
+288_brasil
+289_bahia, litoral sul(brasil)
+290_nan
+291_nan
+292_nan
+293_nan
+294_floripa
+295_maranhão
+296_brasil
+297_nan
+298_nan
+299_nan
+300_nan
+301_nan
+302_nan
+303_são Fernão, moscou
+304_nan
+305_são paulo, brasil
+306_nan
+307_brasil
+308_nan
+309_manari
+310_nan
+311_são luiz, ilha do amor, maranhão
+312_caxias do sul, rincão
+313_pasárgada
+314_nan
+315_nan
+316_nan
+317_itapecuru 
+318_japão, liberdade, Itália, bixiga, sum palo
+319_bahia
+320_nan
+321_nan
+322_nan
+323_massaranduba, canema, lagoa salgada(município), fim de légua, poço doce, cancela, beira rapada, Timbaúba, crua grande, mexera doce, ramada, macajubá, Itarema, Jericoacoara, capim pizunha, poço de onça, caiçara, Camocim, angico, jenipapeiro, gidoca, tabulerim
+324_nan
+325_brasil 
+326_rio, rio de janeiro, Copacabana, lagoa, brasil, ceará
+327_jucurivi(sp)
+328_nan
+329_nan
+330_nan
+331_nan
+332_nan
+333_nan
+334_sabará
+335_nan
+336_nan
+337_nan
+338_nan
+339_nan
+340_nan
+341_nan
+342_brasil, nova guiné
+343_ibitiá
+344_nan
+345_brasília, são luis do maranhão, brasil
+346_nan
+347_nan
+348_nan
+349_bahia, bambui, caxias, Zanzibar, china, veneza
+350_nan
+351_nan
+352_maranhão
+353_nan
+354_nan
+355_nan
+356_sertão
+357_borá(município), sacramento(mg), jaguara, brasil
+358_brasil, bahia
+359_nan
+360_nan
+361_nan
+362_nan
+363_nan
+364_nan
+365_nan
+366_nan
+367_brasil
+368_palmeiras, Jacarepaguá, paissandu
+369_nan
+370_nan
+371_nan
+372_várzea das flores
+373_nan
+374_nan
+375_nan
+376_nan
+377_nan
+378_beco da lama
+379_nan
+380_nan
+381_nan
+382_sertão
+383_nan
+384_nan
+385_ceará
+386_nan
+387_nan
+388_brasil
+389_nan
+390_nan
+391_nan
+392_nan
+393_nan
+394_nan
+395_nan
+396_nan
+397_nan
+398_nan
+399_nan
+400_nan
+401_nan
+402_nan
+403_nan
+404_nan
+405_nan
+406_jaboatão
+407_nan
+408_nan
+409_nan
+410_nan
+411_nan
+412_nan
+413_nan
+414_brasil
+415_havay
+416_nan
+417_nan
+418_nan
+419_nan
+420_nan
+421_nan
+422_nan
+423_nan
+424_nan
+425_jaboatão
+426_nan
+427_nan
+428_nan
+429_cidade ssa
+430_nan
+431_nan
+432_nan
+433_nan
+434_nan
+435_nan
+436_nan
+437_tocantins
+438_nan
+439_nan
+440_nan
+441_nan
+442_nan
+443_nan
+444_nan
+445_jaboatão
+446_ceará
+447_nan
+448_nan
+449_nan
+450_nan
+451_nan
+452_nan
+453_nan
+454_nan
+455_nan
+456_nan
+457_nan
+458_nan
+459_nan
+460_pará
+461_nan
+462_nan
+463_nan
+464_pará
+465_nan
+466_nan
+467_brasil
+468_nan
+469_nan
+470_nan
+471_canadá, bahia
+472_nan
+473_nan
+474_nan
+475_nan
+476_nan
+477_nan
+478_nan
+479_nan
+480_nan
+481_nan
+482_nan
+483_nan
+484_nan
+485_síria 
+486_nan
+487_nan
+488_nan
+489_nan
+490_nan
+491_nan
+492_nan
+493_cruzeiro do sul
+494_nan
+495_nan
+496_cipó
+497_nan
+498_américa do sul, guarani, guaraná, santa cruz
+499_ponta de areia, maranhão
+500_nan
+501_nan
+502_nan
+503_nan
+504_nan
+505_nan
+506_nan
+507_nan
+508_nan
+509_nan
+510_nan
+511_brasil
+512_imbituba, brasil, canadá
+513_nan
+514_nan
+515_brasil
+516_nan
+517_brasil
+518_nan
+519_nan
+520_nan
+521_nan
+522_brasil
+523_brasil
+524_brasil
+525_amazônia
+526_nan
+527_nan
+528_nan
+529_brasil
+530_praia do rosa
+531_nan
+532_nan
+533_nan
+534_nan
+535_nan
+536_nan
+537_nan
+538_nan
+539_nan
+540_portugal, brasil
+541_brasil
+542_nan
+543_brasil
+544_nan
+545_nan
+546_nan
+547_minas, cruzeiro
+548_nan
+549_nan
+550_nan

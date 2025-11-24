@@ -1,0 +1,673 @@
+Brasil
+Itália
+Portugal
+França
+Canadá
+Alemanha
+Espanha
+Rússia
+Turquia
+Argentina
+México
+Vietnã
+Índia
+Japão
+Grécia
+Senegal
+Afeganistão
+Síria
+Nova Guiné
+Estados Unidos
+Califórnia
+Europa
+Ásia
+América Do Sul
+Nordeste
+Nordeste Do Brasil
+Sul
+Norte
+Litoral
+Atlântico
+Douro
+Tejo
+Amazônia
+Rio Amazonas
+Rio Negro
+Rio São Francisco
+Rio Tietê
+Rio Uruguai
+Rio Oceano
+Ilha Paquetá
+Ilha Da Madeira
+Mar Mediterrâneo
+Mar Atlântico
+Delta Do Mekong
+Serra Do Mar
+Serra
+Serra Do Maranhão
+Chapadão De Glória
+Sertão
+Sertão Profundo
+Lagoa
+Baía
+Baía De Todos Os Santos
+Baía (Ba)
+Ilha
+Praia Do Rosa
+Praia
+Litoral Norte
+Marco Zero
+Central Park
+Parque Ibirapuera
+Catedral
+Ponte
+Torre Eiffel
+Torre
+País Aonde Tem Muitos Pobres
+Fronteira
+Capital
+Plano Piloto
+Brasília
+Distrito Federal
+Guanabara
+Paraíba
+Pernambuco
+Ceará
+Piauí
+Maranhão
+Maranhenses
+Paraíba
+Pará
+Amazonas
+Tocantins
+Sergipe
+Alagoas
+Bahia
+Minas Gerais
+Espírito Santo
+Rio Grande Do Sul
+Paraná
+Santa Catarina
+São Paulo (Estado)
+Rio De Janeiro (Estado)
+São Paulo (Cidade)
+Rio De Janeiro (Cidade)
+Belo Horizonte
+Belém
+Curitiba
+Porto Alegre
+Fortaleza
+Recife
+Salvador
+Maceió
+João Pessoa
+Natal
+Caxias Do Sul
+Campinas
+Santos
+Campos Do Jordão
+Angra Dos Reis
+Parati
+Itabira
+Juiz De Fora
+Ouro Preto
+Olinda
+São Luís
+São Luís Do Maranhão
+Santo André
+Guarulhos
+São Bernardo Do Campo
+Brasília (DF)
+Taguatinga
+Guará
+Cruzeiro (DF)
+Paranoá
+Plano Piloto (DF)
+Cascais
+Lisboa
+Paris
+Londres
+Madri
+Veneza
+Calcutá
+Moscou
+Nova Iorque
+Nova Inglaterra
+Maine
+Lisboa
+Florianópolis
+Porto
+Douro
+Palmeira
+Palmeiras (município)
+Palmeirim
+Palmeiras (bairro) <!-- ambíguo -->
+Países Baixos
+Guiné
+Angola
+Índia
+China
+Saigon (Ho Chi Minh)
+Saigon
+Saigon (Cidade) <!-- variações -->
+Saigon Delta
+Países
+Europa
+Indochina
+Calcutá (Kolkata)
+Campinas
+Boa Vista
+Belém (PA)
+Santos (SP)
+Itapecuru
+Imbituba
+Parnaíba
+Ponta Da Areia
+Ponta Da Areia (Ilhéus?) <!-- ambíguo -->
+Ilha Do Marajó
+Pará (Estado)
+Amapá
+Roraima
+Acre
+Maranhão
+Piauí
+Teresina
+Sobral
+Floriano
+Joazeiro
+Juazeiro
+Aracati
+Aracati (CE)
+Olinda (PE)
+Maragogipe
+Palmeiras (BA)
+Olhão
+Bragança
+Bragança (Portugal)
+Sena
+Sena (Espanha?) <!-- ambíguo -->
+Corrientes
+Buenos Aires
+Mendoza
+Rio De Janeiro
+Copacabana, Rio De Janeiro
+Leblon, Rio De Janeiro
+Ipanema, Rio De Janeiro
+Lapa, Rio De Janeiro
+Irajá, Rio De Janeiro
+Bangú, Rio De Janeiro
+Guaratiba, Rio De Janeiro
+Jacarepaguá, Rio De Janeiro
+Paquetá, Rio De Janeiro
+Maracanã, Rio De Janeiro
+Engenho Novo, Rio De Janeiro
+Encantado, Rio De Janeiro
+Bangu, Rio De Janeiro
+Vidigal, Rio De Janeiro
+Vila Isabel, Rio De Janeiro
+Vila Nova (diversos) <!-- ambíguo -->
+Parque Da Luz
+Avenida Paulista
+Paulista
+Itapecuru Mirim
+Tabatinga
+Manaus
+Belém Do Pará
+Santarem
+Macapá
+Porto Velho
+Boa Vista (RR)
+Palmas
+Ceará
+Fortaleza
+Parnaíba (PI)
+Juazeiro Do Norte
+Bixiga, São Paulo
+Mooca, São Paulo
+Liberdade, São Paulo
+Ipiranga, São Paulo
+Pinheiros, São Paulo
+Sé, São Paulo
+Largo Do Arouche, São Paulo
+Itaim Bibi, São Paulo
+Tucuruvi, São Paulo
+Mooca
+Bixiga
+Liberdade
+Pindorama
+Pindorama (nome lit.) <!-- ambíguo mas geocodificável como topônimo histórico -->
+Ribeirão Preto
+Campinas
+São José Dos Campos
+Santos (SP)
+Guarujá
+São Bernardo Do Campo
+São Caetano Do Sul
+Barueri
+Suzano
+Mogi Das Cruzes
+Praça Sé, São Paulo
+Parque Ibirapuera, São Paulo
+Avenida Paulista, São Paulo
+Maracanã (Estádio e bairro), Rio De Janeiro
+Maracanã (bairro), Rio De Janeiro
+Maracanã (estádio) <!-- deixa como topônimo -->
+Maracanã Stadium
+Vasco Da Gama (bairro/ponte) <!-- ambíguo: clube vs local — mantive ambíguo -->
+Fundação (nome ambíguo) <!-- removível -->
+Leblon, Rio De Janeiro
+Copacabana, Rio De Janeiro
+Ipanema, Rio De Janeiro
+Tijuca, Rio De Janeiro
+Morro Da Babilônia, Rio De Janeiro
+Praia
+Praia Do Rosa
+Praia De Copacabana
+Praia De Ipanema
+Praias (geral)
+Lagoa Rodrigo De Freitas, Rio De Janeiro
+Pão De Açúcar, Rio De Janeiro
+Pão De Açúcar (Montanha)
+Cristo Redentor (Ponto turístico), Rio De Janeiro
+Cantareira (Serra Da Cantareira), São Paulo
+Serra Da Cantareira
+Cantareira
+Alentejo
+Alentejo (Região, Portugal)
+Lisboa (cidade)
+Ouro Preto (MG)
+Maragogipe (BA)
+Jaboatão (Jaboatão Dos Guararapes)
+Ipojuca
+Pernambuco (Estado)
+Recife (PE)
+Olinda (PE)
+Caruaru
+Garanhuns
+Santos Dumont (cidade)
+Juazeiro
+Itabira (MG)
+Sabará
+Barbacena
+Bambuí
+Ipú
+Ipu (CE)
+Camocim
+Beberibe
+Mossoró
+Natal (RN)
+João Pessoa (PB)
+Campina Grande
+Tamandaré
+Ilhéus
+Ilhéus (BA)
+Itacaré
+Morro Do Chapéu
+Jequitibá (árvore / topônimo) <!-- se existir como local -->
+Queixadas (topônimo local)
+Sete Cachoeiras (topônimo)
+Bananal (município)
+Bananal (SP)
+Lavras
+Itajaí
+Imbituba (SC)
+Praia Do Rosa (SC)
+Parnaíba (PI)
+Brasília (DF)
+Plano Piloto, Brasília
+Crateús
+Tucuruí
+Santarém (PA)
+Itacaré (BA)
+Juazeiro (BA)
+João Pessoa
+Bay Of All Saints (Baía De Todos Os Santos)
+Maracanã
+Pacaembu (bairro), São Paulo
+Pinheiros, São Paulo
+Ibirapuera
+Ibirapuera (Parque)
+Praça Da Sé
+Sé (São Paulo)
+Rua 15 (Topônimo genérico — ambíguo)
+Portelas (topônimo)
+Campina Grande (PB)
+Novo Exu (Exu?) <!-- ambíguo: Novo Exu/Exu (PE) -->
+Exu (PE)
+Sertão (região) <!-- incluído como macro -->
+Nordeste Brasileiro
+Sudeste (região)
+Zona Sul (geral)
+Zona Norte (geral)
+Zona Oeste (geral)
+Zona Leste (geral)
+Mar e Terras Estrangeiras (frase — excluída se preferir)
+Central Do Brasil (Estação / região), Rio De Janeiro
+Central Do Brasil (bairro/região)
+Timbiras (topônimo)
+Itapecuru
+Araripe
+Araxá
+Araxá (MG)
+Juazeiro (BA)
+Jaboatão Dos Guararapes (PE)
+Morrinhos
+Bragança Paulista
+Santos (Cidade)
+Guaíba
+Guaíba (RS)
+Paraopeba (rio)
+Rio Parnaíba
+Rio Doce
+Rio Parnaíba
+Alto Paraíso
+Chapadinha
+Capitão Do Mato (localidade)
+Bangu
+Bangú, Rio De Janeiro
+Sampa (apelido de São Paulo) <!-- incluído como topônimo informal -->
+Nova Iorque (PT)
+Central Park (Nova Iorque)
+Paramount Universal (complexo — ambíguo)
+Catedral Da Sé (São Paulo)
+Praça Sé
+Largo Do Arouche
+Rua (genérico — excluído se preferir)
+Pindaré
+Tocantins (Estado)
+Itamaracá
+Ipojuca (PE)
+Itajaí (SC)
+Imbituba (SC)
+Praias Do Nordeste
+Mar E Terras Estrangeiras (ambíguo)
+Costa Do Descobrimento
+Costa Verde
+Serra Do Mar
+Serra Do Espinhaço
+Chapada Diamantina
+Chapada Dos Veadeiros
+Amazonas (Região/Estado)
+Alagoas (Estado)
+Maranhão (Estado)
+Maranhenses (gentílico/topônimo)
+Guiné (país)
+Indochina (região)
+Calcutá (Kolkata)
+Saigon (Ho Chi Minh City)
+Delta Do Mekong
+Timbiras (localidade)
+Guaíba (rio/laguna)
+Ameal (topônimo ambíguo)
+Beduído (topônimo)
+Calvães (topônimo)
+Fial (topônimo)
+Paus (topônimo)
+Palmeirim (topônimo)
+Ba (abreviação de Bahia — mantive Bahia acima)
+Ioiô (topônimo)
+Iaiá (topônimo)
+Mar E Terras Estrangeiras
+Palastra (topônimo)
+Senhora Aparecida (santuário / local)
+Senhor Do Bonfim (BA)
+Nossa Senhora Aparecida (santuário)
+Nossa Senhora Do Bonfim (BA)
+Cruzeiro Do Sul (constelação/topônimo)
+Morro Escuro (topônimo)
+Sete Cachoeiras
+Queixadas
+Onça (topônimo)
+Mutum (topônimo)
+Tubarão (município, SC)
+Batatinha (topônimo local)
+Bananas (topônimo)
+Belo Horizonte (MG)
+Paraopeba (MG)
+Pinheiros Do Paraná (topônimo)
+Sítio (genérico — excluível)
+Juá (topônimo)
+Ajuricaba (topônimo)
+Sítio Do Antônio (topônimo)
+Bairro De Infância (frase — excluída se preferir)
+Parreira (topônimo)
+Várzea Das Flores (topônimo)
+Bloomsdays (evento — excluído)
+Capadócia
+Turquia (já incluída)
+Herval (topônimo)
+São João Da Barra
+Paquetá (Ilha), Rio De Janeiro
+Cantareira (Serra/Cadeia)
+Leblon, Rio De Janeiro
+Encantado, Rio De Janeiro
+Engenho Novo, Rio De Janeiro
+Graça (topônimo)
+Rosa (topônimo)
+Machado (topônimo)
+Jaguar (topônimo)
+Portelas (topônimo)
+Mangueiras (topônimo)
+Jabuticabeiras (topônimo)
+Sul (região)
+Floripa (Florianópolis)
+São Fernão (topônimo)
+Manari (PE)
+Minha Terra (frase — excluída)
+Caxias Do Sul (RS)
+Pasárgada (topônimo literário com localizações reais — incluído)
+São Luís Do Maranhão
+Chapadão De Glória
+Rio Negro (AM)
+Belém (PA)
+Paulistinha (topônimo)
+Jequitibá (topônimo)
+Morena (topônimo)
+Mãezinha (topônimo)
+Morro (genérico)
+Gabinete (ambíguo — excluído)
+Japão (já incluído)
+Bixiga, São Paulo
+Gregos / Grego (gentílico — excluído)
+Liberdade, São Paulo
+Pão De Açúcar (montanha), Rio De Janeiro
+Lagoa (genérico — já incluído alguns)
+Tucuruvi, São Paulo
+Sabará (MG)
+Nova Guiné (país/região)
+México (país)
+Além-Mar (expressão — incluído/excluído conforme preferir)
+Bambuí (MG)
+Juiz De Fora (MG)
+Sacramento (topônimo)
+Borá (SP)
+Jaguara (topônimo)
+Carolina De Jesus (pessoa — excluído)
+Corália (topônimo)
+Aracy (topônimo)
+Minha Terra Tem Palmeiras (frase — excluída)
+O Guarani (obra — excluída)
+Cruzeiros (topônimo / times — ambíguo)
+Flamingo (topônimo)
+Samba (não geográfico — excluído)
+Maracanã (já listado)
+Corinthians (time — excluído)
+Fonte Nova (estádio), Salvador
+Bahia (já listado)
+Paissandu (bairro / clube — ambíguo)
+Sítio Do Antônio (já listado)
+Parreira (já listado)
+Várzea Das Flores (já listado)
+Paramount Universal (complexo — ambíguo)
+Saigon (já listado)
+Delta Do Mekong (já listado)
+Morro Da Babilônia (já listado)
+Água Santa (bairro)
+Saigon (Ho Chi Minh) (já listado)
+Delta Do Mekong (já listado)
+Plano Piloto (já listado)
+Guará (já listado)
+Taguatinga (já listado)
+Cruzeiro (DF) (já listado)
+Villa-Lobos (Parque Villa-Lobos), São Paulo
+Cumbica (Aeroporto Internacional de Guarulhos — Cumbica)
+Vira-Copos (Aeroporto De Campinas)
+Graça (bairro)
+Rosa (bairro/topônimo)
+Machado (município)
+Foice E Cutelo (expressão — excluída)
+Jaguar (já listado)
+Audi A3 (produto — excluído)
+Portelas (já listado)
+Mangueiras (já listado)
+Jabuticabeiras (já listado)
+Sul (região — já listado)
+São Fernão (já listado)
+Br-3 (rodovia — ambíguo)
+São Luís Do Maranhão (já listado)
+Chapadão De Glória (já listado)
+Rio Negro (já listado)
+Amazônas / Amazonas (já listado)
+Belém (já listado)
+Paulistinha (já listado)
+Sertão (já listado)
+Jequitibá (já listado)
+Morena (já listado)
+Mãezinha (já listado)
+Onça (já listado)
+Mutum (já listado)
+Sarcundo (topônimo)
+Morro Escuro (já listado)
+Queixadas (já listado)
+Sete Cachoeiras (já listado)
+Capitão Do Mato (já listado)
+Bananal (já listado)
+Piçarão (topônimo)
+Cobras (topônimo)
+Toco (topônimo)
+Alegre (município, ES)
+Mumbaça (topônimo)
+Abóboras (topônimo)
+Quenta-Sol (topônimo)
+Botas (topônimo)
+Argentina (já listado)
+Beberibe (CE)
+Aldeia (genérico)
+Curitiba (já listado)
+Madrid (já listado)
+Lisboa (já listado)
+Carrossel (obra — excluída)
+Nova Iorque (já listado)
+Central Park (já listado)
+Bragança (já listado)
+Calcutá (já listado)
+Alentejo (já listado)
+Breja (topônimo)
+Ouro Preto (já listado)
+Santos (já listado)
+Campos Do Jordão (já listado)
+Angra Dos Reis (já listado)
+Parati (Paraty) — normalizei para Paraty
+Paraty (Parati)
+Ibirapuera (já listado)
+Catedral (já listado)
+Marco Zero (já listado)
+Praça Sé (já listado)
+Largo Do Arouche (já listado)
+Sampa (São Paulo — já listado)
+Baía (já listado)
+Serra Do Mar (já listado)
+Itabira (já listado)
+Maceió (já listado)
+Litoral (já listado)
+Guaíba (já listado)
+Capital (já listado)
+Fronteira (já listado)
+Los Hermanos (banda — excluído)
+Rio Uruguai (já listado)
+Boa Vista (já listado)
+Baixa (topônimo/termo — excluído)
+Campinas (já listado)
+Paramound Universal (removido por ambiguidade)
+Vietnã (já listado)
+Indochina (já listado)
+Morro Da Babilônia (já listado)
+Afeganistão (já listado)
+Água Santa (já listado)
+Saigon (já listado)
+Delta Do Mekong (já listado)
+Plano Piloto (já listado)
+Guará (já listado)
+Taguatinga (já listado)
+Cruzeiro (já listado)
+Brasil (já listado)
+Villa-Lobos (já listado)
+Cumbica (já listado)
+Vira-Copos (já listado)
+Graça (já listado)
+Rosa (já listado)
+Machado (já listado)
+Portelas (já listado)
+Mangueiras (já listado)
+Jabuticabeiras (já listado)
+Sul (já listado)
+Floripa (já listado)
+São Fernão (já listado)
+Esso (posto de gasolina — excluído)
+Manari (já listado)
+Minha Terra (frase — excluída)
+Itapecuru (já listado)
+Bixiga (já listado)
+Bixiga, São Paulo (já listado)
+Gregos (gentílico — excluído)
+Liberdade (já listado)
+Pão De Açúcar (já listado)
+Lagoa (já listado)
+Tucuruvi (já listado)
+Sabará (já listado)
+Nova Guiné (já listado)
+Sao Luiz Do Maranhão (já listado)
+México (já listado)
+Além-Mar (já listado)
+Bambuí (já listado)
+Juiz De Fora (já listado)
+Caxias (já listado)
+Sacramento (já listado)
+Borá (já listado)
+Jaguara (já listado)
+Corália (já listado)
+Aracy (já listado)
+Minhas Entradas (frases — excluídas)
+O Guarani (obra — excluída)
+Cruzeiros (já listado)
+Flamingo (já listado)
+Samba (excluído)
+Maracanã (já listado)
+Corinthians (excluído)
+Fonte Nova (já listado)
+Bahia (já listado)
+Paissandu (ambíguo — mantido como topônimo)
+Sítio Do Antonio (já listado)
+Bairro De Infância (frase — excluída)
+Parreira (já listado)
+Várzea Das Flores (já listado)
+Bloomsdays (evento — excluído)
+Exupérys (Antoine de Saint-Exupéry — excluído)
+Capadócia (já listado)
+Turquia (já listado)
+Praias (já listado)
+Tocantins (já listado)
+Santa (ambíguo — excluído)
+Série A (esporte — excluído)
+Libertadores (esporte — excluído)
+Síria (já listado)
+Parnaíba (já listado)
+América Do Sul (já listado)
+Pero Vaz De Caminha (histórico — excluído)
+Ponta Da Areia (já listado)
+Imbituba (já listado)
+Amazônia (já listado)
+Praia Do Rosa (já listado)
+Ouvidor (topônimo)
+País Aonde Tem Muitos Pobres (frase — excluída)
+Minas (Minas Gerais — já listado)
