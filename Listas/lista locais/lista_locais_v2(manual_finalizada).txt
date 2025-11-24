@@ -134,7 +134,7 @@
 134_brasil
 135_brasil
 136_nan
-137_portugal, ameal(coimbra), fial(tondela, pt), calvães(albergaria-a-velha), fontes(Freguesia de Fontes do Município de Santa Marta de Penaguião), beduído(estarreja), paus(albergaria-a-velha)
+137_portugal, ameal(coimbra), fial(tondela, pt), calvães(albergaria-a-velha), beduído(estarreja), paus(albergaria-a-velha)
 138_nan
 139_nan
 140_nan
