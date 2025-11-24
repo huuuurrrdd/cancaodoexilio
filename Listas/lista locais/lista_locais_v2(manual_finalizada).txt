@@ -58,7 +58,7 @@
 058_brasil
 059_maranhão
 060_athenas, roma, maranhão
-061_cabrobó(br, pernambuco), ipú(nordeste, Ceará), aracati (Ceará), mecejana(bairro, boa vista, br), guagirú(trairi, Ceará), jericó(Cisjordânia)
+061_cabrobó(br pernambuco), ipú(nordeste Ceará), aracati (Ceará), mecejana(bairro boa vista br), guagirú(trairi Ceará), jericó(Cisjordânia)
 062_maranhão, europa
 063_nan
 064_novo exu (VILA NOVO EXU, Parambu, Ceará), são francisco(rio, bahia), curaçá(bahia), araripe(Ceará), sergipe(estado)
