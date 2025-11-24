@@ -10,7 +10,7 @@
 010_nan
 011_gôa(india), portugal
 012_paris
-013_argetina
+013_argentina
 014_nan
 015_nan
 016_nan
