@@ -107,7 +107,7 @@
 107_rua halfeld(cidade juiz de fora, minas gerais)
 108_sertão(nordestino)
 109_alemanha
-110_senegal(pais), pampas do sul(Rio Grande do Sul (Brasil), no Uruguai), grã-pará(st catarina)
+110_senegal(pais), pampas do sul(Rio Grande do Sul), grã-pará
 111_brasil
 112_nan
 113_pindorama (brasil em tupi), santa cruz, brasil
