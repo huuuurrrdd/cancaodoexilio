@@ -156,7 +156,7 @@
 156_alagoas
 157_massangana de nabuco(Engenho Massangana, pernambuco), pernambuco, muribara(bairro, s. lourenço da mata), alagoas, minas gerais
 158_nan
-159_olinda(município), brasil, Ladeira de são pedro
+159_olinda(município PE), brasil, são pedro(RJ)
 160_alagoas(estado), brasil
 161_portugal, brasil, atlântico
 162_bahia(estado), brasil, cruzeiro do sul(municipio), mantiqueria(serra)
@@ -170,7 +170,7 @@
 170_nan
 171_ceará
 172_nan
-173_Leme(município), praia do flamengo(RJ), Leblon(Rj)n Jacarepaguá(rj), lapa(rj), piedade(rj), encantado(rj), engenho novo(rj), Maria angu(rj), Irajá(rj), ilha de paquetá(rj) 
+173_Leme(município), praia do flamengo(RJ), Leblon(Rj), Jacarepaguá(rj), lapa(rj), piedade(rj), encantado(rj), engenho novo(rj), Maria angu(rj), Irajá(rj), ilha de paquetá(rj) 
 174_maringá(parana) 
 175_nan 
 176_juqueri(SP)
