@@ -214,7 +214,7 @@
 214_sertão
 215_nan
 216_serra do onça(mg), mutum(mg), morro escuro, queixadas, sete cachoeiras, bananal, lava, piçarão, cobras, toco, alegre, mumbaça, abóboras, quenta-sol, botas
-217_lençois(paraiba), aracagi, maranhão
+217_lençois, aracagi, maranhão
 218_nan
 219_argentina, brasil
 220_sertão
