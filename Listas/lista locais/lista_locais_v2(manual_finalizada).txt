@@ -320,11 +320,11 @@
 320_nan
 321_nan
 322_nan
-323_massaranduba, canema, lagoa salgada(município), fim de légua, poço doce, cancela, beira rapada, Timbaúba, crua grande, mexera doce, ramada, macajubá, Itarema, Jericoacoara, capim pizunha, poço de onça, caiçara, Camocim, angico, jenipapeiro, gidoca, tabulerim
+323_massaranduba, lagoa salgada(município), poço doce, timbaúba, croa grande, macajubá, itarema, jericoacoara, poço de onça, caiçara, Camocim, angico, genipapeiro, gijoca
 324_nan
 325_brasil 
 326_rio, rio de janeiro, Copacabana, lagoa, brasil, ceará
-327_jucurivi(sp)
+327_japan, são paulo
 328_nan
 329_nan
 330_nan
@@ -346,7 +346,7 @@
 346_nan
 347_nan
 348_nan
-349_bahia, bambui, caxias, Zanzibar, china, veneza
+349_bahia, bambui, caxias, zanzibar, china, veneza
 350_nan
 351_nan
 352_maranhão
