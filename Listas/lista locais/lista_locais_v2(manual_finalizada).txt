@@ -177,7 +177,7 @@
 177_nan
 178_maranhão
 179_nan
-180_belo horizonte(município), paraopeba(município)
+180_belo horizonte(mg), paraopeba(mg)
 181_nan 
 182_são paulo 
 183_nan
@@ -189,7 +189,7 @@
 189_nan
 190_paraná
 191_nan
-192_Pau-Brasil, Brasil, Ilha, terra, da vera, da santa cruz (bahia), São sebastião do rio de janeiro, cidade do rio de janeiro, cidade do rio, rio, Copacabana(rj), arpoador(rj), Brasília, amazonas, Guanabara(estado)
+192_Pau-Brasil, Brasil, Ilha, terra, da vera, da santa cruz, São sebastião do rio de janeiro, cidade do rio de janeiro, cidade do rio, rio, Copacabana(rj), arpoador(rj), Brasília, amazonas, Guanabara(estado)
 193_brasília, paranoá(região administrativa), rio, juá(ceará)
 194_nan
 195_nan
