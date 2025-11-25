@@ -286,7 +286,7 @@
 286_nan
 287_nan
 288_brasil
-289_bahia, litoral sul(brasil)
+289_bahia
 290_nan
 291_nan
 292_nan
