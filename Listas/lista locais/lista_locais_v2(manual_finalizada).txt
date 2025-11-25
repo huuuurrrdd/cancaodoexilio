@@ -203,7 +203,7 @@
 203_nan
 204_nan
 205_piauí, paris 
-206_são luís do maranhão(município), São Marcos(município), sacavém, Ponta da areia, São Joao de Ribamar, Alcântara, anil, rua dos afogados(s luis), Angola, rua do alecrim, campos de ourique, praça gonçalves dias, atenas brasileira(s luis), praça joão Lisboa, praia grande, são benedito
+206_são luís do maranhão(município), baía de são Marcos, sacavém, Ponta da areia, São Joao de Ribamar, alcântara, anil, rua dos afogados(s luis), Angola, rua do alecrim, campos de ourique, praça gonçalves dias, atenas brasileira(s luis), praça joão Lisboa, praia grande, são benedito
 207_são Paulo, brasil
 208_rio negro, amazonas
 209_n/a 
