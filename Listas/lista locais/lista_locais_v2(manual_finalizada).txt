@@ -70,7 +70,7 @@
 070_nan
 071_guiné
 072_nan
-073_sertão(nordeste), ribeirão(SP), rio de contas(bahia)
+073_ribeirão(SP), rio de contas(bahia)
 074_nan
 075_nan
 076_boa vista(Roraima)
@@ -105,7 +105,7 @@
 105_nan
 106_ingraterra
 107_rua halfeld(cidade juiz de fora, minas gerais)
-108_sertão(nordestino)
+108_
 109_alemanha
 110_senegal(pais), pampas do sul(Rio Grande do Sul), grã-pará
 111_brasil
@@ -152,7 +152,7 @@
 152_nan
 153_nan
 154_Palmeiras (sociedade esportiva palmeiras, SP)
-155_brasil, sertão(nordeste), moema(?MG), iracema(Ceará-praia ou municipio?)
+155_brasil, moema(?MG), iracema(Ceará-praia ou municipio?)
 156_alagoas
 157_massangana de nabuco(Engenho Massangana, pernambuco), pernambuco, muribara(bairro, s. lourenço da mata), alagoas, minas gerais
 158_nan
@@ -196,7 +196,7 @@
 196_nan
 197_campo de Santana(rj), brasil, laranjeiras(rj)
 198_amazonas(rio), rio oceano, Ajuricaba(barcelos) 
-199_rio, sertão
+199_rio
 200_portugal, douro 
 201_nan
 202_nan
@@ -211,16 +211,16 @@
 211_belém, pará, brasil
 212_nan
 213_são tomé
-214_sertão
+214_nan
 215_nan
 216_serra do onça(mg), mutum(mg), morro escuro, queixadas, sete cachoeiras, bananal, lava, piçarão, cobras, toco, alegre, mumbaça, abóboras, quenta-sol, botas
 217_lençois, aracagi, maranhão
 218_nan
 219_argentina, brasil
-220_sertão
+220_nan
 221_pernambuco, Beberibe(ceará)
-222_amazônia, sertão, índias
-223_sertão
+222_amazônia, índias
+223_nan
 224_nan
 225_nan
 226_nan
@@ -245,7 +245,7 @@
 245_sodoma, gomorra
 246_ibirapuera(sp), catedral, marco zero, praça da sé, largo do Arouche, serra do mar
 247_maceió(alagoas), ilha de marajó, pantanal
-248_sertão
+248_nan
 249_guaíba
 250_nan
 251_nordeste, SP
@@ -276,7 +276,7 @@
 276_plano piloto(brasilia), guará(sp), Taguatinga, cruzeiro, paranoá, brasília
 277_brasílias
 278_são paulo
-279_sertão
+279_nan
 280_nan
 281_nan
 282_nan
@@ -353,7 +353,7 @@
 353_nan
 354_nan
 355_nan
-356_sertão
+356_nan
 357_borá(município), sacramento(mg), jaguara, brasil
 358_brasil, bahia
 359_nan
@@ -379,7 +379,7 @@
 379_nan
 380_nan
 381_nan
-382_sertão
+382_nan
 383_nan
 384_nan
 385_ceará
