@@ -241,7 +241,7 @@
 241_curitiba
 242_nan
 243_nan
-244_nova York, países baixos, Austrália, brasil, ouro preto(mg), sul(mg), santos, são josé do ro preto, camps de jordão, angra, parati, bahia, baixa do sapateiro
+244_nova York, países baixos, Austrália, brasil, ouro preto(mg), sul(mg), santos, são josé do rio preto, camps de jordão, angra, parati, bahia, baixa do sapateiro
 245_sodoma, gomorra
 246_ibirapuera(sp), catedral, marco zero, praça da sé, largo do Arouche, serra do mar
 247_maceió(alagoas), ilha de marajó, pantanal
