@@ -105,7 +105,7 @@
 105_nan
 106_ingraterra
 107_rua halfeld(cidade juiz de fora, minas gerais)
-108_
+108_nan
 109_alemanha
 110_senegal(pais), pampas do sul(Rio Grande do Sul), grã-pará
 111_brasil
