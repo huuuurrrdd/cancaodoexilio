@@ -271,7 +271,7 @@
 271_nan
 272_nan
 273_nan
-274_indochina, Vietnã, morro da babilônia, Afeganistão, água santa, Saigon
+274_indochina, vietnã, morro da babilônia, afeganistão, água santa, Saigon
 275_nan
 276_plano piloto(brasilia), guará(sp), Taguatinga, cruzeiro, paranoá, brasília
 277_brasílias
