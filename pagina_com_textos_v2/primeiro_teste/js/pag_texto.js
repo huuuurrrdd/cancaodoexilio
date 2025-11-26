@@ -48,7 +48,7 @@ function fetchData(){
         })
         .then(data => {
             wordData = data; //Guarda dict_pal em wordData
-            return fetch("./t3_textos_loc_fauna_flora.json") // fetch json dos textos
+            return fetch("./t4_textos_loc_fauna_flora.json") // fetch json dos textos
         })
         .then(response => { // mensagem de erro
             if(!response.ok){
@@ -265,19 +265,19 @@ function displayData(wordData, textData, stoplist, lemmasData){
     // //tentando fazer split das palavras (os numeros t2,t3... corresponde ao n do passo)
      let t = titEtxt.texto // string para texto
     // LEMAS ANTIGOS
-    let l = textData[textId-1].lemmas // string para lemas (a colocar no link)
+    //let l = textData[textId-1].lemmas // string para lemas (a colocar no link)
 
     // LEMAS ANTIGOS
-    l2 = removePont(l) // (remove pontuacao) é um array tem de ser um a um
+    //l2 = removePont(l) // (remove pontuacao) é um array tem de ser um a um
 
     let t2Br = nToBr(t) // tansforma \n em <br>
-    let l3Br = nToBr(l2) 
+    //let l3Br = nToBr(l2) 
 
     let t3Html = stringHtml(t2Br, stoplist, wordData) // cria a sting de html (com os links das palavas e removendo as stopwords)
-    let l4Html = stringHtml(l3Br, stoplist, wordData) 
+    //let l4Html = stringHtml(l3Br, stoplist, wordData) 
 
     let t4Join = joinString(t3Html) // junta todas as stings (o array passa a 1 string)
-    let l5Join = joinString(l4Html)
+    //let l5Join = joinString(l4Html)
 
     
     //let l5 = removePont(l4Join)

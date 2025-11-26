@@ -26,7 +26,7 @@ function fetchData(){
         })
         .then(data => {
             wordData = data;
-            return fetch("./t3_textos_loc_fauna_flora.json") // fetch json dos textos
+            return fetch("./t4_textos_loc_fauna_flora.json") // fetch json dos textos
         })
         .then(response => { // mwensagem de erro
             if(!response.ok){
