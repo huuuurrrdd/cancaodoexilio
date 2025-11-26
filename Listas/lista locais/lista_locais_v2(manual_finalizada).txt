@@ -16,7 +16,7 @@
 016_nan
 017_brasil, pernambuco
 018_brasil
-019_brasil, santa cruz, Amazonas(rio), Prata(estuário), portugal, ipiranga(rio em SP)
+019_brasil, santa cruz, Amazonas(rio), Prata(estuário), rio grande, pará, portugal, ipiranga(rio em SP)
 020_brasil
 021_alemanha
 022_europa
@@ -24,7 +24,7 @@
 024_brasil
 025_brasil
 026_nan
-027_villa-nova(aldeia st.ant. sergipe, neopolis), brasil
+027_villa-nova(aldeia st.ant. sergipe, neopolis), sergipe
 028_bahia, itália
 029_brasil
 030_europa, ásia
