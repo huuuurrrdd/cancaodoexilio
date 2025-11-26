@@ -962,7 +962,93 @@ function displayData(wordData, textData, stoplist) {
     /***************** Titulo pesquisa ********************/
           // posso fazer um pequeno teste básico primeiro
     titInput.addEventListener('input', (e) => {
+      let value = e.target.value
+
+      if(value && value.trim().length > 0){
+          value = value.trim().toLowerCase()
+
+          const filteredResultado = resultado
+            .filter(item =>{
+              const val = normalize(value)
+
+              //verificando titulo principal
+              const mainTitle = normalize(item?.title || "")
+              if(mainTitle.includes(val)) return true
+
+              // verificar se existem textos dentro
+              if(Array.isArray(item.textos)){ // combina título e titulo de textos temporariamente
+                return item.textos.some((texto, i) =>{
+                  const titleFromData = normalize(textData?.[texto.id_text-1]?.title || "")
+                  const titleFromItem = (Array.isArray(item.titulo) ? (item.titulo[i] || "") : "")
+                  const titulo = titleFromData || titleFromItem
+                  return titulo.includes(val)
+                })
+              }
+              
+              return false
+            })
+            .sort((a, b) => {
+              const val = normalize(value)
+
+              //funcao para ajudar a obter a melhor correspondência
+              const getBestMatch = (item) => {
+                const mainTitle = normalize(item?.title || "")
+
+                //verificar correspondência
+                if(mainTitle.includes(val)){
+                  return mainTitle
+                }
+
+                if(Array.isArray(item.textos)){
+                  for(let i = 0; i < item.textos.length; i++){ // percorre os textos
+                    const texto = item.textos[i] //cada texto do item
+                    const titleFromData = normalize(textData?.[texto.id_text - 1]?.title || "") //titulo de textData
+                    const titleFromItem = normalize(Array.isArray(item.titulo) ? (item.titulo[i] || "") : "")
+                    const titulo = titleFromData || titleFromItem
+
+                    if(titulo.includes(val)){
+                      return titulo
+                    }
+                  }
+                }
+
+                return mainTitle
+              }
+               
+              const aTit = getBestMatch(a)
+              const bTit = getBestMatch(b)
+
+              //resolver titulos que começam por "["
+              let aStarts, bStarts
+
+              if(aTit.startsWith("[")){
+                aStarts = aTit.startsWith(val, 1)
+              } else{
+                aStarts = aTit.startsWith(val)
+              }
+
+              if(bTit.startsWith("[")){
+                bStarts = bTit.startsWith(val, 1)
+              } else{
+                bStarts = bTit.startsWith(val)
+              }
+              
+              //priorizar titulos que começam com o valor da pesquisa
+              if(aStarts && !bStarts) return -1
+              if(!aStarts && bStarts) return 1
+
+              return aTit.localeCompare(bTit, 'pt', { sensitivity: 'base' })
+            })
+            
+
+          resPPage(filteredResultado.length, rPP)
+          displayResultado(filteredResultado, value)
       
+      }else{
+        resPPage(textData.length, rPP)
+        displayResultado(textData, value)
+      }
+
     })
     
 
