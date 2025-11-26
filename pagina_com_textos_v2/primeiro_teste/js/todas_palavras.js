@@ -968,53 +968,100 @@ function displayData(wordData, textData, stoplist) {
           value = value.trim().toLowerCase()
 
           const filteredResultado = resultado
-            .filter(item =>{
+            .map(item =>{
               const val = normalize(value)
-
-              //verificando titulo principal
               const mainTitle = normalize(item?.title || "")
-              if(mainTitle.includes(val)) return true
 
-              // verificar se existem textos dentro
-              if(Array.isArray(item.textos)){ // combina título e titulo de textos temporariamente
-                return item.textos.some((texto, i) =>{
-                  const titleFromData = normalize(textData?.[texto.id_text-1]?.title || "")
-                  const titleFromItem = (Array.isArray(item.titulo) ? (item.titulo[i] || "") : "")
-                  const titulo = titleFromData || titleFromItem
-                  return titulo.includes(val)
-                })
+              //se o titulo corresponde, devolve item sem modificação
+              if(mainTitle.includes(val)){
+                return item
               }
-              
-              return false
+
+              //se item é array, filtra resultados
+              if(Array.isArray(item.textos)){
+                const filteredPairs = []
+
+                item.textos.forEach((texto, i) => {
+                  const titulo = normalize(textData?.[texto.id_text-1]?.title || "")
+
+                  //mantém apenas os titulos compatíveis
+                  if(titulo.includes(val)){
+                    filteredPairs.push({
+                      texto: texto,
+                      titulo: Array.isArray(item.titulo) ? item.titulo[i] : undefined,
+                      normalizedTitle: titulo
+                    })
+                  }
+
+                })
+
+                //se corresponder, devolve versão filtrada
+                if(filteredPairs.length > 0){
+                  // ordena items por semelhança
+                  filteredPairs.sort((a,b) => {
+                    const aTitle = a.normalizedTitle
+                    const bTitle = b.normalizedTitle
+
+
+                    //verifica se título começa com valor pesquisado
+                    let aStarts, bStarts
+
+                    if(aTitle.startsWith("[")){
+                      aStarts = aTitle.startsWith(val, 1) // começa pelo index 1
+                    } else{
+                      aStarts = aTitle.startsWith(val)
+                    } 
+                    
+                    if(bTitle.startsWith("[")){
+                      bStarts = bTitle.startsWith(val, 1)
+                    } else{
+                      bStarts = bTitle.startsWith(val)
+                    }
+
+                    // prioriza titulos com valor pesquisado
+                    if(aStarts && !bStarts) return -1
+                    if(!aStarts && bStarts) return 1
+
+                    return aTitle.localeCompare(bTitle, 'pt', { sensitivity: 'base' })
+                  })
+
+                  return {
+                    ...item,
+                    textos: filteredPairs.map(p => p.texto),
+                    titulo: filteredPairs.map(p => p.titulo).filter(t => t !== undefined)
+                  }
+                }
+              }
+
+              //não foram encontrados resultados
+              return null
             })
+            .filter(item => item !== null) // remove items sem correspondência
             .sort((a, b) => {
               const val = normalize(value)
 
-              //funcao para ajudar a obter a melhor correspondência
+              // funcao para ajudar a encontrar o melhor titulo correspondente
               const getBestMatch = (item) => {
                 const mainTitle = normalize(item?.title || "")
 
-                //verificar correspondência
+                //verifica se titulo corresponde
                 if(mainTitle.includes(val)){
                   return mainTitle
                 }
 
-                if(Array.isArray(item.textos)){
-                  for(let i = 0; i < item.textos.length; i++){ // percorre os textos
-                    const texto = item.textos[i] //cada texto do item
-                    const titleFromData = normalize(textData?.[texto.id_text - 1]?.title || "") //titulo de textData
-                    const titleFromItem = normalize(Array.isArray(item.titulo) ? (item.titulo[i] || "") : "")
-                    const titulo = titleFromData || titleFromItem
+                // verifica titulos dentro (já filtrados)
+                if(Array.isArray(item.textos) && item.textos.length > 0){
+                  const texto = item.textos[0] // obtém primeira correspondência
+                  const titulo = normalize(textData?.[texto.id_text-1]?.title || "")
 
-                    if(titulo.includes(val)){
-                      return titulo
-                    }
+                  if(titulo.includes(val)){
+                    return titulo
                   }
                 }
 
                 return mainTitle
               }
-               
+
               const aTit = getBestMatch(a)
               const bTit = getBestMatch(b)
 
@@ -1022,22 +1069,23 @@ function displayData(wordData, textData, stoplist) {
               let aStarts, bStarts
 
               if(aTit.startsWith("[")){
-                aStarts = aTit.startsWith(val, 1)
+                aStarts = aTit.startsWith(val, 1) // começa pelo index 1
               } else{
                 aStarts = aTit.startsWith(val)
-              }
-
+              } 
+              
               if(bTit.startsWith("[")){
                 bStarts = bTit.startsWith(val, 1)
               } else{
                 bStarts = bTit.startsWith(val)
               }
-              
-              //priorizar titulos que começam com o valor da pesquisa
+
+              // prioriza titulos com valor pesquisado
               if(aStarts && !bStarts) return -1
               if(!aStarts && bStarts) return 1
 
               return aTit.localeCompare(bTit, 'pt', { sensitivity: 'base' })
+
             })
             
 
@@ -1045,11 +1093,13 @@ function displayData(wordData, textData, stoplist) {
           displayResultado(filteredResultado, value)
       
       }else{
-        resPPage(textData.length, rPP)
-        displayResultado(textData, value)
+        resPPage(resultado.length, rPP)
+        displayResultado(resultado, value)
       }
 
     })
+
+    //console.log(resultado)
     
 
     /***************** freq pesquisa ********************/
