@@ -75,15 +75,15 @@ nav{
   z-index: 10;
 }
 
-.form-nav { grid-area: 1 / 1 / 2 / 4; }
-.nav-home { grid-area: 1 / 4 / 2 / 6; }
-.nav-sobre { grid-area: 1 / 6 / 2 / 8; }
-.nav-todos-textos { grid-area: 1 / 8 / 2 / 10; }
-.nav-todas-palavras { grid-area: 1 / 10 / 2 / 12; }
-.nav-categorias { grid-area: 1 / 12 / 2 / 14; }
+.form-nav { grid-area: 1 / 2 / 2 / 4; }
+.nav-home { grid-area: 1 / 4 / 2 / 7; }
+.nav-sobre { grid-area: 1 / 7 / 2 / 10; }
+.subnav { 
+  grid-area: 1 / 10 / 2 / 13; 
+  position:relative;
+}
 
-
-.a-nav, .form-nav{
+.a-nav, .form-nav, .subnav{
   list-style-type: none;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   display: flex;
@@ -91,9 +91,10 @@ nav{
   align-items: center;
 }
 
-.a-nav:hover{
+.a-nav:hover, .subnav:hover, .a-subnav:hover{
   font-weight: bolder;
   background-color: var(--dark-green);
+  cursor: pointer;
 }
 
 .form-nav{
@@ -101,23 +102,52 @@ nav{
   
 }
 
-.a-nav:link{
+.a-nav:link, .subnav:link, .a-subnav:link{
   text-decoration: none;
   color: var(--dark-green);
 }
 
-.a-nav:visited {
+.a-nav:visited, .subnav:visited, .a-subnav:visited{
   text-decoration: none;
   color: var(--dark-green);
 }
 
-.a-nav:hover {
+.a-nav:hover, .subnav:hover, .a-subnav:hover{
   text-decoration: none;
   color: var(--light-yellow);
 }
 
-.a-nav:active {
+.a-nav:active, .subnav:active, .a-subnav:active{
   text-decoration: none;
+}
+
+/****** subnav-content *******/
+.subnav-content{
+  display: none;
+  position: absolute;
+  top:100%;
+  left: 0;
+  width: 100%;
+  background-color: var(--dark-green);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  z-index: 1;
+  flex-direction: column; 
+}
+
+.subnav-content a{
+  display: block;
+  color: var(--light-yellow);
+  background-color: var(--light-yellow);
+  padding: 12px 16px;
+}
+
+.subnav-content a:hover{
+  background-color: var(--dark-green);
+}
+
+.subnav:hover .subnav-content{
+  display: flex;
+  
 }
 
 
@@ -182,7 +212,7 @@ input[type=text]{
     display: none;
   }
 
-  .a-nav, nav{
+  .a-nav, nav, .subnav{
     float: none;
     display: block;
     text-align: center;
@@ -206,7 +236,7 @@ input[type=text]{
 } */
 
 
-  .a-nav, .form-nav{
+  .a-nav, .form-nav, .subnav{
     padding: 10px 0;
   }
 

@@ -12,35 +12,63 @@ body.appendChild(nav)
 
 pesquisa_livre()
 
+
+/********* Criação dos elementos *********/
 a_home = document.createElement("a")
 a_sobre = document.createElement("a")
-a_todos_textos = document.createElement("a")
-a_todas_palavras = document.createElement("a")
-a_categorias = document.createElement("a")
+//subnav
+d_subnav = document.createElement("div")
+    bt_subnav = document.createElement("div")
+        i_bt_subnav = document.createElement("i")
+    d_subnav_content = document.createElement("div")
+        a_todos_textos = document.createElement("a")
+        a_todas_palavras = document.createElement("a")
+        a_categorias = document.createElement("a")
 
+
+
+/********* Atribuicao de classes *********/ 
 a_home.className = "a-nav nav-home"
 a_sobre.className = "a-nav nav-sobre"
-a_todos_textos.className = "a-nav nav-todos-textos"
-a_todas_palavras.className = "a-nav nav-todas-palavras"
-a_categorias.className = "a-nav nav-categorias"
+//subnav
+d_subnav.className = "subnav"
+    bt_subnav.className = "btsubnav"
+        i_bt_subnav.className = "fa fa-down"
+    d_subnav_content.className = "subnav-content"
+        a_todos_textos.className = "a-subnav nav-todos-textos"
+        a_todas_palavras.className = "a-subnav nav-todas-palavras"
+        a_categorias.className = "a-subnav nav-categorias"
 
+
+
+/********* Atribuicao de links *********/ 
 a_home.href = "index.html?id=1"
 a_sobre.href = "sobre.html"
 a_todos_textos.href = "lista_textos.html"
 a_todas_palavras.href = "lista_todas_palavras.html"
 a_categorias.href = "p_categorias_palavras.html"
 
+
+/********* Texto para display *********/ 
 a_home.innerHTML = "Home"
 a_sobre.innerHTML = "Sobre"
+d_subnav.innerHTML = "Textos"
 a_todos_textos.innerHTML = "Textos"
 a_todas_palavras.innerHTML = "Palavras"
 a_categorias.innerHTML = "Categorias"
 
+
+/********* Colocação de elementos *********/ 
 nav.appendChild(a_home)
 nav.appendChild(a_sobre)
-nav.appendChild(a_todos_textos)
-nav.appendChild(a_todas_palavras)
-nav.appendChild(a_categorias)
+//subnav
+nav.appendChild(d_subnav)
+    d_subnav.appendChild(bt_subnav)
+        bt_subnav.appendChild(i_bt_subnav)
+    d_subnav.appendChild(d_subnav_content)
+        d_subnav_content.appendChild(a_todos_textos)
+        d_subnav_content.appendChild(a_todas_palavras)
+        d_subnav_content.appendChild(a_categorias)
 
 
 
