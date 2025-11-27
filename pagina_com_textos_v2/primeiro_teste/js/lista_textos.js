@@ -634,18 +634,18 @@ function displayData(wordData, textData){
             let nPages = document.createElement("div")
             list_all_container.appendChild(nPages)
             nPages.className += "n-page n-page-ct"
-            //nPages.innerHTML = "ATCHUMMM"
 
             if(resultado == undefined || resultado == [] || resultado == ""){
                 nPages.innerHTML = ""
             } else {
                 nPages.innerHTML = ""
                 for(let i = 0; i < arrayResultados.length; i++){ // isto atualiza-se, mas 
-                    let nPage = document.createElement("div")
+                    let nPage = document.createElement("a")
                     nPages.appendChild(nPage)
                     nPage.className += "n-page-i n-page" + i
                     nPage.id = `n-page${i}`
                     nPage.innerText = i+1
+                    //nPage.href = `#n-page${i}`
 
                       nPage.addEventListener('click', (e) =>{
                         console.log(`Click, page ${nPage.innerText}`)
@@ -654,7 +654,7 @@ function displayData(wordData, textData){
                 }
             }
 
-            console.log(`Resultado atualizado: ${arrayResultados.length}`)
+            //console.log(`Resultado atualizado: ${arrayResultados.length}`)
             sepPage()
             document.querySelector('#n-page' + iP).style.backgroundColor = "#223F29"
             document.querySelector('#n-page' + iP).style.color = "#FFFEF2"
@@ -696,11 +696,7 @@ function displayData(wordData, textData){
                     iP = i
                     displayResultadotab(textData)
                 })
-
-                // estilos
-                //document.querySelector('#n-page' + i).style.backgroundColor = "yellow" // após atualização dos filtros isto deixa de funcionar
                 document.querySelector('#n-page' + i).innerHTML += `<style> #n-page${i}:hover{background-color:#223F29; cursor:pointer; color:#FFFEF2}</style>`
-                
             }
         }
         //sepPage() // ainda preciso de perceber!!

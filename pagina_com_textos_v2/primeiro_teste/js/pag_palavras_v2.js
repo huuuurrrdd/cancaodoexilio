@@ -660,7 +660,8 @@ function displayData(wordData, textData, lemmasData){
         const oldPages = list_all_container.querySelector('.n-page-ct')
         if(oldPages) oldPages.remove()
 
-        // div com bts de exibir pag de resultados
+        if(arrayResultados.length > 1){
+          // div com bts de exibir pag de resultados
         let nPages = document.createElement("div")
         list_all_container.appendChild(nPages)
         nPages.className += "n-page n-page-ct"
@@ -670,21 +671,25 @@ function displayData(wordData, textData, lemmasData){
         } else {
             nPages.innerHTML = ""
             for(let i = 0; i < arrayResultados.length; i++){ // isto atualiza-se, mas 
-                let nPage = document.createElement("div")
+                let nPage = document.createElement("a")
                 nPages.appendChild(nPage)
                 nPage.className += "n-page-i n-page" + i
                 nPage.id = `n-page${i}`
                 nPage.innerText = i+1
 
-                //   nPage.addEventListener('click', (e) =>{
-                //   console.log(`Click, page ${nPage.innerText}`)
-                //   iP = i // tem de ser chamado acima
-                // })
+                  nPage.addEventListener('click', (e) =>{
+                  console.log(`Click, page ${nPage.innerText}`)
+                  iP = i // tem de ser chamado acima
+                })
             }
         }
 
         //console.log(`Resultado atualizado: ${arrayResultados.length}`)
-
+        sepPage()
+        document.querySelector('#n-page' + iP).style.backgroundColor = "#223F29"
+        document.querySelector('#n-page' + iP).style.color = "#FFFEF2"
+        }
+        
       }
       displayResultadotxt(resultado)
 
@@ -731,10 +736,10 @@ function displayData(wordData, textData, lemmasData){
                     iP = i
                     displayResultadotxt(resultado)
                 })
-                document.querySelector('#n-page' + i).style.backgroundColor = "yellow" // após atualização dos filtros isto deixa de funcionar
+                document.querySelector('#n-page' + i).innerHTML += `<style> #n-page${i}:hover{background-color:#223F29; cursor:pointer; color:#FFFEF2}</style>`
             }
         }
-        sepPage() // ainda preciso de perceber!!
+        //sepPage() // ainda preciso de perceber!!
 
 
 

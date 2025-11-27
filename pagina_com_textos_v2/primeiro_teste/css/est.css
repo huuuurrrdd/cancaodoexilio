@@ -145,6 +145,32 @@ input[type=text]{
   display: none;
 }
 
+/******** Lista de numeros de páginas *********/
+.n-page-ct{
+    display: flex;
+    flex-wrap: nowrap;
+    column-gap: 1px;
+    justify-content: center;
+    align-items: center;
+    margin:auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    /* width: calc(9/13*100%); */
+    position: sticky;
+    bottom: 0px;
+    background-color: var(--light-yellow);
+    width: 70vw;
+}
+
+.n-page-i{
+    width: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    cursor: pointer;
+    color: var(--dark-green);
+    text-align: center;
+}
+
 
 @media screen and (max-width: 768px) {
 

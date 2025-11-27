@@ -107,7 +107,7 @@
 .n-page-ct{
     display: flex;
     flex-wrap: nowrap;
-    column-gap: 20px;
+    column-gap: 1px;
     justify-content: start;
     align-items: center;
     margin:auto;
@@ -123,8 +123,11 @@
 
 .n-page-i{
     width: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: var(--dark-green);
     cursor: pointer;
-    color: red;
+    text-align: center;
 }
 
 /** bt mais... **/
