@@ -648,8 +648,8 @@ function displayData(wordData, textData){
                     nPage.innerText = i+1
 
                       nPage.addEventListener('click', (e) =>{
-                      console.log(`Click, page ${nPage.innerText}`)
-                      iP = i // tem de ser chamado acima
+                        console.log(`Click, page ${nPage.innerText}`)
+                        iP = i // tem de ser chamado acima
                     })
                 }
             }
@@ -699,7 +699,7 @@ function displayData(wordData, textData){
 
                 // estilos
                 //document.querySelector('#n-page' + i).style.backgroundColor = "yellow" // após atualização dos filtros isto deixa de funcionar
-                document.querySelector('#n-page' + i).innerHTML += `<style> #n-page${i}:hover{background-color:#223F29}</style>`
+                document.querySelector('#n-page' + i).innerHTML += `<style> #n-page${i}:hover{background-color:#223F29; cursor:pointer; color:#FFFEF2}</style>`
                 
             }
         }

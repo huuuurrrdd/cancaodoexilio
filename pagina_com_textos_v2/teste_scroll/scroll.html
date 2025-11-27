@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- https://dev.to/ismailisimba/making-horizontal-mouse-scrolling-with-html-css-and-javascript-3n2i -->
+
+    <div class="outercontainer" id="" scrl1>
+      <div class="innercontainer">
+        <div class="item">I</div>
+        <div class="item">Used</div>
+        <div class="item">To</div>
+        <div class="item">Rule</div>
+        <div class="item">The</div>
+        <div class="item">World</div>
+        <div class="item">Seas</div>
+        <div class="item">Would</div>
+        <div class="item">Rise</div>
+        <div class="item">When</div>
+        <div class="item">I</div>
+      </div>
+    </div>
+
+    <style>
+      .outercontainer {
+        width: 96%;
+        background-color: black;
+        min-height: 96vh;
+        margin: 0 auto;
+        overflow-x: scroll;
+        position: relative;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+      .outercontainer::-webkit-scrollbar {
+        display: none;
+      }
+
+      .innercontainer {
+        width: fit-content;
+        box-sizing: border-box;
+        padding: 24px 48px;
+        height: 85vh;
+        background-color: black;
+
+        display: flex;
+        flex-flow: row;
+        justify-content: flex-start;
+        align-items: center;
+      }
+
+      .item {
+        width: 269px;
+        height: 96%;
+        background-color: white;
+        box-sizing: border-box;
+        padding-top: 6.69%;
+        margin-right: 24px;
+        text-align: center;
+        font-size: large;
+        font-weight: bold;
+      }
+
+      .item:last-child {
+        margin-right: 0px;
+      }
+    </style>
+
+    <script>
+      window.onload = () => {
+        document.onwheel = customScrollFunction;
+
+        function customScrollFunction(event) {
+          let deltaY = event.deltaY;
+          let deltaYSign = Math.sign(deltaY);
+
+          if (deltaYSign == -1) {
+            document.getElementById("scrl1").scrollBy({
+              top: 0,
+              left: -169,
+              behavior: "auto",
+            });
+          } else {
+            document.getElementById("scrl1").scrollBy({
+              top: 0,
+              left: 169,
+              behavior: "auto",
+            });
+          }
+        }
+      };
+    </script>
+  </body>
+</html>

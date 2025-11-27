@@ -524,7 +524,6 @@ function displayData(wordData, textData, stoplist) {
     let iP = 0 //funciona!!
 
 
-
     /*:::::::::::  Array de obj com RESULTADOS  :::::::::::*/
       let resultado = []
 
@@ -847,25 +846,39 @@ function displayData(wordData, textData, stoplist) {
       let nPages = document.createElement("div")
       list_all_container.appendChild(nPages)
       nPages.className += "n-page n-page-ct"
-      //nPages.innerHTML = "ATCHUMMM"
 
+      nPages.addEventListener('wheel', (e) => {
+        e.preventDefault()
+        //scroll horizontal
+        nPages.scrollLeft += e.deltaY *5
+      })
+
+      //console.log("VALOR " + nPages.scrollLeft)
+      //console.log("VALOR " +nPages.scrollWidth)
       if(resultado == undefined || resultado == [] || resultado == ""){
         nPages.innerHTML = ""
       } else {
          nPages.innerHTML = ""
         for(let i = 0; i < arrayResultados.length; i++){ // isto atualiza-se, mas 
-          let nPage = document.createElement("div")
+          let nPage = document.createElement("a")
           nPages.appendChild(nPage)
           nPage.className += "n-page n-page" + i
           nPage.id = `n-page${i}`
           nPage.innerText = i+1
+          nPage.href = `#n-page${i}`
+          
 
-      //   nPage.addEventListener('click', (e) =>{
-      //   console.log(`Click, page ${nPage.innerText}`)
-      //   iP = i // tem de ser chamado acima
-      // })
+          nPage.addEventListener('click', (e) =>{
+            console.log(`Click, page ${nPage.innerText}`)
+            iP = i // tem de ser chamado acima
+          })
         }
       }
+
+      console.log(`Resultado atualizado: ${arrayResultados.length}`)
+      sepPage()
+      document.querySelector('#n-page' + iP).style.backgroundColor = "#223F29"
+      document.querySelector('#n-page' + iP).style.color = "#FFFEF2"
     }
 
     ordFreq(ordFre_) // dá erro, mas n sei se é pela quantidade de valores
@@ -904,14 +917,16 @@ function displayData(wordData, textData, stoplist) {
     function sepPage(){
         for(let i = 0; i < arrayResultados.length; i++){ //funiona!! // deve ser por arrayResultados ter de se atualizar!!
         document.querySelector('#n-page' + i).addEventListener('click', (e) => {
+          //aqui posso definir a posição delta
           console.log(`Click, page ${document.querySelector('#n-page' + i).innerText}`)
           iP = i
           displayResultado(resultado)
         })
-        document.querySelector('#n-page' + i).style.backgroundColor = "yellow" // após atualização dos filtros isto deixa de funcionar
+        //document.querySelector('#n-page' + i).style.backgroundColor = "yellow" // após atualização dos filtros isto deixa de funcionar
+        document.querySelector('#n-page' + i).innerHTML += `<style> #n-page${i}:hover{background-color:#223F29; cursor:pointer; color:#FFFEF2}</style>`
       }
     }
-    sepPage() // ainda preciso de perceber!!
+    //sepPage() // ainda preciso de perceber!!
 
 
 

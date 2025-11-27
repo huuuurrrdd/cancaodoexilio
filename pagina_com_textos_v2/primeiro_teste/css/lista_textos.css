@@ -195,5 +195,5 @@
 .n-page-i{
     width: 20px;
     cursor: pointer;
-    color: red;
+    color: var(--dark-green);
 }
