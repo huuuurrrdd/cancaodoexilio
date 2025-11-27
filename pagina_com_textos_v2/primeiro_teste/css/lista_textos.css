@@ -184,7 +184,12 @@
     justify-content: center;
     align-items: center;
     margin:auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
     /* width: calc(9/13*100%); */
+    position: sticky;
+    bottom: 0px;
+    background-color: var(--light-yellow);
 }
 
 .n-page-i{

@@ -647,14 +647,17 @@ function displayData(wordData, textData){
                     nPage.id = `n-page${i}`
                     nPage.innerText = i+1
 
-                    //   nPage.addEventListener('click', (e) =>{
-                    //   console.log(`Click, page ${nPage.innerText}`)
-                    //   iP = i // tem de ser chamado acima
-                    // })
+                      nPage.addEventListener('click', (e) =>{
+                      console.log(`Click, page ${nPage.innerText}`)
+                      iP = i // tem de ser chamado acima
+                    })
                 }
             }
 
-            //console.log(`Resultado atualizado: ${arrayResultados.length}`)
+            console.log(`Resultado atualizado: ${arrayResultados.length}`)
+            sepPage()
+            document.querySelector('#n-page' + iP).style.backgroundColor = "#223F29"
+            document.querySelector('#n-page' + iP).style.color = "#FFFEF2"
         }
 
         displayResultadotab(textData)
@@ -691,12 +694,16 @@ function displayData(wordData, textData){
                     document.querySelector('#n-page' + i).addEventListener('click', (e) => {
                     console.log(`Click, page ${document.querySelector('#n-page' + i).innerText}`)
                     iP = i
-                    displayResultado(resultado)
+                    displayResultadotab(textData)
                 })
-                document.querySelector('#n-page' + i).style.backgroundColor = "yellow" // após atualização dos filtros isto deixa de funcionar
+
+                // estilos
+                //document.querySelector('#n-page' + i).style.backgroundColor = "yellow" // após atualização dos filtros isto deixa de funcionar
+                document.querySelector('#n-page' + i).innerHTML += `<style> #n-page${i}:hover{background-color:#223F29}</style>`
+                
             }
         }
-        sepPage() // ainda preciso de perceber!!
+        //sepPage() // ainda preciso de perceber!!
 
 
 
