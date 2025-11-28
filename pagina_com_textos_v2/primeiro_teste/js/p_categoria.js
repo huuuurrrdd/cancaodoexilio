@@ -495,6 +495,12 @@ function displayData(wordData, textData) {
   //console.log(ordFreq("des")) //funciona!!
   //ordFreq("asc")
 
+  /*::::::::::: Textos upperCase :::::::::::*/
+  function titleCase(str){
+    let splitStr = str.toLowerCase().split(' ')
+  }
+
+
   // Lista de todos os nomes de categorias existentes (por ordem de frequencia)
   let list_all_container = document.createElement("div");
   div_textos.appendChild(list_all_container);
@@ -570,10 +576,12 @@ function displayData(wordData, textData) {
           "&especifica=" +
           resultado[i].palavra;
 
+        let palavraDisplay = resultado[i].palavra.charAt(0).toUpperCase() + resultado[i].palavra.slice(1)
+
         let palavra = document.createElement("div");
         document.querySelector(".link-palavra-cat" + i).appendChild(palavra);
         palavra.className += "palavra";
-        palavra.innerHTML = resultado[i].palavra;
+        palavra.innerHTML = palavraDisplay;
 
         let barra_frequencia = document.createElement("div");
         document.querySelector(".ct-item" + i).appendChild(barra_frequencia);

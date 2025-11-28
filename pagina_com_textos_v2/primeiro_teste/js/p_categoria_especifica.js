@@ -19,9 +19,11 @@ let especifica = getQueryParam("especifica")
 console.log(categoria) // funciona!!
 console.log(especifica) // funciona!!
 
+
 // versao para CSS:
 let classEsp = especifica.replaceAll(" ", "-")
-
+// versão para display
+let especificaDisplay = especifica.charAt(0).toUpperCase() + especifica.slice(1)
 
 
 //*************  Acesso a dados  ****************/
@@ -308,7 +310,7 @@ function displayData(wordData, textData, lemmasData, wikiData){
     let elemento_h = document.createElement("h1")
     margem_ct.appendChild(elemento_h)
     elemento_h.className += "page-title elemento-h elemento-h-" + classEsp
-    elemento_h.innerHTML = especifica
+    elemento_h.innerHTML = especificaDisplay
 
     //*************  Gráfico geral  ****************/
     let elemento_grafico = document.createElement("div")
@@ -466,9 +468,9 @@ function displayData(wordData, textData, lemmasData, wikiData){
     document.querySelector(".textos-mencionam-" + classEsp).appendChild(textos_mencionam_h)
     textos_mencionam_h.className += "textos-mencionam-h textos-mencionam-h-" + classEsp
     if(nomeCat === "author" || nomeCat === "date_of_publication"){
-        textos_mencionam_h.innerHTML = "Textos de " + especifica
+        textos_mencionam_h.innerHTML = "Textos de " + especificaDisplay
     } else {
-        textos_mencionam_h.innerHTML = "Textos que mencionam " + especifica
+        textos_mencionam_h.innerHTML = "Textos que mencionam " + especificaDisplay
     }
 
     // /************** Display textos *************/
