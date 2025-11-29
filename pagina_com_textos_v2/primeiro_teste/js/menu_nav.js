@@ -126,7 +126,7 @@ function pesquisa_livre(){
     let splitStr = str.toLowerCase().split(' ')
     if(!stopwords.includes(splitStr)){}
     for(let i = 0; i < splitStr.length; i++){ // não considerar as stopwords
-        if(!stopwords.includes(splitStr[i])){
+        if(!stopwords.includes(splitStr[i]) || splitStr[i].includes("são")){
             splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);
         } else {
             splitStr[i] = splitStr[i]

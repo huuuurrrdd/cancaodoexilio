@@ -4,10 +4,11 @@
 
 */
 
+let especifica
 
 //*************  Acesso a dados  ****************/
 function fetchData(){
-    let wordData, textData, lemmasData
+    let wordData, textData, stoplist, lemmasData, wikiData
 
     //dicionario json
     fetch("./Dict_palavras_lemas_v0004.json")
@@ -38,18 +39,40 @@ function fetchData(){
             return response.json()
         })
         .then(data => {
-            textData = data
-            displayData(wordData, textData, lemmasData) //funcao com os 2 jsons
+        textData = data
+        return fetch("https://en.wikipedia.org/w/api.php?origin=*&action=opensearch&search=" + especifica)
+        })
+        .then(response =>{
+            if(!response.ok){
+                throw new Error(`HTTP error! Status: ${response.status}`)
+            }
+            return response.json()
+        })
+        .then((data) => {
+            wikiData = data; // guarda json dos lemas
+            return fetch("./stopwords/portuguese");
+        })
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.text(); // return stopwords text
+        })
+        .then((data) => {
+        stoplist = data
+            .split("\n")
+            .map((s_word) => s_word.trim())
+            .filter((s_word) => s_word.length > 0);
+            displayData(wordData, textData,stoplist, lemmasData, wikiData) //funcao com os 2 jsons
         })
         .catch(error => console.error('Failed to fetch data', error))
-
 }
 
 fetchData()
 
 
 
-function displayData(wordData, textData){
+function displayData(wordData, textData,stoplist, lemmasData, wikiData){
 
 
     
@@ -216,9 +239,9 @@ function displayData(wordData, textData){
     let autorSVal = []
 
     for(let i = 0; i < 6; i++){
-        faunaSNome.push(faunaSeis[i].nome)
-        floraSNome.push(floraSeis[i].nome)
-        localSNome.push(localSeis[i].nome)
+        faunaSNome.push(titleCase(faunaSeis[i].nome, stoplist))
+        floraSNome.push(titleCase(floraSeis[i].nome, stoplist))
+        localSNome.push(titleCase(localSeis[i].nome, stoplist))
         ano__SNome.push(ano__Seis[i].nome)
         autorSNome.push(autorSeis[i].nome)
 
@@ -289,6 +312,7 @@ function displayData(wordData, textData){
 
 
     function displaySections(cat, labels, values, i, mais_frequente, info_mais_frequente){
+
 
         let cat_section = document.createElement("div")
         document.querySelector(".categorias-sections").appendChild(cat_section)
