@@ -5,8 +5,6 @@
 */
 
 
-
-
 //*************  Acesso a dados  ****************/
 function fetchData(){
     let wordData, textData, lemmasData

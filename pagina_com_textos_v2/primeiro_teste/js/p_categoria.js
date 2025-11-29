@@ -12,12 +12,13 @@ function getQueryParam(param) {
 
 //obter nome de categoria
 let categoria = getQueryParam("categoria");
+let especifica
 
 console.log(categoria); // funciona!!
 
 //*************  Acesso a dados  ****************/
 function fetchData() {
-  let wordData, textData, lemmasData;
+  let wordData, textData, stoplist, lemmasData, wikiData;
 
   //dicionario json
   fetch("./Dict_palavras_lemas_v0004.json")
@@ -43,23 +44,45 @@ function fetchData() {
       lemmasData = data;
       return fetch("./t4_textos_loc_fauna_flora.json"); // fetch json dos textos
     })
-    .then((response) => {
-      // mwensagem de erro
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      return response.json();
+    .then(response => { // mwensagem de erro
+        if(!response.ok){
+            throw new Error(`HTTP error! Status: ${response.status}`)
+        }
+        return response.json()
+    })
+    .then(data => {
+        textData = data
+        return fetch("https://en.wikipedia.org/w/api.php?origin=*&action=opensearch&search=" + especifica)
+    })
+    .then(response =>{
+        if(!response.ok){
+            throw new Error(`HTTP error! Status: ${response.status}`)
+        }
+        return response.json()
     })
     .then((data) => {
-      textData = data;
-      displayData(wordData, textData, lemmasData); //funcao com os 2 jsons
+        wikiData = data; // guarda json dos lemas
+        return fetch("./stopwords/portuguese");
     })
-    .catch((error) => console.error("Failed to fetch data", error));
+    .then((response) => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.text(); // return stopwords text
+    })
+    .then((data) => {
+    stoplist = data
+        .split("\n")
+        .map((s_word) => s_word.trim())
+        .filter((s_word) => s_word.length > 0);
+        displayData(wordData, textData,stoplist, lemmasData, wikiData) //funcao com os 2 jsons
+    })
+    .catch(error => console.error('Failed to fetch data', error))
 }
 
 fetchData();
 
-function displayData(wordData, textData) {
+function displayData(wordData, textData, stoplist) {
   //pode ser util ver as palavras associadas
 
   /* Passos para o gráfico:
@@ -495,10 +518,7 @@ function displayData(wordData, textData) {
   //console.log(ordFreq("des")) //funciona!!
   //ordFreq("asc")
 
-  /*::::::::::: Textos upperCase :::::::::::*/
-  function titleCase(str){
-    let splitStr = str.toLowerCase().split(' ')
-  }
+
 
 
   // Lista de todos os nomes de categorias existentes (por ordem de frequencia)
@@ -576,7 +596,8 @@ function displayData(wordData, textData) {
           "&especifica=" +
           resultado[i].palavra;
 
-        let palavraDisplay = resultado[i].palavra.charAt(0).toUpperCase() + resultado[i].palavra.slice(1)
+        //let palavraDisplay = resultado[i].palavra.charAt(0).toUpperCase() + resultado[i].palavra.slice(1)
+        let palavraDisplay = titleCase(resultado[i].palavra, stoplist)
 
         let palavra = document.createElement("div");
         document.querySelector(".link-palavra-cat" + i).appendChild(palavra);

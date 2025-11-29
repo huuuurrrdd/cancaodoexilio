@@ -114,42 +114,23 @@ function pesquisa_livre(){
             window.location.href = `./lista_palavras.html?palavra=${encodeURIComponent(palavra)}`// Encodes characters such as ?,=,/,&,:
         }
     })
-
-    // /********* Caixa de hamburguer **************/ 
-    // let ham_box = document.createElement("div")
-    // form.appendChild(ham_box)
-    // ham_box.className = "ham-box"
-
-    // let up_box = document.createElement("div")
-    // let in_box = document.createElement("div")
-    // let do_box = document.createElement("div")
-
-    // ham_box.appendChild(up_box)
-    // ham_box.appendChild(in_box)
-    // ham_box.appendChild(do_box)
-
-    // ham_box.addEventListener("click", () =>{
-    //     const currentM = getComputedStyle(a_home).display
-    //     const currentH = getComputedStyle(ham_box).display
-
-    //     if(currentM === "block" && currentH!== "none"){
-    //         a_home.style.display = "none"
-    //         a_sobre.style.display = "none"
-    //         a_todas_palavras.style.display = "none"
-    //         a_todos_textos.style.display = "none"
-    //         a_categorias.style.display = "none"
-    //     } else if (currentH!== "none") {
-    //         a_home.style.display = "block"
-    //         a_sobre.style.display = "block"
-    //         a_todas_palavras.style.display = "block"
-    //         a_todos_textos.style.display = "block"
-    //         a_categorias.style.display = "block"
-    //     }
-
-
-    // })
-
-    
+  
 }
 
-    
+
+
+/*|||||||||||||||||||||||| Funções gerais ||||||||||||||||||||||||*/
+
+/*::::::::::: Textos upperCase :::::::::::*/
+  function titleCase(str, stopwords){
+    let splitStr = str.toLowerCase().split(' ')
+    if(!stopwords.includes(splitStr)){}
+    for(let i = 0; i < splitStr.length; i++){ // não considerar as stopwords
+        if(!stopwords.includes(splitStr[i])){
+            splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);
+        } else {
+            splitStr[i] = splitStr[i]
+        }
+    }
+    return splitStr.join(' '); 
+  }   

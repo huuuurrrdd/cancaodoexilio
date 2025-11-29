@@ -115,7 +115,7 @@
     "id":5,
     "title":"[Minha terra tem silvados]",
     "date_of_publication":1848,
-    "author":"Anonymous",
+    "author":"Anonimo",
     "texto_completo":"Recordações da Pátria\n\nMinha terra tem silvados\nOnde canta o rouxinol,\nOnde canta a toutinegra\nE o cuco no pôr do Sol.\n\nQue estrelas que por lá vão!\nQue flores de cor subida!\nQue vida naqueles bosques!\nQue amores naquela vida!\n\nEm cismar sozinho à noite\nQue prazer eu tinha lá!\nMinha terra é um paraíso,\nQue não encontro por cá.\n\nMinha terra tem silvados\nOnde canta o rouxinol,\nOnde o cuco negro e feio\nDescanta no pôr do Sol;\nMinha terra tem silvados\nOnde canta o rouxinol.\n\nMinha terra é um paraíso\nOnde há benigno Sol;\nMinha terra tem belezas,\nComo o ouro do crisol;\nMinha terra produz linho\nMuito bom para lençol.\n\nPermita Deus que ainda veja\nOutra vez aquele Sol!\nE o loureiro e a toutinegra\nE as flores do rouxinol;\nOnde o cuco canta à noite\nDe meias com o rouxinol!",
     "categorias":{
       "locais":{
@@ -144,7 +144,7 @@
     "id":6,
     "title":"Epígrafo de O Timbyra",
     "date_of_publication":1849,
-    "author":"Anonymous",
+    "author":"Anonimo",
     "texto_completo":"Minha terra tem palmeiras\nOnde canta o sabiá\nMiguelistas, guabirus,\nNão podem imperar cá.",
     "categorias":{
       "locais":{
@@ -389,7 +389,7 @@
     "id":14,
     "title":"Minha Terra Natal",
     "date_of_publication":1853,
-    "author":"Anonymous",
+    "author":"Anonimo",
     "texto_completo":"Minha Terra Natal\n\nMinha terra sendo rica\nTanto deu, que ficou pobre;\nTem terrenos sem cultura\nE tem muita gente nobre.\n\nTem bacharéis, como areia,\nUns letrados, e outros não;\nOs bons são os enteados,\nOs maus, folhos da Nação.\n\nTem formiga, e não se mata,\nE o motivo não se atina;\nTem Governos, que não tratam\nDe nos tirar da ruína.\n\nTem de escravos grande soma,\nMais bacharéis que letrados,\nTem mais lunetas do que olhos,\nMais espadas, que soldados.\n\nAnda tudo em duplicata;\nAs — cautelas — metem medo;\nAs mulheres sabem tudo,\nMenos o guardarem segredo.\n\nTodo o mundo quer dinheiro;\nOs barbeiros, com lancetas,\nOs boticários, com drogas,\nRedatores com gazetas.\n\nMinha terra tem empresas,\nInfiéis aos seus contratos,\nE quando fala Marmota,\nDizem logo — são boatos.\n\nMinha terra tem uns padres,\nQue se chamam formigões,\nE mal o Bispo os ordena,\nVão meter-se em eleições;\n\nLogo depois são Vigários,\nQue é consequência infalível;\nEis candidatos de jure\nA tudo quanto é possível.\n\nMinha terra tem seu berço\nMuito ao pé da sepultura;\nDe todas as profecias\nEsta é a mais segura.\n\nTem deputados de apartes,\nDe apoiados e risadas,\nE papalvos que se fazem\nDegraus de suas escadas.\n\nMinha terra atende à fama\nMais que ao mérito real;\nPreza de mais minha terra\nA fortuna, o cabedal.\n\nMinha terra é um teatro\nDas maiores nulidades:\nNão se zangue a minha terra,\nVá ouvindo estas verdades.\n\nExprobando os erros dela,\nJulgo assim fazer-lhe um bem,\nPara ver se ela se emenda\nDestes defeitos que tem.",
     "categorias":{
       "locais":{
@@ -737,7 +737,7 @@
         ]
       },
       "fauna":[
-        "roxinol",
+        "rouxinol",
         "aves"
       ],
       "flora":[
@@ -844,7 +844,7 @@
     "id":30,
     "title":"Sabiá",
     "date_of_publication":1861,
-    "author":"Anonymous",
+    "author":"Anonimo",
     "texto_completo":"Sabiá\n\nMinha terra tem palmeiras\nOnde canta o sabiá;\nEm nossa tipografia\nOnde há um só ensinará\n\nEle canta preso em casa,\nQual se fora lá no mato;\nGorjeia lindos trinados;\nÉ bonito e é barato.\n\nLá na Europa, ou mesmo na Ásia\nAves destas! . . oh! não há!\nAs aves, que aqui gorjeiam,\nNão gorjeiam como lá.",
     "categorias":{
       "locais":{
@@ -894,7 +894,7 @@
     "id":32,
     "title":"[Minha Terra Tem Surpresas]",
     "date_of_publication":1862,
-    "author":"Anônimo",
+    "author":"Anonimo",
     "texto_completo":"Minha terra tem surpresas\nTem verdes prados, campinas,\nTem gorjeios de mil aves\nCom cores belas, divinas.\n\nTem formosos, mansos rios\nQue correm de cá e lá,\nÁguas puras e brilhantes\nEm que se banha o sabiá.",
     "categorias":{
       "locais":{
@@ -1433,7 +1433,7 @@
     "id":51,
     "title":"D. Octávia Rosata, Prima-Dona Absoluta",
     "date_of_publication":1873,
-    "author":"Anônimo",
+    "author":"Anonimo",
     "texto_completo":"D. Octávia Rosata, Prima-Dona Absoluta\n\nMinha terra tem Senado,\nOnde canta Octaviano,\nAs aves que aqui lá gorjeiam\nNão gorjeiam todo ano.\n\nMinha terra tem só flores,\nTem sublimes oradores,\nMas nenhum canta qual ele\nCom mais flores, mais primores.\n",
     "categorias":{
       "locais":{
@@ -1766,7 +1766,7 @@
       },
       "fauna":[
         "gaturamos",
-        "boré(javali)"
+        "boré"
       ],
       "flora":[
         "florestas",
@@ -1835,7 +1835,7 @@
     "id":65,
     "title":"Dores Diplomáticas",
     "date_of_publication":1875,
-    "author":"Anônimo",
+    "author":"Anonimo",
     "texto_completo":"Dores Diplomáticas\n\nMinha terra tem arados\nE também tem muitas flores\nTem ainda os Deputados\nE afinal os Sena ― dores.",
     "categorias":{
       "locais":{
@@ -1858,7 +1858,7 @@
     "id":66,
     "title":"Minha Terra Tem Loureiros",
     "date_of_publication":1875,
-    "author":"Anonymous",
+    "author":"Anonimo",
     "texto_completo":"Minha Terra Tem Loureiros: (Paródia à Canção do Exílio)\n\nMinha terra tem loureiros\nOnde canta o rouxinol,\nCanta triste solitário\nDe manhã e ao por do sol.\n\nQuem me dera ouvir de novo,\nNessa terra que eu deixei,\nO canto do rouxinol,\nSe o seu canto tanto amei!\n\nMinha terra tem campinas\nQue tapizam lindas flores,\nTrinam lá melhor as aves,\nSabem mais cantar amores.\n\nQuem me dera ouvir de novo\nO cantar do rouxinol,\nNessa terra que amo tanto,\nSe eu amei tanto o seu sol.\n\nNem permita Deus que eu morra\nDos anos no arrebol,\nSem que veja o sítio ameno\nEm que canta o rouxinol.\n\nQue o prazer que hoje me cerca\nÉ cruel — cruel bem sei.\nQuero ver esses loureiros\nQue lá na pátria deixei.",
     "categorias":{
       "locais":{
@@ -1870,7 +1870,8 @@
         ]
       },
       "fauna":[
-        "rouxinol. aves"
+        "rouxinol", 
+        "aves"
       ],
       "flora":[
         "loureiros",
@@ -1933,7 +1934,7 @@
       },
       "fauna":[
         "ave",
-        "patativa(ave)",
+        "patativa",
         "garça"
       ],
       "flora":[
@@ -1947,7 +1948,7 @@
     "id":69,
     "title":"Minha Terra Tem Loureiros",
     "date_of_publication":1876,
-    "author":"Anonymous",
+    "author":"Anonimo",
     "texto_completo":"Minha terra tem loureiros\n\nMinha terra tem loureiros\nOnde canta o rouxinol,\nCanto triste o solitário\nQue se esconde ao pôr do sol.\n\nQuem me o dera  ouvir de novo\nNessa terra que eu deixei!\n\nMinha terra tem campinas\nQue tapizam lindas flores,\nTrinam lá melhor as aves,\nSabem mais cantar amores.\n\nQuem me dera ouvir seu canto,\nSe o seu sol eu sempre amei!\n\nOh! falsário prazer não me sigas,\nEu contigo não quero aliança;\nQue ao sepulcro me deve — promete\nEssa ideia da prova — Esperança.\n\nOh! Quem me dera gozar\nO doce ar que gozei!",
     "categorias":{
       "locais":{
@@ -2885,7 +2886,7 @@
     "id":107,
     "title":"Minha terra tem palmeiras",
     "date_of_publication":1914,
-    "author":"Anônimo",
+    "author":"Anonimo",
     "texto_completo":"\"Minha terra tem palmeiras. . .\"\n\n \" Sabiá,\" já muito conhecido nesta cidade, é uma destas pobres raparigas que por aí vivem vendendo amores. . . \n\nOntem, cerca de oito horas da noite, saiu a passeio em companhia de uma sua \" colega,\" e isto com o fim de tirar uma desforra.\n\nChegadas que foram, à ponte da rua Halfeld, \" Sabiá\" interrogou sua amiga sobre certos ciumezinhos, derivando daí engalfinharem-se.\n\n\" Sabiá,\" que é mais forte, arrumou um murro em sua companheira, ferindo a bastante em uma das vistas.\n\nE bateu asas. . . \n",
     "categorias":{
       "locais":{
@@ -3067,7 +3068,7 @@
     "id":114,
     "title":"Trovas",
     "date_of_publication":1921,
-    "author":"Anônimo",
+    "author":"Anonimo",
     "texto_completo":"Trovas\n\nMinha terra tem palmeiras,\nOnde canta o sabiá:\nPois até onde ele canta\nO tal dólar subirá.",
     "categorias":{
       "locais":{
@@ -3090,7 +3091,7 @@
     "id":115,
     "title":"Do Tejo-Guanabara",
     "date_of_publication":1922,
-    "author":"Anônimo",
+    "author":"Anonimo",
     "texto_completo":"Do Tejo-Guanabara\n\nTejo: \t\tBelo jardim de Europa\n\t\tA beira-mar Plantado\n\nGuanab:\t\tA tua gente galopa\n\t\tEm um correr alado\n\nTejo:\t\tPairando em pleno azul\n\t\tBuscando o que sonhara\n\nGuanab:\t\tNa América do Sul\n\t\tDo Tejo à Guanabara\n\nTejo: \t\tMinha bela Guanabara\n\t\tVens trazer-me a tua graça\n\nGuanab:\t\tSe a distância nos separa\n\t\tGrande afeito nos enlaça\n\nTejo:\t\tNossos laços de amizade\n\t\tNão se desatam jamais\n\nGuanab: \t\tTambém cantam brasileiros\n\t\tDo nascer ao por do sol\n\t\tMinha terra tem palmeiras\n\t\tOnde canta o sabiá\n\nTejo:\t\tTambém nossas cantadeiras\n\t\tCantam pois como as de lá",
     "categorias":{
       "locais":{
@@ -3456,7 +3457,7 @@
     "id":128,
     "title":"Trovas",
     "date_of_publication":1931,
-    "author":"Anônimo",
+    "author":"Anonimo",
     "texto_completo":"Minha terra tem café\nOnde entra as vezes a broca\nMas, se importamos do bom,\nEsse, lá fora, é do Moka.",
     "categorias":{
       "locais":{
@@ -3965,7 +3966,7 @@
     "id":147,
     "title":"[Minha terra tem palmeiras]",
     "date_of_publication":1939,
-    "author":"Anônimo",
+    "author":"Anonimo",
     "texto_completo":"Minha terra tem palmeiras, isto é \nMinha terra tem buracos.",
     "categorias":{
       "locais":{
@@ -4719,7 +4720,7 @@
     "id":175,
     "title":"Fim de Festa",
     "date_of_publication":1951,
-    "author":"Anônimo",
+    "author":"Anonimo",
     "texto_completo":"FIM DE FESTA\n\nE quando perguntaram ao Castro Barbosa, no termino do jogo Palmeiras e Juventus, o que ele achava da vitória brasileira,  o \"Farramenta\" explodiu:\n\nMinha terra tem PALMEIRAS\nOnde cantam os PERIQUITOS",
     "categorias":{
       "locais":{
@@ -4814,7 +4815,7 @@
     "id":179,
     "title":"Pingos",
     "date_of_publication":1953,
-    "author":"Anônimo",
+    "author":"Anonimo",
     "texto_completo":"Pingos\n\nNa minha terra tem Palmeiras\nAonde canta o Sabiá,\nE também tem Bananeiras\nE as bananas vêm de lá! . . . ",
     "categorias":{
       "locais":{
@@ -4864,7 +4865,7 @@
     "id":181,
     "title":"Versinhos",
     "date_of_publication":1954,
-    "author":"Anônimo",
+    "author":"Anonimo",
     "texto_completo":"Versinhos\n\nMinha terra tem Palmeira onde canta o sabiá\nNo meu time tem Palito que pode alguém espetar. . . ",
     "categorias":{
       "locais":{
@@ -4887,7 +4888,7 @@
     "id":182,
     "title":"O que o Locutor Não Disse",
     "date_of_publication":1955,
-    "author":"Anônimo",
+    "author":"Anonimo",
     "texto_completo":"O Que o Locutor não Disse\n\nMinha terra tem palmeira\nOnde canta o sabiá\nEm S. Paulo tem o \"Palmeira\"\nQue faz o Flamengo \"Pará.\"",
     "categorias":{
       "locais":{
@@ -4956,7 +4957,7 @@
     "id":184,
     "title":"Farpas Politicas",
     "date_of_publication":1957,
-    "author":"Anônimo",
+    "author":"Anonimo",
     "texto_completo":"Farpas Políticas\n\nMinha terra tem pinheiros\nOnde choram os saudosistas\nNela faltam bons obreiros\nMas sobram \"intervencionistas\"",
     "categorias":{
       "locais":{
@@ -5031,7 +5032,7 @@
     "id":187,
     "title":"[Minha terra tem palmeiras]",
     "date_of_publication":1958,
-    "author":"Anônimo",
+    "author":"Anonimo",
     "texto_completo":"Minha terra tem palmeiras\nOnde canta o sabiá\nMas tem uma democracia \nque também é de amargar.",
     "categorias":{
       "locais":{
@@ -5161,7 +5162,7 @@
     "id":192,
     "title":"Minha Terra",
     "date_of_publication":1960,
-    "author":"Anônimo (possibly Carlos Drummond)",
+    "author":"Anonimo (possibly Carlos Drummond)",
     "texto_completo":"Minha terra tem palmeiras onde canta o sabiá (turdus leucomelas). Minha terra tem poetas. Minha terra é um Jardim Botânico. Pedro Álvares Cabral, que está perto do coração de todos nós, por causa da inflação, nas notas de mil, nas carteiras, nos bolsos de todos os paletós, foi o nosso Cristóvão Colombo. Descobriu o Pau-Brasil. Brasil menos pau = brasil. Primeiro, Ilha, depois terra, da vera, da Santa Cruz.\n \nA Capital da Minha Terra também mudou muito: Cidade de São Sebastião do Rio de Janeiro, Cidade do Rio de janeiro, Cidade do Rio, Rio. A Capital da Minha terra era o Rio, que hoje se mudou para Copacabana, sendo o porto de mar mais importante o Arpoador.\n\nDr. Juscelino Kubitschek de Oliveira, o Presidente com mais horas de voo no mundo, fez Brasília, uma cidade que obedece a um plano-piloto. O Estado mais importante de Minha terra é o do Sítio. Quanto ao povo, é muito ordeiro e, nas revoluções, não corre sangue. Essas revoluções são periódicas e se chamam pororocas. Ocorrem no Amazonas, por ocasião das cheias, e são consideradas verdadeiros fenômenos.\n\nOs produtos mais importantes de Minha terra são: o café. A riqueza mineral é representada pelo amarelo, que figura no losango, enquanto nos Estados Unidos eles têm um Pentágono. Minha Terra é o segundo país do mundo, geometricamente falando.\n\nO verde é a riqueza florestal, o azul é o nosso céu, as estrelas são os estados, das quais estrelas o mais novo estado é a Estrela do Estado da Guanabara, que se não fosse aterro seria estrela do mar. Depois  das estrelas vem as flores, sendo Nosso Céu e Nossos Campos os que têm mais, respectivamente. Quanto à Agricultura, não se faz referência no Hino, porque à palavra de rima pobre. Petróleo, diz que não tinha, por isso que na Bandeira não entra preto. Pois na Minha terra damos de ombros ao preconceito racial e desse dar de braços nasceu a Mulata, que é a última flor do Lácio e — como a palavra \"saudade\" — só existe em português.",
     "categorias":{
       "locais":{
@@ -5249,7 +5250,7 @@
     "id":194,
     "title":"Minha terra tem PERNAS DE PAU",
     "date_of_publication":1961,
-    "author":"Anônimo",
+    "author":"Anonimo",
     "texto_completo":"Minha terra tem PERNAS DE PAU, toda cheia de cupim. . . quá, quá, quáaaaa\n",
     "categorias":{
       "locais":{
@@ -12192,7 +12193,7 @@
     "id":456,
     "title":"Canção da Injustiça",
     "date_of_publication":2013,
-    "author":"Anonymous",
+    "author":"Anonimo",
     "texto_completo":"Canção da Injustiça\n\nMinha terra tem problemas\nDe difícil resolução\nTem violência, desrespeito\nE muita corrupção\n\nNa mídia estrangeira\nA miséria brasileira\nDeixa o samba e o futebol\nEscondidos na poeira\n\nNossa rua tem mais assassinos\nNosso governo tem mais ladrão\nE é por isso que eu me pergunta:\nCadê a honestidade e a compaixão?\n",
     "categorias":{
       "locais":{

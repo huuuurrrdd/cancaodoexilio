@@ -29,7 +29,7 @@ let especificaDisplay = especifica.charAt(0).toUpperCase() + especifica.slice(1)
 //*************  Acesso a dados  ****************/
 // testando acesso a info wikipedia
 function fetchData(){
-    let wordData, textData, lemmasData, wikiData
+    let wordData, textData, stoplist, lemmasData, wikiData
 
     //dicionario json
     fetch("./Dict_palavras_lemas_v0004.json")
@@ -69,9 +69,22 @@ function fetchData(){
             }
             return response.json()
         })
-        .then(data =>{
-            wikiData = data
-            displayData(wordData, textData, lemmasData, wikiData) //funcao com os 2 jsons
+        .then((data) => {
+            wikiData = data; // guarda json dos lemas
+            return fetch("./stopwords/portuguese");
+        })
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.text(); // return stopwords text
+        })
+        .then((data) => {
+        stoplist = data
+            .split("\n")
+            .map((s_word) => s_word.trim())
+            .filter((s_word) => s_word.length > 0);
+            displayData(wordData, textData,stoplist, lemmasData, wikiData) //funcao com os 2 jsons
         })
         .catch(error => console.error('Failed to fetch data', error))
 
@@ -80,7 +93,7 @@ function fetchData(){
 fetchData()
 
 // testar ainda nesta pagina o funcionamento de wikipédia
-function displayData(wordData, textData, lemmasData, wikiData){
+function displayData(wordData, textData, stoplist, lemmasData, wikiData){
 
     
     // Acedendo a dados de n de "especifica" por ano (igual a ano e autores em que conta 1 por texto se aparecer)
