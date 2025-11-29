@@ -208,7 +208,7 @@ function displayData(wordData, textData, stoplist, lemmasData){
             p_locais.className = "p-elemento"
             a_loc.className = "a-elemento"
             a_loc.href = `./p_categoria_especifica.html?categoria=Locais&especifica=${textData[textId-1].categorias.locais.locais_limpos[i]}`
-            p_locais.innerHTML = `${textData[textId-1].categorias.locais.locais_limpos[i]}`
+            p_locais.innerHTML = `${titleCase(textData[textId-1].categorias.locais.locais_limpos[i], stoplist)}`
         }
     }
 
@@ -222,7 +222,7 @@ function displayData(wordData, textData, stoplist, lemmasData){
         fauna_conteudo.innerHTML = ""
         let p_fauna = document.createElement("p")
         document.querySelector(".fauna-conteudo").appendChild(p_fauna)
-        p_fauna.innerHTML = "Sem fauna geográficos mencionados no texto"
+        p_fauna.innerHTML = "Sem fauna mencionada no texto"
     }else{
         for(let i = 0; i < textData[textId-1].categorias.fauna.length; i++){
             let a_fau = document.createElement('a')
@@ -232,7 +232,7 @@ function displayData(wordData, textData, stoplist, lemmasData){
             p_fauna.className = "p-elemento"
             a_fau.className = "a-elemento"
             a_fau.href = `./p_categoria_especifica.html?categoria=Fauna&especifica=${textData[textId-1].categorias.fauna[i]}`
-            p_fauna.innerHTML = `${textData[textId-1].categorias.fauna[i]}`
+            p_fauna.innerHTML = `${titleCase(textData[textId-1].categorias.fauna[i], stoplist)}`
         }
     }    
 
@@ -245,7 +245,7 @@ function displayData(wordData, textData, stoplist, lemmasData){
         flora_conteudo.innerHTML = ""
         let p_flora = document.createElement("p")
         document.querySelector(".flora-conteudo").appendChild(p_flora)
-        p_flora.innerHTML = "Sem flora geográficos mencionados no texto"
+        p_flora.innerHTML = "Sem flora mencionada no texto"
     }else{
         for(let i = 0; i < textData[textId-1].categorias.flora.length; i++){
             let a_flo = document.createElement('a')
@@ -256,7 +256,7 @@ function displayData(wordData, textData, stoplist, lemmasData){
             a_flo.className = "a-elemento"
 
             a_flo.href = `./p_categoria_especifica.html?categoria=Flora&especifica=${textData[textId-1].categorias.flora[i]}`
-            p_flora.innerHTML = `${textData[textId-1].categorias.flora[i]}`
+            p_flora.innerHTML = `${titleCase(textData[textId-1].categorias.flora[i], stoplist)}`
         }
     }  
     
