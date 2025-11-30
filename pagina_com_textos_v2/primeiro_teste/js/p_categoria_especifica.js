@@ -23,13 +23,13 @@ console.log(especifica) // funciona!!
 // versao para CSS:
 let classEsp = especifica.replaceAll(" ", "-")
 // versão para display
-let especificaDisplay = especifica.charAt(0).toUpperCase() + especifica.slice(1)
+
 
 
 //*************  Acesso a dados  ****************/
 // testando acesso a info wikipedia
 function fetchData(){
-    let wordData, textData, stoplist, lemmasData, wikiData
+    let wordData, textData, stoplist, lemmasData
 
     //dicionario json
     fetch("./Dict_palavras_lemas_v0004.json")
@@ -59,18 +59,8 @@ function fetchData(){
             }
             return response.json()
         })
-        .then(data => {
-            textData = data
-            return fetch("https://en.wikipedia.org/w/api.php?origin=*&action=opensearch&search=" + especifica)
-        })
-        .then(response =>{
-            if(!response.ok){
-                throw new Error(`HTTP error! Status: ${response.status}`)
-            }
-            return response.json()
-        })
         .then((data) => {
-            wikiData = data; // guarda json dos lemas
+            textData = data; // guarda json dos lemas
             return fetch("./stopwords/portuguese");
         })
         .then((response) => {
@@ -84,7 +74,7 @@ function fetchData(){
             .split("\n")
             .map((s_word) => s_word.trim())
             .filter((s_word) => s_word.length > 0);
-            displayData(wordData, textData,stoplist, lemmasData, wikiData) //funcao com os 2 jsons
+            displayData(wordData, textData,stoplist, lemmasData) //funcao com os 2 jsons
         })
         .catch(error => console.error('Failed to fetch data', error))
 
@@ -93,7 +83,8 @@ function fetchData(){
 fetchData()
 
 // testar ainda nesta pagina o funcionamento de wikipédia
-function displayData(wordData, textData, stoplist, lemmasData, wikiData){
+function displayData(wordData, textData, stoplist, lemmasData){
+    let especificaDisplay = titleCase(especifica, stoplist)
 
     
     // Acedendo a dados de n de "especifica" por ano (igual a ano e autores em que conta 1 por texto se aparecer)
@@ -423,7 +414,7 @@ function displayData(wordData, textData, stoplist, lemmasData, wikiData){
     results.forEach(result => {
         elemento_info_conteudo.innerHTML += `
         <div class = "results__item"> 
-            <a href = "https://en.wikipedia.org/?curid=${result.pageId}" target="_blank" class= "card animated bounceInUp">
+            <a href = "https://pt.wikipedia.org/?curid=${result.pageId}" target="_blank" class= "card animated bounceInUp">
                 <h2 class = "results__item__title">${result.title}</h2>
                 <p class = "results__item__intro">${result.intro}</p>
             </a>

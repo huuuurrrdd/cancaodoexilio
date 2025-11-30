@@ -4,11 +4,11 @@
 
 */
 
-let especifica
+
 
 //*************  Acesso a dados  ****************/
 function fetchData(){
-    let wordData, textData, stoplist, lemmasData, wikiData
+    let wordData, textData, stoplist, lemmasData
 
     //dicionario json
     fetch("./Dict_palavras_lemas_v0004.json")
@@ -38,18 +38,8 @@ function fetchData(){
             }
             return response.json()
         })
-        .then(data => {
-        textData = data
-        return fetch("https://en.wikipedia.org/w/api.php?origin=*&action=opensearch&search=" + especifica)
-        })
-        .then(response =>{
-            if(!response.ok){
-                throw new Error(`HTTP error! Status: ${response.status}`)
-            }
-            return response.json()
-        })
         .then((data) => {
-            wikiData = data; // guarda json dos lemas
+            textData = data; // guarda json dos lemas
             return fetch("./stopwords/portuguese");
         })
         .then((response) => {
@@ -63,7 +53,7 @@ function fetchData(){
             .split("\n")
             .map((s_word) => s_word.trim())
             .filter((s_word) => s_word.length > 0);
-            displayData(wordData, textData,stoplist, lemmasData, wikiData) //funcao com os 2 jsons
+            displayData(wordData, textData,stoplist, lemmasData) //funcao com os 2 jsons
         })
         .catch(error => console.error('Failed to fetch data', error))
 }
@@ -72,7 +62,7 @@ fetchData()
 
 
 
-function displayData(wordData, textData,stoplist, lemmasData, wikiData){
+function displayData(wordData, textData,stoplist, lemmasData){
 
 
     
@@ -239,9 +229,9 @@ function displayData(wordData, textData,stoplist, lemmasData, wikiData){
     let autorSVal = []
 
     for(let i = 0; i < 6; i++){
-        faunaSNome.push(titleCase(faunaSeis[i].nome, stoplist))
-        floraSNome.push(titleCase(floraSeis[i].nome, stoplist))
-        localSNome.push(titleCase(localSeis[i].nome, stoplist))
+        faunaSNome.push(faunaSeis[i].nome)
+        floraSNome.push(floraSeis[i].nome)
+        localSNome.push(localSeis[i].nome)
         ano__SNome.push(ano__Seis[i].nome)
         autorSNome.push(autorSeis[i].nome)
 
@@ -262,7 +252,8 @@ function displayData(wordData, textData,stoplist, lemmasData, wikiData){
             categoria: "Locais",
             labels_cat: localSNome,
             labels_cat_value: localSVal,
-            mais_frequente: localSNome[0],
+            mais_frequente: titleCase(localSNome[0], stoplist), //
+            nome:localSNome[0],
             info_mais_frequente: ""
         },
 
@@ -270,7 +261,8 @@ function displayData(wordData, textData,stoplist, lemmasData, wikiData){
             categoria: "Fauna",
             labels_cat: faunaSNome,
             labels_cat_value: faunaSVal,
-            mais_frequente: faunaSNome[0],
+            mais_frequente: titleCase(faunaSNome[0], stoplist),
+            nome: faunaSNome[0],
             info_mais_frequente: ""
         },
 
@@ -278,7 +270,8 @@ function displayData(wordData, textData,stoplist, lemmasData, wikiData){
             categoria: "Flora",
             labels_cat: floraSNome,
             labels_cat_value: floraSVal,
-            mais_frequente:  floraSNome[0],
+            mais_frequente: titleCase(floraSNome[0], stoplist),
+            nome: floraSNome[0],
             info_mais_frequente: ""
         },
 
@@ -287,6 +280,7 @@ function displayData(wordData, textData,stoplist, lemmasData, wikiData){
             labels_cat: autorSNome,
             labels_cat_value: autorSVal,
             mais_frequente: autorSNome[0],
+            nome: autorSNome[0], 
             info_mais_frequente: ""
         },
 
@@ -295,6 +289,7 @@ function displayData(wordData, textData,stoplist, lemmasData, wikiData){
             labels_cat: ano__SNome,
             labels_cat_value: ano__SVal,
             mais_frequente: ano__SNome[0],
+            nome: ano__SNome[0],
             info_mais_frequente: ""
         },
 
@@ -311,7 +306,7 @@ function displayData(wordData, textData,stoplist, lemmasData, wikiData){
     //console.log(categoria[0].categoria.toLowerCase()) */
 
 
-    function displaySections(cat, labels, values, i, mais_frequente, info_mais_frequente){
+    function displaySections(cat, labels, values, i, mais_frequente, nome){
 
 
         let cat_section = document.createElement("div")
@@ -370,7 +365,7 @@ function displayData(wordData, textData,stoplist, lemmasData, wikiData){
         let link_c_mais_frequente = document.createElement("a")
         document.querySelector(`.cat-section-` + cat).appendChild(link_c_mais_frequente)
         link_c_mais_frequente.className += "link-cat-freq-" + cat
-        link_c_mais_frequente.href = "./p_categoria_especifica.html?categoria=" + cat + "&especifica=" + mais_frequente
+        link_c_mais_frequente.href = "./p_categoria_especifica.html?categoria=" + cat + "&especifica=" + nome
 
         //outra caixa
         let cat_mais_frequente = document.createElement("div")
@@ -385,7 +380,94 @@ function displayData(wordData, textData,stoplist, lemmasData, wikiData){
         let cat_info_mais_frequente = document.createElement("div")
         document.querySelector(".cat-mais-frequente-ct" + cat).appendChild(cat_info_mais_frequente)
         cat_info_mais_frequente.className += "cat-info-mais-frequente" + cat
-        cat_info_mais_frequente.innerHTML = info_mais_frequente
+        //cat_info_mais_frequente.innerHTML = info_mais_frequente
+
+        //console.log(nome)
+
+
+        const endpoint = 'https://pt.wikipedia.org/w/api.php?'
+        const params = {
+            origin: '*', // non auhteticated requests
+            format: 'json',
+            action: 'query',
+            prop: 'extracts',
+            exchars: 200,
+            exintro: true,
+            explaintext: true,
+            //exsentences: 1,
+            generator: 'search',
+            gsrlimit: 1
+
+        }
+
+        const clearPreviousResults = () => {
+            cat_info_mais_frequente.innerHTML = ""
+        }
+
+        const isEspecificaEmpty = mais_frequente => {
+            if(!mais_frequente || mais_frequente === '') return true
+            return false
+        }
+
+        const showError = error => {
+            cat_info_mais_frequente.innerHTML += `🚨 ${error} 🚨`
+        }
+
+        const showResults = results => {
+        results.forEach(result => {
+            cat_info_mais_frequente.innerHTML += `
+            <div class = "results__item"> 
+                <a href = "https://pt.wikipedia.org/?curid=${result.pageId}" target="_blank" class= "card animated bounceInUp">
+                    <h2 class = "results__item__title">${result.title}</h2>
+                    <p class = "results__item__intro">${result.intro}</p>
+                </a>
+            </div>
+            `
+        })}
+
+        const gatherData = pages => {
+            const results = Object.values(pages).map(page =>({
+                pageId: page.pageid,
+                title: page.title,
+                intro: page.extract
+            }))
+
+            showResults(results)
+        }
+
+        const getData = async() => {
+            const nomeStr = String(nome || '')
+
+            let nome_singular
+            if(nomeStr.charAt(nome.length-1) == "s"){
+                //console.log("Começa com s")
+                nome_singular = nome.slice(0, -1)
+            } else {
+                nome_singular = nome
+            }
+            const palavra = nome_singular
+            //let teste = nome.charAt(nome.length-1)
+            //console.log(nome_singular)
+            if(isEspecificaEmpty(palavra)) return
+
+            params.gsrsearch = palavra
+            clearPreviousResults()
+
+            try {
+                const { data } = await axios.get(endpoint, { params }) // data é o objeto gerado pela wikipedia API
+
+                if(data.error) throw new Error(data.error.info)
+                if (!data.query) throw new Error("Nenhum resultado encontrado.");
+
+                gatherData(data.query.pages)
+
+            } catch (error) {
+                showError(error)
+            }
+
+        }
+
+        getData()
 
     }
 
@@ -396,14 +478,18 @@ function displayData(wordData, textData,stoplist, lemmasData, wikiData){
         let labell_value = categoria[i].labels_cat_value
 
         let mais_frequente = categoria[i].mais_frequente
-        let info_mais_frequente = categoria[i].info_mais_frequente
+        //let info_mais_frequente = categoria[i].info_mais_frequente
+        let nome = categoria[i].nome
 
 
-        displaySections(categ, labell, labell_value, i, mais_frequente, info_mais_frequente)
+        displaySections(categ, labell, labell_value, i, mais_frequente, nome)
     }
 
-
+ 
+    
 
 
 }
+
+
 
