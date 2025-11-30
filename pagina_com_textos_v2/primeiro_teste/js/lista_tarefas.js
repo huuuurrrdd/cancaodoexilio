@@ -215,4 +215,68 @@
 
     */
 
+/*****************  STRING para HTML(com links)  ******************/
+// Neste adiciona link a tudo o que não é stopword
+function stringHtml(converted, stoplist, wordData) { // retorna a string em formato html, mantendo quebras e links
 
+    const palavrasLista = wordData.palavras.map(obj => obj.palavra.toLowerCase()) // pedir para explicar melhor este 
+    
+    let nstring = converted.flatMap(item =>
+        item === "<br>"
+            ? "<br>"
+            : stoplist.includes(item.toLowerCase())
+                ? item
+                : palavrasLista.includes(item.toLowerCase().replace(/[^\p{L}\p{N}]/gu, ""))
+                    ? [
+                    `<a class="palavra" href="./lista_palavras.html?palavra=${item.replace(/[^\p{L}\p{N}]/gu, "")}">${item.replace(/[^\p{L}\p{N}]/gu, "")}</a>`,
+                    item.replace(/[\p{L}\p{N}_]/gu, "").trim()
+                  ]
+                    : item
+
+    )
+    
+    return nstring
+}
+
+
+/********  HTMLSTRINGs para 1 string  ********/
+function joinString(string){
+    //let final = string.join(' ')
+    let final = ''
+
+    // Punctuation that should have space AFTER (closing punctuation)
+    const closingPunctuation = /^[!.,;:?)}\]"»]+$/u
+
+    // Punctuation that should have space BEFORE (opening punctuation)
+    const openingPunctuation = /^[({\[«"]+$/u
+
+    for(let i = 0; i < string.length; i++){
+        const item = string[i]
+        const trimmedItem = item.trim()
+
+        // Skip empty items
+        if(!trimmedItem) continue
+
+        const isClosing = closingPunctuation.test(trimmedItem)
+        const isOpening = openingPunctuation.test(trimmedItem)
+        const isPonctuation = isClosing || isOpening
+
+        // Add space BEFORE if:
+        // - Not first item
+        // - Not closing punctuation (we don't want space before ! . , etc)
+        // - Previous item wasn't <br>
+        // - Previous item wasn't opening punctuation
+        if(i > 0 && !isClosing && string[i-1] !== '<br>' && !openingPunctuation.test(string[i-1]?.trim())){
+            final += ' '
+        }
+
+        final += trimmedItem
+
+        // Add space AFTER if it's closing punctuation and not the last item
+        if(isClosing && i < string.length - 1 && string[i+1] !== '<br>'){
+            final += ' '
+        }
+    }
+
+    return final
+}

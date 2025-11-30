@@ -263,7 +263,7 @@ function displayData(wordData, textData, stoplist, lemmasData){
 
 
     // //tentando fazer split das palavras (os numeros t2,t3... corresponde ao n do passo)
-     let t = titEtxt.texto // string para texto
+    let t = titEtxt.texto // string para texto
     // LEMAS ANTIGOS
     //let l = textData[textId-1].lemmas // string para lemas (a colocar no link)
 
@@ -370,20 +370,35 @@ function stringHtml(converted, stoplist, wordData) { // retorna a string em form
 
     const palavrasLista = wordData.palavras.map(obj => obj.palavra.toLowerCase()) // pedir para explicar melhor este 
     
+    let nstring = converted.flatMap(item => {
+        if(item === "<br>") return "<br>"
 
-    let nstring = converted.flatMap(item =>
-        item === "<br>"
-            ? "<br>"
-            : stoplist.includes(item.toLowerCase())
-                ? item
-                : palavrasLista.includes(item.toLowerCase().replace(/[^\p{L}\p{N}]/gu, ""))
-                    ? [
-                    `<a class="palavra" href="./lista_palavras.html?palavra=${item.replace(/[^\p{L}\p{N}]/gu, "")}">${item.replace(/[^\p{L}\p{N}]/gu, "")}</a>`,
-                    item.replace(/[\p{L}\p{N}_]/gu, "").trim()
-                  ]
-                    : item
+        // extrai pontuação final e inicial
+        const leadingMatch = item.match(/^([^\p{L}\p{N}]+)/u)
+        const trailingMatch = item.match(/([^\p{L}\p{N}]+)$/u)
 
-    )
+        const leading = leadingMatch ? leadingMatch[1] : ''
+        const trailing = trailingMatch ? trailingMatch[1] : ''
+        const word = item.replace(/^[^\p{L}\p{N}]+/u, '').replace(/[^\p{L}\p{N}]+$/u, '')
+
+        // se n tiver palavra como conteúdo, devolve
+        if(!word) return item  // será espaço?
+
+        // verifica se palavra é stopword
+        if(stoplist.includes(word.toLowerCase())) return item
+
+        // verifica se palavra está na lista de palavras
+        if(palavrasLista.includes(word.toLowerCase())){
+            const result = []
+            if(leading) result.push(leading)
+            result.push(`<a class="palavra" href="./lista_palavras.html?palavra=${word}">${word}</a>`)
+            
+            if(trailing) result.push(trailing) 
+            return result
+        }
+
+        return item
+    })
     
     return nstring
 }
@@ -419,11 +434,11 @@ function joinString(string){
     //let final = string.join(' ')
     let final = ''
 
-    // Punctuation that should have space AFTER (closing punctuation)
-    const closingPunctuation = /^[!.,;:?)}\]"»]+$/u
+    // Punctuation that should NOT have space before (closing/ending punctuation)
+    const noSpaceBefore = /^[!.,;:?)}\]"»]+$/u
 
-    // Punctuation that should have space BEFORE (opening punctuation)
-    const openingPunctuation = /^[({\[«"]+$/u
+    // Punctuation that should NOT have space after (opening punctuation)
+    const noSpaceAfter = /^[({\[«"]+$/u
 
     for(let i = 0; i < string.length; i++){
         const item = string[i]
@@ -432,32 +447,36 @@ function joinString(string){
         // Skip empty items
         if(!trimmedItem) continue
 
-        const isClosing = closingPunctuation.test(trimmedItem)
-        const isOpening = openingPunctuation.test(trimmedItem)
-        const isPonctuation = isClosing || isOpening
+        // verifica se é html tag
+        const isHTMLTag = trimmedItem.startsWith('<')
 
-        // Add space BEFORE if:
-        // - Not first item
-        // - Not closing punctuation (we don't want space before ! . , etc)
-        // - Previous item wasn't <br>
-        // - Previous item wasn't opening punctuation
-        if(i > 0 && !isClosing && string[i-1] !== '<br>' && !openingPunctuation.test(string[i-1]?.trim())){
+        // Verifica item anterior
+        const prevItem = i > 0 ? string[i-1]?.trim() : ''
+        const prevIsNoSpaceAfter = noSpaceAfter.test(prevItem)
+        const prevIsBr = prevItem === '<br>'
+
+        // verifica item atual
+        const currIsNoSpaceBefore = noSpaceBefore.test(trimmedItem)
+
+        /*  Adiciona espaço antes do item atual se:
+            - Não é primeiro item;
+            - Atual não é pontuação "no space before"
+            - Anterior não é '<br>'
+            - Anterior não é pontuação "no space after"
+        */
+       if(i > 0 && !currIsNoSpaceBefore && !prevIsBr && !prevIsNoSpaceAfter){
             final += ' '
-        }
+       }
 
-        final += trimmedItem
-
-        // Add space AFTER if it's closing punctuation and not the last item
-        if(isClosing && i < string.length - 1 && string[i+1] !== '<br>'){
-            final += ' '
-        }
+       final += trimmedItem
+        
     }
 
     return final
 }
 
 
-//funcao para pontuacao (lemas)
+//funcao para pontuacao (lemas) -> sem utilidade de momento
 function removePont(string){
     const punct = /[\.,?!"]/g
     let novoTexto = []
