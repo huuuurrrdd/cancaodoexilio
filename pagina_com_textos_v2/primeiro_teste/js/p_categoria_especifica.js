@@ -433,7 +433,17 @@ function displayData(wordData, textData, stoplist, lemmasData){
     }
 
     const getData = async() => {
-        const palavra = classEsp
+        const nomeStr = String(classEsp || '')
+
+            let nome_singular
+            if(nomeStr.charAt(classEsp.length-1) == "s"){
+                //console.log("Começa com s")
+                nome_singular = classEsp.slice(0, -1)
+            } else {
+                nome_singular = classEsp
+            }
+        
+        const palavra = nome_singular
         if(isEspecificaEmpty(palavra)) return
 
         params.gsrsearch = palavra
