@@ -53,6 +53,119 @@ function displayData(textData) {
   }).addTo(map);
 
 
+ L.control.scale({ // adicioa a escala em baixo
+  metric: true,
+  imperial: false
+ }).addTo(map)
+
+
+ ///////////////////  Cria array de coordenadas  ////////////////////////
+/*
+ - Estrutura:
+ [
+  { Coordenada: [valor coordenada]
+    nomes: 
+      [
+        {nome: "",
+         textos: [id1, id2, id3...]},
+
+         {nome: "",
+         textos: [id1, id2, id3...]},
+      ]
+    },
+
+    { Coordenada: [valor coordenada]
+    nomes: 
+      [
+        {nome: "",
+         textos: [id1, id2, id3...]},
+
+         {nome: "",
+         textos: [id1, id2, id3...]},
+      ]
+    }
+  ]
+
+
+*/
+
+
+//// ANTES DISTO: descobrir quais os poemas com coordenadas erradas (ou a menos!!!)
+let textosMal = []
+
+textData.forEach(item => {
+  let n_locais = item.categorias.locais.locais_limpos.length
+  let n_coordenadas = item.categorias.locais.coordenadas_geograficas.length
+
+  if(n_locais != n_coordenadas){
+    textosMal.push({
+      texto: item.id,
+      diferença: Math.abs(n_locais-n_coordenadas)
+    })
+  }
+})
+
+console.log(textosMal)
+
+
+/////
+const objListaCoord = []
+const coordMap = new Map() // array: [(coord, nomes: [array de nomes]), (...)]
+/*
+  Objeto mapa:
+  -> key-value pairs 
+  -> remembers the original insertion order of the keys
+*/
+
+//iteração sobre cada item 
+textData.forEach(item => {
+  const id = item.id
+  const locais = item.categorias.locais.locais_limpos
+  const coords = item.categorias.locais.coordenadas_geograficas
+
+
+  // iteração sobre cada localização e coordenada correspondente
+  locais.forEach((local, index) => {
+    const coord = coords[index]
+    const coordKey = JSON.stringify(coord) // usa string key para mapa
+
+    // se coordenada não existe, cria
+    if(!coordMap.has(coordKey)){ // 
+      coordMap.set(coordKey, {
+        coordenada: coord,
+        nomes: []
+      })
+    }
+
+    //descobre se este 'nome' já existe para a coordenada
+    const coordObj = coordMap.get(coordKey)
+    let nomeObj = coordObj.nomes.find(n => n.nome === local)
+
+    // se nome não existe, cria
+    if(!nomeObj){
+      nomeObj = {
+        nome: local,
+        textos: []
+      }
+      coordObj.nomes.push(nomeObj)
+    }
+
+    // adiciona id ao array de textos se não estiver la
+    if(!nomeObj.textos.includes(id)){
+      nomeObj.textos.push(id)
+    }
+  })
+})
+
+// Converte mapa para array
+coordMap.forEach(value => {
+  objListaCoord.push(value)
+})
+
+console.log(objListaCoord) // funciona!!
+
+
+
 /*********  Teste de icon no mapa  **********/
 var leafletIcon = L.icon ({
   iconUrl: './icons/m2.svg',
@@ -73,23 +186,35 @@ var leafletIcon = L.icon ({
 
   const marker = [];
 
-  for (t = 0; t < textData.length; t++) {
-    for (i = 0; i < textData[t].categorias.locais.coordenadas_geograficas.length; i++) {
-      //nota: pode ser necessário verificar se os textos apresentam ou nao coordenada!!
-      marker[i] = L.marker([
-        get_latitude(textData[t].categorias.locais.coordenadas_geograficas[i]),
-        get_longitude(textData[t].categorias.locais.coordenadas_geograficas[i]),
-      ], {icon:leafletIcon})
-        .addTo(map)
-        .bindPopup(
-          `${textData[t].categorias.locais.locais_limpos[i]}, TEXTO: ${textData[t].title}`
-        );
-    }
-  }
+// percorrer objListaCoord (em vez dos textos)
+for(let i = 0; i < objListaCoord.length; i++){
+  let lat = get_latitude(objListaCoord[i].coordenada)
+  let lon = get_longitude(objListaCoord[i].coordenada)
+
+  marker[i] = L.marker([lat, lon], {icon:leafletIcon})
+              .addTo(map)
+              .bindPopup(
+                `<p></p>`
+              )
+}
+
+  // for (t = 0; t < textData.length; t++) {
+  //   for (i = 0; i < textData[t].categorias.locais.coordenadas_geograficas.length; i++) {
+  //     //nota: pode ser necessário verificar se os textos apresentam ou nao coordenada!!
+  //     marker[i] = L.marker([
+  //       get_latitude(textData[t].categorias.locais.coordenadas_geograficas[i]),
+  //       get_longitude(textData[t].categorias.locais.coordenadas_geograficas[i]),
+  //     ], {icon:leafletIcon})
+  //       .addTo(map)
+  //       .bindPopup(
+  //         `${textData[t].categorias.locais.locais_limpos[i]}, TEXTO: ${textData[t].title}`
+  //       );
+  //   }
+  // }
 
 
 
-const mark = L.marker([9.5250254, -13.6826763], {icon:leafletIcon}).addTo(map)
+//const mark = L.marker([9.5250254, -13.6826763], {icon:leafletIcon}).addTo(map)
 
 // Testar 2 no mesmo sitio//
 const arraycircle = []
@@ -169,4 +294,9 @@ for(let i = 0; i < 3; i++){
     longitude = elemento_limpo.split(", ")[1];
     return longitude;
   }
+
+
+
+  // pequeno teste com dados do ficheiro
+  //const marker3 = L.marker([get_latitude(textData[19-1].categorias.locais.coordenadas_geograficas[0]), get_longitude(textData[19-1].categorias.locais.coordenadas_geograficas[0])], {icon:leafletIcon}).addTo(map);
 }
