@@ -837,44 +837,144 @@ function displayData(wordData, textData){
         div_textos.appendChild(divMap)
         divMap.id = "map"
 
-        // //teste de coordenadas
-        // console.log(
-        //     `Teste latitude:${get_latitude(
-        //     textData[19 - 1].categorias.locais.coordenadas_geograficas[0]
-        //     )}`
-        // );
-        // console.log(
-        //     `Teste longitude:${get_longitude(
-        //     textData[19 - 1].categorias.locais.coordenadas_geograficas[0]
-        //     )}`
-        // );
-
         const map = L.map("map", {
             center: [33.5, -23,5],
             zoom: 1.5,
         });
 
-          L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+
+        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
             attribution:
             '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
         }).addTo(map);
 
         
-        const marker = [];
-        // funciona, mas tem alguns erros
-        for (t = 0; t < textData.length; t++) {
-            for (i = 0; i < textData[t].categorias.locais.coordenadas_geograficas.length; i++) {
-            //nota: pode ser necessário verificar se os textos apresentam ou nao coordenada!!
-            marker[i] = L.marker([
-                get_latitude(textData[t].categorias.locais.coordenadas_geograficas[i]),
-                get_longitude(textData[t].categorias.locais.coordenadas_geograficas[i]),
-            ])
-                .addTo(map)
-                .bindPopup(
-                `${textData[t].categorias.locais.locais_limpos[i]}, TEXTO: ${textData[t].title}`
-                );
-            }
+        L.control.scale({ // adicioa a escala em baixo
+            metric: true,
+            imperial: false
+        }).addTo(map)
+
+
+        ///////////////  Array de coordenadas  ////////////////
+        const objListaCoord = []
+        const coordMap = new Map() // array: [(coord, nomes: [array de nomes]), (...)]
+        /*
+        Objeto mapa:
+        -> key-value pairs 
+        -> remembers the original insertion order of the keys
+        */
+
+        //iteração sobre cada item 
+        textData.forEach(item => {
+            const id = item.id
+            const locais = item.categorias.locais.locais_limpos
+            const coords = item.categorias.locais.coordenadas_geograficas
+
+
+            // iteração sobre cada localização e coordenada correspondente
+            locais.forEach((local, index) => {
+                const coord = coords[index]
+                const coordKey = JSON.stringify(coord) // usa string key para mapa
+
+                // se coordenada não existe, cria
+                if(!coordMap.has(coordKey)){ // 
+                    coordMap.set(coordKey, {
+                        coordenada: coord,
+                        nomes: []
+                    })
+                }
+
+                //descobre se este 'nome' já existe para a coordenada
+                const coordObj = coordMap.get(coordKey)
+                let nomeObj = coordObj.nomes.find(n => n.nome === local)
+
+                // se nome não existe, cria
+                if(!nomeObj){
+                    nomeObj = {
+                        nome: local,
+                        textos: []
+                    }
+                    coordObj.nomes.push(nomeObj)
+                }
+
+                // adiciona id ao array de textos se não estiver la
+                if(!nomeObj.textos.includes(id)){
+                    nomeObj.textos.push(id)
+                }
+            })
+        })
+
+        // Converte mapa para array
+        coordMap.forEach(value => {
+
+            // ordena nomes (primeiro por nTextos (des) depois AZ)
+            value.nomes.sort((a, b) => {
+                if(b.textos.length !== a.textos.length){
+                return b.textos.length - a.textos.length // desc por numero de textos
+                } 
+                return a.nome.localeCompare(b.nome) // alfabetica se igual
+            })
+
+            // Calcula o total de textos para a coordenada
+            const uniqueTextos = new Set()
+            value.nomes.forEach(nomeObj => {
+                nomeObj.textos.forEach(id => uniqueTextos.add(id))
+            })
+            value.nTextos = uniqueTextos.size
+
+            objListaCoord.push(value)
+        })
+
+        console.log(objListaCoord) // funciona!!
+
+
+        /*********  ICON DO MAPA  **********/
+        var leafletIcon = L.icon ({
+            iconUrl: './imagens/m2.svg',
+            shadowUrl:'./imagens/s6.png',
+            iconSize: [25, 35],
+            iconAnchor: [12.5,35],
+            // shadowAnchor:[150/2, 171/2], // icon lateral
+            // shadowSize:[341/2, 312/2]
+            shadowAnchor:[7, 30], // icon svg
+            shadowSize:[40/1.5, 43/1.5],
+            popupAnchor: [2, -30]
+        })
+
+        // com marker
+        // const marker = [];
+        // for(let i = 0; i < objListaCoord.length; i++){
+        //   // coordenadas
+        //   let lat = get_latitude(objListaCoord[i].coordenada)
+        //   let lon = get_longitude(objListaCoord[i].coordenada)
+
+        //   let nome = objListaCoord[i].nomes[0].nome
+
+        //   marker[i] = L.marker([lat, lon], {icon:leafletIcon})
+        //               .addTo(map)
+        //               .bindPopup(
+        //                 `<a>${nome}</a>`
+        //               )
+        //   //teste de display com circulos (raio correspondente a n de textos) + popup com frequencia
+        // }
+
+        const circ = []
+        for(let i = 0; i < objListaCoord.length; i++){
+            let lat = get_latitude(objListaCoord[i].coordenada)
+            let lon = get_longitude(objListaCoord[i].coordenada)
+
+            let nome = objListaCoord[i].nomes[0].nome
+            let nTextos = objListaCoord[i].nTextos + 2
+
+            circ[i] = L.circle([lat, lon], {
+                color: "#223F29",
+                fillColor: '#223f29a4',
+                fillOpacity: 1,
+                radius: 9000*nTextos
+            }).addTo(map)
+                .bindPopup(`<a>${nome}</a>, nTextos: ${objListaCoord[i].nTextos}`)
         }
+
 
         function get_latitude(element) {
             elemento_limpo = element.replace("(", "").replace(")", "");
@@ -912,9 +1012,9 @@ function displayData(wordData, textData){
 
     //sort_text = textData.date_of_publication.sort((a, b) => a - b)
 
-    //displayMapa()
+    displayMapa()
     //displayAmostra() // display amostra como default (n tem problema com acumulação)
-    displayTabela()
+    //displayTabela()
 
 
     /***********  Display das funções  ***********/

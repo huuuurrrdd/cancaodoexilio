@@ -233,7 +233,6 @@ for(let i = 0; i < objListaCoord.length; i++){
     radius: 9000*nTextos
   }).addTo(map)
     .bindPopup(`<a>${nome}</a>, nTextos: ${objListaCoord[i].nTextos}`)
-
 }
 
 
