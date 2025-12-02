@@ -1,3 +1,8 @@
+:root{
+  --dark-green: #223F29;
+  --light-yellow: #FFFEF2;
+}
+
 body{
     margin: 0;
     padding: 0;
@@ -6,4 +11,12 @@ body{
   #map {
     width: 100vw;
     height: 100vh; 
+  }
+
+  .leaflet-popup-content-wrapper{
+    background-color: var(--light-yellow);
+  }
+
+  .leaflet-popup-tip{
+    background-color: var(--light-yellow);
   }

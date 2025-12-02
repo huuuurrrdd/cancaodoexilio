@@ -159,6 +159,22 @@ textData.forEach(item => {
 
 // Converte mapa para array
 coordMap.forEach(value => {
+
+  // ordena nomes (primeiro por nTextos (des) depois AZ)
+  value.nomes.sort((a, b) => {
+    if(b.textos.length !== a.textos.length){
+      return b.textos.length - a.textos.length // desc por numero de textos
+    } 
+    return a.nome.localeCompare(b.nome) // alfabetica se igual
+  })
+
+  // Calcula o total de textos para a coordenada
+  const uniqueTextos = new Set()
+  value.nomes.forEach(nomeObj => {
+    nomeObj.textos.forEach(id => uniqueTextos.add(id))
+  })
+  value.nTextos = uniqueTextos.size
+
   objListaCoord.push(value)
 })
 
@@ -166,7 +182,7 @@ console.log(objListaCoord) // funciona!!
 
 
 
-/*********  Teste de icon no mapa  **********/
+/*********  ICON DO MAPA  **********/
 var leafletIcon = L.icon ({
   iconUrl: './icons/m2.svg',
   shadowUrl:'./icons/s6.png',
@@ -175,7 +191,8 @@ var leafletIcon = L.icon ({
   // shadowAnchor:[150/2, 171/2], // icon lateral
   // shadowSize:[341/2, 312/2]
   shadowAnchor:[7, 30], // icon svg
-  shadowSize:[40/1.5, 43/1.5]
+  shadowSize:[40/1.5, 43/1.5],
+  popupAnchor: [2, -30]
 })
 
 
@@ -184,50 +201,45 @@ var leafletIcon = L.icon ({
 
   //teste para id = 19-1
 
-  const marker = [];
+// com marker
+// const marker = [];
+// for(let i = 0; i < objListaCoord.length; i++){
+//   // coordenadas
+//   let lat = get_latitude(objListaCoord[i].coordenada)
+//   let lon = get_longitude(objListaCoord[i].coordenada)
 
-// percorrer objListaCoord (em vez dos textos)
+//   let nome = objListaCoord[i].nomes[0].nome
+
+//   marker[i] = L.marker([lat, lon], {icon:leafletIcon})
+//               .addTo(map)
+//               .bindPopup(
+//                 `<a>${nome}</a>`
+//               )
+//   //teste de display com circulos (raio correspondente a n de textos) + popup com frequencia
+// }
+
+const circ = []
 for(let i = 0; i < objListaCoord.length; i++){
   let lat = get_latitude(objListaCoord[i].coordenada)
   let lon = get_longitude(objListaCoord[i].coordenada)
 
-  marker[i] = L.marker([lat, lon], {icon:leafletIcon})
-              .addTo(map)
-              .bindPopup(
-                `<p></p>`
-              )
+  let nome = objListaCoord[i].nomes[0].nome
+  let nTextos = objListaCoord[i].nTextos + 2
+
+  circ[i] = L.circle([lat, lon], {
+    color: "#223F29",
+    fillColor: '#223f29a4',
+    fillOpacity: 1,
+    radius: 9000*nTextos
+  }).addTo(map)
+    .bindPopup(`<a>${nome}</a>, nTextos: ${objListaCoord[i].nTextos}`)
+
 }
-
-  // for (t = 0; t < textData.length; t++) {
-  //   for (i = 0; i < textData[t].categorias.locais.coordenadas_geograficas.length; i++) {
-  //     //nota: pode ser necessário verificar se os textos apresentam ou nao coordenada!!
-  //     marker[i] = L.marker([
-  //       get_latitude(textData[t].categorias.locais.coordenadas_geograficas[i]),
-  //       get_longitude(textData[t].categorias.locais.coordenadas_geograficas[i]),
-  //     ], {icon:leafletIcon})
-  //       .addTo(map)
-  //       .bindPopup(
-  //         `${textData[t].categorias.locais.locais_limpos[i]}, TEXTO: ${textData[t].title}`
-  //       );
-  //   }
-  // }
-
 
 
 //const mark = L.marker([9.5250254, -13.6826763], {icon:leafletIcon}).addTo(map)
 
-// Testar 2 no mesmo sitio//
-const arraycircle = []
 
-for(let i = 0; i < 3; i++){
-  arraycircle[i] = L.circle([-10.3333333, (-53.2) +i], {
-    color: "#223F29",
-    fillColor: '#223f29a4',
-    fillOpacity: 1,
-    radius: 50000
-  }).addTo(map)
-  .bindPopup("<b>Alooo</b> <br> <br> MARKER")
-}
 
 //   /*****  Circulos  *****/
 //   let circle = L.circle([-10.3333333, -53.2], {
