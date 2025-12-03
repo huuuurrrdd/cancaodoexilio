@@ -952,6 +952,8 @@ function displayData(wordData, textData, stoplist){
                 div.style.backgroundColor = "white"
                 div.style.padding = "20px"
                 div.style.display = "block"
+                L.DomEvent.disableClickPropagation(div);
+                L.DomEvent.disableScrollPropagation(div);
                 return div
             }
         })
@@ -976,6 +978,7 @@ function displayData(wordData, textData, stoplist){
 
         // com marker
         const marker = [];
+        const circ = []
         for(let i = 0; i < objListaCoord.length; i++){
           // coordenadas
           let lat = get_latitude(objListaCoord[i].coordenada)
@@ -1018,55 +1021,20 @@ function displayData(wordData, textData, stoplist){
             })
           }
 
-
+          /************************  Opção marker  ******************************/
           marker[i] = L.marker([lat, lon], {
             icon:leafletIcon,
             title: nome,
         })
-            .addTo(map)
             .bindPopup(
-            `<a href="p_categoria_especifica.html?categoria=Locais&especifica=${nome_original}">${nome}</a>`
+            `<a href="p_categoria_especifica.html?categoria=Locais&especifica=${nome_original}">${nome}</a>  (${objListaCoord[i].nTextos})`
             )
 
-           marker[i].on("click", function(e){
-                const controlDiv = document.querySelector(".info-control")
-                controlDiv.style.display = 'block'
-
-                //gerar html para todos os nomes e seus textos
-                let htmlContent = ''
-
-                infoTextos.forEach(nomeObj => {
-                    htmlContent += `<h3>${nomeObj.nome}</h3>`
-
-                    htmlContent+= `<div class = "scrollable scrollable-${nomeObj.nome_original.replace(" ", "-")}">`
-
-                    nomeObj.textos.forEach(texto => {
-                        htmlContent += `<p> <a href= ''> ${texto.titulo} </a>, 
-                                            <a href= ''> ${texto.autor} </a>, 
-                                            <a href= ''> ${texto.ano} </a></p>`
-                    })
-
-                    htmlContent+= `</div>`
-
-                    // let scroll = document.querySelector(`.scrollable`)
-                    // if(nomeObj.textos.length > 6){
-                    //     scroll.style.overflow = "auto"
-                    // }
-                })
-
-
-                document.querySelector(".info-content-map").innerHTML = htmlContent
+           marker[i].on("click", () => {
+                textosLocais()
             })
-          //teste de display com circulos (raio correspondente a n de textos) + popup com frequencia
-        }
 
-        const circ = []
-        for(let i = 0; i < objListaCoord.length; i++){
-            let lat = get_latitude(objListaCoord[i].coordenada)
-            let lon = get_longitude(objListaCoord[i].coordenada)
-
-            let nome_original = objListaCoord[i].nomes[0].nome
-            let nome = titleCase(nome_original, stoplist)
+          /************************  Opção circulos  ******************************/
             let nTextos = objListaCoord[i].nTextos + 2
 
             circ[i] = L.circle([lat, lon], {
@@ -1075,20 +1043,53 @@ function displayData(wordData, textData, stoplist){
                 fillOpacity: 1,
                 radius: 9000*nTextos,
                 title: 'lala',
-            }).addTo(map)
-                .bindPopup(`<a href="p_categoria_especifica.html?categoria=Locais&especifica=${nome_original}">${nome}</a>, nTextos: ${objListaCoord[i].nTextos}`)
+            })
+                .bindPopup(`<a href="p_categoria_especifica.html?categoria=Locais&especifica=${nome_original}">${nome}</a> (${objListaCoord[i].nTextos})`)
 
-            circ[i].on("click", function(e){
+
+            circ[i].on("click", () => {
+                textosLocais()
+            })
+
+
+            function textosLocais() {
                 const controlDiv = document.querySelector(".info-control")
                 controlDiv.style.display = 'block'
-                document.querySelector(".info-content-map").innerHTML = `
-                    <h3>Nome ${nome}</h3>
-                    <p>Detalhes</p>
-                `
-            })
+                let nTextos = objListaCoord[i].nTextos + 2
+
+                //gerar html para todos os nomes e seus textos
+                let htmlContent = ''
+
+                infoTextos.forEach(nomeObj => {
+                    htmlContent += `<h3><a href="p_categoria_especifica.html?categoria=Locais&especifica=${nome_original}">${nomeObj.nome}</a></h3>`
+
+                    htmlContent+= `<div class = "scrollable scrollable-${nomeObj.nome_original.replace(" ", "-")}">`
+
+                    nomeObj.textos.forEach(texto => {
+                        htmlContent += `<p> <a href= 'index.html?id=${texto.id}'> ${texto.titulo} </a>, 
+                                            <a href= 'p_categoria_especifica.html?categoria=Autores&especifica=${texto.autor}'> ${texto.autor} </a>, 
+                                            <a href= 'p_categoria_especifica.html?categoria=Anos&especifica=${texto.ano}'> ${texto.ano} </a></p>`
+                    })
+
+                    htmlContent+= `</div>`
+                })
+
+                document.querySelector(".info-content-map").innerHTML = htmlContent
+            }
+
         }
 
-        
+        /************************  Criar grupo de layers  ******************************/
+        let GMarker = L.layerGroup(marker)
+        let GCirc = L.layerGroup(circ)
+
+        let overlayMaps = {
+            "Icones" : GMarker,
+            "Circulos": GCirc
+        }
+
+        L.control.layers(null, overlayMaps).addTo(map)
+        GCirc.addTo(map)
 
 
         function get_latitude(element) {

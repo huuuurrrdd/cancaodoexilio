@@ -189,7 +189,15 @@
     background-color: var(--ligtht-yellow);
     max-height: 400px;
     overflow: auto;
-    
+}
+
+.leaflet-right .info-control a{
+    color: var(--dark-green);
+}
+
+.leaflet-right .info-control a:hover{
+    color: var(--ligtht-yellow);
+    background-color: var(--dark-green);
 }
 
 .leaflet-right .info-control .info-content-map{ /*Para display de informações*/

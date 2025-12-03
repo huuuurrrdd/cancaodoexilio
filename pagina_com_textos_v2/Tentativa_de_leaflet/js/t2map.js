@@ -47,10 +47,15 @@ function displayData(textData) {
     zoom: 1.5,
   });
 
-  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+  let osm = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     attribution:
       '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-  }).addTo(map);
+  })
+
+  var osmHOT = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '© OpenStreetMap contributors, Tiles style by Humanitarian OpenStreetMap Team hosted by OpenStreetMap France'}).addTo(map)
+  
 
 
  L.control.scale({ // adicioa a escala em baixo
@@ -202,21 +207,21 @@ var leafletIcon = L.icon ({
   //teste para id = 19-1
 
 // com marker
-// const marker = [];
-// for(let i = 0; i < objListaCoord.length; i++){
-//   // coordenadas
-//   let lat = get_latitude(objListaCoord[i].coordenada)
-//   let lon = get_longitude(objListaCoord[i].coordenada)
+const marker = [];
+for(let i = 0; i < objListaCoord.length; i++){
+  // coordenadas
+  let lat = get_latitude(objListaCoord[i].coordenada)
+  let lon = get_longitude(objListaCoord[i].coordenada)
 
-//   let nome = objListaCoord[i].nomes[0].nome
+  let nome = objListaCoord[i].nomes[0].nome
 
-//   marker[i] = L.marker([lat, lon], {icon:leafletIcon})
-//               .addTo(map)
-//               .bindPopup(
-//                 `<a>${nome}</a>`
-//               )
-//   //teste de display com circulos (raio correspondente a n de textos) + popup com frequencia
-// }
+  marker[i] = L.marker([lat, lon], {icon:leafletIcon})
+              .addTo(map)
+              .bindPopup(
+                `<a>${nome}</a>`
+              )
+  //teste de display com circulos (raio correspondente a n de textos) + popup com frequencia
+}
 
 const circ = []
 for(let i = 0; i < objListaCoord.length; i++){
@@ -235,59 +240,11 @@ for(let i = 0; i < objListaCoord.length; i++){
     .bindPopup(`<a>${nome}</a>, nTextos: ${objListaCoord[i].nTextos}`)
 }
 
-
-//const mark = L.marker([9.5250254, -13.6826763], {icon:leafletIcon}).addTo(map)
-
-
-
-//   /*****  Circulos  *****/
-//   let circle = L.circle([-10.3333333, -53.2], {
-//     color: "#223F29",
-//     fillColor: '#223f29a4',
-//     fillOpacity: 1,
-//     radius: 20000
-//   }).addTo(map)
+////  Layers ////
+let GMarker = L.layerGroup(marker)
+let GCirc = L.layerGroup(circ)
 
 
-
-
-
-//   /*****  Poligonos  *****/
-// let polygon = L.polygon([
-//   [-10.3333333, -53.2],
-//   [28.3347722, -10.3713379],
-//   [9.5250254, -13.6826763]
-// ], {
-//   color: "#223F29",
-//     fillColor: '#223f29a4',
-//     fillOpacity: 1
-// }).addTo(map)
-
-
-
-//   /*****  Poligonos  *****/ // Teste de poligono (caso queira criar área de abrangencia do poema)
-// let polygon = L.polygon([
-//   [39.6621648, -8.135351],
-//   [51.0, 10.],
-//   [39.5428862, -8.919552],
-//   [41.5314496, -8.619230],
-//   [41.5084468, -6.773302],
-//   [33.8439408, 9.40013],
-//   [37.1734995, -3.599533],
-//   [28.3347722, -10.371337],
-//   [34.0346534, -5.016192],
-//   [-10.3333333, -53.],
-//   [9.5250254, -13.682676],
-//   [-22.8169023, -43.127220],
-//   [13.8905104, -2.574941],
-//   [38.569601, -8.901165],
-//   [38.8355446, -9.352237],
-//   [-22.9247351, -43.232716]
-// ], {
-//   color: "#223F29",
-//     fillColor: '#223f29a4',
-//     fillOpacity: 1
-// }).addTo(map)
 
 
 
