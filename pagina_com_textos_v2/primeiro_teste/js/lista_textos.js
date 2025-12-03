@@ -14,7 +14,7 @@
 
 
 function fetchData(){
-    let wordData, textData
+    let wordData, textData, stoplist
 
     //dicionario json
     fetch("./Dict_palavras_lemas_v0004.json")
@@ -34,9 +34,22 @@ function fetchData(){
             }
             return response.json()
         })
-        .then(data => {
-            textData = data
-            displayData(wordData, textData) //funcao com os 2 jsons
+         .then((data) => {
+            textData = data; // guarda json dos lemas
+            return fetch("./stopwords/portuguese");
+        })
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.text(); // return stopwords text
+        })
+        .then((data) => {
+        stoplist = data
+            .split("\n")
+            .map((s_word) => s_word.trim())
+            .filter((s_word) => s_word.length > 0);
+            displayData(wordData, textData, stoplist) //funcao com os 2 jsons
         })
         .catch(error => console.error('Failed to fetch data', error))
 
@@ -46,7 +59,7 @@ fetchData()
 
 
 
-function displayData(wordData, textData){
+function displayData(wordData, textData, stoplist){
 
     /******************  Funções de resultados  *******************/
     // valores default para ordenação de resultados
@@ -849,10 +862,7 @@ function displayData(wordData, textData){
         }).addTo(map);
 
         
-        L.control.scale({ // adicioa a escala em baixo
-            metric: true,
-            imperial: false
-        }).addTo(map)
+
 
 
         ///////////////  Array de coordenadas  ////////////////
@@ -926,6 +936,29 @@ function displayData(wordData, textData){
         })
 
         console.log(objListaCoord) // funciona!!
+///////////////////////////////////////////////////////////////////////////////////////
+
+        //*******  Escala do mapa  ********/        
+        L.control.scale({ // adicioa a escala em baixo
+            metric: true,
+            imperial: false
+        }).addTo(map)
+
+        //*******  Div para display de informações  ********/  
+        const InfoControl = L.Control.extend({
+            onAdd: function(map) {
+                const div = L.DomUtil.create('div', 'info-control')
+                div.innerHTML = '<div class = "info-content-map">Clica sobre um icon</div>'
+                div.style.backgroundColor = "white"
+                div.style.padding = "20px"
+                div.style.display = "block"
+                return div
+            }
+        })
+
+        //adiciona control ao mapa
+        const infoControl = new InfoControl({position: 'topright'})
+        infoControl.addTo(map)
 
 
         /*********  ICON DO MAPA  **********/
@@ -942,38 +975,120 @@ function displayData(wordData, textData){
         })
 
         // com marker
-        // const marker = [];
-        // for(let i = 0; i < objListaCoord.length; i++){
-        //   // coordenadas
-        //   let lat = get_latitude(objListaCoord[i].coordenada)
-        //   let lon = get_longitude(objListaCoord[i].coordenada)
+        const marker = [];
+        for(let i = 0; i < objListaCoord.length; i++){
+          // coordenadas
+          let lat = get_latitude(objListaCoord[i].coordenada)
+          let lon = get_longitude(objListaCoord[i].coordenada)
 
-        //   let nome = objListaCoord[i].nomes[0].nome
+          let nome_original = objListaCoord[i].nomes[0].nome
+          let nome = titleCase(nome_original, stoplist)
 
-        //   marker[i] = L.marker([lat, lon], {icon:leafletIcon})
-        //               .addTo(map)
-        //               .bindPopup(
-        //                 `<a>${nome}</a>`
-        //               )
-        //   //teste de display com circulos (raio correspondente a n de textos) + popup com frequencia
-        // }
+          // info textos:
+          let infoTextos = []
+       
+
+          // para cada nome
+          for(let j = 0; j < objListaCoord[i].nomes.length; j++){
+            let nome_original = objListaCoord[i].nomes[j].nome // nome atual
+            let nome = titleCase(nome_original, stoplist)
+            let id_textospnome = objListaCoord[i].nomes[j].textos // array de ids
+
+            let infoTextpnome = []
+
+            //percorre cada textos do nome
+            for(let l = 0; l < objListaCoord[i].nomes[j].textos.length; l++){
+                let id = id_textospnome[l]
+                let titulo = textData.find(x => x.id === id).title
+                let autor = textData.find(x => x.id === id).author
+                let ano = textData.find(x => x.id === id).date_of_publication
+
+                infoTextpnome.push({
+                    id: id,
+                    titulo: titulo,
+                    autor: autor,
+                    ano: ano
+                })
+            }
+
+            infoTextos.push({
+                nome_original:nome_original,
+                nome:nome,
+                textos: infoTextpnome
+            })
+          }
+
+
+          marker[i] = L.marker([lat, lon], {
+            icon:leafletIcon,
+            title: nome,
+        })
+            .addTo(map)
+            .bindPopup(
+            `<a href="p_categoria_especifica.html?categoria=Locais&especifica=${nome_original}">${nome}</a>`
+            )
+
+           marker[i].on("click", function(e){
+                const controlDiv = document.querySelector(".info-control")
+                controlDiv.style.display = 'block'
+
+                //gerar html para todos os nomes e seus textos
+                let htmlContent = ''
+
+                infoTextos.forEach(nomeObj => {
+                    htmlContent += `<h3>${nomeObj.nome}</h3>`
+
+                    htmlContent+= `<div class = "scrollable scrollable-${nomeObj.nome_original.replace(" ", "-")}">`
+
+                    nomeObj.textos.forEach(texto => {
+                        htmlContent += `<p> <a href= ''> ${texto.titulo} </a>, 
+                                            <a href= ''> ${texto.autor} </a>, 
+                                            <a href= ''> ${texto.ano} </a></p>`
+                    })
+
+                    htmlContent+= `</div>`
+
+                    // let scroll = document.querySelector(`.scrollable`)
+                    // if(nomeObj.textos.length > 6){
+                    //     scroll.style.overflow = "auto"
+                    // }
+                })
+
+
+                document.querySelector(".info-content-map").innerHTML = htmlContent
+            })
+          //teste de display com circulos (raio correspondente a n de textos) + popup com frequencia
+        }
 
         const circ = []
         for(let i = 0; i < objListaCoord.length; i++){
             let lat = get_latitude(objListaCoord[i].coordenada)
             let lon = get_longitude(objListaCoord[i].coordenada)
 
-            let nome = objListaCoord[i].nomes[0].nome
+            let nome_original = objListaCoord[i].nomes[0].nome
+            let nome = titleCase(nome_original, stoplist)
             let nTextos = objListaCoord[i].nTextos + 2
 
             circ[i] = L.circle([lat, lon], {
                 color: "#223F29",
                 fillColor: '#223f29a4',
                 fillOpacity: 1,
-                radius: 9000*nTextos
+                radius: 9000*nTextos,
+                title: 'lala',
             }).addTo(map)
-                .bindPopup(`<a>${nome}</a>, nTextos: ${objListaCoord[i].nTextos}`)
+                .bindPopup(`<a href="p_categoria_especifica.html?categoria=Locais&especifica=${nome_original}">${nome}</a>, nTextos: ${objListaCoord[i].nTextos}`)
+
+            circ[i].on("click", function(e){
+                const controlDiv = document.querySelector(".info-control")
+                controlDiv.style.display = 'block'
+                document.querySelector(".info-content-map").innerHTML = `
+                    <h3>Nome ${nome}</h3>
+                    <p>Detalhes</p>
+                `
+            })
         }
+
+        
 
 
         function get_latitude(element) {

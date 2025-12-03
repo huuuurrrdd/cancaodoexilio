@@ -176,3 +176,38 @@
 }
 
 
+/* .info-map{
+    position:absolute;
+    top: 200px;
+    width: 300px;
+    background-color: var(--light-yellow);
+    padding: 20px;
+    z-index: 1000;
+} */
+
+.leaflet-right .info-control{ /*Para display de informações*/
+    background-color: var(--ligtht-yellow);
+    max-height: 400px;
+    overflow: auto;
+    
+}
+
+.leaflet-right .info-control .info-content-map{ /*Para display de informações*/
+    background-color: var(--ligtht-yellow);
+    
+}
+
+.leaflet-right .scrollable{
+    max-height: 180px;
+    overflow: auto;
+}
+
+.leaflet-popup-content-wrapper{
+    color: var(--dark-green)
+
+}
+
+.leaflet-popup-content-wrapper a:hover{
+    color: var(--ligtht-yellow)
+    
+}
