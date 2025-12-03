@@ -38,6 +38,10 @@ html, body{
     font-size: var(--h1-size);;
 }
 
+#subtitulo{
+  margin-bottom: 0;
+}
+
 h2{
   font-family:"Oswald";
 }

@@ -89,9 +89,9 @@ function displayData(wordData, textData, stoplist, lemmasData){
     
     // Acedendo a dados de n de "especifica" por ano (igual a ano e autores em que conta 1 por texto se aparecer)
     // para específica: array para idTexto, freq, ano
-    id_textos = []
-    frequencia = []
-    anos_esp = []
+    let id_textos = []
+    let frequencia = []
+    let anos_esp = []
 
     let nomeCat
 
@@ -307,7 +307,7 @@ function displayData(wordData, textData, stoplist, lemmasData){
     //subtitulo
     let subtitulo = document.createElement('p')
     margem_ct.appendChild(subtitulo)
-    subtitulo.className += "subtitulo"
+    subtitulo.id += "subtitulo"
     subtitulo.innerText = `Categoria: ${categoria.toLowerCase()}`
 
     //*************  Titulo de página  ****************/
