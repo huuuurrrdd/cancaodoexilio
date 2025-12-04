@@ -312,7 +312,7 @@ function displayData(wordData, textData, stoplist){
                                     // Add this to debug:
         console.log('Element exists:', document.getElementById('ano-o-head'));
         console.log('Computed display:', window.getComputedStyle(document.getElementById('ano-o-head')).display);
-        ct_head_list.style.backgroundColor = "yellow"
+        //ct_head_list.style.backgroundColor = "yellow"
 
         /*:::::  Botoes  :::::*/
         const yearSubmitButton = document.querySelector('#yeartxt-submit')
@@ -593,7 +593,7 @@ function displayData(wordData, textData, stoplist){
                                         </div>
                                     </div>`
         
-        ct_head_list.style.backgroundColor = "yellow"
+        //ct_head_list.style.backgroundColor = "yellow"
 
         /*:::::  Botoes  :::::*/
         const yearSubmitButton = document.querySelector('#yeartxt-submit')

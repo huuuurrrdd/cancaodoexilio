@@ -19,7 +19,9 @@
     grid-column-gap: 10px;
     grid-row-gap: 0px;
     position: sticky;
-    top:51px
+    top:51px;
+    background-color: var(--dark-green-t-o);
+    z-index: 5;
 }
 
 /******** entradas *********/
@@ -47,6 +49,10 @@
     grid-template-areas: 'h2 h2 input'
                           'h2 h2 input'
                           'ord ord input';
+    gap: 5px;
+    position: relative;
+    padding: 5px;
+    transition: background-color 0.2s;
 }
 
 .texto-header{
@@ -56,6 +62,8 @@
     grid-template-areas: 'h2 h2 h2 input'
                          'h2 h2 h2 input'
                          'ord ord ord input';
+    gap: 5px;
+    padding: 5px;
 }
 
 .frequencia-header{
@@ -65,6 +73,8 @@
     grid-template-areas: 'h2 input'
                           'h2 input'
                           'ord input';
+    gap: 5px;
+    padding: 5px;
 }
 
 .pal-o-h, .texto-o-h, .fre-o-h{
@@ -72,24 +82,28 @@
     margin:0;
 }
 
+#Ord-Alfa, #Ord-Tit, #Ord-Freq{
+    grid-area: ord;
+    margin:0;
+    cursor: pointer;
+    padding: 2px 5px;
+    font-size: 14px;
+}
+
+#Ord-Alfa:hover, #Ord-Tit:hover, #Ord-Freq:hover{
+    background-color: var(--dark-green);
+    color: var(--light-yellow);
+}
+
 #pal-search-bar, #tit-search-bar, #freq-search-bar{
     grid-area: input;
     position: relative;
     display: flex;
     align-items: center;
+    width: 100%;
 }
 
-#Ord-Alfa, #Ord-Tit, #Ord-Freq{
-    grid-area: ord;
-    margin:0;
-    cursor: pointer;
-}
 
-/******** filtros *********/
-#Ord-Alfa:hover, #Ord-Tit:hover, #Ord-Freq:hover{
-    background-color: black;
-    color: white;
-}
 
 /******** input style *********/
 .input-h{
@@ -102,6 +116,11 @@
     box-sizing: border-box;
 }
 
+.input-h:focus{
+    outline: none;
+    border-color: var(--dark-green);
+}
+
 .bt-h{
     width: 20px;
     z-index: 2;
@@ -112,6 +131,11 @@
     top: 50%;
     transform: translateY(-50%);
     cursor: pointer;
+}
+
+.bt-h{
+    width:20px;
+    opacity: 0.6;
 }
 
 /******** tooltip-freq *********/
