@@ -29,6 +29,8 @@
     grid-row-gap: 0px;
     position: sticky;
     top:51px;
+    background-color: var(--dark-green-t-o);
+    z-index: 5;
 }
 
 /******** entradas *********/
@@ -47,13 +49,27 @@
 .autor { grid-area: 1 / 8 / 2 / 11; }
 
 /******** botoes header *********/
-.ano-header{ /*ano de 1 celula!!*/
+.ano-header{ /*freq de 1 celula!!*/
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: 20px 1fr; /*1 coluna para setinha*/
     grid-template-rows: auto auto auto;
-    grid-template-areas: 'h2 input'
-                          'h2 input'
-                          'ord input';
+    grid-template-areas: 'arrow h2'
+                         'arrow h2'
+                         'arrow ord';
+   
+    position: relative;
+    transition: background-color 0.2s;
+    gap: 5px;
+    padding: 5px;
+}
+
+/*mudança de layout com o input*/
+.ano-header.input-active, .freq-header.input-active{
+    grid-template-areas: 'arrow input'
+                         'arrow input'
+                         'arrow input';
+    gap: 5px;
+    padding: 5px;
 }
 
 .titulo-header{
@@ -63,6 +79,8 @@
     grid-template-areas: 'h2 h2 input'
                          'h2 h2 input'
                          'ord ord input';
+    gap: 5px;
+    padding: 5px;
 }
 
 .autor-header{
@@ -72,6 +90,8 @@
     grid-template-areas: 'h2 h2 input'
                          'h2 h2 input'
                          'ord ord input';
+    gap: 5px;
+    padding: 5px;
 }
 
 .ano-o-h, .titul-o-h, .aut-o-h{
@@ -79,27 +99,28 @@
     margin:0;
 }
 
+#Ord-Dat, #Ord-Tit, #Ord-Aut{
+    grid-area: ord;
+    margin:0;
+    cursor: pointer;
+    padding: 2px 5px;
+    font-size: 14px;
+}
+
+#Ord-Tit:hover, #Ord-Aut:hover, #Ord-Dat:hover{
+    background-color: var(--dark-green);
+    color: var(--light-yellow);
+}
+
 #year-search-bar, #titul-search-bar, #autor-search-bar{
     grid-area: input;
     position: relative;
     display: flex;
     align-items: center;
+    width: 100%;
 }
 
-#Ord-Dat, #Ord-Tit, #Ord-Aut{
-    grid-area: ord;
-    margin:0;
-}
 
-/******** filtros *********/
-#Ord-Tit, #Ord-Aut, #Ord-Dat{
-    cursor: pointer;
-}
-
-#Ord-Tit:hover, #Ord-Aut:hover, #Ord-Dat:hover{
-    background-color: black;
-    color: white;
-}
 
 /******** input style *********/
 .input-h{
@@ -112,6 +133,11 @@
     box-sizing: border-box;
 }
 
+.input-h:focus{
+    outline: none;
+    border-color: var(--dark-green);
+}
+
 .bt-h{
     width: 20px;
     z-index: 2;
@@ -122,4 +148,9 @@
     top: 50%;
     transform: translateY(-50%);
     cursor: pointer;
+}
+
+.bt-h{
+    width:20px;
+    opacity: 0.6;
 }

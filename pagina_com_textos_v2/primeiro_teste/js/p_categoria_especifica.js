@@ -624,6 +624,7 @@ function displayData(wordData, textData, stoplist, lemmasData){
         tentry_header.className += "tentry-header"
 
         tentry_header.innerHTML =  `  <div class = "ano header ano-header">
+                                        <div class = "seta-ct" title ="Pesquisa livre por ano"><div class = "seta seta-ano down"></div></div>
                                         <h2 class = "ano-o-h">Ano</h2> 
                                         <p id="Ord-Dat">Ord:</p>
                                         <div id = "year-search-bar">
@@ -650,7 +651,45 @@ function displayData(wordData, textData, stoplist, lemmasData){
                                         </div>
                                     </div>`
 
-        tentry_header.style.backgroundColor = "yellow"
+        //tentry_header.style.backgroundColor = "yellow"
+
+        //elementos a alterar
+        let anoHeader = document.querySelector(".ano-header")
+        let anoTitulo = document.querySelector(".ano-o-h")
+        let ordemAno = document.querySelector("#Ord-Dat") // ano e ordem
+        let inputAno = document.querySelector("#year-search-bar") // div input
+
+        inputAno.style.display = "none"
+
+        //arrow toogle para ano
+        let seta_ano = document.querySelector(".seta-ano")
+        seta_ano.addEventListener('click', (e) => {
+        if(seta_ano.classList.contains('down')){
+            //Modo input
+            seta_ano.classList.remove("down")
+            seta_ano.classList.add("up")
+            anoHeader.classList.add("input-active")
+
+            // //remove ano e ordem e adiciona input (input deve ocupar tudo) -> ano header
+            anoTitulo.style.display = "none"
+            ordemAno.style.display = "none"
+            inputAno.style.display = "flex" //input
+
+            //focar no input
+            setTimeout(() => document.querySelector("#yeartxt-input").focus(), 100)
+
+        } else {
+            // Modo normal
+            seta_ano.classList.remove("up")
+            seta_ano.classList.add("down")
+            anoHeader.classList.remove("input-active")
+
+            // //remove ano e ordem e adiciona input (input deve ocupar tudo) -> ano header
+            anoTitulo.style.display = "block"
+            ordemAno.style.display = "block"
+            inputAno.style.display = "none" //input
+        }
+        })
 
         /*:::::  Botoes  :::::*/
         const yearSubmitButton = document.querySelector('#year-submit')

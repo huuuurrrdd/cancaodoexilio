@@ -15,7 +15,13 @@
 */
 :root{
   --dark-green: #223F29;
+  --dark-green-t: #223f29a4;
+  --dark-green-t-o: #d2e6d1;
   --light-yellow: #FFFEF2;
+  --light-yellow-d: #F6E27F;
+  --brown:#251605;
+  --brown-light:#ebe5df;
+  --blue: #aad3df;
   --h1-texto: 4rem;
   --h1-size: 3.5rem;
 }
@@ -178,6 +184,50 @@ input[type=text]{
 .ham-box{
   display: none;
 }
+
+/***************** Setinha ********************/
+
+.seta{
+  grid-area: arrow;
+  height: auto;
+  width: auto;
+  cursor: pointer;
+  margin-top: 5px;
+  /* background-color: var(--dark-green); */
+}
+
+.seta::before{
+  content: '▼';
+  color: var(--dark-green-t);
+}
+
+.seta:hover::before{
+    color: var(--dark-green);
+}
+
+.seta:hover{
+  background-color: #71847044;
+}
+
+.down::before{
+  content:'▼';
+
+
+}
+
+.up::before{
+    content: '▲';
+}
+
+/* .down{
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+
+.up{
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+} */
 
 /******** Lista de numeros de páginas *********/
 .n-page-ct{
