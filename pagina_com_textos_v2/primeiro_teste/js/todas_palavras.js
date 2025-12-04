@@ -693,7 +693,7 @@ function displayData(wordData, textData, stoplist) {
                                             </div>
                                       </div>`;
 
-      ct_head_list.style.backgroundColor = "yellow";
+      //ct_head_list.style.backgroundColor = "yellow";
 
       /*:::::  Botoes  :::::*/
       const palSubmitButton = document.querySelector("#pal-submit")
