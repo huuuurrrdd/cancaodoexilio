@@ -123,6 +123,9 @@ function pesquisa_livre(){
 
 /*::::::::::: Textos upperCase :::::::::::*/
   function titleCase(str, stopwords){
+        
+    //if (str === null || str === undefined) return '';
+    str = String(str);
     let splitStr = str.toLowerCase().split(' ')
     if(!stopwords.includes(splitStr)){}
     for(let i = 0; i < splitStr.length; i++){ // não considerar as stopwords
@@ -133,4 +136,6 @@ function pesquisa_livre(){
         }
     }
     return splitStr.join(' '); 
+
+        
   }   

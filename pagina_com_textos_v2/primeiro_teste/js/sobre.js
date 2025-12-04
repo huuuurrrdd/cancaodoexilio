@@ -22,6 +22,6 @@ conteudo.innerHTML = `<p>Em 1843, na cidade de Coimbra, o estudante brasileiro A
                         Algumas dessas respostas enaltecem a cultura e a geografia do Brasil, outras criticam e expõem os problemas do país.
                         </p>
                         <p>Esta plataforma visa ser uma ferramenta de exploração do conjunto dos vários textos e palavras que foram escritos ao longo dos anos.</p>
-                        <p>O ponto principal de ligação entre os poemas são as palavras que os compõem. É através das palavras que se procuram novos textos e novas palavras.</p>
+                        <p><br>O ponto principal de ligação entre os poemas são as palavras que os compõem. É através das palavras que se procuram novos textos e novas palavras.</p>
                         <p>As categorias de palavras, pretendem agrupar determinadas palavras ou expressões encontradas nos textos e agrupá-las em temas específicos 
                         e compreender de que forma evolui a presença destas categorias nos textos ao longo do tempo. As categorias atualmente presentes são: locais, fauna, flora, anos e autores.</p>`
