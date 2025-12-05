@@ -59,18 +59,16 @@ fetchData();
 
 function displayData(wordData, textData, stoplist) {
 
+    /***********************  SET PALAVRAS ORIGINAL  ****************************/
     //extraindo palavras do texto original //remover pontuação + /n ...
     let textoOriginal = textData[0].texto_completo.replace(/[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~–]/g, '').replace(/[\r\n]+/gm, " ")
     //console.log(textoOriginal)
-    
     let arrayPalavrasOriginal = textoOriginal.split(" ")
     //console.log(arrayPalavrasOriginal)
-
     const setPalOr = new Set(arrayPalavrasOriginal)
     console.log(setPalOr) // funciona!
 
     const setPalOr_final = new Set()
-    
     const palavrasLista = wordData.palavras.map(obj => obj.palavra.toLowerCase())
 
     setPalOr.forEach(palavra => {
@@ -78,10 +76,10 @@ function displayData(wordData, textData, stoplist) {
         setPalOr_final.add(palavra.toLowerCase())
       }
     })
-
     console.log(setPalOr_final) // set com palavras do original
+    
+    /*****************************************************************************/
 
-    //let palavras_original = 
 
     function frequencia_por_anos(Idx_Palavra) { // este IdPalavra deve ser um indice
         //ACEDENDO DADOS DE NUMERO DE PALAVRAS POR ANO
@@ -112,22 +110,22 @@ function displayData(wordData, textData, stoplist) {
 
         //ver este detalhe
         for (let i = 0; i < anos_pal.length; i++) {
-        if (i === 0 || anos_pal[i] == anos_pal[i - 1]) {
-            gAtual_anos.push(anos_pal[i]); //igual ao anterior, adiciona
+          if (i === 0 || anos_pal[i] == anos_pal[i - 1]) {
+              gAtual_anos.push(anos_pal[i]); //igual ao anterior, adiciona
 
-            gAtual_freq.push(frequencia[i]); // adiciona para ids e frequencias
-            gAtual_id.push(id_textos[i]);
-        } else {
-            ag_anos.push(gAtual_anos); // push grupo finalizado
-            gAtual_anos = [anos_pal[i]]; // começa novo grupo
+              gAtual_freq.push(frequencia[i]); // adiciona para ids e frequencias
+              gAtual_id.push(id_textos[i]);
+          } else {
+              ag_anos.push(gAtual_anos); // push grupo finalizado
+              gAtual_anos = [anos_pal[i]]; // começa novo grupo
 
-            //o mesmo para ids e frequencias
-            ag_freq.push(gAtual_freq);
-            gAtual_freq = [frequencia[i]];
+              //o mesmo para ids e frequencias
+              ag_freq.push(gAtual_freq);
+              gAtual_freq = [frequencia[i]];
 
-            ag_id.push(gAtual_id);
-            gAtual_id = [id_textos[i]];
-        }
+              ag_id.push(gAtual_id);
+              gAtual_id = [id_textos[i]];
+          }
         }
 
         //push ultimo grupo (n percebo a parte do grupoatual.length)
@@ -242,8 +240,11 @@ function displayData(wordData, textData, stoplist) {
 
   // criar objeto de stopWordList (index: valor; palavra: valor)
   // com set para ser mais rapido e eficiente
+  // setPalOr_final
   const stopSet = new Set(stoplist);
   const stopListOBJ = []; // ARRAY DE OBJETO DE TODAS AS PALAVRAS COM RESPETIVO INDEX
+  const originOBJ = []
+
   for (let i = 0; i < wordData.palavras.length; i++) {
     const palavra = wordData.palavras[i].palavra;
     if (stopSet.has(palavra)) {
@@ -252,9 +253,18 @@ function displayData(wordData, textData, stoplist) {
         palavra: palavra,
       });
     }
-  }
 
+    if(setPalOr_final.has(palavra)){
+      originOBJ.push({
+        indice: i,
+        palavra: palavra,
+      })
+    }
+
+  }
+ 
   const stopIndices = new Set(stopListOBJ.map((obj) => obj.indice)); // JUNTA NUM SET OS INDEX DAS PALAVRAS QUE SÃO STOPWORDS
+  const origIndices = new Set(originOBJ.map((obj) => obj.indice))
     ////****************  Até aqui parece ok  ************** */
 
   // JUNTANDO TUDO NUM ARRAY DE ANOS
@@ -262,18 +272,25 @@ function displayData(wordData, textData, stoplist) {
   const start = 1846;
   const end = 2025;
 
+
   let n_palavras;
-  let todosOBJpalavrasSStopwords;
+  let todosOBJpalavrasSStopwords; // versao stopwords
+
+  let n_palavrasSorig;
+  let todosOBJpalavrasSStopwordsEorig;// versao sem palavras original
+
   let anos_grafico = [];
   //Criando um array de anos
   let todas_as_palavrasFreq_p_ano = [];
+  let todas_as_palavrasFreq_p_ano_orig = []; // versao sem palavras original
+
   for (let y = start; y <= end; y++) {
     anos_grafico.push(y);
     let lista_combinada_s_stopwords = []; // OBJETO COM TODAS AS PALAVRAS E FREQUENCIAS NUM ANO
+    let lista_comb_sPalOriginal = [] // sem palavras do original
 
     for (let i = 0; i < wordData.palavras.length; i++) {
       if (!stopIndices.has(i)) {
-        // se não tem indice i
         lista_combinada_s_stopwords.push({
           indice: i,
           freq: arrayTodosOBJpalavras[i][y].freq || 0,
@@ -282,20 +299,38 @@ function displayData(wordData, textData, stoplist) {
           //valor do logaritmo da divisao
         });
       }
+
+      if (!stopIndices.has(i) && !origIndices.has(i)) {
+        lista_comb_sPalOriginal.push({
+          indice: i,
+          freq: arrayTodosOBJpalavras[i][y].freq || 0,
+          nTextos: arrayTodosOBJpalavras[i][y].nTextos || 0,
+          logFreqPTexto: ((arrayTodosOBJpalavras[i][y].freq)/(arrayTodosOBJpalavras[i][y].nTextos)||0)//Math.log((arrayTodosOBJpalavras[i][y].freq)/(arrayTodosOBJpalavras[i][y].nTextos) || 0)
+          //valor do logaritmo da divisao
+        });
+      }
+
+      
     }
 
     console.log( Math.log(2)) // parece correto
 
-    todosOBJpalavrasSStopwords = lista_combinada_s_stopwords;
+    todosOBJpalavrasSStopwords = lista_combinada_s_stopwords; 
     n_palavras = lista_combinada_s_stopwords.length;
 
-    // // 2º ordena (n percebo a logica desta ordenacao...)
-    // lista_combinada_s_stopwords.sort((a, b) => b.freq - a.freq);
-    // let maior_frequencia_do_ano = lista_combinada_s_stopwords[0]?.freq || 0;
+    //versão sem palavras originais
+    todosOBJpalavrasSStopwordsEorig = lista_comb_sPalOriginal // versão sem palavras do original
+    n_palavrasSorig = lista_comb_sPalOriginal.length
+
 
     // versao nova (pode estar mal)
     lista_combinada_s_stopwords.sort((a, b) => b.logFreqPTexto - a.logFreqPTexto);
     let maior_frequencia_do_ano = lista_combinada_s_stopwords[0]?.logFreqPTexto || 0;
+
+    //versão sem palavras do original
+    lista_comb_sPalOriginal.sort((a, b)=> b.logFreqPTexto - a.logFreqPTexto)
+    let maior_frequencia_do_anoSorig = lista_comb_sPalOriginal[0]?.logFreqPTexto || 0;
+
 
   //   let lista_indices_com_maior_frequencia = lista_combinada_s_stopwords
   //     // itera sobre todos os elementos do array, mantendo apenas os objetos em que a condição é verdadeira
@@ -325,6 +360,12 @@ function displayData(wordData, textData, stoplist) {
       .filter((obj) => obj.logFreqPTexto === maior_frequencia_do_ano)
       .map((obj) => obj.indice); // percorre cada elemento do array e transforma em algo diferente, devolvendo um array
 
+    
+    let lista_indices_com_maior_frequencia_orig = lista_comb_sPalOriginal //sem palavras do original
+      .filter((obj) => obj.logFreqPTexto === maior_frequencia_do_anoSorig)
+      .map((obj) => obj.indice)
+
+
     if (lista_indices_com_maior_frequencia.length != n_palavras) {
       todas_as_palavrasFreq_p_ano.push({
         ano: y,
@@ -340,6 +381,24 @@ function displayData(wordData, textData, stoplist) {
         indices_palavras_maior_freq: "",
       });
     }
+
+
+    if(lista_indices_com_maior_frequencia_orig.length != n_palavrasSorig) {  //sem palavras do original
+      todas_as_palavrasFreq_p_ano_orig.push({
+        ano: y,
+        lista: lista_comb_sPalOriginal,
+        maior_freq: maior_frequencia_do_anoSorig,
+        indices_palavras_maior_freq: lista_indices_com_maior_frequencia_orig,
+      })
+    } else {
+      todas_as_palavrasFreq_p_ano_orig.push({
+        ano:y,
+        lista: lista_comb_sPalOriginal,
+        maior_freq: "",
+        indices_palavras_maior_freq: "",
+      })
+    }
+
   }
 
 
@@ -363,6 +422,30 @@ function displayData(wordData, textData, stoplist) {
       palavras_grafico.push(grupo.join(", "));
     } else {
       palavras_grafico.push("");
+    }
+    //console.log(`Ano: ${anoData.ano}, Length: ${anoData.indices_palavras_maior_freq.length}`)
+  }
+
+  // versão sem palavras do original
+  let freq_grafico_orig = []
+  let palavras_grafico_orig = []
+
+  for(let i = 0; i < todas_as_palavrasFreq_p_ano_orig.length; i++){
+    const anoData = todas_as_palavrasFreq_p_ano_orig[i]
+    freq_grafico_orig.push(anoData.maior_freq)
+
+    if(anoData.indices_palavras_maior_freq.length != 0){
+      // n coloco idx -> n foi utilizado
+
+      let grupo = []
+
+      for(let j = 0; j < anoData.indices_palavras_maior_freq.length; j++){
+        let idxj = anoData.indices_palavras_maior_freq[j]
+        grupo.push(wordData.palavras[idxj].palavra)
+      }
+      palavras_grafico_orig.push(grupo.join(", "))
+    } else {
+      palavras_grafico_orig.push("")
     }
     //console.log(`Ano: ${anoData.ano}, Length: ${anoData.indices_palavras_maior_freq.length}`)
   }
@@ -484,7 +567,7 @@ function displayData(wordData, textData, stoplist) {
       datasets: [
         {
           label: "Palavras com maior frequencia em cada ano",
-          data: freq_grafico,
+          data: freq_grafico_orig,
           borderWidth: 1,
         },
       ],
@@ -495,8 +578,8 @@ function displayData(wordData, textData, stoplist) {
           callbacks: {
             label: function (context) {
               const i = context.dataIndex;
-              const palavra = palavras_grafico[i];
-              const freq = freq_grafico[i];
+              const palavra = palavras_grafico_orig[i];
+              const freq = freq_grafico_orig[i];
               return `${palavra}: ${freq}`;
             },
           },
