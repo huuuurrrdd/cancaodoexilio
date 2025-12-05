@@ -14,7 +14,7 @@ function fetchData() {
     })
     .then((data) => {
       wordData = data; //Guarda dict_pal em wordData
-      return fetch("./t3_textos_loc_fauna_flora.json"); // fetch json dos textos
+      return fetch("./t4_textos_loc_fauna_flora.json"); // fetch json dos textos
     })
     .then((response) => {
       // mensagem de erro
@@ -59,6 +59,29 @@ fetchData();
 
 function displayData(wordData, textData, stoplist) {
 
+    //extraindo palavras do texto original //remover pontuação + /n ...
+    let textoOriginal = textData[0].texto_completo.replace(/[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~–]/g, '').replace(/[\r\n]+/gm, " ")
+    //console.log(textoOriginal)
+    
+    let arrayPalavrasOriginal = textoOriginal.split(" ")
+    //console.log(arrayPalavrasOriginal)
+
+    const setPalOr = new Set(arrayPalavrasOriginal)
+    console.log(setPalOr) // funciona!
+
+    const setPalOr_final = new Set()
+    
+    const palavrasLista = wordData.palavras.map(obj => obj.palavra.toLowerCase())
+
+    setPalOr.forEach(palavra => {
+      if(!stoplist.includes(palavra.toLowerCase()) || palavrasLista.includes(palavra.toLowerCase())){
+        setPalOr_final.add(palavra.toLowerCase())
+      }
+    })
+
+    console.log(setPalOr_final) // set com palavras do original
+
+    //let palavras_original = 
 
     function frequencia_por_anos(Idx_Palavra) { // este IdPalavra deve ser um indice
         //ACEDENDO DADOS DE NUMERO DE PALAVRAS POR ANO
