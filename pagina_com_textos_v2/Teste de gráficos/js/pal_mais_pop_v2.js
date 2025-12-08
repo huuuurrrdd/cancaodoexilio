@@ -1,63 +1,7 @@
 //const { useCallback } = require("react");
 
-//*************  Acesso a dados  ****************/
-function fetchData() {
-  //stopList para poder não incluir stopwords nas palavras mais populares
-  let wordData, textData, stoplist, lemmasData;
-
-  //dicionario json
-  fetch("./Dict_palavras_lemas_v0004.json")
-    .then((response) => {
-      if (!response.ok) {
-        // menssagem de erro
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      return response.json(); // return data
-    })
-    .then((data) => {
-      wordData = data; //Guarda dict_pal em wordData
-      return fetch("./t4_textos_loc_fauna_flora.json"); // fetch json dos textos
-    })
-    .then((response) => {
-      // mensagem de erro
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      return response.json(); // return data
-    })
-    .then((data) => {
-      textData = data; // info dos textos a conter as coordenadas geográficas
-      return fetch("./Dict_lemas_palavras_v0002.json");
-    })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      return response.json(); // return data
-    })
-    .then((data) => {
-      lemmasData = data; // guarda json dos lemas
-      return fetch("./stopwords/portuguese");
-    })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      return response.text(); // return stopwords text
-    })
-    .then((data) => {
-      stoplist = data
-        .split("\n")
-        .map((s_word) => s_word.trim())
-        .filter((s_word) => s_word.length > 0);
-
-      //funcao com os 3 dados dos 3 ficheiros
-      displayData(wordData, textData, stoplist, lemmasData);
-    })
-    .catch((error) => console.error("Failed to fetch data", error));
-}
-
-fetchData();
+/*************  variaveis globais  ****************/
+let globalWordData, globalTextData, globalStoplist, globalLemmasData;
 
 // configuração do objeto para análise flexivel
 const Config = {
@@ -68,42 +12,79 @@ const Config = {
     useLog: false // aplica ou não logaritmo
 }
 
+
+//*************  Acesso a dados  ****************/
+function fetchData() {
+  //dicionario json
+  fetch("./Dict_palavras_lemas_v0004.json")
+    .then(response => {
+      if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+      return response.json(); 
+    })
+    .then(data => {
+      globalWordData = data; 
+      return fetch("./t4_textos_loc_fauna_flora.json");
+    })
+    .then(response => {
+      if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+      return response.json(); // return data
+    })
+    .then(data => {
+      globalTextData = data; // info dos textos a conter as coordenadas geográficas
+      return fetch("./Dict_lemas_palavras_v0002.json");
+    })
+    .then(response => {
+      if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+      return response.json(); // return data
+    })
+    .then(data => {
+      globalLemmasData = data; // guarda json dos lemas
+      return fetch("./stopwords/portuguese");
+    })
+    .then(response => {
+      if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+      return response.text(); // return stopwords text
+    })
+    .then(data => {
+      globalStoplist = data
+        .split("\n")
+        .map((s_word) => s_word.trim())
+        .filter((s_word) => s_word.length > 0);
+
+      displayData(globalWordData, globalTextData, globalStoplist, globalLemmasData);
+      criaBotoesControlo()
+      console.log('Dados carregados! Use os botões para mudar a viualização')
+    })
+    .catch(error => console.error("Failed to fetch data", error));
+}
+
+
+//*************  Main Display Function  ****************/
 function displayData(wordData, textData, stoplist, lemmasData) {
     
     const originalWords = extractOriginalWords(textData[0].texto_completo) // palavras do original
     const wordFrequencies = buildWordFrequencies(wordData, textData, Config.timeRange)
+    const totalWordsPerYear = calculateTotalWordsPerYear(textData, Config.timeRange)
     const exclusionSets = createExclusionSets(wordData, stoplist, originalWords, Config.excludeGroups)
-
-    const aggregatedData = aggregateByTimePeriod(
-        wordFrequencies,
-        wordData,
-        exclusionSets,
-        Config
-    )
+    const aggregatedData = aggregateByTimePeriod(wordFrequencies, wordData, exclusionSets, Config, totalWordsPerYear)
 
     // renderizar gráfico
     renderChart(aggregatedData, Config)
 }
 
+//*************  funções auxiliares  ****************/
 //extrair e limpar palavras do texto original
 function extractOriginalWords(text) {
     const cleaned = text
         .replace(/[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~–]/g, '')
         .replace(/[\r\n]+/gm, ' ')
 
-    const words = cleaned.split(' ').filter(w => w.length > 0)
-    return new Set(words.map(w => w.toLowerCase()))
+    return new Set(cleaned.split(' ').filter(w => w.length > 0).map(w => w.toLowerCase()))
 }
 
 //criar dados de frequencia para cada palavra ao longo de todos os anos
 function buildWordFrequencies(wordData, textData, timeRange){
-    const frequencies = []
-
-    for(let i = 0; i < wordData.palavras.length; i++){ //reune todas as palavras
-        frequencies[i] = buildWordYearData(wordData.palavras[i], textData, timeRange)
-    }
-
-    return frequencies
+    return wordData.palavras.map(word => buildWordYearData(word, textData, timeRange))
 }
 
 // criar dados ano por ano para cada palavra
@@ -112,7 +93,7 @@ function buildWordYearData(wordObj, textData, timeRange){
 
     //Inicia toddos os anos com 0 ////Porquê
     for(let year = timeRange.start; year <= timeRange.end; year++){
-        yearData[year] = {freq:0, nTexts:0, nome:wordObj.palavra} // para reiniciar limpo?
+        yearData[year] = { freq:0, nTexts:0, nome:wordObj.palavra } // para reiniciar limpo?
     }
 
     //colocar os dados
@@ -135,6 +116,26 @@ function buildWordYearData(wordObj, textData, timeRange){
         }
     })
     return yearData
+}
+
+//calcula total de palavras por ano por todos os textos
+function calculateTotalWordsPerYear(textData, timeRange){
+    const totalWords = {}
+    
+    //inicia todos os anos
+    for(let year = timeRange.start; year <= timeRange.end; year++){
+        totalWords[year] = 0
+    }
+
+    //soma contagem de palavras de todos os textos
+    textData.forEach(text => {
+        const year = text.date_of_publication
+        if(totalWords[year] !== undefined && text.n_palavras){
+            totalWords[year] += text.n_palavras
+        }
+    })
+
+    return totalWords
 }
 
 // Cria sets de indices de palavras para excluir
@@ -183,10 +184,10 @@ function calculateMetric(freq, nTexts, totalWords, config){
 
     switch (config.frequencyMetric){
         case 'perText':
-            value = nTexts > 0 ? freq/nTexts : 0 //divide pelos textos
+            value = nTexts > 0 ? freq / nTexts : 0 //divide pelos textos
             break
         case 'perTotalWords':
-            value = totalWords > 0 ? freq/totalWords : 0 //divide pelas palavras
+            value = totalWords > 0 ? freq / totalWords : 0 //divide pelas palavras (total de palavras naquele periodo?)
             break
         case 'raw':
         default:
@@ -198,7 +199,7 @@ function calculateMetric(freq, nTexts, totalWords, config){
 }
 
 // Junta frequencias de palavras com base em periodo de tempo (anos ou decadas)
-function aggregateByTimePeriod(wordFrequencies, wordData, exclusionSet, config){
+function aggregateByTimePeriod(wordFrequencies, wordData, exclusionSet, config, totalWordsPerYear){
     const periods = new Map()
 
     // Obtém cada um dos periodos
@@ -218,7 +219,7 @@ function aggregateByTimePeriod(wordFrequencies, wordData, exclusionSet, config){
 
             let totalFreq = 0
             let totalTexts = 0
-            let totalWords = 0 // pode ser calculado por textData se necessário
+            let totalWords = 0 // pode ser calculado por textData se necessário (pode tbm ser calculado a soma total)
 
             // junta todos os anos neste periodo
             for(let year = config.timeRange.start; year <= config.timeRange.end; year++){
@@ -226,6 +227,7 @@ function aggregateByTimePeriod(wordFrequencies, wordData, exclusionSet, config){
                     const yearData = wordFrequencies[wordIdx][year]
                     totalFreq += yearData.freq
                     totalTexts += yearData.nTexts
+                    totalWords += totalWordsPerYear[year] || 0
                 }
             }
 
@@ -236,6 +238,7 @@ function aggregateByTimePeriod(wordFrequencies, wordData, exclusionSet, config){
                 palavra: wordData.palavras[wordIdx].palavra,
                 freq: totalFreq,
                 nTexts: totalTexts,
+                totalWords: totalWords,
                 metric: metric
             })
             
@@ -248,11 +251,12 @@ function aggregateByTimePeriod(wordFrequencies, wordData, exclusionSet, config){
         const topWords = wordStats
             .filter(w => w.metric === maxMetric)
             .map(w => w.palavra)
+            .join(', ')
 
         periods.set(period, {
             wordStats,
             maxMetric,
-            topWords: topWords.join(', ')
+            topWords
         })
     })
 
@@ -316,16 +320,90 @@ function renderChart(aggregatedData, config) {
     })
 }
 
-//fiquei aqui!!!!!
-//Exemplo: mudar configuração e voltar a correr
-function updateConfig(newConfig) {
-    Object.assign(Config, newConfig)
+//mudar configuração e voltar a correr
+//função guardada globalmente
 
-    //limpa graficos existentes e volta a renderizar
+function updateConfig(newConfig){
+    
+    Object.assign(Config, newConfig)
+    //limpa gráficos existentes e volta a renderizar
     document.querySelector('.words-container')?.remove()
-    displayData(wordData, textData, stopList)
+
+    //usa variaveis globais
+    if(globalWordData && globalTextData && globalStoplist){
+        displayData(globalWordData, globalTextData, globalStoplist, globalLemmasData)
+    } else {
+        console.error('Dados ainda não foram carregados. Chamar fetchData() primeiro')
+    }
 }
 
-updateConfig({ timeGrouping: 'decade' })
-// updateConfig({ frequencyMetric: 'raw', excludeGroups: ['stopwords'] });
-// updateConfig({ useLog: true });
+
+//*************  Controlos UI - funções auxiliares ****************/
+function criaGrupoBotoes(label, buttons) { // função para criar elementos html
+
+    const div = document.createElement('div')
+    div.className = 'button-group'
+    div.innerHTML = `${label}`
+
+    buttons.forEach(btn => {
+        const button = document.createElement('button')
+        button.textContent = btn.text
+        button.onclick = btn.action
+        div.appendChild(button)
+    })
+
+    return div
+}
+    
+
+//*************  Controlos UI criação ****************/
+// Exemplo de uso - cria controlo de botões após carregamento dos dados
+function criaBotoesControlo(){
+
+    const controlsContainer = document.createElement('div') ///contentor geral
+    controlsContainer.className = 'controls-container'
+    
+    document.body.insertBefore(controlsContainer, document.querySelector('.words-container'))
+
+    const title = document.createElement('h2')
+    title.textContent = 'Controles de Análise'
+    title.className = 'titulo'
+    controlsContainer.appendChild(title)
+
+    /********************  Agrupamento de tempo  ********************/
+    controlsContainer.appendChild(
+        criaGrupoBotoes('Agrupamento temporal', [
+            { text: 'Por Ano', action: () => updateConfig({ timeGrouping: 'year' }) },
+            { text: 'Por Década', action: () => updateConfig({ timeGrouping: 'decade' }) }
+        ]))
+
+
+    /********************  Metricas para frequencia  ********************/
+    controlsContainer.appendChild(
+        criaGrupoBotoes('Métrica para frequência', [
+            { text: 'Por Texto', action: () => updateConfig({ frequencyMetric: 'perText' }) },
+            { text: 'Por Palavras', action: () => updateConfig({ frequencyMetric: 'perTotalWords' }) }, // n está funcional
+            { text: 'Frequencia apenas', action: () => updateConfig({ frequencyMetric: 'raw' }) }
+        ]))
+
+
+    /********************  Exclusão de palavras  ********************/    
+    controlsContainer.appendChild(
+        criaGrupoBotoes('Palavras do texto original', [
+            { text: 'Excluir', action: () => updateConfig({ excludeGroups: ['stopwords', 'original'] }) },
+            { text: 'Incluir', action: () => updateConfig({ excludeGroups: ['stopwords'] }) }
+        ]))
+
+    /********************  toogle logaritmo  ********************/ 
+    controlsContainer.appendChild(
+        criaGrupoBotoes('Escala logaritma:', [
+            { text: 'Ativar', action: () => updateConfig({ useLog: true }) },
+            { text: 'Desativar', action: () => updateConfig({ useLog: false }) }
+        ]))
+
+
+}
+
+
+//inicia a aplicação
+fetchData()

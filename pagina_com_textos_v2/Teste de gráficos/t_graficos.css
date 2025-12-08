@@ -1,0 +1,20 @@
+
+
+
+
+.controls-container{
+    margin: 20px;
+    padding: 20px;
+    background: #f5f5f5;
+    border-radius: 8px;
+}
+
+.titulo, .grupo-div, .metric-div, .exclusion-div{
+    margin-bottom: 15px;
+}
+
+.preset1{
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 2px solid gray
+}
