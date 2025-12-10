@@ -1,0 +1,384 @@
+/*
+    Alguns recursos uteis:
+        - https://css-tricks.com/snippets/css/a-guide-to-flexbox/ (flexbox)
+        - https://cssgrid-generator.netlify.app/ 
+
+
+*/
+
+/* Breakpoints:
+    - 0-480: smaller smartphones
+    - 481-768: tablets & larger smartphones
+    - 769-1279: Laptops, larger tablets in landscape, small desktops
+    - 1280+: Larger desktops and monitors
+
+*/
+
+
+
+:root{
+  --dark-green: #223F29;
+  --dark-green-t: #223f29a4;
+  --dark-green-t-o: #d2e6d1;
+  --light-yellow: #FFFEF2;
+  --light-yellow-d: #F6E27F;
+  --brown:#251605;
+  --brown-light:#ebe5df;
+  --blue: #aad3df;
+  --h1-texto: 4rem;
+  --h1-size: 3.5rem;
+}
+
+html, body{
+    padding: 0;
+    margin: 0;
+    background-color: var(--light-yellow);
+    color: var(--dark-green);
+}
+
+*{
+  scroll-behavior: smooth
+}
+
+
+.a, a:link, a:hover, a:visited{
+  text-decoration: none;
+  color: var(--dark-green)
+}
+
+
+.page-title, h1{
+    font-family:"Oswald";
+    font-size: var(--h1-size);
+}
+
+#subtitulo{
+  margin-bottom: 0;
+}
+
+h2{
+  font-family:"Oswald";
+}
+
+
+
+.margem-ct{
+    margin:auto;
+    width: calc(7/13*100%);
+}
+
+
+#map {
+  margin: auto;
+  width: 100%;
+  height: 70vh; 
+}
+
+/***** Nav *****/
+#menuToggle
+{
+  display: block;
+  /* You can also use relative/absolute here if you want to stay on the top */
+  position: fixed;
+  top: 50px;
+  right: 50px;
+  
+  z-index: 1001;
+  
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+#menuToggle a
+{
+  text-decoration: none;
+  color: var(--dark-green);
+  padding-right: 5px;
+  padding-left: 5px;
+  
+  /* transition: color 0.3s ease; */
+  /* transition: background-color 0.3s ease; */
+}
+
+#menuToggle a:hover{
+  color: var(--light-yellow);
+  background-color: var(--dark-green);
+  padding-right: 5px;
+  padding-left: 5px;
+}
+
+
+#menuToggle input
+{
+  display: block;
+  width: 40px;
+  height: 32px;
+  position: absolute;
+  top: -7px;
+  right: -5px;
+  
+  cursor: pointer;
+  
+  opacity: 0; 
+  z-index: 1002; /* and place it over the hamburger */
+  
+  -webkit-touch-callout: none;
+}
+
+/*
+ * Just a quick hamburger
+ */
+#menuToggle span{
+  display: block;
+  width: 33px;
+  height: 4px;
+  margin-bottom: 5px;
+  position: relative;
+  
+  background: var(--dark-green-t-o); /*hamburger inicial*/
+  
+  z-index: 1001;
+  
+  transform-origin: 4px 0px;
+  
+  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+              background-color 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+              opacity 0.55s ease;
+}
+
+#menuToggle span:first-child{
+  transform-origin: 0% 0%;
+}
+
+#menuToggle span:nth-last-child(2){
+  transform-origin: 0% 100%;
+}
+
+
+#menuToggle input:checked ~ span{
+  opacity: 1;
+  transform: rotate(45deg) translate(-2px, -1px);
+  background: var(--dark-green);
+}
+
+#menuToggle input:hover ~ span{
+  background: var(--dark-green);
+}
+
+
+#menuToggle input:checked ~ span:nth-last-child(3){
+  opacity: 0;
+  transform: rotate(0deg) scale(0.2, 0.2);
+}
+
+#menuToggle input:checked ~ span:nth-last-child(2)
+{
+  transform: rotate(-45deg) translate(0, -1px);
+}
+
+#menu
+{
+  font-family: "Oswald";
+  position: absolute;
+  max-width: 400px;
+  width: 100vw;
+  min-height: 105vh;
+  margin: -100px 0 0 -200px;
+  padding: 50px;
+  padding-top: 125px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  background: var(--dark-green-t-o);
+  list-style-type: none;
+  -webkit-font-smoothing: antialiased;
+  /* to stop flickering of text in safari */
+  
+  transform-origin: 0% 0%;
+  transform: translate(100%, 0);
+  
+  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+}
+
+#menu li
+{
+  padding: 10px 0;
+  font-size: 22px;
+}
+
+#menu li label
+{
+  cursor: pointer;
+}
+
+/*
+ * And let's slide it in from the left
+ */
+#menuToggle input:checked ~ ul
+{
+  transform: none;
+}
+
+
+
+/****** form de pesquisa *******/
+.input-nav[type=text]{
+  width: 140px;
+  height: 30px;
+}
+
+.submit-nav{ /*button*/
+  width: 20px;
+  background-color: var(--light-yellow);
+  padding: 5px;
+}
+
+input[type=text]{
+  background-color: var(--light-yellow);
+  /* border-radius: 0px; */
+  border: 1px solid var(--dark-green);
+}
+
+
+
+.ham-box{
+  display: none;
+}
+
+/***************** Setinha ********************/
+.seta{
+  grid-area: arrow;
+  height: auto;
+  width: auto;
+  cursor: pointer;
+  margin-top: 5px;
+  /* background-color: var(--dark-green); */
+}
+
+.seta::before{
+  content: '▼';
+  color: var(--dark-green-t);
+}
+
+.seta:hover::before{
+    color: var(--dark-green);
+}
+
+.seta:hover{
+  background-color: #71847044;
+}
+
+.down::before{
+  content:'▼';
+
+
+}
+
+.up::before{
+    content: '▲';
+}
+
+/* .down{
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+
+.up{
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+} */
+
+/******** Lista de numeros de páginas *********/
+.n-page-ct{
+    display: flex;
+    flex-wrap: nowrap;
+    column-gap: 1px;
+    justify-content: center;
+    align-items: center;
+    margin:auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    /* width: calc(9/13*100%); */
+    position: sticky;
+    bottom: 0px;
+    background-color: var(--light-yellow);
+    width: 70vw;
+}
+
+.n-page-i{
+    width: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    cursor: pointer;
+    color: var(--dark-green);
+    text-align: center;
+}
+
+
+@media screen and (max-width: 768px) {
+
+  nav .input-nav[type=text]{
+    float: none;
+  }
+
+  .a-nav{
+    display: none;
+  }
+
+  .a-nav, nav, .subnav{
+    float: none;
+    display: block;
+    text-align: center;
+    width: 100%;
+  }
+
+  .form-nav{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+/* .ham-box{
+  position: absolute;
+  right: 20px;
+  display: block;
+  background-color: black;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+} */
+
+
+  .a-nav, .form-nav, .subnav{
+    padding: 10px 0;
+  }
+
+}
+
+/*
+  LISTA TAREFAS:
+  - (feito) Remover parte de link
+  - (feito) Remover bullet points
+  - (feito) Colocar caixa grande à volta de cada item
+  - (feito) Efeito para hover em cada caixa
+  - Experimentar fazer toda uma nova navegação inspirada em https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_searchbar2
+
+  - Pesquisa de palavras:
+    - Ajeitar caixa de pesquisa
+    - Ajeitar input
+    - (feito) Colocar imagem de lupa na pesquisa
+    - Caixa para apresentar resultados
+    - Fazer o mesmo que na página todas palavras
+    - links em cada palavra para acesso a pág da palavra
+
+  - Colocar versão mobile (hamburguer)
+
+  (depois para págna de textos:
+    - Destacar menos as palavras clicáveis
+    - Retirar contorno à caixa do texto
+  )
+
+
+
+
+
+*/

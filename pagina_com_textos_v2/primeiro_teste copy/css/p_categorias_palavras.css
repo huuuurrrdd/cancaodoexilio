@@ -1,0 +1,62 @@
+/* .categorias-container{
+    margin:auto;
+    width: 70%;
+} */
+
+/* .page-title{
+    margin:auto;
+    width: calc(7/13*100%);
+} */
+
+.categorias-sections{
+    display: grid;
+    grid-template-columns: repeat(13, 1fr);
+    grid-auto-rows: 1fr;
+    grid-column-gap: 10px;
+    grid-row-gap: 40px;
+}
+
+.cat-section{
+    grid-column: span 3; /* Each item spans 3 columns */
+}
+
+.cat-section:nth-child(3n+1){ /* 1st, 4th, 7th items */
+    grid-column: 3 / 6;
+}
+
+.cat-section:nth-child(3n+2){ /* 2nd, 5th, 8th items */
+    grid-column: 6 / 9;
+}
+
+.cat-section:nth-child(3n) { /* 3rd, 6th, 9th items */
+    grid-column: 9 / 12;
+}
+
+/* .cat-section-Locais { grid-area: 1 / 1 / 7 / 4; }
+.cat-section-Fauna { grid-area: 1 / 4 / 7 / 7; }
+.cat-section-Flora { grid-area: 1 / 7 / 7 / 10; }
+.cat-section-Autores { grid-area: 8 / 1 / 14 / 4; }
+.cat-section-Anos { grid-area: 8 / 4 / 14 / 7; } */
+/*.cat-section- { grid-area: 8 / 7 / 14 / 10; }*/
+
+
+/*Geral*/
+/* .categorias-sections{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(22.25rem, 100%), 1fr));
+    grid-gap: 1rem;
+} */
+
+/*Concreto*/
+/* .cat-section{
+    height: 400px;
+    width: 500px;
+} */
+
+
+
+/*
+    - Esticar o gráfico verticalmente e horizontalmente (ver como funciona min-max)
+
+
+*/
