@@ -35,10 +35,28 @@ nav.innerHTML = `
 
 
 
-// pesquisa_livre()
+ 
 
 
 
+ /******** Imagem pesquisa ********/ 
+    let lupa = document.createElement('img')
+    lupa.src = "./imagens/mlupa1.svg"
+    lupa.className = "lupa-icon"
+    nav.appendChild(lupa)
+
+    pesquisa_livre()
+
+    if(lupa.style.display == "none"){
+
+    }
+    
+    lupa.addEventListener("click", (e) => {
+        lupa.style.display = "none"
+        document.querySelector(".form-nav").style.display = "flex"
+
+        
+    })
 
 
 // criar uma caixa para colocar palavras (display absolute)
@@ -55,6 +73,9 @@ function pesquisa_livre(){
     document.querySelector("nav").appendChild(form)
     form.className = "form-nav"
 
+   
+
+
     /********** Input search ***********///está funcionall
     let input_search = document.createElement("input")
     form.appendChild(input_search)
@@ -64,25 +85,42 @@ function pesquisa_livre(){
     input_search.placeholder = "pesquisa por palavra"
     input_search.name = "palavra" //importante!!
 
-    /********* Button submit **************/ 
+
+     /********* Button submit **************/ 
     let bt_search = document.createElement("input")
     form.appendChild(bt_search)
     bt_search.className = "submit-nav"
     bt_search.type = "image"
-    bt_search.src = "./imagens/lupa.svg"
+    bt_search.src = "./imagens/mlupa1.svg"
     bt_search.name = "submit"
     bt_search.alt = "submit"
 
-    form.addEventListener("image", (e) => {
-        e.preventDefault() // impde envio do formulario e controla o redirecionamento
+    // /********* Cruz **************/ 
+    let close = document.createElement("div")
+    close.className = "close-search"
+    form.appendChild(close)
 
-        const palavra = input_search.value.trim() //remove espaços desnecessários ou outros
+    close.innerHTML = "<span></span> <span></span>"
 
-        if(palavra.length > 0) { // redirecionamento n esta a funcionar
-            //redirecionando url
-            window.location.href = `./lista_palavras.html?palavra=${encodeURIComponent(palavra)}`// Encodes characters such as ?,=,/,&,:
-        }
+    close.addEventListener("click", () => {
+        lupa.style.display = "block"
+        document.querySelector(".form-nav").style.display = "none"
     })
+
+   
+    
+    
+
+    // form.addEventListener("image", (e) => {
+    //     e.preventDefault() // impde envio do formulario e controla o redirecionamento
+
+    //     const palavra = input_search.value.trim() //remove espaços desnecessários ou outros
+
+    //     if(palavra.length > 0) { // redirecionamento n esta a funcionar
+    //         //redirecionando url
+    //         window.location.href = `./lista_palavras.html?palavra=${encodeURIComponent(palavra)}`// Encodes characters such as ?,=,/,&,:
+    //     }
+    // })
   
 }
 
