@@ -179,9 +179,9 @@ function pesquisa_livre(){
                     .slice(0, 4) //obter apenas primeiros 4 resultados
 
 
-                    if(filteredWord === 0){
-                        
-                        resulPalavras.innerHTML = `<li class="no-results">Não foram encontrados resultados para: "${value}"</li>`
+                    if(filteredWord == 0 || value == ''){
+                        //resulPalavras.innerHTML = `<li class="no-results">Não foram encontrados resultados para: "${value}"</li>`
+                        resulPalavras.innerHTML = ''
                     } else {   
                         filteredWord.forEach(item => {
                             resulPalavras.innerHTML += `<li>${item.palavra}</li>` 
@@ -191,7 +191,110 @@ function pesquisa_livre(){
                     
             }
 
-        })        
+        })
+        
+        /***************** Pesquisa poemas ********************/
+        let resulTitulos = document.createElement('ul')
+        resulTitulos.className = "resul-titulos"
+        caixa_resultados.appendChild(resulTitulos)
+
+        input.addEventListener('input', (e) => {
+            let value = e.target.value
+
+            //limpa resultados anteriores
+            resulTitulos.innerHTML = '<h4>Poemas<h4>'
+
+
+            if(value && value.trim().length > 0){
+                value = value.trim().toLowerCase()
+
+                const filteredWord = gTextData
+                    .filter(item => {
+                        const title = normalize(item?.title || "")
+                        const val = normalize(value) // input-value normalizado
+                        return title.includes(val)
+                    })
+                    .sort((a,b) => {
+                        const aTit = normalize(a.title)
+                        const bTit = normalize(b.title)
+                        const val = normalize(value) // input value normalizado
+
+                        const aStarts = aTit.startsWith(val)
+                        const bStarts = bTit.startsWith(val)
+
+                        if(aStarts && !bStarts) return -1
+                        if(!aStarts && bStarts) return 1
+
+                        return aTit.localeCompare(bTit, 'pt', { sensitivity: 'base' })
+                    })
+                    .slice(0, 4) //obter apenas primeiros 4 resultados
+
+
+                    if(filteredWord === 0){
+                        // resulTitulos.innerHTML = `<li class="no-results">Não foram encontrados resultados para: "${value}"</li>`
+                        resulPalavras.innerHTML = ''
+                    } else {   
+                        filteredWord.forEach(item => {
+                            resulTitulos.innerHTML += `<li>${item.title}</li>` 
+                            console.log(item.title)
+                        })
+                    }
+                    
+            }
+
+        })
+
+        /***************** Pesquisa autores ********************/
+        let resulAutores = document.createElement('ul')
+        resulAutores.className = "resul-autores"
+        caixa_resultados.appendChild(resulAutores)
+
+        input.addEventListener('input', (e) => {
+            let value = e.target.value
+
+            //limpa resultados anteriores
+            resulAutores.innerHTML = '<h4>Autores<h4>'
+
+
+            if(value && value.trim().length > 0){
+                value = value.trim().toLowerCase()
+
+                const filteredWord = gTextData
+                    .filter(item => {
+                        const author = normalize(item?.author || "")
+                        const val = normalize(value) // input-value normalizado
+                        return author.includes(val)
+                    })
+                    .sort((a,b) => {
+                        const aTit = normalize(a.author)
+                        const bTit = normalize(b.author)
+                        const val = normalize(value) // input value normalizado
+
+                        const aStarts = aTit.startsWith(val)
+                        const bStarts = bTit.startsWith(val)
+
+                        if(aStarts && !bStarts) return -1
+                        if(!aStarts && bStarts) return 1
+
+                        return aTit.localeCompare(bTit, 'pt', { sensitivity: 'base' })
+                    })
+                    .slice(0, 4) //obter apenas primeiros 4 resultados
+
+
+                    if(filteredWord === 0){
+                        //resulAutores.innerHTML = `<li class="no-results">Não foram encontrados resultados para: "${value}"</li>`
+                        resulPalavras.innerHTML = ''
+                    } else {   
+                        filteredWord.forEach(item => {
+                            resulAutores.innerHTML += `<li>${item.author}</li>` 
+                            console.log(item.author)
+                        })
+                    }
+                    
+            }
+
+        })
+
 
         return caixa_resultados
         
