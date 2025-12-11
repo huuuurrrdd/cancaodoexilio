@@ -106,20 +106,7 @@ function pesquisa_livre(){
         document.querySelector(".form-nav").style.display = "none"
     })
 
-    caixaResultados()
 
-   function caixaResultados(){
-        let caixa_resultados = document.createElement('div')
-        caixa_resultados.className = "caixa-resultados"
-        document.querySelector(".form-nav").appendChild(caixa_resultados)
-
-        caixa_resultados.innerHTML += "Resultados"
-
-
-
-        return caixa_resultados
-        
-    }
     
     
 
@@ -135,6 +122,33 @@ function pesquisa_livre(){
     // })
   
 }
+
+    caixaResultados()
+
+    //obter resultado(palavras); resultado (titulos); resultados (autores)
+
+   function caixaResultados(){
+        let caixa_resultados = document.createElement('div')
+        caixa_resultados.className = "caixa-resultados"
+        document.querySelector(".form-nav").appendChild(caixa_resultados)
+
+        caixa_resultados.innerHTML += "Resultados"
+
+    /*:::::::::::  __Pesquisa livre__  :::::::::::*/
+    /***************** Pesquisa palavras ********************/
+        let resulPalavras = document.createElement('div')
+        resulPalavras.className = "resul-palavras"
+        caixa_resultados.appendChild(resulPalavras)
+
+        input_search.addEventListener('input', (e) => {
+            let value = e.target.value
+
+
+        })        
+
+        return caixa_resultados
+        
+    }
 
 
 
