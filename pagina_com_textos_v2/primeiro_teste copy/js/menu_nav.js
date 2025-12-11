@@ -62,7 +62,7 @@ nav.innerHTML = `
 
     })
 
-
+    let gWordData, gTextData, gStopList, gLemasData
 // criar uma caixa para colocar palavras (display absolute)
 function pesquisa_livre(){
 
@@ -106,7 +106,12 @@ function pesquisa_livre(){
         document.querySelector(".form-nav").style.display = "none"
     })
 
+        
+    fetchData()
 
+
+
+    caixaResultados(input_search)
     
     
 
@@ -123,26 +128,68 @@ function pesquisa_livre(){
   
 }
 
-    caixaResultados()
+    
 
     //obter resultado(palavras); resultado (titulos); resultados (autores)
 
-   function caixaResultados(){
+
+    /*:::::::::::  __Pesquisa livre__  :::::::::::*/
+   function caixaResultados(input){
         let caixa_resultados = document.createElement('div')
         caixa_resultados.className = "caixa-resultados"
         document.querySelector(".form-nav").appendChild(caixa_resultados)
 
         caixa_resultados.innerHTML += "Resultados"
 
-    /*:::::::::::  __Pesquisa livre__  :::::::::::*/
+   
     /***************** Pesquisa palavras ********************/
-        let resulPalavras = document.createElement('div')
+        let resulPalavras = document.createElement('ul') // definir para apenas criar caso existam resultados
         resulPalavras.className = "resul-palavras"
         caixa_resultados.appendChild(resulPalavras)
 
-        input_search.addEventListener('input', (e) => {
+        input.addEventListener('input', (e) => {
             let value = e.target.value
 
+            //limpa resultados anteriores
+            resulPalavras.innerHTML = '<h4>Palavras<h4>'
+
+
+            if(value && value.trim().length > 0){
+                value = value.trim().toLowerCase()
+
+                const filteredWord = gWordData.palavras
+                    .filter(item => {
+                        const palavra = normalize(item?.palavra || "")
+                        const val = normalize(value) // input-value normalizado
+                        return palavra.includes(val)
+                    })
+                    .sort((a,b) => {
+                        const aPal = normalize(a.palavra)
+                        const bPal = normalize(b.palavra)
+                        const val = normalize(value) // input value normalizado
+
+                        const aStarts = aPal.startsWith(val)
+                        const bStarts = bPal.startsWith(val)
+
+                        if(aStarts && !bStarts) return -1
+                        if(!aStarts && bStarts) return 1
+
+                        return aPal.localeCompare(bPal, 'pt', { sensitivity: 'base' })
+                    })
+                    .slice(0, 4) //obter apenas primeiros 4 resultados
+
+
+                    if(filteredWord === 0){
+                        
+                        resulPalavras.innerHTML = `<li class="no-results">Não foram encontrados resultados para: "${value}"</li>`
+                    } else {   
+                        filteredWord.forEach(item => {
+                            resulPalavras.innerHTML += `<li>${item.palavra}</li>` 
+                            console.log(item.palavra)
+                        })
+                    }
+                    
+            }
 
         })        
 
@@ -151,7 +198,79 @@ function pesquisa_livre(){
     }
 
 
+/*::::::::::: Fetch data :::::::::::*/
+function fetchData(){
+    let wordData, textData, stoplist, lemmasData
 
+    //dicionario json
+    fetch("./Dict_palavras_lemas_v0004.json")
+        .then(response => {
+            if(!response.ok){ // menssagem de erro
+                throw new Error(`HTTP error! Status: ${response.status}`)
+            }
+            return response.json() // return data
+        })
+        .then(data => {
+            wordData = data; //Guarda dict_pal em wordData
+            return fetch("./t4_textos_loc_fauna_flora.json") // fetch json dos textos
+        })
+        .then(response => { // mensagem de erro
+            if(!response.ok){
+                throw new Error(`HTTP error! Status: ${response.status}`)
+            }
+            return response.json() // return data
+        })
+        .then(data => {
+            textData = data // info dos textos a conter as coordenadas geográficas
+            return fetch("./Dict_lemas_palavras_v0002.json")
+        })
+        .then(response => {
+                if(!response.ok){
+                throw new Error(`HTTP error! Status: ${response.status}`)
+            }
+            return response.json() // return data
+        })
+        .then(data => {
+            lemmasData = data; // guarda json dos lemas
+            return fetch("./stopwords/portuguese")
+        })
+        .then(response =>{
+            if(!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`)
+            }
+            return response.text() // return stopwords text
+        })
+        .then(data => {
+            stoplist = data
+            .split('\n')
+            .map(s_word => s_word.trim())
+            .filter(s_word => s_word.length > 0)
+
+            //funcao com os 3 dados dos 3 ficheiros
+            displayDataPesquisa(wordData, textData, stoplist, lemmasData)
+        })
+        .catch(error => console.error('Failed to fetch data', error))
+}
+
+
+
+
+
+function displayDataPesquisa(wordData, textData, stoplist, lemmasData){
+
+   gWordData = wordData
+   gTextData = textData
+   gStopList = stoplist
+   gLemasData = lemmasData
+
+}
+
+function normalize(str){
+  return str
+    ?.toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+}
 
 
 /*|||||||||||||||||||||||| Funções gerais ||||||||||||||||||||||||*/
@@ -171,6 +290,4 @@ function pesquisa_livre(){
         }
     }
     return splitStr.join(' '); 
-
-        
   }   
