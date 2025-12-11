@@ -30,7 +30,7 @@ nav.innerHTML = `
                             <li><a href="sobre.html">Sobre</a></li>
                             <li><a href="index.html?id=1">Home</a></li>
                         </ul>
-                    </div
+                    </div>
                 `
 
 
@@ -40,37 +40,36 @@ nav.innerHTML = `
 
 
  /******** Imagem pesquisa ********/ 
+    let div_pesquisa = document.createElement('div')
+    div_pesquisa.id = "div-pesquisa"
+    nav.appendChild(div_pesquisa)
+
+
     let lupa = document.createElement('img')
     lupa.src = "./imagens/mlupa1.svg"
     lupa.className = "lupa-icon"
-    nav.appendChild(lupa)
+    div_pesquisa.appendChild(lupa)
 
     pesquisa_livre()
 
-    if(lupa.style.display == "none"){
+    // if(lupa.style.display == "none"){
 
-    }
+    // }
     
     lupa.addEventListener("click", (e) => {
         lupa.style.display = "none"
         document.querySelector(".form-nav").style.display = "flex"
 
-        
     })
 
 
 // criar uma caixa para colocar palavras (display absolute)
 function pesquisa_livre(){
 
-    //desenhar o html
-    // /******** Caixa para o texto ********/
-    // let pl_ct = document.createElement("div")
-    // document.querySelector("nav").appendChild(pl_ct)
-    // pl_ct.className += "pl-ct"
     
     /******** Form para pesquisa ********/ 
     let form = document.createElement("form")
-    document.querySelector("nav").appendChild(form)
+    div_pesquisa.appendChild(form)
     form.className = "form-nav"
 
    
@@ -107,11 +106,24 @@ function pesquisa_livre(){
         document.querySelector(".form-nav").style.display = "none"
     })
 
-   
+    caixaResultados()
+
+   function caixaResultados(){
+        let caixa_resultados = document.createElement('div')
+        caixa_resultados.className = "caixa-resultados"
+        document.querySelector(".form-nav").appendChild(caixa_resultados)
+
+        caixa_resultados.innerHTML += "Resultados"
+
+
+
+        return caixa_resultados
+        
+    }
     
     
 
-    // form.addEventListener("image", (e) => {
+    // form.addEventListener("submit", (e) => {
     //     e.preventDefault() // impde envio do formulario e controla o redirecionamento
 
     //     const palavra = input_search.value.trim() //remove espaços desnecessários ou outros
@@ -123,6 +135,8 @@ function pesquisa_livre(){
     // })
   
 }
+
+
 
 
 
