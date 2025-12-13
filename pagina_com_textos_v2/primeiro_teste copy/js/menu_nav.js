@@ -63,6 +63,9 @@ nav.innerHTML = `
     })
 
     let gWordData, gTextData, gStopList, gLemasData
+    // variáveis de categorias
+    let gLocais, gFauna, gFlora
+
 // criar uma caixa para colocar palavras (display absolute)
 function pesquisa_livre(){
 
@@ -135,6 +138,9 @@ function pesquisa_livre(){
 
     /*:::::::::::  __Pesquisa livre__  :::::::::::*/
    function caixaResultados(input){
+
+        let sliceValue = 4
+
         let caixa_resultados = document.createElement('div')
         caixa_resultados.className = "caixa-resultados"
         document.querySelector(".form-nav").appendChild(caixa_resultados)
@@ -145,160 +151,195 @@ function pesquisa_livre(){
     /***************** Pesquisa palavras ********************/
         let resulPalavras = document.createElement('ul') // definir para apenas criar caso existam resultados
         resulPalavras.className = "resul-palavras"
+        resulPalavras.innerHTML = '<h4>Palavras<h4>'
         caixa_resultados.appendChild(resulPalavras)
 
-        input.addEventListener('input', (e) => {
-            let value = e.target.value
-
-            //limpa resultados anteriores
-            resulPalavras.innerHTML = '<h4>Palavras<h4>'
-
-
-            if(value && value.trim().length > 0){
-                value = value.trim().toLowerCase()
-
-                const filteredWord = gWordData.palavras
-                    .filter(item => {
-                        const palavra = normalize(item?.palavra || "")
-                        const val = normalize(value) // input-value normalizado
-                        return palavra.includes(val)
-                    })
-                    .sort((a,b) => {
-                        const aPal = normalize(a.palavra)
-                        const bPal = normalize(b.palavra)
-                        const val = normalize(value) // input value normalizado
-
-                        const aStarts = aPal.startsWith(val)
-                        const bStarts = bPal.startsWith(val)
-
-                        if(aStarts && !bStarts) return -1
-                        if(!aStarts && bStarts) return 1
-
-                        return aPal.localeCompare(bPal, 'pt', { sensitivity: 'base' })
-                    })
-                    .slice(0, 4) //obter apenas primeiros 4 resultados
-
-
-                    if(filteredWord == 0 || value == ''){
-                        //resulPalavras.innerHTML = `<li class="no-results">Não foram encontrados resultados para: "${value}"</li>`
-                        resulPalavras.innerHTML = ''
-                    } else {   
-                        filteredWord.forEach(item => {
-                            resulPalavras.innerHTML += `<li>${item.palavra}</li>` 
-                            console.log(item.palavra)
-                        })
-                    }
-                    
-            }
-
-        })
-        
-        /***************** Pesquisa poemas ********************/
+    /***************** Pesquisa poemas ********************/
         let resulTitulos = document.createElement('ul')
         resulTitulos.className = "resul-titulos"
+        resulTitulos.innerHTML = '<h4>Poemas<h4>'
         caixa_resultados.appendChild(resulTitulos)
-
-        input.addEventListener('input', (e) => {
-            let value = e.target.value
-
-            //limpa resultados anteriores
-            resulTitulos.innerHTML = '<h4>Poemas<h4>'
-
-
-            if(value && value.trim().length > 0){
-                value = value.trim().toLowerCase()
-
-                const filteredWord = gTextData
-                    .filter(item => {
-                        const title = normalize(item?.title || "")
-                        const val = normalize(value) // input-value normalizado
-                        return title.includes(val)
-                    })
-                    .sort((a,b) => {
-                        const aTit = normalize(a.title)
-                        const bTit = normalize(b.title)
-                        const val = normalize(value) // input value normalizado
-
-                        const aStarts = aTit.startsWith(val)
-                        const bStarts = bTit.startsWith(val)
-
-                        if(aStarts && !bStarts) return -1
-                        if(!aStarts && bStarts) return 1
-
-                        return aTit.localeCompare(bTit, 'pt', { sensitivity: 'base' })
-                    })
-                    .slice(0, 4) //obter apenas primeiros 4 resultados
-
-
-                    if(filteredWord === 0){
-                        // resulTitulos.innerHTML = `<li class="no-results">Não foram encontrados resultados para: "${value}"</li>`
-                        resulPalavras.innerHTML = ''
-                    } else {   
-                        filteredWord.forEach(item => {
-                            resulTitulos.innerHTML += `<li>${item.title}</li>` 
-                            console.log(item.title)
-                        })
-                    }
-                    
-            }
-
-        })
-
-        /***************** Pesquisa autores ********************/
+    
+    /***************** Pesquisa autores ********************/
         let resulAutores = document.createElement('ul')
         resulAutores.className = "resul-autores"
+        resulAutores.innerHTML = '<h4>Autores<h4>'
         caixa_resultados.appendChild(resulAutores)
+
+    /*::::::::::: Pesquisa categorias :::::::::::*/
+    /***************** Pesquisa locais ********************/
+        let resulLocais = document.createElement('ul')
+        resulLocais.className = "resul-locais"
+        resulLocais.innerHTML = '<h4>Locais<h4>'
+        caixa_resultados.appendChild(resulLocais)
+
+    /***************** Pesquisa fauna ********************/
+        let resulFauna = document.createElement('ul')
+        resulFauna.className = "resul-fauna"
+        resulFauna.innerHTML = '<h4>Fauna<h4>'
+        caixa_resultados.appendChild(resulFauna)
+
+    /***************** Pesquisa flora ********************/
+        let resulFlora = document.createElement('ul')
+        resulFlora.className = "resul-flora"
+        resulFlora.innerHTML = '<h4>Flora<h4>'
+        caixa_resultados.appendChild(resulFlora)
+
+    /***************** Pesquisa anos ********************/
+        let resulAnos = document.createElement('ul')
+        resulAnos.className = "resul-anos"
+        resulAnos.innerHTML = '<h4>Anos<h4>'
+        caixa_resultados.appendChild(resulAnos)
+
+
 
         input.addEventListener('input', (e) => {
             let value = e.target.value
+            let sliceValue = 4
 
-            //limpa resultados anteriores
-            resulAutores.innerHTML = '<h4>Autores<h4>'
+            //valores: filteredWord, string com propriedade do icone, vslor do slice, html a ser preenchido, value
+            //1- palavras, 2-poemas, 3- autores // falta anos??
+            filtraResultados(value, gWordData.palavras, "palavra", resulPalavras, sliceValue, false)
+            filtraResultados(value, gTextData, "title", resulTitulos, sliceValue, false)
+            filtraResultados(value, gTextData, "author", resulAutores, sliceValue, false)
 
-
-            if(value && value.trim().length > 0){
-                value = value.trim().toLowerCase()
-
-                const filteredWord = gTextData
-                    .filter(item => {
-                        const author = normalize(item?.author || "")
-                        const val = normalize(value) // input-value normalizado
-                        return author.includes(val)
-                    })
-                    .sort((a,b) => {
-                        const aTit = normalize(a.author)
-                        const bTit = normalize(b.author)
-                        const val = normalize(value) // input value normalizado
-
-                        const aStarts = aTit.startsWith(val)
-                        const bStarts = bTit.startsWith(val)
-
-                        if(aStarts && !bStarts) return -1
-                        if(!aStarts && bStarts) return 1
-
-                        return aTit.localeCompare(bTit, 'pt', { sensitivity: 'base' })
-                    })
-                    .slice(0, 4) //obter apenas primeiros 4 resultados
-
-
-                    if(filteredWord === 0){
-                        //resulAutores.innerHTML = `<li class="no-results">Não foram encontrados resultados para: "${value}"</li>`
-                        resulPalavras.innerHTML = ''
-                    } else {   
-                        filteredWord.forEach(item => {
-                            resulAutores.innerHTML += `<li>${item.author}</li>` 
-                            console.log(item.author)
-                        })
-                    }
-                    
-            }
+            //categorias (array) 1-Locais, 2-Fauna, 3-Flora
+            filtraResultados(value, gTextData, "categorias.locais.locais_limpos", resulLocais, sliceValue, true)
+            filtraResultados(value, gTextData, "categorias.fauna", resulFauna, sliceValue, true)
+            filtraResultados(value, gTextData, "categorias.flora", resulFlora, )
 
         })
+
 
 
         return caixa_resultados
         
     }
+    
+
+//funcao para ordenar resultados
+//tentando passar para uma funcao:
+//valores: filteredWord, string com propriedade do icone, vslor do slice, html a ser preenchido, value
+
+//função para obter propriedades interiores
+function getNestedProperty(obj, path){
+    const keys = path.split('.')
+    let result = obj
+
+    for(let key of keys){
+        result = result?.[key]
+        if(result === undefined) return undefined
+    }
+
+    return result
+}
+
+
+function filtraResultados(value, dados, propriedade, ulHTML, sliceValue, isArray = false){
+
+    //Clear previous results (mantém header)
+    const header = ulHTML.querySelector('h4')
+    ulHTML.innerHTML = ''
+    if(header) ulHTML.appendChild(header)
+    
+    if(value && value.trim().length > 0){
+        value = value.trim().toLowerCase()
+        const val = normalize(value)
+
+        let filteredResults = []
+
+
+        //processa cada item nos dados
+        dados.forEach(item => {
+            //lidar se item é simples string/value vs object
+
+            const propValue = getNestedProperty(item, propriedade)
+
+            if(isArray && Array.isArray(propValue)){
+                //para arrays (como locais_limpos, fauna, flora)
+                //cria reultados separados para cada elemento correspondente
+                propValue.forEach(element => {
+                    const normalizedElement = normalize(element || "")
+                    if(normalizedElement.includes(val)){
+                        filteredResults.push({
+                            originalItem: item,
+                            displayValue: element,
+                            normalizedValue: normalizedElement,
+                            sortValue: normalizedElement
+                        })
+                    }
+                })
+
+            } else {
+                // para propriedades simples (como titulo e autor)
+                const normalizedValue = normalize(propValue || "")
+                if(normalizedValue.includes(val)){
+                    filteredResults.push({
+                        originalItem: item,
+                        displayValue: propValue,
+                        normalizedValue: normalizedValue,
+                        sortValue: normalizedValue
+                    })
+                }
+                //console.log(propValue)
+            }
+        })
+
+        // sort resultados
+
+            filteredResults.sort((a,b) => {
+                
+                const aValue = a.sortValue
+                const bValue = b.sortValue
+                
+                // verifica se valores começam com termo de pesquisa
+                let aStarts, bStarts
+
+                if(aValue.startsWith("[")){
+                    aStarts = aValue.startsWith(val, 1)
+                } else {
+                    aStarts = aValue.startsWith(val)
+                }
+
+                if(bValue.startsWith("[")){
+                    bStarts = bValue.startsWith(val, 1)
+                } else {
+                    bStarts = bValue.startsWith(val)
+                }
+
+                //prioriza items que começam com search value
+                if(aStarts && !bStarts) return -1
+                if(!aStarts && bStarts) return 1
+
+                return aValue.localeCompare(bValue, 'pt', { sensitivity: 'base' })
+            })
+            
+            //limitar resultados
+            filteredResults = filteredResults.slice(0, sliceValue)
+
+            //Display results
+            if(filteredResults.length === 0){
+                //resulAutores.innerHTML = `<li class="no-results">Não foram encontrados resultados para: "${value}"</li>`
+                ulHTML.innerHTML = ''
+            } else {   
+                
+                filteredResults.forEach(result => {
+                    const li = document.createElement('li')
+                    li.textContent = result.displayValue
+
+                    //efeitos ao hover
+                    li.addEventListener('click', () => {
+                        console.log(`Selected item: ${result.originalItem}`)
+                    })
+
+                    ulHTML.appendChild(li)
+                    //console.log(item[propriedade])
+                })
+            }
+            
+    }
+}
+    
 
 
 /*::::::::::: Fetch data :::::::::::*/
@@ -366,9 +407,15 @@ function displayDataPesquisa(wordData, textData, stoplist, lemmasData){
    gStopList = stoplist
    gLemasData = lemmasData
 
+
+
 }
 
 function normalize(str){
+    //converter emstring se n for
+    if(typeof str !== 'string'){
+        str = String(str || '')
+    }
   return str
     ?.toLowerCase()
     .normalize("NFD")
