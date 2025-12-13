@@ -320,8 +320,15 @@ input[type=text]{
   transform: translateX(0);
 }
 
+.li-item{
+  list-style-type: none;
+  text-align: left;
+}
+
 .li-item:hover{
   background-color: var(--light-yellow);
+  cursor: pointer;
+  
 }
 
 

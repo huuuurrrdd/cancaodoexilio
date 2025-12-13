@@ -211,15 +211,15 @@ function pesquisa_livre(){
 
             //valores: filteredWord, string com propriedade do icone, vslor do slice, html a ser preenchido, value
             //1- palavras, 2-poemas, 3- autores, 4- anos
-            filtraResultados(value, gWordData.palavras, "palavra", resulPalavras, sliceValue, false, false)
-            filtraResultados(value, gTextData, "title", resulTitulos, sliceValue, false, false)
-            filtraResultados(value, gTextData, "author", resulAutores, sliceValue, false, false)
-            filtraResultados(value, gTextData, "date_of_publication", resulAnos, sliceValue, false, true)
+            filtraResultados(value, gWordData.palavras, "palavra", resulPalavras, sliceValue, false, false, "Palavras")
+            filtraResultados(value, gTextData, "title", resulTitulos, sliceValue, false, false, "Poemas")
+            filtraResultados(value, gTextData, "author", resulAutores, sliceValue, false, false, "Autores")
+            filtraResultados(value, gTextData, "date_of_publication", resulAnos, sliceValue, false, true, "Anos")
 
             //categorias (array) 1-Locais, 2-Fauna, 3-Flora
-            filtraResultados(value, gTextData, "categorias.locais.locais_limpos", resulLocais, sliceValue, true, false)
-            filtraResultados(value, gTextData, "categorias.fauna", resulFauna, sliceValue, true, false)
-            filtraResultados(value, gTextData, "categorias.flora", resulFlora, sliceValue, true, false)
+            filtraResultados(value, gTextData, "categorias.locais.locais_limpos", resulLocais, sliceValue, true, false, "Locais")
+            filtraResultados(value, gTextData, "categorias.fauna", resulFauna, sliceValue, true, false, "Fauna")
+            filtraResultados(value, gTextData, "categorias.flora", resulFlora, sliceValue, true, false, "Flora")
 
         })
 
@@ -248,7 +248,7 @@ function getNestedProperty(obj, path){
 }
 
 
-function filtraResultados(value, dados, propriedade, ulHTML, sliceValue, isArray = false, isNumeric = false){
+function filtraResultados(value, dados, propriedade, ulHTML, sliceValue, isArray = false, isNumeric = false, titulo){
 
     //Clear previous results (mantém header)
     const header = ulHTML.querySelector('h4')
@@ -261,7 +261,7 @@ function filtraResultados(value, dados, propriedade, ulHTML, sliceValue, isArray
         const val = isNumeric ? trimmmedValue : normalize(trimmmedValue.toLowerCase())
 
         let filteredResults = []
-
+        let seenValues = new Set() // track valores observados para evitar duplicações
 
         //processa cada item nos dados
         dados.forEach(item => {
@@ -283,13 +283,17 @@ function filtraResultados(value, dados, propriedade, ulHTML, sliceValue, isArray
                     if(element === null || element === undefined) return
 
                     const normalizedElement = normalize(String(element))
-                    if(normalizedElement.includes(val)){
+
+                    //Verifica se tem duplicações
+                    if(!seenValues.has(normalizedElement) && normalizedElement.includes(val)){
+                        seenValues.add(normalizedElement)
+
                         filteredResults.push({
                             originalItem: item,
                             displayValue: element,
                             normalizedValue: normalizedElement,
                             sortValue: normalizedElement
-                        })
+                        })   
                     }
                 })
 
@@ -299,7 +303,11 @@ function filtraResultados(value, dados, propriedade, ulHTML, sliceValue, isArray
                 if(isNumeric){
                     // lida com valores numericos (como anos)
                     const stringValue = String(propValue)
-                    if(stringValue.startsWith(trimmmedValue)){
+
+                    // verifica duplicacoes
+                    if(!seenValues.has(stringValue) && stringValue.startsWith(trimmmedValue)){
+                        seenValues.add(stringValue)
+
                         filteredResults.push({
                             originalItem: item, 
                             displayValue: propValue,
@@ -311,7 +319,11 @@ function filtraResultados(value, dados, propriedade, ulHTML, sliceValue, isArray
                 } else {
                     // para propriedades simples (como titulo e autor) (valores "normais")
                     const normalizedValue = normalize(String(propValue))
-                    if(normalizedValue.includes(val)){
+
+                    //verifica duplicações
+                    if(!seenValues.has(normalizedValue) && normalizedValue.includes(val)){
+                        seenValues.add(normalizedValue)
+
                         filteredResults.push({
                             originalItem: item,
                             displayValue: propValue,
@@ -319,9 +331,7 @@ function filtraResultados(value, dados, propriedade, ulHTML, sliceValue, isArray
                             sortValue: normalizedValue
                         })
                     }
-                }
-
-                
+                }                
                 //console.log(propValue)
             }
         })
@@ -358,10 +368,9 @@ function filtraResultados(value, dados, propriedade, ulHTML, sliceValue, isArray
 
                  
                     return aValue.localeCompare(bValue, 'pt', { sensitivity: 'base' })
-
                 }
-                
             })
+
             
             //limitar resultados
             filteredResults = filteredResults.slice(0, sliceValue)
@@ -369,7 +378,7 @@ function filtraResultados(value, dados, propriedade, ulHTML, sliceValue, isArray
             //Display results
             if(filteredResults.length === 0){
                 //resulAutores.innerHTML = `<li class="no-results">Não foram encontrados resultados para: "${value}"</li>`
-                ulHTML.innerHTML = ''
+                ulHTML.innerHTML = `<h4>${titulo}</h4>`
             } else {   
                 
                 filteredResults.forEach(result => {
@@ -377,10 +386,9 @@ function filtraResultados(value, dados, propriedade, ulHTML, sliceValue, isArray
                     li.className = "li-item"
                     li.textContent = result.displayValue
 
-                    
-
                     li.addEventListener('click', () => {
                         console.log(`Selected item: ${result.originalItem}`)
+                        input.value = result.originalItem
                     })
 
                     ulHTML.appendChild(li)
@@ -390,6 +398,9 @@ function filtraResultados(value, dados, propriedade, ulHTML, sliceValue, isArray
             
     }
 }
+
+/*::::::::::: Lida com todos os resultados :::::::::::*/
+
     
 
 
