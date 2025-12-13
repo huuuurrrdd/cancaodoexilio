@@ -147,6 +147,7 @@ function pesquisa_livre(){
 
         caixa_resultados.innerHTML += "Resultados"
 
+
    
     /***************** Pesquisa palavras ********************/
         let resulPalavras = document.createElement('ul') // definir para apenas criar caso existam resultados
@@ -198,15 +199,16 @@ function pesquisa_livre(){
             let sliceValue = 4
 
             //valores: filteredWord, string com propriedade do icone, vslor do slice, html a ser preenchido, value
-            //1- palavras, 2-poemas, 3- autores // falta anos??
-            filtraResultados(value, gWordData.palavras, "palavra", resulPalavras, sliceValue, false)
-            filtraResultados(value, gTextData, "title", resulTitulos, sliceValue, false)
-            filtraResultados(value, gTextData, "author", resulAutores, sliceValue, false)
+            //1- palavras, 2-poemas, 3- autores, 4- anos
+            filtraResultados(value, gWordData.palavras, "palavra", resulPalavras, sliceValue, false, false)
+            filtraResultados(value, gTextData, "title", resulTitulos, sliceValue, false, false)
+            filtraResultados(value, gTextData, "author", resulAutores, sliceValue, false, false)
+            filtraResultados(value, gTextData, "date_of_publication", resulAnos, sliceValue, false, true)
 
             //categorias (array) 1-Locais, 2-Fauna, 3-Flora
-            filtraResultados(value, gTextData, "categorias.locais.locais_limpos", resulLocais, sliceValue, true)
-            filtraResultados(value, gTextData, "categorias.fauna", resulFauna, sliceValue, true)
-            filtraResultados(value, gTextData, "categorias.flora", resulFlora, )
+            filtraResultados(value, gTextData, "categorias.locais.locais_limpos", resulLocais, sliceValue, true, false)
+            filtraResultados(value, gTextData, "categorias.fauna", resulFauna, sliceValue, true, false)
+            filtraResultados(value, gTextData, "categorias.flora", resulFlora, sliceValue, true, false)
 
         })
 
@@ -235,16 +237,17 @@ function getNestedProperty(obj, path){
 }
 
 
-function filtraResultados(value, dados, propriedade, ulHTML, sliceValue, isArray = false){
+function filtraResultados(value, dados, propriedade, ulHTML, sliceValue, isArray = false, isNumeric = false){
 
     //Clear previous results (mantém header)
     const header = ulHTML.querySelector('h4')
     ulHTML.innerHTML = ''
     if(header) ulHTML.appendChild(header)
+
     
     if(value && value.trim().length > 0){
-        value = value.trim().toLowerCase()
-        const val = normalize(value)
+        const trimmmedValue = value.trim()
+        const val = isNumeric ? trimmmedValue : normalize(trimmmedValue.toLowerCase())
 
         let filteredResults = []
 
@@ -253,13 +256,22 @@ function filtraResultados(value, dados, propriedade, ulHTML, sliceValue, isArray
         dados.forEach(item => {
             //lidar se item é simples string/value vs object
 
-            const propValue = getNestedProperty(item, propriedade)
+            let propValue
+
+            if(typeof item === 'string' || typeof item === 'number'){
+                propValue = item
+            } else {
+                propValue = getNestedProperty(item, propriedade)
+            }
+
 
             if(isArray && Array.isArray(propValue)){
                 //para arrays (como locais_limpos, fauna, flora)
                 //cria reultados separados para cada elemento correspondente
                 propValue.forEach(element => {
-                    const normalizedElement = normalize(element || "")
+                    if(element === null || element === undefined) return
+
+                    const normalizedElement = normalize(String(element))
                     if(normalizedElement.includes(val)){
                         filteredResults.push({
                             originalItem: item,
@@ -271,47 +283,73 @@ function filtraResultados(value, dados, propriedade, ulHTML, sliceValue, isArray
                 })
 
             } else {
-                // para propriedades simples (como titulo e autor)
-                const normalizedValue = normalize(propValue || "")
-                if(normalizedValue.includes(val)){
-                    filteredResults.push({
-                        originalItem: item,
-                        displayValue: propValue,
-                        normalizedValue: normalizedValue,
-                        sortValue: normalizedValue
-                    })
+                if(propValue === null || propValue === undefined) return
+
+                if(isNumeric){
+                    // lida com valores numericos (como anos)
+                    const stringValue = String(propValue)
+                    if(stringValue.startsWith(trimmmedValue)){
+                        filteredResults.push({
+                            originalItem: item, 
+                            displayValue: propValue,
+                            normalizedValue: stringValue,
+                            sortValue: propValue, // mantém como numero para ordenação
+                            isNumber: true
+                        })
+                    }
+                } else {
+                    // para propriedades simples (como titulo e autor) (valores "normais")
+                    const normalizedValue = normalize(String(propValue))
+                    if(normalizedValue.includes(val)){
+                        filteredResults.push({
+                            originalItem: item,
+                            displayValue: propValue,
+                            normalizedValue: normalizedValue,
+                            sortValue: normalizedValue
+                        })
+                    }
                 }
+
+                
                 //console.log(propValue)
             }
         })
 
         // sort resultados
-
             filteredResults.sort((a,b) => {
                 
-                const aValue = a.sortValue
-                const bValue = b.sortValue
+                if(isNumeric && a.isNumber && b.isNumber){
+                    const na = Number(a.sortValue)
+                    const nb = Number(b.sortValue)
+                    return (Number.isNaN(na) ? Infinity : na) - (Number.isNaN(nb) ? Infinity : nb)
+                } else {
+                    const aValue = a.sortValue
+                    const bValue = b.sortValue
+
+                    // verifica se valores começam com termo de pesquisa
+                    let aStarts, bStarts
+
+                    if(aValue.startsWith("[")){
+                        aStarts = aValue.startsWith(val, 1)
+                    } else {
+                        aStarts = aValue.startsWith(val)
+                    }
+
+                    if(bValue.startsWith("[")){
+                        bStarts = bValue.startsWith(val, 1)
+                    } else {
+                        bStarts = bValue.startsWith(val)
+                    }
+
+                    //prioriza items que começam com search value
+                    if(aStarts && !bStarts) return -1
+                    if(!aStarts && bStarts) return 1
+
+                 
+                    return aValue.localeCompare(bValue, 'pt', { sensitivity: 'base' })
+
+                }
                 
-                // verifica se valores começam com termo de pesquisa
-                let aStarts, bStarts
-
-                if(aValue.startsWith("[")){
-                    aStarts = aValue.startsWith(val, 1)
-                } else {
-                    aStarts = aValue.startsWith(val)
-                }
-
-                if(bValue.startsWith("[")){
-                    bStarts = bValue.startsWith(val, 1)
-                } else {
-                    bStarts = bValue.startsWith(val)
-                }
-
-                //prioriza items que começam com search value
-                if(aStarts && !bStarts) return -1
-                if(!aStarts && bStarts) return 1
-
-                return aValue.localeCompare(bValue, 'pt', { sensitivity: 'base' })
             })
             
             //limitar resultados
