@@ -147,50 +147,61 @@ function pesquisa_livre(){
 
         caixa_resultados.innerHTML += "Resultados"
 
+    // colocar uma caixa dentro de caixa_resultados
+    /***************** caixa_com_resultados ********************/
+    let caixa_com_resultados = document.createElement('div')
+    caixa_com_resultados.className = 'caixa-com-resultados'
+    caixa_resultados.appendChild(caixa_com_resultados)
 
+
+    /***************** caixa_tudo_ao_mesmo_tempo ********************/
+        let resulTodos = document.createElement('ul')
+        resulTodos.className = "resul-todos"
+        resulTodos.innerHTML = '<h4>Todos<h4>'
+        caixa_com_resultados.appendChild(resulTodos)
    
     /***************** Pesquisa palavras ********************/
         let resulPalavras = document.createElement('ul') // definir para apenas criar caso existam resultados
         resulPalavras.className = "resul-palavras"
         resulPalavras.innerHTML = '<h4>Palavras<h4>'
-        caixa_resultados.appendChild(resulPalavras)
+        caixa_com_resultados.appendChild(resulPalavras)
 
     /***************** Pesquisa poemas ********************/
         let resulTitulos = document.createElement('ul')
         resulTitulos.className = "resul-titulos"
         resulTitulos.innerHTML = '<h4>Poemas<h4>'
-        caixa_resultados.appendChild(resulTitulos)
+        caixa_com_resultados.appendChild(resulTitulos)
     
     /***************** Pesquisa autores ********************/
         let resulAutores = document.createElement('ul')
         resulAutores.className = "resul-autores"
         resulAutores.innerHTML = '<h4>Autores<h4>'
-        caixa_resultados.appendChild(resulAutores)
+        caixa_com_resultados.appendChild(resulAutores)
 
     /*::::::::::: Pesquisa categorias :::::::::::*/
     /***************** Pesquisa locais ********************/
         let resulLocais = document.createElement('ul')
         resulLocais.className = "resul-locais"
         resulLocais.innerHTML = '<h4>Locais<h4>'
-        caixa_resultados.appendChild(resulLocais)
+        caixa_com_resultados.appendChild(resulLocais)
 
     /***************** Pesquisa fauna ********************/
         let resulFauna = document.createElement('ul')
         resulFauna.className = "resul-fauna"
         resulFauna.innerHTML = '<h4>Fauna<h4>'
-        caixa_resultados.appendChild(resulFauna)
+        caixa_com_resultados.appendChild(resulFauna)
 
     /***************** Pesquisa flora ********************/
         let resulFlora = document.createElement('ul')
         resulFlora.className = "resul-flora"
         resulFlora.innerHTML = '<h4>Flora<h4>'
-        caixa_resultados.appendChild(resulFlora)
+        caixa_com_resultados.appendChild(resulFlora)
 
     /***************** Pesquisa anos ********************/
         let resulAnos = document.createElement('ul')
         resulAnos.className = "resul-anos"
         resulAnos.innerHTML = '<h4>Anos<h4>'
-        caixa_resultados.appendChild(resulAnos)
+        caixa_com_resultados.appendChild(resulAnos)
 
 
 
@@ -214,7 +225,7 @@ function pesquisa_livre(){
 
 
 
-        return caixa_resultados
+        return caixa_com_resultados
         
     }
     
@@ -363,9 +374,11 @@ function filtraResultados(value, dados, propriedade, ulHTML, sliceValue, isArray
                 
                 filteredResults.forEach(result => {
                     const li = document.createElement('li')
+                    li.className = "li-item"
                     li.textContent = result.displayValue
 
-                    //efeitos ao hover
+                    
+
                     li.addEventListener('click', () => {
                         console.log(`Selected item: ${result.originalItem}`)
                     })

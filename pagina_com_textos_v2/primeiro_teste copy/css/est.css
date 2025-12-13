@@ -320,6 +320,9 @@ input[type=text]{
   transform: translateX(0);
 }
 
+.li-item:hover{
+  background-color: var(--light-yellow);
+}
 
 
 .ham-box{
