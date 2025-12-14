@@ -221,6 +221,9 @@ function pesquisa_livre(){
             filtraResultados(value, gTextData, "categorias.fauna", resulFauna, sliceValue, true, false, "Fauna")
             filtraResultados(value, gTextData, "categorias.flora", resulFlora, sliceValue, true, false, "Flora")
 
+            //combina pesquisa de "todos"
+            filtraTodosResultados(value, gWordData, gTextData, resulTodos, 10)
+
         })
 
 
@@ -400,7 +403,158 @@ function filtraResultados(value, dados, propriedade, ulHTML, sliceValue, isArray
 }
 
 /*::::::::::: Lida com todos os resultados :::::::::::*/
+function filtraTodosResultados(value, gWordData, gTextData, resulTodos, maxResultados = 10){
 
+    //Limpa resultados anteriores e mantém o header
+    const header = resulTodos.querySelector('h4')
+    resulTodos.innerHTML = ''
+    if(header) resulTodos.appendChild(header)
+
+    if(value && value.trim().length > 0){
+        const trimmmedValue = value.trim()
+        const val = normalize(trimmmedValue.toLowerCase())
+
+        let allResults = []
+        let seenValues = new Set()
+
+        //função para ajudar a adicionar resultados com legenda de categoria
+        const addResults = (dados, propriedade, categoryLabel, isArray = false, isNumeric = false) => {
+
+            dados.forEach(item => {
+                let propValue
+
+                if(typeof item === 'string' || typeof item === 'number'){
+                    propValue = item
+                } else {
+                    propValue = getNestedProperty(item, propriedade)
+                }
+
+                if(isArray && Array.isArray(propValue)){
+                    propValue.forEach(element => {
+                        if(element === null || element === undefined) return
+
+                        const normalizedElement = normalize(String(element))
+                        const uniqueKey = `${categoryLabel}:${normalizedElement}`
+
+                        if(!seenValues.has(uniqueKey) && normalizedElement.includes(val)){
+                            seenValues.add(uniqueKey)
+
+                            allResults.push({
+                                displayValue: element,
+                                normalizedValue: normalizedElement,
+                                sortValue: normalizedElement,
+                                category: categoryLabel,
+                                originalItem: item
+                            })
+                        }
+                    })
+                } else {
+                    if(propValue === null || propValue === undefined) return
+
+                    if(isNumeric){
+                        const stringValue = String(propValue)
+                        const uniqueKey = `${categoryLabel}:${stringValue}`
+
+                        if(!seenValues.has(uniqueKey) && stringValue.startsWith(trimmmedValue)){
+                            seenValues.add(uniqueKey)
+
+                            allResults.push({
+                                displayValue: propValue,
+                                normalizedValue: stringValue,
+                                sortValue: propValue,
+                                category: categoryLabel,
+                                isNumber: true,
+                                originalItem: item
+                            })
+                        }
+                    } else {
+
+                        const normalizedValue = normalize(String(propValue))
+                        const uniqueKey = `${categoryLabel}:${normalizedValue}`
+                        
+                        if(!seenValues.has(uniqueKey) && normalizedValue.includes(val)){
+                            seenValues.add(uniqueKey)
+                            
+                            allResults.push({
+                                displayValue: propValue,
+                                normalizedValue: normalizedValue,
+                                sortValue: normalizedValue,
+                                category: categoryLabel,
+                                originalItem: item
+                            })
+                        }
+                    }
+                }
+            })
+        }
+
+        // Collect results from all categories
+        addResults(gWordData.palavras, "palavra", "Palavras", false, false)
+        addResults(gTextData, "title", "Títulos", false, false)
+        addResults(gTextData, "author", "Autores", false, false)
+        addResults(gTextData, "date_of_publication", "Data", false, true)
+        addResults(gTextData, "categorias.locais.locais_limpos", "Locais", true, false)
+        addResults(gTextData, "categorias.fauna", "Fauna", true, false)
+        addResults(gTextData, "categorias.flora", "Flora", true, false)
+
+         // Sort all results
+        allResults.sort((a, b) => {
+
+            if(a.isNumber && b.isNumber){
+                const na = Number(a.sortValue)
+                const nb = Number(b.sortValue)
+                return (Number.isNaN(na) ? Infinity : na) - (Number.isNaN(nb) ? Infinity : nb)
+            }
+
+            const aValue = a.sortValue
+            const bValue = b.sortValue
+
+            let aStarts, bStarts
+
+            if(typeof aValue === 'string' && aValue.startsWith("[")){
+                aStarts = aValue.startsWith(val, 1)
+            } else {
+                aStarts = typeof aValue === 'string' && aValue.startsWith(val)
+            }
+
+            if(typeof bValue === 'string' && bValue.startsWith("[")){
+                bStarts = bValue.startsWith(val, 1)
+            } else {
+                bStarts = typeof bValue === 'string' && bValue.startsWith(val)
+            }
+
+            if(aStarts && !bStarts) return -1
+            if(!aStarts && bStarts) return 1
+
+            if(typeof aValue === 'string' && typeof bValue === 'string'){
+                return aValue.localeCompare(bValue, 'pt', { sensitivity: 'base' })
+            }
+
+            return 0
+
+        })
+
+        // Limit to maxResults
+        allResults = allResults.slice(0, maxResultados)
+
+        //Display Results
+        if(allResults.length === 0){
+            resulTodos.innerHTML += `<li class="no-results">Não foram encontrados resultados</li>`
+        } else {
+            allResults.forEach(result => {
+                const li = document.createElement('li')
+                li.innerHTML = `${result.displayValue} <span class="category-label">(${result.category})</span>`
+
+                li.addEventListener('click', () => {
+                    console.log('Selected item:', result.originalItem)
+                })
+
+                resulTodos.appendChild(li)
+            })
+        }
+    }
+
+}
     
 
 
