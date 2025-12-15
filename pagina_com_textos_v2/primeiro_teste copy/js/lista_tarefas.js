@@ -213,4 +213,45 @@
 
 
 
+        //::::::::::::::::::::::::: Nova lista ::::::::::::::::::::::::://
+
+        P_categoias_palavras:
+        - Acrescentar 
+            textos + 
+            palavras
+
+        - Remover info wiki
+            - Substituir com info geral sobre o pequeno gráfico
+        
+        - Mudar a vista de tabela: 
+        item: título | info sobre tabela (ex: palavras mais usadas são...) | gráfico
+            textos: textos com mais palavras? | textos com mais palavras diferentes? (por ano?) -> deve ter um gráfico na pág texto!!
+        - palavras: palavras diferentes por ano
+
+        - Cat-sections:
+            
+        .cat-section{
+            grid-column: span 3; /* Each item spans 3 columns }
+        .cat-section:nth-child(3n+1){ /* 1st, 4th, 7th items 
+            grid-column: 3 / 6;}
+        .cat-section:nth-child(3n+2){ /* 2nd, 5th, 8th items 
+            grid-column: 6 / 9;}
+        .cat-section:nth-child(3n) { /* 3rd, 6th, 9th items 
+            grid-column: 9 / 12;}
+
+
+        
+        ================================================================
+        lista_todas_palavras:
+
+        - Gráfico
+            - Construir um gráfico com as "palavras diferentes" em cada ano 
+            (ter um set[.length] para cada ano com as palavras)
+
+        - Criar destaque para as barras que contêm a palavra selecionada
+        - (em mouseOver criar texto explicativo sobre o "conceito de palavra")
+
+        - Possibilidade de alternar gráfico com mapa
+
+
     */

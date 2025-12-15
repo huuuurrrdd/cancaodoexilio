@@ -134,7 +134,7 @@ function displayData(wordData, textData,stoplist, lemmasData){
                 }
             }
 
-        }else if(categoria === "date_of_publication" || categoria === "author"){
+        }else if(categoria === "date_of_publication" || categoria === "author" || categoria === "title"){ // acrescenta titulos
 
             for(let i = 0; i < textData.length; i++){
                 const valor = textData[i]?.[categoria]
@@ -147,7 +147,16 @@ function displayData(wordData, textData,stoplist, lemmasData){
                 }
             }
 
-
+        //tentar com palavra
+        }else if(categoria === "palavra"){
+    
+            for(let i = 0; i < wordData.length; i++){
+                const valor = wordData.palavras[i].palavra
+                if(valor !== undefined && valor !== null && valor !== ""){
+                    //n sei como contabilizar...
+                }
+            }
+        
         }else{
 
             for(let i = 0; i < textData.length; i++){
