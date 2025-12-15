@@ -192,7 +192,7 @@ h2{
 }
 
 .lupa-icon{
-  position: absolute;
+  position: fixed;
   display: block;
   width: 26px;
   right:50px;
