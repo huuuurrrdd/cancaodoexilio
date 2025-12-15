@@ -58,8 +58,14 @@ nav.innerHTML = `
     
     lupa.addEventListener("click", (e) => {
         lupa.style.display = "none"
-        document.querySelector(".form-nav").style.display = "flex"
+        //document.querySelector(".form-nav").style.display = "flex"
 
+        //adiciona class "active" a form e caixa-resultados
+        const form = document.querySelector(".form-nav")
+        const caixaResultados = document.querySelector(".caixa-resultados")
+
+        form.classList.add("active")
+        caixaResultados.classList.add("active")
     })
 
     let gWordData, gTextData, gStopList, gLemasData
@@ -102,7 +108,14 @@ function pesquisa_livre(){
 
     close.addEventListener("click", () => {
         lupa.style.display = "block"
-        document.querySelector(".form-nav").style.display = "none"
+        // document.querySelector(".form-nav").style.display = "none"
+
+        //Remove classe "active" de form e caixa-resultados
+        const form = document.querySelector(".form-nav")
+        const caixaResultados = document.querySelector(".caixa-resultados")
+
+        form.classList.remove("active")
+        caixaResultados.classList.remove("active")
     })
 
         
@@ -251,9 +264,9 @@ function pesquisa_livre(){
 
         let caixa_resultados = document.createElement('div')
         caixa_resultados.className = "caixa-resultados"
-        document.querySelector(".form-nav").appendChild(caixa_resultados)
+        div_pesquisa.appendChild(caixa_resultados)
 
-        caixa_resultados.innerHTML += "Resultados"
+        //caixa_resultados.innerHTML += "Resultados"
 
     // colocar uma caixa dentro de caixa_resultados
     /***************** caixa_com_resultados ********************/
@@ -265,7 +278,7 @@ function pesquisa_livre(){
     /***************** caixa_tudo_ao_mesmo_tempo ********************/
         let resulTodos = document.createElement('ul')
         resulTodos.className = "resul-todos"
-        resulTodos.innerHTML = '<h4>Todos<h4>'
+        // resulTodos.innerHTML = '<h4>Resultados<h4>'
         caixa_com_resultados.appendChild(resulTodos)
    
     /****** TESTES DE DISPLAY COM TODOS OS ELEMENTOS INDIVIDUALMENTE ******/
@@ -334,8 +347,6 @@ function pesquisa_livre(){
             filtraTodosResultados(value, gWordData, gTextData, resulTodos, input, form, 10)
 
         })
-
-
 
         return caixa_com_resultados
         
@@ -904,6 +915,26 @@ function normalize(str){
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
 }
+
+
+/*Fecha caixa ao clicar fora*/
+
+document.addEventListener('click', (e) => {
+    const caixaResultados = document.querySelector('.caixa-resultados')
+    const form = document.querySelector('.form-nav')
+    const lupa = document.querySelector('.lupa-icon')
+    
+    // If click is outside the search area and it's open
+    if(!caixaResultados.contains(e.target) && 
+       !form.contains(e.target) && 
+       !lupa.contains(e.target) && 
+       caixaResultados.classList.contains('active')) {
+        
+        caixaResultados.classList.remove('active')
+        form.classList.remove('active')
+        lupa.style.display = 'block'
+    }
+})
 
 
 /*|||||||||||||||||||||||| Funções gerais ||||||||||||||||||||||||*/
