@@ -68,14 +68,11 @@ nav.innerHTML = `
 
 // criar uma caixa para colocar palavras (display absolute)
 function pesquisa_livre(){
-
     
     /******** Form para pesquisa ********/ 
     let form = document.createElement("form")
     div_pesquisa.appendChild(form)
     form.className = "form-nav"
-
-   
 
 
     /********** Input search ***********///está funcionall
@@ -84,7 +81,7 @@ function pesquisa_livre(){
     input_search.className = "input-nav"
 
     input_search.type = "text"
-    input_search.placeholder = "pesquisa por palavra"
+    input_search.placeholder = "pesquisa"
     input_search.name = "palavra" //importante!!
 
 
@@ -101,7 +98,6 @@ function pesquisa_livre(){
     let close = document.createElement("div")
     close.className = "close-search"
     form.appendChild(close)
-
     close.innerHTML = "<span></span> <span></span>"
 
     close.addEventListener("click", () => {
@@ -112,13 +108,10 @@ function pesquisa_livre(){
         
     fetchData()
 
-
-
-    caixaResultados(input_search)
+    caixaResultados(input_search, form)
     
     form.addEventListener("submit", (e) => {
         e.preventDefault() // impde envio do formulario e controla o redirecionamento
-
         const searchValue = input_search.value.trim()
 
         if(searchValue.length > 0){
@@ -161,19 +154,19 @@ function pesquisa_livre(){
         if(gWordData?.palavras){
             const foundPalavra = gWordData.palavras.find(item => {
                 const palavra = typeof item === 'string' ? item : item.palavra
-                return normalize(Strig(palavra || "")) === val
+                return normalize(String(palavra || "")) === val
             })
 
             if(foundPalavra) {
                 const palavra = typeof foundPalavra === 'string' ? foundPalavra : foundPalavra.palavra
                 console.log(palavra)
-                return`./lista_palavras.html?palavra=${encodeURIComponent(palavra)}` // o encode pode n funcionar!!
+                return`./lista_palavras.html?palavra=${palavra}` // o encode pode n funcionar!!
             }
         }
 
         //prioridade 2: poemas
         const foundByTitle = gTextData.find(item =>
-            normalize(item?.title || "")
+            normalize(item?.title || "") === val
         )
         if(foundByTitle){
             console.log(foundByTitle.id.id)
@@ -198,8 +191,12 @@ function pesquisa_livre(){
             return false
         })
         if(foundByLocal){
-            console.log(searchValue)
-            return `p_categoria_especifica.html?categoria=Locais&especifica=${encodeURIComponent(searchValue)}`
+            //Encontra o local que "matched"
+            const matchedLocal = foundByLocal.categorias.locais.locais_limpos.find(
+                local => normalize(String(local || "")) === val
+            )
+            console.log((matchedLocal || searchValue))
+            return `p_categoria_especifica.html?categoria=Locais&especifica=${(matchedLocal || searchValue)}`
         }
 
         //Prioridade 5: fauna
@@ -211,8 +208,11 @@ function pesquisa_livre(){
             return false
         })
         if(foundByFauna){
-            console.log(searchValue)
-            return `p_categoria_especifica.html?categoria=Fauna&especifica=${encodeURIComponent(searchValue)}`
+            const matchedFauna = foundByFauna.categorias.fauna.find(
+                animal => normalize(String(animal || "")) === val
+            )
+            console.log((matchedFauna || searchValue))
+            return `p_categoria_especifica.html?categoria=Fauna&especifica=${(matchedFauna || searchValue)}`
         }
 
         //Prioridade 6: Flora
@@ -224,8 +224,11 @@ function pesquisa_livre(){
             return false
         })
         if(foundByFlora){
-            console.log(searchValue)
-            return `p_categoria_especifica.html?categoria=Flora&especifica=${encodeURIComponent(searchValue)}`
+            const matchedFlora = foundByFlora.categorias.flora.find(
+                planta => normalize(String(planta || "")) === val
+            )
+            console.log((matchedFlora || searchValue))
+            return `p_categoria_especifica.html?categoria=Flora&especifica=${(matchedFlora || searchValue)}`
         }
 
         //prioridade 7: Anos
@@ -234,7 +237,7 @@ function pesquisa_livre(){
         )
         if(foundByYear){
             console.log(searchValue)
-            return `./p_categoria_especifica.html?categoria=Anos&especifica=${encodeURIComponent(searchValue)}`
+            return `./p_categoria_especifica.html?categoria=Anos&especifica=${searchValue}`
         }
 
         return null // não encontrou em nenhuma categoria
@@ -242,7 +245,7 @@ function pesquisa_livre(){
 
 
     /*:::::::::::  __Pesquisa livre__  :::::::::::*/
-   function caixaResultados(input){
+   function caixaResultados(input, form){
 
         let sliceValue = 4
 
@@ -265,69 +268,70 @@ function pesquisa_livre(){
         resulTodos.innerHTML = '<h4>Todos<h4>'
         caixa_com_resultados.appendChild(resulTodos)
    
-    /***************** Pesquisa palavras ********************/
-        let resulPalavras = document.createElement('ul') // definir para apenas criar caso existam resultados
-        resulPalavras.className = "resul-palavras"
-        resulPalavras.innerHTML = '<h4>Palavras<h4>'
-        caixa_com_resultados.appendChild(resulPalavras)
+    /****** TESTES DE DISPLAY COM TODOS OS ELEMENTOS INDIVIDUALMENTE ******/
+    // /***************** Pesquisa palavras ********************/
+    //     let resulPalavras = document.createElement('ul') // definir para apenas criar caso existam resultados
+    //     resulPalavras.className = "resul-palavras"
+    //     resulPalavras.innerHTML = '<h4>Palavras<h4>'
+    //     caixa_com_resultados.appendChild(resulPalavras)
 
-    /***************** Pesquisa poemas ********************/
-        let resulTitulos = document.createElement('ul')
-        resulTitulos.className = "resul-titulos"
-        resulTitulos.innerHTML = '<h4>Poemas<h4>'
-        caixa_com_resultados.appendChild(resulTitulos)
+    // /***************** Pesquisa poemas ********************/
+    //     let resulTitulos = document.createElement('ul')
+    //     resulTitulos.className = "resul-titulos"
+    //     resulTitulos.innerHTML = '<h4>Poemas<h4>'
+    //     caixa_com_resultados.appendChild(resulTitulos)
     
-    /***************** Pesquisa autores ********************/
-        let resulAutores = document.createElement('ul')
-        resulAutores.className = "resul-autores"
-        resulAutores.innerHTML = '<h4>Autores<h4>'
-        caixa_com_resultados.appendChild(resulAutores)
+    // /***************** Pesquisa autores ********************/
+    //     let resulAutores = document.createElement('ul')
+    //     resulAutores.className = "resul-autores"
+    //     resulAutores.innerHTML = '<h4>Autores<h4>'
+    //     caixa_com_resultados.appendChild(resulAutores)
 
-    /*::::::::::: Pesquisa categorias :::::::::::*/
-    /***************** Pesquisa locais ********************/
-        let resulLocais = document.createElement('ul')
-        resulLocais.className = "resul-locais"
-        resulLocais.innerHTML = '<h4>Locais<h4>'
-        caixa_com_resultados.appendChild(resulLocais)
+    // /*::::::::::: Pesquisa categorias :::::::::::*/
+    // /***************** Pesquisa locais ********************/
+    //     let resulLocais = document.createElement('ul')
+    //     resulLocais.className = "resul-locais"
+    //     resulLocais.innerHTML = '<h4>Locais<h4>'
+    //     caixa_com_resultados.appendChild(resulLocais)
 
-    /***************** Pesquisa fauna ********************/
-        let resulFauna = document.createElement('ul')
-        resulFauna.className = "resul-fauna"
-        resulFauna.innerHTML = '<h4>Fauna<h4>'
-        caixa_com_resultados.appendChild(resulFauna)
+    // /***************** Pesquisa fauna ********************/
+    //     let resulFauna = document.createElement('ul')
+    //     resulFauna.className = "resul-fauna"
+    //     resulFauna.innerHTML = '<h4>Fauna<h4>'
+    //     caixa_com_resultados.appendChild(resulFauna)
 
-    /***************** Pesquisa flora ********************/
-        let resulFlora = document.createElement('ul')
-        resulFlora.className = "resul-flora"
-        resulFlora.innerHTML = '<h4>Flora<h4>'
-        caixa_com_resultados.appendChild(resulFlora)
+    // /***************** Pesquisa flora ********************/
+    //     let resulFlora = document.createElement('ul')
+    //     resulFlora.className = "resul-flora"
+    //     resulFlora.innerHTML = '<h4>Flora<h4>'
+    //     caixa_com_resultados.appendChild(resulFlora)
 
-    /***************** Pesquisa anos ********************/
-        let resulAnos = document.createElement('ul')
-        resulAnos.className = "resul-anos"
-        resulAnos.innerHTML = '<h4>Anos<h4>'
-        caixa_com_resultados.appendChild(resulAnos)
+    // /***************** Pesquisa anos ********************/
+    //     let resulAnos = document.createElement('ul')
+    //     resulAnos.className = "resul-anos"
+    //     resulAnos.innerHTML = '<h4>Anos<h4>'
+    //     caixa_com_resultados.appendChild(resulAnos)
 
 
 
         input.addEventListener('input', (e) => {
             let value = e.target.value
-            let sliceValue = 4
+            //let sliceValue = 4
 
-            //valores: filteredWord, string com propriedade do icone, vslor do slice, html a ser preenchido, value
-            //1- palavras, 2-poemas, 3- autores, 4- anos
-            filtraResultados(value, gWordData.palavras, "palavra", resulPalavras, sliceValue, false, false, "Palavras")
-            filtraResultados(value, gTextData, "title", resulTitulos, sliceValue, false, false, "Poemas")
-            filtraResultados(value, gTextData, "author", resulAutores, sliceValue, false, false, "Autores")
-            filtraResultados(value, gTextData, "date_of_publication", resulAnos, sliceValue, false, true, "Anos")
+            //ELEMENTOS INDIVIDUAIS PARA TESTE
+            // //1- palavras, 2-poemas, 3- autores, 4- anos
+            // filtraResultados(value, gWordData.palavras, "palavra", resulPalavras, sliceValue, false, false, "Palavras")
+            // filtraResultados(value, gTextData, "title", resulTitulos, sliceValue, false, false, "Poemas")
+            // filtraResultados(value, gTextData, "author", resulAutores, sliceValue, false, false, "Autores")
+            // filtraResultados(value, gTextData, "date_of_publication", resulAnos, sliceValue, false, true, "Anos")
 
-            //categorias (array) 1-Locais, 2-Fauna, 3-Flora
-            filtraResultados(value, gTextData, "categorias.locais.locais_limpos", resulLocais, sliceValue, true, false, "Locais")
-            filtraResultados(value, gTextData, "categorias.fauna", resulFauna, sliceValue, true, false, "Fauna")
-            filtraResultados(value, gTextData, "categorias.flora", resulFlora, sliceValue, true, false, "Flora")
+            // //categorias (array) 1-Locais, 2-Fauna, 3-Flora
+            // filtraResultados(value, gTextData, "categorias.locais.locais_limpos", resulLocais, sliceValue, true, false, "Locais")
+            // filtraResultados(value, gTextData, "categorias.fauna", resulFauna, sliceValue, true, false, "Fauna")
+            // filtraResultados(value, gTextData, "categorias.flora", resulFlora, sliceValue, true, false, "Flora")
 
             //combina pesquisa de "todos"
-            filtraTodosResultados(value, gWordData, gTextData, resulTodos, 10)
+            filtraTodosResultados(value, gWordData, gTextData, resulTodos, input, form, 10)
 
         })
 
@@ -495,8 +499,43 @@ function filtraResultados(value, dados, propriedade, ulHTML, sliceValue, isArray
                     li.textContent = result.displayValue
 
                     li.addEventListener('click', () => {
-                        console.log(`Selected item: ${result.originalItem}`)
-                        input.value = result.originalItem
+                        const item = result.originalItem
+
+                        // Redireciona baseado em parametro categoria/ titulo
+                        switch(titulo){
+                            case "Palavras":
+                                window.location.href = `./lista_palavras.html?palavra=${result.displayValue}`
+                                break
+
+                            case "Poemas":
+                                if(item.id) {
+                                    window.location.href = `./index.html?id=${item.id}`
+                                }
+                                break
+                            
+                            case "Autores":
+                                window.location.href = `./p_categoria_especifica.html?categoria=Autores&especifica=${result.displayValue}`
+                                break
+
+                            case "Locais":
+                                window.location.href = `./p_categoria_especifica.html?categoria=Locais&especifica=${result.displayValue}`
+                                break
+                                
+                            case "Fauna":
+                                window.location.href = `./p_categoria_especifica.html?categoria=Fauna&especifica=${result.displayValue}`
+                                break
+                                
+                            case "Flora":
+                                window.location.href = `./p_categoria_especifica.html?categoria=Flora&especifica=${result.displayValue}`
+                                break
+                                
+                            case "Anos":
+                                window.location.href = `./p_categoria_especifica.html?categoria=Anos&especifica=${result.displayValue}`
+                                break
+                        }
+
+                        // console.log(`Selected item: ${result.originalItem}`)
+                        // input.value = result.originalItem
                     })
 
                     ulHTML.appendChild(li)
@@ -508,7 +547,7 @@ function filtraResultados(value, dados, propriedade, ulHTML, sliceValue, isArray
 }
 
 /*::::::::::: Lida com todos os resultados :::::::::::*/
-function filtraTodosResultados(value, gWordData, gTextData, resulTodos,  maxResultados = 10){
+function filtraTodosResultados(value, gWordData, gTextData, resulTodos, inputElement, formElement, maxResultados = 10){
 
     //Limpa resultados anteriores e mantém o header
     const header = resulTodos.querySelector('h4')
@@ -595,43 +634,29 @@ function filtraTodosResultados(value, gWordData, gTextData, resulTodos,  maxResu
 
         // Collect results from all categories
         addResults(gWordData.palavras, "palavra", "Palavras", false, false)
-        addResults(gTextData, "title", "Titulos", false, false)
-        addResults(gTextData, "author", "Autores", false, false)
-        addResults(gTextData, "date_of_publication", "Data", false, true)
         addResults(gTextData, "categorias.locais.locais_limpos", "Locais", true, false)
         addResults(gTextData, "categorias.fauna", "Fauna", true, false)
         addResults(gTextData, "categorias.flora", "Flora", true, false)
+        addResults(gTextData, "title", "Titulos", false, false)
+        addResults(gTextData, "author", "Autores", false, false)
+        addResults(gTextData, "date_of_publication", "Data", false, true)
+        
 
-         // Sort all results
+         // Sort all results (nova logica de prioridade)
         allResults.sort((a, b) => {
             //Prioridade por categoria
-            const categoryPriority = {
-                "Palavras": 1,
-                "Titulos": 2,
-                "Autores": 3,
-                "Locais": 4,
-                "Fauna": 5,
-                "Flora": 6,
-                "Data": 7
-            }
-
-            const aPriority = categoryPriority[a.category] || 999
-            const bPriority = categoryPriority[b.category] || 999
-
-            if(aPriority != bPriority) {
-                return aPriority - bPriority
-            }
-
-            //Na mesma categoria, sorteia pela qualidade do match
-            if(a.isNumber && b.isNumber){
-                const na = Number(a.sortValue)
-                const nb = Number(b.sortValue)
-                return (Number.isNaN(na) ? Infinity : na) - (Number.isNaN(nb) ? Infinity : nb)
-            }
-
             const aValue = a.sortValue
             const bValue = b.sortValue
 
+            //Passo 1: verifica match exato (maior prioridade)
+            const aExact = a.normalizedValue === val
+            const bExact = b.normalizedValue === val
+
+            if(aExact && !bExact) return -1
+            if(!aExact && bExact) return 1
+
+
+            // Passo 2: verifica se começa com valor de pesquisa
             let aStarts, bStarts
 
             if(typeof aValue === 'string' && aValue.startsWith("[")){
@@ -649,11 +674,90 @@ function filtraTodosResultados(value, gWordData, gTextData, resulTodos,  maxResu
             if(aStarts && !bStarts) return -1
             if(!aStarts && bStarts) return 1
 
+            //Passo 3: Alphabetical order (dentro do mesmo tipo de match)
             if(typeof aValue === 'string' && typeof bValue === 'string'){
-                return aValue.localeCompare(bValue, 'pt', { sensitivity: 'base' })
+                const alphaCompare = aValue.localeCompare(bValue, 'pt', { sensitivity: 'base' })
+                if(alphaCompare !== 0) return alphaCompare
+            }
+
+            //Passo 4: prioridade de categria (apenas se tudo for igual)
+            const categoryPriority = {
+                "Palavras": 1,
+                "Titulos": 2,
+                "Autores": 3,
+                "Locais": 4,
+                "Fauna": 5,
+                "Flora": 6,
+                "Data": 7
+            }
+
+            const aPriority = categoryPriority[a.category] || 999
+            const bPriority = categoryPriority[b.category] || 999
+
+
+            if(aPriority !== bPriority) {
+                return aPriority - bPriority
+            }
+
+            //Passo 5: Ordem numerica para anos (se ambos são numeros)
+            if(a.isNumber && b.isNumber){
+                const na = Number(a.sortValue)
+                const nb = Number(b.sortValue)
+                return (Number.isNaN(na) ? Infinity : na) - (Number.isNaN(nb) ? Infinity : nb)
             }
 
             return 0
+
+            /*** Versão anterior ***/
+            // const categoryPriority = {
+            //     "Palavras": 1,
+            //     "Titulos": 2,
+            //     "Autores": 3,
+            //     "Locais": 4,
+            //     "Fauna": 5,
+            //     "Flora": 6,
+            //     "Data": 7
+            // }
+
+            // const aPriority = categoryPriority[a.category] || 999
+            // const bPriority = categoryPriority[b.category] || 999
+
+            // if(aPriority !== bPriority) {
+            //     return aPriority - bPriority
+            // }
+
+            // //Na mesma categoria, sorteia pela qualidade do match
+            // if(a.isNumber && b.isNumber){
+            //     const na = Number(a.sortValue)
+            //     const nb = Number(b.sortValue)
+            //     return (Number.isNaN(na) ? Infinity : na) - (Number.isNaN(nb) ? Infinity : nb)
+            // }
+
+            // const aValue = a.sortValue
+            // const bValue = b.sortValue
+
+            // let aStarts, bStarts
+
+            // if(typeof aValue === 'string' && aValue.startsWith("[")){
+            //     aStarts = aValue.startsWith(val, 1)
+            // } else {
+            //     aStarts = typeof aValue === 'string' && aValue.startsWith(val)
+            // }
+
+            // if(typeof bValue === 'string' && bValue.startsWith("[")){
+            //     bStarts = bValue.startsWith(val, 1)
+            // } else {
+            //     bStarts = typeof bValue === 'string' && bValue.startsWith(val)
+            // }
+
+            // if(aStarts && !bStarts) return -1
+            // if(!aStarts && bStarts) return 1
+
+            // if(typeof aValue === 'string' && typeof bValue === 'string'){
+            //     return aValue.localeCompare(bValue, 'pt', { sensitivity: 'base' })
+            // }
+
+            //return 0
 
         })
 
@@ -670,9 +774,46 @@ function filtraTodosResultados(value, gWordData, gTextData, resulTodos,  maxResu
                 li.className = "li-item"
 
                 li.addEventListener('click', () => {
-                    console.log('Selected item:', result.originalItem)
-                    input.value = result.displayValue
-                    form.displayEvent(new Event('submit', { cancelable: true }))
+
+                    const item = result.originalItem
+
+                    //redireciona com base na categoria diretamente (não preenche fill input e submete form)
+                    switch(result.category) {
+                        case "Palavras":
+                            window.location.href = `./lista_palavras.html?palavra=${result.displayValue}`
+                            break
+
+                        case "Titulos":
+                            if(item?.id) {
+                                window.location.href = `./index.html?id=${item.id}`
+                            }
+                            break
+
+                        case "Autores":
+                            window.location.href = `./p_categoria_especifica.html?categoria=Autores&especifica=${result.displayValue}`
+                            break
+
+                        case "Locais":
+                            window.location.href = `./p_categoria_especifica.html?categoria=Locais&especifica=${result.displayValue}`
+                            break
+
+                        case "Fauna":
+                            window.location.href = `./p_categoria_especifica.html?categoria=Fauna&especifica=${result.displayValue}`
+                            break
+
+                        case "Flora":
+                            window.location.href = `./p_categoria_especifica.html?categoria=Flora&especifica=${result.displayValue}`
+                            break
+
+                        case "Data":
+                            window.location.href = `./p_categoria_especifica.html?categoria=Anos&especifica=${result.displayValue}`
+                            break
+                       
+                    }
+                    
+                    // console.log('Selected item:', result.displayValue)
+                    // inputElement.value = result.displayValue
+                    // formElement.dispatchEvent(new Event('submit', { cancelable: true }))
                 })
 
                 resulTodos.appendChild(li)
