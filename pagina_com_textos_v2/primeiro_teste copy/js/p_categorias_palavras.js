@@ -252,7 +252,25 @@ function displayData(wordData, textData,stoplist, lemmasData){
     }
     
 
+        //1. Encontra min e max em todos os datasets
+    function getGlobalMinMax(allDatasets) {
+        let globalMin = Infinity
+        let globalMax = -Infinity
 
+        allDatasets.forEach(dataset => { // para cada um dos "datasets" descobre valor maior e menor
+            dataset.forEach(value => {
+                if(value < globalMin) globalMin = value;
+                if(value > globalMax) globalMax = value
+            })
+        })
+
+        //opcionalmente adiciona padding
+        const padding = (globalMax - globalMax) * 0.1
+        return{
+            min: globalMin - padding,
+            max: globalMax + padding
+        }
+    }
 
 
     //Objeto com informações das categorias (para que este objeto seja editável)
@@ -304,6 +322,16 @@ function displayData(wordData, textData,stoplist, lemmasData){
 
     ]
 
+        //2 Obter os dados
+        let allData = []
+
+        categoria.forEach(cat =>
+            allData.push(cat.labels_cat_value)
+        )
+
+        const { min, max } = getGlobalMinMax(allData)
+
+
 
 /*     //Pode fazer sentido criar um objeto
     let cate = ["Locais", "Fauna", "Flora", "Autores", "Anos"]
@@ -345,7 +373,15 @@ function displayData(wordData, textData,stoplist, lemmasData){
         let info_grafico_cat = document.createElement("div")
         document.querySelector (".cat-link-" + cat).appendChild(info_grafico_cat)
         info_grafico_cat.className = "info-grafico-cat"
-        info_grafico_cat.innerHTML = "Versão de testee"
+
+       
+        info_grafico_cat.innerHTML = `<p>O elemento de ${cat} mais frequente é <strong>${categoria[i].labels_cat[0]}</strong>, mencionado em ${categoria[i].labels_cat_value[0]} textos (${formatPercentage(categoria[i].labels_cat_value[0], textData.length)}).</p> 
+                                        <p>Segue-se <strong>${categoria[i].labels_cat[1]}</strong> mencionado em ${categoria[i].labels_cat_value[1]} textos (${formatPercentage(categoria[i].labels_cat_value[1], textData.length)}); 
+                                                    <strong>${categoria[i].labels_cat[2]}</strong> mencionado em ${categoria[i].labels_cat_value[2]} textos (${formatPercentage(categoria[i].labels_cat_value[2], textData.length)});
+                                                    <strong>${categoria[i].labels_cat[3]}</strong> mencionado em ${categoria[i].labels_cat_value[3]} textos (${formatPercentage(categoria[i].labels_cat_value[3], textData.length)});
+                                                    <strong>${categoria[i].labels_cat[4]}</strong> mencionado em ${categoria[i].labels_cat_value[4]} textos (${formatPercentage(categoria[i].labels_cat_value[4], textData.length)});
+                                                  e <strong>${categoria[i].labels_cat[5]}</strong> mencionado em ${categoria[i].labels_cat_value[5]} textos (${formatPercentage(categoria[i].labels_cat_value[5], textData.length)}).</p>`
+       
 
         //grafico-mais-frequentes
         let grafico_cat_ct = document.createElement("div")
@@ -377,21 +413,36 @@ function displayData(wordData, textData,stoplist, lemmasData){
                     }
                 },
                 y: {
+                    // min: min,
+                    // max: max,
                     beginAtZero: true,
                     grid:{
+                        display:false,
                         drawTicks: false
                     },
                     ticks: {
-                        stepSize: 20,
-                        padding: 10,
-                        font:{
-                            size: 10
-                        }
+                        display:false // garantir a escala (o numero maior igual em todos os graficos)
+                        // stepSize: 20,
+                        // padding: 10,
+                        // font:{
+                        //     size: 10
+                        // }
                     }
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false
                 }
             }
         }
     });
+
+    
+
+
+
+
 
 /********************** Parte eliminada da wikipedia **********************/
         // //link para a caixa
@@ -524,5 +575,22 @@ function displayData(wordData, textData,stoplist, lemmasData){
 
 }
 
+/*::::::::::::::::  Funções auxiliares  ::::::::::::::::*/
+//decide o numero de casas decimais conforme necessidade
+function formatPercentage(value, total) {
+    
+    const percentage = (value / total) * 100;
+    
+    if (percentage === 0) {
+        return "0%";
+    }
+    
+    // If rounded to integer would be 0, show decimals
+    if (Math.floor(percentage) === 0) {
+        return percentage.toFixed(1) + "%";
+    }
+    
+    return Math.floor(percentage) + "%";
+}
 
 
