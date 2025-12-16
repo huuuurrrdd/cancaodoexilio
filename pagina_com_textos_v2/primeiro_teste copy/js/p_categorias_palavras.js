@@ -276,6 +276,22 @@ function displayData(wordData, textData,stoplist, lemmasData){
     //Objeto com informações das categorias (para que este objeto seja editável)
     let categoria = [
         {
+            categoria: "Textos",
+            labels_cat: localSNome,
+            labels_cat_value: localSVal,
+            mais_frequente: titleCase(localSNome[0], stoplist), //
+            nome:localSNome[0],
+            info_mais_frequente: ""
+        },
+        {
+            categoria: "Palavras",
+            labels_cat: localSNome,
+            labels_cat_value: localSVal,
+            mais_frequente: titleCase(localSNome[0], stoplist), //
+            nome:localSNome[0],
+            info_mais_frequente: ""
+        },
+        {
             categoria: "Locais",
             labels_cat: localSNome,
             labels_cat_value: localSVal,
