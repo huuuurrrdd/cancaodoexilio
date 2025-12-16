@@ -81,7 +81,7 @@ function displayData(wordData, textData,stoplist, lemmasData){
     let title_h = document.createElement("h1")
     margem_ct.appendChild(title_h)
     title_h.className += "categoria-palavras-h page-title"
-    title_h.innerText = `Categorias de palavras`
+    title_h.innerText = `Categorias`
 
     //****************  Categorias-sections  ******************/
     let categorias_sections = document.createElement("div")
@@ -330,20 +330,26 @@ function displayData(wordData, textData,stoplist, lemmasData){
         link_categoria.href = "./p_categoria.html?categoria=" + cat
 
 
-        //caixa para h2 e grafico (dentro do link)
-        let cat_section_ct = document.createElement("div")
-        document.querySelector(".cat-link-" + cat).appendChild(cat_section_ct)
-        cat_section_ct.className += "cat-section-ct cat-section-ct-" + cat
+        // //caixa para h2 e grafico (dentro do link)
+        // let cat_section_ct = document.createElement("div")
+        // document.querySelector(".cat-link-" + cat).appendChild(cat_section_ct)
+        // cat_section_ct.className += "cat-section-ct cat-section-ct-" + cat
 
         //titulo
         let cat_header = document.createElement("h2")
-        document.querySelector(".cat-section-ct-" + cat).appendChild(cat_header)
+        document.querySelector(".cat-link-" + cat).appendChild(cat_header)
         cat_header.className += "cat-header"
         cat_header.innerHTML = `${cat}`
 
+        // texto descritivo do gráfico
+        let info_grafico_cat = document.createElement("div")
+        document.querySelector (".cat-link-" + cat).appendChild(info_grafico_cat)
+        info_grafico_cat.className = "info-grafico-cat"
+        info_grafico_cat.innerHTML = "Versão de testee"
+
         //grafico-mais-frequentes
         let grafico_cat_ct = document.createElement("div")
-        document.querySelector(".cat-section-ct-" + cat).appendChild(grafico_cat_ct)
+        document.querySelector(".cat-link-" + cat).appendChild(grafico_cat_ct)
         grafico_cat_ct.className += "grafico-cat-ct grafico-cat-ct-" + cat
 
         let canvas_cat = document.createElement("canvas")
@@ -369,114 +375,114 @@ function displayData(wordData, textData,stoplist, lemmasData){
         }
     });
 
+/********************** Parte eliminada da wikipedia **********************/
+        // //link para a caixa
+        // let link_c_mais_frequente = document.createElement("a")
+        // document.querySelector(`.cat-section-` + cat).appendChild(link_c_mais_frequente)
+        // link_c_mais_frequente.className += "link-cat-freq-" + cat
+        // link_c_mais_frequente.href = "./p_categoria_especifica.html?categoria=" + cat + "&especifica=" + nome
 
-        //link para a caixa
-        let link_c_mais_frequente = document.createElement("a")
-        document.querySelector(`.cat-section-` + cat).appendChild(link_c_mais_frequente)
-        link_c_mais_frequente.className += "link-cat-freq-" + cat
-        link_c_mais_frequente.href = "./p_categoria_especifica.html?categoria=" + cat + "&especifica=" + nome
+        // //outra caixa
+        // let cat_mais_frequente = document.createElement("div")
+        // document.querySelector(".link-cat-freq-" + cat).appendChild(cat_mais_frequente)
+        // cat_mais_frequente.className += "cat-mais-frequente-ct" + cat
 
-        //outra caixa
-        let cat_mais_frequente = document.createElement("div")
-        document.querySelector(".link-cat-freq-" + cat).appendChild(cat_mais_frequente)
-        cat_mais_frequente.className += "cat-mais-frequente-ct" + cat
+        // let cat_mais_frequente_header = document.createElement("h3")
+        // document.querySelector(".cat-mais-frequente-ct" + cat).appendChild(cat_mais_frequente_header)
+        // cat_mais_frequente_header.className += "cat-mais-frequente-header" + cat
+        // cat_mais_frequente_header.innerHTML = mais_frequente
 
-        let cat_mais_frequente_header = document.createElement("h3")
-        document.querySelector(".cat-mais-frequente-ct" + cat).appendChild(cat_mais_frequente_header)
-        cat_mais_frequente_header.className += "cat-mais-frequente-header" + cat
-        cat_mais_frequente_header.innerHTML = mais_frequente
+        // let cat_info_mais_frequente = document.createElement("div")
+        // document.querySelector(".cat-mais-frequente-ct" + cat).appendChild(cat_info_mais_frequente)
+        // cat_info_mais_frequente.className += "cat-info-mais-frequente" + cat
+        // //cat_info_mais_frequente.innerHTML = info_mais_frequente
 
-        let cat_info_mais_frequente = document.createElement("div")
-        document.querySelector(".cat-mais-frequente-ct" + cat).appendChild(cat_info_mais_frequente)
-        cat_info_mais_frequente.className += "cat-info-mais-frequente" + cat
-        //cat_info_mais_frequente.innerHTML = info_mais_frequente
-
-        //console.log(nome)
+        // //console.log(nome)
 
 
-        const endpoint = 'https://pt.wikipedia.org/w/api.php?'
-        const params = {
-            origin: '*', // non auhteticated requests
-            format: 'json',
-            action: 'query',
-            prop: 'extracts',
-            exchars: 200,
-            exintro: true,
-            explaintext: true,
-            //exsentences: 1,
-            generator: 'search',
-            gsrlimit: 1
+        // const endpoint = 'https://pt.wikipedia.org/w/api.php?'
+        // const params = {
+        //     origin: '*', // non auhteticated requests
+        //     format: 'json',
+        //     action: 'query',
+        //     prop: 'extracts',
+        //     exchars: 200,
+        //     exintro: true,
+        //     explaintext: true,
+        //     //exsentences: 1,
+        //     generator: 'search',
+        //     gsrlimit: 1
 
-        }
+        // }
 
-        const clearPreviousResults = () => {
-            cat_info_mais_frequente.innerHTML = ""
-        }
+        // const clearPreviousResults = () => {
+        //     cat_info_mais_frequente.innerHTML = ""
+        // }
 
-        const isEspecificaEmpty = mais_frequente => {
-            if(!mais_frequente || mais_frequente === '') return true
-            return false
-        }
+        // const isEspecificaEmpty = mais_frequente => {
+        //     if(!mais_frequente || mais_frequente === '') return true
+        //     return false
+        // }
 
-        const showError = error => {
-            cat_info_mais_frequente.innerHTML += `🚨 ${error} 🚨`
-        }
+        // const showError = error => {
+        //     cat_info_mais_frequente.innerHTML += `🚨 ${error} 🚨`
+        // }
 
-        const showResults = results => {
-        results.forEach(result => {
-            cat_info_mais_frequente.innerHTML += `
-            <div class = "results__item"> 
-                <a href = "https://pt.wikipedia.org/?curid=${result.pageId}" target="_blank" class= "card animated bounceInUp">
-                    <h2 class = "results__item__title">${result.title}</h2>
-                    <p class = "results__item__intro">${result.intro}</p>
-                </a>
-            </div>
-            `
-        })}
+        // const showResults = results => {
+        // results.forEach(result => {
+        //     cat_info_mais_frequente.innerHTML += `
+        //     <div class = "results__item"> 
+        //         <a href = "https://pt.wikipedia.org/?curid=${result.pageId}" target="_blank" class= "card animated bounceInUp">
+        //             <h2 class = "results__item__title">${result.title}</h2>
+        //             <p class = "results__item__intro">${result.intro}</p>
+        //         </a>
+        //     </div>
+        //     `
+        // })}
 
-        const gatherData = pages => {
-            const results = Object.values(pages).map(page =>({
-                pageId: page.pageid,
-                title: page.title,
-                intro: page.extract
-            }))
+        // const gatherData = pages => {
+        //     const results = Object.values(pages).map(page =>({
+        //         pageId: page.pageid,
+        //         title: page.title,
+        //         intro: page.extract
+        //     }))
 
-            showResults(results)
-        }
+        //     showResults(results)
+        // }
 
-        const getData = async() => {
-            const nomeStr = String(nome || '')
+        // const getData = async() => {
+        //     const nomeStr = String(nome || '')
 
-            let nome_singular
-            if(nomeStr.charAt(nome.length-1) == "s"){
-                //console.log("Começa com s")
-                nome_singular = nome.slice(0, -1)
-            } else {
-                nome_singular = nome
-            }
-            const palavra = nome_singular
-            //let teste = nome.charAt(nome.length-1)
-            //console.log(nome_singular)
-            if(isEspecificaEmpty(palavra)) return
+        //     let nome_singular
+        //     if(nomeStr.charAt(nome.length-1) == "s"){
+        //         //console.log("Começa com s")
+        //         nome_singular = nome.slice(0, -1)
+        //     } else {
+        //         nome_singular = nome
+        //     }
+        //     const palavra = nome_singular
+        //     //let teste = nome.charAt(nome.length-1)
+        //     //console.log(nome_singular)
+        //     if(isEspecificaEmpty(palavra)) return
 
-            params.gsrsearch = palavra
-            clearPreviousResults()
+        //     params.gsrsearch = palavra
+        //     clearPreviousResults()
 
-            try {
-                const { data } = await axios.get(endpoint, { params }) // data é o objeto gerado pela wikipedia API
+        //     try {
+        //         const { data } = await axios.get(endpoint, { params }) // data é o objeto gerado pela wikipedia API
 
-                if(data.error) throw new Error(data.error.info)
-                if (!data.query) throw new Error("Nenhum resultado encontrado.");
+        //         if(data.error) throw new Error(data.error.info)
+        //         if (!data.query) throw new Error("Nenhum resultado encontrado.");
 
-                gatherData(data.query.pages)
+        //         gatherData(data.query.pages)
 
-            } catch (error) {
-                showError(error)
-            }
+        //     } catch (error) {
+        //         showError(error)
+        //     }
 
-        }
+        // }
 
-        getData()
+        // getData()
 
     }
 

@@ -17,17 +17,27 @@
     grid-row-gap: 40px;
 } */
 
-.cat-section{
+/* .cat-section{
     display: grid;
     grid-template-columns: repeat(13, 1fr);
     grid-auto-rows: 1fr;
     grid-column-gap: 10px;
     grid-row-gap: 40px;
+} */
+
+.cat-link{
+    display: grid;
+    grid-template-columns: repeat(13, 1fr);
+    grid-auto-rows: 200px;
+    grid-column-gap: 10px;
+    grid-row-gap: 40px;
 }
 
 
-
-
+/*dentro da grid*/
+.cat-header { grid-area: 1 / 3 / 2 / 5; }
+.info-grafico-cat { grid-area: 1 / 5 / 2 / 8; }
+.grafico-cat-ct { grid-area: 1 / 8 / 2 / 12; }
 
 
 
