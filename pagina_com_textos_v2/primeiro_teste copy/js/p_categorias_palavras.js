@@ -368,8 +368,26 @@ function displayData(wordData, textData,stoplist, lemmasData){
         },
         options: {
             scales: {
+                x:{
+                    grid:{
+                        display: false
+                    },
+                    ticks:{
+                        display: false
+                    }
+                },
                 y: {
-                    beginAtZero: true
+                    beginAtZero: true,
+                    grid:{
+                        drawTicks: false
+                    },
+                    ticks: {
+                        stepSize: 20,
+                        padding: 10,
+                        font:{
+                            size: 10
+                        }
+                    }
                 }
             }
         }
