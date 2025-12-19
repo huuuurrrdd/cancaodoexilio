@@ -152,19 +152,14 @@ function renderChart(aggregatedData, config){
     title.textContent = `Número de palavras únicas por ${config.timeGrouping === 'year' ? 'ano' : 'década'}`
     container.appendChild(title)
 
-    //lista de palavras para criar destaque no grafico
-    let lista_palavras = ['sabiá', 'palmeira', 'brasil', 'batata', 'revolução', 'animal']
-
-    //contentor para as palavras
-    const lista_palavrasContainer = document.createElement('div')
-    lista_palavrasContainer.className = 'lista-palavras-container'
-    lista_palavrasContainer.innerHTML = '<strong> Hover nas palavras</strong>'
-    container.appendChild(lista_palavrasContainer)
-
-    // lista_palavras.forEach(palavra => {
-    //     let hover_palavra = document.createElement('span')
-    //     hover_palavra.className = `hover-${palavra}`
-    // })
+    // Lista de palavras para destacar
+    const lista_palavras = ['sabiá', 'palmeira', 'brasil', 'batata', 'revolução', 'animal']
+    
+    // Container das palavras clicáveis
+    const wordsListContainer = document.createElement('div')
+    wordsListContainer.className = 'words-list-container'
+    wordsListContainer.innerHTML = '<strong>Hover nas palavras para destacar no gráfico:</strong>'
+    container.appendChild(wordsListContainer)
 
     const graficoContainer = document.createElement('div')
     graficoContainer.className = 'grafico-container'
@@ -177,16 +172,20 @@ function renderChart(aggregatedData, config){
     const labels = Array.from(aggregatedData.keys()).sort((a, b) => a - b)
     const data = labels.map(period => aggregatedData.get(period).uniqueWordCount)
 
-    new Chart(canvas, {
+    // Criar cores padrão e cores de destaque para cada barra
+    const backgroundColors = labels.map(() => 'rgba(54, 162, 235, 0.5)')
+    const borderColors = labels.map(() => 'rgba(54, 162, 235, 1)')
+
+    const chartInstance = new Chart(canvas, {
         type: 'bar',
         data: {
             labels: labels,
             datasets: [{
                 label: 'Número de palavras únicas',
                 data: data,
-                borderWidth: 1,
-                backgroundColor: 'rgba(54, 162, 235, 0.5)',
-                borderColor: 'rgba(54, 162, 235, 1)'
+                borderWidth: 2,
+                backgroundColor: backgroundColors,
+                borderColor: borderColors
             }]
         },
         options:{
@@ -218,26 +217,68 @@ function renderChart(aggregatedData, config){
         }
     })
 
+    // Criar spans para cada palavra e adicionar funcionalidade de hover
     lista_palavras.forEach(palavra => {
-        const palavra_span = document.createElement('span')
-        palavra_span.className = 'hover-palavra'
-        palavra_span.textContent = palavra
-
-        lista_palavrasContainer.appendChild(palavra_span)
-
-        // let hover_palavra = document.querySelector(`.hover-${palavra}`)
-        // container.appendChild(hover_palavra)
-
-        // hover_palavra.addEventListener('mouseover', () => {
-
-        // } )
-
-        //encontrar periodos em que palavra aparece
-        const periodosComPalavra = new Set() /////////////FIQUEIIII AQUIIII!!!!!
-
+        const wordSpan = document.createElement('span')
+        wordSpan.className = 'hover-word'
+        wordSpan.textContent = palavra
+        wordSpan.style.cursor = 'pointer'
+        wordSpan.style.margin = '5px 10px'
+        wordSpan.style.padding = '5px 10px'
+        wordSpan.style.border = '1px solid #ccc'
+        wordSpan.style.borderRadius = '3px'
+        wordSpan.style.display = 'inline-block'
+        wordSpan.style.transition = 'all 0.2s'
         
-    })
+        wordsListContainer.appendChild(wordSpan)
 
+        // Encontrar em que períodos esta palavra aparece
+        const periodosComPalavra = new Set()
+        
+        aggregatedData.forEach((periodData, period) => {
+            if(periodData.uniqueWords.includes(palavra)){
+                periodosComPalavra.add(period)
+            }
+        })
+
+        // Adicionar eventos de hover
+        wordSpan.addEventListener('mouseenter', () => {
+            wordSpan.style.backgroundColor = 'rgba(255, 99, 132, 0.2)'
+            wordSpan.style.borderColor = 'rgba(255, 99, 132, 1)'
+            wordSpan.style.fontWeight = 'bold'
+
+            // Destacar barras no gráfico
+            const newBackgroundColors = labels.map((period, idx) => {
+                return periodosComPalavra.has(period) 
+                    ? 'rgba(255, 99, 132, 0.7)' 
+                    : 'rgba(54, 162, 235, 0.2)'
+            })
+            
+            const newBorderColors = labels.map((period, idx) => {
+                return periodosComPalavra.has(period) 
+                    ? 'rgba(255, 99, 132, 1)' 
+                    : 'rgba(54, 162, 235, 0.5)'
+            })
+
+            chartInstance.data.datasets[0].backgroundColor = newBackgroundColors
+            chartInstance.data.datasets[0].borderColor = newBorderColors
+            chartInstance.update()
+        })
+
+        wordSpan.addEventListener('mouseleave', () => {
+            wordSpan.style.backgroundColor = 'transparent'
+            wordSpan.style.borderColor = '#ccc'
+            wordSpan.style.fontWeight = 'normal'
+
+            // Restaurar cores originais
+            chartInstance.data.datasets[0].backgroundColor = backgroundColors
+            chartInstance.data.datasets[0].borderColor = borderColors
+            chartInstance.update()
+        })
+
+        // Adicionar informação de quantos períodos ao passar o mouse
+        wordSpan.title = `Aparece em ${periodosComPalavra.size} ${config.timeGrouping === 'year' ? 'anos' : 'décadas'}: ${Array.from(periodosComPalavra).sort((a,b) => a-b).join(', ')}`
+    })
 }
 
 // atualizar configuração e re-renderizar
