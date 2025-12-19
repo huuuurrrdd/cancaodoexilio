@@ -117,9 +117,10 @@ function displayData(wordData, textData,stoplist, lemmasData){
     // console.log("cat" + total_categorias)
 
     // funcao para array de objetos de palavras para uma categoria (sem contar com excecao)
-    function arrayPalavrasCat (textData, categoria){
+    function arrayPalavrasCat (textData, wordData, categoria){
 
         let all_entries = [] // array of objects { nome, textId }
+        let all_entries_ = []
 
         if(categoria === "locais"){
 
@@ -148,12 +149,17 @@ function displayData(wordData, textData,stoplist, lemmasData){
             }
 
         //tentar com palavra
-        }else if(categoria === "palavra"){
+        }else if(categoria === "palavra"){ //FALTA ELIMINAR STOP WORDS E PALAVRAS DO ORIGINAL
     
-            for(let i = 0; i < wordData.length; i++){
+            for(let i = 0; i < wordData.palavras.length; i++){
                 const valor = wordData.palavras[i].palavra
                 if(valor !== undefined && valor !== null && valor !== ""){
-                    //n sei como contabilizar...
+                    for(let j = 0; j < wordData.palavras[i].textos.length; j++){
+                        all_entries.push({
+                            nome: wordData.palavras[i].palavra,
+                            textId: wordData.palavras[i].textos[j].id_text  //é um array de objetos (id_text + frequencia)
+                        })
+                    }    
                 }
             }
         
@@ -173,6 +179,7 @@ function displayData(wordData, textData,stoplist, lemmasData){
             }
         }
 
+        console.log(all_entries)
 
 
         //Now group by nome
@@ -199,16 +206,18 @@ function displayData(wordData, textData,stoplist, lemmasData){
     }
 
     // obter array de objetos para cada uma das categorias
-    let arrayFauna = arrayPalavrasCat (textData, "fauna")
-    let arrayFlora = arrayPalavrasCat (textData, "flora")
-    let arrayLocal = arrayPalavrasCat (textData, "locais")
-    let array__Ano = arrayPalavrasCat (textData, "date_of_publication")
-    let arrayAutor = arrayPalavrasCat (textData, "author")
+    let arrayPalav = arrayPalavrasCat (textData, wordData, "palavra")
+    let arrayFauna = arrayPalavrasCat (textData, wordData, "fauna")
+    let arrayFlora = arrayPalavrasCat (textData, wordData, "flora")
+    let arrayLocal = arrayPalavrasCat (textData, wordData, "locais")
+    let array__Ano = arrayPalavrasCat (textData, wordData, "date_of_publication")
+    let arrayAutor = arrayPalavrasCat (textData, wordData, "author")
 
     //console.log(arrayAutor[0]) //funcioona
     //console.log(array__Ano[4].nome) //n funciona (provavelmente por ser um nº)
 
     // obter lista ordenada por frequencia, em cada categoria (falta ano e autores)
+    let palavOrd = arrayPalav.sort((a, b) => b.textos_menc.length - a.textos_menc.length)
     let faunaOrd = arrayFauna.sort((a, b) => b.textos_menc.length - a.textos_menc.length)
     let floraOrd = arrayFlora.sort((a, b) => b.textos_menc.length - a.textos_menc.length)
     let localOrd = arrayLocal.sort((a, b) => b.textos_menc.length - a.textos_menc.length)
@@ -218,6 +227,7 @@ function displayData(wordData, textData,stoplist, lemmasData){
 
     // obter 6 palavras mais frequentes de cada categoria
     let l = 6
+    let palavSeis = palavOrd.slice(0, l)
     let faunaSeis = faunaOrd.slice(0, l)
     let floraSeis = floraOrd.slice(0, l)
     let localSeis = localOrd.slice(0, l)
@@ -225,12 +235,14 @@ function displayData(wordData, textData,stoplist, lemmasData){
     let autorSeis = autorOrd.slice(0, l)
 
     //array de nomes e array de valores
+    let palavSNome = []
     let faunaSNome = []
     let floraSNome = []
     let localSNome = []
     let ano__SNome = []
     let autorSNome = []
     
+    let palavSval = []
     let faunaSVal = []
     let floraSVal = []
     let localSVal = []
@@ -238,12 +250,14 @@ function displayData(wordData, textData,stoplist, lemmasData){
     let autorSVal = []
 
     for(let i = 0; i < 6; i++){
+        palavSNome.push(faunaSeis[i].nome)
         faunaSNome.push(faunaSeis[i].nome)
         floraSNome.push(floraSeis[i].nome)
         localSNome.push(localSeis[i].nome)
         ano__SNome.push(ano__Seis[i].nome)
         autorSNome.push(autorSeis[i].nome)
 
+        palavSval.push(palavSeis[i].textos_menc.length)
         faunaSVal.push(faunaSeis[i].textos_menc.length)
         floraSVal.push(floraSeis[i].textos_menc.length)
         localSVal.push(localSeis[i].textos_menc.length)
@@ -285,10 +299,10 @@ function displayData(wordData, textData,stoplist, lemmasData){
         },
         {
             categoria: "Palavras",
-            labels_cat: localSNome,
-            labels_cat_value: localSVal,
-            mais_frequente: titleCase(localSNome[0], stoplist), //
-            nome:localSNome[0],
+            labels_cat: palavSNome,
+            labels_cat_value: palavSval,
+            mais_frequente: titleCase(palavSNome[0], stoplist), //
+            nome:palavSNome[0],
             info_mais_frequente: ""
         },
         {
@@ -299,7 +313,6 @@ function displayData(wordData, textData,stoplist, lemmasData){
             nome:localSNome[0],
             info_mais_frequente: ""
         },
-
         {
             categoria: "Fauna",
             labels_cat: faunaSNome,
@@ -308,7 +321,6 @@ function displayData(wordData, textData,stoplist, lemmasData){
             nome: faunaSNome[0],
             info_mais_frequente: ""
         },
-
         {
             categoria: "Flora",
             labels_cat: floraSNome,
@@ -317,7 +329,6 @@ function displayData(wordData, textData,stoplist, lemmasData){
             nome: floraSNome[0],
             info_mais_frequente: ""
         },
-
         {
             categoria: "Autores",
             labels_cat: autorSNome,
@@ -326,7 +337,6 @@ function displayData(wordData, textData,stoplist, lemmasData){
             nome: autorSNome[0], 
             info_mais_frequente: ""
         },
-
         {
             categoria: "Anos",
             labels_cat: ano__SNome,
@@ -347,6 +357,9 @@ function displayData(wordData, textData,stoplist, lemmasData){
 
         const { min, max } = getGlobalMinMax(allData)
 
+        categoria[1].labels_cat.forEach(label => {
+            console.log(label)
+        }) // estranho serem nomes de aves maioitariamente
 
 
 /*     //Pode fazer sentido criar um objeto
@@ -396,7 +409,8 @@ function displayData(wordData, textData,stoplist, lemmasData){
                                                     <strong>${categoria[i].labels_cat[2]}</strong> mencionado em ${categoria[i].labels_cat_value[2]} textos (${formatPercentage(categoria[i].labels_cat_value[2], textData.length)});
                                                     <strong>${categoria[i].labels_cat[3]}</strong> mencionado em ${categoria[i].labels_cat_value[3]} textos (${formatPercentage(categoria[i].labels_cat_value[3], textData.length)});
                                                     <strong>${categoria[i].labels_cat[4]}</strong> mencionado em ${categoria[i].labels_cat_value[4]} textos (${formatPercentage(categoria[i].labels_cat_value[4], textData.length)});
-                                                  e <strong>${categoria[i].labels_cat[5]}</strong> mencionado em ${categoria[i].labels_cat_value[5]} textos (${formatPercentage(categoria[i].labels_cat_value[5], textData.length)}).</p>`
+                                                    <strong>${categoria[i].labels_cat[5]}</strong> mencionado em ${categoria[i].labels_cat_value[5]} textos (${formatPercentage(categoria[i].labels_cat_value[5], textData.length)});
+                                                  e <strong>${categoria[i].labels_cat[6]}</strong> mencionado em ${categoria[i].labels_cat_value[6]} textos (${formatPercentage(categoria[i].labels_cat_value[6], textData.length)}).</p>`
        
 
         //grafico-mais-frequentes
