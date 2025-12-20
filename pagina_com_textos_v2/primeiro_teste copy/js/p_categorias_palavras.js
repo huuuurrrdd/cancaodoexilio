@@ -409,7 +409,7 @@ function displayData(wordData, textData,stoplist, lemmasData){
                                                     <strong>${categoria[i].labels_cat[2]}</strong> mencionado em ${categoria[i].labels_cat_value[2]} textos (${formatPercentage(categoria[i].labels_cat_value[2], textData.length)});
                                                     <strong>${categoria[i].labels_cat[3]}</strong> mencionado em ${categoria[i].labels_cat_value[3]} textos (${formatPercentage(categoria[i].labels_cat_value[3], textData.length)});
                                                     <strong>${categoria[i].labels_cat[4]}</strong> mencionado em ${categoria[i].labels_cat_value[4]} textos (${formatPercentage(categoria[i].labels_cat_value[4], textData.length)});
-                                                    <strong>${categoria[i].labels_cat[5]}</strong> mencionado em ${categoria[i].labels_cat_value[5]} textos (${formatPercentage(categoria[i].labels_cat_value[5], textData.length)});
+                                                  e <strong>${categoria[i].labels_cat[5]}</strong> mencionado em ${categoria[i].labels_cat_value[5]} textos (${formatPercentage(categoria[i].labels_cat_value[5], textData.length)});
                                                   e <strong>${categoria[i].labels_cat[6]}</strong> mencionado em ${categoria[i].labels_cat_value[6]} textos (${formatPercentage(categoria[i].labels_cat_value[6], textData.length)}).</p>`
        
 

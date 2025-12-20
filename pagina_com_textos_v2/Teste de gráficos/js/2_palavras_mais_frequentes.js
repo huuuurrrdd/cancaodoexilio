@@ -55,15 +55,27 @@ function displayData(wordData, textData, stoplist, lemmasData){
     categorias_sections.className += "categorias-sections"
 
     //funcao para array de objetos de palavras para uma categoria
-    function arrayPalavrasCat(textData, categoria){
+    function arrayPalavrasCat(textData, wordData, categoria){
         let all_entries = [] // array de objetos {nome, textID}
 
         if(categoria === "palavras"){
 
-            for(let i = 0; i < wordData.length; i++){
-                
+            for(let i = 0; i < wordData.palavras.length; i++){
+                const valor = wordData.palavras[i].palavra
+                if(valor !== undefined && valor !== null && valor !== ""){
+                    for(let j = 0; j < wordData.palavras[i].textos.length; j++){
+                        all_entries.push({
+                            nome: wordData.palavras[i].palavra,
+                            textId: wordData.palavras[i].textos[j].id_text  //é um array de objetos (id_text + frequencia)
+                        })
+                    }    
+                }
             }
 
         }
+
+        let
+
+
     }
 }
