@@ -58,7 +58,7 @@ function displayData(wordData, textData, stoplist, lemmasData){
     function arrayPalavrasCat(textData, wordData, categoria){
         let all_entries = [] // array de objetos {nome, textID}
 
-        if(categoria === "palavras"){
+        if(categoria === "palavra"){
 
             for(let i = 0; i < wordData.palavras.length; i++){
                 const valor = wordData.palavras[i].palavra
@@ -74,8 +74,39 @@ function displayData(wordData, textData, stoplist, lemmasData){
 
         }
 
-        let
+        let categoryMap = new Map()
 
+        for(let item of all_entries){
+            if(!categoryMap.has(item.nome)){
+                categoryMap.set(item.nome, [])
+            }
+            categoryMap.get(item.nome).push(item.textId)
+        }
+
+        //converte em array de objetos
+        let result = Array.from(categoryMap, ([nome, ids]) => ({
+            nome,
+            textos_menc: ids
+        }))
+
+        return result
 
     }
+
+    // obter array de objeto para a categoria "palavras"
+    let arrayPalav = arrayPalavrasCat (textData, wordData, "palavra")
+
+    //obter lista ordenada por frequencia em cada categoria
+    let palavOrd = arrayPalav.sort((a, b) => b.textos_menc.length - a.textos_menc.length)
+
+    // obter 6 palavras mais frequentes de cada categoria
+    let l = 6
+    let palavSeis = palavOrd.slice(0, l)
+
+    //arrays de nomes e arrays de valores
+    let palavSNome = []
+
+    let palavSval = []
+
+   // descobri o erro 
 }

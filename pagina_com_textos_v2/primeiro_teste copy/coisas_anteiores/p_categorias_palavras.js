@@ -75,6 +75,7 @@ function displayData(wordData, textData, stoplist, lemmasData){
             seccoesExistentes.innerHTML= ""
         } else {
             //DISPLAY de elementos//
+
             /**********************  Contentor geral  ****************************/
             let categorias_container = document.createElement("div")
             document.querySelector("body").appendChild(categorias_container)
@@ -93,14 +94,15 @@ function displayData(wordData, textData, stoplist, lemmasData){
             //****************  Categorias-sections  ******************/
             let categorias_sections = document.createElement("div")
             document.querySelector(".categorias-container").appendChild(categorias_sections)
-            categorias_sections.className += "categorias-sections"  
+            categorias_sections.className += "categorias-sections"
+            
         }
 
         // funcao para array de objetos de palavras para uma categoria (sem contar com excecao)
-        function arrayPalavrasCat (textData, wordData, stoplist, categoria){
+        function arrayPalavrasCat (textData, wordData, stoplist, categoria, excluiOriginal = false){
 
             let all_entries = [] // array of objects { nome, textId }
-            
+            let all_entries_ = []
 
             if(categoria === "locais"){
 
@@ -120,10 +122,11 @@ function displayData(wordData, textData, stoplist, lemmasData){
                 for(let i = 0; i < textData.length; i++){
                     const valor = textData[i]?.[categoria]
                     if(valor !== undefined && valor !== null && valor !== ""){
-                        all_entries.push({
-                            nome: textData[i]?.[categoria], 
-                            textId: textData[i].id 
-                        }) 
+                            all_entries.push({
+                                nome: textData[i]?.[categoria], 
+                                textId: textData[i].id 
+                            })
+                        
                     }
                 }
 
@@ -133,14 +136,10 @@ function displayData(wordData, textData, stoplist, lemmasData){
                 for(let i = 0; i < wordData.palavras.length; i++){ // pensar melhor na logica!!!
                     const valor = wordData.palavras[i].palavra
 
-                    //verifica condições incluindo estado de checkbox
-                    if(valor !== undefined && valor !== null && valor !== "" && !stoplist.includes(valor)){
+                    //verifica se palavra deve ser excluida
+                    const deveExcluir = excluiOriginal && palavrasOriginal.has(valor)
 
-                        // apenas exclui se checkbox isChecked
-                        if(isChecked_original && palavrasOriginal.has(valor)){
-                            continue; // passa palavra à frente
-                        }
-
+                    if(valor !== undefined && valor !== null && valor !== "" && !stoplist.includes(valor) && !deveExcluir){
                         for(let j = 0; j < wordData.palavras[i].textos.length; j++){
                             all_entries.push({
                                 nome: wordData.palavras[i].palavra,
@@ -166,7 +165,7 @@ function displayData(wordData, textData, stoplist, lemmasData){
                 }
             }
 
-            //console.log(all_entries)
+            console.log(all_entries)
 
 
             //Now group by nome
@@ -328,6 +327,7 @@ function displayData(wordData, textData, stoplist, lemmasData){
                 nome: ano__SNome[0],
                 info_mais_frequente: ""
             },
+
         ]
 
         //2 Obter os dados
@@ -339,9 +339,9 @@ function displayData(wordData, textData, stoplist, lemmasData){
 
         const { min, max } = getGlobalMinMax(allData)
 
-        // categoria[1].labels_cat.forEach(label => {
-        //     console.log(label)
-        // }) // estranho serem nomes de aves maioitariamente
+        categoria[1].labels_cat.forEach(label => {
+            console.log(label)
+        }) // estranho serem nomes de aves maioitariamente
 
 
         function displaySections(cat, labels, values, i, mais_frequente, nome){
@@ -356,6 +356,12 @@ function displayData(wordData, textData, stoplist, lemmasData){
             document.querySelector(".cat-section-" + cat).appendChild(link_categoria)
             link_categoria.className += "cat-link cat-link-" + cat
             link_categoria.href = "./p_categoria.html?categoria=" + cat
+
+
+            // //caixa para h2 e grafico (dentro do link)
+            // let cat_section_ct = document.createElement("div")
+            // document.querySelector(".cat-link-" + cat).appendChild(cat_section_ct)
+            // cat_section_ct.className += "cat-section-ct cat-section-ct-" + cat
 
             //titulo
             let cat_header = document.createElement("h2")
@@ -407,6 +413,8 @@ function displayData(wordData, textData, stoplist, lemmasData){
                         }
                     },
                     y: {
+                        // min: min,
+                        // max: max,
                         beginAtZero: true,
                         grid:{
                             display:false,
@@ -414,6 +422,11 @@ function displayData(wordData, textData, stoplist, lemmasData){
                         },
                         ticks: {
                             display:false // garantir a escala (o numero maior igual em todos os graficos)
+                            // stepSize: 20,
+                            // padding: 10,
+                            // font:{
+                            //     size: 10
+                            // }
                         }
                     }
                 },
@@ -426,41 +439,153 @@ function displayData(wordData, textData, stoplist, lemmasData){
         });
 
         
-            //Acrescenta checkbox se categoria for palavras
-            if(cat == "Palavras"){
-                let checkboxContainer = document.createElement('div')
-                checkboxContainer.className = "checkbox-container" //pode-se alterar...
-                checkboxContainer.style.cssText = "margin-top: 15px; padding: 10px; background-color: #f0f0f0; border-radius: 4px;"
+        //Acrescenta checkbox se categoria for palavras
+        if(cat == "Palavras"){
+            let checkboxContainer = document.createElement('div')
+            checkboxContainer.className = "checkbox-container" //pode-se alterar...
+            checkboxContainer.style.cssText = "margin-top: 15px; padding: 10px; background-color: #f0f0f0; border-radius: 4px;"
 
-                let checkboxPalav = document.createElement('input')
-                checkboxPalav.type = "checkbox"
-                checkboxPalav.id = "checkbox-pal-original"
-                checkboxPalav.name = "exclui_palavras_original"
-                checkboxPalav.value = "Excluir"
+            let checkboxPalav = document.createElement('input')
+            checkboxPalav.type = "checkbox"
+            checkboxPalav.id = "checkbox-pal-original"
+            checkboxPalav.name = "exclui_palavras_original"
+            checkboxPalav.value = "Excluir"
 
-                let label = document.createElement('label')
-                label.for = "exclui_palavras_original"
-                label.innerText = "Excluir palavras do texto original"
-                label.style.cssText = "margin-left: 8px; cursor: pointer;"
+            let label = document.createElement('label')
+            label.for = "exclui_palavras_original"
+            label.innerText = "Excluir palavras do texto original"
+            label.style.cssText = "margin-left: 8px; cursor: pointer;"
 
-                checkboxContainer.appendChild(checkboxPalav)
-                checkboxContainer.appendChild(label)
-                document.querySelector (".cat-link-" + cat).appendChild(checkboxContainer)
+            checkboxContainer.appendChild(checkboxPalav)
+            checkboxContainer.appendChild(label)
+            document.querySelector (".cat-link-" + cat).appendChild(checkboxContainer)
 
-                //teste anterior:
-                //isChecked_original = document.querySelector('#checkbox-pal-original').checked
+            //teste anterior:
+            //isChecked_original = document.querySelector('#checkbox-pal-original').checked
 
-                //adicionar eventListener a checkbox!!!
-                checkboxPalav.addEventListener('change', function(e) {
-                    isChecked_original = e.target.checked // e.target - verifica o valor??
-                    console.log("mudança de check:", isChecked_original)
-                    renderCategories() // Re-render everything
-                    //Regenerar dados de categoria
-                })
-            }
+            //adicionar eventListener a checkbox!!!
+            checkboxPalav.addEventListener('change', function(e) {
+                isChecked_original = e.target.checked // e.target - verifica o valor??
+                console.log("mudança de check:", isChecked_original)
+                renderCategories() // Re-render everything
+                //Regenerar dados de categoria
+            })
         }
 
-        //display de todas as categorias
+
+
+
+    /********************** Parte eliminada da wikipedia **********************/
+            // //link para a caixa
+            // let link_c_mais_frequente = document.createElement("a")
+            // document.querySelector(`.cat-section-` + cat).appendChild(link_c_mais_frequente)
+            // link_c_mais_frequente.className += "link-cat-freq-" + cat
+            // link_c_mais_frequente.href = "./p_categoria_especifica.html?categoria=" + cat + "&especifica=" + nome
+
+            // //outra caixa
+            // let cat_mais_frequente = document.createElement("div")
+            // document.querySelector(".link-cat-freq-" + cat).appendChild(cat_mais_frequente)
+            // cat_mais_frequente.className += "cat-mais-frequente-ct" + cat
+
+            // let cat_mais_frequente_header = document.createElement("h3")
+            // document.querySelector(".cat-mais-frequente-ct" + cat).appendChild(cat_mais_frequente_header)
+            // cat_mais_frequente_header.className += "cat-mais-frequente-header" + cat
+            // cat_mais_frequente_header.innerHTML = mais_frequente
+
+            // let cat_info_mais_frequente = document.createElement("div")
+            // document.querySelector(".cat-mais-frequente-ct" + cat).appendChild(cat_info_mais_frequente)
+            // cat_info_mais_frequente.className += "cat-info-mais-frequente" + cat
+            // //cat_info_mais_frequente.innerHTML = info_mais_frequente
+
+            // //console.log(nome)
+
+
+            // const endpoint = 'https://pt.wikipedia.org/w/api.php?'
+            // const params = {
+            //     origin: '*', // non auhteticated requests
+            //     format: 'json',
+            //     action: 'query',
+            //     prop: 'extracts',
+            //     exchars: 200,
+            //     exintro: true,
+            //     explaintext: true,
+            //     //exsentences: 1,
+            //     generator: 'search',
+            //     gsrlimit: 1
+
+            // }
+
+            // const clearPreviousResults = () => {
+            //     cat_info_mais_frequente.innerHTML = ""
+            // }
+
+            // const isEspecificaEmpty = mais_frequente => {
+            //     if(!mais_frequente || mais_frequente === '') return true
+            //     return false
+            // }
+
+            // const showError = error => {
+            //     cat_info_mais_frequente.innerHTML += `🚨 ${error} 🚨`
+            // }
+
+            // const showResults = results => {
+            // results.forEach(result => {
+            //     cat_info_mais_frequente.innerHTML += `
+            //     <div class = "results__item"> 
+            //         <a href = "https://pt.wikipedia.org/?curid=${result.pageId}" target="_blank" class= "card animated bounceInUp">
+            //             <h2 class = "results__item__title">${result.title}</h2>
+            //             <p class = "results__item__intro">${result.intro}</p>
+            //         </a>
+            //     </div>
+            //     `
+            // })}
+
+            // const gatherData = pages => {
+            //     const results = Object.values(pages).map(page =>({
+            //         pageId: page.pageid,
+            //         title: page.title,
+            //         intro: page.extract
+            //     }))
+
+            //     showResults(results)
+            // }
+
+            // const getData = async() => {
+            //     const nomeStr = String(nome || '')
+
+            //     let nome_singular
+            //     if(nomeStr.charAt(nome.length-1) == "s"){
+            //         //console.log("Começa com s")
+            //         nome_singular = nome.slice(0, -1)
+            //     } else {
+            //         nome_singular = nome
+            //     }
+            //     const palavra = nome_singular
+            //     //let teste = nome.charAt(nome.length-1)
+            //     //console.log(nome_singular)
+            //     if(isEspecificaEmpty(palavra)) return
+
+            //     params.gsrsearch = palavra
+            //     clearPreviousResults()
+
+            //     try {
+            //         const { data } = await axios.get(endpoint, { params }) // data é o objeto gerado pela wikipedia API
+
+            //         if(data.error) throw new Error(data.error.info)
+            //         if (!data.query) throw new Error("Nenhum resultado encontrado.");
+
+            //         gatherData(data.query.pages)
+
+            //     } catch (error) {
+            //         showError(error)
+            //     }
+
+            // }
+
+            // getData()
+
+        }
+
         for(let i = 0; i < categoria.length; i++){
             let categ = categoria[i].categoria
             let labell = categoria[i].labels_cat
@@ -473,40 +598,56 @@ function displayData(wordData, textData, stoplist, lemmasData){
 
             displaySections(categ, labell, labell_value, i, mais_frequente, nome)
         }
-    }//fim de função de renderizar categorias
+
+    }
+
+
+
+
+/*     //Pode fazer sentido criar um objeto
+    let cate = ["Locais", "Fauna", "Flora", "Autores", "Anos"]
+    let graf = []
+    let labels_cat = ["Pernambuco", "Baía", "Maranhão", "Sertão", "Minas Gerais", "Corrientes"]
+    let labels_cat_value = [12, 19, 3, 5, 2, 3]
+    //calcular elementos mais frequentes das categorias
+
+    //console.log(categoria[0].categoria.toLowerCase()) */
+
 
     
-    //render inicial
-    renderCategories()
 
-    /*::::::::::::::::  Funções auxiliares  ::::::::::::::::*/
-    //decide o numero de casas decimais conforme necessidade
-    function formatPercentage(value, total) {
-        
-        const percentage = (value / total) * 100;
-        
-        if (percentage === 0) {
-            return "0%";
-        }
-        
-        // If rounded to integer would be 0, show decimals
-        if (Math.floor(percentage) === 0) {
-            return percentage.toFixed(1) + "%";
-        }
-        
-        return Math.floor(percentage) + "%";
+
+
+
+ 
+    
+
+
+}
+
+/*::::::::::::::::  Funções auxiliares  ::::::::::::::::*/
+//decide o numero de casas decimais conforme necessidade
+function formatPercentage(value, total) {
+    
+    const percentage = (value / total) * 100;
+    
+    if (percentage === 0) {
+        return "0%";
     }
-
-    //extrai set de palavras de um determinado texto
-    function extractOriginalWords(text) {
-        const cleaned = text
-            .replace(/[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~–]/g, '')
-            .replace(/[\r\n]+/gm, ' ')
-
-        return new Set(cleaned.split(' ').filter(w => w.length > 0).map(w => w.toLowerCase()))
+    
+    // If rounded to integer would be 0, show decimals
+    if (Math.floor(percentage) === 0) {
+        return percentage.toFixed(1) + "%";
     }
+    
+    return Math.floor(percentage) + "%";
+}
 
-} 
+//extrai set de palavras de um determinado texto
+function extractOriginalWords(text) {
+    const cleaned = text
+        .replace(/[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~–]/g, '')
+        .replace(/[\r\n]+/gm, ' ')
 
-
-
+    return new Set(cleaned.split(' ').filter(w => w.length > 0).map(w => w.toLowerCase()))
+}
