@@ -434,6 +434,75 @@ input[type=text]{
 }
 
 
+/*checkbox*/
+input[type="checkbox"]{
+  opacity: 0.5;
+  z-index: 3;
+}
+
+input[type="checkbox"] + label{
+  position: relative;
+  padding-left: 30px;
+  cursor: pointer;
+  display: inline-block;
+  color: var(--dark-green);
+  line-height: 25px;
+}
+/*caixa*/
+input[type="checkbox"] + label::before{ 
+  content:"";
+  position: absolute;
+  left:0;
+  top:0px;
+  width: 18px;
+  height: 18px;
+  outline: 1px solid var(--dark-green-t-o);
+  background: var(--light-yellow);
+}
+/*check simbol*/
+input[type="checkbox"]:checked + label::before{ 
+  content:"";
+  position: absolute;
+  left:0;
+  top:0;
+  width: 18px;
+  height: 18px;
+  outline: 1px solid var(--dark-green);
+  background: var(--light-yellow);
+}
+
+input[type="checkbox"]:checked + label::after{ 
+  content:"";
+  position: absolute;
+  left:0;
+  top:0;
+  width: 18px;
+  height: 18px;
+  background-image: url(check.svg);
+  /* background: var(--light-yellow); */
+  background-size: contain;
+  background-repeat: no-repeat;
+  transform: scale(1);
+  opacity: 1;
+  transition: all .3s ease;
+}
+
+input[type="checkbox"]:not(:checked) + label::after{ 
+  content:"";
+  position: absolute;
+  left:0;
+  top:0;
+  width: 18px;
+  height: 18px;
+  background-image: url(check.svg);
+  /* background: var(--light-yellow); */
+  background-size: contain;
+  background-repeat: no-repeat;
+  transform: scale(0);
+  opacity: 0;
+}
+
+
 @media screen and (max-width: 768px) {
 
   nav .input-nav[type=text]{

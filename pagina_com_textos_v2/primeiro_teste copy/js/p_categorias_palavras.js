@@ -355,7 +355,9 @@ function displayData(wordData, textData, stoplist, lemmasData){
             let link_categoria = document.createElement("a")
             document.querySelector(".cat-section-" + cat).appendChild(link_categoria)
             link_categoria.className += "cat-link cat-link-" + cat
-            link_categoria.href = "./p_categoria.html?categoria=" + cat
+            if(cat != 'Palavras'){
+                link_categoria.href = "./p_categoria.html?categoria=" + cat
+            }
 
             //titulo
             let cat_header = document.createElement("h2")
@@ -427,38 +429,33 @@ function displayData(wordData, textData, stoplist, lemmasData){
 
         
             //Acrescenta checkbox se categoria for palavras
-            if(cat == "Palavras"){
-                let checkboxContainer = document.createElement('div')
-                checkboxContainer.className = "checkbox-container" //pode-se alterar...
-                checkboxContainer.style.cssText = "margin-top: 15px; padding: 10px; background-color: #f0f0f0; border-radius: 4px;"
+        if(cat == "Palavras"){
+            //adicionar uma caixa extra
+            let checkboxContainer = document.createElement('div')
+            checkboxContainer.className = 'checkbox-container'
+            document.querySelector (".cat-link-" + cat).appendChild(checkboxContainer)
 
-                let checkboxPalav = document.createElement('input')
-                checkboxPalav.type = "checkbox"
-                checkboxPalav.id = "checkbox-pal-original"
-                checkboxPalav.name = "exclui_palavras_original"
-                checkboxPalav.value = "Excluir"
+            let checkboxPalav = document.createElement('input')
+            checkboxPalav.type = "checkbox"
+            checkboxPalav.id = "checkbox-pal-original"
+            checkboxPalav.name = "exclui_palavras_original"
+            checkboxPalav.checked = isChecked_original // Set checkbox state
 
-                let label = document.createElement('label')
-                label.for = "exclui_palavras_original"
-                label.innerText = "Excluir palavras do texto original"
-                label.style.cssText = "margin-left: 8px; cursor: pointer;"
+            let label = document.createElement('label')
+            label.htmlFor = "exclui_palavras_original"
+            label.innerText = " Excluir palavras do texto original"
+            label.style.cursor = "pointer"
+            
+            checkboxContainer.appendChild(checkboxPalav)
+            checkboxContainer.appendChild(label)
 
-                checkboxContainer.appendChild(checkboxPalav)
-                checkboxContainer.appendChild(label)
-                document.querySelector (".cat-link-" + cat).appendChild(checkboxContainer)
-
-                //teste anterior:
-                //isChecked_original = document.querySelector('#checkbox-pal-original').checked
-
-                //adicionar eventListener a checkbox!!!
-                checkboxPalav.addEventListener('change', function(e) {
-                    isChecked_original = e.target.checked // e.target - verifica o valor??
-                    console.log("mudança de check:", isChecked_original)
-                    renderCategories() // Re-render everything
-                    //Regenerar dados de categoria
-                })
-            }
+            // Add event listener
+            checkboxPalav.addEventListener('change', function(e) {
+                isChecked_original = e.target.checked
+                renderCategories() // Re-render everything
+            })
         }
+    }
 
         //display de todas as categorias
         for(let i = 0; i < categoria.length; i++){
