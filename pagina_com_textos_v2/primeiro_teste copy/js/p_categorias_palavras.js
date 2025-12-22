@@ -157,7 +157,7 @@ function displayData(wordData, textData, stoplist, lemmasData){
                     all_texts.push({
                         text: textData[i].id,
                         titu: textData[i].title,
-                        palavr_diff: extractOriginalWords(textData[i].texto_completo).size
+                        palavr_diff: removeStopwordsFromSet(extractOriginalWords(textData[i].texto_completo), stoplist).size
                     })
                 }
 
@@ -254,6 +254,9 @@ function displayData(wordData, textData, stoplist, lemmasData){
         let ano__SVal = []
         let autorSVal = []
 
+        //array de id (caso para textos)
+        let textoSIds = []
+
         for(let i = 0; i < 6; i++){
             textoStitu.push(textoSeis[i].titu)
             palavSNome.push(palavSeis[i].nome)
@@ -270,6 +273,9 @@ function displayData(wordData, textData, stoplist, lemmasData){
             localSVal.push(localSeis[i].textos_menc.length)
             ano__SVal.push(ano__Seis[i].textos_menc.length)
             autorSVal.push(autorSeis[i].textos_menc.length)
+
+            //ids para textos
+            textoSIds.push(textoSeis[i].text)
         }
 
         //1. Encontra min e max em todos os datasets
@@ -400,27 +406,27 @@ function displayData(wordData, textData, stoplist, lemmasData){
 
             if(cat !== "Textos"){
                 if(cat === "Autores" || cat === "Anos"){
-                    info_grafico_cat.innerHTML =  `<p>O elemento de ${cat} mais frequente é <strong>${categoria[i].labels_cat[0]}</strong> com ${categoria[i].labels_cat_value[0]} textos (${formatPercentage(categoria[i].labels_cat_value[0], textData.length)}).</p> 
-                                                                                <p>Segue-se <strong>${categoria[i].labels_cat[1]}</strong> com ${categoria[i].labels_cat_value[1]} textos (${formatPercentage(categoria[i].labels_cat_value[1], textData.length)}); 
-                                                                                            <strong>${categoria[i].labels_cat[2]}</strong> com ${categoria[i].labels_cat_value[2]} textos (${formatPercentage(categoria[i].labels_cat_value[2], textData.length)});
-                                                                                            <strong>${categoria[i].labels_cat[3]}</strong> com ${categoria[i].labels_cat_value[3]} textos (${formatPercentage(categoria[i].labels_cat_value[3], textData.length)});
-                                                                                            <strong>${categoria[i].labels_cat[4]}</strong> com ${categoria[i].labels_cat_value[4]} textos (${formatPercentage(categoria[i].labels_cat_value[4], textData.length)});
-                                                                                          e <strong>${categoria[i].labels_cat[5]}</strong> com ${categoria[i].labels_cat_value[5]} textos (${formatPercentage(categoria[i].labels_cat_value[5], textData.length)}).</p>`
+                    info_grafico_cat.innerHTML =  `<p>O ${cat === 'Anos'? 'ano': 'autor'} mais frequente é <strong><a href = "./p_categoria_especifica.html?categoria=${cat}&especifica=${categoria[i].labels_cat[0]}">${categoria[i].labels_cat[0]}</a></strong> com ${categoria[i].labels_cat_value[0]} textos (${formatPercentage(categoria[i].labels_cat_value[0], textData.length)}).</p> 
+                                                                                <p>Segue-se <strong><a href = "./p_categoria_especifica.html?categoria=${cat}&especifica=${categoria[i].labels_cat[1]}">${categoria[i].labels_cat[1]}</a></strong> com ${categoria[i].labels_cat_value[1]} textos (${formatPercentage(categoria[i].labels_cat_value[1], textData.length)}); 
+                                                                                            <strong><a href = "./p_categoria_especifica.html?categoria=${cat}&especifica=${categoria[i].labels_cat[2]}">${categoria[i].labels_cat[2]}</a></strong> com ${categoria[i].labels_cat_value[2]} textos (${formatPercentage(categoria[i].labels_cat_value[2], textData.length)});
+                                                                                            <strong><a href = "./p_categoria_especifica.html?categoria=${cat}&especifica=${categoria[i].labels_cat[3]}">${categoria[i].labels_cat[3]}</a></strong> com ${categoria[i].labels_cat_value[3]} textos (${formatPercentage(categoria[i].labels_cat_value[3], textData.length)});
+                                                                                            <strong><a href = "./p_categoria_especifica.html?categoria=${cat}&especifica=${categoria[i].labels_cat[4]}">${categoria[i].labels_cat[4]}</a></strong> com ${categoria[i].labels_cat_value[4]} textos (${formatPercentage(categoria[i].labels_cat_value[4], textData.length)});
+                                                                                          e <strong><a href = "./p_categoria_especifica.html?categoria=${cat}&especifica=${categoria[i].labels_cat[5]}">${categoria[i].labels_cat[5]}</a></strong> com ${categoria[i].labels_cat_value[5]} textos (${formatPercentage(categoria[i].labels_cat_value[5], textData.length)}).</p>`
                 } else{
-                    info_grafico_cat.innerHTML =  `<p>O elemento de ${cat} mais frequente é <strong>${categoria[i].labels_cat[0]}</strong>, mencionado em ${categoria[i].labels_cat_value[0]} textos (${formatPercentage(categoria[i].labels_cat_value[0], textData.length)}).</p> 
-                                                                                <p>Segue-se <strong>${categoria[i].labels_cat[1]}</strong>, mencionado em ${categoria[i].labels_cat_value[1]} textos (${formatPercentage(categoria[i].labels_cat_value[1], textData.length)}); 
-                                                                                            <strong>${categoria[i].labels_cat[2]}</strong>, mencionado em ${categoria[i].labels_cat_value[2]} textos (${formatPercentage(categoria[i].labels_cat_value[2], textData.length)});
-                                                                                            <strong>${categoria[i].labels_cat[3]}</strong>, mencionado em ${categoria[i].labels_cat_value[3]} textos (${formatPercentage(categoria[i].labels_cat_value[3], textData.length)});
-                                                                                            <strong>${categoria[i].labels_cat[4]}</strong>, mencionado em ${categoria[i].labels_cat_value[4]} textos (${formatPercentage(categoria[i].labels_cat_value[4], textData.length)});
-                                                                                          e <strong>${categoria[i].labels_cat[5]}</strong>, mencionado em ${categoria[i].labels_cat_value[5]} textos (${formatPercentage(categoria[i].labels_cat_value[5], textData.length)}).</p>`
+                    info_grafico_cat.innerHTML =  `<p>O elemento de ${cat} mais frequente é <strong><a href = "./p_categoria_especifica.html?categoria=${cat}&especifica=${categoria[i].labels_cat[0]}">${categoria[i].labels_cat[0]}</a></strong>, mencionado em ${categoria[i].labels_cat_value[0]} textos (${formatPercentage(categoria[i].labels_cat_value[0], textData.length)}).</p> 
+                                                                                <p>Segue-se <strong><a href = "./p_categoria_especifica.html?categoria=${cat}&especifica=${categoria[i].labels_cat[1]}">${categoria[i].labels_cat[1]}</a></strong>, mencionado em ${categoria[i].labels_cat_value[1]} textos (${formatPercentage(categoria[i].labels_cat_value[1], textData.length)}); 
+                                                                                            <strong><a href = "./p_categoria_especifica.html?categoria=${cat}&especifica=${categoria[i].labels_cat[2]}">${categoria[i].labels_cat[2]}</a></strong>, mencionado em ${categoria[i].labels_cat_value[2]} textos (${formatPercentage(categoria[i].labels_cat_value[2], textData.length)});
+                                                                                            <strong><a href = "./p_categoria_especifica.html?categoria=${cat}&especifica=${categoria[i].labels_cat[3]}">${categoria[i].labels_cat[3]}</a></strong>, mencionado em ${categoria[i].labels_cat_value[3]} textos (${formatPercentage(categoria[i].labels_cat_value[3], textData.length)});
+                                                                                            <strong><a href = "./p_categoria_especifica.html?categoria=${cat}&especifica=${categoria[i].labels_cat[4]}">${categoria[i].labels_cat[4]}</a></strong>, mencionado em ${categoria[i].labels_cat_value[4]} textos (${formatPercentage(categoria[i].labels_cat_value[4], textData.length)});
+                                                                                          e <strong><a href = "./p_categoria_especifica.html?categoria=${cat}&especifica=${categoria[i].labels_cat[5]}">${categoria[i].labels_cat[5]}</a></strong>, mencionado em ${categoria[i].labels_cat_value[5]} textos (${formatPercentage(categoria[i].labels_cat_value[5], textData.length)}).</p>`
                 } 
-            } else {
-                info_grafico_cat.innerHTML =  `<p>O texto com maior variedade de palavras é <strong>${categoria[i].labels_cat[0]}</strong> com ${categoria[i].labels_cat_value[0]} palavras diferentes (${formatPercentage(categoria[i].labels_cat_value[0], textData.length)}).</p> 
-                                                                                             <p>Segue-se <strong>${categoria[i].labels_cat[1]}</strong> com ${categoria[i].labels_cat_value[1]} palavras diferentes; 
-                                                                                                         <strong>${categoria[i].labels_cat[2]}</strong> com ${categoria[i].labels_cat_value[2]} palavras diferentes;
-                                                                                                         <strong>${categoria[i].labels_cat[3]}</strong> com ${categoria[i].labels_cat_value[3]} palavras diferentes;
-                                                                                                         <strong>${categoria[i].labels_cat[4]}</strong> com ${categoria[i].labels_cat_value[4]} palavras diferentes;
-                                                                                                       e <strong>${categoria[i].labels_cat[5]}</strong> com ${categoria[i].labels_cat_value[5]} palavras diferentes.</p>`
+            } else { //caso textos
+                info_grafico_cat.innerHTML =  `<p>O texto com maior variedade de palavras é <strong><a href = "index.html?id=${textoSIds[0]}">${categoria[i].labels_cat[0]}</a></strong> com ${categoria[i].labels_cat_value[0]} palavras diferentes.</p> 
+                                                                                <p>Segue-se <strong><a href = "index.html?id=${textoSIds[1]}">${categoria[i].labels_cat[1]}</a></strong> com ${categoria[i].labels_cat_value[1]} palavras diferentes; 
+                                                                                            <strong><a href = "index.html?id=${textoSIds[2]}">${categoria[i].labels_cat[2]}</a></strong> com ${categoria[i].labels_cat_value[2]} palavras diferentes;
+                                                                                            <strong><a href = "index.html?id=${textoSIds[3]}">${categoria[i].labels_cat[3]}</a></strong> com ${categoria[i].labels_cat_value[3]} palavras diferentes;
+                                                                                            <strong><a href = "index.html?id=${textoSIds[4]}">${categoria[i].labels_cat[4]}</a></strong> com ${categoria[i].labels_cat_value[4]} palavras diferentes;
+                                                                                          e <strong><a href = "index.html?id=${textoSIds[5]}">${categoria[i].labels_cat[5]}</a></strong> com ${categoria[i].labels_cat_value[5]} palavras diferentes.</p>`
             }
                 
 
@@ -540,12 +546,20 @@ function displayData(wordData, textData, stoplist, lemmasData){
     }
 
     //extrai set de palavras de um determinado texto
-    function extractOriginalWords(text) {
+    function extractOriginalWords(text) { // Falta remover stopwords
         const cleaned = text
             .replace(/[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~–]/g, '')
             .replace(/[\r\n]+/gm, ' ')
 
         return new Set(cleaned.split(' ').filter(w => w.length > 0).map(w => w.toLowerCase()))
+    }
+
+    //fucao para remover stopwords de um set
+    function removeStopwordsFromSet(set, stoplist) {
+
+        const stopSet = new Set(stoplist)
+
+        return new Set(Array.from(set).filter(palavra => !stopSet.has(palavra.toLowerCase())))
     }
 
 } 

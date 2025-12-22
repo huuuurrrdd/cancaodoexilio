@@ -61,6 +61,10 @@
     padding-right: 10px;
 }
 
+.info-grafico-cat a:hover{
+    background-color: var(--dark-green-t-o);
+}
+
 .checkbox-container{
     justify-self: center;
 }
