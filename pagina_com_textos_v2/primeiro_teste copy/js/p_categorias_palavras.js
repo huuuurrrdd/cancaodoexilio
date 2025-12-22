@@ -100,6 +100,7 @@ function displayData(wordData, textData, stoplist, lemmasData){
         function arrayPalavrasCat (textData, wordData, stoplist, categoria){
 
             let all_entries = [] // array of objects { nome, textId }
+            let all_texts = [] // versao para os textos
             
 
             if(categoria === "locais"){
@@ -150,6 +151,16 @@ function displayData(wordData, textData, stoplist, lemmasData){
                     }
                 }
             
+            }else if (categoria === "texto"){
+
+                for(let i = 0; i < textData.length; i++){
+                    all_texts.push({
+                        text: textData[i].id,
+                        titu: textData[i].title,
+                        palavr_diff: extractOriginalWords(textData[i].texto_completo).size
+                    })
+                }
+
             }else{
 
                 for(let i = 0; i < textData.length; i++){
@@ -167,30 +178,35 @@ function displayData(wordData, textData, stoplist, lemmasData){
             }
 
             //console.log(all_entries)
+            console.log(all_texts)
 
+            if(categoria !== "texto"){
+                //Now group by nome
+                let categoryMap = new Map()
 
-            //Now group by nome
-            let categoryMap = new Map()
-
-            for(let item of all_entries){
-                if(!categoryMap.has(item.nome)) {
-                    categoryMap.set(item.nome, [])
+                for(let item of all_entries){
+                    if(!categoryMap.has(item.nome)) {
+                        categoryMap.set(item.nome, [])
+                    }
+                    categoryMap.get(item.nome).push(item.textId)
                 }
-                categoryMap.get(item.nome).push(item.textId)
+
+                // convert to array of objects
+                let result = Array.from(categoryMap, ([nome, ids]) => ({
+                    nome,
+                    textos_menc: ids
+                }))
+
+                return result
+            } else {
+                return all_texts
             }
-
-            // convert to array of objects
-            let result = Array.from(categoryMap, ([nome, ids]) => ({
-                nome,
-                textos_menc: ids
-            }))
-
-            return result
 
             //console.log(categoryArray.length)//.textos_menc.length) (532 entradas)
         }
 
         // obter array de objetos para cada uma das categorias
+        let arrayTexto = arrayPalavrasCat (textData, wordData, stoplist, "texto")
         let arrayPalav = arrayPalavrasCat (textData, wordData, stoplist, "palavra")
         let arrayFauna = arrayPalavrasCat (textData, wordData, stoplist, "fauna")
         let arrayFlora = arrayPalavrasCat (textData, wordData, stoplist, "flora")
@@ -201,7 +217,8 @@ function displayData(wordData, textData, stoplist, lemmasData){
         //console.log(arrayAutor[0]) //funcioona
         //console.log(array__Ano[4].nome) //n funciona (provavelmente por ser um nº)
 
-        // obter lista ordenada por frequencia, em cada categoria (falta ano e autores)
+        // obter lista ordenada por frequencia, em cada categoria
+        let textoOrd = arrayTexto.sort((a, b) => b.palavr_diff - a.palavr_diff)
         let palavOrd = arrayPalav.sort((a, b) => b.textos_menc.length - a.textos_menc.length)
         let faunaOrd = arrayFauna.sort((a, b) => b.textos_menc.length - a.textos_menc.length)
         let floraOrd = arrayFlora.sort((a, b) => b.textos_menc.length - a.textos_menc.length)
@@ -212,6 +229,7 @@ function displayData(wordData, textData, stoplist, lemmasData){
 
         // obter 6 palavras mais frequentes de cada categoria
         let l = 6
+        let textoSeis = textoOrd.slice(0, l) // os 6 textos com maior variedade de palavras
         let palavSeis = palavOrd.slice(0, l)
         let faunaSeis = faunaOrd.slice(0, l)
         let floraSeis = floraOrd.slice(0, l)
@@ -220,6 +238,7 @@ function displayData(wordData, textData, stoplist, lemmasData){
         let autorSeis = autorOrd.slice(0, l)
 
         //array de nomes e array de valores
+        let textoStitu = []
         let palavSNome = []
         let faunaSNome = []
         let floraSNome = []
@@ -227,6 +246,7 @@ function displayData(wordData, textData, stoplist, lemmasData){
         let ano__SNome = []
         let autorSNome = []
         
+        let textoSval = []
         let palavSval = []
         let faunaSVal = []
         let floraSVal = []
@@ -235,6 +255,7 @@ function displayData(wordData, textData, stoplist, lemmasData){
         let autorSVal = []
 
         for(let i = 0; i < 6; i++){
+            textoStitu.push(textoSeis[i].titu)
             palavSNome.push(palavSeis[i].nome)
             faunaSNome.push(faunaSeis[i].nome)
             floraSNome.push(floraSeis[i].nome)
@@ -242,6 +263,7 @@ function displayData(wordData, textData, stoplist, lemmasData){
             ano__SNome.push(ano__Seis[i].nome)
             autorSNome.push(autorSeis[i].nome)
 
+            textoSval.push(textoSeis[i].palavr_diff)
             palavSval.push(palavSeis[i].textos_menc.length)
             faunaSVal.push(faunaSeis[i].textos_menc.length)
             floraSVal.push(floraSeis[i].textos_menc.length)
@@ -274,10 +296,10 @@ function displayData(wordData, textData, stoplist, lemmasData){
         let categoria = [
             {
                 categoria: "Textos",
-                labels_cat: localSNome,
-                labels_cat_value: localSVal,
-                mais_frequente: titleCase(localSNome[0], stoplist), //
-                nome:localSNome[0],
+                labels_cat: textoStitu,
+                labels_cat_value: textoSval,
+                mais_frequente: titleCase(textoStitu[0], stoplist), //
+                nome:textoStitu[0],
                 info_mais_frequente: ""
             },
             {
@@ -370,14 +392,31 @@ function displayData(wordData, textData, stoplist, lemmasData){
             document.querySelector (".cat-link-" + cat).appendChild(info_grafico_cat)
             info_grafico_cat.className = "info-grafico-cat"
 
-        
-            info_grafico_cat.innerHTML = `<p>O elemento de ${cat} mais frequente é <strong>${categoria[i].labels_cat[0]}</strong>, mencionado em ${categoria[i].labels_cat_value[0]} textos (${formatPercentage(categoria[i].labels_cat_value[0], textData.length)}).</p> 
-                                            <p>Segue-se <strong>${categoria[i].labels_cat[1]}</strong> mencionado em ${categoria[i].labels_cat_value[1]} textos (${formatPercentage(categoria[i].labels_cat_value[1], textData.length)}); 
-                                                        <strong>${categoria[i].labels_cat[2]}</strong> mencionado em ${categoria[i].labels_cat_value[2]} textos (${formatPercentage(categoria[i].labels_cat_value[2], textData.length)});
-                                                        <strong>${categoria[i].labels_cat[3]}</strong> mencionado em ${categoria[i].labels_cat_value[3]} textos (${formatPercentage(categoria[i].labels_cat_value[3], textData.length)});
-                                                        <strong>${categoria[i].labels_cat[4]}</strong> mencionado em ${categoria[i].labels_cat_value[4]} textos (${formatPercentage(categoria[i].labels_cat_value[4], textData.length)});
-                                                    e <strong>${categoria[i].labels_cat[5]}</strong> mencionado em ${categoria[i].labels_cat_value[5]} textos (${formatPercentage(categoria[i].labels_cat_value[5], textData.length)}).</p>`
-        
+            if(cat !== "Textos"){
+                if(cat === "Autores" || cat === "Anos"){
+                    info_grafico_cat.innerHTML =  `<p>O elemento de ${cat} mais frequente é <strong>${categoria[i].labels_cat[0]}</strong> com ${categoria[i].labels_cat_value[0]} textos (${formatPercentage(categoria[i].labels_cat_value[0], textData.length)}).</p> 
+                                                                                <p>Segue-se <strong>${categoria[i].labels_cat[1]}</strong> com ${categoria[i].labels_cat_value[1]} textos (${formatPercentage(categoria[i].labels_cat_value[1], textData.length)}); 
+                                                                                            <strong>${categoria[i].labels_cat[2]}</strong> com ${categoria[i].labels_cat_value[2]} textos (${formatPercentage(categoria[i].labels_cat_value[2], textData.length)});
+                                                                                            <strong>${categoria[i].labels_cat[3]}</strong> com ${categoria[i].labels_cat_value[3]} textos (${formatPercentage(categoria[i].labels_cat_value[3], textData.length)});
+                                                                                            <strong>${categoria[i].labels_cat[4]}</strong> com ${categoria[i].labels_cat_value[4]} textos (${formatPercentage(categoria[i].labels_cat_value[4], textData.length)});
+                                                                                          e <strong>${categoria[i].labels_cat[5]}</strong> com ${categoria[i].labels_cat_value[5]} textos (${formatPercentage(categoria[i].labels_cat_value[5], textData.length)}).</p>`
+                } else{
+                    info_grafico_cat.innerHTML =  `<p>O elemento de ${cat} mais frequente é <strong>${categoria[i].labels_cat[0]}</strong>, mencionado em ${categoria[i].labels_cat_value[0]} textos (${formatPercentage(categoria[i].labels_cat_value[0], textData.length)}).</p> 
+                                                                                <p>Segue-se <strong>${categoria[i].labels_cat[1]}</strong>, mencionado em ${categoria[i].labels_cat_value[1]} textos (${formatPercentage(categoria[i].labels_cat_value[1], textData.length)}); 
+                                                                                            <strong>${categoria[i].labels_cat[2]}</strong>, mencionado em ${categoria[i].labels_cat_value[2]} textos (${formatPercentage(categoria[i].labels_cat_value[2], textData.length)});
+                                                                                            <strong>${categoria[i].labels_cat[3]}</strong>, mencionado em ${categoria[i].labels_cat_value[3]} textos (${formatPercentage(categoria[i].labels_cat_value[3], textData.length)});
+                                                                                            <strong>${categoria[i].labels_cat[4]}</strong>, mencionado em ${categoria[i].labels_cat_value[4]} textos (${formatPercentage(categoria[i].labels_cat_value[4], textData.length)});
+                                                                                          e <strong>${categoria[i].labels_cat[5]}</strong>, mencionado em ${categoria[i].labels_cat_value[5]} textos (${formatPercentage(categoria[i].labels_cat_value[5], textData.length)}).</p>`
+                } 
+            } else {
+                info_grafico_cat.innerHTML =  `<p>O texto com maior variedade de palavras é <strong>${categoria[i].labels_cat[0]}</strong> com ${categoria[i].labels_cat_value[0]} palavras diferentes (${formatPercentage(categoria[i].labels_cat_value[0], textData.length)}).</p> 
+                                                                                             <p>Segue-se <strong>${categoria[i].labels_cat[1]}</strong> com ${categoria[i].labels_cat_value[1]} palavras diferentes; 
+                                                                                                         <strong>${categoria[i].labels_cat[2]}</strong> com ${categoria[i].labels_cat_value[2]} palavras diferentes;
+                                                                                                         <strong>${categoria[i].labels_cat[3]}</strong> com ${categoria[i].labels_cat_value[3]} palavras diferentes;
+                                                                                                         <strong>${categoria[i].labels_cat[4]}</strong> com ${categoria[i].labels_cat_value[4]} palavras diferentes;
+                                                                                                       e <strong>${categoria[i].labels_cat[5]}</strong> com ${categoria[i].labels_cat_value[5]} palavras diferentes.</p>`
+            }
+                
 
             //grafico-mais-frequentes
             let grafico_cat_ct = document.createElement("div")
