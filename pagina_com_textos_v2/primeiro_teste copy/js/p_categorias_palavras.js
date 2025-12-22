@@ -377,15 +377,21 @@ function displayData(wordData, textData, stoplist, lemmasData){
             let link_categoria = document.createElement("a")
             document.querySelector(".cat-section-" + cat).appendChild(link_categoria)
             link_categoria.className += "cat-link cat-link-" + cat
-            if(cat != 'Palavras'){
-                link_categoria.href = "./p_categoria.html?categoria=" + cat
-            }
+            // if(cat != 'Palavras'){
+            //     link_categoria.href = "./p_categoria.html?categoria=" + cat
+            // }
 
             //titulo
             let cat_header = document.createElement("h2")
             document.querySelector(".cat-link-" + cat).appendChild(cat_header)
             cat_header.className += "cat-header"
-            cat_header.innerHTML = `${cat}`
+            if(cat === "Palavras"){
+                cat_header.innerHTML = `<a href="./lista_todas_palavras.html">${cat}</a>`
+            } else if(cat === "Textos"){
+                cat_header.innerHTML = `<a href= "./lista_textos.html">${cat}</a>`
+            } else {
+                cat_header.innerHTML = `<a href= "./p_categoria.html?categoria=${cat}">${cat}</a>`
+            }
 
             // texto descritivo do gráfico
             let info_grafico_cat = document.createElement("div")
@@ -432,7 +438,7 @@ function displayData(wordData, textData, stoplist, lemmasData){
             data: {
                 labels: labels,
                 datasets: [{
-                    label: `${cat} mais frequentes`,
+                    label: (cat !== "Textos"? `${cat} mais frequentes` : `Palavras`),
                     data: values,
                     backgroundColor: '#223F29'
                 }]
