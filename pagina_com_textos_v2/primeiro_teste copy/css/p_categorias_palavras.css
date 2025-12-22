@@ -51,6 +51,83 @@
     justify-self: center;
 }
 
+
+
+/*checkbox*/
+input[type="checkbox"]{
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height:19px;
+  width:19px;
+  z-index: 3;
+}
+
+input[type="checkbox"] + label{
+  position: relative;
+  padding-left: 30px;
+  cursor: pointer;
+  display: inline-block;
+  color: var(--dark-green);
+  line-height: 25px;
+}
+/*caixa*/
+input[type="checkbox"] + label::before{ 
+  content:"";
+  position: absolute;
+  left:2px;
+  top:2px;
+  width: 18px;
+  height: 18px;
+  outline: 1px solid var(--dark-green-t-o);
+  background: var(--light-yellow);
+}
+/*check simbol*/
+input[type="checkbox"]:checked + label::before{ 
+  content:"";
+  position: absolute;
+  left:2px;
+  top:2px;
+  width: 18px;
+  height: 18px;
+  outline: 1px solid var(--dark-green);
+  background: var(--light-yellow);
+}
+
+input[type="checkbox"]:checked + label::after{ 
+  content:"";
+  position: absolute;
+  left:2px;
+  top:3px;
+  /* transform: translate(-50%, -50%) scale(1); */
+  width: 18px;
+  height: 18px;
+  background-image: url(check.svg);
+  /* background: var(--light-yellow); */
+  background-size: contain;
+  background-repeat: no-repeat;
+  transform: scale(1);
+  opacity: 1;
+  transition: all .3s ease;
+}
+
+input[type="checkbox"]:not(:checked) + label::after{ 
+  content:"";
+  position: absolute;
+  left:0;
+  top:0;
+  width: 18px;
+  height: 18px;
+  background-image: url(check.svg);
+  /* background: var(--light-yellow); */
+  background-size: contain;
+  background-repeat: no-repeat;
+  transform: scale(0);
+  opacity: 0;
+  transition: all .3s ease;
+}
+
+
 /*
     - Esticar o gráfico verticalmente e horizontalmente (ver como funciona min-max)
 

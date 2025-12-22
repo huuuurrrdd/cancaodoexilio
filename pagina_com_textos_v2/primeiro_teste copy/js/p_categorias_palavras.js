@@ -444,7 +444,7 @@ function displayData(wordData, textData, stoplist, lemmasData){
             let label = document.createElement('label')
             label.htmlFor = "exclui_palavras_original"
             label.innerText = " Excluir palavras do texto original"
-            label.style.cursor = "pointer"
+            //label.style.cursor = "pointer"
             
             checkboxContainer.appendChild(checkboxPalav)
             checkboxContainer.appendChild(label)
