@@ -91,6 +91,7 @@ function displayData(wordData, textData, stoplist, lemmasData){
     // para específica: array para idTexto, freq, ano
     let id_textos = []
     let frequencia = []
+    let frequencia_real = []
     let anos_esp = []
 
     let nomeCat
@@ -125,6 +126,7 @@ function displayData(wordData, textData, stoplist, lemmasData){
                 if(textData[i].categorias[nomeCat].includes(especifica) == true ){ // verifica se a categoria inclui a palavra especifica 
                     id_textos.push(textData[i].id)
                     frequencia.push(1)
+                    frequencia_real.push(false)
                     anos_esp.push(textData[i].date_of_publication)
                 }
             }
@@ -136,6 +138,7 @@ function displayData(wordData, textData, stoplist, lemmasData){
                 if(textData[i].categorias[nomeCat].locais_limpos.includes(especifica) == true){
                     id_textos.push(textData[i].id)
                     frequencia.push(1)
+                    frequencia_real.push(false)
                     anos_esp.push(textData[i].date_of_publication)
                 }
             }
@@ -149,6 +152,7 @@ function displayData(wordData, textData, stoplist, lemmasData){
                     if(textData[i]?.[nomeCat].includes(especifica)){
                         id_textos.push(textData[i].id)
                         frequencia.push(1)
+                        frequencia_real.push(false)
                         anos_esp.push(textData[i].date_of_publication)
                     }
                 }
@@ -161,8 +165,25 @@ function displayData(wordData, textData, stoplist, lemmasData){
                     if(textData[i]?.[nomeCat] == especifica){
                         id_textos.push(textData[i].id)
                         frequencia.push(1)
+                        frequencia_real.push(false)
                         anos_esp.push(textData[i].date_of_publication)
                     }
+                }
+            }
+        } else if(nomeCat === "Palavras") {
+            for(let i = 0; i < wordData.palavras.length; i++){
+                const valor = wordData.palavras[i].palavra
+
+                if(valor !== undefined && valor !== null && valor !== "" && !stoplist.includes(valor)){
+                    if(wordData.palavras[i].palavra == especifica){
+                        for(let j = 0; j < wordData.palavras[i].textos.length; j++){
+                            id_textos.push(wordData.palavras[i].textos[j].id_text)
+                            frequencia.push(1),
+                            frequencia_real.push(wordData.palavras[i].textos[j].frequencia)
+                            
+                        }
+                    }
+                    
                 }
             }
         }
