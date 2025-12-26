@@ -16,6 +16,9 @@ function getQueryParam(param){
 let categoria = getQueryParam("categoria")
 let especifica = getQueryParam("especifica")
 
+//caso seja palavra
+let indicePalavra = null
+
 console.log(categoria) // funciona!!
 console.log(especifica) // funciona!!
 
@@ -23,6 +26,8 @@ console.log(especifica) // funciona!!
 // versao para CSS:
 let classEsp = especifica.replaceAll(" ", "-")
 // versão para display
+
+
 
 
 
@@ -84,6 +89,22 @@ fetchData()
 
 // testar ainda nesta pagina o funcionamento de wikipédia
 function displayData(wordData, textData, stoplist, lemmasData){
+
+    //detetar se é categoria "palavras"
+    const isCategoriaPalavra = categoria === "Palavras"
+    if(isCategoriaPalavra){
+        for(let i = 0; i < wordData.palavras.length; i++){
+            const dictWord = wordData.palavras[i].palavra
+            const queryWord = especifica
+
+            if(dictWord === queryWord){
+                indicePalavra = i
+                break
+            }
+        }
+    }
+
+
     let especificaDisplay = titleCase(especifica, stoplist)
 
     
@@ -170,17 +191,21 @@ function displayData(wordData, textData, stoplist, lemmasData){
                     }
                 }
             }
-        } else if(nomeCat === "Palavras") {
+        } else if(nomeCat === "palavras") {
             for(let i = 0; i < wordData.palavras.length; i++){
                 const valor = wordData.palavras[i].palavra
 
                 if(valor !== undefined && valor !== null && valor !== "" && !stoplist.includes(valor)){
                     if(wordData.palavras[i].palavra == especifica){
                         for(let j = 0; j < wordData.palavras[i].textos.length; j++){
-                            id_textos.push(wordData.palavras[i].textos[j].id_text)
+                            let id = wordData.palavras[i].textos[j].id_text
+                            let text = textData.find(t => t.id === id)
+                            let date = text? text.date_of_publication : null
+                            id_textos.push(id)
                             frequencia.push(1),
                             frequencia_real.push(wordData.palavras[i].textos[j].frequencia)
-                            
+                            anos_esp.push(date)
+
                         }
                     }
                     
@@ -337,6 +362,10 @@ function displayData(wordData, textData, stoplist, lemmasData){
     elemento_h.className += "page-title elemento-h elemento-h-" + classEsp
     elemento_h.innerHTML = especificaDisplay
 
+    let elemento_hover = document.createElement('div')
+    margem_ct.appendChild(elemento_hover)
+    elemento_hover.className = "elemento-hover"
+
     //*************  Gráfico geral  ****************/
     let elemento_grafico = document.createElement("div")
     margem_ct.appendChild(elemento_grafico)
@@ -378,17 +407,18 @@ function displayData(wordData, textData, stoplist, lemmasData){
 
     //*************  Info elemento(wikipedia)  ****************/
     let elemento_info = document.createElement("div")
-    margem_ct.appendChild(elemento_info)
+    elemento_hover.appendChild(elemento_info)
     elemento_info.className += "elemento-info ct-info-" + classEsp
 
-    let elemento_info_h = document.createElement("h2")
-    elemento_info.appendChild(elemento_info_h)
-    elemento_info_h.className += "elemento-info-h info-h-" + classEsp
-    elemento_info_h.innerHTML = "Sobre"
+    // let elemento_info_h = document.createElement("h2")
+    // elemento_info.appendChild(elemento_info_h)
+    // elemento_info_h.className += "elemento-info-h info-h-" + classEsp
+    // elemento_info_h.innerHTML = "Sobre"
 
     let elemento_info_conteudo = document.createElement("div")
     elemento_info.appendChild(elemento_info_conteudo)
     elemento_info_conteudo.className += "elemento-info-conteudo info-conteudo-" + classEsp
+    elemento_info_conteudo.title = "Clicar para aceder a página da wikipédia"
     //elemento_info_conteudo.innerHTML = wikiData[3][0] // acesso a página de desambiguacao
 
     /*
@@ -427,7 +457,7 @@ function displayData(wordData, textData, stoplist, lemmasData){
     }
 
     const showError = error => {
-        elemento_info_conteudo.innerHTML += `🚨 ${error} 🚨`
+        elemento_info_conteudo.innerHTML += `${error}`
     }
 
     // dispoe os resultados no UI
@@ -446,7 +476,7 @@ function displayData(wordData, textData, stoplist, lemmasData){
     const gatherData = pages => {
         const results = Object.values(pages).map(page =>({
             pageId: page.pageid,
-            title: page.title,
+            title: `Sobre ${page.title}`,
             intro: page.extract
         }))
 
@@ -474,7 +504,7 @@ function displayData(wordData, textData, stoplist, lemmasData){
             const { data } = await axios.get(endpoint, { params }) // data é o objeto gerado pela wikipedia API
 
             if(data.error) throw new Error(data.error.info)
-            if (!data.query) throw new Error("Nenhum resultado encontrado.");
+            if (!data.query) throw new Error(`Nenhum resultado encontrado para ${palavra}`);
 
             gatherData(data.query.pages)
 
@@ -522,6 +552,8 @@ function displayData(wordData, textData, stoplist, lemmasData){
     let ordAut_ = "ZA" // o q muda
     let ordDat = "asc" // o atual ---- ano
     let ordDat_ = "des"// o que muda
+    let ordFre = "asc" // o atual ---- freq
+    let ordFre_ = "des" // o que muda
 
 
     /*:::::::::::  Resultados p/pagina  :::::::::::*/
@@ -582,6 +614,32 @@ function displayData(wordData, textData, stoplist, lemmasData){
         })
     }
 
+    if(isCategoriaPalavra){
+        resultado = []
+        let textosResultado = wordData.palavras[indicePalavra].textos.slice()
+
+        for(let i = 0; i < textosResultado.length; i++){
+            const texto = textosResultado[i] //percorre cada texto que contem a palavra(wordData)
+            //metadata
+            
+            const metadata = textData[texto.id_text - 1] //objeto com todas as infos do texto selecionado
+            const id_do_texto = metadata.id;
+            const titul = metadata.title
+            const data_pub = metadata.date_of_publication
+            const autor = metadata.author
+            const freq1 = texto.frequencia
+
+            resultado.push({
+                id: id_do_texto,
+                titulo: titul,
+                ano: data_pub,
+                autor: autor,
+                freq: freq1
+            })
+
+        }
+    }
+
     /*:::::::::::  Ordem alfabética de titulos  :::::::::::*/
     function ordTitle(ord, data){
         //console.log("ord Function")
@@ -623,6 +681,19 @@ function displayData(wordData, textData, stoplist, lemmasData){
         }
     }
 
+    /*:::::::::::  Ordem por frequencia  :::::::::::*/
+    function ordFreq(ord, data){
+        if(ord == "des"){
+            data.sort((a,b) => a.freq < b.freq ? -1 : 1).reverse()
+            ordFre_ = "asc" // pronto para mudar
+            ordFre = "des" // atual
+        } else if (ord == "asc") {
+            data.sort((a,b) => a.freq < b.freq ? -1 : 1)
+            ordFre_ = "des"
+            ordFre = "asc"
+        }
+    }
+
     /*:::::::::::  Normalizar string  :::::::::::*/
     function normalize(str){
         return str
@@ -633,11 +704,17 @@ function displayData(wordData, textData, stoplist, lemmasData){
 
     function displayTabela(){
         div_textos.innerHTML = ""
+
+        
     
         //--tabela--
         let list_container = document.createElement("div")
         div_textos.appendChild(list_container)
         list_container.className += "list-container"
+        //caso seja palavra, adiciona uma classe condicional
+        if(isCategoriaPalavra){
+            list_container.classList.add("layout-palavra")
+        }
 
         //header
         let tentry_header = document.createElement("div")
@@ -670,7 +747,19 @@ function displayData(wordData, textData, stoplist, lemmasData){
                                             <input id="autor-input" class="input-h" aria-label="autor?" type="text" class="autor-search-bar__input" placeholder="autor?" autofocus required>
                                             <input id="autor-submit" type="image" class="autor-search-bar__button bt-h" src='./imagens/lupa.svg' aria-label=""search>
                                         </div>
-                                    </div>`
+                                    </div>
+                                    
+                                    ${isCategoriaPalavra ? `
+                                    <div class = "freq header freq-header">
+                                        <div class = "seta-ct" title ="Pesquisa livre por frequência"><div class = "seta seta-freq down"></div></div>
+                                        <h2 class = "freq-o-h">Freq</h2> 
+                                        <p id="Ord-Freq">Ord:</p>
+                                        <div id = "freq-search-bar">
+                                            <input id="freq-input" class="input-h" aria-label="freq?" type="text" class="freq-search-bar__input" placeholder="freq?" autofocus required>
+                                            <input id="freq-submit" type="image" class="freq-search-bar__button bt-h" src='./imagens/lupa.svg' aria-label=""search>
+                                        </div>
+                                    </div>` 
+                                        : ''}`
 
         //tentry_header.style.backgroundColor = "yellow"
 
@@ -681,6 +770,7 @@ function displayData(wordData, textData, stoplist, lemmasData){
         let inputAno = document.querySelector("#year-search-bar") // div input
 
         inputAno.style.display = "none"
+        
 
         //arrow toogle para ano
         let seta_ano = document.querySelector(".seta-ano")
@@ -712,6 +802,9 @@ function displayData(wordData, textData, stoplist, lemmasData){
         }
         })
 
+        
+
+
         /*:::::  Botoes  :::::*/
         const yearSubmitButton = document.querySelector('#year-submit')
         const yearInput = document.querySelector('#year-input')
@@ -721,6 +814,47 @@ function displayData(wordData, textData, stoplist, lemmasData){
 
         const autorSubmitButton = document.querySelector('#autor-submit')
         const autorInput = document.querySelector('#autor-input')
+
+        //declarar   
+        let freqSubmitButton = null
+        let freqInput = null
+
+        if(isCategoriaPalavra){
+            let freqHeader = document.querySelector(".freq-header")
+            let freqTitulo = document.querySelector(".freq-o-h")
+            let ordemFreq = document.querySelector("#Ord-Freq")
+            let inputFreq = document.querySelector("#freq-search-bar")
+
+            inputFreq.style.display = "none"
+
+            //definição das variáveis
+            freqSubmitButton = document.querySelector('#freq-submit')
+            freqInput = document.querySelector('#freq-input')
+
+            //arrow toogle para freq
+            let seta_freq = document.querySelector(".seta-freq")
+            seta_freq.addEventListener('click', (e) => {
+                if(seta_freq.classList.contains('down')){
+                    seta_freq.classList.remove("down")
+                    seta_freq.classList.add("up")
+                    freqHeader.classList.add("input-active")
+
+                    freqTitulo.style.display = "none"
+                    ordemFreq.style.display = "none"
+                    inputFreq.style.display = "flex" //input
+
+                    setTimeout(() => document.querySelector('#freq-input').focus(), 100)
+                } else {
+                    seta_freq.classList.remove("up")
+                    seta_freq.classList.add("down")
+                    freqHeader.classList.remove("input-active")
+
+                    freqTitulo.style.display = "block"
+                    ordemFreq.style.display = "block"
+                    inputFreq.style.display = "none" //input
+                }
+            })
+        }
 
 
         // conteudo após header //////////////////////
@@ -735,6 +869,8 @@ function displayData(wordData, textData, stoplist, lemmasData){
             document.querySelector('#Ord-Aut').textContent = `Ord: ${ordAut}`
             document.querySelector('#Ord-Dat').textContent = `Ord: ${ordDat}`
 
+            if(isCategoriaPalavra) document.querySelector('#Ord-Freq').textContent = `Ord: ${ordFre}`
+
             container.innerHTML = ""
 
             if(resultado == undefined || resultado == [] || resultado == ""){
@@ -748,7 +884,8 @@ function displayData(wordData, textData, stoplist, lemmasData){
 
                     tentry.innerHTML = `<a class = "ano" href="p_categoria_especifica.html?categoria=Anos&especifica=${resultado[i].ano}">${resultado[i].ano}</a>
                                     <a class = "titulo" href="index.html?id=${resultado[i].id}">${resultado[i].titulo}</a>
-                                    <a class = "autor" href="p_categoria_especifica.html?categoria=Autores&especifica=${resultado[i].autor}">${resultado[i].autor}</a>`
+                                    <a class = "autor" href="p_categoria_especifica.html?categoria=Autores&especifica=${resultado[i].autor}">${resultado[i].autor}</a>
+                                    ${isCategoriaPalavra ?`<a class = "freq">${resultado[i].freq}</a>`:''}`
                 }
             }
 
@@ -821,7 +958,7 @@ function displayData(wordData, textData, stoplist, lemmasData){
         document.querySelector('#Ord-Aut').addEventListener('click', (e) => {
             ordAutores(ordAut_, resultado)
             displayResultado(resultado)
-            console.log("click!!")
+            //console.log("click!!")
         })
         // document.querySelector('#Ord-Aut').style.backgroundColor = "white"
 
@@ -829,9 +966,18 @@ function displayData(wordData, textData, stoplist, lemmasData){
         document.querySelector('#Ord-Dat').addEventListener('click', (e) => {
             ordData(ordDat_, resultado)
             displayResultado(resultado)
-            console.log("click!!")
+            //console.log("click!!")
         })
         // document.querySelector('#Ord-Dat').style.backgroundColor = "white"
+
+        /***************** Ordem frequencia ********************/
+        if(isCategoriaPalavra){
+            document.querySelector('#Ord-Freq').addEventListener('click', (e) => {
+                ordFreq(ordFre_, resultado)
+                displayResultado(resultado)
+                //console.log("click!!")
+            })
+        }
 
         /***************** Separadores page ********************/
         function sepPage(){
@@ -957,7 +1103,34 @@ function displayData(wordData, textData, stoplist, lemmasData){
             }
         })
 
+  
+
+    /***************** freq pesquisa ********************/
+    if(isCategoriaPalavra && freqInput){
+        freqInput.addEventListener('input', (e) => {
+            let value = String(e.target.value).trim()
+
+            if(value.length > 0){
+                const filteredResultado = resultado
+                    .filter(item => {
+                        const f = String(item?.freq ?? "")
+                        return f.startsWith(value)
+                    })
+                    .sort((a,b) => {
+                        const na = Number(a.freq)
+                        const nb = Number(b.freq)
+                        return (Number.isNaN(na) ? Infinity : na) - (Number.isNaN(nb) ? Infinity : nb)
+                    })
+
+                resPPage(filteredResultado.length, rPP)
+                displayResultado(filteredResultado, value)
+            } else {
+                resPPage(resultado.length, rPP)
+                displayResultado(resultado, value)
+            }
+        })
     }
+}
 
     displayTabela()
 }

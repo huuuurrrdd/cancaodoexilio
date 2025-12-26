@@ -81,6 +81,8 @@
     grid-template-areas: 'arrow input'
                          'arrow input'
                          'arrow input';
+    gap: 5px;
+    padding: 5px;
 }
 
 .titul-header{
