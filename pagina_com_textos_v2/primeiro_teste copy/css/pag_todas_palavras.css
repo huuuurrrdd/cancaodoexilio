@@ -130,9 +130,11 @@
     background-color: var(--dark-green-t-o2);
 }
 
-.ct-item .palavras:hover{
+.ct-item .palavras:hover, .item-texto:hover{
     text-decoration: underline;
 }
+
+
 
 /******** Lista de numeros de páginas *********/
 .n-page-ct{
@@ -162,12 +164,24 @@
 }
 
 /** bt mais... **/
-.mais, .ver-todos, .menos{
+.mais span, .ver-todos span, .menos span{
     cursor: pointer;
     width: 70px;
+    text-decoration: none;
+    transition: all 0.3s;
+    font-style: italic;
+}
+
+
+.mais:hover span, .ver-todos:hover span, .menos:hover span{
+    color: var(--light-yellow);
+    background-color: var(--dark-green);
+    text-decoration: none;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 .mais:hover, .ver-todos:hover, .menos:hover{
-    color: white;
-    background-color: black;
+    text-decoration: none;
 }
+

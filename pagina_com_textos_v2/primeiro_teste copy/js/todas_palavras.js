@@ -438,17 +438,17 @@ function displayData(wordData, textData, stoplist) {
   document.querySelector(".words-container").appendChild(bts_visualizacao);
   bts_visualizacao.className = "bts-visualizacao";
 
-  bt_todas_palavras = document.createElement("div");
-  bt_palavras_pop = document.createElement("div");
+  // bt_todas_palavras = document.createElement("div");
+  // bt_palavras_pop = document.createElement("div");
 
-  document.querySelector(".bts-visualizacao").appendChild(bt_todas_palavras);
-  document.querySelector(".bts-visualizacao").appendChild(bt_palavras_pop);
+  // document.querySelector(".bts-visualizacao").appendChild(bt_todas_palavras);
+  // document.querySelector(".bts-visualizacao").appendChild(bt_palavras_pop);
 
-  bt_todas_palavras.className = "bt-todas-palavras";
-  bt_palavras_pop.className = "bt-palavras-pop";  
+  // bt_todas_palavras.className = "bt-todas-palavras";
+  // bt_palavras_pop.className = "bt-palavras-pop";  
 
-  bt_todas_palavras.innerHTML = "Todas as palavras";
-  bt_palavras_pop.innerHTML = "Palavras populares";
+  // bt_todas_palavras.innerHTML = "Todas as palavras";
+  // bt_palavras_pop.innerHTML = "Palavras populares";
 
   //** div para display **//
   div_display = document.createElement("div");
@@ -777,14 +777,13 @@ function displayData(wordData, textData, stoplist) {
                 let item_textosv1 = document.createElement("div")
                 item_textos.appendChild(item_textosv1)
                 item_textosv1.className += "item-texto mais"
-                item_textosv1.innerHTML = "Mais..."
+                item_textosv1.innerHTML = "<span>Mais...</span>"
 
                 item_textosv1.addEventListener("click", (e) =>{
                   item_textos.innerHTML = ''
 
                   const itemsToShow = Math.min(resultado[i].textos.length, 8);
-                  
-                  
+
                     for (let j = 0; j < itemsToShow; j++) {
                       let texto_de_palavra = document.createElement("a");
                       texto_de_palavra.className = "item-texto";
@@ -797,14 +796,14 @@ function displayData(wordData, textData, stoplist) {
                     let menos = document.createElement("div")
                     item_textos.appendChild(menos)
                     menos.className += "item-texto menos"
-                    menos.innerHTML = "menos"
+                    menos.innerHTML = "<span>Menos</span>"
 
 
                     if(resultado[i].textos.length > 3 + 5){
                       let item_textosv2 = document.createElement("div")
                       item_textos.appendChild(item_textosv2)
                       item_textosv2.className += "item-texto ver-todos"
-                      item_textosv2.innerHTML = "Ver todos"
+                      item_textosv2.innerHTML = "<span>Ver todos</span>"
 
                       item_textosv2.addEventListener("click", (e) =>{
                         window.location.href=(`lista_palavras.html?palavra=${resultado[i].palavra}`);
@@ -1155,77 +1154,77 @@ function displayData(wordData, textData, stoplist) {
 
 
 
-  //---------  Display palavras-pop  ----------/ ----------------------------> AINDA POR FAZER!!!
-  function displayPalavrasPop() {
-    // Primeira versão com display das mais populares por ano
+  // //---------  Display palavras-pop  ----------/ ----------------------------> AINDA POR FAZER!!!
+  // function displayPalavrasPop() {
+  //   // Primeira versão com display das mais populares por ano
 
-    div_display.innerHTML = "";
+  //   div_display.innerHTML = "";
 
-    //** baseada na tabela de display em palavra selecionada **
-    let list_all_container = document.createElement("div");
-    document.querySelector(".div-display").appendChild(list_all_container);
-    list_all_container.className += "list-all-container";
+  //   //** baseada na tabela de display em palavra selecionada **
+  //   let list_all_container = document.createElement("div");
+  //   document.querySelector(".div-display").appendChild(list_all_container);
+  //   list_all_container.className += "list-all-container";
 
-    //Header!!
-    let ct_head_list = document.createElement("div");
-    document.querySelector(".list-all-container").appendChild(ct_head_list);
-    ct_head_list.className += "list ct-head-list";
+  //   //Header!!
+  //   let ct_head_list = document.createElement("div");
+  //   document.querySelector(".list-all-container").appendChild(ct_head_list);
+  //   ct_head_list.className += "list ct-head-list";
 
-    // conteudo do header!!
-    ct_head_list.innerHTML = `  <div class = "palavras header">Palavra</div>
-                                    <div class = "texto header">Textos</div>
-                                    <div class = "frequencia header">Freq</div>`;
+  //   // conteudo do header!!
+  //   ct_head_list.innerHTML = `  <div class = "palavras header">Palavra</div>
+  //                                   <div class = "texto header">Textos</div>
+  //                                   <div class = "frequencia header">Freq</div>`;
 
-    ct_head_list.style.backgroundColor = "yellow";
+  //   ct_head_list.style.backgroundColor = "yellow";
 
-    // conteudo após header //////////////////////
-    let container = document.createElement("div");
-    document.querySelector(".list-all-container").appendChild(container);
-    container.className = "container";
+  //   // conteudo após header //////////////////////
+  //   let container = document.createElement("div");
+  //   document.querySelector(".list-all-container").appendChild(container);
+  //   container.className = "container";
 
-    //iteração para display
-    for (let i = 0; i < todas_as_palavrasFreq_p_ano.length; i++) {
-      // teste das primeiras 3 palavras
+  //   //iteração para display
+  //   for (let i = 0; i < todas_as_palavrasFreq_p_ano.length; i++) {
+  //     // teste das primeiras 3 palavras
 
-      //cria a div principal
-      let ct_item = document.createElement("div");
-      ct_item.className += "ct-item ct-item" + (i + 1);
-      container.appendChild(ct_item);
+  //     //cria a div principal
+  //     let ct_item = document.createElement("div");
+  //     ct_item.className += "ct-item ct-item" + (i + 1);
+  //     container.appendChild(ct_item);
 
-      //divs dentro da div principal
-      let item_palavra = document.createElement("div");
-      document.querySelector(`.ct-item${i + 1}`).appendChild(item_palavra);
-      item_palavra.className = "item-palavra";
-      item_palavra.innerHTML = `<br> Palavra: ${palavras_grafico[
-        i
-      ].toUpperCase()}`;
+  //     //divs dentro da div principal
+  //     let item_palavra = document.createElement("div");
+  //     document.querySelector(`.ct-item${i + 1}`).appendChild(item_palavra);
+  //     item_palavra.className = "item-palavra";
+  //     item_palavra.innerHTML = `<br> Palavra: ${palavras_grafico[
+  //       i
+  //     ].toUpperCase()}`;
 
-      let item_textos = document.createElement("div");
-      document.querySelector(`.ct-item${i + 1}`).appendChild(item_textos);
-      item_textos.className = "item-textos";
+  //     let item_textos = document.createElement("div");
+  //     document.querySelector(`.ct-item${i + 1}`).appendChild(item_textos);
+  //     item_textos.className = "item-textos";
 
-      for (let j = 0; j < wordData.palavras[indexPal].textos.length; j++) {
-        // item a colocar dentro de "item_textos"
-        let texto_de_palavra = document.createElement("div");
-        //document.querySelector(".item-textos").appendChild(texto_de_palavra)
-        texto_de_palavra.className = "item-texto";
-        texto_de_palavra.innerHTML = `${wordData.palavras[indexPal].palavra}: ${wordData.palavras[indexPal].textos[j].id_text}`;
-        item_textos.appendChild(texto_de_palavra);
-      }
+  //     for (let j = 0; j < wordData.palavras[indexPal].textos.length; j++) {
+  //       // item a colocar dentro de "item_textos"
+  //       let texto_de_palavra = document.createElement("div");
+  //       //document.querySelector(".item-textos").appendChild(texto_de_palavra)
+  //       texto_de_palavra.className = "item-texto";
+  //       texto_de_palavra.innerHTML = `${wordData.palavras[indexPal].palavra}: ${wordData.palavras[indexPal].textos[j].id_text}`;
+  //       item_textos.appendChild(texto_de_palavra);
+  //     }
 
-      let item_frequencia = document.createElement("div");
-      document.querySelector(`.ct-item${i + 1}`).appendChild(item_frequencia);
-      item_frequencia.className = "item-frequencia";
-      item_frequencia.innerHTML = `Frequencia:${wordData.palavras[indexPal].frequencia}<br>`;
-    }
-  };
+  //     let item_frequencia = document.createElement("div");
+  //     document.querySelector(`.ct-item${i + 1}`).appendChild(item_frequencia);
+  //     item_frequencia.className = "item-frequencia";
+  //     item_frequencia.innerHTML = `Frequencia:${wordData.palavras[indexPal].frequencia}<br>`;
+  //   }
+  // };
 
 
   //Colocar todos assim para ser mais fácil de testar
   displayTodasPalavras() // a dar por default
-  bt_todas_palavras.addEventListener("click", displayTodasPalavras)
-  //displayPalavrasPop()
-  bt_palavras_pop.addEventListener("click", displayPalavrasPop)
+  // bt_todas_palavras.addEventListener("click", displayTodasPalavras)
+  // //displayPalavrasPop()
+  // bt_palavras_pop.addEventListener("click", displayPalavrasPop)
 
 }
 
