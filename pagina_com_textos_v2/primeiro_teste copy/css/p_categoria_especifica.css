@@ -45,7 +45,7 @@
 
 .list-container{
     font-family: "Quattrocento";
-    font-size:large;
+    /* font-size:large; */
 }
 
 .textos-mencionam-h{
@@ -195,4 +195,13 @@
 .bt-h{
     width:20px;
     opacity: 0.6;
+}
+
+/****** Estilos de tabela ******/
+.tentry-container:hover{
+    background-color: var(--dark-green-t-o2);
+}
+
+.tentry-container .ano:hover, .tentry-container .titulo:hover, .tentry-container .autor:hover{
+    text-decoration: underline;
 }

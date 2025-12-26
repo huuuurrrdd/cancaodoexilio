@@ -653,10 +653,6 @@ function displayData(wordData, textData, stoplist) {
 
     //**************** [todas palavras]  *******************/
 
-
-
-
-
       //** baseada na tabela de display em palavra selecionada **
       let list_all_container = document.createElement("div");
       document.querySelector(".div-display").appendChild(list_all_container);
@@ -737,9 +733,7 @@ function displayData(wordData, textData, stoplist) {
           ct_item.className += "ct-item ct-item" + (i + 1);
           container.appendChild(ct_item);
 
-
           //let indexPal = todosOBJpalavrasSStopwords[i].indice; // busca apenas os indices das palavras sem stopwords
-
 
           //divs dentro da div principal
           let item_palavra = document.createElement("a");
@@ -759,7 +753,7 @@ function displayData(wordData, textData, stoplist) {
               let texto_de_palavra = document.createElement("a");
               //document.querySelector(".item-textos").appendChild(texto_de_palavra)
               texto_de_palavra.className = "item-texto";
-              texto_de_palavra.innerHTML = `${resultado[i].textos[j].id_text}  ${resultado[i].titulo[j]} <br><br>`; // em vez do id, colocar o número
+              texto_de_palavra.innerHTML = `${resultado[i].titulo[j]} <br><br>`; // em vez do id, colocar o número
               item_textos.appendChild(texto_de_palavra);
               texto_de_palavra.href = `index.html?id=${resultado[i].textos[j].id_text}`
             }
@@ -774,7 +768,7 @@ function displayData(wordData, textData, stoplist) {
                 let texto_de_palavra = document.createElement("a");
                 //document.querySelector(".item-textos").appendChild(texto_de_palavra)
                 texto_de_palavra.className = "item-texto";
-                texto_de_palavra.innerHTML = `${resultado[i].textos[j].id_text}  ${resultado[i].titulo[j]} <br><br>`; // em vez do id, colocar o número
+                texto_de_palavra.innerHTML = `${resultado[i].titulo[j]} <br><br>`; // em vez do id, colocar o número
                 item_textos.appendChild(texto_de_palavra);
                 texto_de_palavra.href = `index.html?id=${resultado[i].textos[j].id_text}`
               }
@@ -794,7 +788,7 @@ function displayData(wordData, textData, stoplist) {
                     for (let j = 0; j < itemsToShow; j++) {
                       let texto_de_palavra = document.createElement("a");
                       texto_de_palavra.className = "item-texto";
-                      texto_de_palavra.innerHTML = `${resultado[i].textos[j].id_text}  ${resultado[i].titulo[j]} <br><br>`; // em vez do id, colocar o número
+                      texto_de_palavra.innerHTML = `${resultado[i].titulo[j]} <br><br>`; // em vez do id, colocar o número
                       item_textos.appendChild(texto_de_palavra);
                       texto_de_palavra.href = `index.html?id=${resultado[i].textos[j].id_text}`
                     }

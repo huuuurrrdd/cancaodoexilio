@@ -37,7 +37,7 @@
     grid-column-gap: 10px;
     grid-row-gap: 0px;
     position: sticky;
-    top: 51px;
+    top: 0px;
     background-color: var(--dark-green-t-o);
     z-index: 5;
     /* border-bottom: solid 1px var(--dark-green); */
@@ -171,6 +171,15 @@
     opacity: 0.6;
 }
 
+/****** Estilos de tabela ******/
+.ct-item:hover{
+    background-color: var(--dark-green-t-o2);
+}
+
+.ct-item .ano:hover, .ct-item .titul:hover, .ct-item .author:hover{
+    /* background-color: var(--dark-green-t-o); */
+    text-decoration: underline;
+}
 
 
 /********* Tabela abaixo **************/

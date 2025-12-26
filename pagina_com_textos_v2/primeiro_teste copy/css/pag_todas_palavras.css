@@ -8,7 +8,7 @@
     grid-column-gap: 10px;
     grid-row-gap: 0px;
     position: sticky;
-    top:51px;
+    top:0px;
     background-color: var(--dark-green-t-o);
     z-index: 5;
 }
@@ -123,6 +123,15 @@
 .bt-h{
     width:20px;
     opacity: 0.6;
+}
+
+/****** Estilos de tabela ******/
+.ct-item:hover{
+    background-color: var(--dark-green-t-o2);
+}
+
+.ct-item .palavras:hover{
+    text-decoration: underline;
 }
 
 /******** Lista de numeros de páginas *********/

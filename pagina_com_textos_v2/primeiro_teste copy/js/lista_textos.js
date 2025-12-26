@@ -348,9 +348,9 @@ function displayData(wordData, textData, stoplist){
                     ct_item.className += "ct-item ct-item" + (i+1)
                     container.appendChild(ct_item)
 
-                    ct_item.innerHTML = `<a class = "ano" href="p_categoria_especifica.html?categoria=Anos&especifica=${resultado[i].date_of_publication}">${resultado[i].date_of_publication}</a>
-                                        <a class = "titul" href="index.html?id=${resultado[i].id}">${resultado[i].title}</a>
-                                        <a class = "author" href="p_categoria_especifica.html?categoria=Autores&especifica=${resultado[i].author}">${resultado[i].author}</a>`
+                    ct_item.innerHTML = `<a class = "ano" href="p_categoria_especifica.html?categoria=Anos&especifica=${resultado[i].date_of_publication}"><span>${resultado[i].date_of_publication}</span></a>
+                                        <a class = "titul" href="index.html?id=${resultado[i].id}"><span>${resultado[i].title}</span></a>
+                                        <a class = "author" href="p_categoria_especifica.html?categoria=Autores&especifica=${resultado[i].author}"><span>${resultado[i].author}</span></a>`
                 }
             }
 
@@ -840,9 +840,9 @@ function displayData(wordData, textData, stoplist){
 
     //sort_text = textData.date_of_publication.sort((a, b) => a - b)
 
-    displayMapa()
+    //displayMapa()
     //displayAmostra() // display amostra como default (n tem problema com acumulação)
-    //displayTabela()
+    displayTabela()
 
 
     /***********  Display das funções  ***********/
