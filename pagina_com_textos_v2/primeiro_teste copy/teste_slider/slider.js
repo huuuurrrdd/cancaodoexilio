@@ -8,6 +8,18 @@ let priceGap = 500
 //Adiciona event listners a elemetos de price-input
 const priceInputvalue = document.querySelectorAll(".price-input input")
 
+//funcao para atualizar a barra verde
+function updateSlider(){
+    let minVal = parseInt(rangeInputvalue[0].value)
+    let maxVal = parseInt(rangeInputvalue[1].value)
+
+    rangevalue.style.left = `${(minVal / rangeInputvalue[0].max) * 100}%`
+    rangevalue.style.right = `${100 - (maxVal / rangeInputvalue[1].max) * 100}%`
+}
+
+//inicializa o slider
+updateSlider()
+
 for(let i = 0; i < priceInputvalue.length; i++){
 
     priceInputvalue[i].addEventListener("input", e => {
@@ -44,13 +56,10 @@ for(let i = 0; i < priceInputvalue.length; i++){
         if(diff >= priceGap && maxp <= rangeInputvalue[1].max){
             if(e.target.className === "min-input"){
                 rangeInputvalue[0].value = minp;
-                let value1 = rangeInputvalue[0].max
-                rangevalue.style.left = `${(minp / value1) * 100}%`
             } else {
                 rangeInputvalue[1].value = maxp
-                let value2 = rangeInputvalue[1].max;
-                rangevalue.style.right = `${100 - (maxp / value2) * 100}%`
             }
+            updateSlider()
         }
     })
 
@@ -74,8 +83,7 @@ for(let i = 0; i < priceInputvalue.length; i++){
                 //atualiza inputs de preço e progresso de range
                 priceInputvalue[0].value = minVal
                 priceInputvalue[1].value = maxVal
-                rangevalue.style.left = `${(minVal / rangeInputvalue[0].max) * 100}%`
-                rangevalue.style.right = `${(maxVal / rangeInputvalue[1].max) * 100}%`
+                updateSlider()
             }
         })
     }

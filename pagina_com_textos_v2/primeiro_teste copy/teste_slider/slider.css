@@ -26,7 +26,7 @@ body {
 }
 
 /*estilos para price input container*/
-.price-inout-container {
+.price-input-container {
     width: 100%;
 }
 
@@ -35,7 +35,7 @@ body {
     margin-bottom: 22px;
 }
 
-.prince-field span {
+.price-field span {
     margin-right: 10px;
     margin-top: 6px;
     font-size: 17px;
