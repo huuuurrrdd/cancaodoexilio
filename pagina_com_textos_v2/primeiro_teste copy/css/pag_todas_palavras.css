@@ -69,6 +69,18 @@
     margin:0;
 }
 
+.texto-o-h a{
+    transition: all 0.3s;
+}
+
+.texto-o-h a:hover{
+    background-color: var(--dark-green);
+    color: var(--light-yellow);
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+
 #Ord-Alfa, #Ord-Tit, #Ord-Freq{
     grid-area: ord;
     margin:0;

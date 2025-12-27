@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="slider.css">
+    <title>Document</title>
+</head>
+<body>
+
+    <div class = "main">
+        <div class = "price-input-container">
+            <div class = "price-input">
+                <div class = "price-field">
+                    <span>Minim price</span>
+                    <input type="number" class = "min-input" value="2500">
+                </div>
+                <div class = "price-field">
+                    <span>Maximum price</span>
+                    <input type="number" class = "max-input" value="8500">
+                </div>
+            </div>
+            <div class = "slider">
+                <div class = "price-slider"></div>
+            </div>
+        </div>
+
+        <!-- slider -->
+        <div class="range-input">
+            <input type="range" class="min-range" min="0" max="10000" value="2500" step="1">
+            <input type="range" class="max-range" min="0" max="10000" value="8500" step="1">
+        </div>
+    </div>
+    
+</body>
+
+<script src="slider.js"></script>
+</html>

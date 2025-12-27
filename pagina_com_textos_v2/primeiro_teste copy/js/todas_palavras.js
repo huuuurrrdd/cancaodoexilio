@@ -673,7 +673,7 @@ function displayData(wordData, textData, stoplist) {
                                               </div>
                                       </div>
                                       <div class = "texto header texto-header">
-                                              <h2 class = "texto-o-h">Textos</h2>
+                                              <h2 class = "texto-o-h"><a href = './lista_textos.html'>Textos</a></h2>
                                               <p id="Ord-Tit">Ord: ${ordTit}</p>
                                               <div id="tit-search-bar">
                                                 <input id="tit-input" class="input-h" aria-label="titulo?" type="text" class="tit-search-bar__input" placeholder="titulo?" autofocus required>
@@ -681,7 +681,7 @@ function displayData(wordData, textData, stoplist) {
                                               </div>
                                       </div>
                                             <div class = "freq header freq-header">
-                                            <h2 class = "fre-o-h">Freq</h2>
+                                            <h2 class = "fre-o-h">Freq.</h2>
                                             <p id="Ord-Freq">Ord: ${ordFre}</p>
                                             <div id = "freq-search-bar">
                                               <input id="freq-input" class="input-h" aria-label="autor?" type="text" class="freq-search-bar__input" placeholder="frequencia?" autofocus required>
