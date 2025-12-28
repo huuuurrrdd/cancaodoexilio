@@ -10,26 +10,32 @@
 
     <div class = "main">
         <div class = "price-input-container">
-            <div class = "price-input">
-                <div class = "price-field">
-                    <span>Minim price</span>
-                    <input type="number" class = "min-input" value="2500">
-                </div>
-                <div class = "price-field">
-                    <span>Maximum price</span>
-                    <input type="number" class = "max-input" value="8500">
-                </div>
-            </div>
             <div class = "slider">
                 <div class = "price-slider"></div>
             </div>
+
+            <!-- slider -->
+            <div class="range-input">
+                <span class="value-tooltip min-tooltip"></span>
+                <span class="value-tooltip max-tooltip"></span>
+                <input type="range" class="min-range" min="0" max="10000" value="2500" step="1">
+                <input type="range" class="max-range" min="0" max="10000" value="8500" step="1">
+            </div>
+
+            <div class = "price-input">
+                <div class = "price-field price-field-min">
+                    <input type="number" class = "min-input" value="2500">
+                    <!-- <span>Min</span> -->
+                </div>
+                <div class = "price-field price-field-max">
+                    <input type="number" class = "max-input" value="8500">
+                    <!-- <span>Max</span> -->
+                </div>
+            </div>
+            
         </div>
 
-        <!-- slider -->
-        <div class="range-input">
-            <input type="range" class="min-range" min="0" max="10000" value="2500" step="1">
-            <input type="range" class="max-range" min="0" max="10000" value="8500" step="1">
-        </div>
+        
     </div>
     
 </body>
