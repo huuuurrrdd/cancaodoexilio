@@ -683,9 +683,25 @@ function displayData(wordData, textData, stoplist) {
                                             <div class = "freq header freq-header">
                                             <h2 class = "fre-o-h">Freq.</h2>
                                             <p id="Ord-Freq">Ord: ${ordFre}</p>
-                                            <div id = "freq-search-bar">
-                                              <input id="freq-input" class="input-h" aria-label="autor?" type="text" class="freq-search-bar__input" placeholder="frequencia?" autofocus required>
-                                              <input id="freq-submit" type="image" class="freq-search-bar__button bt-h" src='./imagens/lupa.svg' aria-label=""search>
+                                            <div id="freq-search-slider" class = "freq-input-container"> 
+                                              <div class = "slider">
+                                                <div class = "freq-slider"></div>
+                                              </div>
+                                              <div class="range-input">
+                                                  <span class="value-tooltip min-tooltip"></span>
+                                                  <span class="value-tooltip max-tooltip"></span>
+                                                  <input type="range" class="min-range" min="1" max="1300" value="1" step="1">
+                                                  <input type="range" class="max-range" min="1" max="1300" value="1300" step="1"> <!--valor colocado manualmente-->
+                                              </div>
+                                              <div class = "freq-input-field">
+                                                  <div class = "freq-field">
+                                                      <input type="number" class = "min-input" value="1">
+                                                  </div>
+                                                  <div class = "freq-field">
+                                                      <input type="number" class = "max-input" value="1300">
+                                                  </div>
+                                              </div>
+
                                             </div>
                                       </div>`;
 
@@ -698,8 +714,78 @@ function displayData(wordData, textData, stoplist) {
       const titSubmitButton = document.querySelector("#tit-submit") // falta colocar funcional
       const titInput = document.querySelector("#tit-input")
 
-      const freqSubmitButton = document.querySelector("freq-submit") // falta colocar funcional
-      const freqInput = document.querySelector("#freq-input")
+
+      // //Ajustes de frequencia
+      // const maxFreq = Math.max(...resultado.map(r => r.freq))
+      // console.log(`Frequência máxima: ${maxFreq}`)
+      
+
+      //Nova versão frequencia
+      const freqRangeValue = document.querySelector(".slider .freq-slider")
+      const freqRangeInputValue = document.querySelectorAll(".range-input input") // input dentro de range input
+      const freqMinToolTip = document.querySelector(".min-tooltip")
+      const freqMaxToolTip = document.querySelector(".max-tooltip")
+
+      // //ajusta html dinamicamente
+      // freqRangeInputValue[1].max = maxFreq
+      // freqRangeInputValue[1].value = maxFreq
+      // freqInputValue[1].max = maxFreq
+      // freqInputValue[1].value = maxFreq
+
+      //estabelece freq gap
+      let freqGap = 10
+      let freqMinTimeOut, freqMaxTimeOut
+
+      //adiciona eventlistners a elementos de freq input
+      const freqInputValue = document.querySelectorAll(".freq-input-field input")
+
+      //event listners para range inputs de frequencia
+      freqRangeInputValue[0].addEventListener("mousedown", () => showFreqTooltip(freqMinToolTip))
+      freqRangeInputValue[0].addEventListener("touchstart", () => showFreqTooltip(freqMinToolTip))
+
+      freqRangeInputValue[1].addEventListener("mousedown", () => showFreqTooltip(freqMaxToolTip))
+      freqRangeInputValue[1].addEventListener("touchstart", () => showFreqTooltip(freqMaxToolTip))
+
+      for (let i = 0; i < freqInputValue.length; i++) {
+        freqInputValue[i].addEventListener("input", e => {
+          let minp = parseInt(freqInputValue[0].value)
+          let maxp = parseInt(freqInputValue[1].value)
+          let diff = maxp - minp
+
+          if(minp < 1){ //definir o ninimo
+            freqInputValue[0].value = 1
+            minp = 1
+          }
+
+          //valida valores de input
+          if(maxp > 1300){
+            freqInputValue[1].value = 1300
+            maxp = 1300
+          }
+
+          if(minp > maxp - freqGap){
+            freqInputValue[0].value = maxp - freqGap
+            minp = maxp - freqGap
+
+            if(minp < 1){
+              freqInputValue[0].value = 1
+              minp = 1
+            }
+          }
+
+          //verifica se "freq gap" é atingido e está dentro do intervalo
+          if(diff >= freqGap && maxp <= freqRangeInputValue[1].max){
+            if(e.target.className === "min-input"){
+              freqRangeInputValue[0].value = minp
+            } else {
+              freqRangeInputValue[1].value = maxp
+            }
+            updateFreqSlider()
+          }
+        })
+      }
+
+      
 
 
       // conteudo após header //////////////////////
@@ -1110,36 +1196,130 @@ function displayData(wordData, textData, stoplist) {
     //console.log(resultado)
     
 
-    /***************** freq pesquisa ********************/
-    freqInput.addEventListener('input', (e) => {
-      let value = String(e.target.value).trim()
+    // /***************** freq pesquisa ********************/
+    // freqInput.addEventListener('input', (e) => {
+    //   let value = String(e.target.value).trim()
 
-            if(value.length > 0){
+    //         if(value.length > 0){
      
-                const filteredResultado = resultado
-                    .filter(item => {
-                        const f = String(item?.freq ?? "")
-                        return f.startsWith(value)
-                    })
-                    .sort((a,b) => {
-                        const na = Number(a.freq)
-                        const nb = Number(b.freq)
-                        return (Number.isNaN(na) ? Infinity : na) - (Number.isNaN(nb) ? Infinity : nb)
-                    })
+    //             const filteredResultado = resultado
+    //                 .filter(item => {
+    //                     const f = String(item?.freq ?? "")
+    //                     return f.startsWith(value)
+    //                 })
+    //                 .sort((a,b) => {
+    //                     const na = Number(a.freq)
+    //                     const nb = Number(b.freq)
+    //                     return (Number.isNaN(na) ? Infinity : na) - (Number.isNaN(nb) ? Infinity : nb)
+    //                 })
 
-                resPPage(filteredResultado.length, rPP)
-                displayResultado(filteredResultado, value)
+    //             resPPage(filteredResultado.length, rPP)
+    //             displayResultado(filteredResultado, value)
 
+    //         } else {
+    //             resPPage(resultado.length, rPP)
+    //             displayResultado(resultado, value)
+    //         }
+    // })
+
+    /*:::::::: Event listners para sliders de frequencia ::::::::*/
+      for (let i = 0; i < freqRangeInputValue.length; i++) {
+
+        freqRangeInputValue[i].addEventListener("input", e => {
+          let minVal = parseInt(freqRangeInputValue[0].value)
+          let maxVal = parseInt(freqRangeInputValue[1].value)
+          let diff = maxVal - minVal
+
+          //Mostrar tooltip correspondente
+          if(e.target.className === "min-range"){
+            showFreqTooltip(freqMinToolTip)
+          } else {
+            showFreqTooltip(freqMaxToolTip)
+          }
+
+          // verifica se "freq gap" excedeu
+          if(diff < freqGap){
+            if(e.target.className === "min-range"){
+              freqInputValue[0].value = maxVal - freqGap
             } else {
-                resPPage(resultado.length, rPP)
-                displayResultado(resultado, value)
+              freqInputValue[1].value = minVal + freqGap
             }
-    })
+          }
 
-  }
+          //atualiza inputs de freq e progresso de range
+          freqInputValue[0].value = freqRangeInputValue[0].value
+          freqInputValue[1].value = freqRangeInputValue[1].value
+          updateFreqSlider()
 
+          //filtrar resultados por frequencia - espero que funcione
+          const filteredResultado = resultado.filter(item => {
+            const freq = item.freq
+            return freq >= minVal && freq <= maxVal
+          })
 
+          resPPage(filteredResultado.length, rPP)
+          displayResultado(filteredResultado, `freq: ${minVal}-${maxVal}`)
+        })
 
+        //Esconder a tooltip ao soltar
+        freqRangeInputValue[i].addEventListener("mouseup", (e) => {
+          if(e.target.className === "min-range"){
+            hideFreqTooltip(freqMinToolTip)
+          } else {
+            hideFreqTooltip(freqMaxToolTip)
+          }
+        })
+
+        freqRangeInputValue[i].addEventListener("touchend", (e) => {
+          if(e.target.className === "min-range"){
+            hideFreqTooltip(freqMinToolTip)
+          } else {
+            hideFreqTooltip(freqMaxToolTip)
+          }
+        })
+        
+      }
+
+    /*::::::::::::::::::  Filtragem por sliders  ::::::::::::::::::*/
+    /*********************** freq  **********************/
+    function updateFreqSlider(){
+      let minVal = parseInt(freqRangeInputValue[0].value)
+      let maxVal = parseInt(freqRangeInputValue[1].value)
+
+      freqRangeValue.style.left = `${(minVal / freqRangeInputValue[0].max) * 100}%`
+      freqRangeValue.style.right = `${100 - (maxVal / freqRangeInputValue[1].max) * 100}%`
+
+      //atualizar posicao e valor de tooltips
+      updateFreqTooltipPosition(freqMinToolTip, minVal, freqRangeInputValue[0].max)
+      updateFreqTooltipPosition(freqMaxToolTip, maxVal, freqRangeInputValue[1].max)
+
+      freqMinToolTip.textContent = minVal
+      freqMaxToolTip.textContent = maxVal
+    }
+  
+
+    function updateFreqTooltipPosition(tooltip, value, max){
+      const percentage = (value / max) * 100
+      tooltip.style.left = `${percentage}%`
+    }
+
+    //mostrar tooltip freq
+    function showFreqTooltip(tooltip){
+      clearTimeout(tooltip === freqMinToolTip ? freqMinTimeOut : freqMaxTimeOut)
+      tooltip.classList.add('show')
+    }
+
+    //Esconder tooltip freq após delay
+    function hideFreqTooltip(tooltip){
+      if(tooltip === freqMinToolTip){
+        freqMinTimeOut = setTimeout(() => tooltip.classList.remove('show'), 1000)
+      } else {
+        freqMaxTimeOut = setTimeout(() => tooltip.classList.remove('show'), 1000)
+      }
+    }
+
+    //inicializa slider de freq
+    updateFreqSlider()
 
   // indexPal parece funcionar segundo estes parametros
   // for(let i = 0; i < todosOBJpalavrasSStopwords.length; i++){
@@ -1147,7 +1327,7 @@ function displayData(wordData, textData, stoplist) {
   //   console.log(`${i-indexPal}`)
   // }
 
-
+}
 
 
   

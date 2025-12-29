@@ -33,8 +33,9 @@ body {
 }
 
 .price-input{
+    display: none;
     width: 100%;
-    display: flex;
+    /* display: flex; */
     justify-content: space-between;
     align-items: center;
     gap: 20px;
@@ -42,6 +43,7 @@ body {
 }
 
 .price-input .price-field {
+    display: none;
     display: flex;
     flex-direction: column;
     align-items: center;
