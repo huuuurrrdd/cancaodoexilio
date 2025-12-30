@@ -945,48 +945,53 @@ function displayData(wordData, textData, stoplist, lemmasData){
                 { categoria: "Flora", existe: false }
             ]
 
-            //verificar palavras
-            const palavraEncontrada = wordData.palavras.find(p => 
+           // Verificar Palavras
+            categorias[0].existe = wordData.palavras.some(p => 
                 p.palavra === especifica && !stoplist.includes(p.palavra)
             )
-            if(palavraEncontrada) categorias[0].existe = true
 
-            //verificar anos
-            const anoEncontrado = textData.some(t => 
-                t.date_of_publication == especifica
-            )
-            if(anoEncontrado) categorias[1].existe = true
+            for (let i = 0; i < textData.length; i++) {
+                const texto = textData[i];
 
-            //verificar autores
-            const autorEncontrado = textData.some(t =>
-                t.author && t.author.includes(especifica)
-            )
-            if(autorEncontrado) {
-                categorias[2].existe = true
-            }
+                //Verifica anos
+                if(!categorias[1].existe && texto.date_of_publication == especifica){
+                    categorias[1].existe = true
+                }
 
-            //locais
-            const localEncontrado = textData.some(t=>
-                t.categorias?.locais?.locais_limpos?.includes(especifica)
-            )
-            if(localEncontrado) {
-                categorias[3].existe = true
-            }
+                //Verificar autores (match exato)
+                if(!categorias[2].existe && texto.author){
+                    const autorPalavras = texto.author.toLowerCase().split(/\s+/)
+                    const especificaLower = especifica.toLowerCase()
 
-            //fauna
-            const faunaEncontrada = textData.some(t =>
-                t.categorias?.fauna.includes(especifica)
-            )
-            if(faunaEncontrada){
-                categorias[4].existe = true
-            }
+                    // Verificar se é o nome completo ou se alguma palavra do nome corresponde exatamente
+                    if (texto.author.toLowerCase() === especificaLower || autorPalavras.some(palavra => palavra === especificaLower)) {
+                        categorias[2].existe = true
+                    } 
+                }
 
-            //flora
-            const floraEncontrada = textData.some(t =>
-                t.categorias?.flora?.includes(especifica)
-            )
-            if(floraEncontrada){
-                categorias[5].existe = true
+                // Verificar Locais
+                if (!categorias[3].existe && 
+                    texto.categorias?.locais?.locais_limpos?.includes(especifica)) {
+                    categorias[3].existe = true
+                }
+
+                // Verificar Fauna
+                if (!categorias[4].existe && 
+                    texto.categorias?.fauna?.includes(especifica)) {
+                    categorias[4].existe = true
+                }
+
+                // Verificar Flora
+                if (!categorias[5].existe && 
+                    texto.categorias?.flora?.includes(especifica)) {
+                    categorias[5].existe = true
+                }
+
+                // Se todas as categorias já foram encontradas, pode parar
+                if (categorias.every(c => c.existe)) {
+                    break
+                }
+
             }
 
             return categorias
