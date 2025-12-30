@@ -31,6 +31,8 @@ let classEsp = especifica.replaceAll(" ", "-")
 
 
 
+
+
 //*************  Acesso a dados  ****************/
 // testando acesso a info wikipedia
 function fetchData(){
@@ -365,6 +367,11 @@ function displayData(wordData, textData, stoplist, lemmasData){
     let elemento_hover = document.createElement('div')
     margem_ct.appendChild(elemento_hover)
     elemento_hover.className = "elemento-hover"
+
+    //*************  caixa de bts de categorias diferentes  ****************/
+    let outras_categorias = document.createElement("div")
+    margem_ct.appendChild(outras_categorias)
+    outras_categorias.className = "outras-categorias"
 
     //*************  Gráfico geral  ****************/
     let elemento_grafico = document.createElement("div")
@@ -926,22 +933,90 @@ function displayData(wordData, textData, stoplist, lemmasData){
         }
         displayResultado(resultado)
 
-        //ISTO FUNCIONAVA!!
-        // //iteracao para display (embora até já possa ser possivel obter os valores reais!!)
-        // for(let i = 0; i < idLista.length; i++){ //n sei se aguenta com 200
 
-        //     //cria a div principal
-        //     let tentry = document.createElement("div")
-        //     tentry.className += "tentry tentry-container tentry-container" + (i+1)
+        //funcao para verificar categorias
+        function verificarCategorias(especifica, textData, wordData, stoplist){
+            const categorias = [
+                { categoria: "Palavras", existe: false },
+                { categoria: "Anos", existe: false },
+                { categoria: "Autores", existe: false },
+                { categoria: "Locais", existe: false },
+                { categoria: "Fauna", existe: false },
+                { categoria: "Flora", existe: false }
+            ]
 
-        //     //elementos do item
-        //     tentry.innerHTML = `<a class = "ano" href = "p_categoria_especifica.html?categoria=Anos&especifica=${textData[idLista[i]-1].date_of_publication}"> ${textData[idLista[i]-1].date_of_publication}</a>
-        //                         <a class = "titulo" href = "index.html?id=${textData[idLista[i]-1].id}">${textData[idLista[i]-1].title}</a>
-        //                         <a class = "autor" href = "p_categoria_especifica.html?categoria=Autores&especifica=${textData[idLista[i]-1].author}">${textData[idLista[i]-1].author}</a>`
+            //verificar palavras
+            const palavraEncontrada = wordData.palavras.find(p => 
+                p.palavra === especifica && !stoplist.includes(p.palavra)
+            )
+            if(palavraEncontrada) categorias[0].existe = true
 
+            //verificar anos
+            const anoEncontrado = textData.some(t => 
+                t.date_of_publication == especifica
+            )
+            if(anoEncontrado) categorias[1].existe = true
 
-        //     container.appendChild(tentry)
-        // }
+            //verificar autores
+            const autorEncontrado = textData.some(t =>
+                t.author && t.author.includes(especifica)
+            )
+            if(autorEncontrado) {
+                categorias[2].existe = true
+            }
+
+            //locais
+            const localEncontrado = textData.some(t=>
+                t.categorias?.locais?.locais_limpos?.includes(especifica)
+            )
+            if(localEncontrado) {
+                categorias[3].existe = true
+            }
+
+            //fauna
+            const faunaEncontrada = textData.some(t =>
+                t.categorias?.fauna.includes(especifica)
+            )
+            if(faunaEncontrada){
+                categorias[4].existe = true
+            }
+
+            //flora
+            const floraEncontrada = textData.some(t =>
+                t.categorias?.flora?.includes(especifica)
+            )
+            if(floraEncontrada){
+                categorias[5].existe = true
+            }
+
+            return categorias
+        }
+
+        //chamar a função, atualizando o array
+        existeCategoria = verificarCategorias(especifica, textData, wordData, stoplist)
+
+        //função de display de botões para outras catgorias
+        function displayOutrasCategorias() {
+            outras_categorias.innerHTML = '<h3>Ver em outras categorias:</h3>'
+
+            existeCategoria.forEach(cat => {
+                if(cat.existe && cat.categoria.toLowerCase() !== categoria.toLowerCase()){
+                    let btn = document.createElement('a')
+                    btn.className = 'btn-categoria'
+                    btn.href = `./p_categoria_especifica.html?categoria=${cat.categoria}&especifica=${especifica}`
+                    btn.textContent = cat.categoria
+                    outras_categorias.appendChild(btn)
+                }
+            })
+
+            //caso não haja outras categorias
+            const btns = outras_categorias.querySelector('.btn-categoria')
+            if(btns.length) {
+                outras_categorias.innerHTML = '<p class= "sem-categorias">O elemento não existe em outras categorias.<p>'
+            }
+        }
+
+        displayOutrasCategorias()
 
 
         /*:::::::::::  ____________FILTROS____________  :::::::::::*/
