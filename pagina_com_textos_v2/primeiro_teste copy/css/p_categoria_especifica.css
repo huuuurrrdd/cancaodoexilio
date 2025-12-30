@@ -141,6 +141,17 @@
     margin:0;
 }
 
+.ano-o-h a, .titul-o-h a, .aut-o-h a{
+    transition: all 0.3s;
+}
+
+.ano-o-h a:hover, .titul-o-h a:hover, .aut-o-h a:hover{
+    background-color: var(--dark-green);
+    color: var(--light-yellow);
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
 #Ord-Dat, #Ord-Tit, #Ord-Aut, #Ord-Freq{
     grid-area: ord;
     margin:0;

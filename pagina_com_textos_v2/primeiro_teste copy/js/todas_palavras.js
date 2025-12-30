@@ -458,953 +458,635 @@ function displayData(wordData, textData, stoplist) {
 
 
   // decidir o intervalo de resultados (neste caso, 20 p página)
-  function displayTodasPalavras(){
+function displayTodasPalavras(){
+  div_display.innerHTML = "";
 
-  //*********  Funções para display [ todas palavras]  *******************/
-    // Testar com os arrays de palavras
-    // let indexPal = todosOBJpalavrasSStopwords[i].indice; -> Determina os indices dos resultados
-    // devia ser mais especifico para cada botao (total de resultados é o indexPal) 
-    // Total seria: todosOBJpalavrasSStopwords.length
-    div_display.innerHTML = "";
+  // valores default para ordenação de resultados
+  let ordAlf = "AZ"
+  let ordAlf_ = "ZA"
+  let ordFre = "des" // Start with descending (most frequent first)
+  let ordFre_ = "asc"
+  let ordTit = "cro"
+  let ordTit_ = "alf"
 
-    // valores default para ordenação de resultados
-    let ordAlf = "AZ" // o atual
-    let ordAlf_ = "ZA" // o q muda
-    let ordFre = "asc" // o atual
-    let ordFre_ = "des"// o que muda
-    let ordTit = "cro"
-    let ordTit_ = "alf"
-    //console.log(todosOBJpalavrasSStopwords.length)
-    //console.log(wordData.palavras.length) // tem mais palavras
+  /*:::::::::::  Resultados p/pagina  :::::::::::*/
+  let rPP = 50
+  let arrayResultados = []
+  let iP = 0
 
+  function resPPage(total, rPP){
+    arrayResultados = []
+    const divInteira = Math.floor(total / rPP)
+    const resto = total % rPP
 
-    /*:::::::::::  Resultados p/pagina  :::::::::::*/
-    // obtendo a divisão por 50, descobrir o resto
-    let rPP = 50 // resultados por página
-    let arrayResultados = [] // com indice de inicio e de fim (com ele incluido)
-
-    const total = todosOBJpalavrasSStopwords.length // colocar isto dinamico!!
-
-
-    function resPPage(total, rPP){
-      arrayResultados = []
-
-      const divInteira = Math.floor(total / rPP) // aqui deveria ser resultado.length
-      const resto = total % rPP
-
-      if(total <= rPP){ // se há menos de 50 resultados, só uma página
-        arrayResultados.push({ st:0, en: total})
-      } else {
-        // paginas completas
-        for(let i = 0; i < divInteira; i++){
-          const s = i > 0 ? i* rPP : 0
-          const e = s + rPP
-
-          arrayResultados.push({
-            st: s,
-            en: e
-          })
-        }
-        // ultima pagina incompleta
-        if(resto != 0) arrayResultados.push({
+    if(total <= rPP){
+      arrayResultados.push({ st:0, en: total})
+    } else {
+      for(let i = 0; i < divInteira; i++){
+        const s = i * rPP
+        const e = s + rPP
+        arrayResultados.push({ st: s, en: e })
+      }
+      if(resto != 0) {
+        arrayResultados.push({
           st : divInteira * rPP,
           en: divInteira * rPP + resto
         })
       }
-
-      // resultado a devolver: arrayResultados
-
     }
+  }
 
-    resPPage(total, rPP)
+  /*:::::::::::  Array de obj com RESULTADOS  :::::::::::*/
+  let resultado = []
+  
+  for(let i = 0; i < todosOBJpalavrasSStopwords.length; i++){
+    let indexPal = todosOBJpalavrasSStopwords[i].indice
+    let palavraObj = wordData.palavras[indexPal]
+    
+    let titulos = palavraObj.textos.map(t => textData[t.id_text -1].title)
+    
+    resultado.push({
+      palavra: palavraObj.palavra,
+      indice: indexPal,
+      textos: palavraObj.textos,
+      titulo: titulos,
+      freq: palavraObj.frequencia
+    })
+  }
 
+  // Calculate max frequency AFTER creating resultado array
+  const maxFreq = Math.max(...resultado.map(r => r.freq))
+  console.log(`Frequência máxima: ${maxFreq}`)
 
+  // Initial sort by frequency (descending)
+  resultado.sort((a, b) => b.freq - a.freq)
 
-    // valor de indice da página
-    let iP = 0 //funciona!!
+  // Initialize pagination
+  resPPage(resultado.length, rPP)
 
+  /*:::::::::::  Ordem alfabética de PALAVRAS  :::::::::::*/
+  function ordPal(ord) {
+    if(ord == "AZ"){
+      resultado.sort((a,b) => a.palavra.localeCompare(b.palavra, 'pt'))
+      ordAlf_ = "ZA"
+      ordAlf = "AZ"
+    } else if(ord == "ZA"){
+      resultado.sort((a,b) => b.palavra.localeCompare(a.palavra, 'pt'))
+      ordAlf_ = "AZ"
+      ordAlf = "ZA"
+    }
+  }
 
-    /*:::::::::::  Array de obj com RESULTADOS  :::::::::::*/
-      let resultado = []
+  /*::::::::::: Ordem PALAVRAS por frequencia :::::::::::*/
+  function ordFreq(ord){
+    if(ord == "des"){
+      resultado.sort((a,b) => b.freq - a.freq)
+      ordFre_ = "asc"
+      ordFre = "des"
+    } else if (ord == "asc") {
+      resultado.sort((a,b) => a.freq - b.freq)
+      ordFre_ = "des"
+      ordFre = "asc"
+    }
+  }
 
-      for( let i = 0; i < todosOBJpalavrasSStopwords.length; i++){
-        let indexPal = todosOBJpalavrasSStopwords[i].indice
-        let palavraObj = wordData.palavras[indexPal] // busca todas as palavras
-
-        // junta junta os textos associados
-        let titulos = palavraObj.textos.map(t =>
-          textData[t.id_text -1].title
-        )
-          resultado.push({
-            palavra: palavraObj.palavra,
-            indice: indexPal,
-            textos: palavraObj.textos, // id dos textos (pode dar para ordenar az nos titulos)
-            titulo: titulos, // está funcional
-            freq: palavraObj.frequencia // pode ser util ter um array com titulos dos textos
-          })
-      }
-      //console.log(textData[12-1].title) // funciona
-
-      //Tentativa de search sem o input ///////////////// aaaaa funciona!!
-      const valPalavra = "lala"
-      const filteredResultado = resultado.filter(resultado => resultado.palavra.toLowerCase().includes(valPalavra))
-      console.log(filteredResultado) // resulta
-      //console.log(resultado) // funciona a mesma
-      //let initResultado = resultado // guarda o resultado inicial
-
-
-      /*:::::::::::  Ordem alfabética de PALAVRAS  :::::::::::*/
-      function ordPal(ord) {
-        console.log("Ord Function")
-        if(ord == "AZ"){
-          resultado.sort((a,b) => a.palavra.localeCompare(b.palavra, 'pt')) // funciona!!
-          ordAlf_ = "ZA" // pronto para mudar
-          ordAlf = "AZ" // o atual
-        } else if(ord == "ZA"){
-          resultado.sort((a,b) => a.palavra.localeCompare(b.palavra, 'pt')).reverse()
-          ordAlf_ = "AZ" // pronto para mudar
-          ordAlf = "ZA" // o atual
-        }
-      }
-      //console.log(ordPal("ZA"))//funciona!!
-      //ordPal("ZA")
-
-      /*::::::::::: Ordem PALAVRAS por frequencia :::::::::::*/
-      function ordFreq(ord){
-        if(ord == "des"){
-          resultado.sort((a,b) => a.freq < b.freq ? -1 : 1).reverse()
-          ordFre_= "asc" // pronto para mudar
-          ordFre = "des" // atual
-        } else if (ord == "asc") {
-          resultado.sort((a,b) => a.freq < b.freq ? -1 : 1)
-          ordFre_= "des"
-          ordFre = "asc"
-        }
-      }
-      //console.log(ordFreq("des")) //funciona!!
-      //ordFreq("asc")
-
-
-      /*::::::::::: Ordem alfabética ou cronologica do título de textos :::::::::::*/
-      function ordTitle(ord){ // percorre cada palavra??
-
-        if(ord === "alf"){
-          // em cada palavra, ordenar o array de textos e de títulos
-          ordTit_ = "cro"
-          ordTit = "alf"
-
-          resultado = resultado.map(item => {
-            if(Array.isArray(item.textos)){ // verifica se .titulo é array
-              //combina-os temporariamente
-              const combinados = item.textos.map((texto, i) => {
-                const titleFromData = (textData?.[texto.id_text - 1]?.title) ?? "" // vai buscar titulo ao original
-                const titleFromItem = (Array.isArray(item.titulo) ? item.titulo[i] : undefined)
-                const titulo = titleFromData || titleFromItem || ""
-                return { texto, titulo }              
-            })
-
-              //sort by title
-              combinados.sort((a,b) => 
-                (a.titulo ?? "").toString().localeCompare((b.titulo ?? "").toString(), 'pt', { sensitivity: 'base' })
-              )  // case insensitive
-
-              //separa-os novamente
-              item.titulo = combinados.map(el => el.titulo)
-              item.textos = combinados.map(el => el.texto)
-            }
-            return item
-          })
-
-          return resultado
-          
-        } else if (ord === "cro") { // cronológica - ordem original de id
-          // em cada palavra, ordenar o array de textos e de títulos
-          ordTit_ = "alf"
-          ordTit = "cro"
-
-          resultado = resultado.map(item => {
-            if(Array.isArray(item.textos)){ // verifica se .titulo é array
-              //combina-os temporariamente
-              const combinados = item.textos.map((texto, i) => {
-                const titleFromData = (textData?.[texto.id_text - 1]?.title) ?? ""
-                const titleFromItem = (Array.isArray(item.titulo) ? item.titulo[i] : undefined)
-                const titulo = titleFromData || titleFromItem || ""
-                return { texto, titulo }
-              })
-
-              //sort by id_text
-              combinados.sort((a,b) => (a.texto?.id_text ?? 0) - (b.texto?.id_text ?? 0))
-
-              //separa-os novamente
-              item.textos = combinados.map(el => el.texto)
-              item.titulo = combinados.map(el => el.titulo)
-            }
-            return item
+  /*::::::::::: Ordem alfabética ou cronologica do título de textos :::::::::::*/
+  function ordTitle(ord){
+    if(ord === "alf"){
+      ordTit_ = "cro"
+      ordTit = "alf"
+      
+      resultado = resultado.map(item => {
+        if(Array.isArray(item.textos)){
+          const combinados = item.textos.map((texto, i) => {
+            const titleFromData = (textData?.[texto.id_text - 1]?.title) ?? ""
+            const titleFromItem = (Array.isArray(item.titulo) ? item.titulo[i] : undefined)
+            const titulo = titleFromData || titleFromItem || ""
+            return { texto, titulo }              
           })
           
-          return resultado
+          combinados.sort((a,b) => 
+            (a.titulo ?? "").toString().localeCompare((b.titulo ?? "").toString(), 'pt', { sensitivity: 'base' })
+          )
+          
+          item.titulo = combinados.map(el => el.titulo)
+          item.textos = combinados.map(el => el.texto)
         }
-      }
-      //console.log(ordTitle("alf")) // funciona!!
-      //console.log(ordTitle('cro')) // funciona!! 
-
-    // pesquisa por palavra e pesquisa pelo título (pesquisa do objeto [resultado] pelo título)
-    /*Precisaria de uma input box*/
-
-    //**************** [todas palavras]  *******************/
-
-      //** baseada na tabela de display em palavra selecionada **
-      let list_all_container = document.createElement("div");
-      document.querySelector(".div-display").appendChild(list_all_container);
-      list_all_container.className += "list-all-container";
-
-      //Header!!
-      let ct_head_list = document.createElement("div");
-      document.querySelector(".list-all-container").appendChild(ct_head_list);
-      ct_head_list.className += "list ct-head-list";
-
-      // conteudo do header!! (adicionar funções para ordenação de elementos)
-      ct_head_list.innerHTML = `  <div class = "palavras header palavras-header">
-                                              <h2 class = "pal-o-h">Palavra</h2>
-                                              <p id="Ord-Alfa">Ord: ${ordAlf}</p>
-                                              <div id="pal-search-bar">
-                                                <input id="pal-input" class="input-h" aria-label="palavra?" type="text" class="pal-search-bar__input" placeholder="Palavra?" autofocus required>
-                                                <input id="pal-submit" type="image" class="pal-search-bar_button bt-h" src='./imagens/lupa.svg' aria-label="search">
-                                              </div>
-                                      </div>
-                                      <div class = "texto header texto-header">
-                                              <h2 class = "texto-o-h"><a href = './lista_textos.html'>Textos</a></h2>
-                                              <p id="Ord-Tit">Ord: ${ordTit}</p>
-                                              <div id="tit-search-bar">
-                                                <input id="tit-input" class="input-h" aria-label="titulo?" type="text" class="tit-search-bar__input" placeholder="titulo?" autofocus required>
-                                                <input id="tit-submit" type="image" class="tit-search-bar_button bt-h" src='./imagens/lupa.svg' aria-label="search">
-                                              </div>
-                                      </div>
-                                            <div class = "freq header freq-header">
-                                            <h2 class = "fre-o-h">Freq.</h2>
-                                            <p id="Ord-Freq">Ord: ${ordFre}</p>
-                                            <div id="freq-search-slider" class = "freq-input-container"> 
-                                              <div class = "slider">
-                                                <div class = "freq-slider"></div>
-                                              </div>
-                                              <div class="range-input">
-                                                  <span class="value-tooltip min-tooltip"></span>
-                                                  <span class="value-tooltip max-tooltip"></span>
-                                                  <input type="range" class="min-range" min="1" max="1300" value="1" step="1">
-                                                  <input type="range" class="max-range" min="1" max="1300" value="1300" step="1"> <!--valor colocado manualmente-->
-                                              </div>
-                                              <div class = "freq-input-field">
-                                                  <div class = "freq-field">
-                                                      <input type="number" class = "min-input" value="1">
-                                                  </div>
-                                                  <div class = "freq-field">
-                                                      <input type="number" class = "max-input" value="1300">
-                                                  </div>
-                                              </div>
-
-                                            </div>
-                                      </div>`;
-
-      //ct_head_list.style.backgroundColor = "yellow";
-
-      /*:::::  Botoes  :::::*/
-      const palSubmitButton = document.querySelector("#pal-submit")
-      const palInput = document.querySelector('#pal-input')
-
-      const titSubmitButton = document.querySelector("#tit-submit") // falta colocar funcional
-      const titInput = document.querySelector("#tit-input")
-
-
-      // //Ajustes de frequencia
-      // const maxFreq = Math.max(...resultado.map(r => r.freq))
-      // console.log(`Frequência máxima: ${maxFreq}`)
-      
-
-      //Nova versão frequencia
-      const freqRangeValue = document.querySelector(".slider .freq-slider")
-      const freqRangeInputValue = document.querySelectorAll(".range-input input") // input dentro de range input
-      const freqMinToolTip = document.querySelector(".min-tooltip")
-      const freqMaxToolTip = document.querySelector(".max-tooltip")
-
-      // //ajusta html dinamicamente
-      // freqRangeInputValue[1].max = maxFreq
-      // freqRangeInputValue[1].value = maxFreq
-      // freqInputValue[1].max = maxFreq
-      // freqInputValue[1].value = maxFreq
-
-      //estabelece freq gap
-      let freqGap = 10
-      let freqMinTimeOut, freqMaxTimeOut
-
-      //adiciona eventlistners a elementos de freq input
-      const freqInputValue = document.querySelectorAll(".freq-input-field input")
-
-      //event listners para range inputs de frequencia
-      freqRangeInputValue[0].addEventListener("mousedown", () => showFreqTooltip(freqMinToolTip))
-      freqRangeInputValue[0].addEventListener("touchstart", () => showFreqTooltip(freqMinToolTip))
-
-      freqRangeInputValue[1].addEventListener("mousedown", () => showFreqTooltip(freqMaxToolTip))
-      freqRangeInputValue[1].addEventListener("touchstart", () => showFreqTooltip(freqMaxToolTip))
-
-      for (let i = 0; i < freqInputValue.length; i++) {
-        freqInputValue[i].addEventListener("input", e => {
-          let minp = parseInt(freqInputValue[0].value)
-          let maxp = parseInt(freqInputValue[1].value)
-          let diff = maxp - minp
-
-          if(minp < 1){ //definir o ninimo
-            freqInputValue[0].value = 1
-            minp = 1
-          }
-
-          //valida valores de input
-          if(maxp > 1300){
-            freqInputValue[1].value = 1300
-            maxp = 1300
-          }
-
-          if(minp > maxp - freqGap){
-            freqInputValue[0].value = maxp - freqGap
-            minp = maxp - freqGap
-
-            if(minp < 1){
-              freqInputValue[0].value = 1
-              minp = 1
-            }
-          }
-
-          //verifica se "freq gap" é atingido e está dentro do intervalo
-          if(diff >= freqGap && maxp <= freqRangeInputValue[1].max){
-            if(e.target.className === "min-input"){
-              freqRangeInputValue[0].value = minp
-            } else {
-              freqRangeInputValue[1].value = maxp
-            }
-            updateFreqSlider()
-          }
-        })
-      }
-
-      
-
-
-      // conteudo após header //////////////////////
-      let container = document.createElement("div");
-      document.querySelector(".list-all-container").appendChild(container);
-      container.className = "container";
-
-
-
-    function displayResultado(resultado, valor){
-    //console.log(arrayResultados) // funcionou
-
-    // console.log(todosOBJpalavrasSStopwords.length % rPP) // total é 9100%20 = 10 (se resto != 0, acrescenta 1 pagina)
-    // console.log(Math.floor(todosOBJpalavrasSStopwords.length / rPP)) // resultou!! + 1
-
-      /*:::::  Atualiza os headers  :::::*/
-      document.querySelector('#Ord-Alfa').textContent = `Ord: ${ordAlf}` // funciona!!
-      document.querySelector('#Ord-Freq').textContent = `Ord: ${ordFre}`
-      document.querySelector('#Ord-Tit').textContent = `Ord: ${ordTit}`
-
-      container.innerHTML = ""
-      //iteração para display
-
-      if(resultado == undefined || resultado == [] || resultado == ""){
-        container.innerHTML = `<p>Não foram encontrados resultados para: "${valor}" </p><br><br>`
-      } else {
-        for (let i = arrayResultados[iP].st; i < arrayResultados[iP].en; i++) { // fazer display de x resultados por pagina
-
-          //cria a div principal
-          let ct_item = document.createElement("div");
-          ct_item.className += "ct-item ct-item" + (i + 1);
-          container.appendChild(ct_item);
-
-          //let indexPal = todosOBJpalavrasSStopwords[i].indice; // busca apenas os indices das palavras sem stopwords
-
-          //divs dentro da div principal
-          let item_palavra = document.createElement("a");
-          document.querySelector(`.ct-item${i + 1}`).appendChild(item_palavra);
-          item_palavra.className += "item-palavra palavras";
-          item_palavra.innerHTML = `${resultado[i].palavra} `//${resultado[i].indice}`;//`${wordData.palavras[indexPal].palavra}`;
-          item_palavra.href = `lista_palavras.html?palavra=${resultado[i].palavra}`
-
-          let item_textos = document.createElement("div");
-          document.querySelector(`.ct-item${i + 1}`).appendChild(item_textos);
-          item_textos.className += "item-textos texto";
-
-          // começar com 3, se houver mais, colocar ver mais
-          if(resultado[i].textos.length <= 3){
-              for (let j = 0; j < resultado[i].textos.length; j++) {
-              // item a colocar dentro de "item_textos"
-              let texto_de_palavra = document.createElement("a");
-              //document.querySelector(".item-textos").appendChild(texto_de_palavra)
-              texto_de_palavra.className = "item-texto";
-              texto_de_palavra.innerHTML = `${resultado[i].titulo[j]} <br><br>`; // em vez do id, colocar o número
-              item_textos.appendChild(texto_de_palavra);
-              texto_de_palavra.href = `index.html?id=${resultado[i].textos[j].id_text}`
-            }
-          } else {
-
-            const renderInitialState = () =>{
-              item_textos.innerHTML = ''
-            
-              // Show first 3 items
-              for (let j = 0; j < 3; j++) {
-                // item a colocar dentro de "item_textos"
-                let texto_de_palavra = document.createElement("a");
-                //document.querySelector(".item-textos").appendChild(texto_de_palavra)
-                texto_de_palavra.className = "item-texto";
-                texto_de_palavra.innerHTML = `${resultado[i].titulo[j]} <br><br>`; // em vez do id, colocar o número
-                item_textos.appendChild(texto_de_palavra);
-                texto_de_palavra.href = `index.html?id=${resultado[i].textos[j].id_text}`
-              }
-
-              if(resultado[i].textos.length > 3){
-                let item_textosv1 = document.createElement("div")
-                item_textos.appendChild(item_textosv1)
-                item_textosv1.className += "item-texto mais"
-                item_textosv1.innerHTML = "<span>Mais...</span>"
-
-                item_textosv1.addEventListener("click", (e) =>{
-                  item_textos.innerHTML = ''
-
-                  const itemsToShow = Math.min(resultado[i].textos.length, 8);
-
-                    for (let j = 0; j < itemsToShow; j++) {
-                      let texto_de_palavra = document.createElement("a");
-                      texto_de_palavra.className = "item-texto";
-                      texto_de_palavra.innerHTML = `${resultado[i].titulo[j]} <br><br>`; // em vez do id, colocar o número
-                      item_textos.appendChild(texto_de_palavra);
-                      texto_de_palavra.href = `index.html?id=${resultado[i].textos[j].id_text}`
-                    }
-
-
-                    let menos = document.createElement("div")
-                    item_textos.appendChild(menos)
-                    menos.className += "item-texto menos"
-                    menos.innerHTML = "<span>Menos</span>"
-
-
-                    if(resultado[i].textos.length > 3 + 5){
-                      let item_textosv2 = document.createElement("div")
-                      item_textos.appendChild(item_textosv2)
-                      item_textosv2.className += "item-texto ver-todos"
-                      item_textosv2.innerHTML = "<span>Ver todos</span>"
-
-                      item_textosv2.addEventListener("click", (e) =>{
-                        window.location.href=(`lista_palavras.html?palavra=${resultado[i].palavra}`);
-                      })
-                    }
-                    
-                  
-                  menos.addEventListener('click', (e) =>{
-                    renderInitialState();
-                  })
-                })
-              } 
-            }
-
-            renderInitialState();
-
-          }
-
-          let item_frequencia = document.createElement("div");
-          document.querySelector(`.ct-item${i + 1}`).appendChild(item_frequencia);
-          item_frequencia.className += "item-frequencia freq";
-          item_frequencia.innerHTML = `${resultado[i].freq}x`; //`${wordData.palavras[indexPal].frequencia}x`;
-        }
-      }
-
-      /*:::::  Display de páginas de resultados  :::::*/
-      // remove outro nPages que existam anteriormente em list_all_container
-      const oldPages = list_all_container.querySelector('.n-page-ct')
-      if(oldPages) oldPages.remove()
-      
-
-      // div com bts de exibir pág de resultados
-      let nPages = document.createElement("div")
-      list_all_container.appendChild(nPages)
-      nPages.className += "n-page n-page-ct"
-
-      nPages.addEventListener('wheel', (e) => {
-        e.preventDefault()
-        //scroll horizontal
-        nPages.scrollLeft += e.deltaY *5
+        return item
       })
-
-      //console.log("VALOR " + nPages.scrollLeft)
-      //console.log("VALOR " +nPages.scrollWidth)
-      if(resultado == undefined || resultado == [] || resultado == ""){
-        nPages.innerHTML = ""
-      } else {
-         nPages.innerHTML = ""
-        for(let i = 0; i < arrayResultados.length; i++){ // isto atualiza-se, mas 
-          let nPage = document.createElement("a")
-          nPages.appendChild(nPage)
-          nPage.className += "n-page n-page-i n-page" + i
-          nPage.id = `n-page${i}`
-          nPage.innerText = i+1
-          nPage.href = `#n-page${i}` //problema de n começar em cima
-          
-
-          nPage.addEventListener('click', (e) =>{
-            console.log(`Click, page ${nPage.innerText}`)
-            iP = i // tem de ser chamado acima
+      return resultado
+      
+    } else if (ord === "cro") {
+      ordTit_ = "alf"
+      ordTit = "cro"
+      
+      resultado = resultado.map(item => {
+        if(Array.isArray(item.textos)){
+          const combinados = item.textos.map((texto, i) => {
+            const titleFromData = (textData?.[texto.id_text - 1]?.title) ?? ""
+            const titleFromItem = (Array.isArray(item.titulo) ? item.titulo[i] : undefined)
+            const titulo = titleFromData || titleFromItem || ""
+            return { texto, titulo }
           })
+          
+          combinados.sort((a,b) => (a.texto?.id_text ?? 0) - (b.texto?.id_text ?? 0))
+          
+          item.textos = combinados.map(el => el.texto)
+          item.titulo = combinados.map(el => el.titulo)
         }
-      }
-
-      console.log(`Resultado atualizado: ${arrayResultados.length}`)
-      sepPage()
-      document.querySelector('#n-page' + iP).style.backgroundColor = "#223F29"
-      document.querySelector('#n-page' + iP).style.color = "#FFFEF2"
+        return item
+      })
+      
+      return resultado
     }
+  }
 
-    ordFreq(ordFre_) // dá erro, mas n sei se é pela quantidade de valores
-    displayResultado(resultado)
+  //**************** HTML STRUCTURE *******************/
+  let list_all_container = document.createElement("div");
+  document.querySelector(".div-display").appendChild(list_all_container);
+  list_all_container.className = "list-all-container";
 
-   /*:::::::::::  ____________FILTROS____________  :::::::::::*/
+  //Header!!
+  let ct_head_list = document.createElement("div");
+  list_all_container.appendChild(ct_head_list);
+  ct_head_list.className = "list ct-head-list";
 
-    /***************** Ordem Alfabetica ********************/
-    // Não chamar diretamente a função - usar arrow function ou função vazia!!
-     document.querySelector('#Ord-Alfa').addEventListener('click', (e) =>{
-      ordPal(ordAlf_)
-      displayResultado(resultado) // funcionouu!!!
-      console.log("Click!!") // funciona!!
-    }) // talvez n esteje destacado
-     //document.querySelector('#Ord-Alfa').style.backgroundColor = "blue"
+  // HTML header content
+  ct_head_list.innerHTML = `
+    <div class="palavras header palavras-header">
+      <h2 class="pal-o-h">Palavra</h2>
+      <p id="Ord-Alfa">Ord: ${ordAlf}</p>
+      <div id="pal-search-bar">
+        <input id="pal-input" class="input-h" aria-label="palavra?" type="text" placeholder="Palavra?" autofocus>
+        <input id="pal-submit" type="image" class="bt-h" src='./imagens/lupa.svg' aria-label="search">
+      </div>
+    </div>
+    <div class="texto header texto-header">
+      <h2 class="texto-o-h"><a href='./lista_textos.html'>Textos</a></h2>
+      <p id="Ord-Tit">Ord: ${ordTit}</p>
+      <div id="tit-search-bar">
+        <input id="tit-input" class="input-h" aria-label="titulo?" type="text" placeholder="titulo?">
+        <input id="tit-submit" type="image" class="bt-h" src='./imagens/lupa.svg' aria-label="search">
+      </div>
+    </div>
+    <div class="freq header freq-header">
+      <h2 class="fre-o-h">Freq.</h2>
+      <p id="Ord-Freq">Ord: ${ordFre}</p>
+      <div id="caixa-frequencia">
+        <div id="freq-search-slider" class="freq-input-container"> 
+          <div class="slider">
+            <div class="freq-slider"></div>
+          </div>
+          <div class="range-input">
+            <span class="value-tooltip min-tooltip"></span>
+            <span class="value-tooltip max-tooltip"></span>
+            <input type="range" class="min-range" min="1" max="${maxFreq}" value="1" step="1">
+            <input type="range" class="max-range" min="1" max="${maxFreq}" value="${maxFreq}" step="1">
+          </div>
+           <div class = "freq-input-field">
+              <div class = "freq-field">
+                  <input type="number" class = "min-input" id="freq-min-input" value="1">
+              </div>
+              <div class = "freq-field">
+                  <input type="number" class = "max-input" id="freq-max-input" value="1300">
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>`;
 
+  // Container for results
+  let container = document.createElement("div");
+  list_all_container.appendChild(container);
+  container.className = "container";
 
-    /***************** Ordem Freq ********************/
-    document.querySelector('#Ord-Freq').addEventListener('click', (e) =>{
-      ordFreq(ordFre_) // falta o valor
-      displayResultado(resultado) 
-      console.log("Click!!")
-    })
-    //document.querySelector('#Ord-Freq').style.backgroundColor = "blue"
+  /*:::::  Get DOM elements AFTER creating HTML  :::::*/
+  const palInput = document.querySelector('#pal-input')
+  const titInput = document.querySelector("#tit-input")
+  
+  const freqRangeValue = document.querySelector(".slider .freq-slider")
+  const freqRangeInputValue = document.querySelectorAll(".range-input input")
+  const freqMinToolTip = document.querySelector(".min-tooltip")
+  const freqMaxToolTip = document.querySelector(".max-tooltip")
 
-    /***************** Ordem Tit ********************/
-    document.querySelector('#Ord-Tit').addEventListener('click', (e) =>{
-      ordTitle(ordTit_)
-      displayResultado(resultado) 
-      console.log("Click!!") // funciona
-      console.log(ordTit_) // está a alterar
-    })
-    //document.querySelector('#Ord-Tit').style.backgroundColor = "blue"
+  let freqGap = 10
+  let freqMinTimeOut, freqMaxTimeOut
 
-    /***************** Separadores page ********************/
-    function sepPage(){
-        for(let i = 0; i < arrayResultados.length; i++){ //funiona!! // deve ser por arrayResultados ter de se atualizar!!
-        document.querySelector('#n-page' + i).addEventListener('click', (e) => {
-          //aqui posso definir a posição delta
-          console.log(`Click, page ${document.querySelector('#n-page' + i).innerText}`)
+  /*::::::::::::::::::  Helper Functions  ::::::::::::::::::*/
+  function updateFreqSlider(){
+    let minVal = parseInt(freqRangeInputValue[0].value)
+    let maxVal = parseInt(freqRangeInputValue[1].value)
+    let maxRange = parseInt(freqRangeInputValue[0].max)
+
+    let leftPercent = (minVal / maxRange) * 100
+    let rightPercent = 100 - (maxVal / maxRange) * 100
+
+    freqRangeValue.style.left = `${leftPercent}%`
+    freqRangeValue.style.right = `${rightPercent}%`
+
+    updateFreqTooltipPosition(freqMinToolTip, minVal, maxRange)
+    updateFreqTooltipPosition(freqMaxToolTip, maxVal, maxRange)
+
+    freqMinToolTip.textContent = minVal
+    freqMaxToolTip.textContent = maxVal
+  }
+
+  function updateFreqTooltipPosition(tooltip, value, max){
+    const percentage = (value / max) * 100
+    tooltip.style.left = `${percentage}%`
+  }
+
+  function showFreqTooltip(tooltip){
+    clearTimeout(tooltip === freqMinToolTip ? freqMinTimeOut : freqMaxTimeOut)
+    tooltip.classList.add('show')
+  }
+
+  function hideFreqTooltip(tooltip){
+    if(tooltip === freqMinToolTip){
+      freqMinTimeOut = setTimeout(() => tooltip.classList.remove('show'), 1000)
+    } else {
+      freqMaxTimeOut = setTimeout(() => tooltip.classList.remove('show'), 1000)
+    }
+  }
+
+  function sepPage(){
+    for(let i = 0; i < arrayResultados.length; i++){
+      const pageEl = document.querySelector('#n-page' + i)
+      if(pageEl){
+        pageEl.addEventListener('click', (e) => {
           iP = i
           displayResultado(resultado)
         })
-        //document.querySelector('#n-page' + i).style.backgroundColor = "yellow" // após atualização dos filtros isto deixa de funcionar
-        document.querySelector('#n-page' + i).innerHTML += `<style> #n-page${i}:hover{background-color:#223F29; cursor:pointer; color:#FFFEF2}</style>`
+        pageEl.innerHTML += `<style> #n-page${i}:hover{background-color:#223F29; cursor:pointer; color:#FFFEF2}</style>`
       }
     }
-    //sepPage() // ainda preciso de perceber!!
+  }
 
+  /*:::::::::::  DISPLAY FUNCTION  :::::::::::*/
+  function displayResultado(resultadoToShow, valor){
+    document.querySelector('#Ord-Alfa').textContent = `Ord: ${ordAlf}`
+    document.querySelector('#Ord-Freq').textContent = `Ord: ${ordFre}`
+    document.querySelector('#Ord-Tit').textContent = `Ord: ${ordTit}`
 
+    container.innerHTML = ""
 
+    if(!resultadoToShow || resultadoToShow.length === 0){
+      container.innerHTML = `<p>Não foram encontrados resultados${valor ? ` para: "${valor}"` : ''}</p><br><br>`
+    } else {
+      for (let i = arrayResultados[iP].st; i < arrayResultados[iP].en; i++) {
+        let ct_item = document.createElement("div");
+        ct_item.className = "ct-item ct-item" + (i + 1);
+        container.appendChild(ct_item);
 
-    /*:::::::::::  __Pesquisa livre__  :::::::::::*/
+        // Palavra
+        let item_palavra = document.createElement("a");
+        ct_item.appendChild(item_palavra);
+        item_palavra.className = "item-palavra palavras";
+        item_palavra.innerHTML = `${resultadoToShow[i].palavra}`;
+        item_palavra.href = `lista_palavras.html?palavra=${resultadoToShow[i].palavra}`
 
-    /***************** Pesquisa palavras ********************/
-    palInput.addEventListener('input', (e) =>{
-      let value = e.target.value
+        // Textos
+        let item_textos = document.createElement("div");
+        ct_item.appendChild(item_textos);
+        item_textos.className = "item-textos texto";
 
-      if(value && value.trim().length > 0){
-        value = value.trim().toLowerCase()
-        
-        const filteredResultado = resultado
-          .filter(item =>{ // que compara a palavra com o valor normalizado
-            const palavra = normalize(item?.palavra || "")
-            const val = normalize(value) // input-value normalizado
-            return palavra.includes(val)
-          })
-          .sort((a,b) => { // ordem alfabetica com os valores dos resultados normalizados
-              const aPal = normalize(a.palavra)
-              const bPal = normalize(b.palavra)
-              const val = normalize(value) // input-value normalizado
-
-              const aStarts = aPal.startsWith(val) // compara se começa com o valor versao normalizada
-              const bStarts = bPal.startsWith(val)
-
-              if(aStarts && !bStarts) return -1
-              if(!aStarts && bStarts) return 1
-
-              return aPal.localeCompare(bPal, 'pt', { sensitivity: 'base' })
-
-          })
-
-        // if(filteredResultado == undefined){
-        //   filteredResultado = ""
-        // }
-        resPPage(filteredResultado.length, rPP) // still error
-        //console.log(filteredResultado.length)
-        //console.log(filteredResultado)
-        displayResultado(filteredResultado, value) // tem erro no undefined (preciso de diplay quando n há resultados)
-      } else{
-        resPPage(resultado.length, rPP)
-        displayResultado(resultado, value)
-      }
-    })
-
-    /***************** Titulo pesquisa ********************/
-          // posso fazer um pequeno teste básico primeiro
-    titInput.addEventListener('input', (e) => {
-      let value = e.target.value
-
-      if(value && value.trim().length > 0){
-          value = value.trim().toLowerCase()
-
-          const filteredResultado = resultado
-            .map(item =>{
-              const val = normalize(value)
-              const mainTitle = normalize(item?.title || "")
-
-              //se o titulo corresponde, devolve item sem modificação
-              if(mainTitle.includes(val)){
-                return item
-              }
-
-              //se item é array, filtra resultados
-              if(Array.isArray(item.textos)){
-                const filteredPairs = []
-
-                item.textos.forEach((texto, i) => {
-                  const titulo = normalize(textData?.[texto.id_text-1]?.title || "")
-
-                  //mantém apenas os titulos compatíveis
-                  if(titulo.includes(val)){
-                    filteredPairs.push({
-                      texto: texto,
-                      titulo: Array.isArray(item.titulo) ? item.titulo[i] : undefined,
-                      normalizedTitle: titulo
-                    })
-                  }
-
-                })
-
-                //se corresponder, devolve versão filtrada
-                if(filteredPairs.length > 0){
-                  // ordena items por semelhança
-                  filteredPairs.sort((a,b) => {
-                    const aTitle = a.normalizedTitle
-                    const bTitle = b.normalizedTitle
-
-
-                    //verifica se título começa com valor pesquisado
-                    let aStarts, bStarts
-
-                    if(aTitle.startsWith("[")){
-                      aStarts = aTitle.startsWith(val, 1) // começa pelo index 1
-                    } else{
-                      aStarts = aTitle.startsWith(val)
-                    } 
-                    
-                    if(bTitle.startsWith("[")){
-                      bStarts = bTitle.startsWith(val, 1)
-                    } else{
-                      bStarts = bTitle.startsWith(val)
-                    }
-
-                    // prioriza titulos com valor pesquisado
-                    if(aStarts && !bStarts) return -1
-                    if(!aStarts && bStarts) return 1
-
-                    return aTitle.localeCompare(bTitle, 'pt', { sensitivity: 'base' })
-                  })
-
-                  return {
-                    ...item,
-                    textos: filteredPairs.map(p => p.texto),
-                    titulo: filteredPairs.map(p => p.titulo).filter(t => t !== undefined)
-                  }
-                }
-              }
-
-              //não foram encontrados resultados
-              return null
-            })
-            .filter(item => item !== null) // remove items sem correspondência
-            .sort((a, b) => {
-              const val = normalize(value)
-
-              // funcao para ajudar a encontrar o melhor titulo correspondente
-              const getBestMatch = (item) => {
-                const mainTitle = normalize(item?.title || "")
-
-                //verifica se titulo corresponde
-                if(mainTitle.includes(val)){
-                  return mainTitle
-                }
-
-                // verifica titulos dentro (já filtrados)
-                if(Array.isArray(item.textos) && item.textos.length > 0){
-                  const texto = item.textos[0] // obtém primeira correspondência
-                  const titulo = normalize(textData?.[texto.id_text-1]?.title || "")
-
-                  if(titulo.includes(val)){
-                    return titulo
-                  }
-                }
-
-                return mainTitle
-              }
-
-              const aTit = getBestMatch(a)
-              const bTit = getBestMatch(b)
-
-              //resolver titulos que começam por "["
-              let aStarts, bStarts
-
-              if(aTit.startsWith("[")){
-                aStarts = aTit.startsWith(val, 1) // começa pelo index 1
-              } else{
-                aStarts = aTit.startsWith(val)
-              } 
-              
-              if(bTit.startsWith("[")){
-                bStarts = bTit.startsWith(val, 1)
-              } else{
-                bStarts = bTit.startsWith(val)
-              }
-
-              // prioriza titulos com valor pesquisado
-              if(aStarts && !bStarts) return -1
-              if(!aStarts && bStarts) return 1
-
-              return aTit.localeCompare(bTit, 'pt', { sensitivity: 'base' })
-
-            })
+        if(resultadoToShow[i].textos.length <= 3){
+          for (let j = 0; j < resultadoToShow[i].textos.length; j++) {
+            let texto_de_palavra = document.createElement("a");
+            texto_de_palavra.className = "item-texto";
+            texto_de_palavra.innerHTML = `${resultadoToShow[i].titulo[j]} <br><br>`;
+            item_textos.appendChild(texto_de_palavra);
+            texto_de_palavra.href = `index.html?id=${resultadoToShow[i].textos[j].id_text}`
+          }
+        } else {
+          const renderInitialState = () =>{
+            item_textos.innerHTML = ''
             
+            for (let j = 0; j < 3; j++) {
+              let texto_de_palavra = document.createElement("a");
+              texto_de_palavra.className = "item-texto";
+              texto_de_palavra.innerHTML = `${resultadoToShow[i].titulo[j]} <br><br>`;
+              item_textos.appendChild(texto_de_palavra);
+              texto_de_palavra.href = `index.html?id=${resultadoToShow[i].textos[j].id_text}`
+            }
 
-          resPPage(filteredResultado.length, rPP)
-          displayResultado(filteredResultado, value)
-      
-      }else{
-        resPPage(resultado.length, rPP)
-        displayResultado(resultado, value)
+            if(resultadoToShow[i].textos.length > 3){
+              let item_textosv1 = document.createElement("div")
+              item_textos.appendChild(item_textosv1)
+              item_textosv1.className = "item-texto mais"
+              item_textosv1.innerHTML = "<span>Mais...</span>"
+
+              item_textosv1.addEventListener("click", (e) =>{
+                item_textos.innerHTML = ''
+                const itemsToShow = Math.min(resultadoToShow[i].textos.length, 8);
+
+                for (let j = 0; j < itemsToShow; j++) {
+                  let texto_de_palavra = document.createElement("a");
+                  texto_de_palavra.className = "item-texto";
+                  texto_de_palavra.innerHTML = `${resultadoToShow[i].titulo[j]} <br><br>`;
+                  item_textos.appendChild(texto_de_palavra);
+                  texto_de_palavra.href = `index.html?id=${resultadoToShow[i].textos[j].id_text}`
+                }
+
+                let menos = document.createElement("div")
+                item_textos.appendChild(menos)
+                menos.className = "item-texto menos"
+                menos.innerHTML = "<span>Menos</span>"
+
+                if(resultadoToShow[i].textos.length > 8){
+                  let item_textosv2 = document.createElement("div")
+                  item_textos.appendChild(item_textosv2)
+                  item_textosv2.className = "item-texto ver-todos"
+                  item_textosv2.innerHTML = "<span>Ver todos</span>"
+
+                  item_textosv2.addEventListener("click", (e) =>{
+                    window.location.href=(`lista_palavras.html?palavra=${resultadoToShow[i].palavra}`);
+                  })
+                }
+                
+                menos.addEventListener('click', (e) =>{
+                  renderInitialState();
+                })
+              })
+            } 
+          }
+          renderInitialState();
+        }
+
+        // Frequência
+        let item_frequencia = document.createElement("div");
+        ct_item.appendChild(item_frequencia);
+        item_frequencia.className = "item-frequencia freq";
+        item_frequencia.innerHTML = `${resultadoToShow[i].freq}x`;
       }
+    }
 
+    // Pagination display
+    const oldPages = list_all_container.querySelector('.n-page-ct')
+    if(oldPages) oldPages.remove()
+    
+    let nPages = document.createElement("div")
+    list_all_container.appendChild(nPages)
+    nPages.className = "n-page n-page-ct"
+
+    nPages.addEventListener('wheel', (e) => {
+      e.preventDefault()
+      nPages.scrollLeft += e.deltaY * 5
     })
 
-    //console.log(resultado)
-    
+    if(resultadoToShow && resultadoToShow.length > 0){
+      for(let i = 0; i < arrayResultados.length; i++){
+        let nPage = document.createElement("a")
+        nPages.appendChild(nPage)
+        nPage.className = "n-page n-page-i n-page" + i
+        nPage.id = `n-page${i}`
+        nPage.innerText = i + 1
+        nPage.href = `#n-page${i}`
+        
+        nPage.addEventListener('click', (e) =>{
+          iP = i
+          displayResultado(resultadoToShow, valor)
+        })
+      }
+      
+      sepPage()
+      const currentPage = document.querySelector('#n-page' + iP)
+      if(currentPage){
+        currentPage.style.backgroundColor = "#223F29"
+        currentPage.style.color = "#FFFEF2"
+      }
+    }
+  }
 
-    // /***************** freq pesquisa ********************/
-    // freqInput.addEventListener('input', (e) => {
-    //   let value = String(e.target.value).trim()
+  // Initialize slider
+  updateFreqSlider()
 
-    //         if(value.length > 0){
-     
-    //             const filteredResultado = resultado
-    //                 .filter(item => {
-    //                     const f = String(item?.freq ?? "")
-    //                     return f.startsWith(value)
-    //                 })
-    //                 .sort((a,b) => {
-    //                     const na = Number(a.freq)
-    //                     const nb = Number(b.freq)
-    //                     return (Number.isNaN(na) ? Infinity : na) - (Number.isNaN(nb) ? Infinity : nb)
-    //                 })
+  // Initial display
+  displayResultado(resultado)
 
-    //             resPPage(filteredResultado.length, rPP)
-    //             displayResultado(filteredResultado, value)
+  /*:::::::::::  EVENT LISTENERS  :::::::::::*/
+  
+  /***************** Ordem Alfabetica ********************/
+  document.querySelector('#Ord-Alfa').addEventListener('click', (e) =>{
+    ordPal(ordAlf_)
+    iP = 0
+    resPPage(resultado.length, rPP)
+    displayResultado(resultado)
+  })
 
-    //         } else {
-    //             resPPage(resultado.length, rPP)
-    //             displayResultado(resultado, value)
-    //         }
-    // })
+  /***************** Ordem Freq ********************/
+  document.querySelector('#Ord-Freq').addEventListener('click', (e) =>{
+    ordFreq(ordFre_)
+    iP = 0
+    resPPage(resultado.length, rPP)
+    displayResultado(resultado)
+  })
 
-    /*:::::::: Event listners para sliders de frequencia ::::::::*/
-      for (let i = 0; i < freqRangeInputValue.length; i++) {
+  /***************** Ordem Tit ********************/
+  document.querySelector('#Ord-Tit').addEventListener('click', (e) =>{
+    ordTitle(ordTit_)
+    iP = 0
+    resPPage(resultado.length, rPP)
+    displayResultado(resultado)
+  })
 
-        freqRangeInputValue[i].addEventListener("input", e => {
-          let minVal = parseInt(freqRangeInputValue[0].value)
-          let maxVal = parseInt(freqRangeInputValue[1].value)
-          let diff = maxVal - minVal
+  /***************** Pesquisa palavras ********************/
+  palInput.addEventListener('input', (e) =>{
+    let value = e.target.value
 
-          //Mostrar tooltip correspondente
-          if(e.target.className === "min-range"){
-            showFreqTooltip(freqMinToolTip)
-          } else {
-            showFreqTooltip(freqMaxToolTip)
+    if(value && value.trim().length > 0){
+      value = value.trim().toLowerCase()
+      
+      const filteredResultado = resultado
+        .filter(item =>{
+          const palavra = normalize(item?.palavra || "")
+          const val = normalize(value)
+          return palavra.includes(val)
+        })
+        .sort((a,b) => {
+          const aPal = normalize(a.palavra)
+          const bPal = normalize(b.palavra)
+          const val = normalize(value)
+
+          const aStarts = aPal.startsWith(val)
+          const bStarts = bPal.startsWith(val)
+
+          if(aStarts && !bStarts) return -1
+          if(!aStarts && bStarts) return 1
+
+          return aPal.localeCompare(bPal, 'pt', { sensitivity: 'base' })
+        })
+
+      iP = 0
+      resPPage(filteredResultado.length, rPP)
+      displayResultado(filteredResultado, value)
+    } else{
+      iP = 0
+      resPPage(resultado.length, rPP)
+      displayResultado(resultado)
+    }
+  })
+
+  /***************** Titulo pesquisa ********************/
+  titInput.addEventListener('input', (e) => {
+    let value = e.target.value
+
+    if(value && value.trim().length > 0){
+      value = value.trim().toLowerCase()
+
+      const filteredResultado = resultado
+        .map(item =>{
+          const val = normalize(value)
+          const mainTitle = normalize(item?.title || "")
+
+          if(mainTitle.includes(val)){
+            return item
           }
 
-          // verifica se "freq gap" excedeu
-          if(diff < freqGap){
-            if(e.target.className === "min-range"){
-              freqInputValue[0].value = maxVal - freqGap
-            } else {
-              freqInputValue[1].value = minVal + freqGap
+          if(Array.isArray(item.textos)){
+            const filteredPairs = []
+
+            item.textos.forEach((texto, i) => {
+              const titulo = normalize(textData?.[texto.id_text-1]?.title || "")
+
+              if(titulo.includes(val)){
+                filteredPairs.push({
+                  texto: texto,
+                  titulo: Array.isArray(item.titulo) ? item.titulo[i] : undefined,
+                  normalizedTitle: titulo
+                })
+              }
+            })
+
+            if(filteredPairs.length > 0){
+              filteredPairs.sort((a,b) => {
+                const aTitle = a.normalizedTitle
+                const bTitle = b.normalizedTitle
+
+                let aStarts = aTitle.startsWith("[") ? aTitle.startsWith(val, 1) : aTitle.startsWith(val)
+                let bStarts = bTitle.startsWith("[") ? bTitle.startsWith(val, 1) : bTitle.startsWith(val)
+
+                if(aStarts && !bStarts) return -1
+                if(!aStarts && bStarts) return 1
+
+                return aTitle.localeCompare(bTitle, 'pt', { sensitivity: 'base' })
+              })
+
+              return {
+                ...item,
+                textos: filteredPairs.map(p => p.texto),
+                titulo: filteredPairs.map(p => p.titulo).filter(t => t !== undefined)
+              }
             }
           }
 
-          //atualiza inputs de freq e progresso de range
-          freqInputValue[0].value = freqRangeInputValue[0].value
-          freqInputValue[1].value = freqRangeInputValue[1].value
-          updateFreqSlider()
-
-          //filtrar resultados por frequencia - espero que funcione
-          const filteredResultado = resultado.filter(item => {
-            const freq = item.freq
-            return freq >= minVal && freq <= maxVal
-          })
-
-          resPPage(filteredResultado.length, rPP)
-          displayResultado(filteredResultado, `freq: ${minVal}-${maxVal}`)
+          return null
         })
+        .filter(item => item !== null)
+        .sort((a, b) => {
+          const val = normalize(value)
 
-        //Esconder a tooltip ao soltar
-        freqRangeInputValue[i].addEventListener("mouseup", (e) => {
-          if(e.target.className === "min-range"){
-            hideFreqTooltip(freqMinToolTip)
-          } else {
-            hideFreqTooltip(freqMaxToolTip)
+          const getBestMatch = (item) => {
+            const mainTitle = normalize(item?.title || "")
+            if(mainTitle.includes(val)) return mainTitle
+
+            if(Array.isArray(item.textos) && item.textos.length > 0){
+              const texto = item.textos[0]
+              const titulo = normalize(textData?.[texto.id_text-1]?.title || "")
+              if(titulo.includes(val)) return titulo
+            }
+            return mainTitle
           }
+
+          const aTit = getBestMatch(a)
+          const bTit = getBestMatch(b)
+
+          let aStarts = aTit.startsWith("[") ? aTit.startsWith(val, 1) : aTit.startsWith(val)
+          let bStarts = bTit.startsWith("[") ? bTit.startsWith(val, 1) : bTit.startsWith(val)
+
+          if(aStarts && !bStarts) return -1
+          if(!aStarts && bStarts) return 1
+
+          return aTit.localeCompare(bTit, 'pt', { sensitivity: 'base' })
         })
 
-        freqRangeInputValue[i].addEventListener("touchend", (e) => {
-          if(e.target.className === "min-range"){
-            hideFreqTooltip(freqMinToolTip)
-          } else {
-            hideFreqTooltip(freqMaxToolTip)
-          }
-        })
-        
-      }
+      iP = 0
+      resPPage(filteredResultado.length, rPP)
+      displayResultado(filteredResultado, value)
+    
+    }else{
+      iP = 0
+      resPPage(resultado.length, rPP)
+      displayResultado(resultado)
+    }
+  })
 
-    /*::::::::::::::::::  Filtragem por sliders  ::::::::::::::::::*/
-    /*********************** freq  **********************/
-    function updateFreqSlider(){
+  /*:::::::: Event listeners para sliders de frequencia ::::::::*/
+  freqRangeInputValue[0].addEventListener("mousedown", () => showFreqTooltip(freqMinToolTip))
+  freqRangeInputValue[0].addEventListener("touchstart", () => showFreqTooltip(freqMinToolTip))
+  freqRangeInputValue[1].addEventListener("mousedown", () => showFreqTooltip(freqMaxToolTip))
+  freqRangeInputValue[1].addEventListener("touchstart", () => showFreqTooltip(freqMaxToolTip))
+
+  for (let i = 0; i < freqRangeInputValue.length; i++) {
+    freqRangeInputValue[i].addEventListener("input", e => {
       let minVal = parseInt(freqRangeInputValue[0].value)
       let maxVal = parseInt(freqRangeInputValue[1].value)
+      let diff = maxVal - minVal
 
-      freqRangeValue.style.left = `${(minVal / freqRangeInputValue[0].max) * 100}%`
-      freqRangeValue.style.right = `${100 - (maxVal / freqRangeInputValue[1].max) * 100}%`
-
-      //atualizar posicao e valor de tooltips
-      updateFreqTooltipPosition(freqMinToolTip, minVal, freqRangeInputValue[0].max)
-      updateFreqTooltipPosition(freqMaxToolTip, maxVal, freqRangeInputValue[1].max)
-
-      freqMinToolTip.textContent = minVal
-      freqMaxToolTip.textContent = maxVal
-    }
-  
-
-    function updateFreqTooltipPosition(tooltip, value, max){
-      const percentage = (value / max) * 100
-      tooltip.style.left = `${percentage}%`
-    }
-
-    //mostrar tooltip freq
-    function showFreqTooltip(tooltip){
-      clearTimeout(tooltip === freqMinToolTip ? freqMinTimeOut : freqMaxTimeOut)
-      tooltip.classList.add('show')
-    }
-
-    //Esconder tooltip freq após delay
-    function hideFreqTooltip(tooltip){
-      if(tooltip === freqMinToolTip){
-        freqMinTimeOut = setTimeout(() => tooltip.classList.remove('show'), 1000)
+      if(e.target.className === "min-range"){
+        showFreqTooltip(freqMinToolTip)
       } else {
-        freqMaxTimeOut = setTimeout(() => tooltip.classList.remove('show'), 1000)
+        showFreqTooltip(freqMaxToolTip)
       }
-    }
 
-    //inicializa slider de freq
-    updateFreqSlider()
+      if(diff < freqGap){
+        if(e.target.className === "min-range"){
+          freqRangeInputValue[0].value = maxVal - freqGap
+          minVal = maxVal - freqGap
+        } else {
+          freqRangeInputValue[1].value = minVal + freqGap
+          maxVal = minVal + freqGap
+        }
+      }
 
-  // indexPal parece funcionar segundo estes parametros
-  // for(let i = 0; i < todosOBJpalavrasSStopwords.length; i++){
-  //   let indexPal = todosOBJpalavrasSStopwords[i].indice;
-  //   console.log(`${i-indexPal}`)
-  // }
+      updateFreqSlider()
 
+      // Filter results by frequency
+      const filteredResultado = resultado.filter(item => {
+        const freq = item.freq
+        return freq >= minVal && freq <= maxVal
+      })
+
+      // Sort filtered results by frequency (descending)
+      filteredResultado.sort((a, b) => b.freq - a.freq)
+
+      iP = 0
+      resPPage(filteredResultado.length, rPP)
+      displayResultado(filteredResultado, `freq: ${minVal}-${maxVal}`)
+    })
+
+    freqRangeInputValue[i].addEventListener("mouseup", (e) => {
+      if(e.target.className === "min-range"){
+        hideFreqTooltip(freqMinToolTip)
+      } else {
+        hideFreqTooltip(freqMaxToolTip)
+      }
+    })
+
+    freqRangeInputValue[i].addEventListener("touchend", (e) => {
+      if(e.target.className === "min-range"){
+        hideFreqTooltip(freqMinToolTip)
+      } else {
+        hideFreqTooltip(freqMaxToolTip)
+      }
+    })
+  }
 }
-
-
-  
-
-
-
-  // //---------  Display palavras-pop  ----------/ ----------------------------> AINDA POR FAZER!!!
-  // function displayPalavrasPop() {
-  //   // Primeira versão com display das mais populares por ano
-
-  //   div_display.innerHTML = "";
-
-  //   //** baseada na tabela de display em palavra selecionada **
-  //   let list_all_container = document.createElement("div");
-  //   document.querySelector(".div-display").appendChild(list_all_container);
-  //   list_all_container.className += "list-all-container";
-
-  //   //Header!!
-  //   let ct_head_list = document.createElement("div");
-  //   document.querySelector(".list-all-container").appendChild(ct_head_list);
-  //   ct_head_list.className += "list ct-head-list";
-
-  //   // conteudo do header!!
-  //   ct_head_list.innerHTML = `  <div class = "palavras header">Palavra</div>
-  //                                   <div class = "texto header">Textos</div>
-  //                                   <div class = "frequencia header">Freq</div>`;
-
-  //   ct_head_list.style.backgroundColor = "yellow";
-
-  //   // conteudo após header //////////////////////
-  //   let container = document.createElement("div");
-  //   document.querySelector(".list-all-container").appendChild(container);
-  //   container.className = "container";
-
-  //   //iteração para display
-  //   for (let i = 0; i < todas_as_palavrasFreq_p_ano.length; i++) {
-  //     // teste das primeiras 3 palavras
-
-  //     //cria a div principal
-  //     let ct_item = document.createElement("div");
-  //     ct_item.className += "ct-item ct-item" + (i + 1);
-  //     container.appendChild(ct_item);
-
-  //     //divs dentro da div principal
-  //     let item_palavra = document.createElement("div");
-  //     document.querySelector(`.ct-item${i + 1}`).appendChild(item_palavra);
-  //     item_palavra.className = "item-palavra";
-  //     item_palavra.innerHTML = `<br> Palavra: ${palavras_grafico[
-  //       i
-  //     ].toUpperCase()}`;
-
-  //     let item_textos = document.createElement("div");
-  //     document.querySelector(`.ct-item${i + 1}`).appendChild(item_textos);
-  //     item_textos.className = "item-textos";
-
-  //     for (let j = 0; j < wordData.palavras[indexPal].textos.length; j++) {
-  //       // item a colocar dentro de "item_textos"
-  //       let texto_de_palavra = document.createElement("div");
-  //       //document.querySelector(".item-textos").appendChild(texto_de_palavra)
-  //       texto_de_palavra.className = "item-texto";
-  //       texto_de_palavra.innerHTML = `${wordData.palavras[indexPal].palavra}: ${wordData.palavras[indexPal].textos[j].id_text}`;
-  //       item_textos.appendChild(texto_de_palavra);
-  //     }
-
-  //     let item_frequencia = document.createElement("div");
-  //     document.querySelector(`.ct-item${i + 1}`).appendChild(item_frequencia);
-  //     item_frequencia.className = "item-frequencia";
-  //     item_frequencia.innerHTML = `Frequencia:${wordData.palavras[indexPal].frequencia}<br>`;
-  //   }
-  // };
 
 
   //Colocar todos assim para ser mais fácil de testar
   displayTodasPalavras() // a dar por default
   // bt_todas_palavras.addEventListener("click", displayTodasPalavras)
-  // //displayPalavrasPop()
-  // bt_palavras_pop.addEventListener("click", displayPalavrasPop)
 
 }
 

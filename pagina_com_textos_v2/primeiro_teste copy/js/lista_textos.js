@@ -283,7 +283,7 @@ function displayData(wordData, textData, stoplist){
 
         // conteudo do header!!
         ct_head_list.innerHTML = `  <div class = "ano header ano-header">
-                                        <h2 class = "ano-o-h">Ano</h2>
+                                        <h2 class = "ano-o-h"><a href = './p_categoria.html?categoria=Anos'>Ano</a></h2>
                                         <p id = "Ord-Dat">Ord: ${ordDat}</p>
                                         <div id = "year-search-bar">
                                             <input id="yeartxt-input" class="input-h" aria-label="ano?" type="number" class="year-search-bar__input" placeholder="ano?" min="1846" autofocus required>
@@ -301,7 +301,7 @@ function displayData(wordData, textData, stoplist){
                                     </div>
 
                                     <div class = "author header author-header">
-                                        <h2 class = "aut-o-h">Autor</h2>
+                                        <h2 class = "aut-o-h"><a href = './p_categoria.html?categoria=Autores'>Autor</a></h2>
                                         <p id = "Ord-Aut">Ord: ${ordAut}</p>
                                         <div id = "autortxt-search-bar">
                                             <input id="autortxt-input" class="input-h" aria-label="autor?" type="text" class="autortxt-search-bar__input" placeholder="autor?" autofocus required>

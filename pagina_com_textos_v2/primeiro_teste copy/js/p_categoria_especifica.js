@@ -723,7 +723,7 @@ function displayData(wordData, textData, stoplist, lemmasData){
 
         tentry_header.innerHTML =  `  <div class = "ano header ano-header">
                                         <div class = "seta-ct" title ="Pesquisa livre por ano"><div class = "seta seta-ano down"></div></div>
-                                        <h2 class = "ano-o-h">Ano</h2> 
+                                        <h2 class = "ano-o-h"><a href = './p_categoria.html?categoria=Anos'>Ano</a></h2> 
                                         <p id="Ord-Dat">Ord:</p>
                                         <div id = "year-search-bar">
                                             <input id="year-input" class="input-h" aria-label="ano?" type="number" class="year-search-bar__input" placeholder="ano?" min="1846" autofocus required>
@@ -732,7 +732,7 @@ function displayData(wordData, textData, stoplist, lemmasData){
                                     </div>
 
                                     <div class = "titulo header titulo-header">
-                                        <h2 class = "titul-o-h">Título</h2>
+                                        <h2 class = "titul-o-h"><a href = './lista_textos.html'>Título</a></h2>
                                         <p id = "Ord-Tit">Ord: </p>
                                         <div id = "titul-search-bar">
                                             <input id="titul-input" class="input-h" aria-label="titulo?" type="text" class="titul-search-bar__input" placeholder="titulo?" autofocus required>
@@ -741,7 +741,7 @@ function displayData(wordData, textData, stoplist, lemmasData){
                                     </div>
 
                                     <div class = "autor header autor-header">
-                                        <h2 class = "aut-o-h">Autor</h2>
+                                        <h2 class = "aut-o-h"><a href = './p_categoria.html?categoria=Autores'>Autor</a></h2>
                                         <p id = "Ord-Aut">Ord: </p>
                                         <div id = "autor-search-bar">
                                             <input id="autor-input" class="input-h" aria-label="autor?" type="text" class="autor-search-bar__input" placeholder="autor?" autofocus required>
