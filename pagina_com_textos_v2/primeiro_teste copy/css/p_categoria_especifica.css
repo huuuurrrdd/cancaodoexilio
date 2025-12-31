@@ -216,3 +216,40 @@
 .tentry-container .ano:hover, .tentry-container .titulo:hover, .tentry-container .autor:hover{
     text-decoration: underline;
 }
+
+/***** bts outras categorias *****/
+.outras-categorias{
+    margin: 20px 0;
+    padding: 15px;
+    background-color: var(--dark-green-t-o2);
+    /* border-radius: 5px; */
+}
+
+.outras-categorias{
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.btn-categoria {
+    display: inline-block;
+    padding: 8px 15px;
+    margin: 5px;
+    background-color: var(--dark-green);
+    color: var(--light-yellow);
+    text-decoration: none;
+    /* border-radius: 3px; */
+    transition: all 0.3s;
+}
+
+.btn-categoria-hover {
+    background-color: var(--light-yellow);
+    color: var(--dark-green);
+    transform: translateY(-2px);
+}
+
+.sem-categorias{
+    font-style: italic;
+    color: #666;
+}
+
+

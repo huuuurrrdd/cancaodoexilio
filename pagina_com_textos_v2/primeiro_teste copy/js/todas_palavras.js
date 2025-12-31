@@ -643,14 +643,14 @@ function displayTodasPalavras(){
             <input type="range" class="min-range" min="1" max="${maxFreq}" value="1" step="1">
             <input type="range" class="max-range" min="1" max="${maxFreq}" value="${maxFreq}" step="1">
           </div>
-           <div class = "freq-input-field">
+           <!--<div class = "freq-input-field">
               <div class = "freq-field">
                   <input type="number" class = "min-input" id="freq-min-input" value="1">
               </div>
               <div class = "freq-field">
                   <input type="number" class = "max-input" id="freq-max-input" value="1300">
               </div>
-          </div>
+          </div>-->
         </div>
       </div>
     </div>`;
