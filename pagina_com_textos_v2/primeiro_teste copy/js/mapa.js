@@ -186,17 +186,30 @@ function displayData(wordData, textData, stoplist){
 
 
         /*********  ICON DO MAPA  **********/
-        var leafletIcon = L.icon ({
+        let leafletIcon = L.icon ({
             iconUrl: './imagens/m2.svg',
             shadowUrl:'./imagens/s6.png',
             iconSize: [25, 35],
-            iconAnchor: [12.5,35],
+            iconAnchor: [12.5, 35],
             // shadowAnchor:[150/2, 171/2], // icon lateral
             // shadowSize:[341/2, 312/2]
             shadowAnchor:[7, 30], // icon svg
             shadowSize:[40/1.5, 43/1.5],
             popupAnchor: [2, -30]
         })
+
+        // icon de highlight
+        let leafletIconHighlighted = L.icon({
+            iconUrl: './imagens/m5.svg',
+            shadowUrl:'./imagens/s6.png',
+            iconSize: [25, 35],
+            iconAnchor: [12.5, 35],
+            shadowAnchor:[7, 30],
+            shadowSize:[40/1.5, 43/1.5],
+        });
+
+        // Track which marker is currently highlighted
+        let currentHighlightedMarker = null;
 
         // com marker
         const marker = [];
@@ -248,12 +261,30 @@ function displayData(wordData, textData, stoplist){
             icon:leafletIcon,
             title: nome,
         })
-            .bindPopup(
-            `<a href="p_categoria_especifica.html?categoria=Locais&especifica=${nome_original}">${nome}</a>  (${objListaCoord[i].nTextos})`
-            )
+            // .bindPopup(
+            // `<a href="p_categoria_especifica.html?categoria=Locais&especifica=${nome_original}">${nome}</a>  (${objListaCoord[i].nTextos})`
+            // )
 
-           marker[i].on("click", () => {
-                textosLocais()
+           marker[i].on("click", function(e) {
+                
+                
+                // Remove highlight from previously highlighted marker
+                if (currentHighlightedMarker && currentHighlightedMarker !== this) {
+                    currentHighlightedMarker.setIcon(leafletIcon);
+                }
+
+                // Toggle current marker
+                if (this.getIcon() === leafletIcon) {
+                    this.setIcon(leafletIconHighlighted);
+                    currentHighlightedMarker = this;
+                } else {
+                    this.setIcon(leafletIcon);
+                    currentHighlightedMarker = null;
+                }
+
+                //n esta a funcionar
+                textosLocais() // pode desaparecer ao clicar novamente ou ao clicar fora
+
             })
 
           /************************  Opção circulos  ******************************/
@@ -266,7 +297,7 @@ function displayData(wordData, textData, stoplist){
                 radius: 9000*nTextos,
                 title: 'lala',
             })
-                .bindPopup(`<a href="p_categoria_especifica.html?categoria=Locais&especifica=${nome_original}">${nome}</a> (${objListaCoord[i].nTextos})`)
+                // .bindPopup(`<a href="p_categoria_especifica.html?categoria=Locais&especifica=${nome_original}">${nome}</a> (${objListaCoord[i].nTextos})`)
 
 
             circ[i].on("click", () => {
