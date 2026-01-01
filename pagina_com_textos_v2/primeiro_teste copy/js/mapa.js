@@ -73,8 +73,8 @@ function displayData(wordData, textData, stoplist){
         divMap.id = "map"
 
         const map = L.map("map", {
-            center: [33.5, -23,5],
-            zoom: 1.5,
+            center: [22.5, -20,5],
+            zoom: 2.5,
         });
 
 
@@ -311,7 +311,7 @@ function displayData(wordData, textData, stoplist){
         }
 
         L.control.layers(null, overlayMaps).addTo(map)
-        GCirc.addTo(map)
+        GMarker.addTo(map)
 
 
         function get_latitude(element) {

@@ -68,6 +68,20 @@ nav.innerHTML = `
         caixaResultados.classList.add("active")
     })
 
+/******** Imagem mapa ********/ 
+    let linkMapa = document.createElement('a')
+    linkMapa.className = "link-mapa"
+    linkMapa.href = "./mapa.html"
+    nav.appendChild(linkMapa)
+
+    let iconMapa = document.createElement('img')
+    iconMapa.src = "./imagens/mapa4.svg"
+    iconMapa.className = "mapa-icon"
+    linkMapa.appendChild(iconMapa)
+
+
+
+
     let gWordData, gTextData, gStopList, gLemasData
     // variáveis de categorias
     let gLocais, gFauna, gFlora

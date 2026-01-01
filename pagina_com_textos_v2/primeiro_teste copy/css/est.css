@@ -210,7 +210,32 @@ h2{
 
 .lupa-icon:hover{
   filter: brightness(0) saturate(100%) invert(17%) sepia(17%) saturate(1317%) hue-rotate(82deg) brightness(100%) contrast(87%);
-  
+}
+
+/******* bt mapa *******/
+.link-mapa{
+  position:fixed;
+  z-index: 1003;
+}
+
+.mapa-icon{
+  position: fixed;
+  display: block;
+  width: 32px;
+  right: 50px;
+  top: 160px;
+  padding: 1px;
+  cursor: pointer;
+  z-index: 1003;
+  filter: brightness(0) saturate(100%) invert(95%) sepia(11%) saturate(322%) hue-rotate(62deg) brightness(95%) contrast(89%);
+  transition:transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+              filter 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+              opacity 0.55s ease;
+
+}
+
+.mapa-icon:hover{
+  filter: brightness(0) saturate(100%) invert(17%) sepia(17%) saturate(1317%) hue-rotate(82deg) brightness(100%) contrast(87%);
 }
 
 /****** form de pesquisa *******/
@@ -260,7 +285,6 @@ input[type=text]{
 
 .submit-nav:hover{
   filter: brightness(0) saturate(100%) invert(17%) sepia(17%) saturate(1317%) hue-rotate(82deg) brightness(100%) contrast(87%);
- 
 }
 
 
@@ -298,9 +322,7 @@ input[type=text]{
 }
 
 .close-search:hover span{
-  background-color: var(--dark-green);
- 
-              
+  background-color: var(--dark-green);          
 }
 
 .caixa-resultados{
