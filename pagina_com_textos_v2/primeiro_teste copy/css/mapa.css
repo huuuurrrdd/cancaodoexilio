@@ -1,20 +1,43 @@
 .leaflet-right .info-control{ /*Para display de informações*/
-    background-color: var(--ligtht-yellow);
+    background-color: var(--light-yellow)!important;
     max-height: 400px;
     overflow: auto;
+}
+
+.leaflet-right .leaflet-control-layers{
+    background-color: var(--light-yellow)!important;
 }
 
 .leaflet-right .info-control a{
     color: var(--dark-green);
 }
 
+.leaflet-left .leaflet-control-zoom{ /*n funcional*/
+     background-color: var(--light-yellow)!important;
+}
+
 .leaflet-right .info-control a:hover{
-    color: var(--ligtht-yellow);
+    text-decoration: none;
+    color: var(--light-yellow);
     background-color: var(--dark-green);
 }
 
+.leaflet-right .info-control h3 a{
+    transition: all 0.3s;
+    padding: 2px;
+}
+
+.leaflet-right .info-control h3 a:hover{
+    text-decoration: none;
+    color: var(--light-yellow);
+    background-color: var(--dark-green);
+    padding-right: 5px;
+    padding-left: 5px;
+    
+}
+
 .leaflet-right .info-control .info-content-map{ /*Para display de informações*/
-    background-color: var(--ligtht-yellow);
+    background-color: var(--light-yellow);
     
 }
 
@@ -29,7 +52,7 @@
 }
 
 .leaflet-popup-content-wrapper a:hover{
-    color: var(--ligtht-yellow)
+    color: var(--light-yellow)
     
 }
 
