@@ -1,5 +1,14 @@
 //const { color } = require("canvas-sketch-util");
 
+//*************  Buscar parametro de local  ****************/
+function getQueryParam(param){
+    let urlParams = new URLSearchParams(window.location.search)
+    return urlParams.get(param)
+}
+
+//obter nome de local
+let parametro_nomeLocal = getQueryParam("local")
+
 function fetchData(){
     let wordData, textData, stoplist
 
@@ -45,8 +54,6 @@ function fetchData(){
 fetchData()
 
 function displayData(wordData, textData, stoplist){
-
-    let parametro_nomeLocal = "pará"
 
     /******************  Contentor geral  *******************/
     let textos_container = document.createElement("div")

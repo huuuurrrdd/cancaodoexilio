@@ -499,6 +499,26 @@ input[type=text]{
 
 }
 
+/****** icone de mapa ******/
+#mapa-icon{
+  height: 12px;
+  padding-right: 3px;
+  padding-left: 2px;
+  filter: brightness(0) saturate(100%) invert(95%) sepia(11%) saturate(322%) hue-rotate(62deg) brightness(95%) contrast(89%);
+}
+
+#a-map:hover{
+  text-decoration: none;
+  background-color: var(--light-yellow);
+}
+
+#mapa-icon:hover{
+  /* background-color: var(--light-yellow); */
+  text-decoration: none;
+  filter: brightness(0) saturate(100%) invert(17%) sepia(17%) saturate(1317%) hue-rotate(82deg) brightness(100%) contrast(87%);
+}
+
+
 /*
   LISTA TAREFAS:
   - (feito) Remover parte de link

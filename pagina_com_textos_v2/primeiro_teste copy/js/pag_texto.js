@@ -123,11 +123,33 @@ function displayData(wordData, textData, stoplist, lemmasData){
     //texto_completo.innerText = textData[textId-1].texto_completo //funcionaa!!
     //texto_completo.innerText = textData[textId-1].lemmas
 
-    let autor_data = document.createElement("div")    //-------- Nome de autor e data
-    document.querySelector(".texto-conteudo").appendChild(autor_data)
-    autor_data.className += "autor-data"
-    autor_data.innerHTML = `<a href="p_categoria_especifica.html?categoria=Autores&especifica=${textData[textId-1].author}">${textData[textId-1].author}</a>, 
-                            <a href="p_categoria_especifica.html?categoria=Anos&especifica=${textData[textId-1].date_of_publication}">${textData[textId-1].date_of_publication}</a><br>`
+    /********** Display informacoes texto ***********/
+    let info_texto = document.createElement("div")
+    document.querySelector(".texto-conteudo").appendChild(info_texto)
+    info_texto.className = "info-texto metadados"
+    info_texto.innerHTML += "<h3>Informações</h3>"
+
+    let info_titulo = document.createElement("div")
+    info_texto.appendChild(info_titulo)
+    info_titulo.className = "info-titulo"
+    info_titulo.innerHTML = `<a class = "info-link" href = "lista_textos.html"><strong>Título</strong></a>: <a class = "info-link" href="index.html?id=${textId}">${textData[textId-1].title}</a>,`
+
+    let info_autor = document.createElement("div")
+    info_texto.appendChild(info_autor)
+    info_autor.className = "info-autor"
+    info_autor.innerHTML = `<a class = "info-link" href = "p_categoria.html?categoria=Autores"><strong>Autor</strong></a>: <a class = "info-link" href="p_categoria_especifica.html?categoria=Autores&especifica=${textData[textId-1].author}">${textData[textId-1].author}</a>,`
+
+    let info_ano = document.createElement("div")
+    info_texto.appendChild(info_ano)
+    info_ano.className = "info-ano"
+    info_ano.innerHTML = `<a class = "info-link" href = "p_categoria.html?categoria=Anos"><strong>Ano</strong></a>: <a class = "info-link" href="p_categoria_especifica.html?categoria=Anos&especifica=${textData[textId-1].date_of_publication}">${textData[textId-1].date_of_publication}</a>.`
+
+
+    // let autor_data = document.createElement("div")    //-------- Nome de autor e data
+    // document.querySelector(".texto-conteudo").appendChild(autor_data)
+    // autor_data.className += "autor-data"
+    // autor_data.innerHTML = `<a href="p_categoria_especifica.html?categoria=Autores&especifica=${textData[textId-1].author}">${textData[textId-1].author}</a>, 
+    //                         <a href="p_categoria_especifica.html?categoria=Anos&especifica=${textData[textId-1].date_of_publication}">${textData[textId-1].date_of_publication}</a><br>`
 
     // let teste_com_lemas = document.createElement("div")//------ Teste com lemas (conteúdo não exibido)
     // document.querySelector("body").appendChild(teste_com_lemas)
@@ -140,10 +162,10 @@ function displayData(wordData, textData, stoplist, lemmasData){
     document.querySelector("body").appendChild(categorias_container)
     categorias_container.className += "categorias-palavras categorias-palavras-ct"
 
-    let categorias_h = document.createElement("h2")
-    categorias_container.appendChild(categorias_h)
-    categorias_h.className += "categorias-h"
-    categorias_h.innerHTML = `<a href = "p_categorias_palavras.html">Categorias</a>`
+    // let categorias_h = document.createElement("h2")
+    // categorias_container.appendChild(categorias_h)
+    // categorias_h.className += "categorias-h"
+    // categorias_h.innerHTML = `<a href = "p_categorias_palavras.html">Categorias</a>`
 
     let locais_ct = document.createElement("div") //-------- Contentores categoria (locais, fauna e flora)
     document.querySelector(".categorias-palavras-ct").appendChild(locais_ct)
@@ -196,19 +218,37 @@ function displayData(wordData, textData, stoplist, lemmasData){
     // Colocar os locais em loop
     if(textData[textId-1].categorias.locais.locais_limpos.length <= 0){
         locais_conteudo.innerHTML = ""
-        let p_locais = document.createElement("p")
+        let p_locais = document.createElement("span")
         document.querySelector(".locais-conteudo").appendChild(p_locais)
         p_locais.innerHTML = "Sem locais geográficos mencionados no texto"
     }else{
         for(let i = 0; i < textData[textId-1].categorias.locais.locais_limpos.length; i++){
+            //link de mapa
+            let a_map = document.createElement('a')
+            a_map.className = "a-map"
+            a_map.id = "a-map"
+            a_map.title = `Ver ${titleCase(textData[textId-1].categorias.locais.locais_limpos[i], stoplist)} no mapa`
+            a_map.href = `./mapa.html?local=${textData[textId-1].categorias.locais.locais_limpos[i]}`
+            document.querySelector(".locais-conteudo").appendChild(a_map)
+
+            let iconMapa_ = document.createElement('img')
+            iconMapa_.src = "./imagens/m6.svg"
+            iconMapa_.id = "mapa-icon"
+            a_map.appendChild(iconMapa_)
+
+            //link pagina palavra
             let a_loc = document.createElement('a')
-            let p_locais = document.createElement("p")
+            let p_locais = document.createElement("span")
             document.querySelector(".locais-conteudo").appendChild(a_loc)
             a_loc.appendChild(p_locais)
             p_locais.className = "p-elemento"
             a_loc.className = "a-elemento"
             a_loc.href = `./p_categoria_especifica.html?categoria=Locais&especifica=${textData[textId-1].categorias.locais.locais_limpos[i]}`
             p_locais.innerHTML = `${titleCase(textData[textId-1].categorias.locais.locais_limpos[i], stoplist)}`
+
+            if(i !== textData[textId-1].categorias.locais.locais_limpos.length-1){
+                p_locais.innerHTML += ", "
+            }
         }
     }
 
@@ -220,19 +260,23 @@ function displayData(wordData, textData, stoplist, lemmasData){
 
     if(textData[textId-1].categorias.fauna.length <= 0){
         fauna_conteudo.innerHTML = ""
-        let p_fauna = document.createElement("p")
+        let p_fauna = document.createElement("span")
         document.querySelector(".fauna-conteudo").appendChild(p_fauna)
         p_fauna.innerHTML = "Sem fauna mencionada no texto"
     }else{
         for(let i = 0; i < textData[textId-1].categorias.fauna.length; i++){
             let a_fau = document.createElement('a')
-            let p_fauna = document.createElement("p")
+            let p_fauna = document.createElement("span")
             document.querySelector(".fauna-conteudo").appendChild(a_fau)
             a_fau.appendChild(p_fauna)
             p_fauna.className = "p-elemento"
             a_fau.className = "a-elemento"
             a_fau.href = `./p_categoria_especifica.html?categoria=Fauna&especifica=${textData[textId-1].categorias.fauna[i]}`
             p_fauna.innerHTML = `${titleCase(textData[textId-1].categorias.fauna[i], stoplist)}`
+
+            if(i !== textData[textId-1].categorias.fauna.length-1){
+                p_fauna.innerHTML += ", "
+            }
         }
     }    
 
@@ -243,13 +287,13 @@ function displayData(wordData, textData, stoplist, lemmasData){
 
     if(textData[textId-1].categorias.flora.length <= 0){
         flora_conteudo.innerHTML = ""
-        let p_flora = document.createElement("p")
+        let p_flora = document.createElement("span")
         document.querySelector(".flora-conteudo").appendChild(p_flora)
         p_flora.innerHTML = "Sem flora mencionada no texto"
     }else{
         for(let i = 0; i < textData[textId-1].categorias.flora.length; i++){
             let a_flo = document.createElement('a')
-            let p_flora = document.createElement("p")
+            let p_flora = document.createElement("span")
             document.querySelector(".flora-conteudo").appendChild(a_flo)
             a_flo.appendChild(p_flora)
             p_flora.className = "p-elemento"
@@ -257,6 +301,10 @@ function displayData(wordData, textData, stoplist, lemmasData){
 
             a_flo.href = `./p_categoria_especifica.html?categoria=Flora&especifica=${textData[textId-1].categorias.flora[i]}`
             p_flora.innerHTML = `${titleCase(textData[textId-1].categorias.flora[i], stoplist)}`
+
+            if(i !== textData[textId-1].categorias.flora.length-1){
+                p_flora.innerHTML += ", "
+            }
         }
     }  
     

@@ -87,26 +87,23 @@
     width: 70px;
 }
 
-.categoria-conteudo a:link{
-    color: var(--dark-green);
-    text-decoration: none;
-}
 
-.categoria-conteudo a:visited{
-    color: var(--dark-green);
-    text-decoration: none;
-}
-
-.categoria-conteudo a:hover{
-    /* color:white; */
-    background-color: black;
-    text-decoration: none;
-}
 
 /****** Categorias: elementos ******/
 
 .p-elemento:hover{
-    text-decoration:  underline overline;
-    text-underline-offset: 5px;
+    /* text-decoration:  underline overline;
+    text-underline-offset: 5px; */
     font-weight:bold;
+    background-color: var(--light-yellow);
+}
+
+#a-map:hover{
+  text-decoration: none;
+  background-color: var(--light-yellow)
+}
+
+.info-link:hover{
+    background-color: var(--dark-green);
+    color: var(--light-yellow);
 }

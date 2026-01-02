@@ -48,6 +48,7 @@ nav.innerHTML = `
     let lupa = document.createElement('img')
     lupa.src = "./imagens/mlupa1.svg"
     lupa.className = "lupa-icon"
+    lupa.title = "Pesquisar"
     div_pesquisa.appendChild(lupa)
 
     pesquisa_livre()
@@ -72,6 +73,7 @@ nav.innerHTML = `
     let linkMapa = document.createElement('a')
     linkMapa.className = "link-mapa"
     linkMapa.href = "./mapa.html"
+    linkMapa.title = "Ver mapa"
     nav.appendChild(linkMapa)
 
     let iconMapa = document.createElement('img')
