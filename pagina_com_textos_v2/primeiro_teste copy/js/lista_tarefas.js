@@ -260,8 +260,257 @@
 
 // código da página de palavras (incompleto) - vou em "Event listners"
 
+function displayData(wordData, textData, stoplist) {
+ 
+  function frequencia_por_anos(Idx_Palavra) { // este IdPalavra deve ser um indice
+    id_textos = [];
+    frequencia = [];
+    anos_pal = [];
+
+    for (let i = 0; i < wordData.palavras[Idx_Palavra].textos.length; i++) {
+      id_textos.push(wordData.palavras[Idx_Palavra].textos[i].id_text);
+      frequencia.push(wordData.palavras[Idx_Palavra].textos[i].frequencia);
+    }
+
+    for (let i = 0; i < id_textos.length; i++) {
+      anos_pal.push(textData[id_textos[i] - 1].date_of_publication);
+    }
+
+    const ag_anos = [];
+    let gAtual_anos = [];
+
+    const ag_freq = [];
+    let gAtual_freq = [];
+
+    const ag_id = [];
+    let gAtual_id = [];
+
+    for (let i = 0; i < anos_pal.length; i++) {
+      if (i === 0 || anos_pal[i] == anos_pal[i - 1]) {
+        gAtual_anos.push(anos_pal[i]); 
+
+        gAtual_freq.push(frequencia[i]); 
+        gAtual_id.push(id_textos[i]);
+      } else {
+        ag_anos.push(gAtual_anos); 
+        gAtual_anos = [anos_pal[i]]; 
+
+        ag_freq.push(gAtual_freq);
+        gAtual_freq = [frequencia[i]];
+
+        ag_id.push(gAtual_id);
+        gAtual_id = [id_textos[i]];
+      }
+    }
+
+    if (gAtual_anos.length) ag_anos.push(gAtual_anos);
+    if (gAtual_freq.length) ag_freq.push(gAtual_freq);
+    if (gAtual_id.length) ag_id.push(gAtual_id);
+
+    const ag_anos_unidimensional = [];
+    const ag_freq_p_ano = [];
+
+    for (let i = 0; i < ag_anos.length; i++) {
+      let soma_freq = 0;
+      for (let j = 0; j < ag_anos[i].length; j++) {
+        soma_freq += ag_freq[i][j];
+      }
+      ag_freq_p_ano.push(soma_freq);
+      ag_anos_unidimensional.push(ag_anos[i][0]); 
+    }
+
+    const val_anos = ag_anos_unidimensional;
+    const val_freq = ag_freq_p_ano;
+    const val_id = ag_id 
+
+    const start = 1846;
+    const end = 2025;
+
+    let anos_grafico = [];
+    let freq_grafico = [];
+    let ids_final = []
+    let textosPAno = []
+
+    for (let y = start; y <= end; y++) {
+      anos_grafico.push(y); 
+
+      const idx = val_anos.indexOf(y); 
+      if (idx !== -1) {
+        freq_grafico.push(val_freq[idx]); 
+        ids_final.push(val_id[idx])
+        textosPAno.push(val_id[idx].length)
+      } else {
+        freq_grafico.push(0); 
+        ids_final.push(0)
+        textosPAno.push(0)
+      }
+    }
+
+    const itemPalavra = {};
+    anos_grafico.forEach((key, index) => {
+      itemPalavra[key] = freq_grafico[index];
+    });
+
+    const itemPalavra_ = {};
+    anos_grafico.forEach((key, index) => { 
+      itemPalavra[key] = {
+        nome: wordData.palavras[Idx_Palavra].palavra,
+        freq: freq_grafico[index],
+        nTextos: textosPAno [index]
+      }
+    });
+
+    return itemPalavra;
+  }
+
+  let arrayTodosOBJpalavras = [];
+  for (let i = 0; i < wordData.palavras.length; i++) {
+    arrayTodosOBJpalavras[i] = frequencia_por_anos(i); 
+  }
+
+  const stopSet = new Set(stoplist);
+  const stopListOBJ = []; 
+  for (let i = 0; i < wordData.palavras.length; i++) {
+    const palavra = wordData.palavras[i].palavra;
+    if (stopSet.has(palavra)) {
+      stopListOBJ.push({
+        indice: i,
+        palavra: palavra,
+      });
+    }
+  }
+
+  const stopIndices = new Set(stopListOBJ.map((obj) => obj.indice)); 
+  const start = 1846;
+  const end = 2025;
+
+  let n_palavras;
+  let todosOBJpalavrasSStopwords;
+  let anos_grafico = [];
+  let todas_as_palavrasFreq_p_ano = [];
+  for (let y = start; y <= end; y++) {
+    anos_grafico.push(y);
+    let lista_combinada_s_stopwords = []; 
+
+    for (let i = 0; i < wordData.palavras.length; i++) {
+      if (!stopIndices.has(i)) {
+        lista_combinada_s_stopwords.push({
+          indice: i,
+          freq: arrayTodosOBJpalavras[i][y].freq || 0,
+          nTextos: arrayTodosOBJpalavras[i][y].nTextos || 0,
+          logFreqPTexto: ((arrayTodosOBJpalavras[i][y].freq)/(arrayTodosOBJpalavras[i][y].nTextos)||0)
+        });
+      }
+    }
+
+    console.log( Math.log(2))
+
+    todosOBJpalavrasSStopwords = lista_combinada_s_stopwords;
+    n_palavras = lista_combinada_s_stopwords.length;
+
+    lista_combinada_s_stopwords.sort((a, b) => b.logFreqPTexto - a.logFreqPTexto);
+    let maior_frequencia_do_ano = lista_combinada_s_stopwords[0]?.logFreqPTexto || 0;
+
+    let lista_indices_com_maior_frequencia = lista_combinada_s_stopwords
+      .filter((obj) => obj.logFreqPTexto === maior_frequencia_do_ano)
+      .map((obj) => obj.indice); 
+
+    if (lista_indices_com_maior_frequencia.length != n_palavras) {
+      todas_as_palavrasFreq_p_ano.push({
+        ano: y,
+        lista: lista_combinada_s_stopwords,
+        maior_freq: maior_frequencia_do_ano,
+        indices_palavras_maior_freq: lista_indices_com_maior_frequencia,
+      });
+    } else {
+      todas_as_palavrasFreq_p_ano.push({
+        ano: y,
+        lista: lista_combinada_s_stopwords,
+        maior_freq: "",
+        indices_palavras_maior_freq: "",
+      });
+    }
+  }
 
 
+  let freq_grafico = [];
+  let palavras_grafico = [];
+
+  for (let i = 0; i < todas_as_palavrasFreq_p_ano.length; i++) {
+    const anoData = todas_as_palavrasFreq_p_ano[i];
+    freq_grafico.push(anoData.maior_freq);
+
+    if (anoData.indices_palavras_maior_freq.length != 0) {
+      let idx = anoData.indices_palavras_maior_freq[0];
+      let grupo = [];
+      for (let j = 0; j < anoData.indices_palavras_maior_freq.length; j++) {
+        let idxj = anoData.indices_palavras_maior_freq[j];
+        grupo.push(wordData.palavras[idxj].palavra);
+      }
+      palavras_grafico.push(grupo.join(", "));
+    } else {
+      palavras_grafico.push("");
+    }
+  }
+
+  let words_container = document.createElement("div");
+  document.querySelector("body").appendChild(words_container);
+  words_container.className += "words-container";
+
+  let margem_ct = document.createElement("div");
+  words_container.appendChild(margem_ct);
+  margem_ct.className = "margem-ct"
+
+  let title_h = document.createElement("h1");
+  margem_ct.appendChild(title_h);
+  title_h.className += "pesquisa-palavras-h page-title";
+  title_h.innerText = `Pesquisa de palavras`;
+
+  grafico_ct = document.createElement("div");
+  margem_ct.appendChild(grafico_ct);
+  grafico_ct.className = "grafico-ct";
+
+  canvas = document.createElement("canvas");
+  document.querySelector(".grafico-ct").appendChild(canvas);
+  canvas.className = "grafico-palavras-populares";
+
+  const ctx = document.querySelector(".grafico-palavras-populares");
+
+  new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels: anos_grafico,
+      datasets: [
+        {
+          label: "Palavras com maior frequencia em cada ano",
+          data: freq_grafico,
+          borderWidth: 0,
+          backgroundColor: '#223F29'
+        },
+      ],
+    },
+    options: {
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: function (context) {
+              const i = context.dataIndex;
+              const palavra = palavras_grafico[i];
+              const freq = freq_grafico[i];
+              return `${palavra}: ${freq}`;
+            },
+          },
+        },
+      },
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true,
+        },
+      },
+    },
+  });
 
 
+}
 
