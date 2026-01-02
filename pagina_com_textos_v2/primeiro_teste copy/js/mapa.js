@@ -1,3 +1,5 @@
+//const { color } = require("canvas-sketch-util");
+
 function fetchData(){
     let wordData, textData, stoplist
 
@@ -43,6 +45,8 @@ function fetchData(){
 fetchData()
 
 function displayData(wordData, textData, stoplist){
+
+    let parametro_nomeLocal = "pará"
 
     /******************  Contentor geral  *******************/
     let textos_container = document.createElement("div")
@@ -161,7 +165,7 @@ function displayData(wordData, textData, stoplist){
 ///////////////////////////////////////////////////////////////////////////////////////
 
         //*******  Escala do mapa  ********/        
-        L.control.scale({ // adicioa a escala em baixo
+        L.control.scale({ // adiciona a escala em baixo
             metric: true,
             imperial: false
         }).addTo(map)
@@ -208,8 +212,21 @@ function displayData(wordData, textData, stoplist){
             shadowSize:[40/1.5, 43/1.5],
         });
 
+        //cores para circulos
+        let leafletCirc = {
+            color: "#223F29",
+            fillColor: '#223f29a4'
+        }
+
+        //circ highlight
+        let leafletCircHighlighted = {
+            color:"#223f29a4",
+            fillColor:"#d2e6d1"
+        }
+
         // Track which marker is currently highlighted
-        let currentHighlightedMarker = null;
+        let currentHighlightedMarker = null
+        let currentHighlightedCirc = null
 
         // com marker
         const marker = [];
@@ -265,20 +282,33 @@ function displayData(wordData, textData, stoplist){
             // `<a href="p_categoria_especifica.html?categoria=Locais&especifica=${nome_original}">${nome}</a>  (${objListaCoord[i].nTextos})`
             // )
 
-           marker[i].on("click", function(e) {
-                
-                
+            marker[i].isHighlighted = false;
+
+            if(marker[i].title === parametro_nomeLocal){
+                marker[i].isHighlighted = true;
+                if (!this.isHighlighted) {
+                    this.setIcon(leafletIconHighlighted);
+                    this.isHighlighted = true;
+                    currentHighlightedMarker = this;
+                } 
+            }
+
+            marker[i].on("click", function(e) {
+                L.DomEvent.stopPropagation(e);
                 // Remove highlight from previously highlighted marker
                 if (currentHighlightedMarker && currentHighlightedMarker !== this) {
                     currentHighlightedMarker.setIcon(leafletIcon);
+                    currentHighlightedMarker.isHighlighted = false
                 }
 
                 // Toggle current marker
-                if (this.getIcon() === leafletIcon) {
+                if (!this.isHighlighted) {
                     this.setIcon(leafletIconHighlighted);
+                    this.isHighlighted = true;
                     currentHighlightedMarker = this;
                 } else {
                     this.setIcon(leafletIcon);
+                    this.isHighlighted = false;
                     currentHighlightedMarker = null;
                 }
 
@@ -291,18 +321,49 @@ function displayData(wordData, textData, stoplist){
             let nTextos = objListaCoord[i].nTextos + 2
 
             circ[i] = L.circle([lat, lon], {
-                color: "#223F29",
-                fillColor: '#223f29a4',
+                color: leafletCirc.color,
+                fillColor: leafletCirc.fillColor,
                 fillOpacity: 1,
                 radius: 9000*nTextos,
                 title: 'lala',
             })
                 // .bindPopup(`<a href="p_categoria_especifica.html?categoria=Locais&especifica=${nome_original}">${nome}</a> (${objListaCoord[i].nTextos})`)
 
+            circ[i].isHighlighted = false;
 
-            circ[i].on("click", () => {
+            circ[i].on("click", function(e) {
+                L.DomEvent.stopPropagation(e);
+                
+                //Remove hightlight de anterior highlight
+                if(currentHighlightedCirc && currentHighlightedCirc !== this){
+                    currentHighlightedCirc.setStyle({
+                        color: leafletCirc.color,
+                        fillColor: leafletCirc.fillColor
+                    })
+                    currentHighlightedCirc.isHighlighted = false
+                }
+
+                //Toggle current circle
+                if(!this.isHighlighted){
+                    this.setStyle({
+                        color: leafletCircHighlighted.color,
+                        fillColor: leafletCircHighlighted.fillColor
+                    })
+                    this.isHighlighted = true;
+                    currentHighlightedCirc = this;
+                    
+                } else {
+                    this.setStyle({
+                        color: leafletCirc.color,
+                        fillColor: leafletCirc.fillColor
+                    })
+                    this.isHighlighted = false;
+                    currentHighlightedCirc = null;
+                }
+
                 textosLocais()
             })
+
 
 
             function textosLocais() {
@@ -313,8 +374,12 @@ function displayData(wordData, textData, stoplist){
                 //gerar html para todos os nomes e seus textos
                 let htmlContent = ''
 
-                infoTextos.forEach(nomeObj => {
-                    htmlContent += `<h3><a href="p_categoria_especifica.html?categoria=Locais&especifica=${nome_original}">${nomeObj.nome}</a></h3>`
+                infoTextos.forEach((nomeObj, index) => {
+                    htmlContent += `<h3><a href="p_categoria_especifica.html?categoria=Locais&especifica=${nome_original}">${nomeObj.nome}</a>(${objListaCoord[i].nTextos})</h3>`
+
+                    if(index == 0){
+                        htmlContent += `<div id="exemplo-mapa">titulo, autor, ano</div>` //colocar cor diferente
+                    }
 
                     htmlContent+= `<div class = "scrollable scrollable-${nomeObj.nome_original.replace(" ", "-")}">`
 
@@ -332,6 +397,32 @@ function displayData(wordData, textData, stoplist){
 
         }
 
+        /************************  Volta ao inicio  ******************************/
+            map.on('click', function(e){
+
+                //verificar se o clique foi no mapa (não marker ou circulo)
+
+                //reset hightlighted marker
+                if(currentHighlightedMarker){
+                    currentHighlightedMarker.setIcon(leafletIcon)
+                    currentHighlightedMarker.isHighlighted = false
+                    currentHighlightedMarker = null
+                }
+
+                //reset hightlighted circle
+                if(currentHighlightedCirc){
+                    currentHighlightedCirc.setStyle({
+                        color: leafletCirc.color,
+                        fillColor:leafletCirc.fillColor
+                    })
+                    currentHighlightedCirc.isHighlighted = false
+                    currentHighlightedCirc = null
+                }
+
+                //reset info control to initial state
+                document.querySelector(".info-content-map").innerHTML = 'Clica sobre um icon';
+            })
+
         /************************  Criar grupo de layers  ******************************/
         let GMarker = L.layerGroup(marker)
         let GCirc = L.layerGroup(circ)
@@ -343,6 +434,30 @@ function displayData(wordData, textData, stoplist){
 
         L.control.layers(null, overlayMaps).addTo(map)
         GMarker.addTo(map)
+
+        //verifica se existe um "parametro_nomeLical" para highlight
+        if(parametro_nomeLocal){
+            // encontra indice de localização de acordo
+             const matchIndex = objListaCoord.findIndex(coordObj => 
+                coordObj.nomes.some(nomeObj => nomeObj.nome === parametro_nomeLocal)
+            )
+
+            if(matchIndex !== -1) {
+                // verifica a layer atualmente ativa
+                if(map.hasLayer(GMarker)){
+                    //markers estao ativos
+                    marker[matchIndex].fire('click') //trigger click
+                } else if(map.hasLayer(GCirc)){
+                    //circ ativo
+                    circ[matchIndex].fire('click')
+                }
+
+                // Optionally, center the map on this location
+                const lat = get_latitude(objListaCoord[matchIndex].coordenada);
+                const lon = get_longitude(objListaCoord[matchIndex].coordenada);
+                map.setView([lat, lon], 5); // Zoom level 5, adjust as needed
+            }
+        }
 
 
         function get_latitude(element) {
@@ -357,6 +472,8 @@ function displayData(wordData, textData, stoplist){
             return longitude;
         }
     }
+
+    
 
     displayMapa()
 

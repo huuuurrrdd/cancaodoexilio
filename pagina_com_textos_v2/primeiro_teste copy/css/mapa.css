@@ -12,8 +12,8 @@
     color: var(--dark-green);
 }
 
-.leaflet-left .leaflet-control-zoom{ /*n funcional*/
-     background-color: var(--light-yellow)!important;
+.leaflet-left .leaflet-control-zoom-in, .leaflet-left .leaflet-control-zoom-out, .leaflet-left .leaflet-control-scale-line{ /*n funcional*/
+    background-color: var(--light-yellow)!important;
 }
 
 .leaflet-right .info-control a:hover{
@@ -58,4 +58,8 @@
 
 #map{
     margin-top: 100px;
+}
+
+#exemplo-mapa{
+    color: var(--dark-green-t);
 }
