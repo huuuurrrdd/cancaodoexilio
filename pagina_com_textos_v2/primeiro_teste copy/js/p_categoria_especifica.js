@@ -29,10 +29,6 @@ let classEsp = especifica.replaceAll(" ", "-")
 
 
 
-
-
-
-
 //*************  Acesso a dados  ****************/
 // testando acesso a info wikipedia
 function fetchData(){
@@ -367,6 +363,20 @@ function displayData(wordData, textData, stoplist, lemmasData){
     let elemento_hover = document.createElement('div')
     margem_ct.appendChild(elemento_hover)
     elemento_hover.className = "elemento-hover"
+
+    let btVoltar = document.createElement("a")
+    margem_ct.appendChild(btVoltar)
+    btVoltar.className = "bt-voltar"
+    btVoltar.href = categoria === "Palavras" ? "./lista_todas_palavras.html" :`./p_categoria.html?categoria=${categoria}`
+    btVoltar.innerHTML = `Lista ${categoria}`
+
+    let btVoltarSeta = document.createElement("div")
+    btVoltar.appendChild(btVoltarSeta)
+    btVoltarSeta.className = "bt-voltar-seta"
+
+    //chamar a função, atualizando o array
+    existeCategoria = verificarCategorias(especifica, textData, wordData, stoplist)
+    displayOutrasCategorias() 
 
 
     if(categoria !== "Anos"){
@@ -713,6 +723,100 @@ function displayData(wordData, textData, stoplist, lemmasData){
             .replace(/[\u0300-\u036f]/g, "")
     }
 
+     //funcao para verificar categorias
+        function verificarCategorias(especifica, textData, wordData, stoplist){
+            const categorias = [
+                { categoria: "Palavras", existe: false },
+                { categoria: "Anos", existe: false },
+                { categoria: "Autores", existe: false },
+                { categoria: "Locais", existe: false },
+                { categoria: "Fauna", existe: false },
+                { categoria: "Flora", existe: false }
+            ]
+
+           // Verificar Palavras
+            categorias[0].existe = wordData.palavras.some(p => 
+                p.palavra === especifica && !stoplist.includes(p.palavra)
+            )
+
+            for (let i = 0; i < textData.length; i++) {
+                const texto = textData[i];
+
+                //Verifica anos
+                if(!categorias[1].existe && texto.date_of_publication == especifica){
+                    categorias[1].existe = true
+                }
+
+                //Verificar autores (match exato)
+                if(!categorias[2].existe && texto.author){
+                    const autorPalavras = texto.author.toLowerCase().split(/\s+/)
+                    const especificaLower = especifica.toLowerCase()
+
+                    // Verificar se é o nome completo ou se alguma palavra do nome corresponde exatamente
+                    if (texto.author.toLowerCase() === especificaLower || autorPalavras.some(palavra => palavra === especificaLower)) {
+                        categorias[2].existe = true
+                    } 
+                }
+
+                // Verificar Locais
+                if (!categorias[3].existe && 
+                    texto.categorias?.locais?.locais_limpos?.includes(especifica)) {
+                    categorias[3].existe = true
+                }
+
+                // Verificar Fauna
+                if (!categorias[4].existe && 
+                    texto.categorias?.fauna?.includes(especifica)) {
+                    categorias[4].existe = true
+                }
+
+                // Verificar Flora
+                if (!categorias[5].existe && 
+                    texto.categorias?.flora?.includes(especifica)) {
+                    categorias[5].existe = true
+                }
+
+                // Se todas as categorias já foram encontradas, pode parar
+                if (categorias.every(c => c.existe)) {
+                    break
+                }
+
+            }
+
+            return categorias
+        }
+
+        //função de display de botões para outras catgorias
+        function displayOutrasCategorias() {
+            //*************  caixa de bts de categorias diferentes  ****************/
+            let outras_categorias = document.createElement("div")
+            margem_ct.appendChild(outras_categorias)
+            outras_categorias.className = "outras-categorias"
+
+            outras_categorias.innerHTML = '<strong>Categorias: </strong>'
+            let btn1 = document.createElement('a')
+            btn1.className = 'btn-categoria-atual btn-categoria'
+            btn1.href = `./p_categoria_especifica.html?categoria=${categoria}&especifica=${especifica}`
+            btn1.textContent = categoria
+            outras_categorias.appendChild(btn1)
+
+            existeCategoria.forEach(cat => {
+                if(cat.existe && cat.categoria.toLowerCase() !== categoria.toLowerCase()){
+                    let btn = document.createElement('a')
+                    btn.className = 'btn-categoria'
+                    btn.href = `./p_categoria_especifica.html?categoria=${cat.categoria}&especifica=${especifica}`
+                    btn.textContent = cat.categoria
+                    outras_categorias.appendChild(btn)
+                }
+            })
+
+            //caso não haja outras categorias
+            const btns = outras_categorias.querySelectorAll('.btn-categoria')
+            if(btns.length === 0) {
+                outras_categorias.innerHTML = `` 
+            }
+        }
+
     function displayTabela(){
         div_textos.innerHTML = ""
 
@@ -812,8 +916,6 @@ function displayData(wordData, textData, stoplist, lemmasData){
             inputAno.style.display = "none" //input
         }
         })
-
-        
 
 
         /*:::::  Botoes  :::::*/
@@ -937,105 +1039,6 @@ function displayData(wordData, textData, stoplist, lemmasData){
         }
         displayResultado(resultado)
 
-
-        //funcao para verificar categorias
-        function verificarCategorias(especifica, textData, wordData, stoplist){
-            const categorias = [
-                { categoria: "Palavras", existe: false },
-                { categoria: "Anos", existe: false },
-                { categoria: "Autores", existe: false },
-                { categoria: "Locais", existe: false },
-                { categoria: "Fauna", existe: false },
-                { categoria: "Flora", existe: false }
-            ]
-
-           // Verificar Palavras
-            categorias[0].existe = wordData.palavras.some(p => 
-                p.palavra === especifica && !stoplist.includes(p.palavra)
-            )
-
-            for (let i = 0; i < textData.length; i++) {
-                const texto = textData[i];
-
-                //Verifica anos
-                if(!categorias[1].existe && texto.date_of_publication == especifica){
-                    categorias[1].existe = true
-                }
-
-                //Verificar autores (match exato)
-                if(!categorias[2].existe && texto.author){
-                    const autorPalavras = texto.author.toLowerCase().split(/\s+/)
-                    const especificaLower = especifica.toLowerCase()
-
-                    // Verificar se é o nome completo ou se alguma palavra do nome corresponde exatamente
-                    if (texto.author.toLowerCase() === especificaLower || autorPalavras.some(palavra => palavra === especificaLower)) {
-                        categorias[2].existe = true
-                    } 
-                }
-
-                // Verificar Locais
-                if (!categorias[3].existe && 
-                    texto.categorias?.locais?.locais_limpos?.includes(especifica)) {
-                    categorias[3].existe = true
-                }
-
-                // Verificar Fauna
-                if (!categorias[4].existe && 
-                    texto.categorias?.fauna?.includes(especifica)) {
-                    categorias[4].existe = true
-                }
-
-                // Verificar Flora
-                if (!categorias[5].existe && 
-                    texto.categorias?.flora?.includes(especifica)) {
-                    categorias[5].existe = true
-                }
-
-                // Se todas as categorias já foram encontradas, pode parar
-                if (categorias.every(c => c.existe)) {
-                    break
-                }
-
-            }
-
-            return categorias
-        }
-
-        //chamar a função, atualizando o array
-        existeCategoria = verificarCategorias(especifica, textData, wordData, stoplist)
-
-        //função de display de botões para outras catgorias
-        function displayOutrasCategorias() {
-            //*************  caixa de bts de categorias diferentes  ****************/
-            let outras_categorias = document.createElement("div")
-            margem_ct.appendChild(outras_categorias)
-            outras_categorias.className = "outras-categorias"
-
-            outras_categorias.innerHTML = '<strong>Categorias: </strong>'
-            let btn1 = document.createElement('a')
-            btn1.className = 'btn-categoria-atual btn-categoria'
-            btn1.href = `./p_categoria_especifica.html?categoria=${categoria}&especifica=${especifica}`
-            btn1.textContent = categoria
-            outras_categorias.appendChild(btn1)
-
-            existeCategoria.forEach(cat => {
-                if(cat.existe && cat.categoria.toLowerCase() !== categoria.toLowerCase()){
-                    let btn = document.createElement('a')
-                    btn.className = 'btn-categoria'
-                    btn.href = `./p_categoria_especifica.html?categoria=${cat.categoria}&especifica=${especifica}`
-                    btn.textContent = cat.categoria
-                    outras_categorias.appendChild(btn)
-                }
-            })
-
-            //caso não haja outras categorias
-            const btns = outras_categorias.querySelectorAll('.btn-categoria')
-            if(btns.length === 0) {
-                outras_categorias.innerHTML = `` 
-            }
-        }
-
-        displayOutrasCategorias() 
 
 
         /*:::::::::::  ____________FILTROS____________  :::::::::::*/

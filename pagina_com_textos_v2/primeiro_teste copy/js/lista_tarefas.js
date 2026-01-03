@@ -514,3 +514,660 @@ function displayData(wordData, textData, stoplist) {
 
 }
 
+
+
+//*************  Acesso a dados  ****************/
+// testando acesso a info wikipedia
+function fetchData(){
+    let wordData, textData, stoplist, lemmasData
+
+    //dicionario json
+    fetch("./Dict_palavras_lemas_v0004.json")
+        //...
+    }
+
+fetchData()
+
+// testar ainda nesta pagina o funcionamento de wikipédia
+function displayData(wordData, textData, stoplist, lemmasData){
+
+    //detetar se é categoria "palavras"
+    const isCategoriaPalavra = categoria === "Palavras"
+    if(isCategoriaPalavra){
+        for(let i = 0; i < wordData.palavras.length; i++){
+            const dictWord = wordData.palavras[i].palavra
+            const queryWord = especifica
+
+            if(dictWord === queryWord){
+                indicePalavra = i
+                break
+            }
+        }
+    }
+
+
+    let especificaDisplay = titleCase(especifica, stoplist)
+
+    
+    // Acedendo a dados de n de "especifica" por ano (igual a ano e autores em que conta 1 por texto se aparecer)
+    // para específica: array para idTexto, freq, ano
+    let id_textos = []
+    let frequencia = []
+    let frequencia_real = []
+    let anos_esp = []
+
+    let nomeCat
+
+    if(categoria.toLowerCase() =="anos"){
+        nomeCat = "date_of_publication"
+
+    } else if(categoria.toLowerCase() =="autores"){
+        nomeCat = "author"
+
+    } else {
+        nomeCat = categoria.toLowerCase() // caso de fauna e flora
+    }
+
+    console.log(`Nome categoria = ${nomeCat}`) // funciona (caso locais)
+    // manter o nome original, pq é o da base de dados
+    console.log(`Esp: ${especifica}`)
+
+    let anos_grafico = []
+    let freq_grafico = []
+    let ids_final = [] 
+
+    // antes de aceder à especifica, preciso da categoria
+
+    if(nomeCat === "fauna" || nomeCat === "flora"){ 
+        for(let i = 0; i < textData.length; i++){
+            if(textData[i].categorias[nomeCat].length > 0){ // find() é para filtrar por funcoes
+                if(textData[i].categorias[nomeCat].includes(especifica) == true ){ // verifica se a categoria inclui a palavra especifica 
+                    id_textos.push(textData[i].id)
+                    frequencia.push(1)
+                    frequencia_real.push(false)
+                    anos_esp.push(textData[i].date_of_publication)
+                }
+            }
+        }
+    } else if (nomeCat === "locais"){
+            //does the same as the previous condition
+    } else { // author e date_of_publication
+
+        if(nomeCat === "author"){
+            //...
+
+        } else if (nomeCat === "date_of_publication") {
+            //...
+        } else if(nomeCat === "palavras") {
+            //...
+        }
+    }
+
+    
+
+    // CRIAÇÃO DE ARRAY MULTIDIMENCIONAL COM OS ANOS, IDs E FREQUENCIAS
+    const ag_anos = []; // array de (array de anos)
+    let gAtual_anos = []; // array atual de anos
+
+    const ag_freq = [];
+    let gAtual_freq = [];
+
+    const ag_id = [];
+    let gAtual_id = [];
+
+    
+
+    //junta os anos iguais (ao mesmo tempo que junta a frequencia e os ids)
+    for(let i = 0; i < anos_esp.length; i++){
+        if(i === 0 || anos_esp[i] == anos_esp[i-1]){
+            gAtual_anos.push(anos_esp[i]) //igual ao anterior, adiciona
+
+            gAtual_freq.push(frequencia[i])
+            gAtual_id.push(id_textos[i])
+
+        } else {
+
+                ag_anos.push(gAtual_anos) // push grupo finalizado
+                gAtual_anos = [anos_esp[i]] // começa novo grupo
+
+                    //o mesmo para ids e frequencias
+                ag_freq.push(gAtual_freq);
+                gAtual_freq = [frequencia[i]];
+
+                ag_id.push(gAtual_id);
+                gAtual_id = [id_textos[i]];
+            }
+    }
+
+    if (gAtual_anos.length) ag_anos.push(gAtual_anos); 
+    if (gAtual_freq.length) ag_freq.push(gAtual_freq); 
+    if (gAtual_id.length) ag_id.push(gAtual_id); 
+
+
+    const ag_anos_unidimensional = [] 
+    const ag_freq_p_ano = [] 
+
+            for(let i = 0; i < ag_anos.length; i++){
+            let soma_freq = 0
+            for(let j = 0; j < ag_anos[i].length; j++){
+                soma_freq += ag_freq[i][j] 
+            }
+            ag_freq_p_ano.push(soma_freq)
+            ag_anos_unidimensional.push(ag_anos[i][0])
+        }
+
+        const val_anos = ag_anos_unidimensional
+        const val_freq = ag_freq_p_ano
+        const val_id = ag_id
+        const start = 1846
+        const end = 2025
+
+        for(let y = start; y <= end; y++){
+            anos_grafico.push(y) 
+
+            const idx = val_anos.indexOf(y) 
+            if(idx !== -1){ 
+                freq_grafico.push(val_freq[idx]) 
+                ids_final.push(val_id[idx]) 
+            } else {
+                freq_grafico.push(0) 
+                ids_final.push(0)
+            }
+        }
+
+        let idLista = []
+
+        for(let i = 0; i < val_id.length; i++) {
+            for(let j = 0; j < val_id[i].length; j++){
+                idLista.push(val_id[i][j])
+            }
+        }
+
+    let elemento_container = document.createElement("div")
+    document.querySelector("body").appendChild(elemento_container)
+    elemento_container.className += "elemento-container elemento-container-" + classEsp
+
+    let margem_ct = document.createElement("div")
+    elemento_container.appendChild(margem_ct)
+    margem_ct.className = "margem-ct margem-ct-" + classEsp
+
+    //*************  Titulo de página  ****************/
+    let elemento_h = document.createElement("h1")
+    margem_ct.appendChild(elemento_h)
+    elemento_h.className += "page-title elemento-h elemento-h-" + classEsp
+    elemento_h.innerHTML = especificaDisplay
+
+    let elemento_hover = document.createElement('div')
+    margem_ct.appendChild(elemento_hover)
+    elemento_hover.className = "elemento-hover"
+
+
+    if(categoria !== "Anos"){
+        let elemento_grafico = document.createElement("div")
+        margem_ct.appendChild(elemento_grafico)
+        elemento_grafico.className += "elemento-grafico grafico-" + classEsp
+
+        let canvas = document.createElement("canvas")
+        document.querySelector(".grafico-" + classEsp).appendChild(canvas)
+        canvas.className += "grafico-palavras-populares"
+
+        const GP = document.querySelector(".grafico-palavras-populares")
+
+        new Chart(GP, {
+            type: "line",
+            data: {
+                labels: anos_grafico,
+                datasets:[{
+                    label: `${categoria} ao longo do tempo`,
+                    data: freq_grafico,
+                    borderWidth: 1,
+                    borderColor: '#223F29',
+                    backgroundColor: '#223f29a4',
+                    pointBorderWidth: 1,
+                    pointRadius: 3
+                }]
+            },
+            options:{
+                scales:{
+                    y:{
+                        beginAtZero: true
+                    }
+                }
+            }
+        })
+    }
+    
+    //*************  Textos que mencionam  ****************/
+    let textos_mencionam = document.createElement("div")
+    document.querySelector(".elemento-container-" + classEsp).appendChild(textos_mencionam)
+    textos_mencionam.className += "textos-mencionam textos-mencionam-" + classEsp
+    
+    /************** titulo **************/
+    let textos_mencionam_h = document.createElement("h2")
+    document.querySelector(".textos-mencionam-" + classEsp).appendChild(textos_mencionam_h)
+    textos_mencionam_h.className += "textos-mencionam-h textos-mencionam-h-" + classEsp
+    if(nomeCat === "author"){
+        textos_mencionam_h.innerHTML = "Textos de " + especificaDisplay
+        let subH = document.createElement('h3')
+        textos_mencionam.appendChild(subH)
+        subH.innerHTML = `${idLista.length} textos`
+        subH.className = "sub-h"
+        
+    } else if(nomeCat === "date_of_publication"){
+        textos_mencionam_h.innerHTML = `${idLista.length} textos`
+    }else {
+        textos_mencionam_h.innerHTML = "Textos que mencionam " + especificaDisplay
+        let subH = document.createElement('h3')
+        textos_mencionam.appendChild(subH)
+        subH.innerHTML = `${idLista.length} textos`
+        subH.className = "sub-h"
+    }
+
+    // /************** Display textos *************/
+    let div_textos = document.createElement("div")
+    textos_mencionam.appendChild(div_textos)
+    div_textos.className += "div-textos div-textos-display"
+    
+
+    /******************  Funções para display  *******************/
+    // valores default para ordenação de resultados
+    let ordTit = "AZ" // o atual ---- titulo
+    let ordTit_ = "ZA" // o q muda
+    let ordAut = "AZ" // o atual ---- autor
+    let ordAut_ = "ZA" // o q muda
+    let ordDat = "asc" // o atual ---- ano
+    let ordDat_ = "des"// o que muda
+    let ordFre = "asc" // o atual ---- freq
+    let ordFre_ = "des" // o que muda
+
+
+    /*:::::::::::  Resultados p/pagina  :::::::::::*/
+    let rPP = 50
+    let arrayResultados = []
+
+    const txtTotal = idLista.length
+
+    function resPPage(total, rPP){
+      // resultado a devolver: arrayResultados
+    }
+
+    resPPage(txtTotal, rPP)
+
+    // valor de indice da página
+    let iP = 0
+
+    /*:::::::::::  Array de obj com RESULTADOS  :::::::::::*/
+    let resultado = []
+    //let textosResultado =
+
+    for(let i = 0; i < idLista.length; i++){
+        //definicao variaveis...
+        resultado.push({
+            id: id,
+            titulo: titulo,
+            ano: ano,
+            autor: autor
+        })
+    }
+
+    if(isCategoriaPalavra){
+        resultado = []
+        let textosResultado = wordData.palavras[indicePalavra].textos.slice()
+
+        for(let i = 0; i < textosResultado.length; i++){
+            const texto = textosResultado[i] //percorre cada texto que contem a palavra(wordData)
+            //metadata
+            
+            const metadata = textData[texto.id_text - 1] //objeto com todas as infos do texto selecionado
+            const id_do_texto = metadata.id;
+            const titul = metadata.title
+            const data_pub = metadata.date_of_publication
+            const autor = metadata.author
+            const freq1 = texto.frequencia
+
+            resultado.push({
+                id: id_do_texto,
+                titulo: titul,
+                ano: data_pub,
+                autor: autor,
+                freq: freq1
+            })
+
+        }
+    }
+
+    /*:::::::::::  Ordem alfabética de titulos  :::::::::::*/
+    function ordTitle(ord, data){
+       //...
+    }
+
+    /*:::::::::::  Ordem alfabética de autores  :::::::::::*/
+    function ordAutores(ord, data){
+        //...
+    }
+
+    /*:::::::::::  Ordem cronologica de textos  :::::::::::*/
+    function ordData(ord, data){
+        //...
+    }
+
+    /*:::::::::::  Ordem por frequencia  :::::::::::*/
+    function ordFreq(ord, data){
+        //...
+    }
+
+    /*:::::::::::  Normalizar string  :::::::::::*/
+    function normalize(str){
+        //...
+    }
+
+    function displayTabela(){
+        div_textos.innerHTML = ""
+
+        let list_container = document.createElement("div")
+        div_textos.appendChild(list_container)
+        list_container.className += "list-container"
+        //caso seja palavra, adiciona uma classe condicional
+        if(isCategoriaPalavra){
+            list_container.classList.add("layout-palavra")
+        }
+
+        //header
+        let tentry_header = document.createElement("div")
+        list_container.appendChild(tentry_header)
+        tentry_header.className += "tentry-header"
+
+        tentry_header.innerHTML =  `  <div class = "ano header ano-header">
+                                        <div class = "seta-ct" title ="Pesquisa livre por ano"><div class = "seta seta-ano down"></div></div>
+                                        <h2 class = "ano-o-h"><a href = './p_categoria.html?categoria=Anos'>Ano</a></h2> 
+                                        <p id="Ord-Dat">Ord:</p>
+                                        <div id = "year-search-bar">
+                                            <input id="year-input" class="input-h" aria-label="ano?" type="number" class="year-search-bar__input" placeholder="ano?" min="1846" autofocus required>
+                                            <input id="year-submit" type="image" class="year-search-bar__button bt-h" src='./imagens/lupa.svg' aria-label=""search>
+                                        </div>
+                                    </div>
+
+                                    <div class = "titulo header titulo-header">
+                                        <h2 class = "titul-o-h"><a href = './lista_textos.html'>Título</a></h2>
+                                        <p id = "Ord-Tit">Ord: </p>
+                                        <div id = "titul-search-bar">
+                                            <input id="titul-input" class="input-h" aria-label="titulo?" type="text" class="titul-search-bar__input" placeholder="titulo?" autofocus required>
+                                            <input id="titul-submit" type="image" class="titul-search-bar__button bt-h" src='./imagens/lupa.svg' aria-label=""search>
+                                        </div>
+                                    </div>
+
+                                    <div class = "autor header autor-header">
+                                        <h2 class = "aut-o-h"><a href = './p_categoria.html?categoria=Autores'>Autor</a></h2>
+                                        <p id = "Ord-Aut">Ord: </p>
+                                        <div id = "autor-search-bar">
+                                            <input id="autor-input" class="input-h" aria-label="autor?" type="text" class="autor-search-bar__input" placeholder="autor?" autofocus required>
+                                            <input id="autor-submit" type="image" class="autor-search-bar__button bt-h" src='./imagens/lupa.svg' aria-label=""search>
+                                        </div>
+                                    </div>
+                                    
+                                    ${isCategoriaPalavra ? `
+                                    <div class = "freq header freq-header">
+                                        <div class = "seta-ct" title ="Pesquisa livre por frequência"><div class = "seta seta-freq down"></div></div>
+                                        <h2 class = "freq-o-h">Freq</h2> 
+                                        <p id="Ord-Freq">Ord:</p>
+                                        <div id = "freq-search-bar">
+                                            <input id="freq-input" class="input-h" aria-label="freq?" type="text" class="freq-search-bar__input" placeholder="freq?" autofocus required>
+                                            <input id="freq-submit" type="image" class="freq-search-bar__button bt-h" src='./imagens/lupa.svg' aria-label=""search>
+                                        </div>
+                                    </div>` 
+                                        : ''}`
+
+        let anoHeader = document.querySelector(".ano-header")
+        let anoTitulo = document.querySelector(".ano-o-h")
+        let ordemAno = document.querySelector("#Ord-Dat") // ano e ordem
+        let inputAno = document.querySelector("#year-search-bar") // div input
+
+        inputAno.style.display = "none"
+ 
+        let seta_ano = document.querySelector(".seta-ano")
+        seta_ano.addEventListener('click', (e) => {
+        if(seta_ano.classList.contains('down')){
+            //...
+        }
+        })
+
+        /*:::::  Botoes  :::::*/
+        const yearInput = document.querySelector('#year-input')
+        const titulInput = document.querySelector('#titul-input')
+        const autorInput = document.querySelector('#autor-input')
+
+        //declarar   
+        let freqSubmitButton = null
+        let freqInput = null
+
+        if(isCategoriaPalavra){
+            let freqHeader = document.querySelector(".freq-header")
+            let freqTitulo = document.querySelector(".freq-o-h")
+            let ordemFreq = document.querySelector("#Ord-Freq")
+            let inputFreq = document.querySelector("#freq-search-bar")
+
+            inputFreq.style.display = "none"
+
+            //definição das variáveis
+            freqSubmitButton = document.querySelector('#freq-submit')
+            freqInput = document.querySelector('#freq-input')
+
+            //arrow toogle para freq
+            let seta_freq = document.querySelector(".seta-freq")
+            seta_freq.addEventListener('click', (e) => {
+                if(seta_freq.classList.contains('down')){
+                   //...
+                }
+            })
+        }
+
+        let container = document.createElement("div")
+        list_container.appendChild(container)
+        container.className += "container container-a"
+
+        function displayResultado(resultado, valor){
+
+            /*:::::  Atualiza os headers  :::::*/
+            document.querySelector('#Ord-Tit').textContent = `Ord: ${ordTit}`
+            document.querySelector('#Ord-Aut').textContent = `Ord: ${ordAut}`
+            document.querySelector('#Ord-Dat').textContent = `Ord: ${ordDat}`
+
+            if(isCategoriaPalavra) document.querySelector('#Ord-Freq').textContent = `Ord: ${ordFre}`
+
+            container.innerHTML = ""
+
+            if(resultado == undefined || resultado == [] || resultado == ""){
+                container.innerHTML = `<p>Não foram encontrados resultados para: "${valor}" </p><br><br>`
+            } else {
+                for(let i = arrayResultados[iP].st; i < arrayResultados[iP].en; i++){
+                    // cria a div principal
+                    let tentry = document.createElement("div")
+                    tentry.className += "tentry tentry-container tentry-container" + (i+1)
+                    container.appendChild(tentry)
+
+                    tentry.innerHTML = `<a class = "ano" href="p_categoria_especifica.html?categoria=Anos&especifica=${resultado[i].ano}">${resultado[i].ano}</a>
+                                    <a class = "titulo" href="index.html?id=${resultado[i].id}">${resultado[i].titulo}</a>
+                                    <a class = "autor" href="p_categoria_especifica.html?categoria=Autores&especifica=${resultado[i].autor}">${resultado[i].autor}</a>
+                                    ${isCategoriaPalavra ?`<a class = "freq">${resultado[i].freq}</a>`:''}`
+                }
+            }
+
+            /*:::::  Display de páginas de resultados  :::::*/
+            // remove outro nPages que existam anteriormente em list_container
+            const oldPages = list_container.querySelector('.n-page-ct')
+            if(oldPages) oldPages.remove()
+
+            if(arrayResultados.length > 1){
+                // div com bts de exibir pag de resultados
+                let nPages = document.createElement("div")
+                list_container.appendChild(nPages)
+                nPages.className += "n-page n-page-ct"
+
+                if(resultado == undefined || resultado == [] || resultado == ""){
+                    nPages.innerHTML = ""
+                } else {
+                    nPages.innerHTML = ""
+                    for(let i = 0; i < arrayResultados.length; i++){ // isto atualiza-se, mas 
+                        let nPage = document.createElement("a")
+                        nPages.appendChild(nPage)
+                        nPage.className += "n-page-i n-page" + i
+                        nPage.id = `n-page${i}`
+                        nPage.innerText = i+1
+
+                        nPage.addEventListener('click', (e) =>{
+                        console.log(`Click, page ${nPage.innerText}`)
+                        iP = i // tem de ser chamado acima
+                        })
+                    }
+                }
+                
+                //console.log(`Resultado atualizado: ${arrayResultados.length}`)
+                sepPage()
+                document.querySelector('#n-page' + iP).style.backgroundColor = "#223F29"
+                document.querySelector('#n-page' + iP).style.color = "#FFFEF2"
+            }
+        }
+        displayResultado(resultado)
+
+
+        //funcao para verificar categorias
+        function verificarCategorias(especifica, textData, wordData, stoplist){
+            const categorias = [
+                { categoria: "Palavras", existe: false },
+                { categoria: "Anos", existe: false },
+                { categoria: "Autores", existe: false },
+                { categoria: "Locais", existe: false },
+                { categoria: "Fauna", existe: false },
+                { categoria: "Flora", existe: false }
+            ]
+
+           // Verificar Palavras
+            categorias[0].existe = wordData.palavras.some(p => 
+                p.palavra === especifica && !stoplist.includes(p.palavra)
+            )
+
+            for (let i = 0; i < textData.length; i++) {
+                const texto = textData[i];
+
+                //Verifica anos
+                //Verificar autores (match exato)
+                // Verificar Locais
+                // Verificar Fauna
+                // Verificar Flora
+                // Se todas as categorias já foram encontradas, pode parar
+                if (categorias.every(c => c.existe)) {
+                    break
+                }
+
+            }
+
+            return categorias
+        }
+
+       
+
+        //função de display de botões para outras catgorias
+        function displayOutrasCategorias() {
+            //*************  caixa de bts de categorias diferentes  ****************/
+            let outras_categorias = document.createElement("div")
+            margem_ct.appendChild(outras_categorias)
+            outras_categorias.className = "outras-categorias"
+
+            outras_categorias.innerHTML = '<strong>Categorias: </strong>'
+            let btn1 = document.createElement('a')
+            btn1.className = 'btn-categoria-atual btn-categoria'
+            btn1.href = `./p_categoria_especifica.html?categoria=${categoria}&especifica=${especifica}`
+            btn1.textContent = categoria
+            outras_categorias.appendChild(btn1)
+
+            existeCategoria.forEach(cat => {
+                if(cat.existe && cat.categoria.toLowerCase() !== categoria.toLowerCase()){
+                    let btn = document.createElement('a')
+                    btn.className = 'btn-categoria'
+                    btn.href = `./p_categoria_especifica.html?categoria=${cat.categoria}&especifica=${especifica}`
+                    btn.textContent = cat.categoria
+                    outras_categorias.appendChild(btn)
+                }
+            })
+
+            //caso não haja outras categorias
+            const btns = outras_categorias.querySelectorAll('.btn-categoria')
+            if(btns.length === 0) {
+                outras_categorias.innerHTML = `` 
+            }
+        }
+         //chamar a função, atualizando o array
+        existeCategoria = verificarCategorias(especifica, textData, wordData, stoplist)
+
+        displayOutrasCategorias() 
+
+
+        /*:::::::::::  ____________FILTROS____________  :::::::::::*/
+
+        /***************** Ordem Alfabetica [titulo] ********************/
+        document.querySelector('#Ord-Tit').addEventListener('click', (e) => { // filtros funcionais
+            //...
+        })
+        // document.querySelector('#Ord-Tit').style.backgroundColor = "white"
+
+        /***************** Ordem Alfabetica [autor] ********************/
+        document.querySelector('#Ord-Aut').addEventListener('click', (e) => {
+            //...
+        })
+        // document.querySelector('#Ord-Aut').style.backgroundColor = "white"
+
+        /***************** Ordem cronologica ********************/
+        document.querySelector('#Ord-Dat').addEventListener('click', (e) => {
+            //...
+        })
+        // document.querySelector('#Ord-Dat').style.backgroundColor = "white"
+
+        /***************** Ordem frequencia ********************/
+        if(isCategoriaPalavra){
+            document.querySelector('#Ord-Freq').addEventListener('click', (e) => {
+                //...
+            })
+        }
+
+        /***************** Separadores page ********************/
+        function sepPage(){
+            for(let i = 0; i < arrayResultados.length; i++){ //funiona!! // deve ser por arrayResultados ter de se atualizar!!
+                    document.querySelector('#n-page' + i).addEventListener('click', (e) => {
+                    console.log(`Click, page ${document.querySelector('#n-page' + i).innerText}`)
+                    iP = i
+                    displayResultado(resultado)
+                })
+                document.querySelector('#n-page' + i).innerHTML += `<style> #n-page${i}:hover{background-color:#223F29; cursor:pointer; color:#FFFEF2}</style>`
+            }
+        }
+        //sepPage() // ainda preciso de perceber!!
+
+
+        /*:::::::::::  __Pesquisa livre__  :::::::::::*/
+
+        /***************** Year pesquisa ********************/
+        yearInput.addEventListener('input', (e) =>{
+          //...
+        })
+
+        /***************** Title pesquisa ********************/
+        titulInput.addEventListener('input', (e) =>{
+          //...
+        })
+
+        /***************** autor pesquisa ********************/
+        autorInput.addEventListener('input', (e) =>{ // n está confiavel!!
+            //...
+        })
+
+  
+
+    /***************** freq pesquisa ********************/
+    if(isCategoriaPalavra && freqInput){
+        //...
+    }
+}
+
+    displayTabela()
+}
+

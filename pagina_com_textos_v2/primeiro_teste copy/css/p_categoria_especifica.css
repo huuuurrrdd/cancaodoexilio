@@ -8,6 +8,10 @@
     width: calc(7/13*100%);
 }
 
+.page-title{
+    margin-bottom: 30px;
+}
+
 .elemento-hover{
     cursor: pointer;
     position: absolute;
@@ -19,6 +23,29 @@
     background-color: var(--dark-green-t-o);
     transition: background-color 0.3s ease;
 }
+
+.bt-voltar{
+    position: fixed;
+    top: 40px;
+    left: calc(0/13*100%);
+    margin-left: 50px;
+    border: 1px solid var(--dark-green-t-o);
+    padding: 5px;
+    padding-left: 25px;
+    width: calc(0.75/13*100%);
+    min-width: 55px;
+    cursor: pointer;
+    border-radius: 25px 0px 0px 25px;
+    corner-shape: bevel;
+}
+
+.bt-voltar:hover{
+   background-color: var(--dark-green-t-o); 
+}
+/* .bt-voltar-seta{
+    border: 1px solid var(--dark-green-t-o);
+    
+} */
 
 .elemento-info{
     position: absolute;
@@ -49,7 +76,7 @@
 }
 
 .textos-mencionam-h{
-    padding: 10px 0px 10px;
+    padding: 30px 0px 10px;
     margin:auto;
     width: calc(7/13*100%);
 }
