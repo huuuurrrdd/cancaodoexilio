@@ -123,9 +123,13 @@ function displayData(wordData, textData, stoplist, lemmasData){
     //texto_completo.innerText = textData[textId-1].texto_completo //funcionaa!!
     //texto_completo.innerText = textData[textId-1].lemmas
 
+    let margem_ct = document.createElement("div")
+    document.querySelector('body').appendChild(margem_ct)
+    margem_ct.className = "margem-ct"
+
     /********** Display informacoes texto ***********/
     let info_texto = document.createElement("div")
-    document.querySelector(".texto-conteudo").appendChild(info_texto)
+    margem_ct.appendChild(info_texto)
     info_texto.className = "info-texto metadados"
     info_texto.innerHTML += "<h3>Informações</h3>"
 
@@ -157,9 +161,12 @@ function displayData(wordData, textData, stoplist, lemmasData){
 
 
     /********** Display CATEGORIAS PALAVARS ***********/
+    let gridCategoriasMapa = document.createElement("div")
+    margem_ct.appendChild(gridCategoriasMapa)
+    gridCategoriasMapa.className = "grid-cat-map"
 
     let categorias_container = document.createElement("div") //-------- Contantor categorias
-    document.querySelector("body").appendChild(categorias_container)
+    gridCategoriasMapa.appendChild(categorias_container)
     categorias_container.className += "categorias-palavras categorias-palavras-ct"
 
     // let categorias_h = document.createElement("h2")
@@ -178,6 +185,13 @@ function displayData(wordData, textData, stoplist, lemmasData){
     let flora_ct = document.createElement("div")
     document.querySelector(".categorias-palavras-ct").appendChild(flora_ct)
     flora_ct.className += "categoria-palavra flora-ct"
+
+    //cria div para o mapa
+    let div_mapa = document.createElement('div')
+    gridCategoriasMapa.appendChild(div_mapa)
+    div_mapa.className = "div-mapa"
+    div_mapa.id = "mapa-pequeno"
+    
 
     let locais_a = document.createElement("a")//-------- Links categorias
     locais_ct.appendChild(locais_a)
@@ -212,6 +226,8 @@ function displayData(wordData, textData, stoplist, lemmasData){
     let locais_conteudo = document.createElement("div") //-------- conteúdo categoria
     document.querySelector(".locais-ct").appendChild(locais_conteudo)
     locais_conteudo.className += "locais-conteudo categoria-conteudo"
+    
+
 
     //locais_conteudo.innerHTML = `${textData[textId-1].locais_limpos}`// display locais
     // Confirmar se tem, se n tiver (sem locais mencionados); 
@@ -222,6 +238,29 @@ function displayData(wordData, textData, stoplist, lemmasData){
         document.querySelector(".locais-conteudo").appendChild(p_locais)
         p_locais.innerHTML = "Sem locais geográficos mencionados no texto"
     }else{
+        const mapa = L.map("mapa-pequeno", {
+            center: [55.5, -20,5],
+            zoom: 1,
+        });
+
+        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            attribution:
+            '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        }).addTo(mapa);
+
+        /*********  ICON DO MAPA  **********/
+        let leafletIcon = L.icon ({
+            iconUrl: './imagens/m2.svg',
+            shadowUrl:'./imagens/s6.png',
+            iconSize: [25, 35],
+            iconAnchor: [12.5, 35],
+            shadowAnchor:[7, 30], // icon svg
+            shadowSize:[40/1.5, 43/1.5],
+            popupAnchor: [2, -30]
+        })
+
+        let marker = [];
+
         for(let i = 0; i < textData[textId-1].categorias.locais.locais_limpos.length; i++){
             //link de mapa
             let a_map = document.createElement('a')
@@ -249,7 +288,18 @@ function displayData(wordData, textData, stoplist, lemmasData){
             if(i !== textData[textId-1].categorias.locais.locais_limpos.length-1){
                 p_locais.innerHTML += ", "
             }
+
+            let lat = get_latitude(textData[textId-1].categorias.locais.coordenadas_geograficas[i])
+            let lon = get_longitude(textData[textId-1].categorias.locais.coordenadas_geograficas[i])
+            
+            marker[i] = L.marker([lat, lon], {
+                icon:leafletIcon,
+                title: `${titleCase(textData[textId-1].categorias.locais.locais_limpos[i], stoplist)}`
+            }) .bindPopup(`<a href="p_categoria_especifica.html?categoria=Locais&especifica=${textData[textId-1].categorias.locais.locais_limpos[i]}">${titleCase(textData[textId-1].categorias.locais.locais_limpos[i], stoplist)}</a>`)
+            .addTo(mapa);
         }
+
+        
     }
 
 
@@ -308,8 +358,7 @@ function displayData(wordData, textData, stoplist, lemmasData){
         }
     }  
     
-
-
+    
     // //tentando fazer split das palavras (os numeros t2,t3... corresponde ao n do passo)
     let t = titEtxt.texto // string para texto
     // LEMAS ANTIGOS
@@ -542,7 +591,17 @@ function removePont(string){
 
 
 
+function get_latitude(element) {
+    elemento_limpo = element.replace("(", "").replace(")", "");
+    latitude = elemento_limpo.split(", ")[0];
+    return latitude;
+}
 
+function get_longitude(element) {
+    elemento_limpo = element.replace("(", "").replace(")", "");
+    longitude = elemento_limpo.split(", ")[1];
+    return longitude;
+}
 
 
    

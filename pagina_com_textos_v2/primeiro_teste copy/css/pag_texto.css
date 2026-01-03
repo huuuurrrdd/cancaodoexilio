@@ -44,15 +44,14 @@
     text-decoration: none;
 }
 
-/****** Autor data ******/
-.autor-data a:hover{
-    /* text-decoration:  underline overline;
-    text-underline-offset: 5px; */
-    color:var(--light-yellow);
-    background-color: var(--dark-green);
+/****** Grid ******/
+.grid-cat-map{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 50px;
+    padding-top: 40px;
+    padding-bottom: 40px;
 }
-
-
 
 /****** Categorias ******/
 .categorias-h a:hover{
@@ -63,12 +62,7 @@
 
 .categorias-palavras-ct{
     margin: auto;
-    width: 70%;
-    padding-top: 40px;
-    padding-bottom: 40px;
 }
-
-
 
 .categoria-a:link{
     color: var(--dark-green);
@@ -106,4 +100,15 @@
 .info-link:hover{
     background-color: var(--dark-green);
     color: var(--light-yellow);
+}
+
+/****** Mapa ******/
+#mapa-pequeno {
+    width: 100%;
+}
+
+.metadados{
+    border-top: 1px solid var(--dark-green-t-o);
+    border-bottom: 1px solid var(--dark-green-t-o);
+    padding-bottom: 40px;
 }
