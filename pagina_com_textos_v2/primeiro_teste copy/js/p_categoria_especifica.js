@@ -352,11 +352,11 @@ function displayData(wordData, textData, stoplist, lemmasData){
     elemento_container.appendChild(margem_ct)
     margem_ct.className = "margem-ct margem-ct-" + classEsp
 
-    //subtitulo
-    let subtitulo = document.createElement('p')
-    margem_ct.appendChild(subtitulo)
-    subtitulo.id += "subtitulo"
-    subtitulo.innerText = `Categoria: ${categoria.toLowerCase()}`
+    // //subtitulo
+    // let subtitulo = document.createElement('p')
+    // margem_ct.appendChild(subtitulo)
+    // subtitulo.id += "subtitulo"
+    // subtitulo.innerText = `Categoria: ${categoria.toLowerCase()}`
 
     //*************  Titulo de página  ****************/
     let elemento_h = document.createElement("h1")

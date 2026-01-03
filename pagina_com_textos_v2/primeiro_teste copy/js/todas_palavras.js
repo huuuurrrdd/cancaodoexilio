@@ -645,7 +645,7 @@ function displayTodasPalavras(){
         ct_item.appendChild(item_palavra);
         item_palavra.className = "item-palavra palavras";
         item_palavra.innerHTML = `${resultadoToShow[i].palavra}`;
-        item_palavra.href = `lista_palavras.html?palavra=${resultadoToShow[i].palavra}`
+        item_palavra.href = `./p_categoria_especifica.html?categoria=Palavras&especifica=${resultadoToShow[i].palavra}`
 
         // Textos
         let item_textos = document.createElement("div");
