@@ -128,6 +128,7 @@ h2{
   position: relative;
   background: var(--dark-green-t-o); /*hamburger inicial*/
   z-index: 1001;
+  outline: 1px solid var(--light-yellow);
   transform-origin: 4px 0px;
   transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
               background-color 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
@@ -136,16 +137,19 @@ h2{
 
 #menuToggle span:first-child {
   transform-origin: 0% 0%;
+  outline: none;
 }
 
 #menuToggle span:nth-last-child(2) {
   transform-origin: 0% 100%;
+  outline: none;
 }
 
 #menuToggle input:checked ~ span {
   opacity: 1;
   transform: rotate(45deg) translate(-2px, -1px);
   background: var(--dark-green);
+  outline: none;
 }
 
 #menuToggle input:hover ~ span {
@@ -154,9 +158,11 @@ h2{
 #menuToggle input:checked ~ span:nth-last-child(3) {
   opacity: 0;
   transform: rotate(0deg) scale(0.2, 0.2);
+  outline: none;
 }
 #menuToggle input:checked ~ span:nth-last-child(2) {
   transform: rotate(-45deg) translate(0, -1px);
+  outline: none;
 }
 
 #menu{
@@ -207,6 +213,7 @@ h2{
   transition:transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
               filter 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
               opacity 0.55s ease;
+  
 }
 
 .lupa-icon:hover{
@@ -216,7 +223,7 @@ h2{
 /******* bt mapa *******/
 .link-mapa{
   position:fixed;
-  z-index: 1003;
+  z-index: 1000;
 }
 
 .mapa-icon{
@@ -227,7 +234,7 @@ h2{
   top: 160px;
   padding: 1px;
   cursor: pointer;
-  z-index: 1003;
+  z-index: 1001;
   filter: brightness(0) saturate(100%) invert(95%) sepia(11%) saturate(322%) hue-rotate(62deg) brightness(95%) contrast(89%);
   transition:transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
               filter 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
