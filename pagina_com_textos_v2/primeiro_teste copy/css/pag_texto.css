@@ -60,9 +60,6 @@
     font-weight:bold;
 }
 
-.categorias-palavras-ct{
-    margin: auto;
-}
 
 .categoria-a:link{
     color: var(--dark-green);

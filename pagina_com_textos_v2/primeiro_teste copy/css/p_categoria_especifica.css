@@ -49,9 +49,16 @@
 }
 
 .textos-mencionam-h{
-    padding: 30px 0px 20px;
+    padding: 30px 0px 10px;
     margin:auto;
     width: calc(7/13*100%);
+}
+
+.sub-h{
+    margin:auto;
+    width: calc(7/13*100%);
+    padding: 0px 0px 15px;
+    color: var(--n-green);
 }
 
 /******** header *********/
@@ -221,7 +228,7 @@
 .outras-categorias{
     margin: 20px 0;
     padding: 15px;
-    background-color: var(--dark-green-t-o2);
+    /* background-color: var(--dark-green-t-o2); */
     /* border-radius: 5px; */
 }
 
@@ -232,19 +239,19 @@
 
 .btn-categoria {
     display: inline-block;
-    padding: 8px 15px;
+    /* padding: 8px 15px; */
     margin: 5px;
-    background-color: var(--dark-green);
+    /* background-color: var(--dark-green); */
     color: var(--light-yellow);
     text-decoration: none;
     /* border-radius: 3px; */
+    padding: 2px 4px;
     transition: all 0.3s;
 }
 
-.btn-categoria-hover {
-    background-color: var(--light-yellow);
-    color: var(--dark-green);
-    transform: translateY(-2px);
+.btn-categoria:hover{
+    background-color: var(--dark-green-t-o);
+    padding: 2px 4px;
 }
 
 .sem-categorias{

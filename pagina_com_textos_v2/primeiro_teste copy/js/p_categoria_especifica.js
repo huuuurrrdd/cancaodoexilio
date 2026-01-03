@@ -368,48 +368,46 @@ function displayData(wordData, textData, stoplist, lemmasData){
     margem_ct.appendChild(elemento_hover)
     elemento_hover.className = "elemento-hover"
 
-    //*************  caixa de bts de categorias diferentes  ****************/
-    let outras_categorias = document.createElement("div")
-    margem_ct.appendChild(outras_categorias)
-    outras_categorias.className = "outras-categorias"
 
-    //*************  Gráfico geral  ****************/
-    let elemento_grafico = document.createElement("div")
-    margem_ct.appendChild(elemento_grafico)
-    elemento_grafico.className += "elemento-grafico grafico-" + classEsp
+    if(categoria !== "Anos"){
+        //*************  Gráfico geral  ****************/
+        let elemento_grafico = document.createElement("div")
+        margem_ct.appendChild(elemento_grafico)
+        elemento_grafico.className += "elemento-grafico grafico-" + classEsp
 
-    let canvas = document.createElement("canvas")
-    document.querySelector(".grafico-" + classEsp).appendChild(canvas)
-    canvas.className += "grafico-palavras-populares"
-    
-    // adicionar gráfico aleatorio
-    const GP = document.querySelector(".grafico-palavras-populares")
+        let canvas = document.createElement("canvas")
+        document.querySelector(".grafico-" + classEsp).appendChild(canvas)
+        canvas.className += "grafico-palavras-populares"
 
-    //*********** Gráfico inicial **********/
-    // neste gráfico é importante poder comparar o nº de textos total com o nº que mencionam
-    new Chart(GP, {
-        type: "line",
-        data: {
-            labels: anos_grafico,
-            datasets:[{
-                label: `${categoria} ao longo do tempo`,
-                data: freq_grafico,
-                borderWidth: 1,
-                borderColor: '#223F29',
-                backgroundColor: '#223f29a4',
-                pointBorderWidth: 1,
-                pointRadius: 3
-            }]
-        },
-        options:{
-            scales:{
-                y:{
-                    beginAtZero: true
+        // adicionar gráfico aleatorio
+        const GP = document.querySelector(".grafico-palavras-populares")
+
+        //*********** Gráfico inicial **********/
+        // neste gráfico é importante poder comparar o nº de textos total com o nº que mencionam
+        new Chart(GP, {
+            type: "line",
+            data: {
+                labels: anos_grafico,
+                datasets:[{
+                    label: `${categoria} ao longo do tempo`,
+                    data: freq_grafico,
+                    borderWidth: 1,
+                    borderColor: '#223F29',
+                    backgroundColor: '#223f29a4',
+                    pointBorderWidth: 1,
+                    pointRadius: 3
+                }]
+            },
+            options:{
+                scales:{
+                    y:{
+                        beginAtZero: true
+                    }
                 }
             }
-        }
-    })
-
+        })
+    }
+    
 
 
     //*************  Info elemento(wikipedia)  ****************/
@@ -525,11 +523,6 @@ function displayData(wordData, textData, stoplist, lemmasData){
 
 
 
-
-
-
-
-
     //*************  Textos que mencionam  ****************/
     let textos_mencionam = document.createElement("div")
     document.querySelector(".elemento-container-" + classEsp).appendChild(textos_mencionam)
@@ -539,10 +532,21 @@ function displayData(wordData, textData, stoplist, lemmasData){
     let textos_mencionam_h = document.createElement("h2")
     document.querySelector(".textos-mencionam-" + classEsp).appendChild(textos_mencionam_h)
     textos_mencionam_h.className += "textos-mencionam-h textos-mencionam-h-" + classEsp
-    if(nomeCat === "author" || nomeCat === "date_of_publication"){
+    if(nomeCat === "author"){
         textos_mencionam_h.innerHTML = "Textos de " + especificaDisplay
-    } else {
+        let subH = document.createElement('h3')
+        textos_mencionam.appendChild(subH)
+        subH.innerHTML = `${idLista.length} textos`
+        subH.className = "sub-h"
+        
+    } else if(nomeCat === "date_of_publication"){
+        textos_mencionam_h.innerHTML = `${idLista.length} textos`
+    }else {
         textos_mencionam_h.innerHTML = "Textos que mencionam " + especificaDisplay
+        let subH = document.createElement('h3')
+        textos_mencionam.appendChild(subH)
+        subH.innerHTML = `${idLista.length} textos`
+        subH.className = "sub-h"
     }
 
     // /************** Display textos *************/
@@ -1002,7 +1006,17 @@ function displayData(wordData, textData, stoplist, lemmasData){
 
         //função de display de botões para outras catgorias
         function displayOutrasCategorias() {
-            outras_categorias.innerHTML = '<h3>Ver em outras categorias:</h3>'
+            //*************  caixa de bts de categorias diferentes  ****************/
+            let outras_categorias = document.createElement("div")
+            margem_ct.appendChild(outras_categorias)
+            outras_categorias.className = "outras-categorias"
+
+            outras_categorias.innerHTML = '<strong>Categorias: </strong>'
+            let btn1 = document.createElement('a')
+            btn1.className = 'btn-categoria-atual btn-categoria'
+            btn1.href = `./p_categoria_especifica.html?categoria=${categoria}&especifica=${especifica}`
+            btn1.textContent = categoria
+            outras_categorias.appendChild(btn1)
 
             existeCategoria.forEach(cat => {
                 if(cat.existe && cat.categoria.toLowerCase() !== categoria.toLowerCase()){
@@ -1015,13 +1029,13 @@ function displayData(wordData, textData, stoplist, lemmasData){
             })
 
             //caso não haja outras categorias
-            const btns = outras_categorias.querySelector('.btn-categoria')
-            if(btns.length) {
-                outras_categorias.innerHTML = '<p class= "sem-categorias">O elemento não existe em outras categorias.<p>'
+            const btns = outras_categorias.querySelectorAll('.btn-categoria')
+            if(btns.length === 0) {
+                outras_categorias.innerHTML = `` 
             }
         }
 
-        displayOutrasCategorias()
+        displayOutrasCategorias() 
 
 
         /*:::::::::::  ____________FILTROS____________  :::::::::::*/
