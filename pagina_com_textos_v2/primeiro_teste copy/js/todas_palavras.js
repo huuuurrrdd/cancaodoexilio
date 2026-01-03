@@ -175,14 +175,10 @@ function displayData(wordData, textData, stoplist) {
   }
 
   let arrayTodosOBJpalavras = [];
-
   for (let i = 0; i < wordData.palavras.length; i++) {
     arrayTodosOBJpalavras[i] = frequencia_por_anos(i); 
   }
 
-  /**********************  Preparação de dados para gráfico  ************************/
-
-  // criar objeto de stopWordList (index: valor; palavra: valor)
   const stopSet = new Set(stoplist);
   const stopListOBJ = [];
   for (let i = 0; i < wordData.palavras.length; i++) {
@@ -196,30 +192,42 @@ function displayData(wordData, textData, stoplist) {
   }
 
   const stopIndices = new Set(stopListOBJ.map((obj) => obj.indice));
-
-  // JUNTANDO TUDO NUM ARRAY DE ANOS
   const start = 1846;
   const end = 2025;
 
   let n_palavras;
   let todosOBJpalavrasSStopwords;
   let anos_grafico = [];
-  //Criando um array de anos
   let todas_as_palavrasFreq_p_ano = [];
+
+  //array para contar palavras unicas por ano
+  let uniqueWordsPerYear = [];
+
   for (let y = start; y <= end; y++) {
     anos_grafico.push(y);
     let lista_combinada_s_stopwords = [];
+    let uniqueWordCount = 0;
 
     for (let i = 0; i < wordData.palavras.length; i++) {
       if (!stopIndices.has(i)) {
+        const freqNoAno = arrayTodosOBJpalavras[i][y].freq || 0;
+
         lista_combinada_s_stopwords.push({
           indice: i,
-          freq: arrayTodosOBJpalavras[i][y].freq || 0,
+          freq: freqNoAno,
           nTextos: arrayTodosOBJpalavras[i][y].nTextos || 0,
           logFreqPTexto: ((arrayTodosOBJpalavras[i][y].freq)/(arrayTodosOBJpalavras[i][y].nTextos)||0)
         });
+
+        //conta palavras que aparecem este ano
+        if(freqNoAno > 0) {
+          uniqueWordCount++;
+        }
       }
     }
+
+    //Guarda contagem de palavras unicas
+    uniqueWordsPerYear.push(uniqueWordCount);
 
     todosOBJpalavrasSStopwords = lista_combinada_s_stopwords;
     n_palavras = lista_combinada_s_stopwords.length;
@@ -301,8 +309,8 @@ function displayData(wordData, textData, stoplist) {
       labels: anos_grafico,
       datasets: [
         {
-          label: "Palavras com maior frequencia em cada ano",
-          data: freq_grafico,
+          label: "Numero de palavras em cada ano",
+          data: uniqueWordsPerYear,
           borderWidth: 0,
           //borderColor: '#223F29',
           backgroundColor: '#223F29'
@@ -314,10 +322,7 @@ function displayData(wordData, textData, stoplist) {
         tooltip: {
           callbacks: {
             label: function (context) {
-              const i = context.dataIndex;
-              const palavra = palavras_grafico[i];
-              const freq = freq_grafico[i];
-              return `${palavra}: ${freq}`;
+              return `Palavras: ${context.parsed.y}`;
             },
           },
         },
@@ -326,7 +331,17 @@ function displayData(wordData, textData, stoplist) {
       scales: {
         y: {
           beginAtZero: true,
+          title: {
+            display: true,
+            text: 'Número de palavras únicas'
+          }
         },
+        x: {
+          title: {
+            display: true,
+            text: 'Ano'
+          }
+        }
       },
     },
   });
