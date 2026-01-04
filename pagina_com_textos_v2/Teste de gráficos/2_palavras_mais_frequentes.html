@@ -9,7 +9,54 @@
 <body>
     <h1>Gráfico palavras mais frequentes</h1>
     <h2>A usar na página de categorias</h2>
+
+
+
+    <div class="palavras header palavras-header">
+      <h2 class="pal-o-h">Palavra</h2>
+      <p id="Ord-Alfa">Ord: ${ordAlf}</p>
+      <div id="pal-search-bar">
+        <input id="pal-input" class="input-h" aria-label="palavra?" type="text" placeholder="Palavra?" autofocus>
+        <input id="pal-submit" type="image" class="bt-h" src='./imagens/lupa.svg' aria-label="search">
+      </div>
+    </div>
+
+
+    <div class="texto header texto-header">
+      <h2 class="texto-o-h"><a href='./lista_textos.html'>Textos</a></h2>
+      <p id="Ord-Tit">Ord: ${ordTit}</p>
+      <div id="tit-search-bar">
+        <input id="tit-input" class="input-h" aria-label="titulo?" type="text" placeholder="titulo?">
+        <input id="tit-submit" type="image" class="bt-h" src='./imagens/lupa.svg' aria-label="search">
+      </div>
+    </div>
+
     
+    <div class="freq header freq-header">
+      <h2 class="fre-o-h">Freq.</h2>
+      <p id="Ord-Freq">Ord: ${ordFre}</p>
+      <div id="caixa-frequencia">
+        <div id="freq-search-slider" class="freq-input-container"> 
+          <div class="slider">
+            <div class="freq-slider"></div>
+          </div>
+          <div class="range-input">
+            <span class="value-tooltip min-tooltip"></span>
+            <span class="value-tooltip max-tooltip"></span>
+            <input type="range" class="min-range" min="1" max="${maxFreq}" value="1" step="1">
+            <input type="range" class="max-range" min="1" max="${maxFreq}" value="${maxFreq}" step="1">
+          </div>
+           <!--<div class = "freq-input-field">
+              <div class = "freq-field">
+                  <input type="number" class = "min-input" id="freq-min-input" value="1">
+              </div>
+              <div class = "freq-field">
+                  <input type="number" class = "max-input" id="freq-max-input" value="1300">
+              </div>
+          </div>-->
+        </div>
+      </div>
+    </div>
     
 </body>
 <script src = "https://cdn.jsdelivr.net/npm/chart.js"></script>

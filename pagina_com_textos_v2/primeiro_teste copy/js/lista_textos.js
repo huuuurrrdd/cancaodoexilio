@@ -158,7 +158,13 @@ function displayData(wordData, textData, stoplist){
     // const filteredResultado = textData.filter(item => item.title.toLowerCase().includes(valTit))
     // console.log(filteredResultado)
 
-    
+
+    //calcula maxAno 
+    const validYears = textData
+    .map(r => r.date_of_publication)
+    .filter(year => typeof year === 'number' && !isNaN(year))
+    const maxAno = validYears.length > 0 ? Math.max(...validYears) : 2025
+    console.log(`Ano máximo: ${maxAno}`)
 
     /*:::::::::::  Ordem alfabética de titulos  :::::::::::*/
     function ordTitleTxt(ord, data){
@@ -338,6 +344,9 @@ function displayData(wordData, textData, stoplist){
     function displayTabela(){
         div_textos.innerHTML = ""
 
+        // Store current results to use across all operations
+        let currentResults = textData
+
         //** baseada na tabela de display em palavra selecionada **
         let list_all_container = document.createElement("div")
         document.querySelector(".div-textos").appendChild(list_all_container)
@@ -352,9 +361,26 @@ function displayData(wordData, textData, stoplist){
         ct_head_list.innerHTML = `  <div class = "ano header ano-header">
                                         <h2 class = "ano-o-h"><a href = './p_categoria.html?categoria=Anos'>Ano</a></h2>
                                         <p id = "Ord-Dat">Ord: ${ordDat}</p>
-                                        <div id = "year-search-bar">
-                                            <input id="yeartxt-input" class="input-h" aria-label="ano?" type="number" class="year-search-bar__input" placeholder="ano?" min="1846" autofocus required>
-                                            <input id="yeartxt-submit" type="image" class="year-search-bar__button bt-h" src='./imagens/lupa.svg' aria-label=""search>
+                                        <div id = "caixa-ano"> 
+                                            <div id="ano-search-slider" class="ano-input-container">
+                                                <div class="slider">
+                                                    <div class="ano-slider"></div>
+                                                </div>
+                                                <div class="range-input">
+                                                    <span class="value-tooltip min-tooltip"></span>
+                                                    <span class="value-tooltip max-tooltip"></span>
+                                                    <input type="range" class="min-range" min="1846" max="${maxAno}" value="1846" step="1">
+                                                    <input type="range" class="max-range" min="1846" max="${maxAno}" value="${maxAno}" step="1">
+                                                </div>
+                                                <!--<div class = "ano-input-field">
+                                                    <div class = "ano-field">
+                                                        <input type="number" class = "min-input" id="ano-min-input" value="1">
+                                                    </div>
+                                                    <div class = "ano-field">
+                                                        <input type="number" class = "max-input" id="ano-max-input" value="${maxAno}">
+                                                    </div>
+                                                </div>-->
+                                            </div>
                                         </div>
                                     </div>
 
@@ -375,19 +401,61 @@ function displayData(wordData, textData, stoplist){
                                             <input id="autortxt-submit" type="image" class="autortxt-search-bar__button bt-h" src='./imagens/lupa.svg' aria-label=""search>
                                         </div>
                                     </div>`
-        
-        //ct_head_list.style.backgroundColor = "yellow"
+                  
 
         /*:::::  Botoes  :::::*/
-        const yearSubmitButton = document.querySelector('#yeartxt-submit')
-        const yearInput = document.querySelector('#yeartxt-input')
-
         const titulSubmitButton = document.querySelector('#titultxt-submit')
         const titulInput = document.querySelector('#titultxt-input')
-
         const autorSubmitButton = document.querySelector('#autortxt-submit')
         const autorInput = document.querySelector('#autortxt-input')
 
+        //ano sliders
+        const anoRangeValue = document.querySelector(".slider .ano-slider")
+        const anoRangeInputValue = document.querySelectorAll(".ano-input-container .range-input input")
+        const anoMinToolTip = document.querySelector(".ano-input-container .min-tooltip")
+        const anoMaxToolTip = document.querySelector(".ano-input-container .max-tooltip")
+
+        let anoGap = 1
+        let anoMinTimeOut, anoMaxTimeOut
+
+        /*::::::::::::::::::  Year Slider Helper Functions  ::::::::::::::::::*/
+        function updateAnoSlider(){
+            let minVal = parseInt(anoRangeInputValue[0].value)
+            let maxVal = parseInt(anoRangeInputValue[1].value)
+            let maxRange = parseInt(anoRangeInputValue[0].max)
+            let minRange = parseInt(anoRangeInputValue[0].min)
+
+            let leftPercent = ((minVal - minRange) / (maxRange - minRange)) * 100
+            let rightPercent = 100 - ((maxVal - minRange) / (maxRange - minRange)) * 100
+
+            anoRangeValue.style.left = `${leftPercent}%`
+            anoRangeValue.style.right = `${rightPercent}%`
+
+            updateAnoTooltipPosition(anoMinToolTip, minVal, maxRange, minRange)
+            updateAnoTooltipPosition(anoMaxToolTip, maxVal, maxRange, minRange)
+
+            anoMinToolTip.textContent = minVal
+            anoMaxToolTip.textContent = maxVal
+        }
+
+        function updateAnoTooltipPosition(tooltip, value, max, min){
+            const percentage = ((value-min) / (max-min)) * 100
+            tooltip.style.left = `${percentage}%`
+        }
+
+        function showAnoTooltip(tooltip){
+            clearTimeout(tooltip === anoMinToolTip ? anoMinTimeOut : anoMaxTimeOut)
+            tooltip.classList.add('show')
+        }
+
+
+        function hideAnoTooltip(tooltip){
+            if(tooltip === anoMinToolTip){
+                anoMinTimeOut = setTimeout(() => tooltip.classList.remove('show'), 1000)
+            } else {
+                anoMaxTimeOut = setTimeout(() => tooltip.classList.remove('show'), 1000)
+            }
+        }
 
         // conteudo após header //////////////////////
         let container = document.createElement("div")
@@ -395,6 +463,9 @@ function displayData(wordData, textData, stoplist){
         container.className = "container"
 
         function displayResultadotab(resultado, valor){
+
+            // Update currentResults whenever displaying
+            currentResults = resultado || textData
             // console.log(arrayResultados)
 
             /*:::::  Atualiza os headers  :::::*/
@@ -406,7 +477,7 @@ function displayData(wordData, textData, stoplist){
 
             //let total = textData.length
             //iteração para display
-            if(resultado == undefined || resultado == [] || resultado == ""){
+            if(!resultado || resultado.length === 0){
                 container.innerHTML = `<p>Não foram encontrados resultados para: "${valor}" </p><br><br>`
             } else{
                 for(let i = arrayResultados[iP].st; i < arrayResultados[iP].en; i++){
@@ -422,152 +493,87 @@ function displayData(wordData, textData, stoplist){
             }
 
             /*:::::  Display de páginas de resultados  :::::*/
-            // remove outro nPages que existam anteriormente em list_all_container
             const oldPages = list_all_container.querySelector('.n-page-ct')
             if(oldPages) oldPages.remove()
 
-            // div com bts de exibir pag de resultados
             let nPages = document.createElement("div")
             list_all_container.appendChild(nPages)
             nPages.className += "n-page n-page-ct"
 
-            if(resultado == undefined || resultado == [] || resultado == ""){
-                nPages.innerHTML = ""
-            } else {
-                nPages.innerHTML = ""
-                for(let i = 0; i < arrayResultados.length; i++){ // isto atualiza-se, mas 
+            if(resultado && resultado.length > 0){
+                for(let i = 0; i < arrayResultados.length; i++){
                     let nPage = document.createElement("a")
                     nPages.appendChild(nPage)
                     nPage.className += "n-page-i n-page" + i
                     nPage.id = `n-page${i}`
                     nPage.innerText = i+1
-                    //nPage.href = `#n-page${i}`
-
-                      nPage.addEventListener('click', (e) =>{
-                        console.log(`Click, page ${nPage.innerText}`)
-                        iP = i // tem de ser chamado acima
+                    nPage.addEventListener('click', (e) =>{
+                        iP = i
+                        displayResultadotab(resultado, valor)
                     })
+                    nPage.innerHTML += `<style> #n-page${i}:hover{background-color:#223F29; cursor:pointer; color:#FFFEF2}</style>`
                 }
             }
 
-            //console.log(`Resultado atualizado: ${arrayResultados.length}`)
-            sepPage()
-            document.querySelector('#n-page' + iP).style.backgroundColor = "#223F29"
-            document.querySelector('#n-page' + iP).style.color = "#FFFEF2"
+            const currentPage = document.querySelector('#n-page' + iP)
+            if(currentPage){
+                currentPage.style.backgroundColor = "#223F29"
+                currentPage.style.color = "#FFFEF2"
+            }
         }
+
+        // Initialize slider
+        updateAnoSlider()
 
         displayResultadotab(textData)
 
+
         /*:::::::::::  ____________FILTROS____________  :::::::::::*/
 
         /***************** Ordem Alfabetica [titulo] ********************/
         document.querySelector('#Ord-Tit').addEventListener('click', (e) => { // filtros funcionais
-            ordTitleTxt(ordTit_, textData) // dá erro aqui
-            displayResultadotab(textData)
-            //console.log("click!!")
+            ordTitleTxt(ordTit_, currentResults) // Use currentResults
+            iP = 0
+            resPPage(currentResults.length, rPP)
+            displayResultadotab(currentResults)
         })
-        // document.querySelector('#Ord-Tit').style.backgroundColor = "white"
 
         /***************** Ordem Alfabetica [autor] ********************/
         document.querySelector('#Ord-Aut').addEventListener('click', (e) => {
-            ordAutores(ordAut_, textData)
-            displayResultadotab(textData)
-            console.log("click!!")
+            ordAutores(ordAut_, currentResults) // Use currentResults
+            iP = 0
+            resPPage(currentResults.length, rPP)
+            displayResultadotab(currentResults)
         })
-        // document.querySelector('#Ord-Aut').style.backgroundColor = "white"
 
         /***************** Ordem cronologica ********************/
         document.querySelector('#Ord-Dat').addEventListener('click', (e) => {
-            ordData(ordDat_, textData)
-            displayResultadotab(textData)
-            console.log("click!!")
+            ordData(ordDat_, currentResults) // Use currentResults
+            iP = 0
+            resPPage(currentResults.length, rPP)
+            displayResultadotab(currentResults)
         })
-        // document.querySelector('#Ord-Dat').style.backgroundColor = "white"
-
-        /***************** Separadores page ********************/
-        function sepPage(){
-            for(let i = 0; i < arrayResultados.length; i++){ //funiona!! // deve ser por arrayResultados ter de se atualizar!!
-                    document.querySelector('#n-page' + i).addEventListener('click', (e) => {
-                    console.log(`Click, page ${document.querySelector('#n-page' + i).innerText}`)
-                    iP = i
-                    displayResultadotab(textData)
-                })
-                document.querySelector('#n-page' + i).innerHTML += `<style> #n-page${i}:hover{background-color:#223F29; cursor:pointer; color:#FFFEF2}</style>`
-            }
-        }
-        //sepPage() // ainda preciso de perceber!!
-
-
 
         /*:::::::::::  __Pesquisa livre__  :::::::::::*/
-        // Todos eles estão mal !!
-        /***************** Year pesquisa ********************/
-        yearInput.addEventListener('input', (e) => { // n pode ser com local compare
-            let value = String(e.target.value).trim()
 
-            // //reset pages every filter
-            // arrayResultados = []
-
-            if(value.length > 0){
-     
-                const filteredResultado = textData // ver como se faz para numeros
+        /***************** Title pesquisa ********************/
+        titulInput.addEventListener('input', (e) =>{
+            let value = e.target.value
+            if(value && value.trim().length > 0){
+                value = value.trim().toLowerCase()
+                const filteredResultado = textData
                     .filter(item => {
-                        const year = String(item?.date_of_publication ?? "")
-                        return year.startsWith(value)
+                        const title = normalize(item?.title || "")
+                        const val = normalize(value)
+                        return title.includes(val)
                     })
                     .sort((a,b) => {
-                        const na = Number(a.date_of_publication)
-                        const nb = Number(b.date_of_publication)
-                        return (Number.isNaN(na) ? Infinity : na) - (Number.isNaN(nb) ? Infinity : nb)
-                    })
-
-                resPPage(filteredResultado.length, rPP)
-                displayResultadotab(filteredResultado, value)
-
-            } else {
-                resPPage(textData.length, rPP)
-                displayResultadotab(textData, value)
-            }
-        })
-
-        /***************** Title pesquisa ********************/
-        titulInput.addEventListener('input', (e) =>{ // n sei se normalize está
-            let value = e.target.value
-
-            if(value && value.trim().length > 0){
-                value = value.trim().toLowerCase()
-
-                const filteredResultado = textData
-                    .filter(item => {
-                        const title = normalize(item?.title || "") // n sei se o titulo foi bem recolhido
-                        const val = normalize(value)
-                        return title.includes(val)
-                    })
-                    .sort((a,b) => { // ordem alfabetica com os valores dos resultados normalizados
                         const aTit = normalize(a.title)
                         const bTit = normalize(b.title)
-                        const val = normalize(value) // input-value normalizado
+                        const val = normalize(value)
 
-                        // const aStarts = aTit.startsWith(val) // compara se começa com o valor versao normalizada
-                        // const bStarts = bTit.startsWith(val)
-
-                        
-                        let aStarts, bStarts
-
-                        if(aTit.startsWith("[")){
-                            aStarts = aTit.startsWith(val,1)
-                        } else{
-                            aStarts = aTit.startsWith(val) // compara se começa com o valor versao normalizada
-                        }
-
-                        if(bTit.startsWith("[")){
-                            bStarts = bTit.startsWith(val,1)
-                        } else{
-                            bStarts = bTit.startsWith(val)
-                        }
-
-                        
-                        
+                        let aStarts = aTit.startsWith("[") ? aTit.startsWith(val,1) : aTit.startsWith(val)
+                        let bStarts = bTit.startsWith("[") ? bTit.startsWith(val,1) : bTit.startsWith(val)
 
                         if(aStarts && !bStarts) return -1
                         if(!aStarts && bStarts) return 1
@@ -575,34 +581,33 @@ function displayData(wordData, textData, stoplist){
                         return aTit.localeCompare(bTit, 'pt', { sensitivity: 'base' })
                     })
 
+                iP = 0
                 resPPage(filteredResultado.length, rPP)
                 displayResultadotab(filteredResultado, value)
 
             } else {
+                iP = 0
                 resPPage(textData.length, rPP)
-                displayResultadotab(textData, value)
+                displayResultadotab(textData)
             }
         })
 
         /***************** autor pesquisa ********************/
-        autorInput.addEventListener('input', (e) =>{ // n está confiavel!!
+        autorInput.addEventListener('input', (e) =>{
             let value = e.target.value
-
             if(value && value.trim().length > 0){
                 value = value.trim().toLowerCase()
-
                 const filteredResultado = textData
                     .filter(item => {
-                        const author = normalize(item?.author || "") // n sei se o autor foi bem recolhido
+                        const author = normalize(item?.author || "")
                         const val = normalize(value)
                         return author.includes(val)
                     })
-                    .sort((a,b) => { // ordem alfabetica com os valores dos resultados normalizados
+                    .sort((a,b) => {
                         const aAut = normalize(a.author)
                         const bAut = normalize(b.author)
-                        const val = normalize(value) // input-value normalizado
-
-                        const aStarts = aAut.startsWith(val) // compara se começa com o valor versao normalizada
+                        const val = normalize(value)
+                        const aStarts = aAut.startsWith(val)
                         const bStarts = bAut.startsWith(val)
 
                         if(aStarts && !bStarts) return -1
@@ -611,303 +616,81 @@ function displayData(wordData, textData, stoplist){
                         return aAut.localeCompare(bAut, 'pt', { sensitivity: 'base' })
                     })
 
+                iP = 0
                 resPPage(filteredResultado.length, rPP)
-
                 displayResultadotab(filteredResultado, value)
 
             } else {
+                iP = 0
                 resPPage(textData.length, rPP)
-                displayResultadotab(textData, value)
+                displayResultadotab(textData)
             }
         })
 
-    }
-    
+         /*:::::::: Event listeners for year slider ::::::::*/
+        anoRangeInputValue[0].addEventListener("mousedown", () => showAnoTooltip(anoMinToolTip))
+        anoRangeInputValue[0].addEventListener("touchstart", () => showAnoTooltip(anoMinToolTip))
+        anoRangeInputValue[1].addEventListener("mousedown", () => showAnoTooltip(anoMaxToolTip))
+        anoRangeInputValue[1].addEventListener("touchstart", () => showAnoTooltip(anoMaxToolTip))
 
+        for (let i = 0; i < anoRangeInputValue.length; i++) {
+            anoRangeInputValue[i].addEventListener("input", e => {
+                let minVal = parseInt(anoRangeInputValue[0].value)
+                let maxVal = parseInt(anoRangeInputValue[1].value)
+                let diff = maxVal - minVal
+
+                if(e.target.className === "min-range"){
+                    showAnoTooltip(anoMinToolTip)
+                } else {
+                    showAnoTooltip(anoMaxToolTip)
+                }
+
+                if(diff < anoGap){
+                    if(e.target.className === "min-range"){
+                        anoRangeInputValue[0].value = maxVal - anoGap
+                        minVal = maxVal - anoGap
+                    } else {
+                        anoRangeInputValue[1].value = minVal + anoGap
+                        maxVal = minVal + anoGap
+                    }
+                }
+
+                updateAnoSlider()
+
+                // Filter results by year
+                const filteredResultado = textData.filter(item => {
+                    const year = item.date_of_publication
+                    return year >= minVal && year <= maxVal
+                })
+
+                // Sort by year (ascending)
+                filteredResultado.sort((a, b) => a.date_of_publication - b.date_of_publication)
+
+                iP = 0
+                resPPage(filteredResultado.length, rPP)
+                displayResultadotab(filteredResultado, `ano: ${minVal}-${maxVal}`)
+            })
+
+            anoRangeInputValue[i].addEventListener("mouseup", (e) => {
+                if(e.target.className === "min-range"){
+                    hideAnoTooltip(anoMinToolTip)
+                } else {
+                    hideAnoTooltip(anoMaxToolTip)
+                }
+            })
+
+            anoRangeInputValue[i].addEventListener("touchend", (e) => {
+                if(e.target.className === "min-range"){
+                    hideAnoTooltip(anoMinToolTip)
+                } else {
+                    hideAnoTooltip(anoMaxToolTip)
+                }
+            })
+        }
+
+    }
 
     displayTabela()
-
-
-    /***********  Display das funções  ***********/
-    function displayAmostra(){
-        div_textos.innerHTML = ""
-        //div_textos.innerText = "click!! Amostra"
-
-        //** baseada na tabela de display em palavra selecionada **
-        let list_all_container = document.createElement("div")
-        document.querySelector(".div-textos").appendChild(list_all_container)
-        list_all_container.className += "list-all-container lista-amostra"
-
-        //Header!!
-        let ct_head_list = document.createElement("div")
-        document.querySelector(".lista-amostra").appendChild(ct_head_list)
-        ct_head_list.className += "list ct-head-list"
-
-        // conteudo do header!!
-        ct_head_list.innerHTML = `  <div class = "ano header ano-o-head" id="ano-o-head">
-                                        <h2 class = "ano-o-h">Ano</h2>
-                                        <p id = "Ord-Dat">Ord: ${ordDat}</p>
-
-                                        <div id = "year-search-bar">
-                                            <input id="yeartxt-input" aria-label="ano?" type="number" class="year-search-bar__input" placeholder="ano?" autofocus required>
-                                            <button id="yeartxt-submit" type="button" class="year-search-bar__button" aria-label=""search>GO</button>
-                                        </div>
-                                    </div>
-                                    <div class = "titul header titul-head"><h2>Título</h2><p id = "Ord-Tit">Ord: ${ordTit}</p>
-                                        <div id = "titultxt-search-bar">
-                                            <input id="titultxt-input" aria-label="titulo?" type="text" class="titultxt-search-bar__input" placeholder="titulo?" autofocus required>
-                                            <button id="titultxt-submit" type="button" class="titultxt-search-bar__button" aria-label=""search>GO</button>
-                                        </div>
-                                    </div>
-                                    <div class = "author header autor-head"><h2>Autor</h2><p id = "Ord-Aut">Ord: ${ordAut}</p>
-                                        <div id = "autortxt-search-bar">
-                                            <input id="autortxt-input" aria-label="autor?" type="text" class="autortxt-search-bar__input" placeholder="autor?" autofocus required>
-                                            <button id="autortxt-submit" type="button" class="autortxt-search-bar__button" aria-label=""search>GO</button>
-                                        </div>
-                                    </div>`
-        
-                                    // Add this to debug:
-        console.log('Element exists:', document.getElementById('ano-o-head'));
-        console.log('Computed display:', window.getComputedStyle(document.getElementById('ano-o-head')).display);
-        //ct_head_list.style.backgroundColor = "yellow"
-
-        /*:::::  Botoes  :::::*/
-        const yearSubmitButton = document.querySelector('#yeartxt-submit')
-        const yearInput = document.querySelector('#yeartxt-input')
-
-        const titulSubmitButton = document.querySelector('#titultxt-submit')
-        const titulInput = document.querySelector('#titultxt-input')
-
-        const autorSubmitButton = document.querySelector('#autortxt-submit')
-        const autorInput = document.querySelector('#autortxt-input')
-
-
-        // conteudo após header //////////////////////
-        let container = document.createElement("div")
-        document.querySelector(".lista-amostra").appendChild(container)
-        container.className = "container container-a"
-
-        //n funcional, pq n foi chamada!!! (resultado = textData)
-        function displayResultadotxt(resultado, valor){ // n sei se isto funciona por ser o original!!
-            //console.log(arrayResultados)
-
-            /*:::::  Atualiza os headers  :::::*/
-            document.querySelector('#Ord-Tit').textContent = `Ord: ${ordTit}`
-            document.querySelector('#Ord-Aut').textContent = `Ord: ${ordAut}`
-            document.querySelector('#Ord-Dat').textContent = `Ord: ${ordDat}`
-            
-            container.innerHTML = ""
-
-            //let total = textData.length
-            //iteração para display
-            if(resultado == undefined || resultado == [] || resultado == ""){
-                container.innerHTML = `<p>Não foram encontrados resultados para: "${valor}" </p><br><br>`
-            } else {
-                for(let i = arrayResultados[iP].st; i < arrayResultados[iP].en; i++){
-
-                    //cria a div principal
-                    let ct_item = document.createElement("a")
-                    ct_item.className += "ct-item-amostra ct-item" + (i+1)
-                    container.appendChild(ct_item)
-                    // ct_item.href = `index.html?id=${resultado[i].id}`
-                    ct_item.addEventListener('click', (e) => {
-                        window.location.href =`index.html?id=${resultado[i].id}`
-                    })
-
-                    texto_tratado = tratamento_texto(resultado[i].texto_completo)
-
-                    //elementos do item (Transformar n/n/ em parágrafo + reduzir a quantidade de texto!!)
-                    ct_item.innerHTML = `<div class = "titul-a">${resultado[i].title}</div>
-                                        <div class = "texto-a"><p>${texto_tratado}</p></div>
-                                        <a href = "p_categoria_especifica.html?categoria=Autores&especifica=${resultado[i].author}" class = "author-a">${resultado[i].author}</a>
-                                        <a href = "p_categoria_especifica.html?categoria=Anos&especifica=${resultado[i].date_of_publication}" class = "ano-a">${resultado[i].date_of_publication}</a> </br> </br>`
-                    
-                    
-                }
-            }
-
-            /*:::::  Display de páginas de resultados  :::::*/
-            // remove outro nPages que existam anteriormente em list_all_container
-            const oldPages = list_all_container.querySelector('.n-page-ct')
-            if(oldPages) oldPages.remove()
-
-            // div com bts de exibir pag de resultados
-            let nPages = document.createElement("div")
-            list_all_container.appendChild(nPages)
-            nPages.className += "n-page n-page-ct"
-            //nPages.innerHTML = "ATCHUMMM"
-
-
-            if(resultado == undefined || resultado == [] || resultado == ""){
-                nPages.innerHTML = ""
-            } else {
-                nPages.innerHTML = ""
-                for(let i = 0; i < arrayResultados.length; i++){ // isto atualiza-se, mas 
-                    let nPage = document.createElement("div")
-                    nPages.appendChild(nPage)
-                    nPage.className += "n-page-i n-page" + i
-                    nPage.id = `n-page${i}`
-                    nPage.innerText = i+1
-
-                    //   nPage.addEventListener('click', (e) =>{
-                    //   console.log(`Click, page ${nPage.innerText}`)
-                    //   iP = i // tem de ser chamado acima
-                    // })
-                }
-            }
-        }
-
-        displayResultadotxt(textData)
-
-        /*:::::::::::  ____________FILTROS____________  :::::::::::*/
-
-        /***************** Ordem Alfabetica [titulo] ********************/
-        document.querySelector('#Ord-Tit').addEventListener('click', (e) => { // filtros funcionais
-            ordTitleTxt(ordTit_, textData) // dá erro aqui
-            displayResultadotxt(textData)
-            //console.log("click!!")
-        })
-        // document.querySelector('#Ord-Tit').style.backgroundColor = "white"
-
-        /***************** Ordem Alfabetica [autor] ********************/
-        document.querySelector('#Ord-Aut').addEventListener('click', (e) => {
-            ordAutores(ordAut_, textData)
-            displayResultadotxt(textData)
-            console.log("click!!")
-        })
-        // document.querySelector('#Ord-Aut').style.backgroundColor = "white"
-
-        /***************** Ordem cronologica ********************/
-        document.querySelector('#Ord-Dat').addEventListener('click', (e) => {
-            ordData(ordDat_, textData)
-            displayResultadotxt(textData)
-            console.log("click!!")
-        })
-        // document.querySelector('#Ord-Dat').style.backgroundColor = "white"
-
-        /***************** Separadores page ********************/
-        function sepPage(){
-            for(let i = 0; i < arrayResultados.length; i++){ //funiona!! // deve ser por arrayResultados ter de se atualizar!!
-                    document.querySelector('#n-page' + i).addEventListener('click', (e) => {
-                    console.log(`Click, page ${document.querySelector('#n-page' + i).innerText}`)
-                    iP = i
-                    displayResultado(resultado)
-                })
-                document.querySelector('#n-page' + i).style.backgroundColor = "yellow" // após atualização dos filtros isto deixa de funcionar
-            }
-        }
-        sepPage() // ainda preciso de perceber!!
-
-
-
-        /*:::::::::::  __Pesquisa livre__  :::::::::::*/
-        // pode ser criada uma funcao a parte adaptada para os valores e nomes de variaveis!!
-        /***************** Year pesquisa ********************/
-        //este está complicado!!
-        // yearInput.addEventListener('input', (e) =>{ // n pode ser com local compare
-        //     let value = e.target.value
-
-        //     if(value && value.trim().length > 0){
-        //         value = value.trim().toLowerCase()
-
-        //         const filteredResultado = textData // ver como se faz para numeros
-        //             .filter(item => {
-        //                 const year = item?.date_of_publication || "" // n sei se o titulo foi bem recolhido
-        //                 const val = value
-        //                 return year.includes(val)
-        //             })
-        //             .sort((a,b) => { // ordem numerica dos valores
-
-        //                 a.date_of_publication < b.date_of_publication ? -1 : 1
-        //             })
-
-        //         resPPage(filteredResultado.length, rPP)
-
-        //         displayResultadotxt(filteredResultado, value)
-
-        //     } else {
-        //         resPPage(textData.length, rPP)
-        //         displayResultadotxt(textData, value)
-        //     }
-        // })
-
-        /***************** Title pesquisa ********************/
-        titulInput.addEventListener('input', (e) =>{ // n sei se normalize está
-            let value = e.target.value
-
-            if(value && value.trim().length > 0){
-                value = value.trim().toLowerCase()
-
-                const filteredResultado = textData
-                    .filter(item => {
-                        const title = normalize(item?.title || "") // n sei se o titulo foi bem recolhido
-                        const val = normalize(value)
-                        return title.includes(val)
-                    })
-                    .sort((a,b) => { // ordem alfabetica com os valores dos resultados normalizados
-                        const aTit = normalize(a.title)
-                        const bTit = normalize(b.title)
-                        const val = normalize(value) // input-value normalizado
-
-                        const aStarts = aTit.startsWith(val) // compara se começa com o valor versao normalizada
-                        const bStarts = bTit.startsWith(val)
-
-                        if(aStarts && !bStarts) return -1
-                        if(!aStarts && bStarts) return 1
-
-                        return aTit.localeCompare(bTit, 'pt', { sensitivity: 'base' })
-                    })
-
-                resPPage(filteredResultado.length, rPP)
-
-                displayResultadotxt(filteredResultado, value)
-
-            } else {
-                resPPage(textData.length, rPP)
-                displayResultadotxt(textData, value)
-            }
-        })
-
-        /***************** autor pesquisa ********************/
-        //funcionaaaa
-        autorInput.addEventListener('input', (e) =>{ // n sei se normalize está
-            let value = e.target.value
-
-            if(value && value.trim().length > 0){
-                value = value.trim().toLowerCase()
-
-                const filteredResultado = textData
-                    .filter(item => {
-                        const author = normalize(item?.author || "") // n sei se o titulo foi bem recolhido
-                        const val = normalize(value)
-                        return author.includes(val)
-                    })
-                    .sort((a,b) => { // ordem alfabetica com os valores dos resultados normalizados
-                        const aAut = normalize(a.author)
-                        const bAut = normalize(b.author)
-                        const val = normalize(value) // input-value normalizado
-
-                        const aStarts = aAut.startsWith(val) // compara se começa com o valor versao normalizada
-                        const bStarts = bAut.startsWith(val)
-
-                        if(aStarts && !bStarts) return -1
-                        if(!aStarts && bStarts) return 1
-
-                        return aAut.localeCompare(bAut, 'pt', { sensitivity: 'base' })
-                    })
-
-                resPPage(filteredResultado.length, rPP)
-
-                displayResultadotxt(filteredResultado, value)
-
-            } else {
-                resPPage(textData.length, rPP)
-                displayResultadotxt(textData, value)
-            }
-        })
-
-        
-    }
 
 }
 
