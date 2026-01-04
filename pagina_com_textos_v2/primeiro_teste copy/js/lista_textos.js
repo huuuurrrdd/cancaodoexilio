@@ -1,18 +1,3 @@
-
-/*
-    Esta página deve incluir:
-    v 1. Título
-    2. 3 botões (amostra, tabela, mapa)
-        a) amostra (3º)
-        b) tabela (1º)
-        c) mapa (2º)
-
-    3. 1 div onde se exibe o a), b) e c)
-
-
-*/
-
-
 function fetchData(){
     let wordData, textData, stoplist
 

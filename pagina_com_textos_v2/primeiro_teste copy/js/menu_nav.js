@@ -27,7 +27,7 @@ nav.innerHTML = `
                             <li><a href="lista_todas_palavras.html">Palavras</a></li>
                             <li><a href="p_categorias_palavras.html">Categorias</a></li>
                         
-                            <li><a href="sobre.html">Sobre</a></li>
+                            <li id = "menu-sobre"><a href="sobre.html">Sobre</a></li>
                             <li><a href="index.html?id=1">Home</a></li>
                         </ul>
                     </div>
@@ -178,18 +178,19 @@ function pesquisa_livre(){
     /******* encontra url com base em prioridade **********/
     function findRedirectUrl(searchValue, gWordData, gTextData){
         const val = normalize(searchValue.toLowerCase())
+        const valExact = normalizeExact(searchValue) // Add this for exact word matching
 
-        //prioridade 1 palavras
+        //prioridade 1 palavras - use normalizeExact
         if(gWordData?.palavras){
             const foundPalavra = gWordData.palavras.find(item => {
                 const palavra = typeof item === 'string' ? item : item.palavra
-                return normalize(String(palavra || "")) === val
+                return normalizeExact(String(palavra || "")) === valExact // Changed to normalizeExact
             })
 
             if(foundPalavra) {
                 const palavra = typeof foundPalavra === 'string' ? foundPalavra : foundPalavra.palavra
                 console.log(palavra)
-                return`./lista_palavras.html?palavra=${palavra}` // o encode pode n funcionar!!
+                return`./lista_palavras.html?palavra=${palavra}`
             }
         }
 
@@ -198,7 +199,7 @@ function pesquisa_livre(){
             normalize(item?.title || "") === val
         )
         if(foundByTitle){
-            console.log(foundByTitle.id.id)
+            console.log(foundByTitle.id)
             return`./index.html?id=${foundByTitle.id}`
         }
 
@@ -207,8 +208,7 @@ function pesquisa_livre(){
             normalize(item?.author || "") === val
         )
         if(foundByAuthor){
-            console.log()
-            return `p_categoria_especifica.html?categoria=Autores&especifica=${foundByAuthor.author}"`
+            return `./p_categoria_especifica.html?categoria=Autores&especifica=${foundByAuthor.author}` // Fixed: removed extra quote
         }
 
         //prioridade 4: Locais
@@ -225,7 +225,7 @@ function pesquisa_livre(){
                 local => normalize(String(local || "")) === val
             )
             console.log((matchedLocal || searchValue))
-            return `p_categoria_especifica.html?categoria=Locais&especifica=${(matchedLocal || searchValue)}`
+            return `./p_categoria_especifica.html?categoria=Locais&especifica=${(matchedLocal || searchValue)}` // Fixed: added ./
         }
 
         //Prioridade 5: fauna
@@ -241,7 +241,7 @@ function pesquisa_livre(){
                 animal => normalize(String(animal || "")) === val
             )
             console.log((matchedFauna || searchValue))
-            return `p_categoria_especifica.html?categoria=Fauna&especifica=${(matchedFauna || searchValue)}`
+            return `./p_categoria_especifica.html?categoria=Fauna&especifica=${(matchedFauna || searchValue)}` // Fixed: added ./
         }
 
         //Prioridade 6: Flora
@@ -257,7 +257,7 @@ function pesquisa_livre(){
                 planta => normalize(String(planta || "")) === val
             )
             console.log((matchedFlora || searchValue))
-            return `p_categoria_especifica.html?categoria=Flora&especifica=${(matchedFlora || searchValue)}`
+            return `./p_categoria_especifica.html?categoria=Flora&especifica=${(matchedFlora || searchValue)}` // Fixed: added ./
         }
 
         //prioridade 7: Anos
@@ -397,7 +397,9 @@ function filtraResultados(value, dados, propriedade, ulHTML, sliceValue, isArray
     
     if(value && value.trim().length > 0){
         const trimmmedValue = value.trim()
-        const val = isNumeric ? trimmmedValue : normalize(trimmmedValue.toLowerCase())
+        // Use normalizeExact for Palavras, normalize for others
+        const val = isNumeric ? trimmmedValue : 
+                    (titulo === "Palavras" ? normalizeExact(trimmmedValue) : normalize(trimmmedValue.toLowerCase()))
 
         let filteredResults = []
         let seenValues = new Set() // track valores observados para evitar duplicações
@@ -421,7 +423,9 @@ function filtraResultados(value, dados, propriedade, ulHTML, sliceValue, isArray
                 propValue.forEach(element => {
                     if(element === null || element === undefined) return
 
-                    const normalizedElement = normalize(String(element))
+                    const normalizedElement = titulo === "Palavras" ? 
+                        normalizeExact(String(element)) : 
+                        normalize(String(element))
 
                     //Verifica se tem duplicações
                     if(!seenValues.has(normalizedElement) && normalizedElement.includes(val)){
@@ -457,7 +461,9 @@ function filtraResultados(value, dados, propriedade, ulHTML, sliceValue, isArray
                     }
                 } else {
                     // para propriedades simples (como titulo e autor) (valores "normais")
-                    const normalizedValue = normalize(String(propValue))
+                    const normalizedValue = titulo === "Palavras" ? 
+                        normalizeExact(String(propValue)) : 
+                        normalize(String(propValue))
 
                     //verifica duplicações
                     if(!seenValues.has(normalizedValue) && normalizedValue.includes(val)){
@@ -584,6 +590,7 @@ function filtraTodosResultados(value, gWordData, gTextData, resulTodos, inputEle
     if(value && value.trim().length > 0){
         const trimmmedValue = value.trim()
         const val = normalize(trimmmedValue.toLowerCase())
+        const valExact = normalizeExact(trimmmedValue) // For Palavras
 
         let allResults = []
         let seenValues = new Set()
@@ -604,10 +611,14 @@ function filtraTodosResultados(value, gWordData, gTextData, resulTodos, inputEle
                     propValue.forEach(element => {
                         if(element === null || element === undefined) return
 
-                        const normalizedElement = normalize(String(element))
+                        const normalizedElement = categoryLabel === "Palavras" ? 
+                            normalizeExact(String(element)) : 
+                            normalize(String(element))
+
+                        const searchValue = categoryLabel === "Palavras" ? valExact : val
                         const uniqueKey = `${categoryLabel}:${normalizedElement}`
 
-                        if(!seenValues.has(uniqueKey) && normalizedElement.includes(val)){
+                        if(!seenValues.has(uniqueKey) && normalizedElement.includes(searchValue)){
                             seenValues.add(uniqueKey)
 
                             allResults.push({
@@ -640,10 +651,14 @@ function filtraTodosResultados(value, gWordData, gTextData, resulTodos, inputEle
                         }
                     } else {
 
-                        const normalizedValue = normalize(String(propValue))
+                        const normalizedValue = categoryLabel === "Palavras" ? 
+                            normalizeExact(String(propValue)) : 
+                            normalize(String(propValue))
+
+                        const searchValue = categoryLabel === "Palavras" ? valExact : val
                         const uniqueKey = `${categoryLabel}:${normalizedValue}`
                         
-                        if(!seenValues.has(uniqueKey) && normalizedValue.includes(val)){
+                        if(!seenValues.has(uniqueKey) && normalizedValue.includes(searchValue)){
                             seenValues.add(uniqueKey)
                             
                             allResults.push({
@@ -675,9 +690,11 @@ function filtraTodosResultados(value, gWordData, gTextData, resulTodos, inputEle
             const aValue = a.sortValue
             const bValue = b.sortValue
 
+            const compareVal = a.category === "Palavras" ? valExact : val
+
             //Passo 1: verifica match exato (maior prioridade)
-            const aExact = a.normalizedValue === val
-            const bExact = b.normalizedValue === val
+            const aExact = a.normalizedValue === compareVal
+            const bExact = b.normalizedValue === compareVal
 
             if(aExact && !bExact) return -1
             if(!aExact && bExact) return 1
@@ -687,15 +704,15 @@ function filtraTodosResultados(value, gWordData, gTextData, resulTodos, inputEle
             let aStarts, bStarts
 
             if(typeof aValue === 'string' && aValue.startsWith("[")){
-                aStarts = aValue.startsWith(val, 1)
+                aStarts = aValue.startsWith(compareVal, 1)
             } else {
-                aStarts = typeof aValue === 'string' && aValue.startsWith(val)
+                aStarts = typeof aValue === 'string' && aValue.startsWith(compareVal)
             }
 
             if(typeof bValue === 'string' && bValue.startsWith("[")){
-                bStarts = bValue.startsWith(val, 1)
+                bStarts = bValue.startsWith(compareVal, 1)
             } else {
-                bStarts = typeof bValue === 'string' && bValue.startsWith(val)
+                bStarts = typeof bValue === 'string' && bValue.startsWith(compareVal)
             }
 
             if(aStarts && !bStarts) return -1
@@ -734,57 +751,6 @@ function filtraTodosResultados(value, gWordData, gTextData, resulTodos, inputEle
             }
 
             return 0
-
-            /*** Versão anterior ***/
-            // const categoryPriority = {
-            //     "Palavras": 1,
-            //     "Titulos": 2,
-            //     "Autores": 3,
-            //     "Locais": 4,
-            //     "Fauna": 5,
-            //     "Flora": 6,
-            //     "Data": 7
-            // }
-
-            // const aPriority = categoryPriority[a.category] || 999
-            // const bPriority = categoryPriority[b.category] || 999
-
-            // if(aPriority !== bPriority) {
-            //     return aPriority - bPriority
-            // }
-
-            // //Na mesma categoria, sorteia pela qualidade do match
-            // if(a.isNumber && b.isNumber){
-            //     const na = Number(a.sortValue)
-            //     const nb = Number(b.sortValue)
-            //     return (Number.isNaN(na) ? Infinity : na) - (Number.isNaN(nb) ? Infinity : nb)
-            // }
-
-            // const aValue = a.sortValue
-            // const bValue = b.sortValue
-
-            // let aStarts, bStarts
-
-            // if(typeof aValue === 'string' && aValue.startsWith("[")){
-            //     aStarts = aValue.startsWith(val, 1)
-            // } else {
-            //     aStarts = typeof aValue === 'string' && aValue.startsWith(val)
-            // }
-
-            // if(typeof bValue === 'string' && bValue.startsWith("[")){
-            //     bStarts = bValue.startsWith(val, 1)
-            // } else {
-            //     bStarts = typeof bValue === 'string' && bValue.startsWith(val)
-            // }
-
-            // if(aStarts && !bStarts) return -1
-            // if(!aStarts && bStarts) return 1
-
-            // if(typeof aValue === 'string' && typeof bValue === 'string'){
-            //     return aValue.localeCompare(bValue, 'pt', { sensitivity: 'base' })
-            // }
-
-            //return 0
 
         })
 
@@ -930,6 +896,25 @@ function normalize(str){
     ?.toLowerCase()
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
+}
+
+// For exact matching with accents preserved
+function normalizeExact(str){
+    if(typeof str !== 'string'){
+        str = String(str || '')
+    }
+    return str?.toLowerCase()
+}
+
+// For fuzzy matching without accents (when you want "sabía" to match "sabia")
+function normalizeFuzzy(str){
+    if(typeof str !== 'string'){
+        str = String(str || '')
+    }
+    return str
+        ?.toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
 }
 
 

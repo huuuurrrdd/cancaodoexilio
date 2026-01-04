@@ -465,47 +465,11 @@ input[type=text]{
     text-align: center;
 }
 
-
-
-@media screen and (max-width: 768px) {
-
-  nav .input-nav[type=text]{
-    float: none;
-  }
-
-  .a-nav{
-    display: none;
-  }
-
-  .a-nav, nav, .subnav{
-    float: none;
-    display: block;
-    text-align: center;
-    width: 100%;
-  }
-
-  .form-nav{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-/* .ham-box{
+#menu-sobre{
   position: absolute;
-  right: 20px;
-  display: block;
-  background-color: black;
-  width: 20px;
-  height: 20px;
-  cursor: pointer;
-} */
-
-
-  .a-nav, .form-nav, .subnav{
-    padding: 10px 0;
-  }
-
+  bottom: 100px;
 }
+
 
 /****** icone de mapa ******/
 #mapa-icon{
@@ -526,32 +490,3 @@ input[type=text]{
   filter: brightness(0) saturate(100%) invert(17%) sepia(17%) saturate(1317%) hue-rotate(82deg) brightness(100%) contrast(87%);
 }
 
-
-/*
-  LISTA TAREFAS:
-  - (feito) Remover parte de link
-  - (feito) Remover bullet points
-  - (feito) Colocar caixa grande à volta de cada item
-  - (feito) Efeito para hover em cada caixa
-  - Experimentar fazer toda uma nova navegação inspirada em https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_searchbar2
-
-  - Pesquisa de palavras:
-    - Ajeitar caixa de pesquisa
-    - Ajeitar input
-    - (feito) Colocar imagem de lupa na pesquisa
-    - Caixa para apresentar resultados
-    - Fazer o mesmo que na página todas palavras
-    - links em cada palavra para acesso a pág da palavra
-
-  - Colocar versão mobile (hamburguer)
-
-  (depois para págna de textos:
-    - Destacar menos as palavras clicáveis
-    - Retirar contorno à caixa do texto
-  )
-
-
-
-
-
-*/
