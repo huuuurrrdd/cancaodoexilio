@@ -385,37 +385,130 @@ function displayData(wordData, textData, stoplist, lemmasData){
         margem_ct.appendChild(elemento_grafico)
         elemento_grafico.className += "elemento-grafico grafico-" + classEsp
 
+        //Opções de grafico
+        if(isCategoriaPalavra) {
+            let chart_options = document.createElement("div")
+            elemento_grafico.appendChild(chart_options)
+            chart_options.className = "chart-options"
+
+            chart_options.innerHTML = `
+            <label class="chart-option">
+                <input type="checkbox" id="show-texts" checked>
+                <span>Número de textos</span>
+            </label>
+            <label class="chart-option">
+                <input type="checkbox" id="show-frequency">
+                <span>Frequência total</span>
+            </label>`
+        }
+
         let canvas = document.createElement("canvas")
-        document.querySelector(".grafico-" + classEsp).appendChild(canvas)
+        elemento_grafico.appendChild(canvas)
         canvas.className += "grafico-palavras-populares"
 
-        // adicionar gráfico aleatorio
-        const GP = document.querySelector(".grafico-palavras-populares")
+        let freq_palavras_grafico = []
 
-        //*********** Gráfico inicial **********/
-        // neste gráfico é importante poder comparar o nº de textos total com o nº que mencionam
-        new Chart(GP, {
+        if(isCategoriaPalavra){
+            //inicia todos os anos a 0
+            for (let i = start; i <= end; i++) {
+               freq_palavras_grafico.push(0) 
+            }
+
+            //Soma frequencias para cada ano
+            let textosResultado = wordData.palavras[indicePalavra].textos
+            textosResultado.forEach(texto => {
+                const metadata = textData[texto.id_text - 1]
+                const ano = metadata.date_of_publication
+                const yearIndex = ano - start
+                if(yearIndex >= 0 && yearIndex < freq_palavras_grafico.length){
+                    freq_palavras_grafico[yearIndex] += texto.frequencia
+                }
+            })
+        }
+
+        //cria datasets
+        const datasets = []
+
+        //Dataset para numero de textos
+        const textsDataset = {
+            label: isCategoriaPalavra ? `Número de textos` : `${categoria} ao longo do tempo`,
+            data: freq_grafico,
+            borderWidth: 1,
+            borderColor: '#223F29',
+            backgroundColor: '#223f29a4',
+            pointBorderWidth: 1,
+            pointRadius: 3,
+            hidden: false
+        }
+
+        datasets.push(textsDataset)
+
+        if(isCategoriaPalavra){
+            const freqDataset = {
+                label: `Frequencia total da palavra`,
+                data: freq_palavras_grafico,
+                borderWidth: 1,
+                borderColor: '#8B4513',
+                backgroundColor: '#8B451380',
+                pointBorderWidth: 1,
+                pointRadius: 3,
+                hidden: true,
+                yAxisID: 'y1'
+            }
+            datasets.push(freqDataset)
+        }
+
+        const chartConfig = {
             type: "line",
             data: {
                 labels: anos_grafico,
-                datasets:[{
-                    label: `${categoria} ao longo do tempo`,
-                    data: freq_grafico,
-                    borderWidth: 1,
-                    borderColor: '#223F29',
-                    backgroundColor: '#223f29a4',
-                    pointBorderWidth: 1,
-                    pointRadius: 3
-                }]
+                datasets: datasets
             },
-            options:{
-                scales:{
-                    y:{
-                        beginAtZero: true
+            options: {
+                animation: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        position: 'left',
+                        title: {
+                            display: true,
+                            text: 'Número de texto'
+                        }
                     }
                 }
             }
-        })
+        }
+
+        // adicionar segundo y-axis para frequencia se palavras
+        if(isCategoriaPalavra){
+            chartConfig.options.scales.y1 = {
+                beginAtZero: true,
+                position: 'right',
+                title: {
+                    display: true,
+                    text: 'Frequência'
+                },
+                grid: {
+                    drawOnChartArea: false
+                }
+            }
+        }
+
+        const chart = new Chart(canvas, chartConfig)
+
+        // Add event listeners for checkboxes
+        if(isCategoriaPalavra) {
+            document.getElementById('show-texts').addEventListener('change', (e) => {
+                chart.data.datasets[0].hidden = !e.target.checked
+                chart.update()
+            })
+            
+            document.getElementById('show-frequency').addEventListener('change', (e) => {
+                chart.data.datasets[1].hidden = !e.target.checked
+                chart.update()
+            })
+        }
+
     }
     
 

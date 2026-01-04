@@ -1171,3 +1171,5 @@ function displayData(wordData, textData, stoplist, lemmasData){
     displayTabela()
 }
 
+
+
