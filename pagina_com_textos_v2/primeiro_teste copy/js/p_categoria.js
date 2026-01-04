@@ -539,15 +539,6 @@ function displayData(wordData, textData, stoplist) {
                                     </div>
                                 </div>
 
-                                <div class = "texto header texto-header">
-                                    <h2 class = "texto-o-h">Textos</h2>
-                                    <p id="Ord-Tit">Ord: </p>
-                                    <div id="tit-search-bar">
-                                        <input id="tit-input" class="input-h" aria-label="titulo?" type="text" class="tit-search-bar__input" placeholder="titulo?" autofocus required>
-                                        <input id="tit-submit" type="image" class="tit-search-bar_button bt-h" src='./imagens/lupa.svg' aria-label="search">
-                                    </div>
-                                </div>
-
                                 <div class = "frequencia header frequencia-header">
                                     <h2 class = "fre-o-h">Freq</h2>
                                     <p id="Ord-Freq">Ord:${ordFre} </p>

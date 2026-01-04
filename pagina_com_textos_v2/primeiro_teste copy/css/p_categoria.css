@@ -36,8 +36,7 @@
 
 /******** items-header e tabela *********/
 .palavras { grid-area: 1 / 3 / 2 / 6; }
-.texto { grid-area: 1 / 6 / 2 / 10; }
-.frequencia { grid-area: 1 / 10 / 2 / 12; }
+.frequencia { grid-area: 1 / 6 / 2 / 12; }
 .barra-frequencia { grid-area: 1 / 6 / 2 / 12; }
 
 /******** botoes header *********/
