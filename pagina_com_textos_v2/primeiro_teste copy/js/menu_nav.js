@@ -190,7 +190,7 @@ function pesquisa_livre(){
             if(foundPalavra) {
                 const palavra = typeof foundPalavra === 'string' ? foundPalavra : foundPalavra.palavra
                 console.log(palavra)
-                return`./lista_palavras.html?palavra=${palavra}`
+                return`./p_categoria_especifica.html?categoria=Palavras&especifica=${palavra}`
             }
         }
 
@@ -537,7 +537,7 @@ function filtraResultados(value, dados, propriedade, ulHTML, sliceValue, isArray
                         // Redireciona baseado em parametro categoria/ titulo
                         switch(titulo){
                             case "Palavras":
-                                window.location.href = `./lista_palavras.html?palavra=${result.displayValue}`
+                                window.location.href = `./p_categoria_especifica.html?categoria=Palavras&especifica=${result.displayValue}`
                                 break
 
                             case "Poemas":
@@ -773,7 +773,7 @@ function filtraTodosResultados(value, gWordData, gTextData, resulTodos, inputEle
                     //redireciona com base na categoria diretamente (não preenche fill input e submete form)
                     switch(result.category) {
                         case "Palavras":
-                            window.location.href = `./lista_palavras.html?palavra=${result.displayValue}`
+                            window.location.href = `./p_categoria_especifica.html?categoria=Palavras&especifica=${result.displayValue}`
                             break
 
                         case "Titulos":
