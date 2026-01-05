@@ -17,11 +17,17 @@ conteudo.className = "texto-conteudo"
 
 titulo.innerHTML = "Sobre"
 
-conteudo.innerHTML = `<p>Em 1843, na cidade de Coimbra, o estudante brasileiro Antônio Gonçalves Dias compôs o poema <i>Canção do Exílio</i> como uma expressão de nostalgia pela sua pátria de origem.
-                        Desde a sua publicação em 1846, a obra tem inspirado inúmeras interpretações na forma de pastiches e paródias.
-                        Algumas dessas respostas enaltecem a cultura e a geografia do Brasil, outras criticam e expõem os problemas do país.
-                        </p>
-                        <p>Esta plataforma visa ser uma ferramenta de exploração do conjunto dos vários textos e palavras que foram escritos ao longo dos anos.</p>
-                        <p><br>O ponto principal de ligação entre os poemas são as palavras que os compõem. É através das palavras que se procuram novos textos e novas palavras.</p>
-                        <p>As categorias de palavras, pretendem agrupar determinadas palavras ou expressões encontradas nos textos e agrupá-las em temas específicos 
-                        e compreender de que forma evolui a presença destas categorias nos textos ao longo do tempo. As categorias atualmente presentes são: locais, fauna, flora, anos e autores.</p>`
+conteudo.innerHTML = `  Em 1843, na cidade de Coimbra, o estudante brasileiro Antônio Gonçalves Dias compôs o poema <i>Canção do Exílio</i> como uma expressão de nostalgia pela sua pátria de origem. 
+                        Desde a sua publicação em 1846, a obra tem inspirado inúmeras interpretações na forma de pastiches e paródias. Algumas dessas respostas enaltecem a cultura e a geografia do Brasil, 
+                        enquanto outras criticam e expõem os problemas do país.
+                        
+                        <p>Esta plataforma visa ser uma ferramenta de exploração do conjunto dos vários textos escritos a partir da Canção do Exílio ao longo dos anos, permitindo observar os textos interrelacionados e transformações ocorridas.</p>
+                        <p>O ponto principal de ligação entre os poemas são as palavras que os compõem. É através das palavras que se estabelecem relações entre textos, se descobrem novos percursos de leitura e se revelam recorrências temáticas e simbólicas.</p>
+                        <h2>Estrutura</h2>
+                        <p>A organização da plataforma está assente em categorias, que funcionam como unidades estruturais e analíticas. Considera-se categoria qualquer palavra, tema ou expressão geral que permita agrupar textos ou informações associadas. 
+                        Estas categorias possibilitam compreender de que forma determinados elementos surgem, se mantêm ou se transformam ao longo do tempo.</p>
+                        <p>As categorias atualmente presentes são: textos, palavras, locais, fauna, flora, anos e autores.</p>
+                        <h2>Outras representações da <i>Canção do Exílio</i></h2>
+                        <p>Este projeto pertence a um estudo desenvolvido por Joshua Enslen, no qual foi construído um corpus de cerca de 500 intertextos variados. 
+                        A partir desse corpus, foi aplicada uma metodologia que identifica instâncias de palavras e expressões relevantes do poema original em outras obras. 
+                        Baseado desta análise, foram criadas diversas representações da Canção do Exílio:</p>`
