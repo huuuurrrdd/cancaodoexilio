@@ -358,11 +358,27 @@ function displayData(wordData, textData, stoplist, lemmasData){
     let elemento_h = document.createElement("h1")
     margem_ct.appendChild(elemento_h)
     elemento_h.className += "page-title elemento-h elemento-h-" + classEsp
-    elemento_h.innerHTML = especificaDisplay
+    elemento_h.innerHTML += especificaDisplay
 
     let elemento_hover = document.createElement('div')
     margem_ct.appendChild(elemento_hover)
     elemento_hover.className = "elemento-hover"
+
+    if(categoria === "Locais"){
+        //link de mapa
+            let a_map = document.createElement('a')
+            a_map.className = "a-map"
+            a_map.id = "a-map"
+            a_map.title = `Ver ${titleCase(classEsp, stoplist)} no mapa`
+            a_map.href = `./mapa.html?local=${classEsp}`
+            elemento_h.appendChild(a_map)
+
+            let iconMapa_ = document.createElement('img')
+            iconMapa_.src = "./imagens/m6.svg"
+            iconMapa_.id = "mapa-icon"
+            a_map.appendChild(iconMapa_)
+    }
+    
 
     let btVoltar = document.createElement("a")
     margem_ct.appendChild(btVoltar)

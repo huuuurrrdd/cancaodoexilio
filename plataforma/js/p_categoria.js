@@ -352,11 +352,11 @@ function displayData(wordData, textData, stoplist) {
   categoria_container.appendChild(margem_ct);
   margem_ct.className = "margem-ct";
 
-  //subtitulo
-  let subtitulo = document.createElement("p");
-  margem_ct.appendChild(subtitulo);
-  subtitulo.className += "subtitulo";
-  subtitulo.innerText = "Categoria de palavras:";
+  // //subtitulo
+  // let subtitulo = document.createElement("p");
+  // margem_ct.appendChild(subtitulo);
+  // subtitulo.className += "subtitulo";
+  // subtitulo.innerText = "Categoria de palavras:";
 
   //*************  Titulo de página (Nome de categoria) ****************/
   let categoria_palavras_h = document.createElement("h1");
@@ -593,7 +593,22 @@ function displayData(wordData, textData, stoplist) {
         let palavra = document.createElement("div");
         document.querySelector(".link-palavra-cat" + i).appendChild(palavra);
         palavra.className += "palavra";
-        palavra.innerHTML = palavraDisplay;
+        
+
+        if(categoria === "Locais"){
+          let a_map = document.createElement('a')
+            a_map.className = "a-map"
+            a_map.id = "a-map"
+            a_map.title = `Ver ${titleCase(palavraDisplay, stoplist)} no mapa`
+            a_map.href = `./mapa.html?local=${resultado[i].palavra}`
+            palavra.appendChild(a_map)
+
+            let iconMapa_ = document.createElement('img')
+            iconMapa_.src = "./imagens/m6.svg"
+            iconMapa_.id = "mapa-icon"
+            a_map.appendChild(iconMapa_)
+        }
+        palavra.innerHTML += palavraDisplay;
 
         let barra_frequencia = document.createElement("div");
         document.querySelector(".ct-item" + i).appendChild(barra_frequencia);

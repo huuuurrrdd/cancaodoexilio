@@ -449,14 +449,6 @@ function nToBr(string){// converter n em br -------- Conversão de espaços
         : item
     )
 
-    //console.log(`Teste 2: ${convertedn}`) //funciona
-
-        /*  Explicação:
-        - item =>   (o mesmo que: "function(item) {...}")
-        - item ===  "\n" (comparacao dos elementos)
-        - ? "<br>"  (se sim, "<br>")
-        - : item    (se não, item como estava antes)
-    */
 return convertedn
 
 }
@@ -501,30 +493,6 @@ function stringHtml(converted, stoplist, wordData) { // retorna a string em form
 }
 
 
-    /* PROBLEMAS:
-            - Falta remover a pontuação (na verificação e link) e colocar como item no texto (FEITOO!!)
-            - 2 versões do "item"
-                -> Com pontuação
-                    - [\p{L}\p{N}_] is Unicode-aware:
-                        -> \p{L} = all letters (including accents)
-                        -> \p{N} = all numbers
-                        -> Add u flag to treat input as Unicode
-
-                -> Sem pontuação:
-                    - [^\p{L}\p{N}] → Negated class: remove everything that is not a Letter or Number
-
-                ---> Falta definir uma string para pontuação antes do texto e pontuação depois do textoo!! <---
-
-        */
-
-    // console.log("palavrasLista:", palavrasLista.slice(0, 10)); // check the first 10
-    // console.log("nstring:", nstring.slice(0, 10)); // check output
-    
-    // for(let i = 0; i< nstring.length; i++){
-    //     console.log(nstring[i])
-    // }
-
-
 
 /********  HTMLSTRINGs para 1 string  ********/
 function joinString(string){
@@ -555,12 +523,6 @@ function joinString(string){
         // verifica item atual
         const currIsNoSpaceBefore = noSpaceBefore.test(trimmedItem)
 
-        /*  Adiciona espaço antes do item atual se:
-            - Não é primeiro item;
-            - Atual não é pontuação "no space before"
-            - Anterior não é '<br>'
-            - Anterior não é pontuação "no space after"
-        */
        if(i > 0 && !currIsNoSpaceBefore && !prevIsBr && !prevIsNoSpaceAfter){
             final += ' '
        }

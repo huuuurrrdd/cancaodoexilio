@@ -167,3 +167,7 @@
 .barra-interior{
     height: 100%;
 }
+
+.palavra:hover{
+    text-decoration: underline;
+}
