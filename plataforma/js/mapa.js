@@ -382,7 +382,7 @@ function displayData(wordData, textData, stoplist){
                 let htmlContent = ''
 
                 infoTextos.forEach((nomeObj, index) => {
-                    htmlContent += `<h3><a href="p_categoria_especifica.html?categoria=Locais&especifica=${nome_original}">${nomeObj.nome}</a>(${objListaCoord[i].nTextos})</h3>`
+                    htmlContent += `<h2><a href="p_categoria_especifica.html?categoria=Locais&especifica=${nome_original}">${nomeObj.nome}</a></h2>`
 
                     if(index == 0){
                         htmlContent += `<div id="exemplo-mapa">titulo, autor, ano</div>` //colocar cor diferente
@@ -399,7 +399,7 @@ function displayData(wordData, textData, stoplist){
                     htmlContent+= `</div>`
                 })
 
-                document.querySelector(".info-content-map").innerHTML = htmlContent
+                document.querySelector(".info-content-map").innerHTML = `<span>${objListaCoord[i].coordenada}, ${objListaCoord[i].nTextos} ${objListaCoord[i].nTextos === 1 ? 'Poema' : 'Poemas'} </span>${htmlContent}`
             }
 
         }
