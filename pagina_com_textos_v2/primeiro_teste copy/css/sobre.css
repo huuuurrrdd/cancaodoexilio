@@ -1,7 +1,30 @@
 
 .texto-conteudo{
     column-count: 2;
-    column-gap: 40px;
+    column-gap: 50px;
     text-wrap-style: pretty;
     font-size:large;
+}
+
+.sobre-img{
+    width: 90%;
+    padding: 10px
+}
+
+.sobre-img-liv{
+    width: 60%;
+    margin: auto;
+}
+
+.sobre-img-dis{
+    width: 70%;
+}
+
+.titulo2{
+    padding-top: 80px;
+    font-size: 1.7em;
+}
+
+.conteudo2{
+    padding-bottom: 80px;
 }
