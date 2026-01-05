@@ -44,12 +44,12 @@ conteudo2.innerHTML = ` <p>Este projeto pertence a um estudo desenvolvido por Jo
                         
                         <h4> Livro <i>Song of Exile: A cultural History of Brazil's most popular poem, 1846-2018</i></h4>
                         <p class = "subtopico">Um primeiro estudo abrangente sobre a influência cultural e literária da <i>Canção do Exílio</i>, desde a sua criação até às reinterpretações contemporâneas, com especial atenção às transformações históricas, políticas e tecnológicas.</p>
-                        <div><img class = "sobre-img sobre-img-liv" src="imagens/livro.jpg"></div>
+                        <a href = "https://docs.lib.purdue.edu/psrl/1/" target="_blank"><img class = "sobre-img sobre-img-liv zoom" src="imagens/livro.jpg"></a>
 
                         <h4>Exposição <i>Bird-watching: Visualizações da Influência de Canção do Exílio</i></h4>
                         <p class = "subtopico">Três exposições realizadas por Joshua Enslen e Alaina Enslen e exibidas no <i>Museu da Ciência da Universidade de Coimbra</i>, <i>Festival Literário Internacional de Óbidos</i> e <i>Edifício Caleidoscópio da Universidade de Lisboa</i>.</p>
-                        <div><img class = "sobre-img sobre-img-exp" src = "./imagens/bird.png"></div>
+                        <a href = "https://www.youtube.com/playlist?list=PL6ZJjMmX5Sqb6I4CPRDfgHYDYVmAAetoP" target="_blank"><img class = "sobre-img sobre-img-exp zoom" src = "./imagens/bird.png"></a>
                         
                         <h4>Dissertação <i>As Canções do Exílio</i></h4>
                         <p class = "subtopico">Website com visualizações interativas elaborado no âmbito da dissertação de Mestrado “As Canções do Exílio” de Adriana Barbosa.</p>
-                        <div><img class = "sobre-img sobre-img-dis" src="imagens/bird3.png"></div>`
+                        <a href = "https://student.dei.uc.pt/~abarbosa/ascancoesdoexilio/index.html" target="_blank"><img class = "sobre-img sobre-img-dis zoom" src="imagens/bird3.png"></a>`
