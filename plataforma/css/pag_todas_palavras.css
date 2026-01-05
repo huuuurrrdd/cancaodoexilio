@@ -1,0 +1,351 @@
+
+/******** header *********/
+.ct-head-list{
+    display: grid;
+    grid-template-columns: repeat(13, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+    /* padding: 20px 0px 20px 0px; */
+    grid-column-gap: 10px;
+    grid-row-gap: 0px;
+    position: sticky;
+    top:0px;
+    background-color: var(--dark-green-t-o);
+    z-index: 5;
+}
+
+/******** entradas *********/
+.ct-item{
+    display: grid;
+    grid-template-columns: repeat(13, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+    padding: 15px 0px 15px 0px;
+    grid-column-gap: 10px;
+    grid-row-gap: 0px
+}
+
+
+/******** items-header e tabela *********/
+.palavras{ grid-area: 1 / 3 / 2 / 6;} /*Linha start/ coluna start/ linha end/ coluna end*/
+.texto   { grid-area: 1 / 6 / 2 / 10;}
+.freq    { grid-area: 1 / 10 / 2 / 12;}
+
+
+/******** botoes header *********/
+.palavras-header{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto auto;
+    grid-template-areas: 'h2 h2 input'
+                          'h2 h2 input'
+                          'ord ord input';
+    gap: 5px;
+    padding: 5px;
+}
+
+.texto-header{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-template-rows: auto auto auto;
+    grid-template-areas: 'h2 h2 h2 input'
+                         'h2 h2 h2 input'
+                         'ord ord ord input';
+    gap: 5px;
+    padding: 5px;
+}
+
+.freq-header{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto auto;
+    grid-template-areas: 'h2 input'
+                          'h2 input'
+                          'ord input';
+    gap: 5px;
+    padding: 5px;
+}
+
+.pal-o-h, .texto-o-h, .fre-o-h{
+    grid-area: h2;
+    margin:0;
+}
+
+.texto-o-h a{
+    transition: all 0.3s;
+}
+
+.texto-o-h a:hover{
+    background-color: var(--dark-green);
+    color: var(--light-yellow);
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+
+#Ord-Alfa, #Ord-Tit, #Ord-Freq{
+    grid-area: ord;
+    margin:0;
+    cursor: pointer;
+    padding: 2px 5px;
+    font-size: 14px;
+}
+
+#Ord-Alfa:hover, #Ord-Tit:hover, #Ord-Freq:hover{
+    background-color: var(--dark-green);
+    color: var(--light-yellow);
+}
+
+
+#pal-search-bar, #tit-search-bar, #caixa-frequencia{
+    grid-area: input;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/*freq input container*/
+.freq-input-container{
+    width: 100%;
+    position: relative;
+    padding: 10px 0;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.freq-input-field{
+    display: flex;
+}
+
+.freq-input-field .freq-field{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.freq-field input{
+    width: 120px;
+    height: 40px;
+    text-align: center;
+    background-color: var(--light-yellow);
+    text-align: center;
+    border: 1px solid var(--dark-green-t-o);
+    padding: 5px;
+}
+
+.freq-fied input:focus{
+    outline: none;
+    border-color: var(--dark-green);
+}
+
+.freq-input {
+    width: 100%;
+    font-size: 19px;
+    color: var(--light-yellow)
+}
+
+/*Remove arrows / spinners*/
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearence: textfield;
+}
+
+.slider{
+    width: 100%;
+    height: 5px;
+    position: relative;
+    background-color: var(--light-yellow);
+    /* border-radius: 5px; */
+    margin: 10px 0;
+}
+
+.slider .freq-slider{
+    height: 100%;
+    position: absolute;
+    /* border-radius: 5px; */
+    background: var(--dark-green);
+}
+
+.range-input{
+    position: relative;
+    height: 5px;
+}
+
+.range-input input{
+    position: absolute;
+    width: 100%;
+    height: 5px;
+    background: none;
+    top: -20px;
+    pointer-events: none;
+    cursor: pointer;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+/*Estilos para range thumb em WebKit browsers*/
+input[type="range"]::-webkit-slider-thumb{
+    height: 10px;
+    width: 10px;
+    /* border-radius: 50%; */
+    background: var(--dark-green);
+    border: 0 2px 5px var(--dark-green-t-o);
+    pointer-events: auto;
+    -webkit-appearance: none;
+    cursor: pointer;
+}
+
+/*Estilos para range thumb em Firefox*/
+input[type="range"]::-moz-range-thumb{
+    height: 10px;
+    width: 10px;
+    /* border-radius: 50%; */
+    background: var(--dark-green);
+    box-shadow: 0 2px 5px var(--dark-green-t-o);
+    pointer-events: auto;
+    border: none;
+    cursor: pointer;
+}
+
+/*Remove default track styling*/
+input[type="range"]::-webkit-slider-runnable-track{
+    -webkit-appearance: none;
+    height: 5px;
+}
+
+input[type="range"]::-moz-range-track{
+    -moz-appearance: none;
+    height: 5px;
+}
+
+/*Tooltips para os valores*/
+.value-tooltip{
+    position: absolute;
+    background: var(--dark-green);
+    color: var(--light-yellow);
+    padding: 5px 10px;
+    border-radius: 5px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    white-space: nowrap;
+    z-index: 10;
+    top:-55px;
+    transform: translateX(-50%);
+}
+
+.value-tooltip::after{
+    content: '';
+    position: absolute;
+    bottom:-5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid var(--dark-green);
+}
+
+.value-tooltip.show{
+    opacity: 1;
+}
+
+/******** input style *********/
+.input-h{
+    width: 100px;
+    height: 100%;
+    border:1;
+    padding: 0;
+    padding-right: 30px; 
+    padding-left: 5px;
+    box-sizing: border-box;
+}
+
+.input-h:focus{
+    outline: none;
+    border-color: var(--dark-green);
+}
+
+.bt-h{
+    width: 20px;
+    z-index: 2;
+    top: 2px;
+    left: 72px;
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.bt-h{
+    width:20px;
+    opacity: 0.6;
+}
+
+/****** Estilos de tabela ******/
+.ct-item:hover{
+    background-color: var(--dark-green-t-o2);
+}
+
+.ct-item .palavras:hover, .item-texto:hover{
+    text-decoration: underline;
+}
+
+
+
+/******** Lista de numeros de páginas *********/
+.n-page-ct{
+    display: flex;
+    flex-wrap: nowrap;
+    column-gap: 1px;
+    justify-content: start;
+    align-items: center;
+    margin:auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    /* width: calc(9/13*100%); */
+    position: sticky;
+    bottom: 0px;
+    background-color: var(--light-yellow);
+    overflow-x: scroll;
+    width: 70vw;
+}
+
+.n-page-i{
+    width: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: var(--dark-green);
+    cursor: pointer;
+    text-align: center;
+}
+
+/** bt mais... **/
+.mais span, .ver-todos span, .menos span{
+    cursor: pointer;
+    width: 70px;
+    text-decoration: none;
+    transition: all 0.3s;
+    font-style: italic;
+}
+
+
+.mais:hover span, .ver-todos:hover span, .menos:hover span{
+    color: var(--light-yellow);
+    background-color: var(--dark-green);
+    text-decoration: none;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.mais:hover, .ver-todos:hover, .menos:hover{
+    text-decoration: none;
+}
+

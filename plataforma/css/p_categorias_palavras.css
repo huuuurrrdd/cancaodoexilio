@@ -1,0 +1,153 @@
+/* .categorias-container{
+    margin:auto;
+    width: 70%;
+} */
+
+/* .page-title{
+    margin:auto;
+    width: calc(7/13*100%);
+} */
+
+/*seria igual a container de ct-item ct-item*/
+/* .categorias-sections{
+    display: grid;
+    grid-template-columns: repeat(13, 1fr);
+    grid-auto-rows: 1fr;
+    grid-column-gap: 10px;
+    grid-row-gap: 40px;
+} */
+
+/* .cat-section{
+    display: grid;
+    grid-template-columns: repeat(13, 1fr);
+    grid-auto-rows: 1fr;
+    grid-column-gap: 10px;
+    grid-row-gap: 40px;
+} */
+
+.cat-section{
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.cat-link{
+    display: grid;
+    grid-template-columns: repeat(13, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-auto-rows: calc(200/4)px;
+    grid-column-gap: 40px;
+    grid-row-gap: 40px;
+}
+
+
+/*dentro da grid*/
+.cat-header { grid-area: 1 / 3 / 4 / 5; }
+.info-grafico-cat { grid-area: 1 / 5 / 3 / 8; }
+.checkbox-container { grid-area: 3 / 5 / 4 / 7;}
+.grafico-cat-ct { grid-area: 1 / 8 / 4 / 12; }
+
+.cat-header a{
+    background-color: var(--light-yellow);
+    color: var(--dark-green);
+    /* padding-left: 10px;
+    padding-right: 10px; */
+    transition: all 0.3s;
+}
+
+.cat-header a:hover{
+    background-color: var(--dark-green);
+    color: var(--light-yellow);
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.info-grafico-cat a:hover{
+    background-color: var(--dark-green-t-o);
+}
+
+.checkbox-container{
+    justify-self: center;
+}
+
+
+
+/*checkbox*/
+input[type="checkbox"]{
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height:19px;
+  width:19px;
+  z-index: 3;
+}
+
+input[type="checkbox"] + label{
+  position: relative;
+  padding-left: 30px;
+  cursor: pointer;
+  display: inline-block;
+  color: var(--dark-green);
+  line-height: 25px;
+}
+/*caixa*/
+input[type="checkbox"] + label::before{ 
+  content:"";
+  position: absolute;
+  left:2px;
+  top:2px;
+  width: 18px;
+  height: 18px;
+  outline: 1px solid var(--dark-green-t-o);
+  background: var(--light-yellow);
+}
+/*check simbol*/
+input[type="checkbox"]:checked + label::before{ 
+  content:"";
+  position: absolute;
+  left:2px;
+  top:2px;
+  width: 18px;
+  height: 18px;
+  outline: 1px solid var(--dark-green);
+  background: var(--light-yellow);
+}
+
+input[type="checkbox"]:checked + label::after{ 
+  content:"";
+  position: absolute;
+  left:2px;
+  top:3px;
+  /* transform: translate(-50%, -50%) scale(1); */
+  width: 18px;
+  height: 18px;
+  background-image: url(check.svg);
+  /* background: var(--light-yellow); */
+  background-size: contain;
+  background-repeat: no-repeat;
+  transform: scale(1);
+  opacity: 1;
+  transition: all .3s ease;
+}
+
+input[type="checkbox"]:not(:checked) + label::after{ 
+  content:"";
+  position: absolute;
+  left:0;
+  top:0;
+  width: 18px;
+  height: 18px;
+  background-image: url(check.svg);
+  /* background: var(--light-yellow); */
+  background-size: contain;
+  background-repeat: no-repeat;
+  transform: scale(0);
+  opacity: 0;
+  transition: all .3s ease;
+}
+
+
+/*
+    - Esticar o gráfico verticalmente e horizontalmente (ver como funciona min-max)
+
+
+*/
