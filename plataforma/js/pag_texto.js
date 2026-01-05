@@ -480,7 +480,7 @@ function stringHtml(converted, stoplist, wordData) { // retorna a string em form
         if(palavrasLista.includes(word.toLowerCase())){
             const result = []
             if(leading) result.push(leading)
-            result.push(`<a class="palavra" href= "./p_categoria_especifica.html?categoria=Palavras&especifica=${word}">${word}</a>`)
+            result.push(`<a class="palavra" href= "./p_categoria_especifica.html?categoria=Palavras&especifica=${word.toLowerCase}">${word}</a>`)
             
             if(trailing) result.push(trailing) 
             return result
