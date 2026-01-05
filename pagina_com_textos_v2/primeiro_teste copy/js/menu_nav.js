@@ -5,7 +5,11 @@
 
 */
 
-
+let iconTopo = document.createElement('link')
+iconTopo.rel = "icon"
+iconTopo.type = "image/svg+xml"
+iconTopo.href = "./imagens/palm.svg"
+document.querySelector('head').appendChild(iconTopo)
 
 let nav = document.createElement("nav")
 nav.className = "navegacao nav-mobile"
