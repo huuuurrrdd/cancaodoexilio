@@ -364,6 +364,18 @@ function displayData(wordData, textData, stoplist) {
   categoria_palavras_h.className += "categoria-palavras-h page-title";
   categoria_palavras_h.innerText = categoria;
 
+  /** Voltar a pág categorias **/
+      let btVoltar = document.createElement("a")
+      margem_ct.appendChild(btVoltar)
+      btVoltar.className = "bt-voltar"
+      btVoltar.href = `p_categorias_palavras.html`
+      btVoltar.innerHTML = `Lista Categorias`
+
+      let btVoltarSeta = document.createElement("div")
+      btVoltar.appendChild(btVoltarSeta)
+      btVoltarSeta.className = "bt-voltar-seta"
+
+
   //*************  Gráfico geral  ****************/
   let grafico_ct = document.createElement("div");
   margem_ct.appendChild(grafico_ct);
