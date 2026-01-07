@@ -531,7 +531,7 @@ function displayData(wordData, textData, stoplist) {
   ct_head_list.className += "ct-head-list";
 
   ct_head_list.innerHTML = `  <div class = "palavras header palavras-header">
-                                    <h2 class = "pal-o-h">Palavra</h2>
+                                    <h2 class = "pal-o-h">Elemento</h2>
                                     <p id="Ord-Alfa">Ord:${ordAlf} </p>
                                     <div id="pal-search-bar">
                                         <input id="pal-input" class="input-h" aria-label="palavra?" type="text" class="pal-search-bar__input" placeholder="Palavra?" autofocus required>
@@ -540,7 +540,7 @@ function displayData(wordData, textData, stoplist) {
                                 </div>
 
                                 <div class = "frequencia header frequencia-header">
-                                    <h2 class = "fre-o-h">Freq</h2>
+                                    <h2 class = "fre-o-h">Frequência</h2>
                                     <p id="Ord-Freq">Ord:${ordFre} </p>
                                     <div id = "freq-search-bar">
                                         <input id="freq-input" class="input-h" aria-label="autor?" type="text" class="freq-search-bar__input" placeholder="frequencia?" autofocus required>
