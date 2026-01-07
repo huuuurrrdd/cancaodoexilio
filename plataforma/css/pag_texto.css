@@ -19,10 +19,12 @@
 
 .texto-completo{
     margin: auto;
-    padding-left: 15%;
+    padding-left: 15.5%;
     padding-bottom: 30px;
-    font-family: "Quattrocento";
-    font-size:large;
+    /* font-family: "Quattrocento"; */
+    
+    font-size: 1.1em;
+    /* font-size:large; */
 }
 
 

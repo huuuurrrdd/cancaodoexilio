@@ -36,6 +36,9 @@ html, body{
     margin: 0;
     background-color: var(--light-yellow);
     color: var(--dark-green);
+    font-family: "Gentium Book Plus", serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 *{
