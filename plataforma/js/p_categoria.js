@@ -410,8 +410,8 @@ function displayData(wordData, textData, stoplist) {
   // valores default para ordenação de resultados
   let ordAlf = "AZ"; // o atual
   let ordAlf_ = "ZA"; // o q muda
-  let ordFre = "asc"; // o atual
-  let ordFre_ = "des"; // o que muda
+  let ordFre = "descendente"; // o atual
+  let ordFre_ = "ascendente"; // o que muda
 
   /*:::::::::::  Resultados p/pagina  :::::::::::*/
   let rPP = 50; // resultados por página
@@ -505,14 +505,14 @@ function displayData(wordData, textData, stoplist) {
 
   /*::::::::::: Ordem PALAVRAS por frequencia :::::::::::*/
   function ordFreq(ord) {
-    if (ord == "des") {
+    if (ord == "descendente") {
       resultado.sort((a, b) => (a.freq < b.freq ? -1 : 1)).reverse();
-      ordFre_ = "asc"; // pronto para mudar
-      ordFre = "des"; // atual
-    } else if (ord == "asc") {
+      ordFre_ = "ascendente"; // pronto para mudar
+      ordFre = "descendente"; // atual
+    } else if (ord == "ascendente") {
       resultado.sort((a, b) => (a.freq < b.freq ? -1 : 1));
-      ordFre_ = "des";
-      ordFre = "asc";
+      ordFre_ = "descendente";
+      ordFre = "ascendente";
     }
   }
   //console.log(ordFreq("des")) //funciona!!
@@ -532,7 +532,7 @@ function displayData(wordData, textData, stoplist) {
 
   ct_head_list.innerHTML = `  <div class = "palavras header palavras-header">
                                     <h2 class = "pal-o-h">Elemento</h2>
-                                    <p id="Ord-Alfa">Ord:${ordAlf} </p>
+                                    <p id="Ord-Alfa">Ordem:${ordAlf} </p>
                                     <div id="pal-search-bar">
                                         <input id="pal-input" class="input-h" aria-label="palavra?" type="text" class="pal-search-bar__input" placeholder="Palavra?" autofocus required>
                                         <input id="pal-submit" type="image" class="pal-search-bar_button bt-h" src='./imagens/lupa.svg' aria-label="search">
@@ -541,7 +541,7 @@ function displayData(wordData, textData, stoplist) {
 
                                 <div class = "frequencia header frequencia-header">
                                     <h2 class = "fre-o-h">Frequência</h2>
-                                    <p id="Ord-Freq">Ord:${ordFre} </p>
+                                    <p id="Ord-Freq">Ordem:${ordFre} </p>
                                     <div id = "freq-search-bar">
                                         <input id="freq-input" class="input-h" aria-label="autor?" type="text" class="freq-search-bar__input" placeholder="frequencia?" autofocus required>
                                         <input id="freq-submit" type="image" class="freq-search-bar__button bt-h" src='./imagens/lupa.svg' aria-label=""search>
@@ -564,8 +564,8 @@ function displayData(wordData, textData, stoplist) {
 
   function displayResultado(resultado, valor) {
     /*:::::  Atualiza os headers  :::::*/
-    document.querySelector("#Ord-Alfa").textContent = `Ord: ${ordAlf}`; // funciona!!
-    document.querySelector("#Ord-Freq").textContent = `Ord: ${ordFre}`;
+    document.querySelector("#Ord-Alfa").textContent = `Ordem: ${ordAlf}`; // funciona!!
+    document.querySelector("#Ord-Freq").textContent = `Ordem: ${ordFre}`;
 
     container.innerHTML = "";
 
@@ -685,6 +685,7 @@ function displayData(wordData, textData, stoplist) {
     ordPal(ordAlf_);
     displayResultado(resultado);
     console.log("Click!!");
+
   });
 
   /***************** Ordem Freq ********************/
