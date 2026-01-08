@@ -6,6 +6,30 @@
 */
 
 
+const translations = {
+    pt:{
+        about: "Sobre",
+        categories: "Categorias",
+    },
+
+    en: {
+        about: "About",
+        categories: "Categories",
+    }
+}
+
+let currentLang = 'pt'
+
+function changeLanguage(lang){
+    currentLang = lang;
+    document.querySelectorAll('[data-translate]').forEach(element => {
+        const key = element.getAttribute('data-translate');
+        element.textContent = translations[lang][key];
+    });
+
+    localStorage.setItem('preferredLanguage', lang);
+}
+
 
 let iconTopo = document.createElement('link')
 iconTopo.rel = "icon"
