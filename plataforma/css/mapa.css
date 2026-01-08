@@ -4,6 +4,10 @@
     overflow: auto;
 }
 
+body{
+    padding-bottom: 0;
+}
+
 .leaflet-right .leaflet-control-layers{
     background-color: var(--light-yellow)!important;
 }

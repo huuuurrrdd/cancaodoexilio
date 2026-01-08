@@ -41,6 +41,10 @@ html, body{
     font-style: normal;
 }
 
+body{
+  padding-bottom: 50px;
+}
+
 *{
   scroll-behavior: smooth
 }
