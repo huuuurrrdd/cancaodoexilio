@@ -26,11 +26,11 @@
 
 .bt-voltar{
     position: fixed;
-    top: 40px;
+    top: 18px;
     left: calc(0/13*100%);
     margin-left: 50px;
     border: 1px solid var(--dark-green-t-o);
-    padding: 5px;
+    padding: 3px;
     padding-left: 25px;
     width: calc(0.75/13*100%);
     min-width: 55px;
