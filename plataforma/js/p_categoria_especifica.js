@@ -16,6 +16,8 @@ function getQueryParam(param){
 let categoria = getQueryParam("categoria")
 let especifica = getQueryParam("especifica")
 
+//especifica === "G7   Henrique"? especifica="G7 + Henrique" : especifica=especifica
+
 //caso seja palavra
 let indicePalavra = null
 
