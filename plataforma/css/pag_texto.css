@@ -20,6 +20,8 @@
 .texto-completo{
     margin: auto;
     padding-left: 15.5%;
+    /* padding-right: calc(1/13*100%); */
+    padding-right: 15.5%;
     padding-bottom: 30px;
     /* font-family: "Quattrocento"; */
     
