@@ -552,7 +552,7 @@ function displayData(wordData, textData, stoplist) {
                                 </div>
 
                                 <div class = "frequencia header frequencia-header">
-                                    <h2 class = "fre-o-h">Frequência</h2>
+                                    <h2 class = "fre-o-h">Nª de textos</h2>
                                     <p id="Ord-Freq">Ordem:${ordFre} </p>
                                     <div id = "freq-search-bar">
                                         <input id="freq-input" class="input-h" aria-label="autor?" type="text" class="freq-search-bar__input" placeholder="frequencia?" autofocus required>
